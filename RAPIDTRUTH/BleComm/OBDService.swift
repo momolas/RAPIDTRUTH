@@ -1,0 +1,87 @@
+//
+//  SettingsScreenViewModel.swift
+//  SmartOBD2
+//
+//  Created by kemo konteh on 8/31/23.
+//
+
+import Foundation
+import CoreBluetooth
+import Combine
+
+//struct Vehicle: Codable {
+//    let make: String
+//    let model: String
+//    let year: Int
+//    let obdinfo: OBDInfo
+//}
+
+struct OBDInfo: Codable {
+    var vin: String?
+    var supportedPIDs: [OBDCommand]?
+    var obdProtocol: OBDProtocol = .NONE
+    var ecuMap: [UInt8: ECUID]?
+}
+
+struct Manufacturer: Codable {
+    let make: String
+    let models: [Model]
+}
+
+struct Model: Codable {
+    let name: String
+    let years: [Int]
+}
+
+struct VINResults: Codable {
+    let Results: [VINInfo]
+}
+
+struct VINInfo: Codable, Hashable {
+    let Make: String
+    let Model: String
+    let ModelYear: String
+    let EngineCylinders: String
+}
+
+class OBDService {
+    let elm327: ELM327
+    
+    @Published var elmAdapter: Peripheral?
+	@Published var statusMessage: String?
+    private var cancellables = Set<AnyCancellable>()
+    private var bleManager: BLEManager
+
+    init(bleManager: BLEManager) {
+        self.bleManager = bleManager
+        self.elm327 = ELM327(bleManager: bleManager)
+        subscribeToElmAdapterChanges()
+    }
+
+    private func subscribeToElmAdapterChanges() {
+        elm327.bleManager.$connectedPeripheral
+            .sink { [weak self] elmAdapter in
+                self?.elmAdapter = elmAdapter
+            }
+            .store(in: &cancellables)
+
+        elm327.$statusMessage
+            .sink { [weak self] message in
+                self?.statusMessage = message
+            }
+            .store(in: &cancellables)
+    }
+
+    func setupAdapter(setupOrder: [OBDCommand.General]) async throws -> OBDInfo {
+        return try await elm327.setupAdapter(setupOrder: setupOrder)
+    }
+
+    // connect to the adapter
+    func connectToAdapter(peripheral: Peripheral) async throws {
+        _ = try await self.bleManager.connectAsync(peripheral: peripheral)
+    }
+
+    func scanForTroubleCodes() async throws -> [TroubleCode]? {
+        return try await elm327.scanForTroubleCodes()
+    }
+}
