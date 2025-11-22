@@ -29,6 +29,8 @@ class Garage: ObservableObject {
         didSet {
             if let currentVehicleId = currentVehicleId {
                 UserDefaults.standard.set(currentVehicleId, forKey: "currentCarId")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "currentCarId")
             }
         }
     }
@@ -46,7 +48,10 @@ class Garage: ObservableObject {
         }
 
         // Load currentVehicleId from UserDefaults
-        self.currentVehicleId = UserDefaults.standard.integer(forKey: "currentCarId")
+        let storedId = UserDefaults.standard.integer(forKey: "currentCarId")
+        if storedId != 0 {
+            self.currentVehicleId = storedId
+        }
     }
 
     func addVehicle(make: String, model: String, year: String, vin: String = "", obdinfo: OBDInfo? = nil) {

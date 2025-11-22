@@ -96,6 +96,10 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 	
 	var buffer = Data()
 	
+	private var commandQueue: [CheckedContinuation<Void, Never>] = []
+	private var isProcessing = false
+	private let queueLock = NSLock()
+
 	var sendMessageCompletion: (([String]?, Error?) -> Void)?
 	var connectionCompletion: ((CBPeripheralProtocol) -> Void)?
 	
@@ -110,6 +114,34 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 #endif
 	}
 	
+	// MARK: Helpers
+
+	private func waitForTurn() async {
+		await withCheckedContinuation { continuation in
+			queueLock.lock()
+			if !isProcessing {
+				isProcessing = true
+				queueLock.unlock()
+				continuation.resume()
+			} else {
+				commandQueue.append(continuation)
+				queueLock.unlock()
+			}
+		}
+	}
+
+	private func signalNext() {
+		queueLock.lock()
+		if !commandQueue.isEmpty {
+			let next = commandQueue.removeFirst()
+			queueLock.unlock()
+			next.resume()
+		} else {
+			isProcessing = false
+			queueLock.unlock()
+		}
+	}
+
 	// MARK: Central Manager Control Methods
 	
 	func startScan(services: [CBUUID]) {
@@ -335,6 +367,10 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 	//       need to figure out how to handle this
 	
 	func sendMessageAsync(_ message: String) async throws -> [String] {
+		// Wait for turn in the queue
+		await waitForTurn()
+		defer { signalNext() }
+
 		// ... (sending message logic)
 		let message = "\(message)\r"
 		
@@ -353,8 +389,16 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 		connectedPeripheral.peripheral.writeValue(data, for: ecuCharacteristic, type: .withResponse)
 		
 		return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[String], Error>) in
-			// Set up a timeout timer
-			self.sendMessageCompletion = { response, error in
+			var didResume = false
+			let resumeLock = NSLock()
+
+			let handler = { (response: [String]?, error: Error?) in
+				resumeLock.lock()
+				defer { resumeLock.unlock() }
+
+				if didResume { return }
+				didResume = true
+
 				if let response {
 					continuation.resume(returning: response)
 				} else if let error {
@@ -362,6 +406,23 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 				} else {
 					continuation.resume(throwing: SendMessageError.timeout)
 				}
+			}
+
+			// Set up a timeout timer
+			let timeoutWorkItem = DispatchWorkItem { [weak self] in
+				guard let self = self else { return }
+				self.logger.warning("Timeout waiting for response")
+				// We don't call handler directly via sendMessageCompletion because it might have been cleared?
+				// Actually handler is captured here.
+				handler(nil, SendMessageError.timeout)
+				self.sendMessageCompletion = nil
+			}
+			DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: timeoutWorkItem)
+
+			self.sendMessageCompletion = { response, error in
+				timeoutWorkItem.cancel()
+				handler(response, error)
+				self.sendMessageCompletion = nil
 			}
 		}
 	}
