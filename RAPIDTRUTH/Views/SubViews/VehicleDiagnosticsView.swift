@@ -8,6 +8,7 @@
 import SwiftUI
 import Observation
 
+@MainActor
 @Observable
 class VehicleDiagnosticsViewModel {
     var garage: Garage
@@ -38,10 +39,20 @@ class VehicleDiagnosticsViewModel {
                 guard let troubleCodes = try await obdService.scanForTroubleCodes() else {
                     return
                 }
-                DispatchQueue.main.async {
-                    self.troubleCodes = troubleCodes
-                }
+                self.troubleCodes = troubleCodes
                 print("Trouble Codes: \(troubleCodes)")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    func clearTroubleCodes() {
+        Task {
+            do {
+                try await obdService.clearTroubleCodes()
+                // Clear local list after successful command
+                self.troubleCodes.removeAll()
             } catch {
                 print(error.localizedDescription)
             }
@@ -72,7 +83,7 @@ struct VehicleDiagnosticsView: View {
 
                 HStack {
                     Button {
-                        print("Button tapped")
+                        viewModel.clearTroubleCodes()
                     } label: {
                         Text("Clear Trouble Codes")
                             .font(.system(size: 14))

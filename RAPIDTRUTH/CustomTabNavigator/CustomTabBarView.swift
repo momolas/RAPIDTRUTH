@@ -7,14 +7,7 @@
 
 import SwiftUI
 
-enum Constants {
-    static let radius: CGFloat = 16
-    static let snapRatio: CGFloat = 0.25
-    static let minHeightRatio: CGFloat = 0.1
-    static let indicatorHeight: CGFloat = 6
-    static let indicatorWidth: CGFloat = 60
-    static let maxHeightRatio: CGFloat = 0.9
-}
+// Constants moved to global Constants.swift
 
 enum BottomSheetType {
     case fullScreen
@@ -70,7 +63,7 @@ struct CustomTabBarView<Content: View>: View {
         case .halfScreen:
             return maxHeight * 0.60
         case .quarterScreen:
-            return maxHeight * 0.90
+            return maxHeight * Constants.UI.maxHeightRatio
         case .none:
             return maxHeight * 1.20
         }
@@ -114,9 +107,9 @@ struct CustomTabBarView<Content: View>: View {
             backgroundView
             VStack(spacing: 0) {
                 tabBar
-                    .onChange(of: selection) { value in
+                    .onChange(of: selection) { _, newValue in
                         withAnimation(.easeInOut) {
-                            localSelection = value
+                            localSelection = newValue
                     }}
                     .frame(maxHeight: maxHeight * 0.1)
 
@@ -197,7 +190,7 @@ extension CustomTabBarView {
             Text(tab.title)
                 .font(.system(size: 10, weight: .semibold, design: .rounded))
         }
-        .foregroundStyle(localSelection == tab ? tab.color : .gray)
+        .foregroundStyle(localSelection == tab ? tab.color : Color.gray)
         .padding(.vertical, 8)
         .frame(maxWidth: .infinity)
         .background(
