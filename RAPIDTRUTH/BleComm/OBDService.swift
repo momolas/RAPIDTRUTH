@@ -84,4 +84,8 @@ class OBDService {
     func scanForTroubleCodes() async throws -> [TroubleCode]? {
         return try await elm327.scanForTroubleCodes()
     }
+
+    func clearTroubleCodes() async throws {
+        try await elm327.clearTroubleCodes()
+    }
 }

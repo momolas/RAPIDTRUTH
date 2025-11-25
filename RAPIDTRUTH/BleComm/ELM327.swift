@@ -116,6 +116,17 @@ class ELM327: ObservableObject {
         }
     }
 
+    func clearTroubleCodes() async throws {
+        do {
+            let command = OBDCommand.Mode4.CLEAR_DTC
+            _ = try await sendMessageAsync(command.properties.command)
+            logger.info("Trouble codes cleared")
+        } catch {
+            logger.error("Failed to clear trouble codes: \(error.localizedDescription)")
+            throw error
+        }
+    }
+
     func requestDTC() async throws {
         do {
             let response = try await sendMessageAsync("0101")
@@ -381,34 +392,32 @@ class ELM327: ObservableObject {
             logger.error("Prefix not found in the response")
             return ""
         }
+
         // Extract the VIN hex string after "49 02"
         let vinHexString = response[prefixIndex...]
-            .split(separator: " ")
-            .joined() // Remove spaces
+            .replacingOccurrences(of: " ", with: "")
 
         // Convert the hex string to ASCII characters
         var asciiString = ""
         var hex = vinHexString
-        while !hex.isEmpty {
-            let startIndex = hex.startIndex
-            let endIndex = hex.index(startIndex, offsetBy: 2)
 
-            if let hexValue = UInt8(hex[startIndex..<endIndex], radix: 16) {
-                let unicodeScalar = UnicodeScalar(hexValue)
-                asciiString.append(Character(unicodeScalar))
-            } else {
-                logger.error("Error converting hex to UInt8")
+        // Iterate through hex string in pairs
+        var index = hex.startIndex
+        while index < hex.endIndex {
+            let nextIndex = hex.index(index, offsetBy: 2)
+            if nextIndex > hex.endIndex { break }
+
+            let hexPair = hex[index..<nextIndex]
+            if let hexValue = UInt8(hexPair, radix: 16) {
+                 // Skip non-printable characters
+                if hexValue > 31 && hexValue < 127 {
+                     asciiString.append(Character(UnicodeScalar(hexValue)))
+                }
             }
-            hex.removeFirst(2)
+            index = nextIndex
         }
-        // Remove non-alphanumeric characters from the VIN
-        let vinNumber = asciiString.replacingOccurrences(
-            of: "[^a-zA-Z0-9]",
-            with: "",
-            options: .regularExpression
-        )
-        // getvininfo
-        return vinNumber
+
+        return asciiString
     }
 }
 

@@ -18,7 +18,10 @@ class VehiclePickerViewModel: ObservableObject {
 
     private func loadGarageVehicles() {
         do {
-            let url = Bundle.main.url(forResource: "Cars", withExtension: "json")!
+            guard let url = Bundle.main.url(forResource: "Cars", withExtension: "json") else {
+                print("Cars.json not found")
+                return
+            }
             let data = try Data(contentsOf: url)
             self.carData = try JSONDecoder().decode([Manufacturer].self, from: data)
         } catch {
