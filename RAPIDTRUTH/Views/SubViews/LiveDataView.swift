@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 enum DataDisplayMode {
     case gauges
@@ -14,7 +13,7 @@ enum DataDisplayMode {
 }
 
 struct LiveDataView: View {
-    @ObservedObject var viewModel: LiveDataViewModel
+    var viewModel: LiveDataViewModel
     @State private var displayMode = DataDisplayMode.gauges
     @State private var showingSheet = false
     @State var isRequesting: Bool = false
@@ -118,7 +117,7 @@ struct LiveDataView: View {
                 Button(action: { showingSheet.toggle() }) {
                     Image(systemName: "plus.circle.fill")
                         .font(.system(size: 30, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                 }
             }
             .padding(.horizontal)

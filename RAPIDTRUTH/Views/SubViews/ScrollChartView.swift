@@ -127,9 +127,9 @@ struct GraphView: View {
             .interpolationMethod(.linear)
         }
         .onReceive(timer, perform: updateData)
-        .onChange(of: data.count, perform: { value in
+        .onChange(of: data.count) { value in
 //            chartContentContainerWidth = CGFloat(value) * 10
-        })
+        }
     }
 
     private let measurementTimeLimit: TimeInterval = 120 // 10 minutes

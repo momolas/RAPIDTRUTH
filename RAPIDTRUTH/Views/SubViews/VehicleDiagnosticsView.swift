@@ -6,32 +6,30 @@
 //
 
 import SwiftUI
-import Combine
+import Observation
 
-class VehicleDiagnosticsViewModel: ObservableObject {
-    @Published var garage: Garage
-    @Published var currentVehicle: Vehicle?
-    @Published var garageVehicles: [Vehicle] = []
-    @Published var troubleCodes: [TroubleCode] = []
+@Observable
+class VehicleDiagnosticsViewModel {
+    var garage: Garage
 
-    private var cancellables = Set<AnyCancellable>()
+    var currentVehicle: Vehicle? {
+        if let vin = garage.currentVehicleVin {
+             return garage.garageVehicles.first(where: { $0.vin == vin })
+        }
+        return nil
+    }
+
+    var garageVehicles: [Vehicle] {
+        garage.garageVehicles
+    }
+
+    var troubleCodes: [TroubleCode] = []
 
     let obdService: OBDService
 
     init(obdService: OBDService, garage: Garage) {
         self.obdService = obdService
         self.garage = garage
-
-        garage.$garageVehicles
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.garageVehicles, on: self)
-            .store(in: &cancellables)
-
-        garage.$currentVehicleId
-                .sink { currentVehicleId in
-                    self.currentVehicle = self.garage.garageVehicles.first(where: { $0.id == currentVehicleId } )
-                }
-                .store(in: &cancellables)
     }
 
     func scanForTroubleCodes() {
@@ -52,7 +50,7 @@ class VehicleDiagnosticsViewModel: ObservableObject {
 }
 
 struct VehicleDiagnosticsView: View {
-    @ObservedObject var viewModel: VehicleDiagnosticsViewModel
+    var viewModel: VehicleDiagnosticsViewModel
 
     var body: some View {
         ZStack {
@@ -60,13 +58,25 @@ struct VehicleDiagnosticsView: View {
                 .ignoresSafeArea()
 
             VStack {
+                if viewModel.troubleCodes.isEmpty {
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView("No Trouble Codes",
+                                               systemImage: "checkmark.circle",
+                                               description: Text("No codes found or scan not started."))
+                        .foregroundStyle(.white)
+                    } else {
+                        Text("No Trouble Codes")
+                            .foregroundStyle(.white)
+                    }
+                }
+
                 HStack {
                     Button {
                         print("Button tapped")
                     } label: {
                         Text("Clear Trouble Codes")
                             .font(.system(size: 14))
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                             .padding(15)
                             .background(Color.red)
                             .cornerRadius(10)
@@ -74,12 +84,18 @@ struct VehicleDiagnosticsView: View {
                     Button {
                         viewModel.scanForTroubleCodes()
                     } label: {
-                        Text("Scan for Trouble Codes")
-                            .font(.system(size: 14))
-                            .foregroundColor(.white)
-                            .padding(15)
-                            .background(Color.pinknew)
-                            .cornerRadius(10)
+                        HStack {
+                            if #available(iOS 17.0, *) {
+                                Image(systemName: "magnifyingglass")
+                                    .symbolEffect(.pulse.byLayer)
+                            }
+                            Text("Scan for Trouble Codes")
+                        }
+                        .font(.system(size: 14))
+                        .foregroundStyle(.white)
+                        .padding(15)
+                        .background(Color.pinknew)
+                        .cornerRadius(10)
                     }
                 }
 
@@ -92,11 +108,11 @@ struct VehicleDiagnosticsView: View {
                         HStack {
                             Text(troubleCode.rawValue)
                                 .font(.system(size: 16))
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Text(troubleCode.description)
                                 .font(.system(size: 16))
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .padding()

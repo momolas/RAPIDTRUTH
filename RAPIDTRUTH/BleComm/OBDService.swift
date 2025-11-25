@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreBluetooth
-import Combine
+import Observation
 
 //struct Vehicle: Codable {
 //    let make: String
@@ -44,32 +44,22 @@ struct VINInfo: Codable, Hashable {
     let EngineCylinders: String
 }
 
+@Observable
 class OBDService {
     let elm327: ELM327
-    
-    @Published var elmAdapter: Peripheral?
-	@Published var statusMessage: String?
-    private var cancellables = Set<AnyCancellable>()
     private var bleManager: BLEManager
+
+    var elmAdapter: Peripheral? {
+        bleManager.connectedPeripheral
+    }
+
+    var statusMessage: String? {
+        elm327.statusMessage
+    }
 
     init(bleManager: BLEManager) {
         self.bleManager = bleManager
         self.elm327 = ELM327(bleManager: bleManager)
-        subscribeToElmAdapterChanges()
-    }
-
-    private func subscribeToElmAdapterChanges() {
-        elm327.bleManager.$connectedPeripheral
-            .sink { [weak self] elmAdapter in
-                self?.elmAdapter = elmAdapter
-            }
-            .store(in: &cancellables)
-
-        elm327.$statusMessage
-            .sink { [weak self] message in
-                self?.statusMessage = message
-            }
-            .store(in: &cancellables)
     }
 
     func setupAdapter(setupOrder: [OBDCommand.General]) async throws -> OBDInfo {
@@ -83,5 +73,9 @@ class OBDService {
 
     func scanForTroubleCodes() async throws -> [TroubleCode]? {
         return try await elm327.scanForTroubleCodes()
+    }
+
+    func clearTroubleCodes() async throws {
+        try await elm327.clearTroubleCodes()
     }
 }

@@ -34,13 +34,13 @@ struct SplashScreenView: View {
                             Text("Smart OBD2")
                                 .font(.title)
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .multilineTextAlignment(.center)
 
                             Text("Your Car's Health Companion")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .multilineTextAlignment(.center)
                         }
                         .opacity(opacity)
