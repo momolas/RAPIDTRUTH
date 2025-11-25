@@ -7,6 +7,7 @@
 
 import Combine
 import SwiftUI
+import Observation
 
 struct PIDMeasurement: Identifiable, Comparable, Hashable, Codable {
     static func < (lhs: PIDMeasurement, rhs: PIDMeasurement) -> Bool {
@@ -22,6 +23,7 @@ struct PIDMeasurement: Identifiable, Comparable, Hashable, Codable {
        }
 }
 
+@Observable
 class DataItem: Identifiable, Codable {
     let command: OBDCommand
     var value: Double
@@ -43,19 +45,23 @@ class DataItem: Identifiable, Codable {
     }
 }
 
-class LiveDataViewModel: ObservableObject {
+@Observable
+class LiveDataViewModel {
     let obdService: OBDService
     let garage: Garage
 
-    private var cancellables = Set<AnyCancellable>()
+    var currentVehicle: Vehicle? {
+        if let vin = garage.currentVehicleVin {
+             return garage.garageVehicles.first(where: { $0.vin == vin })
+        }
+        return nil
+    }
 
-    @Published var currentVehicle: Vehicle?
+    var isRequestingPids = false
 
-    @Published var isRequestingPids = false
+    var data: [OBDCommand : DataItem] = [:]
 
-    @Published var data: [OBDCommand : DataItem] = [:]
-
-    @Published var order: [OBDCommand] = []
+    var order: [OBDCommand] = []
 
     private var timer: Timer?
     private var appendMeasurementsTimer: DispatchSourceTimer?
@@ -64,11 +70,6 @@ class LiveDataViewModel: ObservableObject {
     init(obdService: OBDService, garage: Garage) {
         self.obdService = obdService
         self.garage = garage
-        garage.$currentVehicleId
-            .sink { currentVehicleId in
-                self.currentVehicle = self.garage.garageVehicles.first(where: { $0.id == currentVehicleId })
-            }
-            .store(in: &cancellables)
 
         if let piddata = UserDefaults.standard.data(forKey: "pidData"),
            let pidData = try? JSONDecoder().decode([DataItem].self, from: piddata) {
