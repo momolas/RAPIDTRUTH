@@ -10,7 +10,7 @@ import SwiftData
 
 @Model
 final class VehicleModel {
-    var vin: String
+    @Attribute(.unique) var vin: String
     var make: String
     var model: String
     var year: String

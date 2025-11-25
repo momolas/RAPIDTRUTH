@@ -33,7 +33,11 @@ class Garage {
         fetchAllVehicles()
 
         let storedVin = UserDefaults.standard.string(forKey: "currentCarVin")
-        self.currentVehicleVin = storedVin
+        if let storedVin, garageVehicles.contains(where: { $0.vin == storedVin }) {
+            self.currentVehicleVin = storedVin
+        } else {
+            self.currentVehicleVin = nil
+        }
     }
 
     func fetchAllVehicles() {
@@ -48,6 +52,11 @@ class Garage {
     func addVehicle(make: String, model: String, year: String, vin: String = "", obdinfo: OBDInfo? = nil) {
         // VIN serves as ID for selection persistence
         let finalVin = vin.isEmpty ? UUID().uuidString : vin
+
+        if !vin.isEmpty, garageVehicles.contains(where: { $0.vin == vin }) {
+            print("Vehicle with VIN \(vin) already exists.")
+            return
+        }
 
         let vehicle = Vehicle(vin: finalVin, make: make, model: model, year: year, obdinfo: obdinfo)
         modelContext.insert(vehicle)
@@ -64,11 +73,12 @@ class Garage {
     }
 
     func deleteVehicle(_ car: Vehicle) {
+        let deletedVin = car.vin
         modelContext.delete(car)
         try? modelContext.save()
         fetchAllVehicles()
 
-        if car.vin == currentVehicleVin {
+        if deletedVin == currentVehicleVin {
             currentVehicleVin = garageVehicles.first?.vin
         }
     }
