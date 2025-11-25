@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomTabBarContainerView<Content: View>: View {
-    @ObservedObject var viewModel: CustomTabBarViewModel
+    var viewModel: CustomTabBarViewModel
 
     @Binding var selection: TabBarItem
 	@Binding private var displayType: BottomSheetType
@@ -58,13 +58,18 @@ struct CustomTabBarContainerView_Previews: PreviewProvider {
 
     static var previews: some View {
         GeometryReader { proxy in
-
-            CustomTabBarContainerView(selection: .constant(tabs.first!),
-                                      displayType: .constant(.quarterScreen),
-                                      maxHeight: proxy.size.height,
-                                      viewModel: CustomTabBarViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage())
-            ) {
-                Color.red
+            if let firstTab = tabs.first {
+                CustomTabBarContainerView(selection: .constant(firstTab),
+                                          displayType: .constant(.quarterScreen),
+                                          maxHeight: proxy.size.height,
+                                          // ViewModel initialization is mocked and might fail runtime without context injection in preview,
+                                          // but this removes the force unwrap for compilation safety.
+                                          viewModel: CustomTabBarViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage())
+                ) {
+                    Color.red
+                }
+            } else {
+                Text("No Tabs")
             }
         }
     }

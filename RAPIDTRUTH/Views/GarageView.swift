@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GarageView: View {
-    @ObservedObject var viewModel: GarageViewModel
+    var viewModel: GarageViewModel
     @State private var showingSheet = false
 
     var body: some View {
@@ -19,31 +19,31 @@ struct GarageView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Text(vehicle.make)
                                 .font(.system(size: 20, weight: .bold, design: .default))
-                                 .foregroundColor(.white)
+                                 .foregroundStyle(.white)
 
                             Text(vehicle.model)
                                 .font(.system(size: 14, weight: .bold, design: .default))
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
 
                             Text(vehicle.year)
                                 .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                         }
                         Spacer()
                         Button {
                             viewModel.deleteVehicle(vehicle)
                         } label: {
                             Image(systemName: "trash")
-                                .foregroundColor(.red)
+                                .foregroundStyle(.red)
                         }
                     }
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: 125, alignment: .leading)
-                    .background(viewModel.currentVehicle?.id == vehicle.id ? Color.blue : Color.clear)
+                    .background(viewModel.currentVehicle?.vin == vehicle.vin ? Color.blue : Color.clear)
                     .padding(.bottom, 15)
                     .onTapGesture {
                         withAnimation {
-                            viewModel.garage.setCurrentVehicle(by: vehicle.id)
+                            viewModel.garage.setCurrentVehicle(by: vehicle.vin)
                         }
                     }
                 }
@@ -58,7 +58,7 @@ struct GarageView: View {
                 showingSheet.toggle()
             } label: {
                 Image(systemName: "plus.circle")
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .font(.system(size: 20))
             }
             .sheet(isPresented: $showingSheet) {

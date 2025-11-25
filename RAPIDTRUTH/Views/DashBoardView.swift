@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DashBoardView: View {
-    @ObservedObject var liveDataViewModel: LiveDataViewModel
+    var liveDataViewModel: LiveDataViewModel
     @Binding var displayType: BottomSheetType
 
     var body: some View {

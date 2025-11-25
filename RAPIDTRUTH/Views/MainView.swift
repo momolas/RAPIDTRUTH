@@ -50,7 +50,7 @@ struct MainView: View {
 										  maxHeight: proxy.size.height,
 										  viewModel: bottomSheetViewModel
 				) {
-					NavigationView {
+					NavigationStack {
 						HomeView(viewModel: homeViewModel,
 								 diagnosticsViewModel: diagnosticsViewModel,
 								 garageViewModel: garageViewModel,
@@ -59,17 +59,15 @@ struct MainView: View {
 								 displayType: $displayType)
 						.background(LinearGradient(.darkStart, .darkEnd))
 					}
-					.navigationViewStyle(StackNavigationViewStyle())
 					.tabBarItem(tab: .dashBoard, selection: $tabSelection)
 					
-					NavigationView {
+					NavigationStack {
 						DashBoardView(
 							liveDataViewModel: liveDataViewModel,
 							displayType: $displayType
 						)
 						.background(LinearGradient(.slategray, .raisinblack))
 					}
-					.navigationViewStyle(StackNavigationViewStyle())
 					.tabBarItem(tab: .features, selection: $tabSelection)
 				}
 			}
