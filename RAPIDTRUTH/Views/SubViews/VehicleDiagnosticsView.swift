@@ -58,6 +58,18 @@ struct VehicleDiagnosticsView: View {
                 .ignoresSafeArea()
 
             VStack {
+                if viewModel.troubleCodes.isEmpty {
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView("No Trouble Codes",
+                                               systemImage: "checkmark.circle",
+                                               description: Text("No codes found or scan not started."))
+                        .foregroundStyle(.white)
+                    } else {
+                        Text("No Trouble Codes")
+                            .foregroundStyle(.white)
+                    }
+                }
+
                 HStack {
                     Button {
                         print("Button tapped")
@@ -72,12 +84,18 @@ struct VehicleDiagnosticsView: View {
                     Button {
                         viewModel.scanForTroubleCodes()
                     } label: {
-                        Text("Scan for Trouble Codes")
-                            .font(.system(size: 14))
-                            .foregroundStyle(.white)
-                            .padding(15)
-                            .background(Color.pinknew)
-                            .cornerRadius(10)
+                        HStack {
+                            if #available(iOS 17.0, *) {
+                                Image(systemName: "magnifyingglass")
+                                    .symbolEffect(.pulse.byLayer)
+                            }
+                            Text("Scan for Trouble Codes")
+                        }
+                        .font(.system(size: 14))
+                        .foregroundStyle(.white)
+                        .padding(15)
+                        .background(Color.pinknew)
+                        .cornerRadius(10)
                     }
                 }
 

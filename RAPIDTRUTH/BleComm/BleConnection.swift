@@ -186,18 +186,20 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 		
 		let foundPeripheral: Peripheral = Peripheral(_peripheral: peripheral, _name: _name, _advData: advertisementData, _rssi: rssi, _discoverCount: 0)
 		
-		if let index = foundPeripherals.firstIndex(where: { $0.peripheral.identifier.uuidString == peripheral.identifier.uuidString }) {
-			if foundPeripherals[index].discoverCount % 50 == 0 {
-				foundPeripherals[index].name = _name
-				foundPeripherals[index].rssi = rssi.intValue
-				foundPeripherals[index].discoverCount += 1
-			} else {
-				foundPeripherals[index].discoverCount += 1
-			}
-		} else {
-			foundPeripherals.append(foundPeripheral)
-			DispatchQueue.main.async { self.isSearching = false }
-		}
+        Task { @MainActor in
+            if let index = foundPeripherals.firstIndex(where: { $0.peripheral.identifier.uuidString == peripheral.identifier.uuidString }) {
+                if foundPeripherals[index].discoverCount % 50 == 0 {
+                    foundPeripherals[index].name = _name
+                    foundPeripherals[index].rssi = rssi.intValue
+                    foundPeripherals[index].discoverCount += 1
+                } else {
+                    foundPeripherals[index].discoverCount += 1
+                }
+            } else {
+                foundPeripherals.append(foundPeripheral)
+                self.isSearching = false
+            }
+        }
 	}
 	
 	func didConnect(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol) {
@@ -205,34 +207,38 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 		discoverPeripheralServices(peripheral)
 		connectedPeripheral?.peripheral.delegate = self
 		connectionCompletion?(peripheral)
-		connectionState = .connectedToAdapter
+        Task { @MainActor in
+            self.connectionState = .connectedToAdapter
+        }
 	}
 	
 	func didUpdateState(_ central: CBCentralManagerProtocol) {
-		switch central.state {
-			case .poweredOn:
-				logger.debug("Bluetooth is On.")
-				guard let device = connectedPeripheral else {
-					startScan(services: [CBUUID(string: UserDevice.properties.serviceUUID)])
-					return
-				}
-				connectionState = .connecting
-				connect(to: device)
-			case .poweredOff:
-				logger.warning("Bluetooth is currently powered off.")
-				connectionState = .notInitialized
-			case .unsupported:
-				logger.error("This device does not support Bluetooth Low Energy.")
-				connectionState = .failed
-			case .unauthorized:
-				logger.error("This app is not authorized to use Bluetooth Low Energy.")
-				connectionState = .failed
-			case .resetting:
-				logger.warning("Bluetooth is resetting.")
-			default:
-				logger.error("Bluetooth is not powered on.")
-				fatalError()
-		}
+        Task { @MainActor in
+            switch central.state {
+                case .poweredOn:
+                    logger.debug("Bluetooth is On.")
+                    guard let device = connectedPeripheral else {
+                        startScan(services: [CBUUID(string: UserDevice.properties.serviceUUID)])
+                        return
+                    }
+                    connectionState = .connecting
+                    connect(to: device)
+                case .poweredOff:
+                    logger.warning("Bluetooth is currently powered off.")
+                    connectionState = .notInitialized
+                case .unsupported:
+                    logger.error("This device does not support Bluetooth Low Energy.")
+                    connectionState = .failed
+                case .unauthorized:
+                    logger.error("This app is not authorized to use Bluetooth Low Energy.")
+                    connectionState = .failed
+                case .resetting:
+                    logger.warning("Bluetooth is resetting.")
+                default:
+                    logger.error("Bluetooth is not powered on.")
+                    fatalError()
+            }
+        }
 	}
 	
 	func willRestoreState(_ central: CBCentralManagerProtocol, dict: [String : Any]) {
@@ -245,12 +251,14 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 				if isDevicePeripheral(peripheral) {
 					peripheral.delegate = self
 					
-					connectedPeripheral = Peripheral(_peripheral: peripheral,
-													 _name: peripheral.name ?? "Unnamed",
-													 _advData: nil,
-													 _rssi: nil,
-													 _discoverCount: 0)
-					connectionState = .connectedToAdapter
+                    Task { @MainActor in
+                        connectedPeripheral = Peripheral(_peripheral: peripheral,
+                                                         _name: peripheral.name ?? "Unnamed",
+                                                         _advData: nil,
+                                                         _rssi: nil,
+                                                         _discoverCount: 0)
+                        connectionState = .connectedToAdapter
+                    }
 				}
 			}
 		}
@@ -258,14 +266,18 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 	
 	func didFailToConnect(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol, error: Error?) {
 		logger.error("Failed to connect to peripheral: \(peripheral.name ?? "Unnamed")")
-		connectedPeripheral = nil
+        Task { @MainActor in
+            connectedPeripheral = nil
+        }
 		disconnectPeripheral()
 	}
 	
 	func didDisconnect(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol, error: Error?) {
 		logger.warning("Disconnected from peripheral: \(peripheral.name ?? "Unnamed")")
-		connectedPeripheral = nil
-		connectionState = .notInitialized
+        Task { @MainActor in
+            connectedPeripheral = nil
+            connectionState = .notInitialized
+        }
 		resetConfigure()
 	}
 	
@@ -315,15 +327,29 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 			logger.error("No characteristics found")
 			return
 		}
-		self.discoveredServicesAndCharacteristics.append((service, characteristics))
-		
-		for characteristic in characteristics {
-			switch characteristic.uuid.uuidString {
-				case UserDevice.properties.characteristicUUID:
-					logger.info("ecu \(characteristic)")
-					ecuCharacteristic = characteristic
-					peripheral.setNotifyValue(true, for: characteristic)
-					logger.info("Adapter Ready")
+
+        Task { @MainActor in
+            self.discoveredServicesAndCharacteristics.append((service, characteristics))
+
+            for characteristic in characteristics {
+                switch characteristic.uuid.uuidString {
+                    case UserDevice.properties.characteristicUUID:
+                        logger.info("ecu \(characteristic)")
+                        ecuCharacteristic = characteristic
+                        peripheral.setNotifyValue(true, for: characteristic)
+                        logger.info("Adapter Ready")
+                    default:
+                        if debug {
+                            logger.info("Unhandled Characteristic UUID: \(characteristic)")
+                        }
+
+                        if characteristic.properties.contains(.notify) {
+                            peripheral.setNotifyValue(true, for: characteristic)
+                        }
+                }
+            }
+        }
+	}
 				default:
 					if debug {
 						logger.info("Unhandled Characteristic UUID: \(characteristic)")
