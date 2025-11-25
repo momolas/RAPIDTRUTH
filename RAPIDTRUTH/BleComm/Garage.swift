@@ -6,79 +6,95 @@
 //
 
 import SwiftUI
-import Combine
+import Observation
+import SwiftData
 
-struct Vehicle: Codable, Identifiable, Equatable {
-    static func == (lhs: Vehicle, rhs: Vehicle) -> Bool {
-        return lhs.id == rhs.id
-    }
-    let id: Int
-    var vin: String = ""
-    let make: String
-    let model: String
-    let year: String
-    var obdinfo: OBDInfo?
-}
+// Typealias for easier migration
+typealias Vehicle = VehicleModel
 
-class Garage: ObservableObject {
-    @Published var garageVehicles: [Vehicle] = []
+@Observable
+class Garage {
+    var garageVehicles: [Vehicle] = []
+    private var modelContext: ModelContext
 
-    private var nextId = 1 // Initialize with the next integer ID
-
-    @Published var currentVehicleId: Int? {
+    // We persist the selected VIN string instead of an Int ID, as SwiftData persistentModelID is complex
+    var currentVehicleVin: String? {
         didSet {
-            if let currentVehicleId = currentVehicleId {
-                UserDefaults.standard.set(currentVehicleId, forKey: "currentCarId")
+            if let vin = currentVehicleVin {
+                UserDefaults.standard.set(vin, forKey: "currentCarVin")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "currentCarVin")
             }
         }
     }
 
-    init () {
-        // Load garageVehicles from UserDefaults
-        if let data = UserDefaults.standard.data(forKey: "garageVehicles"),
-           let decodedVehicles = try? JSONDecoder().decode([Vehicle].self, from: data) {
-            self.garageVehicles = decodedVehicles
-        }
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        fetchAllVehicles()
 
-        // Determine the next available integer ID
-        if let maxId = garageVehicles.map({ $0.id }).max() {
-              self.nextId = maxId + 1
+        let storedVin = UserDefaults.standard.string(forKey: "currentCarVin")
+        if let storedVin, garageVehicles.contains(where: { $0.vin == storedVin }) {
+            self.currentVehicleVin = storedVin
+        } else {
+            self.currentVehicleVin = nil
         }
+    }
 
-        // Load currentVehicleId from UserDefaults
-        self.currentVehicleId = UserDefaults.standard.integer(forKey: "currentCarId")
+    @MainActor
+    convenience init() {
+        do {
+            let config = ModelConfiguration(isStoredInMemoryOnly: true)
+            let container = try ModelContainer(for: VehicleModel.self, configurations: config)
+            self.init(modelContext: container.mainContext)
+        } catch {
+            fatalError("Failed to create in-memory container for preview: \(error)")
+        }
+    }
+
+    func fetchAllVehicles() {
+        do {
+            let descriptor = FetchDescriptor<Vehicle>(sortBy: [SortDescriptor(\.make)])
+            self.garageVehicles = try modelContext.fetch(descriptor)
+        } catch {
+            print("Failed to fetch vehicles: \(error)")
+        }
     }
 
     func addVehicle(make: String, model: String, year: String, vin: String = "", obdinfo: OBDInfo? = nil) {
-        let vehicle = Vehicle(id: nextId, vin: vin, make: make, model: model, year: year, obdinfo: obdinfo)
-        garageVehicles.append(vehicle)
-        nextId += 1
-        saveGarageVehicles()
-        currentVehicleId = vehicle.id
-        print("Added vehicle \(vehicle)")
+        // VIN serves as ID for selection persistence
+        let finalVin = vin.isEmpty ? UUID().uuidString : vin
+
+        if !vin.isEmpty, garageVehicles.contains(where: { $0.vin == vin }) {
+            print("Vehicle with VIN \(vin) already exists.")
+            return
+        }
+
+        let vehicle = Vehicle(vin: finalVin, make: make, model: model, year: year, obdinfo: obdinfo)
+        modelContext.insert(vehicle)
+        try? modelContext.save()
+
+        fetchAllVehicles()
+        currentVehicleVin = finalVin
+        print("Added vehicle \(vehicle.make) \(vehicle.model)")
     }
 
-    // set current vehicle by id
-    func setCurrentVehicle(by id: Int) {
-        currentVehicleId = id
+    // set current vehicle by VIN (was id)
+    func setCurrentVehicle(by vin: String) {
+        currentVehicleVin = vin
     }
 
     func deleteVehicle(_ car: Vehicle) {
-        garageVehicles.removeAll(where: { $0.id == car.id })
-        if car.id == currentVehicleId { // check if the deleted car was the current one
-            currentVehicleId = garageVehicles.first?.id // make the first car in the garage as the current car
+        let deletedVin = car.vin
+        modelContext.delete(car)
+        try? modelContext.save()
+        fetchAllVehicles()
+
+        if deletedVin == currentVehicleVin {
+            currentVehicleVin = garageVehicles.first?.vin
         }
-        saveGarageVehicles()
     }
 
-    // get vehicle by id from garageVehicles
-    func getVehicle(id: Int) -> Vehicle? {
-        return garageVehicles.first(where: { $0.id == id })
-    }
-
-    func saveGarageVehicles() {
-        if let encodedData = try? JSONEncoder().encode(garageVehicles) {
-            UserDefaults.standard.set(encodedData, forKey: "garageVehicles")
-        }
+    func getVehicle(vin: String) -> Vehicle? {
+        return garageVehicles.first(where: { $0.vin == vin })
     }
 }

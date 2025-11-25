@@ -8,6 +8,7 @@
 import Foundation
 import CoreBluetooth
 import OSLog
+import Observation
 
 enum ConnectionState {
 	case notInitialized
@@ -73,18 +74,19 @@ enum OBDDevices: CaseIterable {
 	}
 }
 
-class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCentralManagerProtocolDelegate {
+@Observable
+class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtocolDelegate {
 	let logger = Logger.bleCom
 	
 	// MARK: Properties
 	
-	@Published var isSearching: Bool = false
-	@Published var connectionState: ConnectionState = .notInitialized
+	var isSearching: Bool = false
+	var connectionState: ConnectionState = .notInitialized
 	// Bluetooth
-	@Published var ecuCharacteristic: CBCharacteristic?
-	@Published var connectedPeripheral: Peripheral?
-	@Published var foundPeripherals: [Peripheral] = []
-	@Published var discoveredServicesAndCharacteristics: [(CBService, [CBCharacteristic])] = []
+	var ecuCharacteristic: CBCharacteristic?
+	var connectedPeripheral: Peripheral?
+	var foundPeripherals: [Peripheral] = []
+	var discoveredServicesAndCharacteristics: [(CBService, [CBCharacteristic])] = []
 	
 	private var centralManager: CBCentralManagerProtocol!
 	
@@ -96,6 +98,10 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 	
 	var buffer = Data()
 	
+	private var commandQueue: [CheckedContinuation<Void, Never>] = []
+	private var isProcessing = false
+	private let queueLock = NSLock()
+
 	var sendMessageCompletion: (([String]?, Error?) -> Void)?
 	var connectionCompletion: ((CBPeripheralProtocol) -> Void)?
 	
@@ -110,6 +116,34 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 #endif
 	}
 	
+	// MARK: Helpers
+
+	private func waitForTurn() async {
+		await withCheckedContinuation { continuation in
+			queueLock.lock()
+			if !isProcessing {
+				isProcessing = true
+				queueLock.unlock()
+				continuation.resume()
+			} else {
+				commandQueue.append(continuation)
+				queueLock.unlock()
+			}
+		}
+	}
+
+	private func signalNext() {
+		queueLock.lock()
+		if !commandQueue.isEmpty {
+			let next = commandQueue.removeFirst()
+			queueLock.unlock()
+			next.resume()
+		} else {
+			isProcessing = false
+			queueLock.unlock()
+		}
+	}
+
 	// MARK: Central Manager Control Methods
 	
 	func startScan(services: [CBUUID]) {
@@ -152,18 +186,20 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 		
 		let foundPeripheral: Peripheral = Peripheral(_peripheral: peripheral, _name: _name, _advData: advertisementData, _rssi: rssi, _discoverCount: 0)
 		
-		if let index = foundPeripherals.firstIndex(where: { $0.peripheral.identifier.uuidString == peripheral.identifier.uuidString }) {
-			if foundPeripherals[index].discoverCount % 50 == 0 {
-				foundPeripherals[index].name = _name
-				foundPeripherals[index].rssi = rssi.intValue
-				foundPeripherals[index].discoverCount += 1
-			} else {
-				foundPeripherals[index].discoverCount += 1
-			}
-		} else {
-			foundPeripherals.append(foundPeripheral)
-			DispatchQueue.main.async { self.isSearching = false }
-		}
+        Task { @MainActor in
+            if let index = foundPeripherals.firstIndex(where: { $0.peripheral.identifier.uuidString == peripheral.identifier.uuidString }) {
+                if foundPeripherals[index].discoverCount % 50 == 0 {
+                    foundPeripherals[index].name = _name
+                    foundPeripherals[index].rssi = rssi.intValue
+                    foundPeripherals[index].discoverCount += 1
+                } else {
+                    foundPeripherals[index].discoverCount += 1
+                }
+            } else {
+                foundPeripherals.append(foundPeripheral)
+                self.isSearching = false
+            }
+        }
 	}
 	
 	func didConnect(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol) {
@@ -171,34 +207,38 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 		discoverPeripheralServices(peripheral)
 		connectedPeripheral?.peripheral.delegate = self
 		connectionCompletion?(peripheral)
-		connectionState = .connectedToAdapter
+        Task { @MainActor in
+            self.connectionState = .connectedToAdapter
+        }
 	}
 	
 	func didUpdateState(_ central: CBCentralManagerProtocol) {
-		switch central.state {
-			case .poweredOn:
-				logger.debug("Bluetooth is On.")
-				guard let device = connectedPeripheral else {
-					startScan(services: [CBUUID(string: UserDevice.properties.serviceUUID)])
-					return
-				}
-				connectionState = .connecting
-				connect(to: device)
-			case .poweredOff:
-				logger.warning("Bluetooth is currently powered off.")
-				connectionState = .notInitialized
-			case .unsupported:
-				logger.error("This device does not support Bluetooth Low Energy.")
-				connectionState = .failed
-			case .unauthorized:
-				logger.error("This app is not authorized to use Bluetooth Low Energy.")
-				connectionState = .failed
-			case .resetting:
-				logger.warning("Bluetooth is resetting.")
-			default:
-				logger.error("Bluetooth is not powered on.")
-				fatalError()
-		}
+        Task { @MainActor in
+            switch central.state {
+                case .poweredOn:
+                    logger.debug("Bluetooth is On.")
+                    guard let device = connectedPeripheral else {
+                        startScan(services: [CBUUID(string: UserDevice.properties.serviceUUID)])
+                        return
+                    }
+                    connectionState = .connecting
+                    connect(to: device)
+                case .poweredOff:
+                    logger.warning("Bluetooth is currently powered off.")
+                    connectionState = .notInitialized
+                case .unsupported:
+                    logger.error("This device does not support Bluetooth Low Energy.")
+                    connectionState = .failed
+                case .unauthorized:
+                    logger.error("This app is not authorized to use Bluetooth Low Energy.")
+                    connectionState = .failed
+                case .resetting:
+                    logger.warning("Bluetooth is resetting.")
+                default:
+                    logger.error("Bluetooth is not powered on.")
+                    fatalError()
+            }
+        }
 	}
 	
 	func willRestoreState(_ central: CBCentralManagerProtocol, dict: [String : Any]) {
@@ -211,12 +251,14 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 				if isDevicePeripheral(peripheral) {
 					peripheral.delegate = self
 					
-					connectedPeripheral = Peripheral(_peripheral: peripheral,
-													 _name: peripheral.name ?? "Unnamed",
-													 _advData: nil,
-													 _rssi: nil,
-													 _discoverCount: 0)
-					connectionState = .connectedToAdapter
+                    Task { @MainActor in
+                        connectedPeripheral = Peripheral(_peripheral: peripheral,
+                                                         _name: peripheral.name ?? "Unnamed",
+                                                         _advData: nil,
+                                                         _rssi: nil,
+                                                         _discoverCount: 0)
+                        connectionState = .connectedToAdapter
+                    }
 				}
 			}
 		}
@@ -224,14 +266,18 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 	
 	func didFailToConnect(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol, error: Error?) {
 		logger.error("Failed to connect to peripheral: \(peripheral.name ?? "Unnamed")")
-		connectedPeripheral = nil
+        Task { @MainActor in
+            connectedPeripheral = nil
+        }
 		disconnectPeripheral()
 	}
 	
 	func didDisconnect(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol, error: Error?) {
 		logger.warning("Disconnected from peripheral: \(peripheral.name ?? "Unnamed")")
-		connectedPeripheral = nil
-		connectionState = .notInitialized
+        Task { @MainActor in
+            connectedPeripheral = nil
+            connectionState = .notInitialized
+        }
 		resetConfigure()
 	}
 	
@@ -281,15 +327,29 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 			logger.error("No characteristics found")
 			return
 		}
-		self.discoveredServicesAndCharacteristics.append((service, characteristics))
-		
-		for characteristic in characteristics {
-			switch characteristic.uuid.uuidString {
-				case UserDevice.properties.characteristicUUID:
-					logger.info("ecu \(characteristic)")
-					ecuCharacteristic = characteristic
-					peripheral.setNotifyValue(true, for: characteristic)
-					logger.info("Adapter Ready")
+
+        Task { @MainActor in
+            self.discoveredServicesAndCharacteristics.append((service, characteristics))
+
+            for characteristic in characteristics {
+                switch characteristic.uuid.uuidString {
+                    case UserDevice.properties.characteristicUUID:
+                        logger.info("ecu \(characteristic)")
+                        ecuCharacteristic = characteristic
+                        peripheral.setNotifyValue(true, for: characteristic)
+                        logger.info("Adapter Ready")
+                    default:
+                        if debug {
+                            logger.info("Unhandled Characteristic UUID: \(characteristic)")
+                        }
+
+                        if characteristic.properties.contains(.notify) {
+                            peripheral.setNotifyValue(true, for: characteristic)
+                        }
+                }
+            }
+        }
+	}
 				default:
 					if debug {
 						logger.info("Unhandled Characteristic UUID: \(characteristic)")
@@ -335,6 +395,10 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 	//       need to figure out how to handle this
 	
 	func sendMessageAsync(_ message: String) async throws -> [String] {
+		// Wait for turn in the queue
+		await waitForTurn()
+		defer { signalNext() }
+
 		// ... (sending message logic)
 		let message = "\(message)\r"
 		
@@ -353,8 +417,16 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 		connectedPeripheral.peripheral.writeValue(data, for: ecuCharacteristic, type: .withResponse)
 		
 		return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[String], Error>) in
-			// Set up a timeout timer
-			self.sendMessageCompletion = { response, error in
+			var didResume = false
+			let resumeLock = NSLock()
+
+			let handler = { (response: [String]?, error: Error?) in
+				resumeLock.lock()
+				defer { resumeLock.unlock() }
+
+				if didResume { return }
+				didResume = true
+
 				if let response {
 					continuation.resume(returning: response)
 				} else if let error {
@@ -362,6 +434,23 @@ class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCe
 				} else {
 					continuation.resume(throwing: SendMessageError.timeout)
 				}
+			}
+
+			// Set up a timeout timer
+			let timeoutWorkItem = DispatchWorkItem { [weak self] in
+				guard let self = self else { return }
+				self.logger.warning("Timeout waiting for response")
+				// We don't call handler directly via sendMessageCompletion because it might have been cleared?
+				// Actually handler is captured here.
+				handler(nil, SendMessageError.timeout)
+				self.sendMessageCompletion = nil
+			}
+			DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: timeoutWorkItem)
+
+			self.sendMessageCompletion = { response, error in
+				timeoutWorkItem.cancel()
+				handler(response, error)
+				self.sendMessageCompletion = nil
 			}
 		}
 	}

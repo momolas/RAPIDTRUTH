@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Observation
 
-class CarScreenViewModel: ObservableObject {
+@Observable
+class CarScreenViewModel {
 
     let obdService: OBDService
 
-    @Published var command: String = ""
+    var command: String = ""
 
     init(obdService: OBDService) {
         self.obdService = obdService
