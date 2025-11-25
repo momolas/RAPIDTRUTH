@@ -8,25 +8,23 @@
 import SwiftUI
 import Combine
 import CoreBluetooth
+import Observation
 
-class SettingsViewModel: ObservableObject {
-	@Published var peripherals: [Peripheral] = []
+@Observable
+class SettingsViewModel {
+	var peripherals: [Peripheral] {
+        bleManager.foundPeripherals
+    }
 	
 	let bleManager: BLEManager
-	private var cancellables = Set<AnyCancellable>()
 	
 	init(bleManager: BLEManager) {
 		self.bleManager = bleManager
-		bleManager.$foundPeripherals
-			.sink { peripherals in
-				self.peripherals = peripherals
-			}
-			.store(in: &cancellables)
 	}
 }
 
 struct SettingsView: View {
-	@ObservedObject var viewModel: SettingsViewModel
+	var viewModel: SettingsViewModel
 	
 	var body: some View {
 		VStack {
