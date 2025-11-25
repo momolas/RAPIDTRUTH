@@ -6,12 +6,11 @@
 //
 
 import Foundation
-import Combine
 import Observation
 
 protocol NewDataServiceProtocol {
     func downloadItemWithEscaping(completion: @escaping (_ items: [String]) -> Void)
-    func downloadItemWithCombine() -> AnyPublisher<[String], Error>
+    func downloadItemWithAsync() async throws -> [String]
 }
 
 class NewMockDataService: NewDataServiceProtocol {
@@ -25,13 +24,11 @@ class NewMockDataService: NewDataServiceProtocol {
         }
     }
 
-    func downloadItemWithCombine() -> AnyPublisher<[String], Error> {
-        Just(items)
-            .tryMap({ publishedItems in
-                guard !publishedItems.isEmpty else { throw URLError(.badServerResponse) }
-                return publishedItems
-            })
-            .eraseToAnyPublisher()
+    func downloadItemWithAsync() async throws -> [String] {
+        // Simulate network delay
+        try await Task.sleep(nanoseconds: 1_000_000_000)
+        guard !items.isEmpty else { throw URLError(.badServerResponse) }
+        return items
     }
 }
 
@@ -41,7 +38,6 @@ class UnitTestingBootcampViewModel {
     var dataArray: [String] = []
     var selectedItem: String? = nil
     let dataService: NewDataServiceProtocol
-    @ObservationIgnored var cancellables = Set<AnyCancellable>()
 
     init(isPremium: Bool, dataService: NewDataServiceProtocol = NewMockDataService(items: nil)) {
         self.isPremium = isPremium
@@ -76,14 +72,15 @@ class UnitTestingBootcampViewModel {
         }
     }
 
-    func downloadItemsWithCombine() {
-        dataService.downloadItemWithCombine()
-            .sink { _ in
-
-            } receiveValue: { [weak self] items in
-                self?.dataArray = items
+    func downloadItemsWithAsync() async {
+        do {
+            let items = try await dataService.downloadItemWithAsync()
+            await MainActor.run {
+                self.dataArray = items
             }
-            .store(in: &cancellables)
+        } catch {
+            print(error)
+        }
     }
 
     enum DataError: Error {

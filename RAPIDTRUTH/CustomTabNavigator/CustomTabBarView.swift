@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 enum Constants {
     static let radius: CGFloat = 16
@@ -38,8 +37,6 @@ struct CustomTabBarView<Content: View>: View {
 
     @GestureState var gestureOffset: CGFloat = 0
     @Namespace private var namespace
-
-    private var cancellables = Set<AnyCancellable>()
 
     let maxHeight: CGFloat
     let backgroundView: Content

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 import CoreBluetooth
 import Observation
 
@@ -25,7 +24,12 @@ class CustomTabBarViewModel {
     }
 
     var connectionState: ConnectionState {
-        obdService.elm327.bleManager.connectionState
+        get {
+            obdService.elm327.bleManager.connectionState
+        }
+        set {
+            obdService.elm327.bleManager.connectionState = newValue
+        }
     }
 
     let obdService: OBDService
