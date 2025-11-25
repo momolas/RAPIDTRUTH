@@ -10,11 +10,11 @@ import SwiftUI
 struct HomeView: View {
 	@Environment(\.colorScheme) var colorScheme
 	
-    @ObservedObject var viewModel: HomeViewModel
-    @ObservedObject var diagnosticsViewModel: VehicleDiagnosticsViewModel
-    @ObservedObject var garageViewModel: GarageViewModel
-    @ObservedObject var settingsViewModel: SettingsViewModel
-    @ObservedObject var carScreenViewModel: CarScreenViewModel
+    var viewModel: HomeViewModel
+    var diagnosticsViewModel: VehicleDiagnosticsViewModel
+    var garageViewModel: GarageViewModel
+    var settingsViewModel: SettingsViewModel
+    var carScreenViewModel: CarScreenViewModel
 
     @Binding var displayType: BottomSheetType
 

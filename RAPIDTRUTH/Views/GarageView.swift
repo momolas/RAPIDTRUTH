@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GarageView: View {
-    @ObservedObject var viewModel: GarageViewModel
+    var viewModel: GarageViewModel
     @State private var showingSheet = false
 
     var body: some View {
@@ -39,11 +39,11 @@ struct GarageView: View {
                     }
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: 125, alignment: .leading)
-                    .background(viewModel.currentVehicle?.id == vehicle.id ? Color.blue : Color.clear)
+                    .background(viewModel.currentVehicle?.vin == vehicle.vin ? Color.blue : Color.clear)
                     .padding(.bottom, 15)
                     .onTapGesture {
                         withAnimation {
-                            viewModel.garage.setCurrentVehicle(by: vehicle.id)
+                            viewModel.garage.setCurrentVehicle(by: vehicle.vin)
                         }
                     }
                 }

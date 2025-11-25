@@ -7,26 +7,25 @@
 
 import Foundation
 import Combine
+import Observation
 
-class GarageViewModel: ObservableObject {
-    @Published var garage: Garage
-    @Published var currentVehicle: Vehicle?
-    @Published var garageVehicles: [Vehicle] = []
+@Observable
+class GarageViewModel {
+    var garage: Garage
 
-    private var cancellables = Set<AnyCancellable>()
+    var currentVehicle: Vehicle? {
+        if let vin = garage.currentVehicleVin {
+             return garage.garageVehicles.first(where: { $0.vin == vin })
+        }
+        return nil
+    }
+
+    var garageVehicles: [Vehicle] {
+        garage.garageVehicles
+    }
 
     init(garage: Garage) {
         self.garage = garage
-        garage.$garageVehicles
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.garageVehicles, on: self)
-            .store(in: &cancellables)
-        
-        garage.$currentVehicleId
-                .sink { currentVehicleId in
-                    self.currentVehicle = self.garage.garageVehicles.first(where: { $0.id == currentVehicleId } )
-                }
-                .store(in: &cancellables)
     }
 
     func deleteVehicle(_ vehicle: Vehicle) {
