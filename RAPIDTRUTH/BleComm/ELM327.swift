@@ -9,6 +9,7 @@ import Foundation
 import CoreBluetooth
 import Combine
 import OSLog
+import Observation
 
 struct ECUHeader {
     static let ENGINE = "7E0"
@@ -42,10 +43,11 @@ func decodeToStatus(_ result: OBDDecodeResult) -> Status? {
     }
 }
 
-class ELM327: ObservableObject {
+@Observable
+class ELM327 {
 
     // MARK: - Properties
-    @Published var statusMessage: String = ""
+    var statusMessage: String = ""
 
     let logger = Logger.elmCom
 

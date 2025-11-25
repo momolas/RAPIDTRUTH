@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Observation
 
 protocol NewDataServiceProtocol {
     func downloadItemWithEscaping(completion: @escaping (_ items: [String]) -> Void)
@@ -34,12 +35,13 @@ class NewMockDataService: NewDataServiceProtocol {
     }
 }
 
-class UnitTestingBootcampViewModel: ObservableObject {
-    @Published var isPremium: Bool
-    @Published var dataArray: [String] = []
-    @Published var selectedItem: String? = nil
+@Observable
+class UnitTestingBootcampViewModel {
+    var isPremium: Bool
+    var dataArray: [String] = []
+    var selectedItem: String? = nil
     let dataService: NewDataServiceProtocol
-    var cancellables = Set<AnyCancellable>()
+    @ObservationIgnored var cancellables = Set<AnyCancellable>()
 
     init(isPremium: Bool, dataService: NewDataServiceProtocol = NewMockDataService(items: nil)) {
         self.isPremium = isPremium

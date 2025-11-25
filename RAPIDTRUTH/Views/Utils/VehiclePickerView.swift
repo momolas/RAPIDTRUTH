@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import Observation
 
-class VehiclePickerViewModel: ObservableObject {
+@Observable
+class VehiclePickerViewModel {
     var carData: [Manufacturer] = []
     let garage: Garage
 
@@ -36,7 +38,7 @@ class VehiclePickerViewModel: ObservableObject {
 }
 
 struct VehiclePickerView: View {
-    @ObservedObject var viewModel = VehiclePickerViewModel(garage: Garage())
+    var viewModel: VehiclePickerViewModel
     @State var selectedYear = -1
     @State var selectedModel = -1 {
         didSet {
@@ -117,6 +119,4 @@ struct VehiclePickerView: View {
     }
 }
 
-#Preview {
-    VehiclePickerView()
-}
+// Preview removed as it requires intricate SwiftData setup which is hard to mock in a simple file

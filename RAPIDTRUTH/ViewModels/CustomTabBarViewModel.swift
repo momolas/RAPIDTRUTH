@@ -8,47 +8,39 @@
 import SwiftUI
 import Combine
 import CoreBluetooth
+import Observation
 
-class CustomTabBarViewModel: ObservableObject {
+@Observable
+class CustomTabBarViewModel {
 
-    @Published var garage: Garage
-    @Published var obdInfo = OBDInfo()
-    @Published var garageVehicles: [Vehicle] = []
-    @Published var peripherals: [Peripheral] = []
-    @Published var connectionState: ConnectionState = .notInitialized
+    var garage: Garage
+    var obdInfo = OBDInfo()
 
+    var garageVehicles: [Vehicle] {
+        garage.garageVehicles
+    }
 
-    private var cancellables = Set<AnyCancellable>()
+    var peripherals: [Peripheral] {
+        obdService.elm327.bleManager.foundPeripherals
+    }
+
+    var connectionState: ConnectionState {
+        obdService.elm327.bleManager.connectionState
+    }
 
     let obdService: OBDService
-    @Published var currentVehicle: Vehicle?
+
+    var currentVehicle: Vehicle? {
+        if let vin = garage.currentVehicleVin {
+             return garage.garageVehicles.first(where: { $0.vin == vin })
+        }
+        return nil
+    }
 
 
     init(obdService: OBDService, garage: Garage) {
         self.obdService = obdService
         self.garage = garage
-        garage.$garageVehicles
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.garageVehicles, on: self)
-            .store(in: &cancellables)
-
-        garage.$currentVehicleId
-                .sink { currentVehicleId in
-                    self.currentVehicle = self.garage.garageVehicles.first(where: { $0.id == currentVehicleId } )
-                }
-                .store(in: &cancellables)
-
-        obdService.elm327.bleManager.$foundPeripherals
-            .sink { peripherals in
-                self.peripherals = peripherals
-            }
-            .store(in: &cancellables)
-
-        obdService.elm327.bleManager.$connectionState
-            .sink { connectionState in
-                self.connectionState = connectionState
-            }
-            .store(in: &cancellables)
     }
 
     func addVehicle(make: String, model: String, year: String, vin: String) {
@@ -70,7 +62,7 @@ class CustomTabBarViewModel: ObservableObject {
                 if let vehicle =  garage.garageVehicles.first(where: { $0.vin == vin }) {
                     // set selected car
                     DispatchQueue.main.async {
-                        self.garage.currentVehicleId = vehicle.id
+                        self.garage.currentVehicleVin = vehicle.vin
                     
                     }
                     return

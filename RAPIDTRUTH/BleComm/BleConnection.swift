@@ -8,6 +8,7 @@
 import Foundation
 import CoreBluetooth
 import OSLog
+import Observation
 
 enum ConnectionState {
 	case notInitialized
@@ -73,18 +74,19 @@ enum OBDDevices: CaseIterable {
 	}
 }
 
-class BLEManager: NSObject, ObservableObject, CBPeripheralProtocolDelegate, CBCentralManagerProtocolDelegate {
+@Observable
+class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtocolDelegate {
 	let logger = Logger.bleCom
 	
 	// MARK: Properties
 	
-	@Published var isSearching: Bool = false
-	@Published var connectionState: ConnectionState = .notInitialized
+	var isSearching: Bool = false
+	var connectionState: ConnectionState = .notInitialized
 	// Bluetooth
-	@Published var ecuCharacteristic: CBCharacteristic?
-	@Published var connectedPeripheral: Peripheral?
-	@Published var foundPeripherals: [Peripheral] = []
-	@Published var discoveredServicesAndCharacteristics: [(CBService, [CBCharacteristic])] = []
+	var ecuCharacteristic: CBCharacteristic?
+	var connectedPeripheral: Peripheral?
+	var foundPeripherals: [Peripheral] = []
+	var discoveredServicesAndCharacteristics: [(CBService, [CBCharacteristic])] = []
 	
 	private var centralManager: CBCentralManagerProtocol!
 	

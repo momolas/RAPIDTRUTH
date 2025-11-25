@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import Observation
 
-class AddVehicleViewModel: ObservableObject {
+@Observable
+class AddVehicleViewModel {
     var carData: [Manufacturer] = []
     let garage: Garage
 
@@ -37,7 +39,7 @@ class AddVehicleViewModel: ObservableObject {
 
 struct AddVehicleView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: AddVehicleViewModel
+    var viewModel: AddVehicleViewModel
     @State var selectMake: String?
 
     var body: some View {
