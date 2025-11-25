@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 enum Constants {
     static let radius: CGFloat = 16
@@ -25,7 +24,7 @@ enum BottomSheetType {
 }
 
 struct CustomTabBarView<Content: View>: View {
-    @ObservedObject var viewModel: CustomTabBarViewModel
+    var viewModel: CustomTabBarViewModel
 
     @State private var isLoading = false
     @State private var setupOrder: [OBDCommand.General] = [.ATD, .ATZ, .ATL0, .ATE0, .ATH1, .ATAT1, .ATRV, .ATDPN]
@@ -38,8 +37,6 @@ struct CustomTabBarView<Content: View>: View {
 
     @GestureState var gestureOffset: CGFloat = 0
     @Namespace private var namespace
-
-    private var cancellables = Set<AnyCancellable>()
 
     let maxHeight: CGFloat
     let backgroundView: Content
@@ -323,16 +320,4 @@ extension CustomTabBarView {
     }
 }
 
-#Preview {
-    GeometryReader { proxy in
-        CustomTabBarView(tabs: [.dashBoard, .features],
-                         viewModel: CustomTabBarViewModel(obdService: OBDService(bleManager: BLEManager()),
-                                                         garage: Garage()),
-                         selection: .constant(.dashBoard),
-                         displayType: .constant(.fullScreen),
-                         maxHeight: proxy.size.height
-        ) {
-            Color.blue
-        }
-    }
-}
+// Preview removed to avoid SwiftData init issues

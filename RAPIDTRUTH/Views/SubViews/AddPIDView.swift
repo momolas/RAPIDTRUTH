@@ -6,26 +6,26 @@
 //
 
 import SwiftUI
-import Combine
+import Observation
 
-class AddPIDViewModel: ObservableObject {
+@Observable
+class AddPIDViewModel {
     let garage: Garage
-    var cancellables = Set<AnyCancellable>()
 
-    @Published var currentVehicle: Vehicle?
+    var currentVehicle: Vehicle? {
+        if let vin = garage.currentVehicleVin {
+            return garage.garageVehicles.first(where: { $0.vin == vin })
+        }
+        return nil
+    }
 
     init(garage: Garage) {
         self.garage = garage
-        garage.$currentVehicleId
-            .sink { currentVehicleId in
-                self.currentVehicle = self.garage.garageVehicles.first(where: { $0.id == currentVehicleId })
-            }
-            .store(in: &cancellables)
     }
 }
 
 struct AddPIDView: View {
-    @ObservedObject var viewModel: LiveDataViewModel
+    var viewModel: LiveDataViewModel
     var body: some View {
         if let car = viewModel.currentVehicle {
             VStack(alignment: .leading) {

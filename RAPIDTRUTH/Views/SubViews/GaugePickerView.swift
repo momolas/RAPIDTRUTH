@@ -28,7 +28,7 @@ enum GaugeType: String, CaseIterable, Identifiable, Codable {
 }
 
 struct GaugePickerView: View {
-    @ObservedObject var viewModel: LiveDataViewModel
+    var viewModel: LiveDataViewModel
     @Binding var enLarge: Bool
 
     @Binding var selectedPID: DataItem?

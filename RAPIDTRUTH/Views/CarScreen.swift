@@ -14,7 +14,7 @@ struct History: Identifiable {
 }
 
 struct CarScreen: View {
-    @ObservedObject var viewModel: CarScreenViewModel
+    @Bindable var viewModel: CarScreenViewModel
     @State private var history: [History] = []
     @Environment(\.colorScheme) var colorScheme
 

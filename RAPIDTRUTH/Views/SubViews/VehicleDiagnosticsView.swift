@@ -6,32 +6,30 @@
 //
 
 import SwiftUI
-import Combine
+import Observation
 
-class VehicleDiagnosticsViewModel: ObservableObject {
-    @Published var garage: Garage
-    @Published var currentVehicle: Vehicle?
-    @Published var garageVehicles: [Vehicle] = []
-    @Published var troubleCodes: [TroubleCode] = []
+@Observable
+class VehicleDiagnosticsViewModel {
+    var garage: Garage
 
-    private var cancellables = Set<AnyCancellable>()
+    var currentVehicle: Vehicle? {
+        if let vin = garage.currentVehicleVin {
+             return garage.garageVehicles.first(where: { $0.vin == vin })
+        }
+        return nil
+    }
+
+    var garageVehicles: [Vehicle] {
+        garage.garageVehicles
+    }
+
+    var troubleCodes: [TroubleCode] = []
 
     let obdService: OBDService
 
     init(obdService: OBDService, garage: Garage) {
         self.obdService = obdService
         self.garage = garage
-
-        garage.$garageVehicles
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.garageVehicles, on: self)
-            .store(in: &cancellables)
-
-        garage.$currentVehicleId
-                .sink { currentVehicleId in
-                    self.currentVehicle = self.garage.garageVehicles.first(where: { $0.id == currentVehicleId } )
-                }
-                .store(in: &cancellables)
     }
 
     func scanForTroubleCodes() {
@@ -52,7 +50,7 @@ class VehicleDiagnosticsViewModel: ObservableObject {
 }
 
 struct VehicleDiagnosticsView: View {
-    @ObservedObject var viewModel: VehicleDiagnosticsViewModel
+    var viewModel: VehicleDiagnosticsViewModel
 
     var body: some View {
         ZStack {

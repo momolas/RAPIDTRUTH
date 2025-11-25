@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 enum DataDisplayMode {
     case gauges
@@ -14,7 +13,7 @@ enum DataDisplayMode {
 }
 
 struct LiveDataView: View {
-    @ObservedObject var viewModel: LiveDataViewModel
+    var viewModel: LiveDataViewModel
     @State private var displayMode = DataDisplayMode.gauges
     @State private var showingSheet = false
     @State var isRequesting: Bool = false
