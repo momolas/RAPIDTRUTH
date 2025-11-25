@@ -40,6 +40,17 @@ class Garage {
         }
     }
 
+    @MainActor
+    convenience init() {
+        do {
+            let config = ModelConfiguration(isStoredInMemoryOnly: true)
+            let container = try ModelContainer(for: VehicleModel.self, configurations: config)
+            self.init(modelContext: container.mainContext)
+        } catch {
+            fatalError("Failed to create in-memory container for preview: \(error)")
+        }
+    }
+
     func fetchAllVehicles() {
         do {
             let descriptor = FetchDescriptor<Vehicle>(sortBy: [SortDescriptor(\.make)])
