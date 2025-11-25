@@ -48,7 +48,7 @@ struct CarScreen: View {
                     Image(systemName: "arrow.up.circle")
                         .resizable()
                         .frame(width: 29, height: 30)
-                        .foregroundColor(.blue)
+                        .foregroundStyle(.blue)
                         .padding(10)
                 }
                 .padding(.trailing)

@@ -112,7 +112,7 @@ struct VehiclePickerView: View {
                 Text("Add")
                     .padding()
                     .background(Color.blue)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                     .cornerRadius(10)
             }
         }

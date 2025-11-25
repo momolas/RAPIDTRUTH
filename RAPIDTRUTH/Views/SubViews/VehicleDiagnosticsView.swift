@@ -64,7 +64,7 @@ struct VehicleDiagnosticsView: View {
                     } label: {
                         Text("Clear Trouble Codes")
                             .font(.system(size: 14))
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                             .padding(15)
                             .background(Color.red)
                             .cornerRadius(10)
@@ -74,7 +74,7 @@ struct VehicleDiagnosticsView: View {
                     } label: {
                         Text("Scan for Trouble Codes")
                             .font(.system(size: 14))
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                             .padding(15)
                             .background(Color.pinknew)
                             .cornerRadius(10)
@@ -90,11 +90,11 @@ struct VehicleDiagnosticsView: View {
                         HStack {
                             Text(troubleCode.rawValue)
                                 .font(.system(size: 16))
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Text(troubleCode.description)
                                 .font(.system(size: 16))
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .padding()

@@ -114,10 +114,10 @@ struct CustomTabBarView<Content: View>: View {
             backgroundView
             VStack(spacing: 0) {
                 tabBar
-                    .onChange(of: selection, perform: { value in
+                    .onChange(of: selection) { value in
                         withAnimation(.easeInOut) {
                             localSelection = value
-                    }})
+                    }}
                     .frame(maxHeight: maxHeight * 0.1)
 
                 VStack {
@@ -197,7 +197,7 @@ extension CustomTabBarView {
             Text(tab.title)
                 .font(.system(size: 10, weight: .semibold, design: .rounded))
         }
-        .foregroundColor(localSelection == tab ? tab.color : .gray)
+        .foregroundStyle(localSelection == tab ? tab.color : .gray)
         .padding(.vertical, 8)
         .frame(maxWidth: .infinity)
         .background(
@@ -248,7 +248,7 @@ extension CustomTabBarView {
                                 Text("Connected to Vehicle")
                                        .font(.system(size: 22, weight: .bold, design: .rounded))
                                        .fontWeight(.bold)
-                                       .foregroundColor(.green)
+                                       .foregroundStyle(.green)
                                 }
                             }
                             .padding(10)

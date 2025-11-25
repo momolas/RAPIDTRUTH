@@ -117,7 +117,7 @@ struct LiveDataView: View {
                 Button(action: { showingSheet.toggle() }) {
                     Image(systemName: "plus.circle.fill")
                         .font(.system(size: 30, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                 }
             }
             .padding(.horizontal)

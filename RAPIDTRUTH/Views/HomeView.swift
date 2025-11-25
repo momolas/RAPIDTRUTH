@@ -113,17 +113,17 @@ struct SettingsAboutSectionView: View {
         HStack {
             Image(systemName: iconName)
                 .font(.system(size: 30, weight: .bold))
-                .foregroundColor(iconColor)
+                .foregroundStyle(iconColor)
 
             Text(title)
                 .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
 
             Spacer()
 
             Image(systemName: "chevron.right")
                 .font(.system(size: 14, weight: .bold))
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
 
         }
         .frame(maxWidth: .infinity, maxHeight: 400, alignment: .leading)
