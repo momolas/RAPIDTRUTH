@@ -28,7 +28,7 @@ enum GaugeType: String, CaseIterable, Identifiable, Codable {
 }
 
 struct GaugePickerView: View {
-    @ObservedObject var viewModel: LiveDataViewModel
+    var viewModel: LiveDataViewModel
     @Binding var enLarge: Bool
 
     @Binding var selectedPID: DataItem?
@@ -184,7 +184,7 @@ struct SpeedometerGaugeStyle: GaugeStyle {
         ZStack {
 
             Circle()
-                .foregroundColor(Color(.systemGray6))
+                .foregroundStyle(Color(.systemGray6))
 
             Circle()
                 .trim(from: 0, to: 0.75 * configuration.value)
@@ -199,11 +199,11 @@ struct SpeedometerGaugeStyle: GaugeStyle {
             VStack {
                 configuration.currentValueLabel
                     .font(.system(size: 40, weight: .bold, design: .rounded))
-                    .foregroundColor(.gray)
+                    .foregroundStyle(.gray)
                 Text("KM/H")
                     .font(.system(.body, design: .rounded))
                     .bold()
-                    .foregroundColor(.gray)
+                    .foregroundStyle(.gray)
             }
 
         }

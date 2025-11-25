@@ -36,7 +36,7 @@ struct ConnectButton: View {
                 if !isLoading {
                     Text(text)
                         .font(.system(size: 13, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                 }
             }
             .padding(35)
@@ -60,7 +60,7 @@ struct GoButtonAnimation: View {
                     .scaleEffect(1.5)
             } else {
                 Ellipse()
-                    .foregroundColor(Color.clear)
+                    .foregroundStyle(Color.clear)
                     .frame(width: buttonSize, height: buttonSize)
                     .overlay(
                         Circle()
