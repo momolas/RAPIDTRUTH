@@ -25,6 +25,8 @@ class VehicleDiagnosticsViewModel {
     }
 
     var troubleCodes: [TroubleCode] = []
+    var errorMessage: String?
+    var showAlert = false
 
     let obdService: OBDService
 
@@ -40,9 +42,22 @@ class VehicleDiagnosticsViewModel {
                     return
                 }
                 self.troubleCodes = troubleCodes
-                print("Trouble Codes: \(troubleCodes)")
             } catch {
-                print(error.localizedDescription)
+                self.errorMessage = error.localizedDescription
+                self.showAlert = true
+            }
+        }
+    }
+
+    func clearTroubleCodes() {
+        Task {
+            do {
+                try await obdService.clearTroubleCodes()
+                // Clear local list after successful command
+                self.troubleCodes.removeAll()
+            } catch {
+                self.errorMessage = error.localizedDescription
+                self.showAlert = true
             }
         }
     }
@@ -61,7 +76,7 @@ class VehicleDiagnosticsViewModel {
 }
 
 struct VehicleDiagnosticsView: View {
-    var viewModel: VehicleDiagnosticsViewModel
+    @Bindable var viewModel: VehicleDiagnosticsViewModel
 
     var body: some View {
         ZStack {
@@ -140,6 +155,7 @@ struct VehicleDiagnosticsView: View {
         }
         .navigationTitle(navTitle)
         .navigationBarTitleDisplayMode(.inline)
+        .errorAlert()
     }
 
     var navTitle: String {
@@ -149,6 +165,17 @@ struct VehicleDiagnosticsView: View {
                return "Garage Empty"
            }
        }
+}
+
+extension VehicleDiagnosticsView {
+    // Helper to attach alert
+    func errorAlert() -> some View {
+        self.alert("Error", isPresented: $viewModel.showAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(viewModel.errorMessage ?? "Unknown error")
+        }
+    }
 }
 
 #Preview {

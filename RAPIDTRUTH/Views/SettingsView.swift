@@ -26,22 +26,30 @@ struct SettingsView: View {
 	var viewModel: SettingsViewModel
 	
 	var body: some View {
-		VStack {
-			HStack {
-				VStack {
-					ForEach(OBDDevices.allCases, id: \.self) { OBDDevice in
-						Text(OBDDevice.properties.DeviceName)
-					}
-				}
-			}
-			
-			List {
-				// list of peripherals
-				ForEach(viewModel.peripherals) { peripheral in
-					PeripheralRow(peripheral: peripheral)
-				}
-			}
-		}
+        List {
+            Section(header: Text("Bluetooth Devices")) {
+                if viewModel.peripherals.isEmpty {
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView("No Devices Found",
+                                               systemImage: "wifi.slash",
+                                               description: Text("Ensure Bluetooth is on and devices are in range."))
+                    } else {
+                        Text("No Devices Found")
+                    }
+                } else {
+                    ForEach(viewModel.peripherals) { peripheral in
+                        PeripheralRow(peripheral: peripheral)
+                    }
+                }
+            }
+
+            Section(header: Text("Supported Adapters")) {
+                ForEach(OBDDevices.allCases, id: \.self) { OBDDevice in
+                    Text(OBDDevice.properties.DeviceName)
+                }
+            }
+        }
+        .navigationTitle("Settings")
 	}
 }
 
