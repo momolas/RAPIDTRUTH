@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CD01301029EB05FD009CB086 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD01300F29EB05FD009CB086 /* Preview Assets.xcassets */; };
 		CDAC84C42C6B6D4E00725909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDAC84C32C6B6D4E00725909 /* Assets.xcassets */; };
-		CDD242852B123CF700A48CE9 /* UnitTestingBootcampViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242402B123CF600A48CE9 /* UnitTestingBootcampViewModel.swift */; };
 		CDD242862B123CF700A48CE9 /* GarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242412B123CF600A48CE9 /* GarageViewModel.swift */; };
 		CDD242872B123CF700A48CE9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242422B123CF600A48CE9 /* HomeViewModel.swift */; };
 		CDD242882B123CF700A48CE9 /* CustomTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242432B123CF600A48CE9 /* CustomTabBarViewModel.swift */; };
@@ -48,7 +47,6 @@
 		CDD242A92B123CF700A48CE9 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2426D2B123CF600A48CE9 /* SplashScreenView.swift */; };
 		CDD242AA2B123CF700A48CE9 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2426E2B123CF600A48CE9 /* GaugeView.swift */; };
 		CDD242AB2B123CF700A48CE9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2426F2B123CF600A48CE9 /* SectionView.swift */; };
-		CDD242AC2B123CF700A48CE9 /* VehiclePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242702B123CF600A48CE9 /* VehiclePickerView.swift */; };
 		CDD242AD2B123CF700A48CE9 /* ConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242712B123CF600A48CE9 /* ConnectButton.swift */; };
 		CDD242AE2B123CF700A48CE9 /* AddPIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242732B123CF600A48CE9 /* AddPIDView.swift */; };
 		CDD242AF2B123CF700A48CE9 /* ScrollChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242742B123CF600A48CE9 /* ScrollChartView.swift */; };
@@ -70,7 +68,6 @@
 		CD01300F29EB05FD009CB086 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CDAC84C32C6B6D4E00725909 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDD2423E2B123CF600A48CE9 /* RAPIDTRUTH-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RAPIDTRUTH-Bridging-Header.h"; sourceTree = "<group>"; };
-		CDD242402B123CF600A48CE9 /* UnitTestingBootcampViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitTestingBootcampViewModel.swift; sourceTree = "<group>"; };
 		CDD242412B123CF600A48CE9 /* GarageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageViewModel.swift; sourceTree = "<group>"; };
 		CDD242422B123CF600A48CE9 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CDD242432B123CF600A48CE9 /* CustomTabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewModel.swift; sourceTree = "<group>"; };
@@ -109,7 +106,6 @@
 		CDD2426D2B123CF600A48CE9 /* SplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		CDD2426E2B123CF600A48CE9 /* GaugeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeView.swift; sourceTree = "<group>"; };
 		CDD2426F2B123CF600A48CE9 /* SectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
-		CDD242702B123CF600A48CE9 /* VehiclePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclePickerView.swift; sourceTree = "<group>"; };
 		CDD242712B123CF600A48CE9 /* ConnectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectButton.swift; sourceTree = "<group>"; };
 		CDD242732B123CF600A48CE9 /* AddPIDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPIDView.swift; sourceTree = "<group>"; };
 		CDD242742B123CF600A48CE9 /* ScrollChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollChartView.swift; sourceTree = "<group>"; };
@@ -182,7 +178,6 @@
 		CDD2423F2B123CF600A48CE9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				CDD242402B123CF600A48CE9 /* UnitTestingBootcampViewModel.swift */,
 				CDD242412B123CF600A48CE9 /* GarageViewModel.swift */,
 				CDD242422B123CF600A48CE9 /* HomeViewModel.swift */,
 				CDD242432B123CF600A48CE9 /* CustomTabBarViewModel.swift */,
@@ -292,7 +287,6 @@
 				CDD2426D2B123CF600A48CE9 /* SplashScreenView.swift */,
 				CDD2426E2B123CF600A48CE9 /* GaugeView.swift */,
 				CDD2426F2B123CF600A48CE9 /* SectionView.swift */,
-				CDD242702B123CF600A48CE9 /* VehiclePickerView.swift */,
 				CDD242712B123CF600A48CE9 /* ConnectButton.swift */,
 			);
 			path = Utils;
@@ -406,8 +400,6 @@
 			files = (
 				CDD242A12B123CF700A48CE9 /* CustomTabBarView.swift in Sources */,
 				CDD242A42B123CF700A48CE9 /* AboutView.swift in Sources */,
-				CDD242852B123CF700A48CE9 /* UnitTestingBootcampViewModel.swift in Sources */,
-				CDD242992B123CF700A48CE9 /* Peripheral.swift in Sources */,
 				CDD242BC2B123CF700A48CE9 /* SmartOBD2App.swift in Sources */,
 				CDD242AB2B123CF700A48CE9 /* SectionView.swift in Sources */,
 				CDD242B02B123CF700A48CE9 /* AddVehicleView.swift in Sources */,
@@ -433,7 +425,6 @@
 				CDD242892B123CF700A48CE9 /* ChatViewModel.swift in Sources */,
 				CDD242932B123CF700A48CE9 /* ELM327GetVehiclePIDs.swift in Sources */,
 				CDD242A52B123CF700A48CE9 /* DashBoardView.swift in Sources */,
-				CDD242AC2B123CF700A48CE9 /* VehiclePickerView.swift in Sources */,
 				CDD242B12B123CF700A48CE9 /* BatteryTestView.swift in Sources */,
 				CDD242942B123CF700A48CE9 /* CBCentralManagerMock.swift in Sources */,
 				CDD242BB2B123CF700A48CE9 /* SetupOrderModal.swift in Sources */,
@@ -448,6 +439,7 @@
 				CDD242AF2B123CF700A48CE9 /* ScrollChartView.swift in Sources */,
 				CDD242922B123CF700A48CE9 /* ELM327.swift in Sources */,
 				CDD242AE2B123CF700A48CE9 /* AddPIDView.swift in Sources */,
+				CDD242862B123CF700A48CE9 /* GarageViewModel.swift in Sources */,
 				CDD242862B123CF700A48CE9 /* GarageViewModel.swift in Sources */,
 				CDD2428F2B123CF700A48CE9 /* OBDService.swift in Sources */,
 				CDD242B22B123CF700A48CE9 /* GaugePickerView.swift in Sources */,

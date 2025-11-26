@@ -6,32 +6,33 @@
 //
 
 import SwiftUI
-import Combine
+import Observation
 
-class VehicleDiagnosticsViewModel: ObservableObject {
-    @Published var garage: Garage
-    @Published var currentVehicle: Vehicle?
-    @Published var garageVehicles: [Vehicle] = []
-    @Published var troubleCodes: [TroubleCode] = []
+@MainActor
+@Observable
+class VehicleDiagnosticsViewModel {
+    var garage: Garage
 
-    private var cancellables = Set<AnyCancellable>()
+    var currentVehicle: Vehicle? {
+        if let vin = garage.currentVehicleVin {
+             return garage.garageVehicles.first(where: { $0.vin == vin })
+        }
+        return nil
+    }
+
+    var garageVehicles: [Vehicle] {
+        garage.garageVehicles
+    }
+
+    var troubleCodes: [TroubleCode] = []
+    var errorMessage: String?
+    var showAlert = false
 
     let obdService: OBDService
 
     init(obdService: OBDService, garage: Garage) {
         self.obdService = obdService
         self.garage = garage
-
-        garage.$garageVehicles
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.garageVehicles, on: self)
-            .store(in: &cancellables)
-
-        garage.$currentVehicleId
-                .sink { currentVehicleId in
-                    self.currentVehicle = self.garage.garageVehicles.first(where: { $0.id == currentVehicleId } )
-                }
-                .store(in: &cancellables)
     }
 
     func scanForTroubleCodes() {
@@ -40,19 +41,30 @@ class VehicleDiagnosticsViewModel: ObservableObject {
                 guard let troubleCodes = try await obdService.scanForTroubleCodes() else {
                     return
                 }
-                DispatchQueue.main.async {
-                    self.troubleCodes = troubleCodes
-                }
-                print("Trouble Codes: \(troubleCodes)")
+                self.troubleCodes = troubleCodes
             } catch {
-                print(error.localizedDescription)
+                self.errorMessage = error.localizedDescription
+                self.showAlert = true
+            }
+        }
+    }
+
+    func clearTroubleCodes() {
+        Task {
+            do {
+                try await obdService.clearTroubleCodes()
+                // Clear local list after successful command
+                self.troubleCodes.removeAll()
+            } catch {
+                self.errorMessage = error.localizedDescription
+                self.showAlert = true
             }
         }
     }
 }
 
 struct VehicleDiagnosticsView: View {
-    @ObservedObject var viewModel: VehicleDiagnosticsViewModel
+    @Bindable var viewModel: VehicleDiagnosticsViewModel
 
     var body: some View {
         ZStack {
@@ -60,13 +72,25 @@ struct VehicleDiagnosticsView: View {
                 .ignoresSafeArea()
 
             VStack {
+                if viewModel.troubleCodes.isEmpty {
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView("No Trouble Codes",
+                                               systemImage: "checkmark.circle",
+                                               description: Text("No codes found or scan not started."))
+                        .foregroundStyle(.white)
+                    } else {
+                        Text("No Trouble Codes")
+                            .foregroundStyle(.white)
+                    }
+                }
+
                 HStack {
                     Button {
-                        print("Button tapped")
+                        viewModel.clearTroubleCodes()
                     } label: {
                         Text("Clear Trouble Codes")
                             .font(.system(size: 14))
-                            .foregroundColor(.white)
+                            .foregroundStyle(.white)
                             .padding(15)
                             .background(Color.red)
                             .cornerRadius(10)
@@ -74,12 +98,18 @@ struct VehicleDiagnosticsView: View {
                     Button {
                         viewModel.scanForTroubleCodes()
                     } label: {
-                        Text("Scan for Trouble Codes")
-                            .font(.system(size: 14))
-                            .foregroundColor(.white)
-                            .padding(15)
-                            .background(Color.pinknew)
-                            .cornerRadius(10)
+                        HStack {
+                            if #available(iOS 17.0, *) {
+                                Image(systemName: "magnifyingglass")
+                                    .symbolEffect(.pulse.byLayer)
+                            }
+                            Text("Scan for Trouble Codes")
+                        }
+                        .font(.system(size: 14))
+                        .foregroundStyle(.white)
+                        .padding(15)
+                        .background(Color.pinknew)
+                        .cornerRadius(10)
                     }
                 }
 
@@ -92,11 +122,11 @@ struct VehicleDiagnosticsView: View {
                         HStack {
                             Text(troubleCode.rawValue)
                                 .font(.system(size: 16))
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Text(troubleCode.description)
                                 .font(.system(size: 16))
-                                .foregroundColor(.white)
+                                .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .padding()
@@ -113,6 +143,7 @@ struct VehicleDiagnosticsView: View {
         }
         .navigationTitle(navTitle)
         .navigationBarTitleDisplayMode(.inline)
+        .errorAlert()
     }
 
     var navTitle: String {
@@ -122,6 +153,17 @@ struct VehicleDiagnosticsView: View {
                return "Garage Empty"
            }
        }
+}
+
+extension VehicleDiagnosticsView {
+    // Helper to attach alert
+    func errorAlert() -> some View {
+        self.alert("Error", isPresented: $viewModel.showAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(viewModel.errorMessage ?? "Unknown error")
+        }
+    }
 }
 
 #Preview {

@@ -6,45 +6,50 @@
 //
 
 import SwiftUI
-import Combine
 import CoreBluetooth
+import Observation
 
-class SettingsViewModel: ObservableObject {
-	@Published var peripherals: [Peripheral] = []
+@Observable
+class SettingsViewModel {
+	var peripherals: [Peripheral] {
+        bleManager.foundPeripherals
+    }
 	
 	let bleManager: BLEManager
-	private var cancellables = Set<AnyCancellable>()
 	
 	init(bleManager: BLEManager) {
 		self.bleManager = bleManager
-		bleManager.$foundPeripherals
-			.sink { peripherals in
-				self.peripherals = peripherals
-			}
-			.store(in: &cancellables)
 	}
 }
 
 struct SettingsView: View {
-	@ObservedObject var viewModel: SettingsViewModel
+	var viewModel: SettingsViewModel
 	
 	var body: some View {
-		VStack {
-			HStack {
-				VStack {
-					ForEach(OBDDevices.allCases, id: \.self) { OBDDevice in
-						Text(OBDDevice.properties.DeviceName)
-					}
-				}
-			}
-			
-			List {
-				// list of peripherals
-				ForEach(viewModel.peripherals) { peripheral in
-					PeripheralRow(peripheral: peripheral)
-				}
-			}
-		}
+        List {
+            Section(header: Text("Bluetooth Devices")) {
+                if viewModel.peripherals.isEmpty {
+                    if #available(iOS 17.0, *) {
+                        ContentUnavailableView("No Devices Found",
+                                               systemImage: "wifi.slash",
+                                               description: Text("Ensure Bluetooth is on and devices are in range."))
+                    } else {
+                        Text("No Devices Found")
+                    }
+                } else {
+                    ForEach(viewModel.peripherals) { peripheral in
+                        PeripheralRow(peripheral: peripheral)
+                    }
+                }
+            }
+
+            Section(header: Text("Supported Adapters")) {
+                ForEach(OBDDevices.allCases, id: \.self) { OBDDevice in
+                    Text(OBDDevice.properties.DeviceName)
+                }
+            }
+        }
+        .navigationTitle("Settings")
 	}
 }
 
