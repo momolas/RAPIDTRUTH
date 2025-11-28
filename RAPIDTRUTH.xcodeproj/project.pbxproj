@@ -69,7 +69,6 @@
 		CD01300D29EB05FD009CB086 /* RAPIDTRUTH.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RAPIDTRUTH.entitlements; sourceTree = "<group>"; };
 		CD01300F29EB05FD009CB086 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CDAC84C32C6B6D4E00725909 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CDD2423E2B123CF600A48CE9 /* RAPIDTRUTH-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RAPIDTRUTH-Bridging-Header.h"; sourceTree = "<group>"; };
 		CDD242412B123CF600A48CE9 /* GarageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageViewModel.swift; sourceTree = "<group>"; };
 		CDD242422B123CF600A48CE9 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CDD242432B123CF600A48CE9 /* CustomTabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewModel.swift; sourceTree = "<group>"; };
@@ -166,7 +165,6 @@
 				CD01300D29EB05FD009CB086 /* RAPIDTRUTH.entitlements */,
 				CDAC84C32C6B6D4E00725909 /* Assets.xcassets */,
 				CD01300E29EB05FD009CB086 /* Preview Content */,
-				CDD2423E2B123CF600A48CE9 /* RAPIDTRUTH-Bridging-Header.h */,
 			);
 			path = RAPIDTRUTH;
 			sourceTree = "<group>";
@@ -620,7 +618,6 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "RAPIDTRUTH/RAPIDTRUTH-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
