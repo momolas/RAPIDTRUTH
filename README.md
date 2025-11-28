@@ -1,4 +1,4 @@
-# RAPIDTRUTH (SmartOBD2)
+# RAPIDTRUTH
 A modern iOS vehicle diagnostic application built with SwiftUI, SwiftData, and the Observation framework.
 
 ## Overview
