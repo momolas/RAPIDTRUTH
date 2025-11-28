@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @Environment(\.colorScheme) var colorScheme
 
-    var viewModel: HomeViewModel
+    @Bindable var viewModel: HomeViewModel
     var diagnosticsViewModel: VehicleDiagnosticsViewModel
     var garageViewModel: GarageViewModel
     var settingsViewModel: SettingsViewModel
@@ -28,12 +28,12 @@ struct HomeView: View {
                             .font(.largeTitle)
                             .bold()
                             .foregroundStyle(Color.textPrimary)
-                        Text("Connected Vehicle Status")
+                        Text(viewModel.isConnected ? "Connected to \(viewModel.currentVehicle?.make ?? "Vehicle")" : "Not Connected")
                             .font(.subheadline)
                             .foregroundStyle(Color.textSecondary)
                     }
                     Spacer()
-                    // Connection Status Indicator (Mockup)
+                    // Connection Status Indicator
                     Circle()
                         .fill(viewModel.isConnected ? Color.statusSuccess : Color.statusError)
                         .frame(width: 12, height: 12)
@@ -45,21 +45,22 @@ struct HomeView: View {
                 // Quick Actions Grid
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
 
-                    HomeCard(title: "Diagnostics", icon: "wrench.and.screwdriver.fill", color: .accentPrimary) {
+                    // Diagnostics Card
+                    HomeCard(title: "Diagnostics", icon: "wrench.and.screwdriver.fill", color: .accentPrimary, value: viewModel.dashboardDTCCount > 0 ? "\(viewModel.dashboardDTCCount) Faults" : "System OK") {
                         VehicleDiagnosticsView(viewModel: diagnosticsViewModel)
                     }
 
-                    HomeCard(title: "Live Data", icon: "gauge", color: .accentSecondary) {
-                         // Navigation is handled via TabView, but we can deep link or show a summary here if needed.
-                         // For now, let's link to Logs as a placeholder or maybe specific dashboard widgets
-                         LogsView()
-                    }
-
-                    HomeCard(title: "Battery", icon: "battery.100.bolt", color: .statusWarning) {
+                    // Battery Card
+                    HomeCard(title: "Battery", icon: "battery.100.bolt", color: .statusWarning, value: viewModel.dashboardBatteryVoltage) {
                         BatteryTestView()
                     }
 
-                    HomeCard(title: "Car Screen", icon: "car.side.fill", color: .purple) {
+                    HomeCard(title: "Live Data", icon: "gauge", color: .accentSecondary, value: "View") {
+                         // Navigation is handled via TabView, but we can deep link or show a summary here if needed.
+                         LogsView()
+                    }
+
+                    HomeCard(title: "Car Screen", icon: "car.side.fill", color: .purple, value: "Open") {
                         CarScreen(viewModel: carScreenViewModel)
                     }
                 }
@@ -85,6 +86,21 @@ struct HomeView: View {
             }
         }
         .background(LinearGradient.mainBackground.ignoresSafeArea())
+        .onAppear {
+            if viewModel.isConnected {
+                Task {
+                    await viewModel.refreshDashboardData()
+                }
+            }
+        }
+        // Also refresh when connection state changes to true
+        .onChange(of: viewModel.isConnected) { _, connected in
+            if connected {
+                Task {
+                    await viewModel.refreshDashboardData()
+                }
+            }
+        }
     }
 }
 
@@ -94,27 +110,38 @@ struct HomeCard<Destination: View>: View {
     let title: String
     let icon: String
     let color: Color
+    var value: String? = nil
     let destination: () -> Destination
 
     var body: some View {
         NavigationLink(destination: destination) {
             VStack(alignment: .leading, spacing: 12) {
-                Image(systemName: icon)
-                    .font(.title)
-                    .foregroundStyle(color)
-                    .frame(width: 40, height: 40)
-                    .background(color.opacity(0.2))
-                    .clipShape(Circle())
+                HStack {
+                    Image(systemName: icon)
+                        .font(.title2)
+                        .foregroundStyle(color)
+                        .frame(width: 40, height: 40)
+                        .background(color.opacity(0.2))
+                        .clipShape(Circle())
+
+                    Spacer()
+
+                    if let value = value {
+                        Text(value)
+                            .font(.headline)
+                            .foregroundStyle(Color.textPrimary)
+                    }
+                }
                 
                 Text(title)
                     .font(.headline)
-                    .foregroundStyle(Color.textPrimary)
+                    .foregroundStyle(Color.textSecondary)
                 
                 Spacer()
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
-            .frame(height: 140)
+            .frame(height: 120)
             .glassCardStyle()
         }
     }
