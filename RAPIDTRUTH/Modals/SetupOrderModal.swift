@@ -17,13 +17,13 @@ struct SetupOrderModal: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 List {
                     ForEach(setupOrder, id: \.self) { step in
                         Text(step.properties.description.uppercased())
                             .font(.title)
-                            .foregroundColor(.blue)
+                            .foregroundStyle(.blue)
                     }
                     .onMove(perform: move)
                     .onDelete(perform: { indexSet in
