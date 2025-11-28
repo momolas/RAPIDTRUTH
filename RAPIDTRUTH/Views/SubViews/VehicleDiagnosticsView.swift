@@ -61,18 +61,6 @@ class VehicleDiagnosticsViewModel {
             }
         }
     }
-
-    func clearTroubleCodes() {
-        Task {
-            do {
-                try await obdService.clearTroubleCodes()
-                // Clear local list after successful command
-                self.troubleCodes.removeAll()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
 }
 
 struct VehicleDiagnosticsView: View {
