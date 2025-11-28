@@ -16,7 +16,6 @@ struct CarlyObd {
 struct MainView: View {
 	@Environment(\.colorScheme) var colorScheme
 	
-	@State var SplashScreenIsActive: Bool = true
 	@State var displayType: BottomSheetType = .halfScreen
 	@State private var tabSelection: TabBarItem = .features
 	
@@ -42,37 +41,31 @@ struct MainView: View {
 	
 	var body: some View {
 		GeometryReader { proxy in
-			if SplashScreenIsActive {
-				SplashScreenView(isActive: $SplashScreenIsActive)
-			} else {
-				CustomTabBarContainerView(selection: $tabSelection,
-										  displayType: $displayType,
-										  maxHeight: proxy.size.height,
-										  viewModel: bottomSheetViewModel
-				) {
-					NavigationView {
-						HomeView(viewModel: homeViewModel,
-								 diagnosticsViewModel: diagnosticsViewModel,
-								 garageViewModel: garageViewModel,
-								 settingsViewModel: settingsViewModel,
-								 carScreenViewModel: carScreenViewModel,
-								 displayType: $displayType)
-						.background(LinearGradient(.darkStart, .darkEnd))
-					}
-					.navigationViewStyle(StackNavigationViewStyle())
-					.tabBarItem(tab: .dashBoard, selection: $tabSelection)
-					
-					NavigationView {
-						DashBoardView(
-							liveDataViewModel: liveDataViewModel,
-							displayType: $displayType
-						)
-						.background(LinearGradient(.slategray, .raisinblack))
-					}
-					.navigationViewStyle(StackNavigationViewStyle())
-					.tabBarItem(tab: .features, selection: $tabSelection)
-				}
-			}
+            CustomTabBarContainerView(selection: $tabSelection,
+                                      displayType: $displayType,
+                                      maxHeight: proxy.size.height,
+                                      viewModel: bottomSheetViewModel
+            ) {
+                NavigationStack {
+                    HomeView(viewModel: homeViewModel,
+                             diagnosticsViewModel: diagnosticsViewModel,
+                             garageViewModel: garageViewModel,
+                             settingsViewModel: settingsViewModel,
+                             carScreenViewModel: carScreenViewModel,
+                             displayType: $displayType)
+                    .background(LinearGradient(.darkStart, .darkEnd))
+                }
+                .tabBarItem(tab: .dashBoard, selection: $tabSelection)
+
+                NavigationStack {
+                    DashBoardView(
+                        liveDataViewModel: liveDataViewModel,
+                        displayType: $displayType
+                    )
+                    .background(LinearGradient(.slategray, .raisinblack))
+                }
+                .tabBarItem(tab: .features, selection: $tabSelection)
+            }
 		}
 	}
 }

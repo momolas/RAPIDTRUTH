@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DashBoardView: View {
-    @ObservedObject var liveDataViewModel: LiveDataViewModel
+    var liveDataViewModel: LiveDataViewModel
     @Binding var displayType: BottomSheetType
 
     var body: some View {
@@ -18,7 +18,13 @@ struct DashBoardView: View {
 
 struct LogsView: View {
     var body: some View {
-        Text("Hello World")
+        if #available(iOS 17.0, *) {
+            ContentUnavailableView("Logs Empty",
+                                   systemImage: "text.alignleft",
+                                   description: Text("No logs available yet."))
+        } else {
+            Text("Logs Empty")
+        }
     }
 }
 

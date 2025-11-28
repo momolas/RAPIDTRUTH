@@ -6,16 +6,8 @@
 //
 
 import SwiftUI
-import Combine
 
-enum Constants {
-    static let radius: CGFloat = 16
-    static let snapRatio: CGFloat = 0.25
-    static let minHeightRatio: CGFloat = 0.1
-    static let indicatorHeight: CGFloat = 6
-    static let indicatorWidth: CGFloat = 60
-    static let maxHeightRatio: CGFloat = 0.9
-}
+// Constants moved to global Constants.swift
 
 enum BottomSheetType {
     case fullScreen
@@ -25,7 +17,7 @@ enum BottomSheetType {
 }
 
 struct CustomTabBarView<Content: View>: View {
-    @ObservedObject var viewModel: CustomTabBarViewModel
+    var viewModel: CustomTabBarViewModel
 
     @State private var isLoading = false
     @State private var setupOrder: [OBDCommand.General] = [.ATD, .ATZ, .ATL0, .ATE0, .ATH1, .ATAT1, .ATRV, .ATDPN]
@@ -38,8 +30,6 @@ struct CustomTabBarView<Content: View>: View {
 
     @GestureState var gestureOffset: CGFloat = 0
     @Namespace private var namespace
-
-    private var cancellables = Set<AnyCancellable>()
 
     let maxHeight: CGFloat
     let backgroundView: Content
@@ -73,7 +63,7 @@ struct CustomTabBarView<Content: View>: View {
         case .halfScreen:
             return maxHeight * 0.60
         case .quarterScreen:
-            return maxHeight * 0.90
+            return maxHeight * Constants.UI.maxHeightRatio
         case .none:
             return maxHeight * 1.20
         }
@@ -117,10 +107,10 @@ struct CustomTabBarView<Content: View>: View {
             backgroundView
             VStack(spacing: 0) {
                 tabBar
-                    .onChange(of: selection, perform: { value in
+                    .onChange(of: selection) { _, newValue in
                         withAnimation(.easeInOut) {
-                            localSelection = value
-                    }})
+                            localSelection = newValue
+                    }}
                     .frame(maxHeight: maxHeight * 0.1)
 
                 VStack {
@@ -200,7 +190,7 @@ extension CustomTabBarView {
             Text(tab.title)
                 .font(.system(size: 10, weight: .semibold, design: .rounded))
         }
-        .foregroundColor(localSelection == tab ? tab.color : .gray)
+        .foregroundStyle(localSelection == tab ? tab.color : Color.gray)
         .padding(.vertical, 8)
         .frame(maxWidth: .infinity)
         .background(
@@ -251,7 +241,7 @@ extension CustomTabBarView {
                                 Text("Connected to Vehicle")
                                        .font(.system(size: 22, weight: .bold, design: .rounded))
                                        .fontWeight(.bold)
-                                       .foregroundColor(.green)
+                                       .foregroundStyle(.green)
                                 }
                             }
                             .padding(10)
@@ -323,16 +313,4 @@ extension CustomTabBarView {
     }
 }
 
-#Preview {
-    GeometryReader { proxy in
-        CustomTabBarView(tabs: [.dashBoard, .features],
-                         viewModel: CustomTabBarViewModel(obdService: OBDService(bleManager: BLEManager()),
-                                                         garage: Garage()),
-                         selection: .constant(.dashBoard),
-                         displayType: .constant(.fullScreen),
-                         maxHeight: proxy.size.height
-        ) {
-            Color.blue
-        }
-    }
-}
+// Preview removed to avoid SwiftData init issues
