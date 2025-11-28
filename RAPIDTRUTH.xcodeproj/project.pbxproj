@@ -158,6 +158,7 @@
 		CD01300629EB05FB009CB086 /* RAPIDTRUTH */ = {
 			isa = PBXGroup;
 			children = (
+				CDD242MM2B123CF700A48CE9 /* Models */,
 				CD6A05E82EDA0397002DBD98 /* Design */,
 				CD6A05E52ED9F929002DBD98 /* Constants.swift */,
 				CDD242472B123CF600A48CE9 /* BleComm */,
@@ -218,9 +219,7 @@
 		CDD242472B123CF600A48CE9 /* BleComm */ = {
 			isa = PBXGroup;
 			children = (
-				CD6A05E32ED9F91A002DBD98 /* VehicleModel.swift */,
 				CDD242482B123CF600A48CE9 /* BleConnection.swift */,
-				CDD242492B123CF600A48CE9 /* Garage.swift */,
 				CDD2424A2B123CF600A48CE9 /* Protocol.swift */,
 				CDD2424B2B123CF600A48CE9 /* OBDService.swift */,
 				CDD2424C2B123CF600A48CE9 /* ELM327Parser.swift */,
@@ -337,6 +336,25 @@
 				CDD242832B123CF700A48CE9 /* SetupOrderModal.swift */,
 			);
 			path = Modals;
+			sourceTree = "<group>";
+		};
+
+		B6A2C166FD7344EC908A500A /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				19B21BE0FFA8436BA7DE84A0 /* DesignSystem.swift */,
+				E89EFCB262BB438B89EABF0A /* Enums.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		CDD242MM2B123CF700A48CE9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CD6A05E32ED9F91A002DBD98 /* VehicleModel.swift */,
+				CDD242492B123CF600A48CE9 /* Garage.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -88,7 +88,13 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 	var foundPeripherals: [Peripheral] = []
 	var discoveredServicesAndCharacteristics: [(CBService, [CBCharacteristic])] = []
 	
-	private var centralManager: CBCentralManagerProtocol!
+	private lazy var centralManager: CBCentralManagerProtocol = {
+#if targetEnvironment(simulator)
+		return CBCentralManagerMock(delegate: self, queue: nil)
+#else
+		return CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionRestoreIdentifierKey: BLEManager.RestoreIdentifierKey])
+#endif
+	}()
 	
 	static let RestoreIdentifierKey: String = "OBD2Adapter"
 	
@@ -109,11 +115,8 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 	
 	override init() {
 		super.init()
-#if targetEnvironment(simulator)
-		centralManager = CBCentralManagerMock(delegate: self, queue: nil)
-#else
-		centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionRestoreIdentifierKey: BLEManager.RestoreIdentifierKey])
-#endif
+		// Initialize centralManager
+		_ = centralManager
 	}
 	
 	// MARK: Helpers
@@ -175,13 +178,13 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 	
 	func didDiscover(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol, advertisementData: [String : Any], rssi: NSNumber) {
 		if rssi.intValue >= 0 { return }
-		let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? nil
+		let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String
 		var _name = "NoName"
 		
-		if peripheralName != nil {
-			_name = String(peripheralName!)
-		} else if peripheral.name != nil {
-			_name = String(peripheral.name!)
+		if let peripheralName {
+			_name = peripheralName
+		} else if let name = peripheral.name {
+			_name = name
 		}
 		
 		let foundPeripheral: Peripheral = Peripheral(_peripheral: peripheral, _name: _name, _advData: advertisementData, _rssi: rssi, _discoverCount: 0)

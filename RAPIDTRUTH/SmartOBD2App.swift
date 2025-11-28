@@ -11,7 +11,7 @@ import SwiftData
 
 extension Logger {
 	/// Using your bundle identifier is a great way to ensure a unique identifier.
-	private static var subsystem = Bundle.main.bundleIdentifier!
+	private static var subsystem = Bundle.main.bundleIdentifier ?? "com.SmartOBD2"
 	
 	/// Logs the view cycles like a view that appeared.
 	static let elmCom = Logger(subsystem: subsystem, category: "ELM327")
