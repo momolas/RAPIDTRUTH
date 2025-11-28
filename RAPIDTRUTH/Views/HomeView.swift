@@ -12,7 +12,7 @@ struct HomeView: View {
 
     @Bindable var viewModel: HomeViewModel
     var diagnosticsViewModel: VehicleDiagnosticsViewModel
-    var garageViewModel: GarageViewModel
+    var garage: Garage
     var settingsViewModel: SettingsViewModel
     var carScreenViewModel: CarScreenViewModel
 
@@ -179,7 +179,7 @@ struct ListRowCard: View {
     HomeView(
         viewModel: HomeViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage()),
         diagnosticsViewModel: VehicleDiagnosticsViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage()),
-        garageViewModel: GarageViewModel(garage: Garage()),
+        garage: Garage(),
         settingsViewModel: SettingsViewModel(bleManager: BLEManager()),
         carScreenViewModel: CarScreenViewModel(obdService: OBDService(bleManager: BLEManager())),
         displayType: .constant(.quarterScreen)
