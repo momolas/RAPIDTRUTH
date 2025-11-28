@@ -63,6 +63,10 @@
 		CDD242BB2B123CF700A48CE9 /* SetupOrderModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242832B123CF700A48CE9 /* SetupOrderModal.swift */; };
 		CDD242BC2B123CF700A48CE9 /* SmartOBD2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242842B123CF700A48CE9 /* SmartOBD2App.swift */; };
 		EE7212D274DD40B9AF474BE9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89EFCB262BB438B89EABF0A /* Enums.swift */; };
+		CDD242S2 /* BleManager+Scanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242S1 /* BleManager+Scanning.swift */; };
+		CDD242C2 /* BleManager+Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242C1 /* BleManager+Connection.swift */; };
+		CDD242P2 /* BleManager+Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242P1 /* BleManager+Peripheral.swift */; };
+		CDD242M2 /* BleManager+Messaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242M1 /* BleManager+Messaging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +129,10 @@
 		CDD242842B123CF700A48CE9 /* SmartOBD2App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartOBD2App.swift; sourceTree = "<group>"; };
 		DA78F0AD89D34E0DB8610975 /* AppTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		E89EFCB262BB438B89EABF0A /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		CDD242S1 /* BleManager+Scanning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleManager+Scanning.swift; sourceTree = "<group>"; };
+		CDD242C1 /* BleManager+Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleManager+Connection.swift; sourceTree = "<group>"; };
+		CDD242P1 /* BleManager+Peripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleManager+Peripheral.swift; sourceTree = "<group>"; };
+		CDD242M1 /* BleManager+Messaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleManager+Messaging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +227,7 @@
 		CDD242472B123CF600A48CE9 /* BleComm */ = {
 			isa = PBXGroup;
 			children = (
+				CDD242EE2B123CF700A48CE9 /* Extensions */,
 				CDD242482B123CF600A48CE9 /* BleConnection.swift */,
 				CDD2424A2B123CF600A48CE9 /* Protocol.swift */,
 				CDD2424B2B123CF600A48CE9 /* OBDService.swift */,
@@ -357,6 +366,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CDD242EE2B123CF700A48CE9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CDD242S1 /* BleManager+Scanning.swift */,
+				CDD242C1 /* BleManager+Connection.swift */,
+				CDD242P1 /* BleManager+Peripheral.swift */,
+				CDD242M1 /* BleManager+Messaging.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -486,6 +506,10 @@
 				CDD242912B123CF700A48CE9 /* Commands.swift in Sources */,
 				CDD2428D2B123CF700A48CE9 /* Garage.swift in Sources */,
 				CDD2429B2B123CF700A48CE9 /* Characteristic.swift in Sources */,
+				CDD242S2 /* BleManager+Scanning.swift in Sources */,
+				CDD242C2 /* BleManager+Connection.swift in Sources */,
+				CDD242P2 /* BleManager+Peripheral.swift in Sources */,
+				CDD242M2 /* BleManager+Messaging.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
