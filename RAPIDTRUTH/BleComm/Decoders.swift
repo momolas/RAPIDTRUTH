@@ -509,6 +509,12 @@ enum Decoder: Codable {
         var status_1: String?
         var status_2: String?
 
+        // Safety check to ensure we have enough bits
+        guard bits.binaryArray.count >= 16 else {
+            print("Invalid data length for fuel status")
+            return nil
+        }
+
         let highBits = Array(bits.binaryArray[0..<8])
         let lowBits = Array(bits.binaryArray[8..<16])
 
@@ -620,8 +626,8 @@ enum Decoder: Codable {
            let bits = BitArray(data: data).binaryArray
 
            let numSet = bits.filter { $0 == 1 }.count
-           if numSet == 1 {
-               let index = 7 - bits.firstIndex(of: 1)!
+           if numSet == 1, let firstIndex = bits.firstIndex(of: 1) {
+               let index = 7 - firstIndex
                return Measurement(value: Double(index), unit: UnitElectricCurrent.amperes)
            }
            return nil

@@ -97,4 +97,9 @@ class Garage {
     func getVehicle(vin: String) -> Vehicle? {
         return garageVehicles.first(where: { $0.vin == vin })
     }
+
+    var currentVehicle: Vehicle? {
+        guard let vin = currentVehicleVin else { return nil }
+        return getVehicle(vin: vin)
+    }
 }

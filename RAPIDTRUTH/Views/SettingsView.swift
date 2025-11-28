@@ -9,26 +9,13 @@ import SwiftUI
 import CoreBluetooth
 import Observation
 
-@Observable
-class SettingsViewModel {
-	var peripherals: [Peripheral] {
-        bleManager.foundPeripherals
-    }
-	
-	let bleManager: BLEManager
-	
-	init(bleManager: BLEManager) {
-		self.bleManager = bleManager
-	}
-}
-
 struct SettingsView: View {
-	var viewModel: SettingsViewModel
+    var bleManager: BLEManager
 	
 	var body: some View {
         List {
             Section(header: Text("Bluetooth Devices")) {
-                if viewModel.peripherals.isEmpty {
+                if bleManager.foundPeripherals.isEmpty {
                     if #available(iOS 17.0, *) {
                         ContentUnavailableView("No Devices Found",
                                                systemImage: "wifi.slash",
@@ -37,7 +24,7 @@ struct SettingsView: View {
                         Text("No Devices Found")
                     }
                 } else {
-                    ForEach(viewModel.peripherals) { peripheral in
+                    ForEach(bleManager.foundPeripherals) { peripheral in
                         PeripheralRow(peripheral: peripheral)
                     }
                 }
@@ -97,5 +84,5 @@ struct RoundedRectangleStyle: ViewModifier {
 }
 
 #Preview {
-	SettingsView(viewModel: SettingsViewModel(bleManager: BLEManager()))
+	SettingsView(bleManager: BLEManager())
 }

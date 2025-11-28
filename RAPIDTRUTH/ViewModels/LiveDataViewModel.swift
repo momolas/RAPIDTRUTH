@@ -50,10 +50,7 @@ class LiveDataViewModel {
     let garage: Garage
 
     var currentVehicle: Vehicle? {
-        if let vin = garage.currentVehicleVin {
-             return garage.garageVehicles.first(where: { $0.vin == vin })
-        }
-        return nil
+        garage.currentVehicle
     }
 
     var isRequestingPids = false

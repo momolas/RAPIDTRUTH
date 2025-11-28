@@ -6,9 +6,8 @@ struct AppTabView: View {
     // ViewModels need to be passed in
     let homeViewModel: HomeViewModel
     let diagnosticsViewModel: VehicleDiagnosticsViewModel
-    let garageViewModel: GarageViewModel
-    let settingsViewModel: SettingsViewModel
-    let carScreenViewModel: CarScreenViewModel
+    let garage: Garage
+    let obdService: OBDService
     let liveDataViewModel: LiveDataViewModel
 
     // Legacy bindings support if needed, otherwise we manage state here
@@ -22,9 +21,8 @@ struct AppTabView: View {
                 HomeView(
                     viewModel: homeViewModel,
                     diagnosticsViewModel: diagnosticsViewModel,
-                    garageViewModel: garageViewModel,
-                    settingsViewModel: settingsViewModel,
-                    carScreenViewModel: carScreenViewModel,
+                    garage: garage,
+                    obdService: obdService,
                     displayType: $displayType
                 )
             }
@@ -47,7 +45,7 @@ struct AppTabView: View {
 
             // Tab 3: Garage
             NavigationStack {
-                GarageView(viewModel: garageViewModel)
+                GarageView(garage: garage)
             }
             .tabItem {
                 Label("Garage", systemImage: "car.2.fill")
@@ -56,7 +54,7 @@ struct AppTabView: View {
 
             // Tab 4: Settings
             NavigationStack {
-                SettingsView(viewModel: settingsViewModel)
+                SettingsView(bleManager: obdService.bleManager)
             }
             .tabItem {
                 Label("Settings", systemImage: "gear")
