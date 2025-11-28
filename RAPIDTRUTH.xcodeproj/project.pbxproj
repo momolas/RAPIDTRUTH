@@ -11,10 +11,8 @@
 		CD6A05E42ED9F91A002DBD98 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05E32ED9F91A002DBD98 /* VehicleModel.swift */; };
 		CD6A05E62ED9F929002DBD98 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05E52ED9F929002DBD98 /* Constants.swift */; };
 		CDAC84C42C6B6D4E00725909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDAC84C32C6B6D4E00725909 /* Assets.xcassets */; };
-		CDD2424Z2B123CF700A48CE9 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424Y2B123CF600A48CE9 /* VehicleModel.swift */; };
 		CDD242862B123CF700A48CE9 /* GarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242412B123CF600A48CE9 /* GarageViewModel.swift */; };
 		CDD242872B123CF700A48CE9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242422B123CF600A48CE9 /* HomeViewModel.swift */; };
-		CDD242882B123CF700A48CE9 /* CustomTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242432B123CF600A48CE9 /* CustomTabBarViewModel.swift */; };
 		CDD2428A2B123CF700A48CE9 /* CarScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */; };
 		CDD2428B2B123CF700A48CE9 /* LiveDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242462B123CF600A48CE9 /* LiveDataViewModel.swift */; };
 		CDD2428C2B123CF700A48CE9 /* BleConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242482B123CF600A48CE9 /* BleConnection.swift */; };
@@ -41,7 +39,6 @@
 		CDD242A62B123CF700A48CE9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242692B123CF600A48CE9 /* SettingsView.swift */; };
 		CDD242A72B123CF700A48CE9 /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2426A2B123CF600A48CE9 /* GarageView.swift */; };
 		CDD242A82B123CF700A48CE9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2426B2B123CF600A48CE9 /* HomeView.swift */; };
-		CDD242A92B123CF700A48CE9 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2426D2B123CF600A48CE9 /* SplashScreenView.swift */; };
 		CDD242AA2B123CF700A48CE9 /* GaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2426E2B123CF600A48CE9 /* GaugeView.swift */; };
 		CDD242AB2B123CF700A48CE9 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2426F2B123CF600A48CE9 /* SectionView.swift */; };
 		CDD242AD2B123CF700A48CE9 /* ConnectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242712B123CF600A48CE9 /* ConnectButton.swift */; };
@@ -399,8 +396,6 @@
 				CDD2429D2B123CF700A48CE9 /* Utils.swift in Sources */,
 				CDD242BA2B123CF700A48CE9 /* extensions.swift in Sources */,
 				CDD2428B2B123CF700A48CE9 /* LiveDataViewModel.swift in Sources */,
-				CDD242A92B123CF700A48CE9 /* SplashScreenView.swift in Sources */,
-				CDD242882B123CF700A48CE9 /* CustomTabBarViewModel.swift in Sources */,
 				CDD242982B123CF700A48CE9 /* CBPeripheralProtcolDelegate.swift in Sources */,
 				CDD242872B123CF700A48CE9 /* HomeViewModel.swift in Sources */,
 				CDD2428A2B123CF700A48CE9 /* CarScreenViewModel.swift in Sources */,
@@ -409,7 +404,6 @@
 				CD6A05E62ED9F929002DBD98 /* Constants.swift in Sources */,
 				CDD242AD2B123CF700A48CE9 /* ConnectButton.swift in Sources */,
 				CDD242932B123CF700A48CE9 /* ELM327GetVehiclePIDs.swift in Sources */,
-				CDD2424Z2B123CF700A48CE9 /* VehicleModel.swift in Sources */,
 				CDD242A52B123CF700A48CE9 /* DashBoardView.swift in Sources */,
 				CDD242B12B123CF700A48CE9 /* BatteryTestView.swift in Sources */,
 				CDD242942B123CF700A48CE9 /* CBCentralManagerMock.swift in Sources */,
