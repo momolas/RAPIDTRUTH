@@ -6,16 +6,18 @@
 	objectVersion = 56;
 	objects = {
 
-/* Begin PBXBuildFile section */		6EB9B3F45EE64F0D91C1D204 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B21BE0FFA8436BA7DE84A0 /* DesignSystem.swift */; };
-		EE7212D274DD40B9AF474BE9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89EFCB262BB438B89EABF0A /* Enums.swift */; };
+/* Begin PBXBuildFile section */
+		6EB9B3F45EE64F0D91C1D204 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B21BE0FFA8436BA7DE84A0 /* DesignSystem.swift */; };
 		82CEDEAB26D54C7D9A4518D9 /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA78F0AD89D34E0DB8610975 /* AppTabView.swift */; };
-
 		CD01301029EB05FD009CB086 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD01300F29EB05FD009CB086 /* Preview Assets.xcassets */; };
 		CD6A05E42ED9F91A002DBD98 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05E32ED9F91A002DBD98 /* VehicleModel.swift */; };
 		CD6A05E62ED9F929002DBD98 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05E52ED9F929002DBD98 /* Constants.swift */; };
 		CD6A05E92EDA0397002DBD98 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05E72EDA0397002DBD98 /* DesignSystem.swift */; };
 		CD6A05EB2EDA03B2002DBD98 /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05EA2EDA03B2002DBD98 /* AppTabView.swift */; };
+		CD6A05F02EDA06B8002DBD98 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05EF2EDA06B8002DBD98 /* Enums.swift */; };
 		CDAC84C42C6B6D4E00725909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDAC84C32C6B6D4E00725909 /* Assets.xcassets */; };
+		CDD2424W2B123CF700A48CE9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424X2B123CF600A48CE9 /* Constants.swift */; };
+		CDD2424Z2B123CF700A48CE9 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424Y2B123CF600A48CE9 /* VehicleModel.swift */; };
 		CDD242862B123CF700A48CE9 /* GarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242412B123CF600A48CE9 /* GarageViewModel.swift */; };
 		CDD242872B123CF700A48CE9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242422B123CF600A48CE9 /* HomeViewModel.swift */; };
 		CDD2428A2B123CF700A48CE9 /* CarScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */; };
@@ -27,8 +29,6 @@
 		CDD242902B123CF700A48CE9 /* ELM327Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424C2B123CF600A48CE9 /* ELM327Parser.swift */; };
 		CDD242912B123CF700A48CE9 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424D2B123CF600A48CE9 /* Commands.swift */; };
 		CDD242922B123CF700A48CE9 /* ELM327.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424E2B123CF600A48CE9 /* ELM327.swift */; };
-		CDD2424W2B123CF700A48CE9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424X2B123CF600A48CE9 /* Constants.swift */; };
-		CDD2424Z2B123CF700A48CE9 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424Y2B123CF600A48CE9 /* VehicleModel.swift */; };
 		CDD242932B123CF700A48CE9 /* ELM327GetVehiclePIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424F2B123CF600A48CE9 /* ELM327GetVehiclePIDs.swift */; };
 		CDD242942B123CF700A48CE9 /* CBCentralManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242532B123CF600A48CE9 /* CBCentralManagerMock.swift */; };
 		CDD242952B123CF700A48CE9 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242542B123CF600A48CE9 /* Mock.swift */; };
@@ -61,12 +61,11 @@
 		CDD242BA2B123CF700A48CE9 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242812B123CF600A48CE9 /* extensions.swift */; };
 		CDD242BB2B123CF700A48CE9 /* SetupOrderModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242832B123CF700A48CE9 /* SetupOrderModal.swift */; };
 		CDD242BC2B123CF700A48CE9 /* SmartOBD2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242842B123CF700A48CE9 /* SmartOBD2App.swift */; };
+		EE7212D274DD40B9AF474BE9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89EFCB262BB438B89EABF0A /* Enums.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXFileReference section */		19B21BE0FFA8436BA7DE84A0 /* DesignSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
-		E89EFCB262BB438B89EABF0A /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		DA78F0AD89D34E0DB8610975 /* AppTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
-
+/* Begin PBXFileReference section */
+		19B21BE0FFA8436BA7DE84A0 /* DesignSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		CD01300429EB05FB009CB086 /* RAPIDTRUTH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RAPIDTRUTH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD01300D29EB05FD009CB086 /* RAPIDTRUTH.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RAPIDTRUTH.entitlements; sourceTree = "<group>"; };
 		CD01300F29EB05FD009CB086 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		CD6A05E52ED9F929002DBD98 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CD6A05E72EDA0397002DBD98 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		CD6A05EA2EDA03B2002DBD98 /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
+		CD6A05EF2EDA06B8002DBD98 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CDAC84C32C6B6D4E00725909 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDD242412B123CF600A48CE9 /* GarageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageViewModel.swift; sourceTree = "<group>"; };
 		CDD242422B123CF600A48CE9 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -83,12 +83,12 @@
 		CDD242492B123CF600A48CE9 /* Garage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Garage.swift; sourceTree = "<group>"; };
 		CDD2424A2B123CF600A48CE9 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		CDD2424B2B123CF600A48CE9 /* OBDService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBDService.swift; sourceTree = "<group>"; };
-		CDD2424X2B123CF600A48CE9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CDD2424Y2B123CF600A48CE9 /* VehicleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
 		CDD2424C2B123CF600A48CE9 /* ELM327Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELM327Parser.swift; sourceTree = "<group>"; };
 		CDD2424D2B123CF600A48CE9 /* Commands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		CDD2424E2B123CF600A48CE9 /* ELM327.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELM327.swift; sourceTree = "<group>"; };
 		CDD2424F2B123CF600A48CE9 /* ELM327GetVehiclePIDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELM327GetVehiclePIDs.swift; sourceTree = "<group>"; };
+		CDD2424X2B123CF600A48CE9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CDD2424Y2B123CF600A48CE9 /* VehicleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
 		CDD242532B123CF600A48CE9 /* CBCentralManagerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCentralManagerMock.swift; sourceTree = "<group>"; };
 		CDD242542B123CF600A48CE9 /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		CDD242552B123CF600A48CE9 /* CBPeripheralMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPeripheralMock.swift; sourceTree = "<group>"; };
@@ -121,6 +121,8 @@
 		CDD242812B123CF600A48CE9 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		CDD242832B123CF700A48CE9 /* SetupOrderModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupOrderModal.swift; sourceTree = "<group>"; };
 		CDD242842B123CF700A48CE9 /* SmartOBD2App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartOBD2App.swift; sourceTree = "<group>"; };
+		DA78F0AD89D34E0DB8610975 /* AppTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
+		E89EFCB262BB438B89EABF0A /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				CD01300629EB05FB009CB086 /* RAPIDTRUTH */,
 				CD01300529EB05FB009CB086 /* Products */,
+				CD6A05EE2EDA068C002DBD98 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,9 +183,21 @@
 		CD6A05E82EDA0397002DBD98 /* Design */ = {
 			isa = PBXGroup;
 			children = (
+				CD6A05EF2EDA06B8002DBD98 /* Enums.swift */,
 				CD6A05E72EDA0397002DBD98 /* DesignSystem.swift */,
 			);
 			path = Design;
+			sourceTree = "<group>";
+		};
+		CD6A05EE2EDA068C002DBD98 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				19B21BE0FFA8436BA7DE84A0 /* DesignSystem.swift */,
+				E89EFCB262BB438B89EABF0A /* Enums.swift */,
+				DA78F0AD89D34E0DB8610975 /* AppTabView.swift */,
+				CDD2424X2B123CF600A48CE9 /* Constants.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		CDD2423F2B123CF600A48CE9 /* ViewModels */ = {
@@ -321,16 +336,6 @@
 			path = Modals;
 			sourceTree = "<group>";
 		};
-
-		B6A2C166FD7344EC908A500A /* Design */ = {
-			isa = PBXGroup;
-			children = (
-				19B21BE0FFA8436BA7DE84A0 /* DesignSystem.swift */,
-				E89EFCB262BB438B89EABF0A /* Enums.swift */,
-			);
-			path = Design;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -410,7 +415,6 @@
 				6EB9B3F45EE64F0D91C1D204 /* DesignSystem.swift in Sources */,
 				EE7212D274DD40B9AF474BE9 /* Enums.swift in Sources */,
 				82CEDEAB26D54C7D9A4518D9 /* AppTabView.swift in Sources */,
-
 				CDD242A42B123CF700A48CE9 /* AboutView.swift in Sources */,
 				CDD242BC2B123CF700A48CE9 /* SmartOBD2App.swift in Sources */,
 				CDD242AB2B123CF700A48CE9 /* SectionView.swift in Sources */,
@@ -448,6 +452,7 @@
 				CDD242A62B123CF700A48CE9 /* SettingsView.swift in Sources */,
 				CD6A05E92EDA0397002DBD98 /* DesignSystem.swift in Sources */,
 				CDD242B62B123CF700A48CE9 /* MainView.swift in Sources */,
+				CD6A05F02EDA06B8002DBD98 /* Enums.swift in Sources */,
 				CDD242902B123CF700A48CE9 /* ELM327Parser.swift in Sources */,
 				CDD242AF2B123CF700A48CE9 /* ScrollChartView.swift in Sources */,
 				CDD242922B123CF700A48CE9 /* ELM327.swift in Sources */,
