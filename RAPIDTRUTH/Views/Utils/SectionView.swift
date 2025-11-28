@@ -32,27 +32,27 @@ struct SectionView<Destination: View>: View {
             VStack(alignment: .leading, spacing: 5) {
                 Image(systemName: iconName)
                     .font(.system(size: 30, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
 
                 Text(title)
                     .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
 
                 HStack {
                     Text(subtitle)
                         .lineLimit(2)
                         .font(.system(size: 12, weight: .semibold))
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(.gray)
+                        .foregroundStyle(.gray)
 
                     Spacer()
                     Image(systemName: "chevron.right")
                         .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                 }
             }
             .padding(.horizontal)
-            .frame(width: 160, height: 160)
+            .frame(maxWidth: .infinity, minHeight: 160)
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.cyclamen)

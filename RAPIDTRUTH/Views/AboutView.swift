@@ -12,7 +12,7 @@ struct AboutView: View {
         VStack(spacing: 100) {
             Text("SMARTOBD2 Version 1.0")
             .font(.system(size: 18, weight: .bold))
-            .foregroundColor(.white)
+            .foregroundStyle(.white)
             .padding(.bottom, 10)
             VStack {
                 Text(
@@ -25,24 +25,24 @@ struct AboutView: View {
                 )
                 .multilineTextAlignment(.leading)
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(.white)
+                .foregroundStyle(.white)
                 .padding(.bottom, 10)
 
                 Text("Dedicated to my Dad\n Lang Konteh")
                     .multilineTextAlignment(.trailing)
                     .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.gray)
+                    .foregroundStyle(.gray)
                     .padding(.bottom, 10)
             }
 
             VStack {
                 Text("©2023 Konteh Inc")
                     .font(.system(size: 10, weight: .semibold))
-                    .foregroundColor(.gray)
+                    .foregroundStyle(.gray)
 
                 Text("All rights reserved")
                     .font(.system(size: 10, weight: .semibold))
-                    .foregroundColor(.gray)
+                    .foregroundStyle(.gray)
             }
         }
         .padding()

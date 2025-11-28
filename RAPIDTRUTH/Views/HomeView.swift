@@ -8,139 +8,180 @@
 import SwiftUI
 
 struct HomeView: View {
-	@Environment(\.colorScheme) var colorScheme
-	
-    @ObservedObject var viewModel: HomeViewModel
-    @ObservedObject var diagnosticsViewModel: VehicleDiagnosticsViewModel
-    @ObservedObject var garageViewModel: GarageViewModel
-    @ObservedObject var settingsViewModel: SettingsViewModel
-    @ObservedObject var carScreenViewModel: CarScreenViewModel
+    @Environment(\.colorScheme) var colorScheme
+
+    @Bindable var viewModel: HomeViewModel
+    var diagnosticsViewModel: VehicleDiagnosticsViewModel
+    var garageViewModel: GarageViewModel
+    var settingsViewModel: SettingsViewModel
+    var carScreenViewModel: CarScreenViewModel
 
     @Binding var displayType: BottomSheetType
 
-    var garageVehicles: [Vehicle] {
-        viewModel.garageVehicles
-    }
-
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack {
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)], spacing: 20) {
-                    SectionView(title: "Diagnostics", 
-                                subtitle: "Read Vehicle Health",
-                                iconName: "wrench.and.screwdriver",
-                                destination: VehicleDiagnosticsView(viewModel: diagnosticsViewModel))
-                    SectionView(title: "Logs",
-                                subtitle: "View Logs",
-                                iconName: "flowchart",
-                                destination: LogsView())
-                    SectionView(title: "Battery",
-                                subtitle: "Monitor Battery Health",
-                                iconName: "minus.plus.batteryblock",
-                                destination: BatteryTestView())
+        ScrollView {
+            VStack(spacing: 24) {
+                // Header
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Dashboard")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundStyle(Color.textPrimary)
+                        Text(viewModel.isConnected ? "Connected to \(viewModel.currentVehicle?.make ?? "Vehicle")" : "Not Connected")
+                            .font(.subheadline)
+                            .foregroundStyle(Color.textSecondary)
+                    }
+                    Spacer()
+                    // Connection Status Indicator
+                    Circle()
+                        .fill(viewModel.isConnected ? Color.statusSuccess : Color.statusError)
+                        .frame(width: 12, height: 12)
+                        .shadow(color: (viewModel.isConnected ? Color.statusSuccess : Color.statusError).opacity(0.5), radius: 5)
                 }
-                .padding(.vertical, 20)
-
-                Divider()
-					.background(Color.white)
-					.padding(.horizontal, 20)
+                .padding(.horizontal)
+                .padding(.top, 20)
                 
-				NavigationLink {
-                    SettingsView(viewModel: settingsViewModel)
-                } label: {
-                    SettingsAboutSectionView(title: "Settings", iconName: "gear", iconColor: .green.opacity(0.6))
+                // Quick Actions Grid
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+
+                    // Diagnostics Card
+                    HomeCard(title: "Diagnostics", icon: "wrench.and.screwdriver.fill", color: .accentPrimary, value: viewModel.dashboardDTCCount > 0 ? "\(viewModel.dashboardDTCCount) Faults" : "System OK") {
+                        VehicleDiagnosticsView(viewModel: diagnosticsViewModel)
+                    }
+
+                    // Battery Card
+                    HomeCard(title: "Battery", icon: "battery.100.bolt", color: .statusWarning, value: viewModel.dashboardBatteryVoltage) {
+                        BatteryTestView()
+                    }
+
+                    HomeCard(title: "Live Data", icon: "gauge", color: .accentSecondary, value: "View") {
+                         // Navigation is handled via TabView, but we can deep link or show a summary here if needed.
+                         LogsView()
+                    }
+
+                    HomeCard(title: "Car Screen", icon: "car.side.fill", color: .purple, value: "Open") {
+                        CarScreen(viewModel: carScreenViewModel)
+                    }
                 }
-
-                Divider()
-					.background(Color.white)
-					.padding(.horizontal, 20)
+                .padding(.horizontal)
                 
-				NavigationLink {
-                    GarageView(viewModel: garageViewModel)
-                        .background(LinearGradient(.darkStart, .darkEnd))
-                } label: {
-                    SettingsAboutSectionView(title: "Garage", iconName: "car.circle", iconColor: .blue.opacity(0.6))
+                // Secondary Actions (List Style)
+                VStack(spacing: 16) {
+                    NavigationLink {
+                        SettingsView(viewModel: settingsViewModel)
+                    } label: {
+                        ListRowCard(title: "Settings", icon: "gearshape.fill", color: .gray)
+                    }
+
+                    NavigationLink {
+                        AboutView()
+                    } label: {
+                        ListRowCard(title: "About", icon: "info.circle.fill", color: .gray)
+                    }
                 }
-
-                Divider()
-					.background(Color.white)
-					.padding(.horizontal, 20)
+                .padding(.horizontal)
                 
-				NavigationLink {
-                    AboutView()
-                        .onAppear {
-                            withAnimation {
-                                self.displayType = .none
-                            }
-                        }
-                        .onDisappear {
-                            withAnimation {
-                                self.displayType = .quarterScreen
-                            }
-                        }
-                        .transition(.move(edge: .bottom))
-
-                } label: {
-                    SettingsAboutSectionView(title: "About", iconName: "info.circle", iconColor: .secondary)
-                }
-                
-				Divider()
-					.background(Color.white)
-					.padding(.horizontal, 20)
-                
-				NavigationLink {
-                    CarScreen(viewModel: carScreenViewModel)
-                        .background(LinearGradient(.darkStart, .darkEnd))
-                } label: {
-                    SettingsAboutSectionView(title: "Message", iconName: "car.circle", iconColor: .blue.opacity(0.6))
-                }
-
-                Divider()
-					.background(Color.white)
-					.padding(.horizontal, 20)
+                Spacer(minLength: 50)
             }
-            .padding()
+        }
+        .background(LinearGradient.mainBackground.ignoresSafeArea())
+        .onAppear {
+            if viewModel.isConnected {
+                Task {
+                    await viewModel.refreshDashboardData()
+                }
+            }
+        }
+        // Also refresh when connection state changes to true
+        .onChange(of: viewModel.isConnected) { _, connected in
+            if connected {
+                Task {
+                    await viewModel.refreshDashboardData()
+                }
+            }
         }
     }
 }
 
-struct SettingsAboutSectionView: View {
+// MARK: - Components
+
+struct HomeCard<Destination: View>: View {
     let title: String
-    let iconName: String
-    let iconColor: Color
+    let icon: String
+    let color: Color
+    var value: String? = nil
+    let destination: () -> Destination
+
+    var body: some View {
+        NavigationLink(destination: destination) {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Image(systemName: icon)
+                        .font(.title2)
+                        .foregroundStyle(color)
+                        .frame(width: 40, height: 40)
+                        .background(color.opacity(0.2))
+                        .clipShape(Circle())
+
+                    Spacer()
+
+                    if let value = value {
+                        Text(value)
+                            .font(.headline)
+                            .foregroundStyle(Color.textPrimary)
+                    }
+                }
+                
+                Text(title)
+                    .font(.headline)
+                    .foregroundStyle(Color.textSecondary)
+                
+                Spacer()
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(height: 120)
+            .glassCardStyle()
+        }
+    }
+}
+
+struct ListRowCard: View {
+    let title: String
+    let icon: String
+    let color: Color
 
     var body: some View {
         HStack {
-            Image(systemName: iconName)
-                .font(.system(size: 30, weight: .bold))
-                .foregroundColor(iconColor)
+            Image(systemName: icon)
+                .foregroundStyle(color)
+                .padding(8)
+                .background(color.opacity(0.1))
+                .clipShape(Circle())
 
             Text(title)
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.white)
+                .font(.body)
+                .bold()
+                .foregroundStyle(Color.textPrimary)
 
             Spacer()
 
             Image(systemName: "chevron.right")
-                .font(.system(size: 14, weight: .bold))
-                .foregroundColor(.white)
-
+                .foregroundStyle(Color.textSecondary)
         }
-        .frame(maxWidth: .infinity, maxHeight: 400, alignment: .leading)
-        .padding(.horizontal, 22)
+        .padding()
+        .glassCardStyle()
     }
 }
 
 #Preview {
-    ZStack {
-        LinearGradient(.darkStart, .darkEnd)
-            .ignoresSafeArea()
-        HomeView(
-            viewModel: HomeViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage()),
-            diagnosticsViewModel: VehicleDiagnosticsViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage()),
-            garageViewModel: GarageViewModel(garage: Garage()),
-            settingsViewModel: SettingsViewModel(bleManager: BLEManager()), 
-            carScreenViewModel: CarScreenViewModel(obdService: OBDService(bleManager: BLEManager())),
-            displayType: .constant(.quarterScreen))
-    }
+    HomeView(
+        viewModel: HomeViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage()),
+        diagnosticsViewModel: VehicleDiagnosticsViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage()),
+        garageViewModel: GarageViewModel(garage: Garage()),
+        settingsViewModel: SettingsViewModel(bleManager: BLEManager()),
+        carScreenViewModel: CarScreenViewModel(obdService: OBDService(bleManager: BLEManager())),
+        displayType: .constant(.quarterScreen)
+    )
 }
