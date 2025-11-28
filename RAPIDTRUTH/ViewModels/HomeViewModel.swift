@@ -6,37 +6,32 @@
 //
 
 import SwiftUI
-import Combine
+import Observation
 
-class HomeViewModel: ObservableObject {
-    @Published var obdInfo = OBDInfo()
+@Observable
+class HomeViewModel {
+    var obdInfo = OBDInfo()
 
-    @Published var vinInput = ""
-    @Published var vinInfo: VINInfo?
-    @Published var selectedProtocol: OBDProtocol = .NONE
-    @Published var garage: Garage
+    var vinInput = ""
+    var vinInfo: VINInfo?
+    var selectedProtocol: OBDProtocol = .NONE
+    var garage: Garage
 
-    @Published var garageVehicles: [Vehicle] = []
+    var garageVehicles: [Vehicle] {
+        garage.garageVehicles
+    }
 
-    @Published var currentVehicle: Vehicle?
-
-    private var cancellables = Set<AnyCancellable>()
+    var currentVehicle: Vehicle? {
+        if let vin = garage.currentVehicleVin {
+             return garage.garageVehicles.first(where: { $0.vin == vin })
+        }
+        return nil
+    }
 
     let obdService: OBDService
 
     init(obdService: OBDService, garage: Garage) {
         self.obdService = obdService
         self.garage = garage
-
-        garage.$garageVehicles
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.garageVehicles, on: self)
-            .store(in: &cancellables)
-
-        garage.$currentVehicleId
-                .sink { currentVehicleId in
-                    self.currentVehicle = self.garage.garageVehicles.first(where: { $0.id == currentVehicleId } )
-                }
-                .store(in: &cancellables)
     }
 }
