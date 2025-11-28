@@ -7,6 +7,7 @@
 
 import SwiftUI
 import OSLog
+import SwiftData
 
 extension Logger {
 	/// Using your bundle identifier is a great way to ensure a unique identifier.
@@ -21,9 +22,25 @@ extension Logger {
 
 @main
 struct SmartOBD2App: App {
+    let container: ModelContainer
+    var garage: Garage
+
+    init() {
+        do {
+            container = try ModelContainer(for: VehicleModel.self)
+            // Garage needs to interact with the context.
+            // For simplicity in this migration, we initialize it here, but ideally Garage should access context via Actor or MainActor.
+            let context = ModelContext(container)
+            garage = Garage(modelContext: context)
+        } catch {
+            fatalError("Failed to create ModelContainer: \(error)")
+        }
+    }
+
 	var body: some Scene {
 		WindowGroup {
-			MainView(garage: Garage())
+			MainView(garage: garage)
 		}
+        .modelContainer(container)
 	}
 }
