@@ -10,6 +10,8 @@
 		CD01301029EB05FD009CB086 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD01300F29EB05FD009CB086 /* Preview Assets.xcassets */; };
 		CD6A05E42ED9F91A002DBD98 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05E32ED9F91A002DBD98 /* VehicleModel.swift */; };
 		CD6A05E62ED9F929002DBD98 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05E52ED9F929002DBD98 /* Constants.swift */; };
+		CD6A05E92EDA0397002DBD98 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05E72EDA0397002DBD98 /* DesignSystem.swift */; };
+		CD6A05EB2EDA03B2002DBD98 /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6A05EA2EDA03B2002DBD98 /* AppTabView.swift */; };
 		CDAC84C42C6B6D4E00725909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDAC84C32C6B6D4E00725909 /* Assets.xcassets */; };
 		CDD242862B123CF700A48CE9 /* GarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242412B123CF600A48CE9 /* GarageViewModel.swift */; };
 		CDD242872B123CF700A48CE9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242422B123CF600A48CE9 /* HomeViewModel.swift */; };
@@ -62,11 +64,11 @@
 		CD01300F29EB05FD009CB086 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CD6A05E32ED9F91A002DBD98 /* VehicleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
 		CD6A05E52ED9F929002DBD98 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CD6A05E72EDA0397002DBD98 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		CD6A05EA2EDA03B2002DBD98 /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		CDAC84C32C6B6D4E00725909 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDD242412B123CF600A48CE9 /* GarageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageViewModel.swift; sourceTree = "<group>"; };
 		CDD242422B123CF600A48CE9 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		CDD242432B123CF600A48CE9 /* CustomTabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewModel.swift; sourceTree = "<group>"; };
-		CDD242442B123CF600A48CE9 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarScreenViewModel.swift; sourceTree = "<group>"; };
 		CDD242462B123CF600A48CE9 /* LiveDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveDataViewModel.swift; sourceTree = "<group>"; };
 		CDD242482B123CF600A48CE9 /* BleConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleConnection.swift; sourceTree = "<group>"; };
@@ -77,7 +79,6 @@
 		CDD2424D2B123CF600A48CE9 /* Commands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		CDD2424E2B123CF600A48CE9 /* ELM327.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELM327.swift; sourceTree = "<group>"; };
 		CDD2424F2B123CF600A48CE9 /* ELM327GetVehiclePIDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELM327GetVehiclePIDs.swift; sourceTree = "<group>"; };
-		CDD2424Y2B123CF600A48CE9 /* VehicleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
 		CDD242532B123CF600A48CE9 /* CBCentralManagerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCentralManagerMock.swift; sourceTree = "<group>"; };
 		CDD242542B123CF600A48CE9 /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		CDD242552B123CF600A48CE9 /* CBPeripheralMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPeripheralMock.swift; sourceTree = "<group>"; };
@@ -95,7 +96,6 @@
 		CDD242692B123CF600A48CE9 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CDD2426A2B123CF600A48CE9 /* GarageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
 		CDD2426B2B123CF600A48CE9 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		CDD2426D2B123CF600A48CE9 /* SplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		CDD2426E2B123CF600A48CE9 /* GaugeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeView.swift; sourceTree = "<group>"; };
 		CDD2426F2B123CF600A48CE9 /* SectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		CDD242712B123CF600A48CE9 /* ConnectButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectButton.swift; sourceTree = "<group>"; };
@@ -143,6 +143,7 @@
 		CD01300629EB05FB009CB086 /* RAPIDTRUTH */ = {
 			isa = PBXGroup;
 			children = (
+				CD6A05E82EDA0397002DBD98 /* Design */,
 				CD6A05E52ED9F929002DBD98 /* Constants.swift */,
 				CDD242472B123CF600A48CE9 /* BleComm */,
 				CDD242652B123CF600A48CE9 /* Cars.json */,
@@ -166,13 +167,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		CD6A05E82EDA0397002DBD98 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				CD6A05E72EDA0397002DBD98 /* DesignSystem.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
 		CDD2423F2B123CF600A48CE9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				CDD242412B123CF600A48CE9 /* GarageViewModel.swift */,
 				CDD242422B123CF600A48CE9 /* HomeViewModel.swift */,
-				CDD242432B123CF600A48CE9 /* CustomTabBarViewModel.swift */,
-				CDD242442B123CF600A48CE9 /* ChatViewModel.swift */,
 				CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */,
 				CDD242462B123CF600A48CE9 /* LiveDataViewModel.swift */,
 			);
@@ -249,6 +256,7 @@
 		CDD242662B123CF600A48CE9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD6A05EA2EDA03B2002DBD98 /* AppTabView.swift */,
 				CDD242672B123CF600A48CE9 /* AboutView.swift */,
 				CDD242682B123CF600A48CE9 /* DashBoardView.swift */,
 				CDD242692B123CF600A48CE9 /* SettingsView.swift */,
@@ -265,9 +273,7 @@
 		CDD2426C2B123CF600A48CE9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CDD2426D2B123CF600A48CE9 /* SplashScreenView.swift */,
 				CDD2426E2B123CF600A48CE9 /* GaugeView.swift */,
-				CDD2424Y2B123CF600A48CE9 /* VehicleModel.swift */,
 				CDD2426F2B123CF600A48CE9 /* SectionView.swift */,
 				CDD242712B123CF600A48CE9 /* ConnectButton.swift */,
 			);
@@ -404,6 +410,7 @@
 				CD6A05E62ED9F929002DBD98 /* Constants.swift in Sources */,
 				CDD242AD2B123CF700A48CE9 /* ConnectButton.swift in Sources */,
 				CDD242932B123CF700A48CE9 /* ELM327GetVehiclePIDs.swift in Sources */,
+				CD6A05EB2EDA03B2002DBD98 /* AppTabView.swift in Sources */,
 				CDD242A52B123CF700A48CE9 /* DashBoardView.swift in Sources */,
 				CDD242B12B123CF700A48CE9 /* BatteryTestView.swift in Sources */,
 				CDD242942B123CF700A48CE9 /* CBCentralManagerMock.swift in Sources */,
@@ -412,6 +419,7 @@
 				CDD2428E2B123CF700A48CE9 /* Protocol.swift in Sources */,
 				CDD242B52B123CF700A48CE9 /* CarScreen.swift in Sources */,
 				CDD242A62B123CF700A48CE9 /* SettingsView.swift in Sources */,
+				CD6A05E92EDA0397002DBD98 /* DesignSystem.swift in Sources */,
 				CDD242B62B123CF700A48CE9 /* MainView.swift in Sources */,
 				CDD242902B123CF700A48CE9 /* ELM327Parser.swift in Sources */,
 				CDD242AF2B123CF700A48CE9 /* ScrollChartView.swift in Sources */,
