@@ -33,7 +33,9 @@ public func withTimeout<R>(seconds: TimeInterval, operation: @escaping @Sendable
         }
         
 		// First finished child task wins, cancel the other task.
-        let result = try await group.next()!
+        guard let result = try await group.next() else {
+            throw TimedOutError()
+        }
         return result
     }
 }
