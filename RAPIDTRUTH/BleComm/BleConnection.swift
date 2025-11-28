@@ -350,17 +350,6 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
             }
         }
 	}
-				default:
-					if debug {
-						logger.info("Unhandled Characteristic UUID: \(characteristic)")
-					}
-					
-					if characteristic.properties.contains(.notify) {
-						peripheral.setNotifyValue(true, for: characteristic)
-					}
-			}
-		}
-	}
 	
 	func didUpdateValue(_ peripheral: CBPeripheralProtocol, characteristic: CBCharacteristic, error: Error?) {
 		if let error {
