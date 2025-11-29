@@ -14,13 +14,9 @@ struct GarageView: View {
     var body: some View {
         ZStack {
             if garage.garageVehicles.isEmpty {
-                if #available(iOS 17.0, *) {
-                    ContentUnavailableView("Garage Empty",
-                                           systemImage: "car",
-                                           description: Text("Add a vehicle to start monitoring."))
-                } else {
-                    Text("Garage Empty. Add a vehicle.")
-                }
+                ContentUnavailableView("Garage Empty",
+                                       systemImage: "car",
+                                       description: Text("Add a vehicle to start monitoring."))
             } else {
                 ScrollView(.vertical, showsIndicators: false) {
                     ForEach(garage.garageVehicles) { vehicle in
@@ -67,16 +63,10 @@ struct GarageView: View {
             Button {
                 showingSheet.toggle()
             } label: {
-                if #available(iOS 17.0, *) {
-                    Image(systemName: "plus.circle")
-                        .foregroundStyle(.white)
-                        .font(.system(size: 20))
-                        .symbolEffect(.bounce, value: showingSheet)
-                } else {
-                    Image(systemName: "plus.circle")
-                        .foregroundStyle(.white)
-                        .font(.system(size: 20))
-                }
+                Image(systemName: "plus.circle")
+                    .foregroundStyle(.white)
+                    .font(.system(size: 20))
+                    .symbolEffect(.bounce, value: showingSheet)
             }
             .sheet(isPresented: $showingSheet) {
                 AddVehicleView(viewModel: AddVehicleViewModel(garage: garage))
