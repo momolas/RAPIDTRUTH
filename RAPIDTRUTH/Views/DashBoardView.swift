@@ -18,13 +18,9 @@ struct DashBoardView: View {
 
 struct LogsView: View {
     var body: some View {
-        if #available(iOS 17.0, *) {
-            ContentUnavailableView("Logs Empty",
-                                   systemImage: "text.alignleft",
-                                   description: Text("No logs available yet."))
-        } else {
-            Text("Logs Empty")
-        }
+        ContentUnavailableView("Logs Empty",
+                               systemImage: "text.alignleft",
+                               description: Text("No logs available yet."))
     }
 }
 
