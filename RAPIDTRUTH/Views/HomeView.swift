@@ -12,9 +12,8 @@ struct HomeView: View {
 
     @Bindable var viewModel: HomeViewModel
     var diagnosticsViewModel: VehicleDiagnosticsViewModel
-    var garageViewModel: GarageViewModel
-    var settingsViewModel: SettingsViewModel
-    var carScreenViewModel: CarScreenViewModel
+    var garage: Garage
+    var obdService: OBDService
 
     @Binding var displayType: BottomSheetType
 
@@ -61,7 +60,7 @@ struct HomeView: View {
                     }
 
                     HomeCard(title: "Car Screen", icon: "car.side.fill", color: .purple, value: "Open") {
-                        CarScreen(viewModel: carScreenViewModel)
+                        CarScreen(obdService: obdService)
                     }
                 }
                 .padding(.horizontal)
@@ -69,7 +68,7 @@ struct HomeView: View {
                 // Secondary Actions (List Style)
                 VStack(spacing: 16) {
                     NavigationLink {
-                        SettingsView(viewModel: settingsViewModel)
+                        SettingsView(bleManager: obdService.bleManager)
                     } label: {
                         ListRowCard(title: "Settings", icon: "gearshape.fill", color: .gray)
                     }
@@ -179,9 +178,8 @@ struct ListRowCard: View {
     HomeView(
         viewModel: HomeViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage()),
         diagnosticsViewModel: VehicleDiagnosticsViewModel(obdService: OBDService(bleManager: BLEManager()), garage: Garage()),
-        garageViewModel: GarageViewModel(garage: Garage()),
-        settingsViewModel: SettingsViewModel(bleManager: BLEManager()),
-        carScreenViewModel: CarScreenViewModel(obdService: OBDService(bleManager: BLEManager())),
+        garage: Garage(),
+        obdService: OBDService(bleManager: BLEManager()),
         displayType: .constant(.quarterScreen)
     )
 }

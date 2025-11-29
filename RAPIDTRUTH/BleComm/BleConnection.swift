@@ -88,7 +88,13 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 	var foundPeripherals: [Peripheral] = []
 	var discoveredServicesAndCharacteristics: [(CBService, [CBCharacteristic])] = []
 	
-	private var centralManager: CBCentralManagerProtocol!
+    internal lazy var centralManager: CBCentralManagerProtocol = {
+#if targetEnvironment(simulator)
+		return CBCentralManagerMock(delegate: self, queue: nil)
+#else
+		return CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionRestoreIdentifierKey: BLEManager.RestoreIdentifierKey])
+#endif
+	}()
 	
 	static let RestoreIdentifierKey: String = "OBD2Adapter"
 	
@@ -98,9 +104,9 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 	
 	var buffer = Data()
 	
-	private var commandQueue: [CheckedContinuation<Void, Never>] = []
-	private var isProcessing = false
-	private let queueLock = NSLock()
+    internal var commandQueue: [CheckedContinuation<Void, Never>] = []
+    internal var isProcessing = false
+    internal let queueLock = NSLock()
 
 	var sendMessageCompletion: (([String]?, Error?) -> Void)?
 	var connectionCompletion: ((CBPeripheralProtocol) -> Void)?
@@ -109,377 +115,19 @@ class BLEManager: NSObject, CBPeripheralProtocolDelegate, CBCentralManagerProtoc
 	
 	override init() {
 		super.init()
-#if targetEnvironment(simulator)
-		centralManager = CBCentralManagerMock(delegate: self, queue: nil)
-#else
-		centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionRestoreIdentifierKey: BLEManager.RestoreIdentifierKey])
-#endif
-	}
-	
-	// MARK: Helpers
-
-	private func waitForTurn() async {
-		await withCheckedContinuation { continuation in
-			queueLock.lock()
-			if !isProcessing {
-				isProcessing = true
-				queueLock.unlock()
-				continuation.resume()
-			} else {
-				commandQueue.append(continuation)
-				queueLock.unlock()
-			}
-		}
+		// Initialize centralManager
+		_ = centralManager
 	}
 
-	private func signalNext() {
-		queueLock.lock()
-		if !commandQueue.isEmpty {
-			let next = commandQueue.removeFirst()
-			queueLock.unlock()
-			next.resume()
-		} else {
-			isProcessing = false
-			queueLock.unlock()
-		}
-	}
-
-	// MARK: Central Manager Control Methods
-	
-	func startScan(services: [CBUUID]) {
-		let scanOption = [CBCentralManagerScanOptionAllowDuplicatesKey: true]
-		centralManager?.scanForPeripherals(withServices: services, options: scanOption)
-		isSearching = true
-	}
-	
-	func stopScan() {
-		centralManager?.stopScan()
-		print("# Stop Scan")
-		isSearching = false
-	}
-	
-	func connect(to selectPeripheral: Peripheral) {
-		// ... (peripheral connection logic)
-		let connectPeripheral = selectPeripheral
-		connectedPeripheral = selectPeripheral
-		centralManager.connect(connectPeripheral.peripheral, options: nil)
-		stopScan()
-	}
-	
-	func disconnectPeripheral() {
-		guard let connectedPeripheral = connectedPeripheral else { return }
-		centralManager.cancelPeripheralConnection(connectedPeripheral.peripheral)
-	}
-	
-	// MARK: Central Manager Delegate Methods
-	
-	func didDiscover(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol, advertisementData: [String : Any], rssi: NSNumber) {
-		if rssi.intValue >= 0 { return }
-		let peripheralName = advertisementData[CBAdvertisementDataLocalNameKey] as? String ?? nil
-		var _name = "NoName"
-		
-		if peripheralName != nil {
-			_name = String(peripheralName!)
-		} else if peripheral.name != nil {
-			_name = String(peripheral.name!)
-		}
-		
-		let foundPeripheral: Peripheral = Peripheral(_peripheral: peripheral, _name: _name, _advData: advertisementData, _rssi: rssi, _discoverCount: 0)
-		
-        Task { @MainActor in
-            if let index = foundPeripherals.firstIndex(where: { $0.peripheral.identifier.uuidString == peripheral.identifier.uuidString }) {
-                if foundPeripherals[index].discoverCount % 50 == 0 {
-                    foundPeripherals[index].name = _name
-                    foundPeripherals[index].rssi = rssi.intValue
-                    foundPeripherals[index].discoverCount += 1
-                } else {
-                    foundPeripherals[index].discoverCount += 1
-                }
-            } else {
-                foundPeripherals.append(foundPeripheral)
-                self.isSearching = false
-            }
-        }
-	}
-	
-	func didConnect(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol) {
-		logger.debug("Connected to peripheral: \(peripheral.name ?? "Unnamed")")
-		discoverPeripheralServices(peripheral)
-		connectedPeripheral?.peripheral.delegate = self
-		connectionCompletion?(peripheral)
-        Task { @MainActor in
-            self.connectionState = .connectedToAdapter
-        }
-	}
-	
-	func didUpdateState(_ central: CBCentralManagerProtocol) {
-        Task { @MainActor in
-            switch central.state {
-                case .poweredOn:
-                    logger.debug("Bluetooth is On.")
-                    guard let device = connectedPeripheral else {
-                        startScan(services: [CBUUID(string: UserDevice.properties.serviceUUID)])
-                        return
-                    }
-                    connectionState = .connecting
-                    connect(to: device)
-                case .poweredOff:
-                    logger.warning("Bluetooth is currently powered off.")
-                    connectionState = .notInitialized
-                case .unsupported:
-                    logger.error("This device does not support Bluetooth Low Energy.")
-                    connectionState = .failed
-                case .unauthorized:
-                    logger.error("This app is not authorized to use Bluetooth Low Energy.")
-                    connectionState = .failed
-                case .resetting:
-                    logger.warning("Bluetooth is resetting.")
-                default:
-                    logger.error("Bluetooth is not powered on.")
-                    fatalError()
-            }
-        }
-	}
-	
-	func willRestoreState(_ central: CBCentralManagerProtocol, dict: [String : Any]) {
-		if let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
-			logger.debug("Restoring \(peripherals.count) peripherals")
-			
-			for peripheral in peripherals {
-				logger.debug("Restoring peripheral: \(peripheral.name ?? "Unnamed")")
-				
-				if isDevicePeripheral(peripheral) {
-					peripheral.delegate = self
-					
-                    Task { @MainActor in
-                        connectedPeripheral = Peripheral(_peripheral: peripheral,
-                                                         _name: peripheral.name ?? "Unnamed",
-                                                         _advData: nil,
-                                                         _rssi: nil,
-                                                         _discoverCount: 0)
-                        connectionState = .connectedToAdapter
-                    }
-				}
-			}
-		}
-	}
-	
-	func didFailToConnect(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol, error: Error?) {
-		logger.error("Failed to connect to peripheral: \(peripheral.name ?? "Unnamed")")
-        Task { @MainActor in
-            connectedPeripheral = nil
-        }
-		disconnectPeripheral()
-	}
-	
-	func didDisconnect(_ central: CBCentralManagerProtocol, peripheral: CBPeripheralProtocol, error: Error?) {
-		logger.warning("Disconnected from peripheral: \(peripheral.name ?? "Unnamed")")
-        Task { @MainActor in
-            connectedPeripheral = nil
-            connectionState = .notInitialized
-        }
-		resetConfigure()
-	}
-	
-	func resetConfigure() {
-		ecuCharacteristic = nil
-		discoveredServicesAndCharacteristics = []
-	}
-	
-	private func isDevicePeripheral(_ peripheral: CBPeripheral) -> Bool {
-		return UserDevice.properties.peripheralUUID == peripheral.identifier.uuidString
-	}
-	
-	func discoverPeripheralServices(_ peripheral: CBPeripheralProtocol) {
-		peripheral.discoverServices(nil)
-	}
-	
-	func connectAsync(peripheral: Peripheral) async throws -> CBPeripheralProtocol {
-		// ... (peripheral connection logic)
-		peripheral.peripheral.delegate = self
-		connect(to: peripheral)
-		return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<CBPeripheralProtocol, Error>) in
-			// Set up a timeout timer
-			self.connectionCompletion = { peripheral in
-				continuation.resume(returning: peripheral)
-			}
-		}
-	}
-	
-	// MARK: Peripheral Delegate Methods
-	
-	func didDiscoverServices(_ peripheral: CBPeripheralProtocol, error: Error?) {
-		// ... (discovering services logic)
-		if let error {
-			logger.error("Error discovering services: \(error.localizedDescription)")
-			return
-		}
-		if let services = peripheral.services {
-			for service in services {
-				logger.info("Found Service: \(service)")
-				peripheral.discoverCharacteristics(nil, for: service)
-			}
-		}
-	}
-	
-	func didDiscoverCharacteristics(_ peripheral: CBPeripheralProtocol, service: CBService, error: Error?) {
-		guard let characteristics = service.characteristics else {
-			logger.error("No characteristics found")
-			return
-		}
-
-        Task { @MainActor in
-            self.discoveredServicesAndCharacteristics.append((service, characteristics))
-
-            for characteristic in characteristics {
-                switch characteristic.uuid.uuidString {
-                    case UserDevice.properties.characteristicUUID:
-                        logger.info("ecu \(characteristic)")
-                        ecuCharacteristic = characteristic
-                        peripheral.setNotifyValue(true, for: characteristic)
-                        logger.info("Adapter Ready")
-                    default:
-                        if debug {
-                            logger.info("Unhandled Characteristic UUID: \(characteristic)")
-                        }
-
-                        if characteristic.properties.contains(.notify) {
-                            peripheral.setNotifyValue(true, for: characteristic)
-                        }
-                }
-            }
-        }
-	}
-	
-	func didUpdateValue(_ peripheral: CBPeripheralProtocol, characteristic: CBCharacteristic, error: Error?) {
-		if let error {
-			logger.error("Error reading characteristic value: \(error.localizedDescription)")
-			return
-		}
-		
-		guard let characteristicValue = characteristic.value else {
-			return
-		}
-		
-		switch characteristic.uuid.uuidString {
-			case UserDevice.properties.characteristicUUID:
-				processReceivedData(characteristicValue, completion: sendMessageCompletion)
-			default:
-				logger.info("Unknown characteristic: \(characteristic.uuid.uuidString)")
-				if let responseString = String(data: characteristicValue, encoding: .utf8) {
-					logger.info("\(responseString)")
-				} else {
-					logger.warning("Invalid data format for characteristic: \(characteristic.uuid.uuidString)")
-				}
-		}
-	}
-	
-	func connectionEventDidOccur(_ central: CBCentralManagerProtocol, event: CBConnectionEvent, peripheral: CBPeripheralProtocol) {
-		
-	}
-	
-	// MARK: Sending Messages
-	
-	// TODO: currently can be called multiple times before the first call returns which causes a continuation error
-	//       need to figure out how to handle this
-	
-	func sendMessageAsync(_ message: String) async throws -> [String] {
-		// Wait for turn in the queue
-		await waitForTurn()
-		defer { signalNext() }
-
-		// ... (sending message logic)
-		let message = "\(message)\r"
-		
-		if debug {
-			logger.info("Sending: \(message)")
-		}
-		
-		guard let connectedPeripheral = self.connectedPeripheral,
-			  let ecuCharacteristic = self.ecuCharacteristic,
-			  let data = message.data(using: .ascii
-			  ) else {
-			logger.error("Error: Missing peripheral or characteristic.")
-			throw SendMessageError.missingPeripheralOrCharacteristic
-		}
-		
-		connectedPeripheral.peripheral.writeValue(data, for: ecuCharacteristic, type: .withResponse)
-		
-		return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[String], Error>) in
-			var didResume = false
-			let resumeLock = NSLock()
-
-			let handler = { (response: [String]?, error: Error?) in
-				resumeLock.lock()
-				defer { resumeLock.unlock() }
-
-				if didResume { return }
-				didResume = true
-
-				if let response {
-					continuation.resume(returning: response)
-				} else if let error {
-					continuation.resume(throwing: error)
-				} else {
-					continuation.resume(throwing: SendMessageError.timeout)
-				}
-			}
-
-			// Set up a timeout timer
-			let timeoutWorkItem = DispatchWorkItem { [weak self] in
-				guard let self = self else { return }
-				self.logger.warning("Timeout waiting for response")
-				// We don't call handler directly via sendMessageCompletion because it might have been cleared?
-				// Actually handler is captured here.
-				handler(nil, SendMessageError.timeout)
-				self.sendMessageCompletion = nil
-			}
-			DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: timeoutWorkItem)
-
-			self.sendMessageCompletion = { response, error in
-				timeoutWorkItem.cancel()
-				handler(response, error)
-				self.sendMessageCompletion = nil
-			}
-		}
-	}
-	
-	func processReceivedData(_ data: Data, completion: (([String]?, Error?) -> Void)?) {
-		buffer.append(data)
-		
-		guard var string = String(data: buffer, encoding: .utf8) else {
-			logger.warning("Failed to convert data to a string")
-			buffer.removeAll()
-			return
-		}
-		
-		if string.contains(">") {
-			string = string
-				.replacingOccurrences(of: "\u{00}", with: "")
-				.trimmingCharacters(in: .whitespacesAndNewlines)
-			
-			// Split into lines while removing empty lines
-			var lines = string
-				.components(separatedBy: .newlines)
-				.filter { !$0.isEmpty }
-			
-			// remove the last line
-			lines.removeLast()
-			
-			if debug {
-				logger.info("Response: \(lines)")
-			}
-			
-			completion?(lines, nil)
-			buffer.removeAll()
-		}
-	}
-	
 	enum SendMessageError: Error {
 		case missingPeripheralOrCharacteristic
 		case timeout
 		case stringConversionFailed
 	}
+
+    // MARK: - Delegate Forwarding
+    // Note: The logic has been moved to Extensions/BleManager+*.swift files.
+    // The delegate methods are implemented in extensions there.
 }
 
 extension BLEManager: CBCentralManagerDelegate, CBPeripheralDelegate {

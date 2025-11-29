@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct GarageView: View {
-    var viewModel: GarageViewModel
+    @Bindable var garage: Garage
     @State private var showingSheet = false
 
     var body: some View {
         ZStack {
-            if viewModel.garage.garageVehicles.isEmpty {
+            if garage.garageVehicles.isEmpty {
                 if #available(iOS 17.0, *) {
                     ContentUnavailableView("Garage Empty",
                                            systemImage: "car",
@@ -23,7 +23,7 @@ struct GarageView: View {
                 }
             } else {
                 ScrollView(.vertical, showsIndicators: false) {
-                    ForEach(viewModel.garage.garageVehicles) { vehicle in
+                    ForEach(garage.garageVehicles) { vehicle in
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
                                 Text(vehicle.make)
@@ -40,7 +40,7 @@ struct GarageView: View {
                             }
                             Spacer()
                             Button {
-                                viewModel.deleteVehicle(vehicle)
+                                garage.deleteVehicle(vehicle)
                             } label: {
                                 Image(systemName: "trash")
                                     .foregroundStyle(.red)
@@ -48,11 +48,11 @@ struct GarageView: View {
                         }
                         .padding()
                         .frame(maxWidth: .infinity, maxHeight: 125, alignment: .leading)
-                        .background(viewModel.currentVehicle?.vin == vehicle.vin ? Color.blue : Color.clear)
+                        .background(garage.currentVehicleVin == vehicle.vin ? Color.blue : Color.clear)
                         .padding(.bottom, 15)
                         .onTapGesture {
                             withAnimation {
-                                viewModel.garage.setCurrentVehicle(by: vehicle.vin)
+                                garage.setCurrentVehicle(by: vehicle.vin)
                             }
                         }
                     }
@@ -79,13 +79,13 @@ struct GarageView: View {
                 }
             }
             .sheet(isPresented: $showingSheet) {
-                AddVehicleView(viewModel: AddVehicleViewModel(garage: viewModel.garage))
+                AddVehicleView(viewModel: AddVehicleViewModel(garage: garage))
             }
         )
     }
 }
 
 #Preview {
-    GarageView(viewModel: GarageViewModel(garage: Garage()))
+    GarageView(garage: Garage())
         .background(LinearGradient(.darkStart, .darkEnd))
 }
