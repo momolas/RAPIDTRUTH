@@ -16,13 +16,9 @@ struct SettingsView: View {
         List {
             Section(header: Text("Bluetooth Devices")) {
                 if bleManager.foundPeripherals.isEmpty {
-                    if #available(iOS 17.0, *) {
-                        ContentUnavailableView("No Devices Found",
-                                               systemImage: "wifi.slash",
-                                               description: Text("Ensure Bluetooth is on and devices are in range."))
-                    } else {
-                        Text("No Devices Found")
-                    }
+                    ContentUnavailableView("No Devices Found",
+                                           systemImage: "wifi.slash",
+                                           description: Text("Ensure Bluetooth is on and devices are in range."))
                 } else {
                     ForEach(bleManager.foundPeripherals) { peripheral in
                         PeripheralRow(peripheral: peripheral)
