@@ -19,7 +19,7 @@
 		CDAC84C42C6B6D4E00725909 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDAC84C32C6B6D4E00725909 /* Assets.xcassets */; };
 		CDB736062EDA0F1F0085651A /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB736052EDA0F1F0085651A /* AppTabView.swift */; };
 		CDD2424W2B123CF700A48CE9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424X2B123CF600A48CE9 /* Constants.swift */; };
-		CDD242862B123CF700A48CE9 /* GarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242412B123CF600A48CE9 /* GarageViewModel.swift */; };
+		CDD2424Z2B123CF700A48CE9 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424Y2B123CF600A48CE9 /* VehicleModel.swift */; };
 		CDD242872B123CF700A48CE9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242422B123CF600A48CE9 /* HomeViewModel.swift */; };
 		CDD2428A2B123CF700A48CE9 /* CarScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */; };
 		CDD2428B2B123CF700A48CE9 /* LiveDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242462B123CF600A48CE9 /* LiveDataViewModel.swift */; };
@@ -81,8 +81,6 @@
 		CD6A05EA2EDA03B2002DBD98 /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
 		CD6A05EF2EDA06B8002DBD98 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CDAC84C32C6B6D4E00725909 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CDB736052EDA0F1F0085651A /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
-		CDD242412B123CF600A48CE9 /* GarageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageViewModel.swift; sourceTree = "<group>"; };
 		CDD242422B123CF600A48CE9 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarScreenViewModel.swift; sourceTree = "<group>"; };
 		CDD242462B123CF600A48CE9 /* LiveDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveDataViewModel.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 		CDD2423F2B123CF600A48CE9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				CDD242412B123CF600A48CE9 /* GarageViewModel.swift */,
 				CDD242422B123CF600A48CE9 /* HomeViewModel.swift */,
 				CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */,
 				CDD242462B123CF600A48CE9 /* LiveDataViewModel.swift */,
@@ -498,7 +495,6 @@
 				CDD242AF2B123CF700A48CE9 /* ScrollChartView.swift in Sources */,
 				CDD242922B123CF700A48CE9 /* ELM327.swift in Sources */,
 				CDD242AE2B123CF700A48CE9 /* AddPIDView.swift in Sources */,
-				CDD242862B123CF700A48CE9 /* GarageViewModel.swift in Sources */,
 				CDD2428F2B123CF700A48CE9 /* OBDService.swift in Sources */,
 				CDB736062EDA0F1F0085651A /* AppTabView.swift in Sources */,
 				CDD242B22B123CF700A48CE9 /* GaugePickerView.swift in Sources */,

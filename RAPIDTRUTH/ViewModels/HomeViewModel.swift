@@ -24,15 +24,8 @@ class HomeViewModel {
         obdService.elmAdapter?.state == .connected
     }
 
-    var garageVehicles: [Vehicle] {
-        garage.garageVehicles
-    }
-
     var currentVehicle: Vehicle? {
-        if let vin = garage.currentVehicleVin {
-             return garage.garageVehicles.first(where: { $0.vin == vin })
-        }
-        return nil
+        garage.currentVehicle
     }
 
     let obdService: OBDService

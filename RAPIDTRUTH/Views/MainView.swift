@@ -22,7 +22,7 @@ struct MainView: View {
     let liveDataViewModel: LiveDataViewModel
     // bottomSheetViewModel is no longer needed for navigation, but we might check if it had logic we need to keep.
     // Assuming CustomTabBarViewModel was purely for the UI of the tab bar.
-    let garageViewModel: GarageViewModel
+    let garage: Garage
     let settingsViewModel: SettingsViewModel
     let carScreenViewModel: CarScreenViewModel
     let diagnosticsViewModel: VehicleDiagnosticsViewModel
@@ -34,7 +34,7 @@ struct MainView: View {
         self.liveDataViewModel = LiveDataViewModel(obdService: obdService, garage: garage)
         self.carScreenViewModel = CarScreenViewModel(obdService: obdService)
         self.settingsViewModel = SettingsViewModel(bleManager: bleManager)
-        self.garageViewModel = GarageViewModel(garage: garage)
+        self.garage = garage
         self.diagnosticsViewModel = VehicleDiagnosticsViewModel(obdService: obdService, garage: garage)
     }
 
@@ -42,7 +42,7 @@ struct MainView: View {
         AppTabView(
             homeViewModel: homeViewModel,
             diagnosticsViewModel: diagnosticsViewModel,
-            garageViewModel: garageViewModel,
+            garage: garage,
             settingsViewModel: settingsViewModel,
             carScreenViewModel: carScreenViewModel,
             liveDataViewModel: liveDataViewModel,

@@ -6,7 +6,7 @@ struct AppTabView: View {
     // ViewModels need to be passed in
     let homeViewModel: HomeViewModel
     let diagnosticsViewModel: VehicleDiagnosticsViewModel
-    let garageViewModel: GarageViewModel
+    let garage: Garage
     let settingsViewModel: SettingsViewModel
     let carScreenViewModel: CarScreenViewModel
     let liveDataViewModel: LiveDataViewModel
@@ -22,7 +22,7 @@ struct AppTabView: View {
                 HomeView(
                     viewModel: homeViewModel,
                     diagnosticsViewModel: diagnosticsViewModel,
-                    garageViewModel: garageViewModel,
+                    garage: garage,
                     settingsViewModel: settingsViewModel,
                     carScreenViewModel: carScreenViewModel,
                     displayType: $displayType
@@ -47,7 +47,7 @@ struct AppTabView: View {
 
             // Tab 3: Garage
             NavigationStack {
-                GarageView(viewModel: garageViewModel)
+                GarageView(garage: garage)
             }
             .tabItem {
                 Label("Garage", systemImage: "car.2.fill")
