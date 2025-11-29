@@ -8,12 +8,14 @@
 import SwiftUI
 import Observation
 import SwiftData
+import OSLog
 
 // Typealias for easier migration
 typealias Vehicle = VehicleModel
 
 @Observable
 class Garage {
+    let logger = Logger(subsystem: "com.momolas.RAPIDTRUTH", category: "Garage")
     var garageVehicles: [Vehicle] = []
     private var modelContext: ModelContext
 
@@ -56,7 +58,7 @@ class Garage {
             let descriptor = FetchDescriptor<Vehicle>(sortBy: [SortDescriptor(\.make)])
             self.garageVehicles = try modelContext.fetch(descriptor)
         } catch {
-            print("Failed to fetch vehicles: \(error)")
+            logger.error("Failed to fetch vehicles: \(error)")
         }
     }
 
@@ -65,17 +67,21 @@ class Garage {
         let finalVin = vin.isEmpty ? UUID().uuidString : vin
 
         if !vin.isEmpty, garageVehicles.contains(where: { $0.vin == vin }) {
-            print("Vehicle with VIN \(vin) already exists.")
+            logger.warning("Vehicle with VIN \(vin) already exists.")
             return
         }
 
         let vehicle = Vehicle(vin: finalVin, make: make, model: model, year: year, obdinfo: obdinfo)
         modelContext.insert(vehicle)
-        try? modelContext.save()
+        do {
+            try modelContext.save()
+            logger.info("Added vehicle \(vehicle.make) \(vehicle.model)")
+        } catch {
+            logger.error("Failed to save vehicle: \(error)")
+        }
 
         fetchAllVehicles()
         currentVehicleVin = finalVin
-        print("Added vehicle \(vehicle.make) \(vehicle.model)")
     }
 
     // set current vehicle by VIN (was id)

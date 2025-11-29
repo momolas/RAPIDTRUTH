@@ -11,6 +11,7 @@ import Observation
 
 struct OBDInfo: Codable {
     var vin: String?
+    var vinInfo: VINInfo?
     var supportedPIDs: [OBDCommand]?
     var obdProtocol: OBDProtocol = .NONE
     var ecuMap: [UInt8: ECUID]?
@@ -56,7 +57,31 @@ class OBDService {
     }
 
     func setupAdapter(setupOrder: [OBDCommand.General]) async throws -> OBDInfo {
-        return try await elm327.setupAdapter(setupOrder: setupOrder)
+        var info = try await elm327.setupAdapter(setupOrder: setupOrder)
+        if let vin = info.vin {
+            if let vinInfo = decodeVIN(vin) {
+                info.vinInfo = vinInfo
+            }
+        }
+        return info
+    }
+
+    func decodeVIN(_ vin: String) -> VINInfo? {
+        // Local decoding for better European support and offline capability
+        guard vin.count == 17 else { return nil }
+
+        let wmi = String(vin.prefix(3))
+        let make = WMIData.getMake(from: wmi) ?? "Unknown"
+
+        let yearChar = vin[vin.index(vin.startIndex, offsetBy: 9)]
+        let year = WMIData.getYear(from: yearChar)
+
+        // VDS (Vehicle Descriptor Section) - chars 4-9
+        // VDS decoding is complex and highly manufacturer specific.
+        // For now, we return the raw VDS as the "Model" or a placeholder.
+        let model = "Unknown (VDS: \(String(vin.dropFirst(3).prefix(6))))"
+
+        return VINInfo(Make: make, Model: model, ModelYear: year, EngineCylinders: "")
     }
 
     // connect to the adapter
