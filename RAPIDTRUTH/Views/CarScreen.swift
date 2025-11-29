@@ -14,14 +14,15 @@ struct History: Identifiable {
 }
 
 struct CarScreen: View {
-    @Bindable var viewModel: CarScreenViewModel
+    let obdService: OBDService
+    @State private var command: String = ""
     @State private var history: [History] = []
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         VStack {
             HStack {
-                TextField("Enter Command", text: $viewModel.command)
+                TextField("Enter Command", text: $command)
                     .font(.system(size: 16))
                     .padding()
                     .background(
@@ -30,15 +31,16 @@ struct CarScreen: View {
                     .padding(.horizontal, 10)
                     .frame(height: 40)
                 Button {
-                    guard !viewModel.command.isEmpty else { return }
+                    guard !command.isEmpty else { return }
+                    let cmd = command
                     Task {
                         do {
-                            print(viewModel.command)
-                            let response = try await viewModel.sendMessage()
-                            history.append(History(command: viewModel.command,
+                            print(cmd)
+                            let response = try await obdService.elm327.sendMessageAsync(cmd, withTimeoutSecs: 5)
+                            history.append(History(command: cmd,
                                                    response: response.joined(separator: "\n"))
                             )
-                            viewModel.command = ""
+                            command = ""
                         } catch {
                             print("Error setting up adapter: \(error)")
                         }
@@ -77,6 +79,6 @@ struct CarScreen: View {
 
 struct CarScreen_Previews: PreviewProvider {
     static var previews: some View {
-        CarScreen(viewModel: CarScreenViewModel(obdService: OBDService(bleManager: BLEManager())))
+        CarScreen(obdService: OBDService(bleManager: BLEManager()))
     }
 }

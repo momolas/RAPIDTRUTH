@@ -47,7 +47,7 @@ struct VINInfo: Codable, Hashable {
 @Observable
 class OBDService {
     let elm327: ELM327
-    private var bleManager: BLEManager
+    var bleManager: BLEManager
 
     var elmAdapter: Peripheral? {
         bleManager.connectedPeripheral

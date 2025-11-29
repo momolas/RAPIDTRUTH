@@ -21,7 +21,6 @@
 		CDD2424W2B123CF700A48CE9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424X2B123CF600A48CE9 /* Constants.swift */; };
 		CDD2424Z2B123CF700A48CE9 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2424Y2B123CF600A48CE9 /* VehicleModel.swift */; };
 		CDD242872B123CF700A48CE9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242422B123CF600A48CE9 /* HomeViewModel.swift */; };
-		CDD2428A2B123CF700A48CE9 /* CarScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */; };
 		CDD2428B2B123CF700A48CE9 /* LiveDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242462B123CF600A48CE9 /* LiveDataViewModel.swift */; };
 		CDD2428C2B123CF700A48CE9 /* BleConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242482B123CF600A48CE9 /* BleConnection.swift */; };
 		CDD2428D2B123CF700A48CE9 /* Garage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD242492B123CF600A48CE9 /* Garage.swift */; };
@@ -82,7 +81,6 @@
 		CD6A05EF2EDA06B8002DBD98 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CDAC84C32C6B6D4E00725909 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDD242422B123CF600A48CE9 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarScreenViewModel.swift; sourceTree = "<group>"; };
 		CDD242462B123CF600A48CE9 /* LiveDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveDataViewModel.swift; sourceTree = "<group>"; };
 		CDD242482B123CF600A48CE9 /* BleConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleConnection.swift; sourceTree = "<group>"; };
 		CDD242492B123CF600A48CE9 /* Garage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Garage.swift; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				CDD242422B123CF600A48CE9 /* HomeViewModel.swift */,
-				CDD242452B123CF600A48CE9 /* CarScreenViewModel.swift */,
 				CDD242462B123CF600A48CE9 /* LiveDataViewModel.swift */,
 			);
 			path = ViewModels;
@@ -472,7 +469,6 @@
 				CDD2428B2B123CF700A48CE9 /* LiveDataViewModel.swift in Sources */,
 				CDD242982B123CF700A48CE9 /* CBPeripheralProtcolDelegate.swift in Sources */,
 				CDD242872B123CF700A48CE9 /* HomeViewModel.swift in Sources */,
-				CDD2428A2B123CF700A48CE9 /* CarScreenViewModel.swift in Sources */,
 				CDD242972B123CF700A48CE9 /* ServiceCharacteristicsMock.swift in Sources */,
 				CDD242952B123CF700A48CE9 /* Mock.swift in Sources */,
 				CD6A05E62ED9F929002DBD98 /* Constants.swift in Sources */,
