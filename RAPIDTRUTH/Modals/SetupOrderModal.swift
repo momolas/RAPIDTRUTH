@@ -35,9 +35,9 @@ struct SetupOrderModal: View {
                 }))
                 HStack {
                     Picker("Add Step", selection: $newItem) {
-//                        ForEach(SetupStep.allCases, id: \.self) { step in
-//                            Text(step.rawValue.uppercased())
-//                        }
+                        ForEach(OBDCommand.General.allCases, id: \.self) { step in
+                            Text(step.properties.command.uppercased())
+                        }
                     }
                     .pickerStyle(MenuPickerStyle())
                     Button("Add", action: {

@@ -51,7 +51,6 @@ extension BLEManager {
                 }
             } else {
                 foundPeripherals.append(foundPeripheral)
-                self.isSearching = false
             }
         }
     }
