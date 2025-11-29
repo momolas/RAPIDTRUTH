@@ -96,7 +96,7 @@ extension BLEManager {
                     logger.warning("Bluetooth is resetting.")
                 default:
                     logger.error("Bluetooth is not powered on.")
-                    fatalError()
+                    connectionState = .failed
             }
         }
     }

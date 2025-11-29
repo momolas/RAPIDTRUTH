@@ -73,15 +73,10 @@ struct VehicleDiagnosticsView: View {
 
             VStack {
                 if viewModel.troubleCodes.isEmpty {
-                    if #available(iOS 17.0, *) {
-                        ContentUnavailableView("No Trouble Codes",
-                                               systemImage: "checkmark.circle",
-                                               description: Text("No codes found or scan not started."))
-                        .foregroundStyle(.white)
-                    } else {
-                        Text("No Trouble Codes")
-                            .foregroundStyle(.white)
-                    }
+                    ContentUnavailableView("No Trouble Codes",
+                                           systemImage: "checkmark.circle",
+                                           description: Text("No codes found or scan not started."))
+                    .foregroundStyle(.white)
                 }
 
                 HStack {
@@ -99,10 +94,8 @@ struct VehicleDiagnosticsView: View {
                         viewModel.scanForTroubleCodes()
                     } label: {
                         HStack {
-                            if #available(iOS 17.0, *) {
-                                Image(systemName: "magnifyingglass")
-                                    .symbolEffect(.pulse.byLayer)
-                            }
+                            Image(systemName: "magnifyingglass")
+                                .symbolEffect(.pulse.byLayer)
                             Text("Scan for Trouble Codes")
                         }
                         .font(.system(size: 14))
