@@ -171,5 +171,8 @@ extension BLEManager: CBCentralManagerDelegate, CBPeripheralDelegate {
     func connectionEventDidOccur(_ central: CBCentralManagerProtocol, event: CBConnectionEvent, peripheral: CBPeripheralProtocol) {
         // Required by CBCentralManagerProtocolDelegate but not yet implemented logic
         logger.info("Connection event did occur: \(event.rawValue) for \(peripheral.identifier)")
+        if event == .peerDisconnected {
+            didDisconnect(central, peripheral: peripheral, error: nil)
+        }
     }
 }
