@@ -37,6 +37,39 @@ class HomeViewModel {
     }
 
     @MainActor
+    func identifyVehicle() async {
+        guard isConnected else { return }
+        // Standard setup order for ELM327
+        let setupOrder: [OBDCommand.General] = [.ATZ, .ATE0, .ATL0, .ATH1, .ATAT1, .ATSTFF, .ATDPN]
+
+        do {
+            let info = try await obdService.setupAdapter(setupOrder: setupOrder)
+            self.obdInfo = info
+
+            if let vin = info.vin, !vin.isEmpty {
+                // Check if vehicle exists in Garage
+                if let existingVehicle = garage.getVehicle(vin: vin) {
+                    garage.setCurrentVehicle(by: existingVehicle.vin)
+                    print("Identified existing vehicle: \(existingVehicle.make) \(existingVehicle.model)")
+                } else {
+                    // Add new vehicle
+                    let vinInfo = obdService.decodeVIN(vin)
+                    let make = vinInfo?.Make ?? "Unknown"
+                    let model = vinInfo?.Model ?? "Unknown Model"
+                    let year = vinInfo?.ModelYear ?? "Unknown Year"
+
+                    garage.addVehicle(make: make, model: model, year: year, vin: vin, obdinfo: info)
+                    print("Added and selected new vehicle: \(make) \(model) - \(vin)")
+                }
+            } else {
+                print("Could not retrieve VIN from vehicle.")
+            }
+        } catch {
+            print("Error identifying vehicle: \(error)")
+        }
+    }
+
+    @MainActor
     func refreshDashboardData() async {
         guard isConnected else { return }
 
