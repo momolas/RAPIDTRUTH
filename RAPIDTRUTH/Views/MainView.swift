@@ -44,7 +44,7 @@ struct MainView: View {
             displayType: $displayType
         )
         .background(LinearGradient.mainBackground.ignoresSafeArea())
-		.preferredColorScheme(ColorScheme.dark) // Enforce dark mode for the "Modern Automotive" look
+		.preferredColorScheme(ColorScheme.dark)
     }
 }
 
