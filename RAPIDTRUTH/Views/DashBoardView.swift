@@ -1,0 +1,31 @@
+//
+//  DashBoardView.swift
+//  SMARTOBD2
+//
+//  Created by kemo konteh on 10/5/23.
+//
+
+import SwiftUI
+
+struct DashBoardView: View {
+    var liveDataViewModel: LiveDataViewModel
+    @Binding var displayType: BottomSheetType
+
+    var body: some View {
+        LiveDataView(viewModel: liveDataViewModel, displayType: $displayType)
+    }
+}
+
+struct LogsView: View {
+    var body: some View {
+        ContentUnavailableView("Logs Empty",
+                               systemImage: "text.alignleft",
+                               description: Text("No logs available yet."))
+    }
+}
+
+#Preview {
+    DashBoardView(liveDataViewModel: LiveDataViewModel(obdService: OBDService(bleManager: BLEManager()), 
+                                                       garage: Garage()),
+                                                       displayType: .constant(.quarterScreen))
+}

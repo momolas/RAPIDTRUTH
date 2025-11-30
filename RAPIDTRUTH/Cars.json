@@ -1,0 +1,41 @@
+[
+    {
+        "make": "BMW",
+        "models": [
+            {
+                "name": "X5",
+                "years": [2020, 2021, 2022]
+            },
+            {
+                "name": "X6",
+                "years": [2019, 2020, 2021]
+            }
+        ]
+    },
+    {
+        "make": "Tesla",
+        "models": [
+            {
+                "name": "Model X",
+                "years": [2021, 2022, 2023]
+            },
+            {
+                "name": "Model Y",
+                "years": [2020, 2021, 2022]
+            }
+        ]
+    },
+	{
+		"make": "Renault",
+		"models": [
+			{
+				"name": "Scenic 2",
+				"years": [2009]
+			},
+			{
+				"name": "XXX",
+				"years": [2020, 2021, 2022]
+			}
+		]
+	}
+]
