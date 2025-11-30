@@ -49,17 +49,20 @@ struct Status {
 
 struct BitArray {
     let data: Data
-    var binaryArray: [Int] {
-       // Convert Data to binary array representation
-       var result = [Int]()
-       for byte in data {
-           for i in 0..<8 {
-               // Extract each bit of the byte
-               let bit = (byte >> (7 - i)) & 1
-               result.append(Int(bit))
-           }
-       }
-       return result
+    // Cache the binary array to avoid recomputing it
+    let binaryArray: [Int]
+
+    init(data: Data) {
+        self.data = data
+        var result = [Int]()
+        for byte in data {
+            for i in 0..<8 {
+                // Extract each bit of the byte
+                let bit = (byte >> (7 - i)) & 1
+                result.append(Int(bit))
+            }
+        }
+        self.binaryArray = result
     }
 
     func index(of value: Int) -> Int? {
@@ -71,9 +74,15 @@ struct BitArray {
         var value: UInt8 = 0
         for bit in range {
             value = value << 1
-            value = value | UInt8(binaryArray[bit])
+            if bit < binaryArray.count {
+                value = value | UInt8(binaryArray[bit])
+            }
         }
         return value
+    }
+
+    subscript(safe index: Int) -> Int? {
+        return binaryArray.indices.contains(index) ? binaryArray[index] : nil
     }
 }
 
@@ -646,29 +655,22 @@ enum Decoder: Codable {
     func status(_ data: Data) -> Status {
         let IGNITIONTYPE = ["Spark", "Compression"]
 
-        //            ┌Components not ready
-        //            |┌Fuel not ready
-        //            ||┌Misfire not ready
-        //            |||┌Spark vs. Compression
-        //            ||||┌Components supported
-        //            |||||┌Fuel supported
-        //  ┌MIL      ||||||┌Misfire supported
-        //  |         |||||||
-        //  10000011 00000111 11111111 00000000
-        //  00000000 00000111 11100101 00000000
-        //  10111110 00011111 10101000 00010011
-        //   [# DTC] X        [supprt] [~ready]
-
         // convert to binaryarray
         let bits = BitArray(data: data)
 
         var output = Status()
-        output.MIL = bits.binaryArray[0] == 1
+        // Safety checks
+        output.MIL = (bits[safe: 0] ?? 0) == 1
         output.dtcCount = bits.value(at: 1..<8)
-        output.ignitionType = IGNITIONTYPE[bits.binaryArray[12]]
+
+        let ignIndex = bits[safe: 12] ?? 0
+        if ignIndex < IGNITIONTYPE.count {
+            output.ignitionType = IGNITIONTYPE[ignIndex]
+        } else {
+            output.ignitionType = "Unknown"
+        }
 
         // load the 3 base tests that are always present
-
         for (index, name) in baseTests.reversed().enumerated() {
             processBaseTest(name, index, bits, &output)
         }
@@ -676,7 +678,11 @@ enum Decoder: Codable {
     }
 
     func processBaseTest(_ testName: String, _ index: Int, _ bits: BitArray, _ output: inout Status) {
-        let test = StatusTest(testName, (bits.binaryArray[13 + index] != 0), (bits.binaryArray[9 + index] == 0))
+        // Safe access
+        let readyBit = bits[safe: 13 + index] ?? 0
+        let supportedBit = bits[safe: 9 + index] ?? 0
+
+        let test = StatusTest(testName, (readyBit != 0), (supportedBit == 0))
         switch testName {
         case "MISFIRE_MONITORING":
             output.misfireMonitoring = test
