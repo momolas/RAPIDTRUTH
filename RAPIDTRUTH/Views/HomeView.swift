@@ -23,11 +23,11 @@ struct HomeView: View {
                 // Header
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Dashboard")
+                        Text(AppStrings.Home.dashboard)
                             .font(.largeTitle)
                             .bold()
                             .foregroundStyle(Color.textPrimary)
-                        Text(viewModel.isConnected ? "Connected to \(viewModel.currentVehicle?.make ?? "Vehicle")" : "Not Connected")
+                        Text(viewModel.isConnected ? "\(AppStrings.Home.connectedTo) \(viewModel.currentVehicle?.make ?? AppStrings.Home.vehicle)" : AppStrings.Home.notConnected)
                             .font(.subheadline)
                             .foregroundStyle(Color.textSecondary)
                     }
@@ -45,21 +45,21 @@ struct HomeView: View {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
 
                     // Diagnostics Card
-                    HomeCard(title: "Diagnostics", icon: "wrench.and.screwdriver.fill", color: .accentPrimary, value: viewModel.dashboardDTCCount > 0 ? "\(viewModel.dashboardDTCCount) Faults" : "System OK") {
+                    HomeCard(title: AppStrings.Home.diagnostics, icon: "wrench.and.screwdriver.fill", color: .accentPrimary, value: viewModel.dashboardDTCCount > 0 ? "\(viewModel.dashboardDTCCount) \(AppStrings.Home.faults)" : AppStrings.Home.systemOK) {
                         VehicleDiagnosticsView(viewModel: diagnosticsViewModel)
                     }
 
                     // Battery Card
-                    HomeCard(title: "Battery", icon: "battery.100.bolt", color: .statusWarning, value: viewModel.dashboardBatteryVoltage) {
+                    HomeCard(title: AppStrings.Home.battery, icon: "battery.100.bolt", color: .statusWarning, value: viewModel.dashboardBatteryVoltage) {
                         BatteryTestView()
                     }
 
-                    HomeCard(title: "Live Data", icon: "gauge", color: .accentSecondary, value: "View") {
+                    HomeCard(title: AppStrings.Home.liveData, icon: "gauge", color: .accentSecondary, value: AppStrings.Home.view) {
                          // Navigation is handled via TabView, but we can deep link or show a summary here if needed.
                          LogsView()
                     }
 
-                    HomeCard(title: "Car Screen", icon: "car.side.fill", color: .purple, value: "Open") {
+                    HomeCard(title: AppStrings.Home.carScreen, icon: "car.side.fill", color: .purple, value: AppStrings.Home.open) {
                         CarScreen(obdService: obdService)
                     }
                 }
@@ -70,13 +70,13 @@ struct HomeView: View {
                     NavigationLink {
                         SettingsView(bleManager: obdService.bleManager)
                     } label: {
-                        ListRowCard(title: "Settings", icon: "gearshape.fill", color: .gray)
+                        ListRowCard(title: AppStrings.Home.settings, icon: "gearshape.fill", color: .gray)
                     }
 
                     NavigationLink {
                         AboutView()
                     } label: {
-                        ListRowCard(title: "About", icon: "info.circle.fill", color: .gray)
+                        ListRowCard(title: AppStrings.Home.about, icon: "info.circle.fill", color: .gray)
                     }
                 }
                 .padding(.horizontal)
