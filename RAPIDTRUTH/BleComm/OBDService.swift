@@ -78,8 +78,18 @@ class OBDService {
 
         // VDS (Vehicle Descriptor Section) - chars 4-9
         // VDS decoding is complex and highly manufacturer specific.
-        // For now, we return the raw VDS as the "Model" or a placeholder.
-        let model = "Unknown (VDS: \(String(vin.dropFirst(3).prefix(6))))"
+        // We use the last 6 digits (VIS) as a cleaner identifier if VDS fails.
+        let vds = String(vin.dropFirst(3).prefix(6))
+
+        // Improve UX by not showing "Unknown (VDS:...)" unless debug
+        // Ideally we would use a comprehensive database or API here.
+        let model: String
+        if make == "Unknown" {
+            model = "Unknown Model"
+        } else {
+            // For now, just show the VDS code cleanly so the user can verify it against their papers
+            model = "Model Code: \(vds)"
+        }
 
         return VINInfo(Make: make, Model: model, ModelYear: year, EngineCylinders: "")
     }

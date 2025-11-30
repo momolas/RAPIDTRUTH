@@ -21,20 +21,32 @@ extension Logger {
 }
 
 @main
+@MainActor
 struct SmartOBD2App: App {
     let container: ModelContainer
     var garage: Garage
 
     init() {
+        let modelContainer: ModelContainer
         do {
-            container = try ModelContainer(for: VehicleModel.self)
-            // Garage needs to interact with the context.
-            // For simplicity in this migration, we initialize it here, but ideally Garage should access context via Actor or MainActor.
-            let context = ModelContext(container)
-            garage = Garage(modelContext: context)
+            modelContainer = try ModelContainer(for: VehicleModel.self)
         } catch {
-            fatalError("Failed to create ModelContainer: \(error)")
+            Logger.bleCom.error("Failed to create persistent ModelContainer: \(error)")
+            // Fallback to in-memory container
+            do {
+                let config = ModelConfiguration(isStoredInMemoryOnly: true)
+                modelContainer = try ModelContainer(for: VehicleModel.self, configurations: config)
+            } catch {
+                fatalError("Failed to create ModelContainer (persistent and in-memory): \(error)")
+            }
         }
+        self.container = modelContainer
+
+        // Garage needs to interact with the context.
+        // For simplicity in this migration, we initialize it here.
+        // Garage is @MainActor, and SmartOBD2App is now @MainActor, so this is safe.
+        let context = ModelContext(modelContainer)
+        self.garage = Garage(modelContext: context)
     }
 
 	var body: some Scene {
