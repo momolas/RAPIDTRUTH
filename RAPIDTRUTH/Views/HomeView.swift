@@ -96,6 +96,7 @@ struct HomeView: View {
         .onChange(of: viewModel.isConnected) { _, connected in
             if connected {
                 Task {
+                    await viewModel.identifyVehicle()
                     await viewModel.refreshDashboardData()
                 }
             }
