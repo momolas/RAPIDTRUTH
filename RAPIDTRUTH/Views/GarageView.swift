@@ -14,68 +14,120 @@ struct GarageView: View {
     var body: some View {
         ZStack {
             if garage.garageVehicles.isEmpty {
-                ContentUnavailableView("Garage Empty",
+                ContentUnavailableView(AppStrings.Garage.emptyTitle,
                                        systemImage: "car",
-                                       description: Text("Add a vehicle to start monitoring."))
+                                       description: Text(AppStrings.Garage.emptyDescription))
             } else {
                 ScrollView(.vertical, showsIndicators: false) {
-                    ForEach(garage.garageVehicles) { vehicle in
-                        HStack {
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text(vehicle.make)
-                                    .font(.system(size: 20, weight: .bold, design: .default))
-                                     .foregroundStyle(.white)
-
-                                Text(vehicle.model)
-                                    .font(.system(size: 14, weight: .bold, design: .default))
-                                    .foregroundStyle(.white)
-
-                                Text(vehicle.year)
-                                    .font(.system(size: 14, weight: .semibold))
-                                    .foregroundStyle(.white)
-                            }
-                            Spacer()
-                            Button {
-                                garage.deleteVehicle(vehicle)
-                            } label: {
-                                Image(systemName: "trash")
-                                    .foregroundStyle(.red)
-                            }
-                        }
-                        .padding()
-                        .frame(maxWidth: .infinity, maxHeight: 125, alignment: .leading)
-                        .background(garage.currentVehicleVin == vehicle.vin ? Color.blue : Color.clear)
-                        .padding(.bottom, 15)
-                        .onTapGesture {
-                            withAnimation {
-                                garage.setCurrentVehicle(by: vehicle.vin)
-                            }
+                    VStack(spacing: 16) {
+                        ForEach(garage.garageVehicles) { vehicle in
+                            VehicleRow(vehicle: vehicle,
+                                       isActive: garage.currentVehicleVin == vehicle.vin,
+                                       onSelect: {
+                                           withAnimation {
+                                               garage.setCurrentVehicle(by: vehicle.vin)
+                                           }
+                                       },
+                                       onDelete: {
+                                           garage.deleteVehicle(vehicle)
+                                       })
                         }
                     }
-                    Spacer()
+                    .padding()
                 }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .navigationTitle("Garage")
+        .background(LinearGradient.mainBackground.ignoresSafeArea())
+        .navigationTitle(AppStrings.Garage.title)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing: 
-            Button {
-                showingSheet.toggle()
-            } label: {
-                Image(systemName: "plus.circle")
-                    .foregroundStyle(.white)
-                    .font(.system(size: 20))
-                    .symbolEffect(.bounce, value: showingSheet)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showingSheet.toggle()
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .foregroundStyle(Color.accentPrimary)
+                        .font(.system(size: 24))
+                        .symbolEffect(.bounce, value: showingSheet)
+                }
             }
-            .sheet(isPresented: $showingSheet) {
-                AddVehicleView(viewModel: AddVehicleViewModel(garage: garage))
+        }
+        .sheet(isPresented: $showingSheet) {
+            AddVehicleView(viewModel: AddVehicleViewModel(garage: garage))
+        }
+    }
+}
+
+struct VehicleRow: View {
+    let vehicle: Vehicle
+    let isActive: Bool
+    let onSelect: () -> Void
+    let onDelete: () -> Void
+
+    var body: some View {
+        Button(action: onSelect) {
+            HStack(spacing: 16) {
+                // Icon / Avatar
+                ZStack {
+                    Circle()
+                        .fill(isActive ? Color.accentPrimary : Color.gray.opacity(0.3))
+                        .frame(width: 50, height: 50)
+
+                    Image(systemName: "car.fill")
+                        .foregroundStyle(.white)
+                        .font(.title3)
+                }
+
+                // Info
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(vehicle.make)
+                        .font(.headline)
+                        .foregroundStyle(Color.textPrimary)
+
+                    Text("\(vehicle.model) • \(vehicle.year)")
+                        .font(.subheadline)
+                        .foregroundStyle(Color.textSecondary)
+                }
+
+                Spacer()
+
+                // Active Status or Select
+                if isActive {
+                    Text(AppStrings.Garage.active)
+                        .font(.caption)
+                        .bold()
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.accentPrimary.opacity(0.2))
+                        .foregroundStyle(Color.accentPrimary)
+                        .clipShape(Capsule())
+                }
+
+                // Delete Button (Menu or direct)
+                Menu {
+                    Button(role: .destructive, action: onDelete) {
+                        Label("Supprimer", systemImage: "trash")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .foregroundStyle(Color.textSecondary)
+                        .padding(10)
+                        .contentShape(Rectangle())
+                }
             }
-        )
+            .padding()
+            .glassCardStyle()
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(isActive ? Color.accentPrimary : Color.clear, lineWidth: 2)
+            )
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
 #Preview {
     GarageView(garage: Garage())
-        .background(LinearGradient(.darkStart, .darkEnd))
+        .background(LinearGradient.mainBackground)
 }

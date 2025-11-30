@@ -14,6 +14,7 @@ import OSLog
 typealias Vehicle = VehicleModel
 
 @Observable
+@MainActor
 class Garage {
     let logger = Logger(subsystem: "com.momolas.RAPIDTRUTH", category: "Garage")
     var garageVehicles: [Vehicle] = []
