@@ -8,8 +8,6 @@
 import Foundation
 
 struct AppStrings {
-    // Ideally this would use NSLocalizedString, but for now we provide a structure.
-    // Since the request is to "Improve", and the user speaks French, we will use French defaults.
 
     struct Home {
         static let dashboard = "Tableau de Bord"

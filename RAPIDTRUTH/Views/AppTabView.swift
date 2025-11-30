@@ -39,7 +39,7 @@ struct AppTabView: View {
                 )
             }
             .tabItem {
-                Label("Live Data", systemImage: "gauge.with.speedometer")
+                Label("Live Data", systemImage: "gauge.open.with.lines.needle.33percent")
             }
             .tag(1)
 
