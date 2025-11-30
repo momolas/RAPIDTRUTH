@@ -33,8 +33,22 @@ struct CodingView: View {
         .navigationTitle(AppStrings.Coding.title)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button(action: { showingAddSheet = true }) {
-                    Label("Add", systemImage: "plus")
+                HStack {
+                    NavigationLink {
+                        if let url = Bundle.main.url(forResource: "parking_sensor", withExtension: "json"),
+                           let data = try? Data(contentsOf: url),
+                           let definition = try? JSONDecoder().decode(ECUDefinition.self, from: data) {
+                            ECUDiagnosticsView(definition: definition, obdService: obdService)
+                        } else {
+                            Text("Error loading resource")
+                        }
+                    } label: {
+                        Image(systemName: "doc.text.fill")
+                    }
+
+                    Button(action: { showingAddSheet = true }) {
+                        Label("Add", systemImage: "plus")
+                    }
                 }
             }
         }
