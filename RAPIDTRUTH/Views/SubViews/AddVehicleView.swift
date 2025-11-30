@@ -10,71 +10,108 @@ import Observation
 
 @Observable
 class AddVehicleViewModel {
-    var carData: [Manufacturer] = []
     let garage: Garage
+
+    // We keep this for future hybrid usage, but primary mode is now manual form
+    var carData: [Manufacturer] = []
 
     init(garage: Garage) {
         self.garage = garage
-        loadVehicles()
+        // Preload logic can stay if we add autocomplete later
     }
 
-    private func loadVehicles() {
-        do {
-            guard let url = Bundle.main.url(forResource: "Cars", withExtension: "json") else {
-                print("Cars.json not found")
-                return
-            }
-            let data = try Data(contentsOf: url)
-            self.carData = try JSONDecoder().decode([Manufacturer].self, from: data)
-        } catch {
-            print("error loading vehicles")
-        }
-    }
-
-    func addVehicle(make: String, model: String, year: String,
-                    vin: String = "", obdinfo: OBDInfo? = nil) {
-        garage.addVehicle(make: make, model: model, year: year)
+    func addVehicle(make: String, model: String, year: String, vin: String) {
+        garage.addVehicle(make: make, model: model, year: year, vin: vin)
     }
 }
 
 struct AddVehicleView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
+
     var viewModel: AddVehicleViewModel
-    @State var selectMake: String?
+
+    @State private var make: String = ""
+    @State private var model: String = ""
+    @State private var year: String = ""
+    @State private var vin: String = ""
+
+    var isValid: Bool {
+        !make.trimmingCharacters(in: .whitespaces).isEmpty &&
+        !model.trimmingCharacters(in: .whitespaces).isEmpty
+    }
 
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            ForEach(0 ..< viewModel.carData.count, id: \.self) { carIndex in
-                VStack(alignment: .center, spacing: 20) {
-                    Text(self.viewModel.carData[carIndex].make)
+        NavigationStack {
+            Form {
+                Section(header: Text(AppStrings.AddVehicle.requiredFields)) {
+                    TextField(AppStrings.AddVehicle.make, text: $make)
+                        .textInputAutocapitalization(.words)
+                        .autocorrectionDisabled()
+                        // Placeholder style
+                        .overlay(
+                            HStack {
+                                if make.isEmpty {
+                                    Text(AppStrings.AddVehicle.placeholderMake)
+                                        .foregroundStyle(Color.gray.opacity(0.5))
+                                        .allowsHitTesting(false)
+                                }
+                                Spacer()
+                            }
+                        )
+
+                    TextField(AppStrings.AddVehicle.model, text: $model)
+                        .textInputAutocapitalization(.words)
+                        .autocorrectionDisabled()
+                        .overlay(
+                            HStack {
+                                if model.isEmpty {
+                                    Text(AppStrings.AddVehicle.placeholderModel)
+                                        .foregroundStyle(Color.gray.opacity(0.5))
+                                        .allowsHitTesting(false)
+                                }
+                                Spacer()
+                            }
+                        )
                 }
-                .padding()
-                .frame(maxWidth: .infinity, maxHeight: 200)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(self.viewModel.carData[carIndex].make == selectMake ? .blue : .green)
+
+                Section {
+                    TextField(AppStrings.AddVehicle.year, text: $year)
+                        .keyboardType(.numberPad)
+                        .overlay(
+                            HStack {
+                                if year.isEmpty {
+                                    Text(AppStrings.AddVehicle.placeholderYear)
+                                        .foregroundStyle(Color.gray.opacity(0.5))
+                                        .allowsHitTesting(false)
+                                }
+                                Spacer()
+                            }
+                        )
+
+                    TextField(AppStrings.AddVehicle.vin, text: $vin)
+                        .textInputAutocapitalization(.characters)
+                        .autocorrectionDisabled()
                 }
-                .onTapGesture {
-                    withAnimation {
-                        selectMake = self.viewModel.carData[carIndex].make
+            }
+            .navigationTitle(AppStrings.AddVehicle.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(AppStrings.AddVehicle.cancel) {
+                        dismiss()
                     }
+                }
+
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(AppStrings.AddVehicle.save) {
+                        viewModel.addVehicle(make: make, model: model, year: year, vin: vin)
+                        dismiss()
+                    }
+                    .disabled(!isValid)
                 }
             }
         }
-        .safeAreaInset(edge: .bottom, content: {
-            if selectMake != nil {
-                VStack {
-                    Text("Next")
-                        .transition(.move(edge: .top))
-                }
-                .frame(width: 200, height: 50)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color(.systemGray6))
-                }
-            }
-        })
-        .padding()
     }
 }
 
