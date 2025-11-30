@@ -51,4 +51,19 @@ struct AppStrings {
         static let placeholderModel = "ex: 308"
         static let placeholderYear = "ex: 2018"
     }
+
+    struct Coding {
+        static let title = "Macros & Coding"
+        static let newMacro = "Nouvelle Macro"
+        static let name = "Nom"
+        static let description = "Description"
+        static let commands = "Commandes (une par ligne)"
+        static let placeholderCommands = "ex: AT Z\nAT SP 0"
+        static let run = "Exécuter"
+        static let running = "En cours..."
+        static let success = "Succès"
+        static let error = "Erreur"
+        static let emptyTitle = "Aucune Macro"
+        static let emptyDescription = "Créez une macro pour automatiser des commandes."
+    }
 }

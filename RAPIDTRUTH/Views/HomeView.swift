@@ -62,6 +62,10 @@ struct HomeView: View {
                     HomeCard(title: AppStrings.Home.carScreen, icon: "car.side.fill", color: .purple, value: AppStrings.Home.open) {
                         CarScreen(obdService: obdService)
                     }
+
+                    HomeCard(title: AppStrings.Coding.title, icon: "terminal.fill", color: .indigo, value: AppStrings.Home.open) {
+                        CodingView(obdService: obdService)
+                    }
                 }
                 .padding(.horizontal)
                 

@@ -29,13 +29,13 @@ struct SmartOBD2App: App {
     init() {
         let modelContainer: ModelContainer
         do {
-            modelContainer = try ModelContainer(for: VehicleModel.self)
+            modelContainer = try ModelContainer(for: VehicleModel.self, CodingMacro.self)
         } catch {
             Logger.bleCom.error("Failed to create persistent ModelContainer: \(error)")
             // Fallback to in-memory container
             do {
                 let config = ModelConfiguration(isStoredInMemoryOnly: true)
-                modelContainer = try ModelContainer(for: VehicleModel.self, configurations: config)
+                modelContainer = try ModelContainer(for: VehicleModel.self, CodingMacro.self, configurations: config)
             } catch {
                 fatalError("Failed to create ModelContainer (persistent and in-memory): \(error)")
             }
