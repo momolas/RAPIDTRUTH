@@ -24,6 +24,11 @@ class ECUDiagnosticService {
         return try JSONDecoder().decode(ECUDefinition.self, from: data)
     }
 
+    func loadLayout(from fileURL: URL) throws -> ECULayout {
+        let data = try Data(contentsOf: fileURL)
+        return try JSONDecoder().decode(ECULayout.self, from: data)
+    }
+
     func execute(request: ECURequest, definition: ECUDefinition) async throws -> [String: String] {
         // 1. Send the command
         // Note: sentbytes is a hex string e.g., "3BC100"
