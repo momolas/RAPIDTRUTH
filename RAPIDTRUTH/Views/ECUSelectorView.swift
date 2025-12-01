@@ -14,9 +14,38 @@ struct ECUSelectorView: View {
 
     // List all available DB files
     private var availableDBs: [URL] {
-        Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil)?.filter {
-            $0.lastPathComponent.hasSuffix("_db.json")
-        } ?? []
+        var urls: [URL] = []
+
+        // 1. Try to find explicit known DBs to ensure they are present even if scan fails
+        // Check root
+        if let x84 = Bundle.main.url(forResource: "X84_db", withExtension: "json") {
+            urls.append(x84)
+        }
+        // Check Resources folder explicitly (if folder reference is used)
+        else if let x84Res = Bundle.main.url(forResource: "X84_db", withExtension: "json", subdirectory: "Resources") {
+            urls.append(x84Res)
+        }
+
+        // 2. Scan for others in root
+        if let found = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil) {
+            let others = found.filter {
+                $0.lastPathComponent.hasSuffix("_db.json") &&
+                $0.lastPathComponent != "X84_db.json"
+            }
+            urls.append(contentsOf: others)
+        }
+
+        // 3. Scan for others in Resources
+        if let foundRes = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: "Resources") {
+            let othersRes = foundRes.filter {
+                $0.lastPathComponent.hasSuffix("_db.json") &&
+                $0.lastPathComponent != "X84_db.json" &&
+                !urls.contains($0) // Avoid duplicates
+            }
+            urls.append(contentsOf: othersRes)
+        }
+
+        return urls
     }
 
     var filteredECUs: [DatabaseECU] {
@@ -105,9 +134,11 @@ struct ECUSelectorView: View {
         .navigationTitle(AppStrings.ECUDatabase.title)
         .task {
             // Load default or first available
-            if let defaultDB = availableDBs.first(where: { $0.lastPathComponent == "X84_db.json" }) ?? availableDBs.first {
+            let dbs = availableDBs
+            if let defaultDB = dbs.first(where: { $0.lastPathComponent == "X84_db.json" }) ?? dbs.first {
                 await loadDB(url: defaultDB)
             } else {
+                print("No database found.")
                 await MainActor.run { self.isLoading = false }
             }
         }
@@ -181,7 +212,18 @@ struct ECULoaderView: View {
                 print("Decode error for \(filename): \(error)")
                 self.error = error
             }
-        } else {
+        }
+        // Also check Resources subdirectory
+        else if let url = Bundle.main.url(forResource: name, withExtension: finalExt, subdirectory: "Resources") {
+            do {
+                let data = try Data(contentsOf: url)
+                self.definition = try JSONDecoder().decode(ECUDefinition.self, from: data)
+            } catch {
+                print("Decode error for \(filename): \(error)")
+                self.error = error
+            }
+        }
+        else {
             print("File not found: \(filename)")
             self.error = NSError(domain: "App", code: 404, userInfo: nil)
         }
