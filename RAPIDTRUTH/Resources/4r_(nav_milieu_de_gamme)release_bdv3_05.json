@@ -1,0 +1,2034 @@
+{
+"obd": {
+	"baudrate": 10400, 
+	"protocol": "CAN", 
+	"recv_id": "767", 
+	"funcname": "Navigation", 
+	"funcaddr": "58", 
+	"send_id": "747"
+}, 
+"devices": [
+	{
+	"dtc": 49545, 
+	"devicedata": {}, 
+	"dtctype": 4, 
+	"name": "CD Changer connection problem"
+	}, 
+	{
+	"dtc": 49544, 
+	"devicedata": {}, 
+	"dtctype": 4, 
+	"name": "UCD connection problem"
+	}, 
+	{
+	"dtc": 37632, 
+	"devicedata": {}, 
+	"dtctype": 2, 
+	"name": "ECU_Default"
+	}, 
+	{
+	"dtc": 39436, 
+	"devicedata": {}, 
+	"dtctype": 2, 
+	"name": "CD Disc error"
+	}, 
+	{
+	"dtc": 37665, 
+	"devicedata": {}, 
+	"dtctype": 2, 
+	"name": "Virgin or Incomplete configuration"
+	}, 
+	{
+	"dtc": 37640, 
+	"devicedata": {}, 
+	"dtctype": 3, 
+	"name": "Power Supply Video Display"
+	}, 
+	{
+	"dtc": 39424, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "GPS antenna open circuit"
+	}, 
+	{
+	"dtc": 37637, 
+	"devicedata": {}, 
+	"dtctype": 3, 
+	"name": "RadioNav_On output"
+	}, 
+	{
+	"dtc": 49493, 
+	"devicedata": {}, 
+	"dtctype": 4, 
+	"name": "MDP connection problem"
+	}
+], 
+"ecuname": "4R (Nav Milieu de Gamme)", 
+"autoidents": [
+	{
+	"diagversion": "4", 
+	"supplier": "BT2", 
+	"version": "0000", 
+	"soft": "0001"
+	}, 
+	{
+	"diagversion": "36", 
+	"supplier": "BT2", 
+	"version": "0000", 
+	"soft": "0001"
+	}
+], 
+"endian": "Big", 
+"requests": [
+	{
+	"name": "Lecture param\u00e8tres syst\u00e8me", 
+	"replybytes": "6102", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Latitude GPS": {
+		"ref": true, 
+		"firstbyte": 15
+		}, 
+		"Dimming": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Taux erreur RDS": {
+		"ref": true, 
+		"firstbyte": 27
+		}, 
+		"Freq TMC": {
+		"ref": true, 
+		"firstbyte": 22
+		}, 
+		"Nombre de satellites GPS": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"Niveau TMC": {
+		"ref": true, 
+		"firstbyte": 26
+		}, 
+		"Indicateur de r\u00e9ception GPS": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"Longitude GPS": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Tension batterie": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Temp\u00e9rature ext\u00e9rieure": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Vitesse du v\u00e9hicule": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Gyroscope": {
+		"ref": true, 
+		"firstbyte": 20
+		}
+	}, 
+	"minbytes": 27, 
+	"sentbytes": "2102"
+	}, 
+	{
+	"name": "Lecture System traceability", 
+	"replybytes": "6184", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"receivebyte_dataitems": {
+		"Pre Code Radio": {
+		"ref": true, 
+		"firstbyte": 15
+		}, 
+		"traceability week of production": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"traceability serial number": {
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 22, 
+	"sentbytes": "2184"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Type of Reset": {
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "1100", 
+	"name": "ECUReset"
+	}, 
+	{
+	"name": "Ecrire Configuration Syst\u00e8me", 
+	"replybytes": "7B62", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Type Changeur CD": {
+		"bitoffset": 5, 
+		"firstbyte": 6
+		}, 
+		"G\u00e9n\u00e9ration Afficheur": {
+		"firstbyte": 4
+		}, 
+		"Type Afficheur": {
+		"bitoffset": 5, 
+		"firstbyte": 4
+		}, 
+		"Type Escamotage": {
+		"bitoffset": 5, 
+		"firstbyte": 8
+		}, 
+		"Type radio": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3B622D0000000000"
+	}, 
+	{
+	"name": "Lecture AM/FM Reception level", 
+	"replybytes": "6110", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"receivebyte_dataitems": {
+		"Frequency Range": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"FM Memory 3 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 17
+		}, 
+		"FM Memory 1 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"FM2 Field max": {
+		"ref": true, 
+		"firstbyte": 16
+		}, 
+		"FM5 Field min": {
+		"ref": true, 
+		"firstbyte": 29
+		}, 
+		"FM Memory 5 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 27
+		}, 
+		"FM1 Field mean": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"AM5 Field mean": {
+		"ref": true, 
+		"firstbyte": 55
+		}, 
+		"AM5 Field min": {
+		"ref": true, 
+		"firstbyte": 54
+		}, 
+		"FM5 Field max": {
+		"ref": true, 
+		"firstbyte": 31
+		}, 
+		"Level Field": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"FM Memory 4 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 22
+		}, 
+		"AM1 Field mean": {
+		"ref": true, 
+		"firstbyte": 35
+		}, 
+		"AM Memory 2 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 37
+		}, 
+		"AM Memory 4 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 47
+		}, 
+		"FM4 Field mean": {
+		"ref": true, 
+		"firstbyte": 25
+		}, 
+		"AM Memory 1 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 32
+		}, 
+		"AM4 Field max": {
+		"ref": true, 
+		"firstbyte": 51
+		}, 
+		"AM4 Field mean": {
+		"ref": true, 
+		"firstbyte": 50
+		}, 
+		"AM Memory 5 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 52
+		}, 
+		"AM3 Field min": {
+		"ref": true, 
+		"firstbyte": 44
+		}, 
+		"AM3 Field mean": {
+		"ref": true, 
+		"firstbyte": 45
+		}, 
+		"FM1 Field min": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"FM2 Field mean": {
+		"ref": true, 
+		"firstbyte": 15
+		}, 
+		"AM Memory 3 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 42
+		}, 
+		"AM4 Field min": {
+		"ref": true, 
+		"firstbyte": 49
+		}, 
+		"FM4 Field min": {
+		"ref": true, 
+		"firstbyte": 24
+		}, 
+		"AM2 Field mean": {
+		"ref": true, 
+		"firstbyte": 40
+		}, 
+		"AM5 Field max": {
+		"ref": true, 
+		"firstbyte": 56
+		}, 
+		"Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"FM3 Field min": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"AM1 Field min": {
+		"ref": true, 
+		"firstbyte": 34
+		}, 
+		"FM1 Field max": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"AM1 Field max": {
+		"ref": true, 
+		"firstbyte": 36
+		}, 
+		"FM4 Field max": {
+		"ref": true, 
+		"firstbyte": 26
+		}, 
+		"FM3 Field max": {
+		"ref": true, 
+		"firstbyte": 21
+		}, 
+		"FM3 Field mean": {
+		"ref": true, 
+		"firstbyte": 20
+		}, 
+		"FM2 Field min": {
+		"ref": true, 
+		"firstbyte": 14
+		}, 
+		"AM2 Field max": {
+		"ref": true, 
+		"firstbyte": 41
+		}, 
+		"FM5 Field mean": {
+		"ref": true, 
+		"firstbyte": 30
+		}, 
+		"FM Memory 2 Frequency Tune": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"AM3 Field max": {
+		"ref": true, 
+		"firstbyte": 46
+		}, 
+		"AM2 Field min": {
+		"ref": true, 
+		"firstbyte": 39
+		}
+	}, 
+	"minbytes": 56, 
+	"sentbytes": "2110"
+	}, 
+	{
+	"name": "Tester Present", 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "3E01", 
+	"replybytes": "7E"
+	}, 
+	{
+	"name": "Lecture VIN", 
+	"replybytes": "6181", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"CRC": {
+		"ref": true, 
+		"firstbyte": 20
+		}, 
+		"VIN": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 21, 
+	"sentbytes": "2181"
+	}, 
+	{
+	"name": "IO Front light keyboard", 
+	"replybytes": "702300", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Output Control Status": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Test Control": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "302300"
+	}, 
+	{
+	"name": "Ecrire Configuration boite", 
+	"replybytes": "7B63", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"SDVC": {
+		"bitoffset": 4, 
+		"firstbyte": 6
+		}, 
+		"Mode brouill\u00e9": {
+		"bitoffset": 3, 
+		"firstbyte": 4
+		}, 
+		"Entr\u00e9e temp\u00e9rature": {
+		"bitoffset": 6, 
+		"firstbyte": 11
+		}, 
+		"Courbe accoustique": {
+		"firstbyte": 6
+		}, 
+		"AngleMontage": {
+		"bitoffset": 1, 
+		"firstbyte": 8
+		}, 
+		"Restriction d'acc\u00e8s": {
+		"bitoffset": 7, 
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3B63000000000000000000"
+	}, 
+	{
+	"name": "Lecture Last after market operation", 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "21B0", 
+	"replybytes": "61B0"
+	}, 
+	{
+	"name": "Lecture Identification", 
+	"replybytes": "6180", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"receivebyte_dataitems": {
+		"Version Software Radio": {
+		"ref": true, 
+		"firstbyte": 19, 
+		"endian": "Little"
+		}, 
+		"Ident Hardware": {
+		"ref": true, 
+		"firstbyte": 12, 
+		"endian": "Little"
+		}, 
+		"Version Software Navigation": {
+		"ref": true, 
+		"firstbyte": 21, 
+		"endian": "Little"
+		}, 
+		"Ident supplier": {
+		"ref": true, 
+		"firstbyte": 9, 
+		"endian": "Little"
+		}, 
+		"Ident DIAGNOSIS": {
+		"ref": true, 
+		"firstbyte": 8, 
+		"endian": "Little"
+		}, 
+		"Version Software Gateway": {
+		"ref": true, 
+		"firstbyte": 17, 
+		"endian": "Little"
+		}, 
+		"Ident PART": {
+		"ref": true, 
+		"firstbyte": 3, 
+		"endian": "Little"
+		}
+	}, 
+	"minbytes": 26, 
+	"sentbytes": "2180"
+	}, 
+	{
+	"name": "Ecriture Configuration Vehicle", 
+	"replybytes": "7B61", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Constructeur": {
+		"firstbyte": 5
+		}, 
+		"V\u00e9hicule": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3B61000000"
+	}, 
+	{
+	"name": "IO Front display RGB", 
+	"replybytes": "70220000", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Output Control Status": {
+		"firstbyte": 3
+		}, 
+		"Copy RGB Test Card": {
+		"firstbyte": 4
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"RGB Test Card": {
+		"firstbyte": 4
+		}, 
+		"Test Control": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 4, 
+	"sentbytes": "30220000"
+	}, 
+	{
+	"name": "Lecture Configuration Syst\u00e8me", 
+	"replybytes": "6162", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Type Changeur CD": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"G\u00e9n\u00e9ration Afficheur": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Type Afficheur": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Type Escamotage": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Type radio": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 8, 
+	"sentbytes": "2162"
+	}, 
+	{
+	"name": "IO CD eject", 
+	"replybytes": "700200", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Output Control Status": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Test Control CD Eject": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "300200"
+	}, 
+	{
+	"name": "Lecture Etat Syst\u00e8me", 
+	"replybytes": "6101", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Etat touche SYP": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Etat Click rotary": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Rotary B": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Etat signal +ACC": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Etat touche SYP depuis RAZ": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Etat signal Lanternes": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Etat depuis RAZ touche sup": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat fl\u00e8che gauche": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Etat depuis RAZ touche val": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat touche SRC depuis RAZ": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Etat touche EJECTCD": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Etat touche bas": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat fl\u00e8che bas": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Etat touche ONOFF depuis RAZ": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Etat fl\u00e8che gauche depuis RAZ": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Etat touche SOUND": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Etat touche ONOFF": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Etat signal radio on": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Etat signal +APC": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Etat touche sup": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Compteur Molette": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Etat touche MODE depuis RAZ": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Etat touche 1_6": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Etat depuis RAZ touche volume +": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat depuis RAZ touche volume -": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat touche MODE": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Etat touche val": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat touche EJECTCD depuis RAZ": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Etat fl\u00e8che haut": {
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Rotary A": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Etat touche volume +": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat fl\u00e8che bas depuis RAZ": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Etat touche NAV depuis RAZ": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Etat touche volume -": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat depuis RAZ touche haut": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat fl\u00e8che droite": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Etat touche SOUND depuis RAZ": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Etat signal Mute": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Molette C": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Molette B": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Molette A": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Etat touche NAV": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Etat signal Marche arri\u00e8re": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Etat fl\u00e8che droite depuis RAZ": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Etat touche haut": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat touche 1_6 depuis RAZ": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Etat touche SRC": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Etat Click rotary depuis RAZ": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Etat depuis RAZ touche bas": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat fl\u00e8che haut depuis RAZ": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Compteur Rotary": {
+		"ref": true, 
+		"firstbyte": 14
+		}
+	}, 
+	"minbytes": 14, 
+	"sentbytes": "2101"
+	}, 
+	{
+	"name": "IO HP test", 
+	"replybytes": "702400", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Output Control Status": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Test Control": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "302400"
+	}, 
+	{
+	"name": "Start Diagnostic Session", 
+	"replybytes": "5000", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Session Name": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "10C0"
+	}, 
+	{
+	"name": "Clear Diagnostic Information", 
+	"replybytes": "54FF00", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"minbytes": 3, 
+	"sentbytes": "14FF00"
+	}, 
+	{
+	"name": "Lecture Configuration Bo\u00eete", 
+	"replybytes": "6163", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"SDVC": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Mode brouill\u00e9": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Entr\u00e9e temp\u00e9rature": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Courbe accoustique": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"AngleMontage": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Restriction d'acc\u00e8s": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 11, 
+	"sentbytes": "2163"
+	}, 
+	{
+	"name": "Lecture Configuration V\u00e9hicule", 
+	"replybytes": "6161", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Constructeur": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"V\u00e9hicule": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 5, 
+	"sentbytes": "2161"
+	}, 
+	{
+	"name": "ReadDTC", 
+	"replybytes": "5700", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Historical Failure": {
+		"bitoffset": 1, 
+		"firstbyte": 5
+		}, 
+		"Current Failure": {
+		"bitoffset": 2, 
+		"firstbyte": 5
+		}, 
+		"NDTC": {
+		"firstbyte": 2
+		}, 
+		"Standard Fault": {
+		"bitoffset": 3, 
+		"firstbyte": 5
+		}, 
+		"FirstDTC": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"MoreDTC": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "17FF00", 
+	"shiftbytescount": 3
+	}, 
+	{
+	"name": "IO RadioNav On OFF", 
+	"replybytes": "70030000", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Output Control Status": {
+		"firstbyte": 3
+		}, 
+		"Copy System state": {
+		"firstbyte": 4
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"System state": {
+		"firstbyte": 4
+		}, 
+		"Test Control": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 4, 
+	"sentbytes": "30030000"
+	}, 
+	{
+	"name": "Ecriture VIN", 
+	"replybytes": "7B81", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"CRC": {
+		"firstbyte": 20
+		}, 
+		"VIN": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3B8100000000000000000000000000000000000000"
+	}
+], 
+"data": {
+	"FM Memory 1 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e FM \u00e0 N-1  (r\u00e9solution 0,1Mhz)", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Type Afficheur": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "Calculateur inconnu ou absent", 
+		"3": "Ecran Matriciel"
+	}
+	}, 
+	"traceability serial number": {
+	"bytesascii": true, 
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64, 
+	"comment": "serial numbers"
+	}, 
+	"Etat touche SYP depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Constructeur": {
+	"comment": "Constructeur du v\u00e9hicule", 
+	"lists": {
+		"0": "Renault", 
+		"1": "Nissan", 
+		"2": "RVI", 
+		"3": "Dacia", 
+		"4": "Samsung"
+	}
+	}, 
+	"Etat depuis RAZ touche sup": {
+	"comment": "Indique si le calculateur \u00e0 vu un signal depuis sa derni\u00e8re RAZ", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Aucun appui depuis derni\u00e8re RAZ", 
+		"1": "Au moins un appui depuis derni\u00e8re RAZ"
+	}
+	}, 
+	"Temp\u00e9rature ext\u00e9rieure": {
+	"scaled": true, 
+	"unit": "degr\u00e9s", 
+	"offset": -40.0
+	}, 
+	"Etat touche EJECTCD": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"traceability week of production": {
+	"bytesascii": true, 
+	"bytescount": 4, 
+	"byte": true, 
+	"bitscount": 32, 
+	"comment": "semaine de production"
+	}, 
+	"FM5 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-5", 
+	"unit": "dBuV"
+	}, 
+	"FM Memory 4 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e FM \u00e0 N-4  (r\u00e9solution 0,1Mhz)", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Taux erreur RDS": {
+	"scaled": true, 
+	"unit": "%"
+	}, 
+	"Etat Click rotary depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Historical Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"AM Memory 2 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e AM \u00e0 N-2 en KHz", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Current Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"Etat signal +APC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"Latitude GPS": {
+	"bitscount": 32, 
+	"signed": true, 
+	"scaled": true, 
+	"step": 1.8e-07, 
+	"bytescount": 4, 
+	"offset": -30.0, 
+	"unit": "degres"
+	}, 
+	"Etat depuis RAZ touche volume +": {
+	"comment": "Indique si le calculateur \u00e0 vu un signal depuis sa derni\u00e8re RAZ", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Aucun appui depuis derni\u00e8re RAZ", 
+		"1": "Au moins un appui depuis derni\u00e8re RAZ"
+	}
+	}, 
+	"Etat depuis RAZ touche volume -": {
+	"comment": "Indique si le calculateur \u00e0 vu un signal depuis sa derni\u00e8re RAZ", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Aucun appui depuis derni\u00e8re RAZ", 
+		"1": "Au moins un appui depuis derni\u00e8re RAZ"
+	}
+	}, 
+	"Etat touche MODE": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Pre Code Radio": {
+	"bytesascii": true, 
+	"bytescount": 4, 
+	"byte": true, 
+	"bitscount": 32, 
+	"comment": "Precode radio"
+	}, 
+	"Etat touche 1_6": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Ident DIAGNOSIS": {
+	"comment": "Diag evolution number", 
+	"byte": true
+	}, 
+	"AM2 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM min m\u00e9moris\u00e9 \u00e0 N-2", 
+	"unit": "dBuV"
+	}, 
+	"Test Control CD Eject": {
+	"lists": {
+		"32": "Start Test", 
+		"1": "Status Request"
+	}
+	}, 
+	"Etat depuis RAZ touche haut": {
+	"comment": "Indique si le calculateur \u00e0 vu un signal depuis sa derni\u00e8re RAZ", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Aucun appui depuis derni\u00e8re RAZ", 
+		"1": "Au moins un appui depuis derni\u00e8re RAZ"
+	}
+	}, 
+	"Output Control Status": {
+	"lists": {
+		"128": "Problem", 
+		"1": "Test en Cours", 
+		"2": "Test termin\u00e9", 
+		"17": "Test interrompu", 
+		"129": "Erreur"
+	}
+	}, 
+	"VIN": {
+	"bytesascii": true, 
+	"bytescount": 17, 
+	"byte": true, 
+	"bitscount": 136, 
+	"comment": "Vehicule identification number"
+	}, 
+	"Etat signal Marche arri\u00e8re": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"Etat fl\u00e8che droite depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"FM2 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM min m\u00e9moris\u00e9 \u00e0 N-2", 
+	"unit": "dBuV"
+	}, 
+	"Restriction d'acc\u00e8s": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de restriction", 
+		"1": "restriction sur seuil de vitesse"
+	}
+	}, 
+	"Vitesse du v\u00e9hicule": {
+	"comment": "Vitesse du v\u00e9hicule", 
+	"bitscount": 16, 
+	"scaled": true, 
+	"step": 0.01, 
+	"bytescount": 2, 
+	"unit": "km/h"
+	}, 
+	"Etat fl\u00e8che haut depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Indicateur de r\u00e9ception GPS": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Aucun satellite recu", 
+		"1": "au moins un satellite recu"
+	}
+	}, 
+	"Frequency Range": {
+	"comment": "Gamme LW/MW/FM en cours", 
+	"lists": {
+		"1": "FM", 
+		"2": "LW", 
+		"3": "MW"
+	}
+	}, 
+	"Etat Click rotary": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Version Software Navigation": {
+	"comment": "Identification de la calibration", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Etat touche bas": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Relach\u00e9", 
+		"1": "Appuy\u00e9"
+	}
+	}, 
+	"FM Memory 5 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e FM \u00e0 N-5  (r\u00e9solution 0,1Mhz)", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"System state": {
+	"lists": {
+		"1": "Radio Nav ON", 
+		"2": "Radio Nav OFF"
+	}
+	}, 
+	"CRC": {
+	"comment": "Check sum", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Type radio": {
+	"lists": {
+		"45": "NAV4R"
+	}
+	}, 
+	"FM1 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-1", 
+	"unit": "dBuV"
+	}, 
+	"traceability blank": {
+	"bytesascii": true, 
+	"bytescount": 4, 
+	"byte": true, 
+	"bitscount": 32, 
+	"comment": "blanking spaces"
+	}, 
+	"Gyroscope": {
+	"bitscount": 16, 
+	"signed": true, 
+	"scaled": true, 
+	"step": 0.01, 
+	"bytescount": 2, 
+	"unit": "d\u00e9gr\u00e9s/s"
+	}, 
+	"Session Name": {
+	"comment": "Session diagnostique", 
+	"lists": {
+		"192": "Session usine / apr\u00e8s vente", 
+		"129": "Session par d\u00e9faut"
+	}
+	}, 
+	"Etat touche SOUND": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Etat touche val": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Relach\u00e9", 
+		"1": "Appuy\u00e9"
+	}
+	}, 
+	"Etat touche SRC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Etat touche volume -": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Relach\u00e9", 
+		"1": "Appuy\u00e9"
+	}
+	}, 
+	"Version Software Gateway": {
+	"comment": "Hexa coded software identification number", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Compteur Molette": {
+	"scaled": true, 
+	"unit": "pas", 
+	"offset": -128.0
+	}, 
+	"AM Memory 1 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e AM \u00e0 N-1 en KHz", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"MoreDTC": {
+	"scaled": true, 
+	"signed": true
+	}, 
+	"Etat signal radio on": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"Etat touche sup": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Relach\u00e9", 
+		"1": "Appuy\u00e9"
+	}
+	}, 
+	"Entr\u00e9e temp\u00e9rature": {
+	"bitscount": 2, 
+	"lists": {
+		"1": "capteur", 
+		"2": "digitale"
+	}
+	}, 
+	"Etat touche volume +": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Relach\u00e9", 
+		"1": "Appuy\u00e9"
+	}
+	}, 
+	"FirstDTC": {
+	"comment": "Valeur du DTC", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"37632": "ECU_Default", 
+		"39424": "GPS antenna open circuit", 
+		"37637": "RadioNav_On output", 
+		"37665": "Virgin or Incomplete configuration", 
+		"37640": "Power Supply Video Display", 
+		"49545": "CD Changer connection problem", 
+		"39436": "CD Disc error", 
+		"49544": "UCD connection problem", 
+		"49493": "MDP connection problem"
+	}
+	}, 
+	"AM3 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM max m\u00e9moris\u00e9 \u00e0 N-3", 
+	"unit": "dBuV"
+	}, 
+	"Etat fl\u00e8che droite": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Etat signal Mute": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"Molette C": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Relach\u00e9", 
+		"1": "Appuy\u00e9"
+	}
+	}, 
+	"Molette B": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Relach\u00e9", 
+		"1": "Appuy\u00e9"
+	}
+	}, 
+	"Molette A": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Relach\u00e9", 
+		"1": "Appuy\u00e9"
+	}
+	}, 
+	"Etat depuis RAZ touche bas": {
+	"comment": "Indique si le calculateur \u00e0 vu un signal depuis sa derni\u00e8re RAZ", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Aucun appui depuis derni\u00e8re RAZ", 
+		"1": "Au moins un appui depuis derni\u00e8re RAZ"
+	}
+	}, 
+	"Etat touche SYP": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"FM Memory 3 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e FM \u00e0 N-3  (r\u00e9solution 0,1Mhz)", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Ident Hardware": {
+	"comment": "B.C.D coded hardware identification number", 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Freq TMC": {
+	"comment": "Niveau de r\u00e9ception de la stationTMC \u00e9cout\u00e9e", 
+	"divideby": 1000.0, 
+	"bitscount": 32, 
+	"signed": true, 
+	"scaled": true, 
+	"bytescount": 4, 
+	"unit": "MHz"
+	}, 
+	"Longitude GPS": {
+	"bitscount": 32, 
+	"signed": true, 
+	"scaled": true, 
+	"step": 1.8e-07, 
+	"bytescount": 4, 
+	"offset": -30.0, 
+	"unit": "degres"
+	}, 
+	"Etat touche SRC depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"AM Memory 4 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e AM \u00e0 N-4 en KHz", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"AM5 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM min m\u00e9moris\u00e9 \u00e0 N-5", 
+	"unit": "dBuV"
+	}, 
+	"Mode brouill\u00e9": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Mode Normal", 
+		"1": "Mode Brouill\u00e9"
+	}
+	}, 
+	"Level Field": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ de la station en cours", 
+	"unit": "dBuV"
+	}, 
+	"AM1 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-1", 
+	"unit": "dBuV"
+	}, 
+	"Ident supplier": {
+	"bytesascii": true, 
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24, 
+	"comment": "supplier ITG Number (ASCII)"
+	}, 
+	"FM4 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-4", 
+	"unit": "dBuV"
+	}, 
+	"Etat touche MODE depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"AM3 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM min m\u00e9moris\u00e9 \u00e0 N-3", 
+	"unit": "dBuV"
+	}, 
+	"FM1 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM min m\u00e9moris\u00e9 \u00e0 N-1", 
+	"unit": "dBuV"
+	}, 
+	"Etat fl\u00e8che haut": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"FM2 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-2", 
+	"unit": "dBuV"
+	}, 
+	"AM Memory 3 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e AM \u00e0 N-3 en KHz", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"AM4 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM max m\u00e9moris\u00e9 \u00e0 N-4", 
+	"unit": "dBuV"
+	}, 
+	"AM4 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM min m\u00e9moris\u00e9 \u00e0 N-4", 
+	"unit": "dBuV"
+	}, 
+	"FM Memory 2 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e FM \u00e0 N-2 (r\u00e9solution 0,1Mhz)", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"AM5 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM max m\u00e9moris\u00e9 \u00e0 N-5", 
+	"unit": "dBuV"
+	}, 
+	"Num\u00e9ro de s\u00e9rie fournisseur": {
+	"bytesascii": true, 
+	"bytescount": 10, 
+	"byte": true, 
+	"bitscount": 80, 
+	"comment": "Num\u00e9ro de s\u00e9rie fournisseur"
+	}, 
+	"Etat touche SOUND depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"AM1 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM min m\u00e9moris\u00e9 \u00e0 N-1", 
+	"unit": "dBuV"
+	}, 
+	"Etat signal Lanternes": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"AM1 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM max m\u00e9moris\u00e9 \u00e0 N-1", 
+	"unit": "dBuV"
+	}, 
+	"Etat touche ONOFF": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Niveau TMC": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "dB/uV"
+	}, 
+	"Etat touche 1_6 depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Tension batterie": {
+	"scaled": true, 
+	"step": 0.2, 
+	"unit": "volts"
+	}, 
+	"FM4 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM max m\u00e9moris\u00e9 \u00e0 N-4", 
+	"unit": "dBuV"
+	}, 
+	"Etat touche EJECTCD depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Type of Reset": {
+	"lists": {
+		"1": "Watchdog Reset", 
+		"255": "Reset all Teach ins"
+	}
+	}, 
+	"Version Software Radio": {
+	"comment": "software release", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Courbe accoustique": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "Courbe 0", 
+		"1": "Courbe 1", 
+		"2": "Courbe 2", 
+		"3": "Courbe 3", 
+		"4": "Courbe 4", 
+		"5": "Courbe 5"
+	}
+	}, 
+	"Rotary B": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Rotary A": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"FM2 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM max m\u00e9moris\u00e9 \u00e0 N-2", 
+	"unit": "dBuV"
+	}, 
+	"FM5 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM min m\u00e9moris\u00e9 \u00e0 N-5", 
+	"unit": "dBuV"
+	}, 
+	"RGB Test Card": {
+	"lists": {
+		"1": "Test card number 1", 
+		"2": "Test card number 2"
+	}
+	}, 
+	"Etat fl\u00e8che gauche": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Etat depuis RAZ touche val": {
+	"comment": "Indique si le calculateur \u00e0 vu un signal depuis sa derni\u00e8re RAZ", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Aucun appui depuis derni\u00e8re RAZ", 
+		"1": "Au moins un appui depuis derni\u00e8re RAZ"
+	}
+	}, 
+	"Dimming": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "mv"
+	}, 
+	"Etat fl\u00e8che bas depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"SDVC": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "SDVC 0", 
+		"1": "SDVC 1", 
+		"2": "SDVC 2", 
+		"3": "SDVC 3", 
+		"4": "SDVC 4", 
+		"5": "SDVC 5"
+	}
+	}, 
+	"Etat fl\u00e8che bas": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"AM5 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-5", 
+	"unit": "dBuV"
+	}, 
+	"Etat touche ONOFF depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"Etat fl\u00e8che gauche depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"FM1 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM max m\u00e9moris\u00e9 \u00e0 N-1", 
+	"unit": "dBuV"
+	}, 
+	"Test Control": {
+	"lists": {
+		"32": "Start Test", 
+		"1": "Status Request", 
+		"17": "Stop Test"
+	}
+	}, 
+	"AM4 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-4", 
+	"unit": "dBuV"
+	}, 
+	"AM Memory 5 Frequency Tune": {
+	"comment": "frequence m\u00e9moris\u00e9e AM \u00e0 N-5 en KHz", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"G\u00e9n\u00e9ration Afficheur": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "Generation 0", 
+		"4": "Generation 4"
+	}
+	}, 
+	"AM3 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-3", 
+	"unit": "dBuV"
+	}, 
+	"AngleMontage": {
+	"scaled": true, 
+	"bitscount": 7, 
+	"unit": "degr\u00e9s"
+	}, 
+	"Copy System state": {
+	"lists": {
+		"1": "Radio Nav ON", 
+		"2": "Radio Nav OFF"
+	}
+	}, 
+	"Nombre de satellites GPS": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"FM5 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM max m\u00e9moris\u00e9 \u00e0 N-5", 
+	"unit": "dBuV"
+	}, 
+	"FM4 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM min m\u00e9moris\u00e9 \u00e0 N-4", 
+	"unit": "dBuV"
+	}, 
+	"Type Escamotage": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "UCD absent", 
+		"1": "UCD type 84"
+	}
+	}, 
+	"Etat touche NAV depuis RAZ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"NDTC": {
+	"scaled": true, 
+	"comment": "Nombre DTC en m\u00e9moire"
+	}, 
+	"Ident PART": {
+	"comment": "ECU reference (hard + soft + calib)", 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Frequency Tune": {
+	"comment": "station courante FM/AM", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"FM3 Field min": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM min m\u00e9moris\u00e9 \u00e0 N-3", 
+	"unit": "dBuV"
+	}, 
+	"Type Changeur CD": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "Changeur absent", 
+		"1": "Changeur coffre ou esclave"
+	}
+	}, 
+	"Etat touche NAV": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "touche non appuy\u00e9e", 
+		"1": "touche appuy\u00e9e"
+	}
+	}, 
+	"FM3 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ FM max m\u00e9moris\u00e9 \u00e0 N-3", 
+	"unit": "dBuV"
+	}, 
+	"Etat signal +ACC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"FM3 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-3", 
+	"unit": "dBuV"
+	}, 
+	"Etat touche haut": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Relach\u00e9", 
+		"1": "Appuy\u00e9"
+	}
+	}, 
+	"AM2 Field max": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM max m\u00e9moris\u00e9 \u00e0 N-2", 
+	"unit": "dBuV"
+	}, 
+	"Copy RGB Test Card": {
+	"lists": {
+		"1": "Test card number 1", 
+		"2": "Test card number 2"
+	}
+	}, 
+	"AM2 Field mean": {
+	"scaled": true, 
+	"divideby": 2.0, 
+	"comment": "niveau du champ AM moyen m\u00e9moris\u00e9 \u00e0 N-2", 
+	"unit": "dBuV"
+	}, 
+	"V\u00e9hicule": {
+	"comment": "V\u00e9hicule", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"0": "Vierge", 
+		"1": "X73", 
+		"2": "X81", 
+		"5": "X76", 
+		"6": "X83", 
+		"7": "X70", 
+		"8": "X73 Phase 2", 
+		"9": "X74 Phase 2", 
+		"13": "B84", 
+		"14": "J84", 
+		"18": "X85", 
+		"19": "X77", 
+		"20": "B84 Phase 2", 
+		"21": "J84 Phase 2", 
+		"22": "X91", 
+		"23": "X92", 
+		"24": "X93", 
+		"25": "J81 Phase 2", 
+		"26": "X44", 
+		"27": "X61", 
+		"28": "X24"
+	}
+	}, 
+	"Standard Fault": {
+	"bitscount": 5
+	}, 
+	"Compteur Rotary": {
+	"scaled": true, 
+	"unit": "pas", 
+	"offset": -128.0
+	}
+}
+}

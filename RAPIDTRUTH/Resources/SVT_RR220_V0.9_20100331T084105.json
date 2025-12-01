@@ -1,0 +1,994 @@
+{
+"obd": {
+	"fastinit": true, 
+	"funcname": "Navigation", 
+	"kw1": "D0", 
+	"kw2": "8F", 
+	"protocol": "KWP2000", 
+	"funcaddr": "3F"
+}, 
+"devices": [
+	{
+	"dtc": 39425, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "GPS external antenna connection"
+	}, 
+	{
+	"dtc": 39429, 
+	"devicedata": {}, 
+	"dtctype": 2, 
+	"name": "Internal battery  discharged or failure"
+	}, 
+	{
+	"dtc": 39424, 
+	"devicedata": {}, 
+	"dtctype": 4, 
+	"name": "Missing setting value"
+	}, 
+	{
+	"dtc": 39433, 
+	"devicedata": {}, 
+	"dtctype": 4, 
+	"name": "Memory internal error"
+	}, 
+	{
+	"dtc": 39427, 
+	"devicedata": {}, 
+	"dtctype": 2, 
+	"name": "GSM internal error"
+	}, 
+	{
+	"dtc": 39426, 
+	"devicedata": {}, 
+	"dtctype": 2, 
+	"name": "GPS internal error"
+	}, 
+	{
+	"dtc": 39428, 
+	"devicedata": {}, 
+	"dtctype": 2, 
+	"name": "Blocking system internal error"
+	}
+], 
+"ecuname": "SVT RR220", 
+"autoidents": [
+	{
+	"diagversion": "4", 
+	"supplier": "AVH", 
+	"version": "0000", 
+	"soft": "0000"
+	}
+], 
+"endian": "Big", 
+"requests": [
+	{
+	"name": "DataRead.SystemConfiguration", 
+	"replybytes": "61D30100000000000000", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"receivebyte_dataitems": {
+		"SystemConfigurationBatTempoInput": {
+		"bitoffset": 7, 
+		"firstbyte": 4
+		}, 
+		"SystemConfigurationAlarmLine": {
+		"bitoffset": 7, 
+		"firstbyte": 5
+		}, 
+		"SystemConfigurationGPSAntenna": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 5, 
+	"sentbytes": "21D3"
+	}, 
+	{
+	"name": "RAZ DTC", 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "14FF00", 
+	"replybytes": "54FF00"
+	}, 
+	{
+	"name": "Start diagnostic communication", 
+	"replybytes": "C1D08F", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"minbytes": 3, 
+	"sentbytes": "81"
+	}, 
+	{
+	"name": "DataRead.Mux", 
+	"replybytes": "618200000000", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Bus off_panne confirmee": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Bus off_panne presente": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Version messagerie CAN": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Module muet_panne presente": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Module muet_panne confirmee": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Compteur_bus off": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Compteur_module muet": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}
+	}, 
+	"minbytes": 6, 
+	"sentbytes": "2182"
+	}, 
+	{
+	"name": "DataRead.VIN", 
+	"replybytes": "618F", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"receivebyte_dataitems": {
+		"V.I.N": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"CRC_VIN": {
+		"ref": true, 
+		"firstbyte": 20
+		}
+	}, 
+	"minbytes": 21, 
+	"sentbytes": "218F"
+	}, 
+	{
+	"name": "DataRead.Identification.RenaultR2", 
+	"replybytes": "6180", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"HardwareNumber.BasicPartList": {
+		"ref": true, 
+		"firstbyte": 24
+		}, 
+		"DiagnosticIdentificationCode": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"CalibrationNumber": {
+		"ref": true, 
+		"firstbyte": 21
+		}, 
+		"SupplierNumber.ITG": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"HardwareNumber.LowerPart": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"PartNumber.BasicPartList": {
+		"ref": true, 
+		"firstbyte": 23
+		}, 
+		"ManufacturerIdentificationCode": {
+		"ref": true, 
+		"firstbyte": 26
+		}, 
+		"ApprovalNumber.BasicPartList": {
+		"ref": true, 
+		"firstbyte": 25
+		}, 
+		"EditionNumber": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"PartNumber.LowerPart": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"SoftwareNumber": {
+		"ref": true, 
+		"firstbyte": 17
+		}
+	}, 
+	"minbytes": 26, 
+	"sentbytes": "2180"
+	}, 
+	{
+	"name": "TesterPresent", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"minbytes": 1, 
+	"sentbytes": "3E", 
+	"replybytes": "7E"
+	}, 
+	{
+	"name": "DataRead.SystemTraceability", 
+	"replybytes": "6181", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"receivebyte_dataitems": {
+		"traceability manufacturing code": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"traceability blank 2": {
+		"ref": true, 
+		"firstbyte": 14
+		}, 
+		"traceability ITG": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"traceability month": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"traceability year": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"traceability blank": {
+		"ref": true, 
+		"firstbyte": 19
+		}
+	}, 
+	"minbytes": 22, 
+	"sentbytes": "2181"
+	}, 
+	{
+	"name": "DataWrite.SystemConfiguration", 
+	"replybytes": "7BD3", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"SystemConfigurationBatTempoInput": {
+		"bitoffset": 7, 
+		"firstbyte": 4
+		}, 
+		"SystemConfigurationAlarmLine": {
+		"bitoffset": 7, 
+		"firstbyte": 5
+		}, 
+		"SystemConfigurationGPSAntenna": {
+		"bitoffset": 7, 
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3BD3000000"
+	}, 
+	{
+	"name": "ECUreset Configuration", 
+	"replybytes": "5100", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"manualsend": true, 
+	"minbytes": 2, 
+	"sentbytes": "1180"
+	}, 
+	{
+	"name": "ECUreset Restart", 
+	"replybytes": "5100", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"manualsend": true, 
+	"minbytes": 2, 
+	"sentbytes": "1181"
+	}, 
+	{
+	"name": "Stop diagnostic", 
+	"replybytes": "C2", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"minbytes": 1, 
+	"sentbytes": "82"
+	}, 
+	{
+	"name": "DataWrite.VIN", 
+	"replybytes": "7B81", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"sendbyte_dataitems": {
+		"V.I.N": {
+		"firstbyte": 3
+		}, 
+		"CRC_VIN": {
+		"firstbyte": 20
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3B8100000000000000000000000000000000000000"
+	}, 
+	{
+	"name": "ReadDTC", 
+	"replybytes": "5700", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Historical Failure": {
+		"bitoffset": 1, 
+		"firstbyte": 5
+		}, 
+		"Current Failure": {
+		"bitoffset": 2, 
+		"firstbyte": 5
+		}, 
+		"FirstDTC": {
+		"firstbyte": 3
+		}, 
+		"Standard Fault": {
+		"bitoffset": 3, 
+		"firstbyte": 5
+		}, 
+		"NDTC": {
+		"firstbyte": 2
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"MoreDTC": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "17FF00", 
+	"shiftbytescount": 3
+	}, 
+	{
+	"name": "DataRead.SimCardNumber", 
+	"replybytes": "61D0", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"receivebyte_dataitems": {
+		"SimCardNumber": {
+		"firstbyte": 23
+		}, 
+		"SimravNumber": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 42, 
+	"sentbytes": "21D0"
+	}, 
+	{
+	"name": "DataRead.SystemParameter", 
+	"replybytes": "61D2", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"receivebyte_dataitems": {
+		"SystemParameterPowerSupplyLevel": {
+		"firstbyte": 4
+		}, 
+		"SystemParameterBlocking1Current": {
+		"firstbyte": 8
+		}, 
+		"SystemParameterBlocking2Current": {
+		"firstbyte": 10
+		}, 
+		"SystemParameterInternalBatteryLevel": {
+		"bitoffset": 1, 
+		"firstbyte": 6
+		}, 
+		"SystemParameterBatTempoInputState": {
+		"bitoffset": 7, 
+		"firstbyte": 7
+		}, 
+		"SystemParameterIgnitionInputState": {
+		"bitoffset": 7, 
+		"firstbyte": 3
+		}, 
+		"SystemParameterInternalBatteryStatus": {
+		"bitoffset": 7, 
+		"firstbyte": 5
+		}
+	}, 
+	"minbytes": 11, 
+	"sentbytes": "21D2"
+	}, 
+	{
+	"name": "Start extended Session", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "10C0", 
+	"replybytes": "50C0"
+	}, 
+	{
+	"name": "DataRead.SystemStatus", 
+	"replybytes": "61D1", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"receivebyte_dataitems": {
+		"SystemStatusGSMconnectionStatus": {
+		"bitoffset": 6, 
+		"firstbyte": 7
+		}, 
+		"SystemStatusGSMSignalDetectable": {
+		"bitoffset": 7, 
+		"firstbyte": 8
+		}, 
+		"SystemStatusVehicleType": {
+		"bitoffset": 6, 
+		"firstbyte": 16
+		}, 
+		"SystemStatusServerIP1": {
+		"firstbyte": 17
+		}, 
+		"SystemStatusServerIP2": {
+		"firstbyte": 23
+		}, 
+		"SystemStatusGPSPositioningStatus": {
+		"bitoffset": 6, 
+		"firstbyte": 14
+		}, 
+		"SystemStatusTrackingState": {
+		"bitoffset": 7, 
+		"firstbyte": 4
+		}, 
+		"SystemStatusLocationState": {
+		"bitoffset": 7, 
+		"firstbyte": 3
+		}, 
+		"SystemStatusGSMReceiveLevel": {
+		"bitoffset": 1, 
+		"firstbyte": 9
+		}, 
+		"SystemStatusSIMCardStatus_Validity": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"SystemStatusBlocking2OutputStatus": {
+		"bitoffset": 7, 
+		"firstbyte": 6
+		}, 
+		"SystemStatusServerPort1": {
+		"firstbyte": 21
+		}, 
+		"SystemStatusBlocking1OutputStatus": {
+		"bitoffset": 7, 
+		"firstbyte": 5
+		}, 
+		"SystemStatusGPSHDOP": {
+		"bitoffset": 5, 
+		"firstbyte": 15
+		}, 
+		"SystemStatusAPNConfig": {
+		"firstbyte": 29
+		}, 
+		"SystemStatusAlarmReadingStatus": {
+		"bitoffset": 7, 
+		"firstbyte": 11
+		}, 
+		"SystemStatusServerPort2": {
+		"firstbyte": 27
+		}, 
+		"SystemStatusAlarmCommandStatus": {
+		"bitoffset": 7, 
+		"firstbyte": 12
+		}, 
+		"SystemStatusSIMCardStatus_Insertion": {
+		"bitoffset": 7, 
+		"firstbyte": 10
+		}, 
+		"SystemStatusGPSNumberSatellites": {
+		"bitoffset": 4, 
+		"firstbyte": 13
+		}
+	}, 
+	"minbytes": 98, 
+	"sentbytes": "21D1"
+	}
+], 
+"data": {
+	"DiagnosticIdentificationCode": {
+	"comment": "Diag evolution number", 
+	"byte": true
+	}, 
+	"Standard Fault": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "No possible classification about the type of fault", 
+		"1": "Open circuit", 
+		"2": "Short circuit to ground", 
+		"3": "Short circuit at battery +", 
+		"4": "Parameter at min limit", 
+		"5": "Parameter at max limit", 
+		"6": "Incoherency, not plausible", 
+		"7": "No signal", 
+		"8": "Below min. threshold", 
+		"9": "Above max. threshold", 
+		"10": "Permanent Low Level", 
+		"11": "Permanent High Level", 
+		"12": "Lines short-circuited", 
+		"13": "Internal electronic anomaly", 
+		"14": "Network default", 
+		"15": "Remote diagnostic", 
+		"16": "Disturbed communication", 
+		"17": "Microcuts", 
+		"18": "Abnormal voltage", 
+		"19": "Value out of range", 
+		"20": "Open circuit or Short circuit to ground", 
+		"21": "Open circuit or Short circuit to battery", 
+		"22": "Initialization / configuration not valid"
+	}
+	}, 
+	"SystemStatusGPSNumberSatellites": {
+	"scaled": true, 
+	"comment": "GPS- number of satellites", 
+	"bitscount": 4, 
+	"unit": "satellite(s)"
+	}, 
+	"SystemStatusTrackingState": {
+	"comment": "Activation state of the tracker", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Inactive", 
+		"1": "Active"
+	}
+	}, 
+	"SystemStatusAlarmCommandStatus": {
+	"comment": "Alarm command state", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Disarm", 
+		"1": "Arm"
+	}
+	}, 
+	"traceability ITG": {
+	"bytesascii": true, 
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24, 
+	"comment": "serial numbers"
+	}, 
+	"Module muet_panne presente": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "NON", 
+		"1": "OUI"
+	}
+	}, 
+	"SupplierNumber.ITG": {
+	"bytesascii": true, 
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24, 
+	"comment": "Supplier ITG code"
+	}, 
+	"V.I.N": {
+	"bytesascii": true, 
+	"bytescount": 17, 
+	"byte": true, 
+	"bitscount": 136, 
+	"comment": "Vehicle identification number"
+	}, 
+	"PartNumber.BasicPartList": {
+	"lists": {
+		"0": "N/A", 
+		"1": "28590"
+	}
+	}, 
+	"ManufacturerIdentificationCode": {
+	"lists": {
+		"0": "Renault R1", 
+		"128": "Nissan N1", 
+		"130": "Nissan N3", 
+		"129": "Nissan N2", 
+		"136": "5DIGITS", 
+		"255": "Renault R3"
+	}
+	}, 
+	"SystemParameterPowerSupplyLevel": {
+	"scaled": true, 
+	"comment": "power supply voltage", 
+	"step": 0.2, 
+	"unit": "V", 
+	"format": "#00.0"
+	}, 
+	"traceability blank 2": {
+	"bytesascii": true, 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40, 
+	"comment": "blanking spaces"
+	}, 
+	"traceability blank": {
+	"bytesascii": true, 
+	"bytescount": 4, 
+	"byte": true, 
+	"bitscount": 32, 
+	"comment": "blanking spaces"
+	}, 
+	"SystemStatusAlarmReadingStatus": {
+	"comment": "Alarm reading status", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Not valid", 
+		"1": "Valid"
+	}
+	}, 
+	"HardwareNumber.BasicPartList": {
+	"lists": {
+		"0": "HARDW"
+	}
+	}, 
+	"Historical Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"SystemConfigurationBatTempoInput": {
+	"comment": "\"+Bat tempo\" input usage", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Not used", 
+		"1": "Used"
+	}
+	}, 
+	"SystemStatusGPSPositioningStatus": {
+	"comment": "GPS- Positionning status", 
+	"bitscount": 2, 
+	"lists": {
+		"0": "not positionned", 
+		"1": "2D positionned", 
+		"2": "3D positionned"
+	}
+	}, 
+	"SimravNumber": {
+	"bytesascii": true, 
+	"bytescount": 20, 
+	"byte": true, 
+	"bitscount": 160
+	}, 
+	"SystemStatusGSMReceiveLevel": {
+	"comment": "GSM receiving level", 
+	"bitscount": 7, 
+	"scaled": true, 
+	"step": 2.0, 
+	"offset": -113.0, 
+	"unit": "dBm"
+	}, 
+	"SystemStatusServerPort1": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"comment": "Server 1 configuration Port"
+	}, 
+	"SystemStatusServerPort2": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"comment": "Server 2 configuration Port"
+	}, 
+	"NDTC": {
+	"scaled": true
+	}, 
+	"SystemParameterBatTempoInputState": {
+	"comment": "\"+Bat tempo\" input state", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Bat Tempo Off", 
+		"1": "Bat Tempo On"
+	}
+	}, 
+	"SystemStatusGPSHDOP": {
+	"comment": "GPS receiving level HDOP", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Ideal", 
+		"2": "Excelent", 
+		"3": "Good", 
+		"4": "Moderate", 
+		"5": "Fair", 
+		"6": "Poor"
+	}
+	}, 
+	"Current Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"traceability month": {
+	"bytesascii": true, 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16, 
+	"comment": "serial numbers"
+	}, 
+	"EditionNumber": {
+	"comment": "Software version(edition) number", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"PartNumber.LowerPart": {
+	"bytesascii": true, 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"SystemStatusSIMCardStatus_Insertion": {
+	"comment": "GSM SIM card state_SIM Card Insertion", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "not inserted", 
+		"1": "Inserted"
+	}
+	}, 
+	"Bus off_panne presente": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "NON", 
+		"1": "OUI"
+	}
+	}, 
+	"SystemConfigurationGPSAntenna": {
+	"comment": "GPS external antenna use", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Not used", 
+		"1": "Used"
+	}
+	}, 
+	"SystemStatusGSMconnectionStatus": {
+	"comment": "GSM connection status", 
+	"bitscount": 2, 
+	"lists": {
+		"0": "not connected", 
+		"1": "Detected but not hooked", 
+		"2": "Authentification in progress", 
+		"3": "Connected"
+	}
+	}, 
+	"SystemStatusGSMSignalDetectable": {
+	"comment": "GSM signal detectable", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Not detectable", 
+		"1": "Detectable"
+	}
+	}, 
+	"Bus off_panne confirmee": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "NON", 
+		"1": "OUI"
+	}
+	}, 
+	"MoreDTC": {
+	"scaled": true, 
+	"signed": true
+	}, 
+	"CalibrationNumber": {
+	"comment": "Numero de DVD de Navigation en Hexa", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"SystemParameterBlocking1Current": {
+	"comment": "Blocking line 1 current", 
+	"bitscount": 16, 
+	"format": "#00000", 
+	"scaled": true, 
+	"bytescount": 2, 
+	"unit": "mA"
+	}, 
+	"SystemParameterBlocking2Current": {
+	"comment": "Blocking line 2 current", 
+	"bitscount": 16, 
+	"format": "#00000", 
+	"scaled": true, 
+	"bytescount": 2, 
+	"unit": "mA"
+	}, 
+	"SystemConfigurationAlarmLine": {
+	"comment": "\"Alarm line\" input usage", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Not used", 
+		"1": "Used"
+	}
+	}, 
+	"Compteur_bus off": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"SystemStatusAPNConfig": {
+	"bytesascii": true, 
+	"bytescount": 70, 
+	"byte": true, 
+	"bitscount": 560, 
+	"comment": "APN configuration"
+	}, 
+	"FirstDTC": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39424": "Missing setting value", 
+		"39425": "GPS external antenna connection", 
+		"39426": "GPS internal error", 
+		"39427": "GSM internal error", 
+		"39428": "Blocking system internal error", 
+		"39429": "Internal battery  discharged or failure", 
+		"39433": "Memory internal error"
+	}
+	}, 
+	"SystemParameterIgnitionInputState": {
+	"comment": "Ignition input state", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Ignition off", 
+		"1": "Ignition on"
+	}
+	}, 
+	"SimCardNumber": {
+	"bytesascii": true, 
+	"bytescount": 20, 
+	"byte": true, 
+	"bitscount": 160
+	}, 
+	"SystemParameterInternalBatteryLevel": {
+	"comment": "Internal battery charge level", 
+	"divideby": 10.0, 
+	"bitscount": 7, 
+	"format": "#0.0", 
+	"scaled": true, 
+	"unit": "V"
+	}, 
+	"Compteur_module muet": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"CRC_VIN": {
+	"comment": "VIN number CRC", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"SystemStatusVehicleType": {
+	"comment": "Vehicle type status", 
+	"bitscount": 2, 
+	"lists": {
+		"0": "VAC", 
+		"1": "VSC X84", 
+		"2": "VSC B32 / L38"
+	}
+	}, 
+	"SystemStatusServerIP1": {
+	"comment": "Server #1 IP", 
+	"bytescount": 4, 
+	"byte": true, 
+	"bitscount": 32
+	}, 
+	"SystemStatusServerIP2": {
+	"comment": "Server #2 IP", 
+	"bytescount": 4, 
+	"byte": true, 
+	"bitscount": 32
+	}, 
+	"traceability manufacturing code": {
+	"bytesascii": true, 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40, 
+	"comment": "serial numbers"
+	}, 
+	"SystemStatusLocationState": {
+	"comment": "Activation state of the location", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Inactive", 
+		"1": "Active"
+	}
+	}, 
+	"SystemStatusSIMCardStatus_Validity": {
+	"comment": "GSM SIM card state_SIM Card Validity", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "not valid", 
+		"1": "Valid"
+	}
+	}, 
+	"SystemStatusBlocking2OutputStatus": {
+	"comment": "Blocking line 2 output status", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "not blocked", 
+		"1": "Blocked"
+	}
+	}, 
+	"Module muet_panne confirmee": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "NON", 
+		"1": "OUI"
+	}
+	}, 
+	"HardwareNumber.LowerPart": {
+	"bytesascii": true, 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"ApprovalNumber.BasicPartList": {
+	"lists": {
+		"0": "N/A"
+	}
+	}, 
+	"traceability year": {
+	"comment": "serial numbers", 
+	"byte": true, 
+	"bytesascii": true
+	}, 
+	"Version messagerie CAN": {
+	"lists": {
+		"0": "Inconnue", 
+		"48": "v3.0", 
+		"49": "v3.1", 
+		"24": "v1.8", 
+		"25": "v1.9", 
+		"26": "v2.0", 
+		"27": "v2.1", 
+		"28": "v2.2"
+	}
+	}, 
+	"SystemParameterInternalBatteryStatus": {
+	"comment": "Internal battery status", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "Internal battery error", 
+		"1": "Internal battery ok"
+	}
+	}, 
+	"SystemStatusBlocking1OutputStatus": {
+	"comment": "Blocking line 1 output status", 
+	"bitscount": 1, 
+	"lists": {
+		"0": "not blocked", 
+		"1": "Blocked"
+	}
+	}, 
+	"SoftwareNumber": {
+	"comment": "Software identification number", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}
+}
+}

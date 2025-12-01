@@ -1,0 +1,1636 @@
+{
+ "screens": {
+  "General Functions": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "General Functions", 
+     "bbox": {
+      "width": 1920, 
+      "top": 120, 
+      "height": 300, 
+      "left": 3000
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Press to start session", 
+     "bbox": {
+      "width": 2535, 
+      "top": 600, 
+      "height": 300, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Erase all configuration", 
+     "bbox": {
+      "width": 2160, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Clear Stored Failures", 
+     "bbox": {
+      "width": 1800, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 4080
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 9060, 
+   "buttons": [
+    {
+     "text": "Start Session", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Start extended Session"
+      }
+     ], 
+     "uniquename": "Start Session_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1320, 
+      "top": 960, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "text": "Reset Configuration", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "ECUreset Configuration"
+      }
+     ], 
+     "uniquename": "Reset Configuration_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1680, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "text": "Clear DTC", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "RAZ DTC"
+      }
+     ], 
+     "uniquename": "Clear DTC_2", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1680, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 4080
+     }
+    }, 
+    {
+     "text": "Restart ECU", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "ECUreset Restart"
+      }
+     ], 
+     "uniquename": "Restart ECU_3", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1680, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 480
+     }
+    }
+   ], 
+   "width": 12060, 
+   "displays": []
+  }, 
+  "System Identification": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "V.I.N", 
+     "request": "DataWrite.VIN", 
+     "width": 665, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4440, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CRC_VIN", 
+     "request": "DataWrite.VIN", 
+     "width": 965, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1800, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 5040
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "VIN", 
+     "bbox": {
+      "width": 1080, 
+      "top": 480, 
+      "height": 300, 
+      "left": 4080
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Serial Number", 
+     "bbox": {
+      "width": 1800, 
+      "top": 7560, 
+      "height": 360, 
+      "left": 4320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Hardware Number", 
+     "bbox": {
+      "width": 1920, 
+      "top": 2040, 
+      "height": 240, 
+      "left": 6600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Software Number", 
+     "bbox": {
+      "width": 1680, 
+      "top": 2040, 
+      "height": 240, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SIM CARD ID", 
+     "bbox": {
+      "width": 1320, 
+      "top": 6000, 
+      "height": 203, 
+      "left": 4440
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System identification", 
+     "bbox": {
+      "width": 2040, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 3960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 9060, 
+   "buttons": [
+    {
+     "text": "Write", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "DataWrite.VIN"
+      }
+     ], 
+     "uniquename": "Write_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 7200
+     }
+    }
+   ], 
+   "width": 11940, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "V.I.N", 
+     "request": "DataRead.VIN", 
+     "width": 650, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4440, 
+      "top": 840, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CRC_VIN", 
+     "request": "DataRead.VIN", 
+     "width": 980, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1800, 
+      "top": 840, 
+      "height": 300, 
+      "left": 5040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "PartNumber.LowerPart", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 2345, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DiagnosticIdentificationCode", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 2720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SupplierNumber.ITG", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 5880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "HardwareNumber.LowerPart", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 2720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 2280, 
+      "height": 360, 
+      "left": 5520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SoftwareNumber", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 1625, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2640, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "EditionNumber", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 1610, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2640, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CalibrationNumber", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "PartNumber.BasicPartList", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 2585, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "HardwareNumber.BasicPartList", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 2975, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2760, 
+      "height": 360, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ApprovalNumber.BasicPartList", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 2960, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ManufacturerIdentificationCode", 
+     "request": "DataRead.Identification.RenaultR2", 
+     "width": 2825, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4120, 
+      "top": 5040, 
+      "height": 360, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "traceability ITG", 
+     "request": "DataRead.SystemTraceability", 
+     "width": 1265, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 7920, 
+      "height": 480, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "traceability year", 
+     "request": "DataRead.SystemTraceability", 
+     "width": 1115, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1800, 
+      "top": 7920, 
+      "height": 480, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "traceability month", 
+     "request": "DataRead.SystemTraceability", 
+     "width": 995, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1920, 
+      "top": 7920, 
+      "height": 480, 
+      "left": 2640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "traceability manufacturing code", 
+     "request": "DataRead.SystemTraceability", 
+     "width": 2060, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 7920, 
+      "height": 480, 
+      "left": 7440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SimravNumber", 
+     "request": "DataRead.SimCardNumber", 
+     "width": 1565, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5880, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 2040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SimCardNumber", 
+     "request": "DataRead.SimCardNumber", 
+     "width": 1565, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5880, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 2040
+     }
+    }
+   ]
+  }, 
+  "System Status": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "GPS", 
+     "bbox": {
+      "width": 600, 
+      "top": 4920, 
+      "height": 300, 
+      "left": 8400
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Alarm", 
+     "bbox": {
+      "width": 600, 
+      "top": 6720, 
+      "height": 300, 
+      "left": 9000
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Blocking", 
+     "bbox": {
+      "width": 1080, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 2160
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Power Supply", 
+     "bbox": {
+      "width": 2400, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 4440
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "GSM", 
+     "bbox": {
+      "width": 600, 
+      "top": 6720, 
+      "height": 300, 
+      "left": 2520
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Inputs", 
+     "bbox": {
+      "width": 600, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 3360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 8940, 
+   "buttons": [], 
+   "width": 11940, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemParameterInternalBatteryStatus", 
+     "request": "DataRead.SystemParameter", 
+     "width": 3620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemParameterBatTempoInputState", 
+     "request": "DataRead.SystemParameter", 
+     "width": 3980, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5640, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemParameterBlocking2Current", 
+     "request": "DataRead.SystemParameter", 
+     "width": 3995, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusBlocking1OutputStatus", 
+     "request": "DataRead.SystemStatus", 
+     "width": 4010, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusBlocking2OutputStatus", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3995, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 4920, 
+      "height": 300, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusGSMconnectionStatus", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3515, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 7680, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusGSMSignalDetectable", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3395, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5160, 
+      "top": 8040, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusGSMReceiveLevel", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3635, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 8400, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusSIMCardStatus_Validity", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3515, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5280, 
+      "top": 7320, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusSIMCardStatus_Insertion", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3515, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 6960, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusAlarmReadingStatus", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3410, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 6960, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusAlarmCommandStatus", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3410, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 7320, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusGPSNumberSatellites", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3455, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 5880, 
+      "height": 480, 
+      "left": 6000
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusGPSHDOP", 
+     "request": "DataRead.SystemStatus", 
+     "width": 2600, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 6840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusGPSPositioningStatus", 
+     "request": "DataRead.SystemStatus", 
+     "width": 3455, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5640, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 6000
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemParameterIgnitionInputState", 
+     "request": "DataRead.SystemParameter", 
+     "width": 3620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5280, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemParameterPowerSupplyLevel", 
+     "request": "DataRead.SystemParameter", 
+     "width": 3800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5280, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 6120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemParameterInternalBatteryLevel", 
+     "request": "DataRead.SystemParameter", 
+     "width": 3935, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5160, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemParameterBlocking1Current", 
+     "request": "DataRead.SystemParameter", 
+     "width": 4010, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 0
+     }
+    }
+   ]
+  }, 
+  "System Configuration": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemConfigurationGPSAntenna", 
+     "request": "DataWrite.SystemConfiguration", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 5400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemConfigurationBatTempoInput", 
+     "request": "DataWrite.SystemConfiguration", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4440, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemConfigurationAlarmLine", 
+     "request": "DataWrite.SystemConfiguration", 
+     "width": 2915, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 5640
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Network Configuration", 
+     "bbox": {
+      "width": 3720, 
+      "top": 6720, 
+      "height": 300, 
+      "left": 3840
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vehicle Configuration", 
+     "bbox": {
+      "width": 2160, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 4440
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Activation", 
+     "bbox": {
+      "width": 960, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 4920
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Read", 
+     "bbox": {
+      "width": 600, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": ":", 
+     "bbox": {
+      "width": 120, 
+      "top": 7560, 
+      "height": 300, 
+      "left": 5400
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": ":", 
+     "bbox": {
+      "width": 120, 
+      "top": 7200, 
+      "height": 300, 
+      "left": 5400
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 9060, 
+   "buttons": [
+    {
+     "text": "Write", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "DataWrite.SystemConfiguration"
+      }
+     ], 
+     "uniquename": "Write_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 8640
+     }
+    }
+   ], 
+   "width": 12060, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusTrackingState", 
+     "request": "DataRead.SystemStatus", 
+     "width": 2630, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusLocationState", 
+     "request": "DataRead.SystemStatus", 
+     "width": 2615, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusVehicleType", 
+     "request": "DataRead.SystemStatus", 
+     "width": 2700, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 1560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusServerIP1", 
+     "request": "DataRead.SystemStatus", 
+     "width": 2300, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 7200, 
+      "height": 300, 
+      "left": 1680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusServerPort1", 
+     "request": "DataRead.SystemStatus", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 7200, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusServerIP2", 
+     "request": "DataRead.SystemStatus", 
+     "width": 2300, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 7560, 
+      "height": 300, 
+      "left": 1680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusServerPort2", 
+     "request": "DataRead.SystemStatus", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 7560, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemStatusAPNConfig", 
+     "request": "DataRead.SystemStatus", 
+     "width": 2660, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 8160, 
+      "height": 300, 
+      "left": 1320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemConfigurationGPSAntenna", 
+     "request": "DataRead.SystemConfiguration", 
+     "width": 3200, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 1080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemConfigurationBatTempoInput", 
+     "request": "DataRead.SystemConfiguration", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SystemConfigurationAlarmLine", 
+     "request": "DataRead.SystemConfiguration", 
+     "width": 2945, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 1320
+     }
+    }
+   ]
+  }
+ }, 
+ "categories": {
+  "PSTs": [
+   "General Functions", 
+   "System Identification", 
+   "System Status", 
+   "System Configuration"
+  ]
+ }
+}

@@ -1,0 +1,4246 @@
+{
+ "screens": {
+  "ECUReset": {
+   "inputs": [
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Type of Reset", 
+     "request": "ECUReset", 
+     "width": 1475, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 630, 
+      "height": 300, 
+      "left": 480
+     }
+    }
+   ], 
+   "color": "rgb(255,128,0)", 
+   "labels": [
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Reset ECU", 
+     "bbox": {
+      "width": 9840, 
+      "top": 120, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 1860, 
+   "buttons": [
+    {
+     "text": "Send", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "10", 
+       "RequestName": "ECUReset"
+      }
+     ], 
+     "uniquename": "Send_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1320, 
+      "top": 600, 
+      "height": 300, 
+      "left": 5280
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": []
+  }, 
+  "Lecture AM/FM Reception level": {
+   "inputs": [], 
+   "color": "rgb(255,255,128)", 
+   "labels": [
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "AM FM Reception Level", 
+     "bbox": {
+      "width": 10080, 
+      "top": 120, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 11700, 
+   "buttons": [], 
+   "width": 10380, 
+   "displays": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Frequency Range", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 1895, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 720, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 1580, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 720, 
+      "height": 300, 
+      "left": 3480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Level Field", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 1895, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 720, 
+      "height": 300, 
+      "left": 6840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM Memory 1 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 3065, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 1440, 
+      "height": 360, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM1 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM1 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2855, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM1 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM Memory 2 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2975, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 3360, 
+      "height": 360, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM2 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM2 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM2 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM Memory 3 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2855, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 5160, 
+      "height": 360, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM3 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM3 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2855, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM3 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 6360, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM Memory 4 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 7080, 
+      "height": 360, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM4 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 7920, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM4 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 7560, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM4 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2895, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 8280, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM Memory 5 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 9000, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM5 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 9720, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM5 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 9360, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "FM5 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2945, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 10080, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM Memory 1 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 3095, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 1440, 
+      "height": 360, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM1 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2855, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM1 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2855, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM1 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM Memory 2 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2990, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 3360, 
+      "height": 360, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM2 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 5400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM2 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 5400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM2 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 5400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM Memory 3 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 3035, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 5160, 
+      "height": 360, 
+      "left": 5400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM3 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 5400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM3 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 5400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM3 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 6360, 
+      "height": 300, 
+      "left": 5400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM Memory 4 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 3035, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 7080, 
+      "height": 360, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "AM4 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 12255, 
+      "height": 300, 
+      "left": 1215
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "AM4 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 12555, 
+      "height": 300, 
+      "left": 1215
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "AM Memory 5 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 12855, 
+      "height": 300, 
+      "left": 1215
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "AM5 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 13155, 
+      "height": 300, 
+      "left": 1215
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "AM5 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 13455, 
+      "height": 300, 
+      "left": 1215
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "AM5 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 13755, 
+      "height": 300, 
+      "left": 1215
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM4 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 8280, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM Memory 5 Frequency Tune", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 9000, 
+      "height": 360, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM5 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 9840, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM5 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 9480, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM5 Field max", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 10200, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM4 Field min", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 7920, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "AM4 Field mean", 
+     "request": "Lecture AM/FM Reception level", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 7560, 
+      "height": 300, 
+      "left": 5280
+     }
+    }
+   ]
+  }, 
+  "Lecture_Ecriture configuration": {
+   "inputs": [
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "VIN", 
+     "request": "Ecriture VIN", 
+     "width": 530, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 720, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "CRC", 
+     "request": "Ecriture VIN", 
+     "width": 530, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "V\u00e9hicule", 
+     "request": "Ecriture Configuration Vehicle", 
+     "width": 1310, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Constructeur", 
+     "request": "Ecriture Configuration Vehicle", 
+     "width": 1325, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "G\u00e9n\u00e9ration Afficheur", 
+     "request": "Ecrire Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Type Afficheur", 
+     "request": "Ecrire Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Type Changeur CD", 
+     "request": "Ecrire Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Type Escamotage", 
+     "request": "Ecrire Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6120, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Mode brouill\u00e9", 
+     "request": "Ecrire Configuration boite", 
+     "width": 2165, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 7920, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Courbe accoustique", 
+     "request": "Ecrire Configuration boite", 
+     "width": 2165, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 8280, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "SDVC", 
+     "request": "Ecrire Configuration boite", 
+     "width": 2165, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 8640, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Restriction d'acc\u00e8s", 
+     "request": "Ecrire Configuration boite", 
+     "width": 2150, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 9000, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Entr\u00e9e temp\u00e9rature", 
+     "request": "Ecrire Configuration boite", 
+     "width": 2135, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 9360, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "AngleMontage", 
+     "request": "Ecrire Configuration boite", 
+     "width": 2390, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 9720, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Type radio", 
+     "request": "Ecrire Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 4680
+     }
+    }
+   ], 
+   "color": "rgb(255,255,128)", 
+   "labels": [
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "", 
+     "bbox": {
+      "width": 4440, 
+      "top": 7800, 
+      "height": 3240, 
+      "left": 4440
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "", 
+     "bbox": {
+      "width": 4320, 
+      "top": 5040, 
+      "height": 6000, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Configuration v\u00e9hicule", 
+     "bbox": {
+      "width": 9840, 
+      "top": 120, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "", 
+     "bbox": {
+      "width": 4320, 
+      "top": 600, 
+      "height": 1440, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "", 
+     "bbox": {
+      "width": 4320, 
+      "top": 600, 
+      "height": 1440, 
+      "left": 4680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Configuration syst\u00e8me", 
+     "bbox": {
+      "width": 9840, 
+      "top": 3960, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "", 
+     "bbox": {
+      "width": 4320, 
+      "top": 2160, 
+      "height": 1440, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "", 
+     "bbox": {
+      "width": 4320, 
+      "top": 2160, 
+      "height": 1440, 
+      "left": 4680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "", 
+     "bbox": {
+      "width": 4320, 
+      "top": 4320, 
+      "height": 3120, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "", 
+     "bbox": {
+      "width": 4320, 
+      "top": 4440, 
+      "height": 3000, 
+      "left": 4440
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Configuration boite", 
+     "bbox": {
+      "width": 9840, 
+      "top": 7440, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 11580, 
+   "buttons": [
+    {
+     "text": "Lire VIN et CRC", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "10", 
+       "RequestName": "Lecture VIN"
+      }
+     ], 
+     "uniquename": "Lire VIN et CRC_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1560, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 1320
+     }
+    }, 
+    {
+     "text": "Ecrire VIN et CRC", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "5", 
+       "RequestName": "Ecriture VIN"
+      }
+     ], 
+     "uniquename": "Ecrire VIN et CRC_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2205, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 5880
+     }
+    }, 
+    {
+     "text": "Lire Type V\u00e9hicule et constructeur", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "5", 
+       "RequestName": "Lecture Configuration V\u00e9hicule"
+      }
+     ], 
+     "uniquename": "Lire Type V\u00e9hicule et constructeur_2", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2625, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Ecrire Type V\u00e9hicule et constructeur", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "10", 
+       "RequestName": "Ecriture Configuration Vehicle"
+      }
+     ], 
+     "uniquename": "Ecrire Type V\u00e9hicule et constructeur_3", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2760, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 5520
+     }
+    }, 
+    {
+     "text": "Lire configuration syst\u00e8me", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "10", 
+       "RequestName": "Lecture Configuration Syst\u00e8me"
+      }
+     ], 
+     "uniquename": "Lire configuration syst\u00e8me_4", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2040, 
+      "top": 7080, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "text": "Ecrire configuration syst\u00e8me", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "10", 
+       "RequestName": "Ecrire Configuration Syst\u00e8me"
+      }
+     ], 
+     "uniquename": "Ecrire configuration syst\u00e8me_5", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 7080, 
+      "height": 300, 
+      "left": 6000
+     }
+    }, 
+    {
+     "text": "Lire configuration boite", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "10", 
+       "RequestName": "Lecture Configuration Bo\u00eete"
+      }
+     ], 
+     "uniquename": "Lire configuration boite_6", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 10320, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "text": "Ecrire configuration boite", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Ecrire Configuration boite"
+      }
+     ], 
+     "uniquename": "Ecrire configuration boite_7", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1920, 
+      "top": 10320, 
+      "height": 300, 
+      "left": 5760
+     }
+    }
+   ], 
+   "width": 9780, 
+   "displays": [
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "VIN", 
+     "request": "Lecture VIN", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 720, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "CRC", 
+     "request": "Lecture VIN", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "V\u00e9hicule", 
+     "request": "Lecture Configuration V\u00e9hicule", 
+     "width": 1310, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "Constructeur", 
+     "request": "Lecture Configuration V\u00e9hicule", 
+     "width": 1310, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "G\u00e9n\u00e9ration Afficheur", 
+     "request": "Lecture Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "Type Afficheur", 
+     "request": "Lecture Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "Type Changeur CD", 
+     "request": "Lecture Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "Type Escamotage", 
+     "request": "Lecture Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6120, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "Mode brouill\u00e9", 
+     "request": "Lecture Configuration Bo\u00eete", 
+     "width": 2015, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 7920, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "Courbe accoustique", 
+     "request": "Lecture Configuration Bo\u00eete", 
+     "width": 2015, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 8280, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "SDVC", 
+     "request": "Lecture Configuration Bo\u00eete", 
+     "width": 2015, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 8640, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "Restriction d'acc\u00e8s", 
+     "request": "Lecture Configuration Bo\u00eete", 
+     "width": 2015, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 9000, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "Entr\u00e9e temp\u00e9rature", 
+     "request": "Lecture Configuration Bo\u00eete", 
+     "width": 2030, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 9360, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "AngleMontage", 
+     "request": "Lecture Configuration Bo\u00eete", 
+     "width": 2345, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 9720, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "Type radio", 
+     "request": "Lecture Configuration Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 120
+     }
+    }
+   ]
+  }, 
+  "IO Control": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Test Control", 
+     "request": "IO Front display RGB", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 840, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RGB Test Card", 
+     "request": "IO Front display RGB", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Test Control", 
+     "request": "IO Front light keyboard", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Test Control", 
+     "request": "IO HP test", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Test Control", 
+     "request": "IO RadioNav On OFF", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 8760, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System state", 
+     "request": "IO RadioNav On OFF", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 9120, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Test Control CD Eject", 
+     "request": "IO CD eject", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6960, 
+      "height": 300, 
+      "left": 120
+     }
+    }
+   ], 
+   "color": "rgb(255,128,64)", 
+   "labels": [
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Action", 
+     "bbox": {
+      "width": 4080, 
+      "top": 600, 
+      "height": 1800, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Status", 
+     "bbox": {
+      "width": 4080, 
+      "top": 600, 
+      "height": 1800, 
+      "left": 4320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "Contr\u00f4le Ecran vid\u00e9o", 
+     "bbox": {
+      "width": 8280, 
+      "top": 240, 
+      "height": 300, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "Contr\u00f4le Front light keyboard", 
+     "bbox": {
+      "width": 8280, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Action", 
+     "bbox": {
+      "width": 4080, 
+      "top": 8520, 
+      "height": 1320, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Status", 
+     "bbox": {
+      "width": 4080, 
+      "top": 8520, 
+      "height": 1320, 
+      "left": 4320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "Contr\u00f4le RadioNav On Off", 
+     "bbox": {
+      "width": 8280, 
+      "top": 8160, 
+      "height": 300, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Action", 
+     "bbox": {
+      "width": 4080, 
+      "top": 3000, 
+      "height": 1080, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Status", 
+     "bbox": {
+      "width": 4080, 
+      "top": 3000, 
+      "height": 1080, 
+      "left": 4320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "Contr\u00f4le HP", 
+     "bbox": {
+      "width": 8280, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Action", 
+     "bbox": {
+      "width": 4080, 
+      "top": 4680, 
+      "height": 1320, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Status", 
+     "bbox": {
+      "width": 4080, 
+      "top": 4680, 
+      "height": 1320, 
+      "left": 4320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "Contr\u00f4le Eject CD", 
+     "bbox": {
+      "width": 8280, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Action", 
+     "bbox": {
+      "width": 4080, 
+      "top": 6600, 
+      "height": 1320, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Status", 
+     "bbox": {
+      "width": 4080, 
+      "top": 6600, 
+      "height": 1320, 
+      "left": 4320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 10140, 
+   "buttons": [
+    {
+     "text": "Actionner", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IO Front display RGB"
+      }
+     ], 
+     "uniquename": "Actionner_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 960, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 1800
+     }
+    }, 
+    {
+     "text": "Actionner", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IO Front light keyboard"
+      }
+     ], 
+     "uniquename": "Actionner_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 840, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 1920
+     }
+    }, 
+    {
+     "text": "Actionner", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IO HP test"
+      }
+     ], 
+     "uniquename": "Actionner_2", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 840, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 2040
+     }
+    }, 
+    {
+     "text": "Actionner", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IO CD eject"
+      }
+     ], 
+     "uniquename": "Actionner_3", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 960, 
+      "top": 7320, 
+      "height": 300, 
+      "left": 2160
+     }
+    }, 
+    {
+     "text": "Actionner", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IO RadioNav On OFF"
+      }
+     ], 
+     "uniquename": "Actionner_4", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 840, 
+      "top": 9480, 
+      "height": 300, 
+      "left": 2280
+     }
+    }
+   ], 
+   "width": 8460, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Output Control Status", 
+     "request": "IO Front display RGB", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 840, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Copy RGB Test Card", 
+     "request": "IO Front display RGB", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Output Control Status", 
+     "request": "IO Front light keyboard", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Output Control Status", 
+     "request": "IO HP test", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Output Control Status", 
+     "request": "IO CD eject", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6840, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Output Control Status", 
+     "request": "IO RadioNav On OFF", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 8760, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Copy System state", 
+     "request": "IO RadioNav On OFF", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 9120, 
+      "height": 300, 
+      "left": 4320
+     }
+    }
+   ]
+  }, 
+  "Lecture Identification_tracability": {
+   "inputs": [], 
+   "color": "rgb(255,255,128)", 
+   "labels": [
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Identification", 
+     "bbox": {
+      "width": 9240, 
+      "top": 120, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Tracability", 
+     "bbox": {
+      "width": 9240, 
+      "top": 3120, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Ident PART", 
+     "request": "Lecture Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 600, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Ident DIAGNOSIS", 
+     "request": "Lecture Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 960, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Ident supplier", 
+     "request": "Lecture Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Ident Hardware", 
+     "request": "Lecture Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Version Software Gateway", 
+     "request": "Lecture Identification", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4440, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Version Software Radio", 
+     "request": "Lecture Identification", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4440, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Version Software Navigation", 
+     "request": "Lecture Identification", 
+     "width": 2915, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4440, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "traceability week of production", 
+     "request": "Lecture System traceability", 
+     "width": 3305, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6000, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "traceability serial number", 
+     "request": "Lecture System traceability", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6000, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Pre Code Radio", 
+     "request": "Lecture System traceability", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6000, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "VIN", 
+     "request": "Lecture VIN", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6000, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "CRC", 
+     "request": "Lecture VIN", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6000, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 120
+     }
+    }
+   ]
+  }, 
+  "Lecture Inputs_Outputs": {
+   "inputs": [], 
+   "color": "rgb(255,255,128)", 
+   "labels": [
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Informations ext\u00e9rieures", 
+     "bbox": {
+      "width": 10800, 
+      "top": 120, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Etat Clavier", 
+     "bbox": {
+      "width": 10800, 
+      "top": 8160, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Etat Satellite sous volant", 
+     "bbox": {
+      "width": 10800, 
+      "top": 4200, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Comic Sans MS", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 15780, 
+   "buttons": [], 
+   "width": 10980, 
+   "displays": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche val", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2060, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche volume +", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2045, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche volume -", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2030, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche sup", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2030, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5880, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche haut", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2030, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche bas", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2030, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat depuis RAZ touche val", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3035, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6480, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat depuis RAZ touche volume +", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3035, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6480, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat depuis RAZ touche volume -", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3050, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6480, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat depuis RAZ touche sup", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3050, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6480, 
+      "top": 5880, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat depuis RAZ touche haut", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3050, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6480, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat depuis RAZ touche bas", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3050, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6480, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Molette A", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 7080, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Molette B", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 7440, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche ONOFF", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 8640, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche EJECTCD", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 9000, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche SOUND", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 9360, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche MODE", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 9720, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche SYP", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 10080, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche 1_6", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 10440, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche SRC", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 10800, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche NAV", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 11160, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche ONOFF depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 8640, 
+      "height": 360, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche EJECTCD depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 9000, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche SOUND depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 9360, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche MODE depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 9720, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche SYP depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 10080, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche 1_6 depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 10440, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche SRC depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 10800, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat touche NAV depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 11160, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Rotary A", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 11640, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat Click rotary", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2240, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 12360, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat Click rotary depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2795, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5400, 
+      "top": 11640, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat fl\u00e8che haut", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2240, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 12840, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat fl\u00e8che bas", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2240, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 13200, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat fl\u00e8che gauche", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2240, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 13560, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat fl\u00e8che droite", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 13920, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat fl\u00e8che haut depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3395, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 12840, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat fl\u00e8che bas depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3395, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 13200, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat fl\u00e8che gauche depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3380, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 13560, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat fl\u00e8che droite depuis RAZ", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 3395, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 13920, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Molette C", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 7800, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Compteur Molette", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2330, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 7080, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Tension batterie", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2300, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 600, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Vitesse du v\u00e9hicule", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2660, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 960, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Temp\u00e9rature ext\u00e9rieure", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 3155, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Dimming", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Longitude GPS", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2495, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Latitude GPS", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2480, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Indicateur de r\u00e9ception GPS", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2735, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Nombre de satellites GPS", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2600, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Gyroscope", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 600, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Freq TMC", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 960, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Niveau TMC", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Taux erreur RDS", 
+     "request": "Lecture param\u00e8tres syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Rotary B", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 12000, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Compteur Rotary", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2195, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 12000, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat signal Mute", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat signal Marche arri\u00e8re", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2525, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat signal radio on", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat signal +APC", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat signal +ACC", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Etat signal Lanternes", 
+     "request": "Lecture Etat Syst\u00e8me", 
+     "width": 2090, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 480
+     }
+    }
+   ]
+  }
+ }, 
+ "categories": {
+  "4R": [
+   "Lecture AM/FM Reception level", 
+   "Lecture Identification_tracability", 
+   "Lecture Inputs_Outputs", 
+   "Lecture_Ecriture configuration", 
+   "ECUReset", 
+   "IO Control"
+  ]
+ }
+}

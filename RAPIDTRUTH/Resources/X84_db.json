@@ -1,0 +1,1956 @@
+{
+	"4r_(nav_milieu_de_gamme)release_bdv3_05.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "BT2",
+				"version": "0000",
+				"diagnostic_version": "4",
+				"soft_version": "0001"
+			},
+			{
+				"supplier_code": "BT2",
+				"version": "0000",
+				"diagnostic_version": "36",
+				"soft_version": "0001"
+			}
+		],
+		"ecuname": "4R (Nav Milieu de Gamme)",
+		"address": "58",
+		"group": "Navigation",
+		"projects": [
+			"x24",
+			"x61",
+			"x70",
+			"x70Ph3",
+			"x74Ph2",
+			"x83",
+			"x83Ph2",
+			"x84",
+			"x84Ph2"
+		]
+	},
+	"Abs_X84_Bosch8.0_F05_V2.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "0102",
+				"diagnostic_version": "13",
+				"soft_version": "6FAD"
+			}
+		],
+		"ecuname": "Abs X84 Bosch8.0 F05 V2",
+		"address": "01",
+		"group": "ABS",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84ABSonly"
+		]
+	},
+	"Abs_X84_Bosch8.0_F10_V3.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "0701",
+				"diagnostic_version": "8",
+				"soft_version": "7164"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0507",
+				"diagnostic_version": "8",
+				"soft_version": "8402"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0904",
+				"diagnostic_version": "8",
+				"soft_version": "71E5"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0905",
+				"diagnostic_version": "8",
+				"soft_version": "71E5"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0804",
+				"diagnostic_version": "8",
+				"soft_version": "717B"
+			}
+		],
+		"ecuname": "Abs X84 Bosch8.0 F10 V3",
+		"address": "01",
+		"group": "ABS",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84ABSonly"
+		]
+	},
+	"Abs_X84_Bosch8.0_F05_R84_V4.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "0101",
+				"diagnostic_version": "14",
+				"soft_version": "6FAE"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0208",
+				"diagnostic_version": "14",
+				"soft_version": "6FAE"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0104",
+				"diagnostic_version": "14",
+				"soft_version": "8F06"
+			}
+		],
+		"ecuname": "Abs X84 Bosch8.0 R84 F05 V4",
+		"address": "01",
+		"group": "ABS",
+		"projects": [
+			"x84",
+			"x84bugABS",
+			"x84Ph2"
+		]
+	},
+	"Abs_X84_Bosch8.1_V1.3.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "0205",
+				"diagnostic_version": "15",
+				"soft_version": "966F"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0207",
+				"diagnostic_version": "15",
+				"soft_version": "966F"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0303",
+				"diagnostic_version": "15",
+				"soft_version": "9900"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0400",
+				"diagnostic_version": "15",
+				"soft_version": "ED72"
+			}
+		],
+		"ecuname": "Abs X84 Bosch8.1 V1.3",
+		"address": "01",
+		"group": "ABS-VDC - ABS-ESP",
+		"projects": [
+			"x84",
+			"x84Ph2"
+		]
+	},
+	"Esp_X84_Bosch8.0_F05_V2.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "0A0D",
+				"diagnostic_version": "9",
+				"soft_version": "6FAC"
+			}
+		],
+		"ecuname": "Esp X84 Bosch8.0 F05 V2",
+		"address": "01",
+		"group": "ABS",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84ABSonly"
+		]
+	},
+	"Esp_X84_Bosch8.0_F10_V3.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "0701",
+				"diagnostic_version": "12",
+				"soft_version": "7161"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0703",
+				"diagnostic_version": "12",
+				"soft_version": "7161"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0809",
+				"diagnostic_version": "12",
+				"soft_version": "71E4"
+			}
+		],
+		"ecuname": "Esp X84 Bosch8.0 F10 V3",
+		"address": "01",
+		"group": "ABS",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84ABSonly"
+		]
+	},
+	"Esp_X84_Bosch8.0_R84_F05_V4.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "0B10",
+				"diagnostic_version": "10",
+				"soft_version": "6FB1"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0B11",
+				"diagnostic_version": "10",
+				"soft_version": "6FB1"
+			}
+		],
+		"ecuname": "Esp X84 Bosch8.0 R84 F05 V4",
+		"address": "01",
+		"group": "ABS",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"Esp_X84_Phase_2_v4.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "0E24",
+				"diagnostic_version": "11",
+				"soft_version": "9AF4"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0F29",
+				"diagnostic_version": "11",
+				"soft_version": "9902"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0E27",
+				"diagnostic_version": "11",
+				"soft_version": "9728"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0F27",
+				"diagnostic_version": "11",
+				"soft_version": "9B02"
+			},
+			{
+				"supplier_code": "037",
+				"version": "0F28",
+				"diagnostic_version": "11",
+				"soft_version": "9B02"
+			},
+			{
+				"supplier_code": "0F2A",
+				"diagnostic_version": "11",
+				"soft_version": "9902"
+			},
+			{
+				"supplier_code": "1100",
+				"diagnostic_version": "18",
+				"soft_version": "ED77"
+			},
+			{
+				"supplier_code": "1200",
+				"diagnostic_version": "18",
+				"soft_version": "EF94"
+			}
+		],
+		"ecuname": "Esp X84 Phase 2 v4",
+		"address": "01",
+		"group": "ABS",
+		"projects": [
+			"x84",
+			"x84ABSonly",
+			"x84bugABS",
+			"x84Ph2"
+		]
+	},
+	"EDC16_C___VE6x_X84_(Diag_OnCan)_F9Q803_F9Q804.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "E600",
+				"diagnostic_version": "88",
+				"soft_version": "00C1"
+			},
+			{
+				"supplier_code": "037",
+				"version": "E601",
+				"diagnostic_version": "88",
+				"soft_version": "00C1"
+			},
+			{
+				"supplier_code": "037",
+				"version": "E601",
+				"diagnostic_version": "81",
+				"soft_version": "00C1"
+			}
+		],
+		"ecuname": "EDC16 C - VE6x X84 (Diag OnCan)_F9Q803_F9Q804",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x84Ph2"
+		]
+	},
+	"EDC16_C___VE7x_X84_(Diag_OnCan)_F9Q803_F9Q804.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "E700",
+				"diagnostic_version": "92",
+				"soft_version": "00C1"
+			}
+		],
+		"ecuname": "EDC16 C - VE7x X84 (Diag OnCan)_F9Q803_F9Q804",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x84",
+			"x84Ph2"
+		]
+	},
+	"EDC16_C___VE8x_X84_(Diag_OnCan)_F9Q803_F9Q804.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "E800",
+				"diagnostic_version": "96",
+				"soft_version": "00C1"
+			}
+		],
+		"ecuname": "EDC16 C - VE8 X84 (Diag OnCan)_F9Q803_F9Q804",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x84",
+			"x84Ph2"
+		]
+	},
+	"EDC16_C___V9EX84_OBD_(Diag_On_Can).json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "9E00",
+				"diagnostic_version": "76",
+				"soft_version": "00C1"
+			},
+			{
+				"supplier_code": "037",
+				"version": "9E01",
+				"diagnostic_version": "76",
+				"soft_version": "00C1"
+			},
+			{
+				"supplier_code": "037",
+				"version": "9E02",
+				"diagnostic_version": "76",
+				"soft_version": "00C1"
+			},
+			{
+				"supplier_code": "037",
+				"version": "9E03",
+				"diagnostic_version": "76",
+				"soft_version": "00C1"
+			},
+			{
+				"supplier_code": "037",
+				"version": "9E03",
+				"diagnostic_version": "68",
+				"soft_version": "00C1"
+			}
+		],
+		"ecuname": "EDC16 C - V9EX84_OBD (Diag On Can)",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"Primera",
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"EDC16CP33___W98___V4___(Diag_On_CAN)_20090305T162717.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "9800",
+				"diagnostic_version": "38",
+				"soft_version": "00C4"
+			},
+			{
+				"supplier_code": "037",
+				"version": "9800",
+				"diagnostic_version": "40",
+				"soft_version": "00C4"
+			}
+		],
+		"ecuname": "EDC16CP33 - W98 - V4 - (Diag On CAN)",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x73Ph2",
+			"x74Ph2",
+			"x81Ph2",
+			"x84Ph2"
+		]
+	},
+	"EDC16CP33_W96a_V2_(Diag_On_CAN).json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "960A",
+				"diagnostic_version": "48",
+				"soft_version": "00C4"
+			},
+			{
+				"supplier_code": "037",
+				"version": "960A",
+				"diagnostic_version": "92",
+				"soft_version": "00C4"
+			},
+			{
+				"supplier_code": "037",
+				"version": "960A",
+				"diagnostic_version": "88",
+				"soft_version": "00C4"
+			},
+			{
+				"supplier_code": "037",
+				"version": "960A",
+				"diagnostic_version": "116",
+				"soft_version": "00C4"
+			},
+			{
+				"supplier_code": "037",
+				"version": "960A",
+				"diagnostic_version": "52",
+				"soft_version": "00C4"
+			},
+			{
+				"supplier_code": "037",
+				"version": "960A",
+				"diagnostic_version": "32",
+				"soft_version": "00C4"
+			}
+		],
+		"ecuname": "EDC16CP33 - W96a_V2_(Diag On CAN)",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x73Ph2",
+			"x74Ph2",
+			"x81Ph2",
+			"x84Ph2"
+		]
+	},
+	"EDC16C36___YC1_(Diag_On_CAN)_F9Q816_F9Q818.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "C000",
+				"diagnostic_version": "68",
+				"soft_version": "0091"
+			},
+			{
+				"supplier_code": "037",
+				"version": "C000",
+				"diagnostic_version": "72",
+				"soft_version": "0091"
+			}
+		],
+		"ecuname": "EDC16C36 - YC1 (Diag On CAN)_F9Q816_F9Q818",
+		"address": "7A",
+		"group": "ECM",
+		"projects": [
+			"x84",
+			"x84Ph2"
+		]
+	},
+	"EDC16C36___YD0x__(Diag_On_CAN)_F9Q816_F9Q818.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "037",
+				"version": "D001",
+				"diagnostic_version": "80",
+				"soft_version": "0091"
+			},
+			{
+				"supplier_code": "037",
+				"version": "D001",
+				"diagnostic_version": "84",
+				"soft_version": "0091"
+			}
+		],
+		"ecuname": "EDC16C36 - YD0x_ (Diag On CAN)_F9Q816_F9Q818",
+		"address": "7A",
+		"group": "ECM",
+		"projects": [
+			"x84Ph2"
+		]
+	},
+	"S3000_AD_CAN_4_X84_FLEXFUEL.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "213",
+				"version": "A800",
+				"diagnostic_version": "88",
+				"soft_version": "00AD"
+			}
+		],
+		"ecuname": "S3000_AD_CAN_4_X84_FLEXFUEL",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x84"
+		]
+	},
+	"S3000_AD_CAN_3_X84ph2_S.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "213",
+				"version": "8000",
+				"diagnostic_version": "76",
+				"soft_version": "00AD"
+			},
+			{
+				"supplier_code": "213",
+				"version": "8300",
+				"diagnostic_version": "76",
+				"soft_version": "00AD"
+			},
+			{
+				"supplier_code": "213",
+				"version": "8400",
+				"diagnostic_version": "76",
+				"soft_version": "00AD"
+			},
+			{
+				"supplier_code": "213",
+				"version": "8400",
+				"diagnostic_version": "84",
+				"soft_version": "00AD"
+			}
+		],
+		"ecuname": "S3000_AD_CAN_3_X84ph2_S",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x84",
+			"x84Ph2"
+		]
+	},
+	"S3000-A774_Can_1_X84.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "213",
+				"version": "7000",
+				"diagnostic_version": "68",
+				"soft_version": "00A7"
+			},
+			{
+				"supplier_code": "213",
+				"version": "6200",
+				"diagnostic_version": "68",
+				"soft_version": "00A7"
+			},
+			{
+				"supplier_code": "213",
+				"version": "6100",
+				"diagnostic_version": "68",
+				"soft_version": "00A7"
+			},
+			{
+				"supplier_code": "213",
+				"version": "7300",
+				"diagnostic_version": "68",
+				"soft_version": "00A7"
+			},
+			{
+				"supplier_code": "213",
+				"version": "7400",
+				"diagnostic_version": "68",
+				"soft_version": "00A7"
+			}
+		],
+		"ecuname": "S3000-A774_Can_1_X84",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"S3000-A7A3_Can_1_X84.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "213",
+				"version": "A200",
+				"diagnostic_version": "72",
+				"soft_version": "00A7"
+			},
+			{
+				"supplier_code": "213",
+				"version": "A300",
+				"diagnostic_version": "72",
+				"soft_version": "00A7"
+			}
+		],
+		"ecuname": "S3000-A7A3_Can_1_X84",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"DCM12_L4DC1_v12.2_20091214T104223.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "153",
+				"version": "00C1",
+				"diagnostic_version": "84",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00C1",
+				"diagnostic_version": "88",
+				"soft_version": "004D"
+			}
+		],
+		"ecuname": "DCM12 - L4DC1 - v12.2",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x44",
+			"x61",
+			"x77",
+			"x84",
+			"x84Ph2",
+			"x85"
+		]
+	},
+	"DCM12_L4DB2_a_L4DB5_v12.0_20090916T092155.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "153",
+				"version": "00B0",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B0",
+				"diagnostic_version": "84",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B1",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B1",
+				"diagnostic_version": "84",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B2",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B2",
+				"diagnostic_version": "84",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B2",
+				"diagnostic_version": "88",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B2",
+				"diagnostic_version": "92",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B3",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B3",
+				"diagnostic_version": "84",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B3",
+				"diagnostic_version": "88",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B3",
+				"diagnostic_version": "92",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B5",
+				"diagnostic_version": "92",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B5",
+				"diagnostic_version": "88",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B5",
+				"diagnostic_version": "84",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00B5",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0072",
+				"diagnostic_version": "4",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0073",
+				"diagnostic_version": "4",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0074",
+				"diagnostic_version": "4",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0075",
+				"diagnostic_version": "4",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0072",
+				"diagnostic_version": "76",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0073",
+				"diagnostic_version": "76",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0074",
+				"diagnostic_version": "76",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0075",
+				"diagnostic_version": "76",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0060",
+				"diagnostic_version": "72",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "0091",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00A0",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00A1",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00A2",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00A3",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			},
+			{
+				"supplier_code": "153",
+				"version": "00A5",
+				"diagnostic_version": "80",
+				"soft_version": "004D"
+			}
+		],
+		"ecuname": "DCM12 - L4DB0 à L4DB5 - v12.0",
+		"address": "7A",
+		"group": "Injection",
+		"projects": [
+			"x44",
+			"x61",
+			"x77",
+			"x84",
+			"x84Ph2",
+			"x85"
+		]
+	},
+	"SVT_RR220_V0.9_20100331T084105.json": {
+		"protocol": "KWP2000",
+		"autoidents": [
+			{
+				"supplier_code": "AVH",
+				"version": "0000",
+				"diagnostic_version": "4",
+				"soft_version": "0000"
+			}
+		],
+		"ecuname": "SVT RR220",
+		"address": "3F",
+		"group": "Navigation",
+		"projects": [
+			"x35",
+			"x38",
+			"x52",
+			"x62",
+			"x64",
+			"x65",
+			"x70Ph3",
+			"x76",
+			"x79",
+			"x84",
+			"x84ABSonly",
+			"x84bugABS",
+			"x84Ph2",
+			"x90"
+		]
+	},
+	"DP0_TA2000_N900.json": {
+		"protocol": "KWP2000",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "9000",
+				"diagnostic_version": "10",
+				"soft_version": "9418"
+			},
+			{
+				"supplier_code": "001",
+				"version": "9000",
+				"diagnostic_version": "8",
+				"soft_version": "9418"
+			}
+		],
+		"ecuname": "DP0-TA2000-N900",
+		"address": "6E",
+		"group": "BVA",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"DP0_TA200X_X84ph1_K9K729.json": {
+		"protocol": "KWP2000",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "4A30",
+				"diagnostic_version": "21",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "4A30",
+				"diagnostic_version": "16",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "4A30",
+				"diagnostic_version": "17",
+				"soft_version": "9400"
+			}
+		],
+		"ecuname": "DP0_TA200X_X84ph1_K9K729",
+		"address": "6E",
+		"group": "BVA",
+		"projects": [
+			"x84",
+			"x84bugABS"
+		]
+	},
+	"DP0_TA2000_X84_PS_NF_v1.json": {
+		"protocol": "KWP2000",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "F000",
+				"diagnostic_version": "16",
+				"soft_version": "941E"
+			},
+			{
+				"supplier_code": "001",
+				"version": "F000",
+				"diagnostic_version": "17",
+				"soft_version": "941E"
+			}
+		],
+		"ecuname": "DP0_TA2000_X84_PS_NF_v1",
+		"address": "6E",
+		"group": "BVA",
+		"projects": [
+			"x84",
+			"x84bugABS"
+		]
+	},
+	"DP0_TA2000_X84_PS_NB_NC_v1.json": {
+		"protocol": "KWP2000",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "C200",
+				"diagnostic_version": "16",
+				"soft_version": "941B"
+			},
+			{
+				"supplier_code": "001",
+				"version": "C400",
+				"diagnostic_version": "16",
+				"soft_version": "941B"
+			},
+			{
+				"supplier_code": "001",
+				"version": "A200",
+				"diagnostic_version": "16",
+				"soft_version": "9419"
+			},
+			{
+				"supplier_code": "001",
+				"version": "B000",
+				"diagnostic_version": "16",
+				"soft_version": "941A"
+			},
+			{
+				"supplier_code": "001",
+				"version": "C200",
+				"diagnostic_version": "17",
+				"soft_version": "941B"
+			},
+			{
+				"supplier_code": "001",
+				"version": "C400",
+				"diagnostic_version": "17",
+				"soft_version": "941B"
+			},
+			{
+				"supplier_code": "001",
+				"version": "A200",
+				"diagnostic_version": "17",
+				"soft_version": "9419"
+			},
+			{
+				"supplier_code": "001",
+				"version": "B000",
+				"diagnostic_version": "17",
+				"soft_version": "941A"
+			}
+		],
+		"ecuname": "DP0_TA2000_X84_PS_NB_NC_v1",
+		"address": "6E",
+		"group": "BVA",
+		"projects": [
+			"x84",
+			"x84bugABS"
+		]
+	},
+	"DP0_TA200X_X84ph1_F4_K4.json": {
+		"protocol": "KWP2000",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "4910",
+				"diagnostic_version": "21",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "4910",
+				"diagnostic_version": "16",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "4910",
+				"diagnostic_version": "17",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "F000",
+				"diagnostic_version": "21",
+				"soft_version": "941E"
+			},
+			{
+				"supplier_code": "001",
+				"version": "5210",
+				"diagnostic_version": "21",
+				"soft_version": "9400"
+			}
+		],
+		"ecuname": "DP0_TA200X_X84ph1_F4 K4",
+		"address": "6E",
+		"group": "BVA",
+		"projects": [
+			"x84"
+		]
+	},
+	"DP0_TA200X-X84Ph2_F4_K4.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "4A10",
+				"diagnostic_version": "20",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "4B00",
+				"diagnostic_version": "20",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "4C00",
+				"diagnostic_version": "20",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "4C20",
+				"diagnostic_version": "20",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "5210",
+				"diagnostic_version": "24",
+				"soft_version": "9400"
+			},
+			{
+				"supplier_code": "001",
+				"version": "4C10",
+				"diagnostic_version": "20",
+				"soft_version": "9400"
+			}
+		],
+		"ecuname": "DP0_TA200X-X84Ph2_F4_K4",
+		"address": "6E",
+		"group": "BVA",
+		"projects": [
+			"x84Ph2"
+		]
+	},
+	"DP0_TA200X_X84ph2_F9.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "4F00",
+				"diagnostic_version": "14",
+				"soft_version": "9400"
+			}
+		],
+		"ecuname": "DP0_TA200X-X84ph2-F9",
+		"address": "6E",
+		"group": "BVA",
+		"projects": [
+			"x84Ph2"
+		]
+	},
+	"AJ0_J84ph2_post-AF_v2.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "APY",
+				"version": "686B",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			},
+			{
+				"supplier_code": "APY",
+				"version": "686C",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			},
+			{
+				"supplier_code": "APY",
+				"version": "6863",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			},
+			{
+				"supplier_code": "APY",
+				"version": "686D",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			},
+			{
+				"supplier_code": "APY",
+				"version": "6864",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			},
+			{
+				"supplier_code": "APY",
+				"version": "6865",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			},
+			{
+				"supplier_code": "APY",
+				"version": "6866",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			},
+			{
+				"supplier_code": "APY",
+				"version": "686E",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			},
+			{
+				"supplier_code": "APY",
+				"version": "6867",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			},
+			{
+				"supplier_code": "APY",
+				"version": "6868",
+				"diagnostic_version": "4",
+				"soft_version": "0068"
+			}
+		],
+		"ecuname": "AJ0_J84ph2_post-AF_v2",
+		"address": "6E",
+		"group": "BVA",
+		"projects": [
+			"x84Ph2"
+		]
+	},
+	"UCH_84_J84_03_60.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "0304",
+				"diagnostic_version": "72",
+				"soft_version": "0322"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0350",
+				"diagnostic_version": "72",
+				"soft_version": "0322"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0300",
+				"diagnostic_version": "72",
+				"soft_version": "0322"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0302",
+				"diagnostic_version": "72",
+				"soft_version": "0322"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0301",
+				"diagnostic_version": "72",
+				"soft_version": "0322"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0353",
+				"diagnostic_version": "72",
+				"soft_version": "0322"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0360",
+				"diagnostic_version": "72",
+				"soft_version": "0322"
+			}
+		],
+		"ecuname": "UCH 84_J84_03_60",
+		"address": "26",
+		"group": "UCBIC/BFR",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"UCH_84_0B_xx_serie.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "0B00",
+				"diagnostic_version": "68",
+				"soft_version": "0302"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0B20",
+				"diagnostic_version": "68",
+				"soft_version": "0302"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0B30",
+				"diagnostic_version": "68",
+				"soft_version": "0302"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0B40",
+				"diagnostic_version": "68",
+				"soft_version": "0302"
+			}
+		],
+		"ecuname": "UCH 84_0B_xx_série",
+		"address": "26",
+		"group": "UCBIC/BFR",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"UCH_84P2_85_V2.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "0200",
+				"diagnostic_version": "72",
+				"soft_version": "0822"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0200",
+				"diagnostic_version": "76",
+				"soft_version": "0822"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0200",
+				"diagnostic_version": "72",
+				"soft_version": "1408"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0210",
+				"diagnostic_version": "72",
+				"soft_version": "1408"
+			}
+		],
+		"ecuname": "UCH 84/85_V2",
+		"address": "26",
+		"group": "UCBIC/BFR",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS",
+			"x85"
+		]
+	},
+	"UCH_84P2_85_V3.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "0300",
+				"diagnostic_version": "76",
+				"soft_version": "0822"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0310",
+				"diagnostic_version": "76",
+				"soft_version": "0822"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0310",
+				"diagnostic_version": "79",
+				"soft_version": "1408"
+			}
+		],
+		"ecuname": "UCH 84/85_V3",
+		"address": "26",
+		"group": "UCBIC/BFR",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS",
+			"x85"
+		]
+	},
+	"UCH_84P2_85_V5_4.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "0500",
+				"diagnostic_version": "79",
+				"soft_version": "1408"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0510",
+				"diagnostic_version": "79",
+				"soft_version": "1408"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0600",
+				"diagnostic_version": "79",
+				"soft_version": "1408"
+			}
+		],
+		"ecuname": "UCH 84/85_V5",
+		"address": "26",
+		"group": "UCBIC/BFR",
+		"projects": [
+			"x84Ph2",
+			"x85"
+		]
+	},
+	"UCH_84P2_85_V7_en_cours.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "0700",
+				"diagnostic_version": "79",
+				"soft_version": "1408"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0710",
+				"diagnostic_version": "79",
+				"soft_version": "1408"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0720",
+				"diagnostic_version": "79",
+				"soft_version": "1408"
+			}
+		],
+		"ecuname": "UCH 84/85_V7",
+		"address": "26",
+		"group": "UCBIC/BFR",
+		"projects": [
+			"x84Ph2",
+			"x85"
+		]
+	},
+	"UCH_84P2_85_V9_3.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "0900",
+				"diagnostic_version": "80",
+				"soft_version": "1408"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0930",
+				"diagnostic_version": "80",
+				"soft_version": "1408"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0950",
+				"diagnostic_version": "84",
+				"soft_version": "1408"
+			}
+		],
+		"ecuname": "UCH 84/85_V9",
+		"address": "26",
+		"group": "UCBIC/BFR",
+		"projects": [
+			"x84Ph2",
+			"x85"
+		]
+	},
+	"UPC_84_(v4.1).json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "001",
+				"version": "0601",
+				"diagnostic_version": "68",
+				"soft_version": "0202"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0600",
+				"diagnostic_version": "68",
+				"soft_version": "0202"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0700",
+				"diagnostic_version": "68",
+				"soft_version": "0202"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0800",
+				"diagnostic_version": "68",
+				"soft_version": "0202"
+			},
+			{
+				"supplier_code": "001",
+				"version": "0900",
+				"diagnostic_version": "68",
+				"soft_version": "0202"
+			},
+			{
+				"supplier_code": "001",
+				"version": "2900",
+				"diagnostic_version": "68",
+				"soft_version": "0202"
+			},
+			{
+				"supplier_code": "001",
+				"version": "2A00",
+				"diagnostic_version": "68",
+				"soft_version": "0202"
+			}
+		],
+		"ecuname": "UPC 84 (v4.1)",
+		"address": "27",
+		"group": "UPC",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"USM_X84_C5_45.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "414",
+				"version": "4500",
+				"diagnostic_version": "72",
+				"soft_version": "00C5"
+			},
+			{
+				"supplier_code": "414",
+				"version": "5000",
+				"diagnostic_version": "72",
+				"soft_version": "00C5"
+			}
+		],
+		"ecuname": "USM 84 Phase 2 C5_4",
+		"address": "27",
+		"group": "UPC",
+		"projects": [
+			"x84Ph2"
+		]
+	},
+	"FPA_J84_B73_J81_V1.06.json": {
+		"protocol": "KWP2000",
+		"autoidents": [
+			{
+				"supplier_code": "AFJ",
+				"version": "0002",
+				"diagnostic_version": "0",
+				"soft_version": "B300"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "0005",
+				"diagnostic_version": "0",
+				"soft_version": "B303"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "0004",
+				"diagnostic_version": "0",
+				"soft_version": "B302"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "0003",
+				"diagnostic_version": "0",
+				"soft_version": "B301"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3000",
+				"diagnostic_version": "0",
+				"soft_version": "C306"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3000",
+				"diagnostic_version": "0",
+				"soft_version": "D101"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3000",
+				"diagnostic_version": "0",
+				"soft_version": "D110"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "FFFF",
+				"diagnostic_version": "4",
+				"soft_version": "66F9"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "0041",
+				"diagnostic_version": "4",
+				"soft_version": "8512"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "0041",
+				"diagnostic_version": "4",
+				"soft_version": "8603"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "0041",
+				"diagnostic_version": "4",
+				"soft_version": "8601"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "5A00",
+				"diagnostic_version": "4",
+				"soft_version": "8601"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "000B",
+				"diagnostic_version": "4",
+				"soft_version": "8601"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "0041",
+				"diagnostic_version": "4",
+				"soft_version": "850F"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3043",
+				"diagnostic_version": "4",
+				"soft_version": "8603"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "000B",
+				"diagnostic_version": "4",
+				"soft_version": "8513"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "000D",
+				"diagnostic_version": "4",
+				"soft_version": "9120"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "0041",
+				"diagnostic_version": "4",
+				"soft_version": "8511"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3000",
+				"diagnostic_version": "4",
+				"soft_version": "9110"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3000",
+				"diagnostic_version": "4",
+				"soft_version": "9120"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3044",
+				"diagnostic_version": "4",
+				"soft_version": "8603"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3043",
+				"diagnostic_version": "4",
+				"soft_version": "8513"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3000",
+				"diagnostic_version": "4",
+				"soft_version": "9141"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3000",
+				"diagnostic_version": "8",
+				"soft_version": "E506"
+			}
+		],
+		"ecuname": "FPA_J84_B73_J81_V1.06",
+		"address": "0D",
+		"group": "Frein de parking électrique",
+		"projects": [
+			"x73",
+			"x81",
+			"x84",
+			"x84Ph2"
+		]
+	},
+	"FPA_X84_DiagOnCan_V5_20140203T095526.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "AFJ",
+				"version": "2000",
+				"diagnostic_version": "4",
+				"soft_version": "C102"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3030",
+				"diagnostic_version": "13",
+				"soft_version": "DB03"
+			},
+			{
+				"supplier_code": "AFJ",
+				"version": "3030",
+				"diagnostic_version": "17",
+				"soft_version": "DB82"
+			}
+		],
+		"ecuname": "FPA_X84_DiagOnCan_V5",
+		"address": "0D",
+		"group": "Frein de parking électrique",
+		"projects": [
+			"x84Ph2"
+		]
+	},
+	"DAE84_PP.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "DZ9",
+				"version": "0000",
+				"diagnostic_version": "4",
+				"soft_version": "8341"
+			},
+			{
+				"supplier_code": "DZ9",
+				"version": "0001",
+				"diagnostic_version": "4",
+				"soft_version": "8341"
+			},
+			{
+				"supplier_code": "DZ9",
+				"version": "0002",
+				"diagnostic_version": "4",
+				"soft_version": "8341"
+			},
+			{
+				"supplier_code": "AKR",
+				"version": "0002",
+				"diagnostic_version": "4",
+				"soft_version": "8341"
+			},
+			{
+				"supplier_code": "AKR",
+				"version": "0003",
+				"diagnostic_version": "4",
+				"soft_version": "8341"
+			},
+			{
+				"supplier_code": "DL7",
+				"version": "0003",
+				"diagnostic_version": "4",
+				"soft_version": "8341"
+			},
+			{
+				"supplier_code": "DZ9",
+				"version": "0003",
+				"diagnostic_version": "4",
+				"soft_version": "8341"
+			}
+		],
+		"ecuname": "DAE84_PP",
+		"address": "04",
+		"group": "Direction assistée",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"DAE84_PSP.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "DL7",
+				"version": "0000",
+				"diagnostic_version": "4",
+				"soft_version": "7788"
+			},
+			{
+				"supplier_code": "DL7",
+				"version": "0001",
+				"diagnostic_version": "4",
+				"soft_version": "7788"
+			}
+		],
+		"ecuname": "DAE84_PSP",
+		"address": "04",
+		"group": "Direction assistée",
+		"projects": [
+			"x84",
+			"x84Ph2",
+			"x84bugABS"
+		]
+	},
+	"DAE_J84_NSK_PSP_PS.json": {
+		"protocol": "CAN",
+		"autoidents": [
+			{
+				"supplier_code": "NSK",
+				"version": "0000",
+				"diagnostic_version": "5",
+				"soft_version": "1602"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0000",
+				"diagnostic_version": "5",
+				"soft_version": "1700"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0000",
+				"diagnostic_version": "5",
+				"soft_version": "1701"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0000",
+				"diagnostic_version": "5",
+				"soft_version": "1800"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0000",
+				"diagnostic_version": "5",
+				"soft_version": "1801"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0000",
+				"diagnostic_version": "5",
+				"soft_version": "1802"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0002",
+				"diagnostic_version": "5",
+				"soft_version": "1802"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0003",
+				"diagnostic_version": "5",
+				"soft_version": "1802"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0002",
+				"diagnostic_version": "5",
+				"soft_version": "1800"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0000",
+				"diagnostic_version": "5",
+				"soft_version": "1900"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0002",
+				"diagnostic_version": "5",
+				"soft_version": "1900"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0003",
+				"diagnostic_version": "5",
+				"soft_version": "1900"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0004",
+				"diagnostic_version": "5",
+				"soft_version": "1900"
+			},
+			{
+				"supplier_code": "AQ5",
+				"version": "0002",
+				"diagnostic_version": "5",
+				"soft_version": "1802"
+			},
+			{
+				"supplier_code": "AQ5",
+				"version": "0003",
+				"diagnostic_version": "5",
+				"soft_version": "1802"
+			},
+			{
+				"supplier_code": "AQ5",
+				"version": "0003",
+				"diagnostic_version": "5",
+				"soft_version": "1900"
+			},
+			{
+				"supplier_code": "AQ5",
+				"version": "0004",
+				"diagnostic_version": "5",
+				"soft_version": "1900"
+			},
+			{
+				"supplier_code": "AQ5",
+				"version": "0005",
+				"diagnostic_version": "5",
+				"soft_version": "1900"
+			},
+			{
+				"supplier_code": "NSK",
+				"version": "0005",
+				"diagnostic_version": "5",
+				"soft_version": "1900"
+			},
+			{
+				"supplier_code": "231",
+				"version": "0005",
+				"diagnostic_version": "5",
+				"soft_version": "1900"
+			}
+		],
+		"ecuname": "DAE_J84_NSK_PSP_PS",
+		"address": "04",
+		"group": "Direction assistée",
+		"projects": [
+			"x84",
+			"x84bugABS",
+			"x84Ph2"
+		]
+	},
+	"Climatisation_regulee_Redesign_P0_X84_SERIE.json": {
+		"protocol": "CAN",
+		"autoidents":
