@@ -10,6 +10,43 @@ struct ECUSelectorView: View {
     @State private var ecus: [DatabaseECU] = []
     @State private var searchText = ""
     @State private var isLoading = true
+    @State private var selectedDB: URL?
+
+    // List all available DB files
+    private var availableDBs: [URL] {
+        var urls: [URL] = []
+
+        // 1. Try to find explicit known DBs to ensure they are present even if scan fails
+        // Check root
+        if let x84 = Bundle.main.url(forResource: "X84_db", withExtension: "json") {
+            urls.append(x84)
+        }
+        // Check Resources folder explicitly (if folder reference is used)
+        else if let x84Res = Bundle.main.url(forResource: "X84_db", withExtension: "json", subdirectory: "Resources") {
+            urls.append(x84Res)
+        }
+
+        // 2. Scan for others in root
+        if let found = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil) {
+            let others = found.filter {
+                $0.lastPathComponent.hasSuffix("_db.json") &&
+                $0.lastPathComponent != "X84_db.json"
+            }
+            urls.append(contentsOf: others)
+        }
+
+        // 3. Scan for others in Resources
+        if let foundRes = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: "Resources") {
+            let othersRes = foundRes.filter {
+                $0.lastPathComponent.hasSuffix("_db.json") &&
+                $0.lastPathComponent != "X84_db.json" &&
+                !urls.contains($0) // Avoid duplicates
+            }
+            urls.append(contentsOf: othersRes)
+        }
+
+        return urls
+    }
 
     var filteredECUs: [DatabaseECU] {
         if searchText.isEmpty {
@@ -33,7 +70,21 @@ struct ECUSelectorView: View {
             if isLoading {
                 ProgressView(AppStrings.ECUDatabase.loading)
             } else if ecus.isEmpty {
-                ContentUnavailableView(AppStrings.ECUDatabase.empty, systemImage: "xmark.circle")
+                 VStack {
+                    if availableDBs.count > 1 {
+                        Menu {
+                            ForEach(availableDBs, id: \.self) { url in
+                                Button(url.lastPathComponent) {
+                                    Task { await loadDB(url: url) }
+                                }
+                            }
+                        } label: {
+                            Label("Select Database", systemImage: "cylinder.split.1x2")
+                        }
+                        .padding()
+                    }
+                    ContentUnavailableView(AppStrings.ECUDatabase.empty, systemImage: "xmark.circle")
+                }
             } else {
                 List {
                     ForEach(groupedECUs, id: \.key) { groupName, ecus in
@@ -57,26 +108,52 @@ struct ECUSelectorView: View {
                     }
                 }
                 .searchable(text: $searchText, prompt: AppStrings.ECUDatabase.searchPrompt)
+                .toolbar {
+                    if availableDBs.count > 1 {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Menu {
+                                ForEach(availableDBs, id: \.self) { url in
+                                    Button {
+                                        Task { await loadDB(url: url) }
+                                    } label: {
+                                        if selectedDB == url {
+                                            Label(url.lastPathComponent, systemImage: "checkmark")
+                                        } else {
+                                            Text(url.lastPathComponent)
+                                        }
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "cylinder.split.1x2")
+                            }
+                        }
+                    }
+                }
             }
         }
         .navigationTitle(AppStrings.ECUDatabase.title)
         .task {
-            await loadDB()
+            // Load default or first available
+            let dbs = availableDBs
+            if let defaultDB = dbs.first(where: { $0.lastPathComponent == "X84_db.json" }) ?? dbs.first {
+                await loadDB(url: defaultDB)
+            } else {
+                print("No database found.")
+                await MainActor.run { self.isLoading = false }
+            }
         }
     }
 
-    private func loadDB() async {
-        guard let url = Bundle.main.url(forResource: "X84_db", withExtension: "json") else {
-            print("X84_db.json not found")
-            await MainActor.run { self.isLoading = false }
-            return
+    private func loadDB(url: URL) async {
+        await MainActor.run {
+            self.isLoading = true
+            self.selectedDB = url
         }
 
         do {
             let data = try Data(contentsOf: url)
             let dict = try JSONDecoder().decode([String: DatabaseECU].self, from: data)
             let sortedECUs = dict.compactMap { key, value -> DatabaseECU? in
-                guard AllowedECUs.isAllowed(value.ecuname) else { return nil }
                 var ecu = value
                 ecu.fileName = key
                 return ecu
@@ -87,7 +164,7 @@ struct ECUSelectorView: View {
                 self.isLoading = false
             }
         } catch {
-            print("Error loading X84_db.json: \(error)")
+            print("Error loading \(url.lastPathComponent): \(error)")
             await MainActor.run { self.isLoading = false }
         }
     }
@@ -103,7 +180,7 @@ struct ECULoaderView: View {
     var body: some View {
         Group {
             if let definition = definition {
-                ECUDiagnosticsView(definition: definition, obdService: obdService)
+                ECUDiagnosticsView(definition: definition, ecu: ecu, obdService: obdService)
                     .navigationTitle(ecu.ecuname)
             } else if error != nil {
                 ContentUnavailableView(AppStrings.ECUDatabase.errorTitle,
@@ -135,7 +212,18 @@ struct ECULoaderView: View {
                 print("Decode error for \(filename): \(error)")
                 self.error = error
             }
-        } else {
+        }
+        // Also check Resources subdirectory
+        else if let url = Bundle.main.url(forResource: name, withExtension: finalExt, subdirectory: "Resources") {
+            do {
+                let data = try Data(contentsOf: url)
+                self.definition = try JSONDecoder().decode(ECUDefinition.self, from: data)
+            } catch {
+                print("Decode error for \(filename): \(error)")
+                self.error = error
+            }
+        }
+        else {
             print("File not found: \(filename)")
             self.error = NSError(domain: "App", code: 404, userInfo: nil)
         }
