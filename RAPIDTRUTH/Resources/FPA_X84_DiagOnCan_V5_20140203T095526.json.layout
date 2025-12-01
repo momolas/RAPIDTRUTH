@@ -1,0 +1,8754 @@
+{
+ "screens": {
+  "02-04 - Freinage d'urgence": {
+   "inputs": [], 
+   "color": "rgb(0,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Diag des prestations: Freinage d'urgence", 
+     "bbox": {
+      "width": 6840, 
+      "top": 360, 
+      "height": 840, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Freinage d'urgence", 
+     "bbox": {
+      "width": 1710, 
+      "top": 1680, 
+      "height": 4335, 
+      "left": 9000
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "\u00e0 1 pendant le freinage", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3495, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "n'intervient pas", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3840, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "< 1 durant le serrage", 
+     "bbox": {
+      "width": 2640, 
+      "top": 4200, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "fluctue selon bloccage de roues arri\u00e8res", 
+     "bbox": {
+      "width": 2640, 
+      "top": 5040, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Si tous les param\u00e8tres vivent dans leurs seuils alors le syst\u00e8me est OK (cette prestation n'est pas vendue aupr\u00e8s des clients)", 
+     "bbox": {
+      "width": 9600, 
+      "top": 5520, 
+      "height": 495, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Donn\u00e9es filaires", 
+     "bbox": {
+      "width": 960, 
+      "top": 3480, 
+      "height": 1080, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Donn\u00e9es internes", 
+     "bbox": {
+      "width": 960, 
+      "top": 4920, 
+      "height": 480, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "> 0 km/h  ?", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2400, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Donn\u00e9es can", 
+     "bbox": {
+      "width": 960, 
+      "top": 1680, 
+      "height": 1440, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "Etat a 2 ?", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2040, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "> 0 km/h  ?", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2760, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "> 0 km/h  ?", 
+     "bbox": {
+      "width": 2640, 
+      "top": 1680, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6660, 
+   "buttons": [], 
+   "width": 10740, 
+   "displays": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Position switch serrage statique", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Position switch desserrage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Position switch serrage dyn", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Mesure effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2975, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Etat moteur", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Vitesse roue arri\u00e8re gauche", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 3065, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Vitesse roue arri\u00e8re droite", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 1440
+     }
+    }
+   ]
+  }, 
+  "02-02 - Serrage automatique": {
+   "inputs": [], 
+   "color": "rgb(0,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Diag des prestations: Serrage automatique", 
+     "bbox": {
+      "width": 6840, 
+      "top": 360, 
+      "height": 840, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Serrage automatique", 
+     "bbox": {
+      "width": 1710, 
+      "top": 1440, 
+      "height": 4095, 
+      "left": 9000
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "serrage possible si  V -> 0 km/h ", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2160, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Si tous les param\u00e8tres vivent dans leurs seuils alors le syst\u00e8me est OK  *(la prestation est d\u00e9clench\u00e9e si l'(injection \u00e0 l'arr\u00eat ou \u00e9tat moteur = 0) et tomb\u00e9e APC)) ", 
+     "bbox": {
+      "width": 9600, 
+      "top": 5040, 
+      "height": 495, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Config", 
+     "bbox": {
+      "width": 960, 
+      "top": 1440, 
+      "height": 435, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "*le passage de 2 \u00e0 0", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3000, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "valeur valide -> (0 erpm ou 8191)", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3360, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "\u00b0 min = -25 max = 25 invalid = 80", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3840, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "cas gal 100 < effort < 240", 
+     "bbox": {
+      "width": 2640, 
+      "top": 4200, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Donn\u00e9es internes ECU", 
+     "bbox": {
+      "width": 960, 
+      "top": 3840, 
+      "height": 720, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "le passage de 1 \u00e0 0 est necessaire", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2520, 
+      "height": 315, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "si Normal ok, si grand froid modifier la configuartion", 
+     "bbox": {
+      "width": 2685, 
+      "top": 1440, 
+      "height": 435, 
+      "left": 6075
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Donn\u00e9es can", 
+     "bbox": {
+      "width": 960, 
+      "top": 2160, 
+      "height": 1530, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6420, 
+   "buttons": [], 
+   "width": 10860, 
+   "displays": [
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Mesure effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2975, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "IgnitionSwitch +APC", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2520, 
+      "height": 330, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Etat moteur", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2985, 
+      "height": 300, 
+      "left": 1455
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Inclinaison axe X", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2975, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 1440
+     }
+    }
+   ]
+  }, 
+  "03-05 - Activation Take Off": {
+   "inputs": [], 
+   "color": "rgb(5,0,0)", 
+   "labels": [
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "ACTIVATION TAKE OFF", 
+     "bbox": {
+      "width": 10320, 
+      "top": 360, 
+      "height": 3825, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,0,128)", 
+     "text": "DISPONIBLE EN MODE USINE RENAULT", 
+     "bbox": {
+      "width": 3600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 3960
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [
+    {
+     "Delay": "0", 
+     "RequestName": "IOCBLI-ETAT TAKE OFF"
+    }
+   ], 
+   "height": 9030, 
+   "buttons": [
+    {
+     "text": "START TAKE OFF", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-SRT TAKE OFF"
+      }, 
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-ETAT TAKE OFF"
+      }
+     ], 
+     "uniquename": "START TAKE OFF_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 1740, 
+      "top": 1920, 
+      "height": 540, 
+      "left": 1800
+     }
+    }, 
+    {
+     "text": "STOP TAKE OFF", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STP TAKE OFF"
+      }, 
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-ETAT TAKE OFF"
+      }
+     ], 
+     "uniquename": "STOP TAKE OFF_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1740, 
+      "top": 2640, 
+      "height": 540, 
+      "left": 1800
+     }
+    }
+   ], 
+   "width": 12120, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4740, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 3360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "TAKE OFF", 
+     "request": "IOCBLI-ETAT TAKE OFF", 
+     "width": 1200, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3300, 
+      "top": 2040, 
+      "height": 330, 
+      "left": 4080
+     }
+    }
+   ]
+  }, 
+  "03-06 - Reset ECU": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Test parameters", 
+     "request": "WDBLI-TEST PARA", 
+     "width": 2100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 4500, 
+      "height": 300, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ResetMode", 
+     "request": "RESET- ECU", 
+     "width": 1500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 1425, 
+      "height": 390, 
+      "left": 1440
+     }
+    }
+   ], 
+   "color": "rgb(5,0,0)", 
+   "labels": [
+    {
+     "color": "rgb(127,127,127)", 
+     "text": "EN MODE DEVELOPPEMENT RENAULT", 
+     "bbox": {
+      "width": 3240, 
+      "top": 3420, 
+      "height": 300, 
+      "left": 3480
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "RESET ECU", 
+     "bbox": {
+      "width": 8940, 
+      "top": 840, 
+      "height": 2160, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "TEST PARAMETERS ENABLE/DISABLE", 
+     "bbox": {
+      "width": 8940, 
+      "top": 3060, 
+      "height": 2160, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 9030, 
+   "buttons": [
+    {
+     "text": "Reset ECU", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "RESET- ECU"
+      }
+     ], 
+     "uniquename": "Reset ECU_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1620, 
+      "top": 1785, 
+      "height": 360, 
+      "left": 6540
+     }
+    }, 
+    {
+     "text": "Valid", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-TEST PARA"
+      }
+     ], 
+     "uniquename": "Valid_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 9.75
+     }, 
+     "rect": {
+      "width": 1620, 
+      "top": 4500, 
+      "height": 300, 
+      "left": 6540
+     }
+    }
+   ], 
+   "width": 11400, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ResetStatus", 
+     "request": "RESET- ECU", 
+     "width": 1680, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 4140, 
+      "top": 2100, 
+      "height": 300, 
+      "left": 1260
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4740, 
+      "top": 3900, 
+      "height": 300, 
+      "left": 1500
+     }
+    }
+   ]
+  }, 
+  "00-01 - Configuration": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mode serrage automatique", 
+     "request": "WDBLI-FROID", 
+     "width": 1935, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "VIN", 
+     "request": "WDBLI-CODE VIN", 
+     "width": 510, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 3120, 
+      "height": 315, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Offset Axe X", 
+     "request": "WDBLI-OFFSET X", 
+     "width": 1185, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 1710, 
+      "top": 3360, 
+      "height": 240, 
+      "left": 8520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Session Name", 
+     "request": "Start Diagnostic Session", 
+     "width": 1325, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5160, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 120
+     }
+    }
+   ], 
+   "color": "rgb(0,64,64)", 
+   "labels": [
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "1 - Mode diagnostic                                                                                 Valider le mode factory Renault  y compris apr\u00e8s un reset", 
+     "bbox": {
+      "width": 6840, 
+      "top": 600, 
+      "height": 1560, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "4 - ", 
+     "bbox": {
+      "width": 6120, 
+      "top": 4320, 
+      "height": 600, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "10 - Passage en mode client tous les automatismes deviennent actifs", 
+     "bbox": {
+      "width": 5640, 
+      "top": 3960, 
+      "height": 1560, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "2 - Configurer les champs suivants", 
+     "bbox": {
+      "width": 6480, 
+      "top": 2040, 
+      "height": 1440, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "6 - V\u00e9rifier si 0 erreur dans l'\u00e9cran des d\u00e9fauts", 
+     "bbox": {
+      "width": 5640, 
+      "top": 1560, 
+      "height": 1080, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "5 - V\u00e9rifier si mode Usine 2 actif  \"FF FF FF 00\"", 
+     "bbox": {
+      "width": 6480, 
+      "top": 4920, 
+      "height": 360, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": " En cas d'\u00e9chec refaire un reset pour relancer le repositionnement", 
+     "bbox": {
+      "width": 6600, 
+      "top": 5280, 
+      "height": 240, 
+      "left": -120
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "8 - V\u00e9rifier que le v\u00e9hicule n'est pas inclin\u00e9", 
+     "bbox": {
+      "width": 5760, 
+      "top": 2520, 
+      "height": 420, 
+      "left": 6000
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "9 - Reporter l'inclinaison dans la case offset ", 
+     "bbox": {
+      "width": 5640, 
+      "top": 2880, 
+      "height": 1080, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,64,128)", 
+     "text": "Mode Usine", 
+     "bbox": {
+      "width": 4920, 
+      "top": 120, 
+      "height": 1440, 
+      "left": 6840
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "si FF --> Temis/Kuster/Renault1/Renault2", 
+     "bbox": {
+      "width": 4080, 
+      "top": 960, 
+      "height": 240, 
+      "left": 7200
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "Tahoma", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "PROCESS USINE TYPE JR84", 
+     "bbox": {
+      "width": 7080, 
+      "top": 120, 
+      "height": 480, 
+      "left": -240
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Times New Roman", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Lancer le script avec le bouton appropri\u00e9", 
+     "bbox": {
+      "width": 3960, 
+      "top": 3960, 
+      "height": 240, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "3 - Script de configuration", 
+     "bbox": {
+      "width": 6120, 
+      "top": 3480, 
+      "height": 840, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 6660, 
+   "buttons": [
+    {
+     "text": "DEMARRER REPOSITIONNEMENT", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "3500", 
+       "RequestName": "IOCBLI-STR REPOSIT"
+      }
+     ], 
+     "uniquename": "DEMARRER REPOSITIONNEMENT_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4005, 
+      "top": 4440, 
+      "height": 360, 
+      "left": 480
+     }
+    }, 
+    {
+     "text": "FIN", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "500", 
+       "RequestName": "IOCBLI-STP RENAULT"
+      }
+     ], 
+     "uniquename": "FIN_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 4680, 
+      "height": 420, 
+      "left": 7080
+     }
+    }, 
+    {
+     "text": "OK", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "300", 
+       "RequestName": "WDBLI-CODE VIN"
+      }, 
+      {
+       "Delay": "400", 
+       "RequestName": "RDBLI-VAR SYS"
+      }
+     ], 
+     "uniquename": "OK_2", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1320, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "text": "Go", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "300", 
+       "RequestName": "WDBLI-OFFSET X"
+      }
+     ], 
+     "uniquename": "Go_3", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 3360, 
+      "height": 240, 
+      "left": 10440
+     }
+    }, 
+    {
+     "text": "OK", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "300", 
+       "RequestName": "WDBLI-FROID"
+      }
+     ], 
+     "uniquename": "OK_4", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 1440, 
+      "top": 2520, 
+      "height": 330, 
+      "left": 4080
+     }
+    }, 
+    {
+     "text": "Validation Session", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Start Diagnostic Session"
+      }
+     ], 
+     "uniquename": "Validation Session_5", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 1440, 
+      "top": 1200, 
+      "height": 360, 
+      "left": 5400
+     }
+    }, 
+    {
+     "text": "Start Renault", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "500", 
+       "RequestName": "IOCBLI-STR RENAULT"
+      }
+     ], 
+     "uniquename": "Start Renault_6", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1440, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "text": "Clear defaults", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "300", 
+       "RequestName": "CDI_RAZ DEF"
+      }
+     ], 
+     "uniquename": "Clear defaults_7", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1560, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 1680
+     }
+    }, 
+    {
+     "text": "Start to Mounting", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "500", 
+       "RequestName": "IOCBLI-SRT MOUNTING"
+      }
+     ], 
+     "uniquename": "Start to Mounting_8", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1560, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 1680
+     }
+    }, 
+    {
+     "text": "RESET", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "300", 
+       "RequestName": "RESET-immediat"
+      }
+     ], 
+     "uniquename": "RESET_9", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 5640, 
+      "height": 360, 
+      "left": 6240
+     }
+    }, 
+    {
+     "text": "Start Kuster", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "300", 
+       "RequestName": "IOCBLI-STR KUSTER"
+      }
+     ], 
+     "uniquename": "Start Kuster_10", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1440, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 120
+     }
+    }
+   ], 
+   "width": 13020, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1200, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5160, 
+      "top": 1680, 
+      "height": 240, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Inclinaison axe X", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1380, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 1950, 
+      "top": 3360, 
+      "height": 240, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Nbre de DTC", 
+     "request": "RDODTC-FPA", 
+     "width": 1875, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2760, 
+      "top": 1920, 
+      "height": 240, 
+      "left": 7320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "TEMIC", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 480, 
+      "height": 300, 
+      "left": 8280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "KUSTER", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 480, 
+      "height": 300, 
+      "left": 8760
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RNLT 1", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 480, 
+      "height": 300, 
+      "left": 9240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RNLT 2", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 15, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 480, 
+      "height": 300, 
+      "left": 9720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "P_flagProcess", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 120, 
+      "height": 300, 
+      "left": 5280
+     }
+    }
+   ]
+  }, 
+  "03-07 - Commande Manuelle FPA": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ST Brake force value write", 
+     "request": "IOCBLI-STRS EFFORT", 
+     "width": 2910, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 5670, 
+      "height": 300, 
+      "left": 315
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ST Release PWM Value write", 
+     "request": "IOCBLI-STRD PWM", 
+     "width": 2220, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2815, 
+      "top": 3135, 
+      "height": 300, 
+      "left": 8885
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mode D", 
+     "request": "IOCBLI-STRD PWM", 
+     "width": 2190, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2768, 
+      "top": 2790, 
+      "height": 255, 
+      "left": 8900
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SP Brake PWM value write", 
+     "request": "IOCBLI-STPS PWM", 
+     "width": 1940, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2680, 
+      "top": 2775, 
+      "height": 300, 
+      "left": 75
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mode S", 
+     "request": "IOCBLI-STRS PWM", 
+     "width": 1925, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2580, 
+      "top": 2775, 
+      "height": 300, 
+      "left": 2895
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ST Brake PWM value write", 
+     "request": "IOCBLI-STRS PWM", 
+     "width": 1925, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2580, 
+      "top": 3060, 
+      "height": 300, 
+      "left": 2895
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SP Release PWM value write", 
+     "request": "IOCBLI-STPD PWM", 
+     "width": 2165, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2950, 
+      "top": 2775, 
+      "height": 300, 
+      "left": 5625
+     }
+    }
+   ], 
+   "color": "rgb(5,0,0)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "  ", 
+     "bbox": {
+      "width": 11895, 
+      "top": 5235, 
+      "height": 1185, 
+      "left": 30
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,255,255)", 
+     "text": "Lancement Serrage", 
+     "bbox": {
+      "width": 2685, 
+      "top": 2310, 
+      "height": 2025, 
+      "left": 2880
+     }, 
+     "fontcolor": "rgb(0,0,160)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,255)", 
+     "text": "  ", 
+     "bbox": {
+      "width": 11880, 
+      "top": 6480, 
+      "height": 2445, 
+      "left": 30
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "COMMANDES DU FPA", 
+     "bbox": {
+      "width": 11715, 
+      "top": 0, 
+      "height": 360, 
+      "left": 135
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,255)", 
+     "text": "Disponible en mode APV", 
+     "bbox": {
+      "width": 11895, 
+      "top": 4740, 
+      "height": 420, 
+      "left": 30
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,255)", 
+     "text": "Disponible en  APV", 
+     "bbox": {
+      "width": 11760, 
+      "top": 465, 
+      "height": 360, 
+      "left": 105
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,255)", 
+     "text": "Disponible en Dvlpmt RSA", 
+     "bbox": {
+      "width": 11790, 
+      "top": 1830, 
+      "height": 435, 
+      "left": 45
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Lancement Desserrage", 
+     "bbox": {
+      "width": 3145, 
+      "top": 2295, 
+      "height": 2010, 
+      "left": 8670
+     }, 
+     "fontcolor": "rgb(0,0,160)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,255)", 
+     "text": "Arret Serrage", 
+     "bbox": {
+      "width": 2805, 
+      "top": 2310, 
+      "height": 2010, 
+      "left": 45
+     }, 
+     "fontcolor": "rgb(0,0,160)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Arret Desserrage", 
+     "bbox": {
+      "width": 3030, 
+      "top": 2295, 
+      "height": 2010, 
+      "left": 5595
+     }, 
+     "fontcolor": "rgb(0,0,160)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "  ", 
+     "bbox": {
+      "width": 11745, 
+      "top": 885, 
+      "height": 510, 
+      "left": 90
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [
+    {
+     "Delay": "0", 
+     "RequestName": "IOCBLI-DES-ETAT"
+    }
+   ], 
+   "height": 9180, 
+   "buttons": [
+    {
+     "text": "START DESSERRAGE", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STR DESSERRAGE"
+      }
+     ], 
+     "uniquename": "START DESSERRAGE_0", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 975, 
+      "height": 300, 
+      "left": 7110
+     }
+    }, 
+    {
+     "text": "START DESSERRAGE EFFORT", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STRD EFFORT"
+      }
+     ], 
+     "uniquename": "START DESSERRAGE EFFORT_1", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2580, 
+      "top": 5340, 
+      "height": 300, 
+      "left": 6090
+     }
+    }, 
+    {
+     "text": "START DESSERRAGE PWM", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STRD PWM"
+      }
+     ], 
+     "uniquename": "START DESSERRAGE PWM_2", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2818, 
+      "top": 3555, 
+      "height": 300, 
+      "left": 8871
+     }
+    }, 
+    {
+     "text": "START SERRAGE", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STR SERRAGE"
+      }
+     ], 
+     "uniquename": "START SERRAGE_3", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 975, 
+      "height": 300, 
+      "left": 1215
+     }
+    }, 
+    {
+     "text": "START SERRAGE EFFORT", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STRS EFFORT"
+      }
+     ], 
+     "uniquename": "START SERRAGE EFFORT_4", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4005, 
+      "top": 5325, 
+      "height": 300, 
+      "left": 300
+     }
+    }, 
+    {
+     "text": "Start Serrage PWM", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STRS PWM"
+      }
+     ], 
+     "uniquename": "Start Serrage PWM_5", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2565, 
+      "top": 3510, 
+      "height": 600, 
+      "left": 2910
+     }
+    }, 
+    {
+     "text": "STOP DESSERRAGE PWM", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STPD PWM"
+      }
+     ], 
+     "uniquename": "STOP DESSERRAGE PWM_6", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2955, 
+      "top": 3090, 
+      "height": 300, 
+      "left": 5625
+     }
+    }, 
+    {
+     "text": "STOP SERRAGE PWM", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STPS PWM"
+      }
+     ], 
+     "uniquename": "STOP SERRAGE PWM_7", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2685, 
+      "top": 3075, 
+      "height": 360, 
+      "left": 60
+     }
+    }
+   ], 
+   "width": 12180, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position switch serrage dyn", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2955, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4860, 
+      "top": 6720, 
+      "height": 300, 
+      "left": 195
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position switch serrage statique", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2955, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4875, 
+      "top": 7080, 
+      "height": 300, 
+      "left": 180
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SP Release force value read", 
+     "request": "IOCBLI-STPD EFFORT", 
+     "width": 2915, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4015, 
+      "top": 5970, 
+      "height": 300, 
+      "left": 315
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Valeur courant", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2895, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4830, 
+      "top": 8535, 
+      "height": 300, 
+      "left": 195
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position switch desserrage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2940, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4875, 
+      "top": 7440, 
+      "height": 300, 
+      "left": 180
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2910, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4845, 
+      "top": 7815, 
+      "height": 300, 
+      "left": 195
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mesure effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2895, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4860, 
+      "top": 8175, 
+      "height": 300, 
+      "left": 195
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SP Brake force value read", 
+     "request": "IOCBLI-STPS EFFORT", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4315, 
+      "top": 5790, 
+      "height": 300, 
+      "left": 6090
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CAN failure mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 3075, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 7155, 
+      "height": 300, 
+      "left": 6105
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SP Release PWM value read", 
+     "request": "IOCBLI-STPD PWM", 
+     "width": 2145, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2830, 
+      "top": 3930, 
+      "height": 300, 
+      "left": 8886
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 3060, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 6780, 
+      "height": 300, 
+      "left": 6120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force sensor AD value", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 3120, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4710, 
+      "top": 7530, 
+      "height": 300, 
+      "left": 6075
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SP Brake PWM value read", 
+     "request": "IOCBLI-STPS PWM", 
+     "width": 2015, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2680, 
+      "top": 3780, 
+      "height": 300, 
+      "left": 90
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Stop desserrage PWM", 
+     "request": "IOCBLI-STPD PWM", 
+     "width": 2135, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2890, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SP Release PWM value read", 
+     "request": "IOCBLI-STPD PWM", 
+     "width": 2135, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2890, 
+      "top": 3825, 
+      "height": 300, 
+      "left": 5640
+     }
+    }
+   ]
+  }, 
+  "00-03 - Lecture/Ecriture DATA KUESTER": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Index HW", 
+     "request": "WDBLI-UNIT INDEX", 
+     "width": 995, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1920, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 7080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mot de passe utilisateur", 
+     "request": "WDBLI-MOT DE PASSE", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 480, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ecu_mounting_position", 
+     "request": "WDBLI-ecu mounting", 
+     "width": 2090, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6000, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Session Name", 
+     "request": "Start Diagnostic Session", 
+     "width": 2195, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6360, 
+      "top": 960, 
+      "height": 300, 
+      "left": 120
+     }
+    }
+   ], 
+   "color": "rgb(5,0,0)", 
+   "labels": [
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "LECTURE DATA KUESTER", 
+     "bbox": {
+      "width": 10680, 
+      "top": 0, 
+      "height": 7500, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 9030, 
+   "buttons": [
+    {
+     "text": "commande start mounting position", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-SRT MOUNTING"
+      }
+     ], 
+     "uniquename": "commande start mounting position_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "text": "Lecture Data", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "RDBLI-DATA KUESTER"
+      }
+     ], 
+     "uniquename": "Lecture Data_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1740, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "text": "stop mounting position", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STP MOUNTING"
+      }
+     ], 
+     "uniquename": "stop mounting position_2", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "text": "write ", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-UNIT INDEX"
+      }
+     ], 
+     "uniquename": "write _3", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 6000
+     }
+    }, 
+    {
+     "text": "Ok", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-MOT DE PASSE"
+      }
+     ], 
+     "uniquename": "Ok_4", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 480, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "text": "Ok", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "messages": [
+      ""
+     ], 
+     "rect": {
+      "width": 600, 
+      "top": 960, 
+      "height": 300, 
+      "left": 6840
+     }, 
+     "uniquename": "Ok_5"
+    }, 
+    {
+     "text": "Ok", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-ecu mounting"
+      }
+     ], 
+     "uniquename": "Ok_6", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 6960
+     }
+    }
+   ], 
+   "width": 12120, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Kuster num\u00e9ro de pi\u00e8ce", 
+     "request": "RDBLI-DATA KUESTER", 
+     "width": 2175, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4380, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Type u. Revers Nr", 
+     "request": "RDBLI-DATA KUESTER", 
+     "width": 2160, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4380, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Jour Kus", 
+     "request": "RDBLI-DATA KUESTER", 
+     "width": 1475, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3165, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 6000
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mois kus", 
+     "request": "RDBLI-DATA KUESTER", 
+     "width": 1475, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3165, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 6000
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ann\u00e9e kus", 
+     "request": "RDBLI-DATA KUESTER", 
+     "width": 1475, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3165, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 6000
+     }
+    }
+   ]
+  }, 
+  "00-06 - Password & Mode": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mode Renault", 
+     "request": "IOCBLI-MD RENAULT", 
+     "width": 1370, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5880, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mot de passe utilisateur", 
+     "request": "WDBLI-MOT DE PASSE", 
+     "width": 2825, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 480, 
+      "height": 360, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Session Name", 
+     "request": "Start Diagnostic Session", 
+     "width": 1370, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 1080, 
+      "height": 360, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Start Test Messages", 
+     "request": "IOCBLI-STR CAN TEST", 
+     "width": 2030, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5880, 
+      "top": 4920, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Can test message identifier high", 
+     "request": "IOCBLI-STR CAN TEST", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5880, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Can test message 1 identifier low", 
+     "request": "IOCBLI-STR CAN TEST", 
+     "width": 3020, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5880, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "test message interval", 
+     "request": "IOCBLI-STR CAN TEST", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5880, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Can test message 2 and 3 identifier low", 
+     "request": "IOCBLI-STR CAN TEST", 
+     "width": 3545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5880, 
+      "top": 6360, 
+      "height": 300, 
+      "left": 240
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(0,0,255)", 
+     "text": "DISPONIBLE EN MODE USINE RENAULT", 
+     "bbox": {
+      "width": 3840, 
+      "top": 1680, 
+      "height": 840, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,0,255)", 
+     "text": "DISPONIBLE EN MODE USINE RENAULT", 
+     "bbox": {
+      "width": 3840, 
+      "top": 1680, 
+      "height": 840, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(247,158,149)", 
+     "text": "si FF --> Temic/Kuster/Renault1/Renault2", 
+     "bbox": {
+      "width": 3840, 
+      "top": 2520, 
+      "height": 240, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Tahoma", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "DEFINITION DU DIAGNOSTIC", 
+     "bbox": {
+      "width": 9600, 
+      "top": 0, 
+      "height": 6960, 
+      "left": -120
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6900, 
+   "buttons": [
+    {
+     "text": "Validation Password", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-MOT DE PASSE"
+      }
+     ], 
+     "uniquename": "Validation Password_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 480, 
+      "height": 240, 
+      "left": 6240
+     }
+    }, 
+    {
+     "text": "Validation Diagnostic", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Start Diagnostic Session"
+      }
+     ], 
+     "uniquename": "Validation Diagnostic_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 1080, 
+      "height": 240, 
+      "left": 6240
+     }
+    }, 
+    {
+     "text": "Stop Can Test Message", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STP CAN TEST"
+      }, 
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-CAN ETAT"
+      }
+     ], 
+     "uniquename": "Stop Can Test Message_2", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 3000, 
+      "height": 240, 
+      "left": 6240
+     }
+    }, 
+    {
+     "text": "Start Renault", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "500", 
+       "RequestName": "IOCBLI-STR RENAULT"
+      }
+     ], 
+     "uniquename": "Start Renault_3", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1440, 
+      "top": 1920, 
+      "height": 480, 
+      "left": 240
+     }
+    }, 
+    {
+     "text": "FIN", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "500", 
+       "RequestName": "IOCBLI-STP RENAULT"
+      }
+     ], 
+     "uniquename": "FIN_4", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1800, 
+      "top": 1920, 
+      "height": 480, 
+      "left": 6480
+     }
+    }, 
+    {
+     "text": "Start CAN test messages", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-MOT DE PASSE"
+      }, 
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-MD RENAULT"
+      }, 
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-STR CAN TEST"
+      }, 
+      {
+       "Delay": "0", 
+       "RequestName": "IOCBLI-CAN ETAT"
+      }, 
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-MOT DE PASSE"
+      }
+     ], 
+     "uniquename": "Start CAN test messages_5", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 4680, 
+      "height": 1852, 
+      "left": 6600
+     }
+    }
+   ], 
+   "width": 9540, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "TEMIC", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "KUSTER", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 3480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RNLT 1", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 4080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RNLT 2", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 15, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "TEMIC", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "KUSTER", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 3480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RNLT 1", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 4080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RNLT 2", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 15, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CAN test message", 
+     "request": "IOCBLI-CAN ETAT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 600
+     }
+    }
+   ]
+  }, 
+  "03-01 - Lecture Variables FPA": {
+   "inputs": [], 
+   "color": "rgb(128,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Variables syst\u00e8me", 
+     "bbox": {
+      "width": 3600, 
+      "top": 0, 
+      "height": 7200, 
+      "left": 7800
+     }, 
+     "fontcolor": "rgb(0,0,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Variables entr\u00e9es internes", 
+     "bbox": {
+      "width": 4050, 
+      "top": 15, 
+      "height": 7185, 
+      "left": -105
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Variables Can", 
+     "bbox": {
+      "width": 3600, 
+      "top": 0, 
+      "height": 7200, 
+      "left": 4080
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 8655, 
+   "buttons": [], 
+   "width": 11895, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse roue arri\u00e8re droite", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2595, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 720, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse roue arri\u00e8re gauche", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2595, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "IgnitionSwitch +APC", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1680, 
+     "fontcolor": "rgb(0,64,128)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": -1890, 
+      "height": 300, 
+      "left": -3420
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1755, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 360, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Valeur courant", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2220, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3345, 
+      "top": 2100, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position embrayage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2190, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3330, 
+      "top": 3180, 
+      "height": 330, 
+      "left": 135
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension batterie", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2220, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1020, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1875, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 360, 
+      "height": 315, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CAN failure mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1755, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mode endormi TDB", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1875, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 6120, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Defaut", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1590, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3300, 
+      "top": 5220, 
+      "height": 330, 
+      "left": 150
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DiagMuxOn", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1890, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position switch serrage dyn", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2385, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3315, 
+      "top": 3540, 
+      "height": 330, 
+      "left": 150
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position switch serrage statique", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2400, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3315, 
+      "top": 3915, 
+      "height": 330, 
+      "left": 150
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Release switch failure counter", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 2250, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake status", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1590, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3304, 
+      "top": 4845, 
+      "height": 330, 
+      "left": 135
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Palette failure", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1950, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Palette failure mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1755, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 720, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake switch failure counter", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 2250, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force sensor AD value", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 2220, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 5760, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force failure mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position switch desserrage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2400, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3315, 
+      "top": 4275, 
+      "height": 330, 
+      "left": 150
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake command degraded", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1920, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2220, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3334, 
+      "top": 1380, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mesure effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2220, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3345, 
+      "top": 1740, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Palette failure counter", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 2250, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake command", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1905, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Release command", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1770, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Palette mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1950, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Marche arri\u00e8re engag\u00e9", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1890, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1890, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3345, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "MeanEffectiveTorque", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1890, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Transmrangeengaged", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1875, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tilt AD value X-axis", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 2250, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Gearlevelposition", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1875, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DoorSwitch", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1845, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 6840, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DriverRequest", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1860, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 5760, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Powertraingain", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1875, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 5400, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Inclinaison axe X", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2205, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 2460, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position BVM", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1890, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat moteur", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1890, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Inclinaison axe Y", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2210, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 2820, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "PorNDisplay", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2210, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 660, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "BuzzerRequestAPB", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 300, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "IgnitionSwitch +APC", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1895, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3355, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Odom\u00e9trie", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1880, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3370, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tilt AD value Y-axis", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 2240, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 5400, 
+      "height": 300, 
+      "left": 7920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Stopcardswitch", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1880, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 6480, 
+      "height": 300, 
+      "left": 4200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Shiftinprogress", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1880, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 4200
+     }
+    }
+   ]
+  }, 
+  "03-02 - Lecture Defauts": {
+   "inputs": [], 
+   "color": "rgb(128,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "LECTURE DES DEFAUTS (DTC)", 
+     "bbox": {
+      "width": 12300, 
+      "top": 0, 
+      "height": 6360, 
+      "left": -360
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "M: D\u00e9faut m\u00e9moris\u00e9", 
+     "bbox": {
+      "width": 3120, 
+      "top": 600, 
+      "height": 300, 
+      "left": 8520
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 9.75
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "P: D\u00e9faut pr\u00e9sent", 
+     "bbox": {
+      "width": 3120, 
+      "top": 240, 
+      "height": 300, 
+      "left": 8520
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 9180, 
+   "buttons": [
+    {
+     "text": "EFFACER", 
+     "messages": [
+      "Effacement de tous les d\u00e9fauts pr\u00e9sents et m\u00e9moris\u00e9s ainsi que de leur contexte "
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "CDI_RAZ DEF"
+      }
+     ], 
+     "uniquename": "EFFACER_0", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 9.75
+     }, 
+     "rect": {
+      "width": 1680, 
+      "top": 555, 
+      "height": 420, 
+      "left": 480
+     }
+    }
+   ], 
+   "width": 12180, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC1", 
+     "request": "RDODTC-FPA", 
+     "width": 725, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5040, 
+      "top": 1080, 
+      "height": 375, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC2", 
+     "request": "RDODTC-FPA", 
+     "width": 720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5100, 
+      "top": 1560, 
+      "height": 360, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC3", 
+     "request": "RDODTC-FPA", 
+     "width": 720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5100, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC4", 
+     "request": "RDODTC-FPA", 
+     "width": 720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5100, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC5", 
+     "request": "RDODTC-FPA", 
+     "width": 720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5100, 
+      "top": 3000, 
+      "height": 360, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC6", 
+     "request": "RDODTC-FPA", 
+     "width": 720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5100, 
+      "top": 3480, 
+      "height": 360, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC7", 
+     "request": "RDODTC-FPA", 
+     "width": 720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5100, 
+      "top": 3960, 
+      "height": 360, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC8", 
+     "request": "RDODTC-FPA", 
+     "width": 720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5100, 
+      "top": 4440, 
+      "height": 360, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC9", 
+     "request": "RDODTC-FPA", 
+     "width": 720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5100, 
+      "top": 4920, 
+      "height": 360, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC10", 
+     "request": "RDODTC-FPA", 
+     "width": 720, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5100, 
+      "top": 5400, 
+      "height": 360, 
+      "left": 0
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Nbre de DTC", 
+     "request": "RDODTC-FPA", 
+     "width": 1620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 2640, 
+      "top": 600, 
+      "height": 360, 
+      "left": 2400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status10", 
+     "request": "RDODTC-FPA", 
+     "width": 900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6840, 
+      "top": 5400, 
+      "height": 360, 
+      "left": 5100
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status1", 
+     "request": "RDODTC-FPA", 
+     "width": 840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6780, 
+      "top": 1080, 
+      "height": 360, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status2", 
+     "request": "RDODTC-FPA", 
+     "width": 840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6780, 
+      "top": 1560, 
+      "height": 360, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status3", 
+     "request": "RDODTC-FPA", 
+     "width": 840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6780, 
+      "top": 2040, 
+      "height": 360, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status4", 
+     "request": "RDODTC-FPA", 
+     "width": 840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6780, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status5", 
+     "request": "RDODTC-FPA", 
+     "width": 840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6780, 
+      "top": 3000, 
+      "height": 360, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status6", 
+     "request": "RDODTC-FPA", 
+     "width": 840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6780, 
+      "top": 3480, 
+      "height": 360, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status7", 
+     "request": "RDODTC-FPA", 
+     "width": 840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6780, 
+      "top": 3960, 
+      "height": 360, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status8", 
+     "request": "RDODTC-FPA", 
+     "width": 840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6780, 
+      "top": 4440, 
+      "height": 360, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status9", 
+     "request": "RDODTC-FPA", 
+     "width": 840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6780, 
+      "top": 4920, 
+      "height": 360, 
+      "left": 5160
+     }
+    }
+   ]
+  }, 
+  "02-03 - Desserrage automatique": {
+   "inputs": [], 
+   "color": "rgb(0,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Diag des prestations: Desserrage automatique", 
+     "bbox": {
+      "width": 8610, 
+      "top": 225, 
+      "height": 570, 
+      "left": 1125
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Desserrage automatique", 
+     "bbox": {
+      "width": 1710, 
+      "top": 855, 
+      "height": 5745, 
+      "left": 9000
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "ok si V < 4 km/h, desserage s\u00e9curitaire si V > 4 km/h", 
+     "bbox": {
+      "width": 2640, 
+      "top": 1320, 
+      "height": 405, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Si tous les param\u00e8tres vivent dans leurs seuils alors le syst\u00e8me est OK", 
+     "bbox": {
+      "width": 9600, 
+      "top": 6000, 
+      "height": 603, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Donn\u00e9es can", 
+     "bbox": {
+      "width": 960, 
+      "top": 1320, 
+      "height": 3120, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "2 necessaire", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2160, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "ok si erpm > 0 (valeur 8191 interdite)", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2520, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "\u00b0 min = -25 max = 25 invalid = 80", 
+     "bbox": {
+      "width": 2640, 
+      "top": 5160, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "< 40 N", 
+     "bbox": {
+      "width": 2640, 
+      "top": 5520, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Donn\u00e9es internes ECU", 
+     "bbox": {
+      "width": 960, 
+      "top": 5160, 
+      "height": 720, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "ok si 1 vitesse est detectee", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3240, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Donn\u00e9es filaires", 
+     "bbox": {
+      "width": 960, 
+      "top": 4560, 
+      "height": 480, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "92 < position < 150 (selon la pente)", 
+     "bbox": {
+      "width": 2640, 
+      "top": 4770, 
+      "height": 240, 
+      "left": 6135
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "1 necessaire", 
+     "bbox": {
+      "width": 2640, 
+      "top": 1800, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "ok si 1 vitesse est detectee", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3600, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "ok si 1 vitesse est detectee", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3960, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "ok si au moins > 20 (selon pente et moteur)", 
+     "bbox": {
+      "width": 2640, 
+      "top": 4275, 
+      "height": 375, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "0 necessaire", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2880, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Config", 
+     "bbox": {
+      "width": 960, 
+      "top": 930, 
+      "height": 315, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Normal ?", 
+     "bbox": {
+      "width": 2685, 
+      "top": 930, 
+      "height": 300, 
+      "left": 6150
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6780, 
+   "buttons": [], 
+   "width": 11100, 
+   "displays": [
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Mesure effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1335, 
+      "height": 405, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "IgnitionSwitch +APC", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Etat moteur", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Inclinaison axe X", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2915, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "DoorSwitch", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Marche arri\u00e8re engag\u00e9", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Transmrangeengaged", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "Gearlevelposition", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "DriverRequest", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Position embrayage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 4755, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Takeoff state", 
+     "request": "RDBLI-VEHICLE HISTORY", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4525, 
+      "top": 930, 
+      "height": 300, 
+      "left": 1455
+     }
+    }
+   ]
+  }, 
+  "00-02 - Lecture/Ecriture HSA": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 0 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 1 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 2 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 3 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4920, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 4 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 5 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 6 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 7 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 1995, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3990, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 8 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4920, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 9 W", 
+     "request": "WDBLI-CLUTCH CURVE", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 6720
+     }
+    }
+   ], 
+   "color": "rgb(192,192,192)", 
+   "labels": [
+    {
+     "color": "rgb(0,0,128)", 
+     "text": "DISPONIBLE EN MODE USINE RENAULT", 
+     "bbox": {
+      "width": 3600, 
+      "top": 1020, 
+      "height": 300, 
+      "left": 4035
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "PARAMETRES HILL START ASSISTANT", 
+     "bbox": {
+      "width": 11760, 
+      "top": 120, 
+      "height": 7440, 
+      "left": 75
+     }, 
+     "fontcolor": "rgb(15,15,15)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [
+    {
+     "Delay": "0", 
+     "RequestName": "RDBLI-PARA9F R"
+    }
+   ], 
+   "height": 9030, 
+   "buttons": [
+    {
+     "text": "ECRITURE", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-CLUTCH CURVE"
+      }
+     ], 
+     "uniquename": "ECRITURE_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1740, 
+      "top": 4590, 
+      "height": 300, 
+      "left": 4785
+     }
+    }, 
+    {
+     "text": "LECTURE", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "RDBLI-PARA9F R"
+      }
+     ], 
+     "uniquename": "LECTURE_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1740, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 4800
+     }
+    }
+   ], 
+   "width": 12120, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 0 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 1 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 2 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 3 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 4 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 5 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 6 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 7 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 8 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 6720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "tko-P-C-theta-emb 9 R", 
+     "request": "RDBLI-PARA9F R", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 6720
+     }
+    }
+   ]
+  }, 
+  "02-01 - Stationnement": {
+   "inputs": [], 
+   "color": "rgb(0,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Diag des prestations: Stationnement", 
+     "bbox": {
+      "width": 6840, 
+      "top": 360, 
+      "height": 840, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Stationnement", 
+     "bbox": {
+      "width": 1710, 
+      "top": 1680, 
+      "height": 3855, 
+      "left": 9000
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "0: inactive 1:active", 
+     "bbox": {
+      "width": 1920, 
+      "top": 2040, 
+      "height": 240, 
+      "left": 6360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "\u00b0 min = -25 max = 25 invalid = 80", 
+     "bbox": {
+      "width": 2640, 
+      "top": 4080, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "0: inactive 1:active", 
+     "bbox": {
+      "width": 1920, 
+      "top": 1680, 
+      "height": 240, 
+      "left": 6360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "1 si palette tiree, 0 sinon", 
+     "bbox": {
+      "width": 2640, 
+      "top": 1680, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "1 si bouton appuy\u00e9, 0 sinon", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2040, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "4 < palette non tiree < 5, > 1 V si palette tiree", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2400, 
+      "height": 360, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "cas gal entre 100 < effort < 140", 
+     "bbox": {
+      "width": 2640, 
+      "top": 4440, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "> 10,5 V", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3360, 
+      "height": 240, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "> 200 si embrayage relach\u00e9, > 60 si appui max ", 
+     "bbox": {
+      "width": 2640, 
+      "top": 2880, 
+      "height": 360, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Si tous les param\u00e8tres vivent dans leurs seuils alors le syst\u00e8me est OK", 
+     "bbox": {
+      "width": 9600, 
+      "top": 5040, 
+      "height": 495, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Donn\u00e9es filaires", 
+     "bbox": {
+      "width": 960, 
+      "top": 1680, 
+      "height": 1800, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Donn\u00e9es internes ECU", 
+     "bbox": {
+      "width": 960, 
+      "top": 4080, 
+      "height": 720, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6540, 
+   "buttons": [], 
+   "width": 11100, 
+   "displays": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Position switch serrage statique", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Position switch desserrage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Position switch serrage dyn", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2400, 
+      "height": 360, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Inclinaison axe X", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2975, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 4080, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Mesure effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2975, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Position embrayage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2990, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2880, 
+      "height": 360, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Tension batterie", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2990, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 1440
+     }
+    }
+   ]
+  }, 
+  "03-04 - Lecture environnement vehicule": {
+   "inputs": [], 
+   "color": "rgb(128,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "CONFIGURATION VEHICULE", 
+     "bbox": {
+      "width": 10920, 
+      "top": 5040, 
+      "height": 6240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,255)", 
+     "text": "IDENTIFICATION SYSTEME", 
+     "bbox": {
+      "width": 4770, 
+      "top": 240, 
+      "height": 4680, 
+      "left": 90
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "IDENTIFICATION VEHICULE (VIN)", 
+     "bbox": {
+      "width": 6120, 
+      "top": 3480, 
+      "height": 1470, 
+      "left": 4920
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,255,128)", 
+     "text": "VEHICLE HISTORY", 
+     "bbox": {
+      "width": 5040, 
+      "top": 240, 
+      "height": 2880, 
+      "left": 5400
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 16.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 9180, 
+   "buttons": [], 
+   "width": 12180, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Checksum CRC", 
+     "request": "RDBLI-IDENT VEH FPA", 
+     "width": 4920, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code VIN", 
+     "request": "RDBLI-IDENT VEH FPA", 
+     "width": 885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 4020, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Type u. Revers Nr", 
+     "request": "RDBLI-DATA KUESTER", 
+     "width": 2205, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Kuster num\u00e9ro de pi\u00e8ce", 
+     "request": "RDBLI-DATA KUESTER", 
+     "width": 2175, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4290, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "FPA Motor activations since fabrication", 
+     "request": "RDBLI-VEHICLE HISTORY", 
+     "width": 3530, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 1200, 
+      "height": 360, 
+      "left": 5520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Medium brake force of 255 last brakings", 
+     "request": "RDBLI-VEHICLE HISTORY", 
+     "width": 3515, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 720, 
+      "height": 360, 
+      "left": 5520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Clutch detection flag", 
+     "request": "RDBLI-VEHICLE HISTORY", 
+     "width": 3515, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 2160, 
+      "height": 360, 
+      "left": 5520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Takeoff state", 
+     "request": "RDBLI-VEHICLE HISTORY", 
+     "width": 3530, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 1680, 
+      "height": 360, 
+      "left": 5520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Offset Axe X", 
+     "request": "RDBLI-VEHICLE HISTORY", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 2640, 
+      "height": 360, 
+      "left": 5520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Index table renault", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "engine_ID Index", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5880, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Accelerator Index bvm", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 1970, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 5880, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Wheel Circumference", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2240, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6960, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "BkfMinOffset and slope", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 7680, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "VDOM Factor", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2240, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Left Right direction", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2015, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "timeout repos", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2240, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Chk config", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 7680, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Accel limit BVA", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 1940, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Table rap", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "PMR speed emb0", 
+     "request": "RDBLI-VEH CONFIG", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 7320, 
+      "height": 300, 
+      "left": 240
+     }
+    }
+   ]
+  }, 
+  "00-04 - Config JR84": {
+   "inputs": [], 
+   "color": "rgb(128,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "R\u00e9serv\u00e9 \u00e0 la PIE (Ne pas utiliser sur v\u00e9hicule)", 
+     "bbox": {
+      "width": 10680, 
+      "top": 720, 
+      "height": 4080, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6300, 
+   "buttons": [
+    {
+     "text": "Config BVA", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-Veh Map Calibration Data AT"
+      }
+     ], 
+     "uniquename": "Config BVA_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 1200, 
+      "height": 885, 
+      "left": 3360
+     }
+    }, 
+    {
+     "text": "Config BVM", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-Veh Map Calibration Data MT"
+      }
+     ], 
+     "uniquename": "Config BVM_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 2160, 
+      "height": 945, 
+      "left": 3360
+     }
+    }, 
+    {
+     "text": "Lire la configuration", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "messages": [
+      ""
+     ], 
+     "rect": {
+      "width": 3360, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 3360
+     }, 
+     "uniquename": "Lire la configuration_2"
+    }
+   ], 
+   "width": 10980, 
+   "displays": []
+  }, 
+  "01-01 - Variables cl\u00e9es FPA": {
+   "inputs": [], 
+   "color": "rgb(0,0,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "            ALIMENTATION", 
+     "bbox": {
+      "width": 12720, 
+      "top": 0, 
+      "height": 8775, 
+      "left": -720
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "BO\u00eeTE ET PORTES", 
+     "bbox": {
+      "width": 3000, 
+      "top": 0, 
+      "height": 450, 
+      "left": 7560
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "CAPTEUR DE PENTE", 
+     "bbox": {
+      "width": 3690, 
+      "top": 2520, 
+      "height": 404, 
+      "left": -240
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "CAPTEUR EMBRAYAGE", 
+     "bbox": {
+      "width": 3810, 
+      "top": 1440, 
+      "height": 405, 
+      "left": -120
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "COMMANDE MOTEUR FPA", 
+     "bbox": {
+      "width": 3915, 
+      "top": 0, 
+      "height": 330, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "ALERTES", 
+     "bbox": {
+      "width": 3600, 
+      "top": 2520, 
+      "height": 2880, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "MOTEUR", 
+     "bbox": {
+      "width": 1920, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 7320
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "PALETTE", 
+     "bbox": {
+      "width": 3600, 
+      "top": 4560, 
+      "height": 1560, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "VITESSE VEHICULE", 
+     "bbox": {
+      "width": 3150, 
+      "top": 4920, 
+      "height": 360, 
+      "left": 7440
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 8655, 
+   "buttons": [], 
+   "width": 11895, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "IgnitionSwitch +APC", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1680, 
+     "fontcolor": "rgb(0,64,128)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 840, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1755, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position embrayage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1680, 
+     "fontcolor": "rgb(0,64,128)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 1800, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension batterie", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1695, 
+     "fontcolor": "rgb(0,64,128)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 480, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1755, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2640, 
+      "top": 5280, 
+      "height": 315, 
+      "left": 7680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CAN failure mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1755, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 4920, 
+      "height": 300, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Defaut", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3120, 
+      "height": 330, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position switch serrage dyn", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2385, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 4920, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position switch serrage statique", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2400, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 5280, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake status", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2325, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1200, 
+      "height": 330, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position switch desserrage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2400, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 5640, 
+      "height": 330, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2340, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 480, 
+      "height": 330, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mesure effort freinage", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 2325, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 840, 
+      "height": 330, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Marche arri\u00e8re engag\u00e9", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1650, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2520, 
+      "top": 840, 
+      "height": 300, 
+      "left": 7800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1740, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2640, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 7680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "MeanEffectiveTorque", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1740, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2640, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 7680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Transmrangeengaged", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1650, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2520, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 7800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tilt AD value X-axis", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1650, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Gearlevelposition", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1635, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2520, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 7800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DoorSwitch", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1635, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2520, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 7800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DriverRequest", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1605, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2640, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 7680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Powertraingain", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1380, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2640, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 7680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Inclinaison axe X", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1650, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 2833, 
+      "height": 287, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position BVM", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2520, 
+      "top": 480, 
+      "height": 300, 
+      "left": 7800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat moteur", 
+     "request": "RDBLI-ENTREES CAN FPA", 
+     "width": 1080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2640, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 7680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Inclinaison axe Y", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1655, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tilt AD value Y-axis", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1655, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "PorNDisplay", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1805, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "BuzzerRequestAPB", 
+     "request": "RDBLI-ENTREES FPA", 
+     "width": 1805, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 3840
+     }
+    }
+   ]
+  }, 
+  "04-01 - Ecu Monting Direction": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ecu_mounting_position", 
+     "request": "WDBLI-ecu mounting", 
+     "width": 15, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 1800
+     }
+    }
+   ], 
+   "color": "rgb(128,255,128)", 
+   "labels": [
+    {
+     "color": "rgb(169,221,252)", 
+     "text": "Lecture de la position calculateur", 
+     "bbox": {
+      "width": 8160, 
+      "top": 1800, 
+      "height": 1440, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(247,174,164)", 
+     "text": "Ecriture de la position vehicule", 
+     "bbox": {
+      "width": 8160, 
+      "top": 3840, 
+      "height": 1920, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,0,255)", 
+     "text": "DISPONIBLE EN MODE USINE RENAULT", 
+     "bbox": {
+      "width": 3840, 
+      "top": 120, 
+      "height": 1080, 
+      "left": 2280
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(247,158,149)", 
+     "text": "si FF --> Temic/Kuster/Renault1/Renault2", 
+     "bbox": {
+      "width": 3840, 
+      "top": 1200, 
+      "height": 240, 
+      "left": 2280
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Tahoma", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(251,234,111)", 
+     "text": "$B4  ->  R84        et       $78  ->  J84", 
+     "bbox": {
+      "width": 8160, 
+      "top": 3600, 
+      "height": 240, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Ecriture de la position ECU", 
+     "messages": [
+      "Changement de la position de l'ECU"
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-ecu mounting"
+      }
+     ], 
+     "uniquename": "Ecriture de la position ECU_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 1800
+     }
+    }, 
+    {
+     "text": "Start Renault", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "500", 
+       "RequestName": "IOCBLI-STR RENAULT"
+      }
+     ], 
+     "uniquename": "Start Renault_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1440, 
+      "top": 480, 
+      "height": 480, 
+      "left": 360
+     }
+    }, 
+    {
+     "text": "FIN", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "500", 
+       "RequestName": "IOCBLI-STP RENAULT"
+      }
+     ], 
+     "uniquename": "FIN_2", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1800, 
+      "top": 480, 
+      "height": 480, 
+      "left": 6600
+     }
+    }
+   ], 
+   "width": 9420, 
+   "displays": [
+    {
+     "color": "rgb(239,239,239)", 
+     "text": "Ecu_mounting_position", 
+     "request": "RDBLID-Ecu Monting Direction", 
+     "width": 2360, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6480, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 1080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "TEMIC", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 600, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "KUSTER", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 600, 
+      "height": 300, 
+      "left": 3480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RNLT 1", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 600, 
+      "height": 300, 
+      "left": 4080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RNLT 2", 
+     "request": "RDBLI-MODE ACTIF", 
+     "width": 15, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 360, 
+      "top": 600, 
+      "height": 300, 
+      "left": 4680
+     }
+    }
+   ]
+  }, 
+  "00-05 - Calibration capteur effort": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force AD value min", 
+     "request": "WDBLI Force sensor calibration", 
+     "width": 3485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4240, 
+      "top": 960, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force AD value max", 
+     "request": "WDBLI Force sensor calibration", 
+     "width": 3530, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4240, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force normalisation high", 
+     "request": "WDBLI Force sensor calibration", 
+     "width": 3530, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4240, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force normalisation low", 
+     "request": "WDBLI Force sensor calibration", 
+     "width": 3545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4240, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Checksum highbyte FS", 
+     "request": "WDBLI Force sensor calibration", 
+     "width": 3545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4240, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Checksum lowbyte FS", 
+     "request": "WDBLI Force sensor calibration", 
+     "width": 3545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mot de passe utilisateur", 
+     "request": "WDBLI-MOT DE PASSE", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 5280, 
+      "height": 360, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Session Name", 
+     "request": "Start Diagnostic Session", 
+     "width": 1370, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 5880, 
+      "height": 360, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force zero value", 
+     "request": "WDBLI Force sensor calibration", 
+     "width": 3545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4240, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 6600
+     }
+    }
+   ], 
+   "color": "rgb(234,172,242)", 
+   "labels": [
+    {
+     "color": "rgb(199,232,239)", 
+     "text": "CALIBRATION CAPTEUR EFFORT", 
+     "bbox": {
+      "width": 7920, 
+      "top": 120, 
+      "height": 360, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(15,15,15)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(199,232,239)", 
+     "text": "Ecriture des donn\u00e9es (decimal)", 
+     "bbox": {
+      "width": 5160, 
+      "top": 600, 
+      "height": 4440, 
+      "left": 6120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(175,250,180)", 
+     "text": "Lecture des donn\u00e9es (decimal)", 
+     "bbox": {
+      "width": 5280, 
+      "top": 1080, 
+      "height": 2880, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [
+    {
+     "Delay": "0", 
+     "RequestName": "RDBLI-PARA9F R"
+    }
+   ], 
+   "height": 9030, 
+   "buttons": [
+    {
+     "text": "Write of the Force sensor", 
+     "messages": [
+      "Ecriture of the Force sensor"
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI Force sensor calibration"
+      }
+     ], 
+     "uniquename": "Write of the Force sensor_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 5160, 
+      "top": 5280, 
+      "height": 360, 
+      "left": 6120
+     }
+    }, 
+    {
+     "text": "Validation Diagnostic", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Start Diagnostic Session"
+      }
+     ], 
+     "uniquename": "Validation Diagnostic_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 5880, 
+      "height": 360, 
+      "left": 6120
+     }
+    }, 
+    {
+     "text": "Validation Password", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI-MOT DE PASSE"
+      }
+     ], 
+     "uniquename": "Validation Password_2", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 1560, 
+      "top": 5280, 
+      "height": 360, 
+      "left": 4440
+     }
+    }
+   ], 
+   "width": 12120, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force AD value min", 
+     "request": "RDBLI-PARAD", 
+     "width": 2855, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force AD value max", 
+     "request": "RDBLI-PARAD", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force normalisation high", 
+     "request": "RDBLI-PARAD", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force normalisation low", 
+     "request": "RDBLI-PARAD", 
+     "width": 2885, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake force zero value", 
+     "request": "RDBLI-PARAD", 
+     "width": 2870, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "System mode", 
+     "request": "RDBLI-VAR SYS", 
+     "width": 1775, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 4560, 
+      "height": 360, 
+      "left": 240
+     }
+    }
+   ]
+  }
+ }, 
+ "categories": {
+  "03-Diagnostic_expert": [
+   "03-01 - Lecture Variables FPA", 
+   "03-02 - Lecture Defauts", 
+   "03-04 - Lecture environnement vehicule", 
+   "03-05 - Activation Take Off", 
+   "03-06 - Reset ECU", 
+   "03-07 - Commande Manuelle FPA"
+  ], 
+  "01-Diagnostic_premier_niveau": [
+   "01-01 - Variables cl\u00e9es FPA"
+  ], 
+  "00-Configuration": [
+   "00-02 - Lecture/Ecriture HSA", 
+   "00-03 - Lecture/Ecriture DATA KUESTER", 
+   "00-04 - Config JR84", 
+   "00-01 - Configuration", 
+   "00-05 - Calibration capteur effort", 
+   "00-06 - Password & Mode"
+  ], 
+  "04-Type of vehicle": [
+   "04-01 - Ecu Monting Direction"
+  ], 
+  "02-Diagnostic des prestations": [
+   "02-01 - Stationnement", 
+   "02-02 - Serrage automatique", 
+   "02-03 - Desserrage automatique", 
+   "02-04 - Freinage d'urgence"
+  ]
+ }
+}

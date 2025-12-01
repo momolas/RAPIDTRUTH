@@ -1,0 +1,1759 @@
+{
+ "screens": {
+  "Ecriture": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Choix type de caisse", 
+     "request": "Ecrire config Type V\u00e9hicule", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 720, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Type CTP", 
+     "request": "Ecrire config Type CTP", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 720, 
+      "height": 300, 
+      "left": 5040
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(128,255,128)", 
+     "text": "Ecriture configuratoin syst\u00e8me", 
+     "bbox": {
+      "width": 9240, 
+      "top": 480, 
+      "height": 1080, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Valider le choix Config Caisse", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Ecrire config Type V\u00e9hicule"
+      }
+     ], 
+     "uniquename": "Valider le choix Config Caisse_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "text": "Valider le choix type CTP", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Ecrire config Type CTP"
+      }
+     ], 
+     "uniquename": "Valider le choix type CTP_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 5040
+     }
+    }
+   ], 
+   "width": 10980, 
+   "displays": []
+  }, 
+  "Diag R\u00e9seau Mux": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "", 
+     "bbox": {
+      "width": 8760, 
+      "top": 150, 
+      "height": 5820, 
+      "left": 75
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "", 
+     "bbox": {
+      "width": 2415, 
+      "top": 1305, 
+      "height": 4305, 
+      "left": 5985
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "ABS", 
+     "bbox": {
+      "width": 2280, 
+      "top": 1860, 
+      "height": 870, 
+      "left": 60
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "ABS", 
+     "bbox": {
+      "width": 2280, 
+      "top": 1860, 
+      "height": 870, 
+      "left": 60
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "CLIM", 
+     "bbox": {
+      "width": 2430, 
+      "top": 960, 
+      "height": 360, 
+      "left": 5985
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "CLUSTER", 
+     "bbox": {
+      "width": 2280, 
+      "top": 4830, 
+      "height": 1050, 
+      "left": 30
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Diagnostic R\u00e9seau MUX", 
+     "bbox": {
+      "width": 8790, 
+      "top": 165, 
+      "height": 585, 
+      "left": 75
+     }, 
+     "fontcolor": "rgb(64,0,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "ECM", 
+     "bbox": {
+      "width": 2280, 
+      "top": 3735, 
+      "height": 1125, 
+      "left": -90
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "UCH", 
+     "bbox": {
+      "width": 2280, 
+      "top": 885, 
+      "height": 1005, 
+      "left": 75
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CLUSTER absent-compteur panne m\u00e9mo", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 3635, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4590, 
+      "top": 5115, 
+      "height": 300, 
+      "left": 1170
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CLUSTER-compteur panne pr\u00e9sent au max", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 3845, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4575, 
+      "top": 5445, 
+      "height": 300, 
+      "left": 1170
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ECM absent-compteur panne m\u00e9mo", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 3350, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4590, 
+      "top": 4080, 
+      "height": 300, 
+      "left": 1185
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ECM absent-compteur panne pr\u00e9sente au max", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 4130, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4590, 
+      "top": 4365, 
+      "height": 285, 
+      "left": 1185
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "UCH absent - Cpt panne pr\u00e9sente au max", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 3665, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4545, 
+      "top": 1500, 
+      "height": 300, 
+      "left": 1200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "UCH absent - compteur panne m\u00e9mo", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4515, 
+      "top": 1230, 
+      "height": 300, 
+      "left": 1215
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ABS absent - compteur panne m\u00e9mo", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4515, 
+      "top": 2190, 
+      "height": 315, 
+      "left": 1230
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ABS absent - Cpt panne pr\u00e9sente au max", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 3515, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4515, 
+      "top": 2445, 
+      "height": 300, 
+      "left": 1230
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ECM absent", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 680, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 3765, 
+      "height": 300, 
+      "left": 2310
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ABS absent", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 770, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3420, 
+      "top": 1920, 
+      "height": 270, 
+      "left": 2340
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CLUSTER absent", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 935, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3390, 
+      "top": 4830, 
+      "height": 300, 
+      "left": 2340
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "UCH absent", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 650, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3405, 
+      "top": 930, 
+      "height": 300, 
+      "left": 2370
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bus Off compteur panne m\u00e9mo", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 1595, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2430, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 5970
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bus Off Cpt panne pr\u00e9sente au max", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 1700, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2475, 
+      "top": 2430, 
+      "height": 300, 
+      "left": 5970
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CLIM absent", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 1205, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2370, 
+      "top": 2895, 
+      "height": 300, 
+      "left": 5985
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bus Off", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 830, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2010, 
+      "top": 1515, 
+      "height": 300, 
+      "left": 6000
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9f\u00e9rence version messagerie", 
+     "request": "Diagnostic R\u00e9seau Mux", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 6000
+     }
+    }
+   ]
+  }, 
+  "Information syst\u00e8me": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Acquisition ", 
+     "bbox": {
+      "width": 3420, 
+      "top": 45, 
+      "height": 450, 
+      "left": 45
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "BRAKE", 
+     "bbox": {
+      "width": 4140, 
+      "top": 3480, 
+      "height": 420, 
+      "left": 3615
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,64)", 
+     "text": "CLIM", 
+     "bbox": {
+      "width": 3345, 
+      "top": 495, 
+      "height": 3900, 
+      "left": 7920
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "CLUSTER", 
+     "bbox": {
+      "width": 4185, 
+      "top": 3960, 
+      "height": 420, 
+      "left": 3600
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "ECM", 
+     "bbox": {
+      "width": 4170, 
+      "top": 2985, 
+      "height": 465, 
+      "left": 3615
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Entr\u00e9e Info CAN", 
+     "bbox": {
+      "width": 4245, 
+      "top": 30, 
+      "height": 255, 
+      "left": 3600
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Info actionneurs", 
+     "bbox": {
+      "width": 4035, 
+      "top": 2100, 
+      "height": 300, 
+      "left": -525
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,64)", 
+     "text": "INFORMATIONS SYSTEME", 
+     "bbox": {
+      "width": 11040, 
+      "top": 4620, 
+      "height": 2010, 
+      "left": 165
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "SORTIE INFO CAN", 
+     "bbox": {
+      "width": 3300, 
+      "top": 75, 
+      "height": 345, 
+      "left": 7875
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "UCH", 
+     "bbox": {
+      "width": 4170, 
+      "top": 300, 
+      "height": 2640, 
+      "left": 3600
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 7530, 
+   "buttons": [], 
+   "width": 11385, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat du ventilateur habitacle", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2105, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3220, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 75
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature int\u00e9rieure", 
+     "request": "ReadDataByLocalIdentifier Informations Systeme n\u00b01", 
+     "width": 2010, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 600, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Sonde d'ensoleillement", 
+     "request": "ReadDataByLocalIdentifier Informations Systeme n\u00b01", 
+     "width": 2235, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 960, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension +Batt", 
+     "request": "ReadDataByLocalIdentifier Informations Systeme n\u00b01", 
+     "width": 1415, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2435, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position volet distribution", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3210, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position volet mixage", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2270, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Recyclage", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 965, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3190, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne PWM GMV habitacle", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2600, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3165, 
+      "top": 3825, 
+      "height": 300, 
+      "left": 135
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 Logiciel s\u00e9rie", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4980, 
+      "height": 300, 
+      "left": 315
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 HardWare", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5355, 
+      "height": 300, 
+      "left": 315
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 version \u00e9tude", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5730, 
+      "height": 300, 
+      "left": 315
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code ITG Fournisseur", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6120, 
+      "height": 300, 
+      "left": 315
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Puissance \u00e9lectrique command\u00e9e", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2855, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3715, 
+      "top": 300, 
+      "height": 300, 
+      "left": 4095
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Recopie de l'\u00e9tat du compresseur", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2795, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3700, 
+      "top": 630, 
+      "height": 300, 
+      "left": 4110
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature d'eau", 
+     "request": "ReadDataByLocalIdentifier Informations Systeme n\u00b01", 
+     "width": 1835, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2625, 
+      "top": 3030, 
+      "height": 300, 
+      "left": 4110
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Recopie position toit ouvrant", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2270, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3670, 
+      "top": 1005, 
+      "height": 300, 
+      "left": 4125
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "+APCLineStatus", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2275, 
+      "top": 1380, 
+      "height": 300, 
+      "left": 4140
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat de demande LARC manuel", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3250, 
+      "top": 1710, 
+      "height": 300, 
+      "left": 4155
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature ext\u00e9rieure", 
+     "request": "ReadDataByLocalIdentifier Informations Systeme n\u00b01", 
+     "width": 2150, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3315, 
+      "top": 2055, 
+      "height": 300, 
+      "left": 4155
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Gel temp\u00e9rature air souffl\u00e9", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2165, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3370, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 4155
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2755, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 4335
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 Pi\u00e8ce MPR", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 6105, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 Calibration s\u00e9rie", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5700, 
+      "height": 300, 
+      "left": 4455
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code Identification Diagnostic", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2630, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5115, 
+      "height": 465, 
+      "left": 4470
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Niveau \u00e9clairage Nuit", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 1940, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2755, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 4530
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat du ventilateur habitacle", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2165, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3010, 
+      "top": 780, 
+      "height": 285, 
+      "left": 7875
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Demande AC", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 1280, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2350, 
+      "top": 1095, 
+      "height": 300, 
+      "left": 7890
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Demande LARC par l'automatisme", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 2240, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3295, 
+      "top": 2325, 
+      "height": 555, 
+      "left": 7890
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne de temp\u00e9rature air souffl\u00e9", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 1940, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3310, 
+      "top": 1455, 
+      "height": 405, 
+      "left": 7905
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mode LDA", 
+     "request": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02", 
+     "width": 920, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2515, 
+      "top": 2970, 
+      "height": 300, 
+      "left": 7905
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature \u00e9vaporateur", 
+     "request": "ReadDataByLocalIdentifier Informations Systeme n\u00b01", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 7920
+     }
+    }
+   ]
+  }, 
+  "Identification syst\u00e8me": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Configuration syst\u00e8me", 
+     "bbox": {
+      "width": 4545, 
+      "top": 1440, 
+      "height": 2040, 
+      "left": 5040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Idendification syst\u00e8me RENAULT", 
+     "bbox": {
+      "width": 4545, 
+      "top": 240, 
+      "height": 3255, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Idendification V\u00e9hicule", 
+     "bbox": {
+      "width": 4545, 
+      "top": 240, 
+      "height": 1080, 
+      "left": 5040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Tra\u00e7abilit\u00e9", 
+     "bbox": {
+      "width": 9240, 
+      "top": 3960, 
+      "height": 840, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 10050, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 Pi\u00e8ce MPR", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 600, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code Identification Diagnostic", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2210, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 960, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code ITG Fournisseur", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 HardWare", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 Logiciel s\u00e9rie", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 version \u00e9tude", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N\u00b0 Calibration s\u00e9rie", 
+     "request": "Lecture Identification Syst\u00e8me RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tra\u00e7abilit\u00e9", 
+     "request": "Lecture Tra\u00e7abilit\u00e9", 
+     "width": 2630, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 1080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Type de caisse", 
+     "request": "Lecture Configuration syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pays", 
+     "request": "Lecture Configuration syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Type CTP", 
+     "request": "Lecture Configuration syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Config Sonde EVAPO", 
+     "request": "Lecture Configuration syst\u00e8me", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 5280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "VIN", 
+     "request": "Lecture Identification v\u00e9hicule", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 600, 
+      "height": 300, 
+      "left": 5400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CRC", 
+     "request": "Lecture Identification v\u00e9hicule", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 960, 
+      "height": 300, 
+      "left": 5400
+     }
+    }
+   ]
+  }
+ }, 
+ "categories": {
+  "Ecrans S\u00e9rie": [
+   "Diag R\u00e9seau Mux", 
+   "Ecriture", 
+   "Identification syst\u00e8me", 
+   "Information syst\u00e8me"
+  ]
+ }
+}

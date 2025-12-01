@@ -66,8 +66,8 @@ struct ECUSelectorView: View {
     }
 
     private func loadDB() async {
-        guard let url = Bundle.main.url(forResource: "db", withExtension: "json") else {
-            print("db.json not found")
+        guard let url = Bundle.main.url(forResource: "X84_db", withExtension: "json") else {
+            print("X84_db.json not found")
             await MainActor.run { self.isLoading = false }
             return
         }
@@ -87,7 +87,7 @@ struct ECUSelectorView: View {
                 self.isLoading = false
             }
         } catch {
-            print("Error loading db.json: \(error)")
+            print("Error loading X84_db.json: \(error)")
             await MainActor.run { self.isLoading = false }
         }
     }

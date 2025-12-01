@@ -1,0 +1,5438 @@
+{
+ "screens": {
+  "IO - Allumage des warning": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Allumage des warning", 
+     "bbox": {
+      "width": 8400, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "des warning durant 20s (sous r\u00e9serve", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3840, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Description du Test", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3000, 
+      "height": 480, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "d'un fonctionnement nominal de l'UCH).", 
+     "bbox": {
+      "width": 7440, 
+      "top": 4200, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat d'avancement de l'activation", 
+     "bbox": {
+      "width": 8400, 
+      "top": 2040, 
+      "height": 840, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "L'activation d\u00e9clenche l'allumage", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3480, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lancement de l'activation", 
+     "bbox": {
+      "width": 8400, 
+      "top": 720, 
+      "height": 1200, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Pour un bon fonctionnement mettre en mode reboucl\u00e9", 
+     "bbox": {
+      "width": 7440, 
+      "top": 4560, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 5250, 
+   "buttons": [
+    {
+     "text": "Lancer l'activation", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IO-IOCBLI - HazardWarningRequest"
+      }
+     ], 
+     "uniquename": "Lancer l'activation_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 1200, 
+      "height": 420, 
+      "left": 240
+     }
+    }
+   ], 
+   "width": 8610, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat du processus d'activation", 
+     "request": "IO-IOStatus - HazardWarningRequest", 
+     "width": 3575, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 240
+     }
+    }
+   ]
+  }, 
+  "Lecture Ecriture - Param\u00e8tres ESP": {
+   "inputs": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Seuil de reconnexion automatique de l'ESP", 
+     "request": "*RW-WDBLI - ESPReconnection", 
+     "width": 4475, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9039, 
+      "top": 4080, 
+      "height": 300, 
+      "left": 561
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Variante V\u00e9hicule", 
+     "request": "*RW-WDBLI - VehicleConigurationRecording", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9600, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de la fonction Allumage des Feux Stop", 
+     "request": "*RW-WDBLI - BrakeLampFunction", 
+     "width": 4790, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9000, 
+      "top": 4920, 
+      "height": 300, 
+      "left": 600
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Attention :", 
+     "bbox": {
+      "width": 10080, 
+      "top": 5880, 
+      "height": 240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Ecriture des param\u00e8tres", 
+     "bbox": {
+      "width": 9840, 
+      "top": 2640, 
+      "height": 3120, 
+      "left": 225
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lecture des param\u00e8tres", 
+     "bbox": {
+      "width": 9840, 
+      "top": 480, 
+      "height": 2040, 
+      "left": 225
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Les informations modifi\u00e9es", 
+     "bbox": {
+      "width": 10080, 
+      "top": 6120, 
+      "height": 240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ne sont mise \u00e0 jour qu'apr\u00e8s", 
+     "bbox": {
+      "width": 10080, 
+      "top": 6360, 
+      "height": 240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "une sortie du mode diagnostic", 
+     "bbox": {
+      "width": 10080, 
+      "top": 6600, 
+      "height": 240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Variante v\u00e9hicule", 
+     "bbox": {
+      "width": 1680, 
+      "top": 720, 
+      "height": 240, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(15,15,15)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Variante v\u00e9hicule", 
+     "bbox": {
+      "width": 1560, 
+      "top": 2880, 
+      "height": 240, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(15,15,15)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Lecture Ecriture des param\u00e8tres ESP", 
+     "bbox": {
+      "width": 6000, 
+      "top": 120, 
+      "height": 240, 
+      "left": 2145
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6930, 
+   "buttons": [
+    {
+     "text": "Ecriture de la fonction allumage auto feux stop", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "*RW-WDBLI - BrakeLampFunction"
+      }
+     ], 
+     "uniquename": "Ecriture de la fonction allumage auto feux stop_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 9039, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "text": "Ecriture de la variante v\u00e9hicule", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "*RW-WDBLI - VehicleConigurationRecording"
+      }
+     ], 
+     "uniquename": "Ecriture de la variante v\u00e9hicule_1", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 9039, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 561
+     }
+    }, 
+    {
+     "text": "Ecriture du seuil de reconnexion automatique", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "*RW-WDBLI - ESPReconnection"
+      }
+     ], 
+     "uniquename": "Ecriture du seuil de reconnexion automatique_2", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 9039, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 600
+     }
+    }
+   ], 
+   "width": 10290, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Variante V\u00e9hicule", 
+     "request": "*RW-RDBLI - VehicleConfiguration", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9600, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Seuil de reconnexion automatique de l'ESP", 
+     "request": "*RW-RDBLI - ESPReconnection", 
+     "width": 4625, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8880, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 720
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de la fonction Allumage des Feux Stop", 
+     "request": "*RW-RDBLI - BrakeLampsFunction", 
+     "width": 4790, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9039, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 561
+     }
+    }
+   ]
+  }, 
+  "Lecture Ecriture - ProcessByte": {
+   "inputs": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "ProcessByte Remplissage", 
+     "request": "RW-WDBLI - FillingProcessByte", 
+     "width": 2990, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8640, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 240
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Ecriture du ProcessByte", 
+     "bbox": {
+      "width": 8880, 
+      "top": 3000, 
+      "height": 1440, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Informations sur le processus de remplissage", 
+     "bbox": {
+      "width": 8880, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "interdite aux personnes non autoris\u00e9es", 
+     "bbox": {
+      "width": 8880, 
+      "top": 4800, 
+      "height": 240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "La modification du ProcessByte est", 
+     "bbox": {
+      "width": 8880, 
+      "top": 4560, 
+      "height": 240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lecture du ProcessByte", 
+     "bbox": {
+      "width": 8880, 
+      "top": 600, 
+      "height": 2280, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 5250, 
+   "buttons": [
+    {
+     "text": "Ecriture du ProcessByte", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "RW-WDBLI - FillingProcessByte"
+      }
+     ], 
+     "uniquename": "Ecriture du ProcessByte_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8640, 
+      "top": 3840, 
+      "height": 420, 
+      "left": 240
+     }
+    }
+   ], 
+   "width": 9090, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat du circuit de frein", 
+     "request": "RW-RDBLI - FillingProcessByte", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8520, 
+      "top": 960, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Autorisation remplissage RF", 
+     "request": "RW-RDBLI - FillingProcessByte", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8520, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat du bloc hydraulique", 
+     "request": "RW-RDBLI - FillingProcessByte", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8520, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "D\u00e9faut de remplissage", 
+     "request": "RW-RDBLI - FillingProcessByte", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8520, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Affectation", 
+     "request": "RW-RDBLI - FillingProcessByte", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8520, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 240
+     }
+    }
+   ]
+  }, 
+  "Routine - Test du citcuit hydaulique": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Arr\u00eat du test", 
+     "bbox": {
+      "width": 7560, 
+      "top": 3360, 
+      "height": 1320, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Cette routine est pr\u00e9vue pour valider", 
+     "bbox": {
+      "width": 7560, 
+      "top": 5160, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Choix de la roue", 
+     "bbox": {
+      "width": 7560, 
+      "top": 720, 
+      "height": 1560, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "de frein enfonc\u00e9e et faire tourner \u00e0 la main la", 
+     "bbox": {
+      "width": 7560, 
+      "top": 6240, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "D\u00e9roulement de la routine : Maintenir la p\u00e9dale", 
+     "bbox": {
+      "width": 7560, 
+      "top": 5880, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Description du Test", 
+     "bbox": {
+      "width": 7560, 
+      "top": 4800, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat d'avancement du test", 
+     "bbox": {
+      "width": 7560, 
+      "top": 2400, 
+      "height": 840, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "l'affectation des voies hydrauliques.", 
+     "bbox": {
+      "width": 7560, 
+      "top": 5520, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Les autres roues sont bloqu\u00e9es durant le test.", 
+     "bbox": {
+      "width": 7560, 
+      "top": 6960, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Pour un bon fonctionnement mettre en mode reboucl\u00e9", 
+     "bbox": {
+      "width": 7560, 
+      "top": 7320, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "roue test\u00e9e. Elle doit se bloquer et se d\u00e9bloquer.", 
+     "bbox": {
+      "width": 7560, 
+      "top": 6600, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Routine de test du circuit hydraulique", 
+     "bbox": {
+      "width": 8760, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 8250, 
+   "buttons": [
+    {
+     "text": "Arr\u00eat du Test", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StopRBLI - HybraulicCircuitTest"
+      }
+     ], 
+     "uniquename": "Arr\u00eat du Test_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 6600, 
+      "top": 3720, 
+      "height": 420, 
+      "left": 1200
+     }
+    }, 
+    {
+     "text": "Test de la roue ArD", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - HybraulicCircuitTest_RR"
+      }
+     ], 
+     "uniquename": "Test de la roue ArD_1", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1680, 
+      "height": 420, 
+      "left": 4560
+     }
+    }, 
+    {
+     "text": "Test de la roue ArG", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - HybraulicCircuitTest_RL"
+      }
+     ], 
+     "uniquename": "Test de la roue ArG_2", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1680, 
+      "height": 420, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Test de la roue AvD", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - HybraulicCircuitTest_FR"
+      }
+     ], 
+     "uniquename": "Test de la roue AvD_3", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1200, 
+      "height": 420, 
+      "left": 4560
+     }
+    }, 
+    {
+     "text": "Test de la roue AvG", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - HybraulicCircuitTest_FL"
+      }
+     ], 
+     "uniquename": "Test de la roue AvG_4", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1200, 
+      "height": 420, 
+      "left": 840
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de la routine", 
+     "request": "R-StatusRoutine - HybraulicCircuitTest", 
+     "width": 2330, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7080, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de l'arr\u00eat de la routine", 
+     "request": "R-StopRBLI - HybraulicCircuitTest", 
+     "width": 2735, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7080, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 960
+     }
+    }
+   ]
+  }, 
+  "IO - Activation des \u00e9lectrovannes et de la pompe": {
+   "inputs": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Admission avant gauche", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 960, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Echappement avant gauche", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Admission arri\u00e8re gauche", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Echappement arri\u00e8re gauche", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Activation de la pompe", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 3395, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Valve Usv1", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Valve Usv2", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Choix du temps d'activation (Xx20ms) (Min:1s/Max5s)", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 5135, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Admission avant droite", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 960, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Echappement avant droite", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Admission arri\u00e8re droite", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Echappement arri\u00e8re droite", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Valve Hsv1", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Valve Hsv2", 
+     "request": "*IO-IOCBLI - ESP valves & Pump", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 4920
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Activation des \u00e9lectrovannes et de la pompe", 
+     "bbox": {
+      "width": 9240, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Cette activation permet le contr\u00f4le", 
+     "bbox": {
+      "width": 3720, 
+      "top": 7320, 
+      "height": 360, 
+      "left": 840
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Choix des \u00e9lectrovannes ABS", 
+     "bbox": {
+      "width": 8880, 
+      "top": 600, 
+      "height": 2280, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Choix des \u00e9lectrovannes ESP", 
+     "bbox": {
+      "width": 8880, 
+      "top": 3000, 
+      "height": 1200, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Description du Test", 
+     "bbox": {
+      "width": 7800, 
+      "top": 6840, 
+      "height": 480, 
+      "left": 840
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "d'un ou plusieurs actionneurs (\u00e9lectrovannes", 
+     "bbox": {
+      "width": 4320, 
+      "top": 7320, 
+      "height": 360, 
+      "left": 4320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "et/ou pompe) durant 5s ind\u00e9pendamment.", 
+     "bbox": {
+      "width": 7800, 
+      "top": 7680, 
+      "height": 360, 
+      "left": 840
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat d'avancement de l'activation", 
+     "bbox": {
+      "width": 8880, 
+      "top": 5880, 
+      "height": 840, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lancement de l'activation", 
+     "bbox": {
+      "width": 8880, 
+      "top": 4320, 
+      "height": 1440, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Pour un bon fonctionnement mettre en mode reboucl\u00e9", 
+     "bbox": {
+      "width": 7800, 
+      "top": 8040, 
+      "height": 360, 
+      "left": 840
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 8610, 
+   "buttons": [
+    {
+     "text": "Lancer l'activation", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "*IO-IOCBLI - ESP valves & Pump"
+      }
+     ], 
+     "uniquename": "Lancer l'activation_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8520, 
+      "top": 5160, 
+      "height": 420, 
+      "left": 480
+     }
+    }
+   ], 
+   "width": 9450, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat du processus d'activation", 
+     "request": "*IO-StatusIO - ESP valves & Pump", 
+     "width": 3035, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 480
+     }
+    }
+   ]
+  }, 
+  "Routine - Proc\u00e9dure de remplissage usine": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Arr\u00eat d'urgence !!!", 
+     "bbox": {
+      "width": 7440, 
+      "top": 2520, 
+      "height": 840, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Attention :", 
+     "bbox": {
+      "width": 7440, 
+      "top": 5160, 
+      "height": 240, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Description du Test", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3600, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat d'avancement du processus", 
+     "bbox": {
+      "width": 7440, 
+      "top": 1680, 
+      "height": 720, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lancement de la proc\u00e9dure", 
+     "bbox": {
+      "width": 7440, 
+      "top": 720, 
+      "height": 840, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lancement de la procedure de", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3960, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Pour un bon fonctionnement mettre en mode reboucl\u00e9", 
+     "bbox": {
+      "width": 7440, 
+      "top": 4680, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "remplissage usine.", 
+     "bbox": {
+      "width": 7440, 
+      "top": 4320, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Routine - Proc\u00e9dure de remplissage usine", 
+     "bbox": {
+      "width": 8760, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Utilisation d'un bloc sec uniquement!!!", 
+     "bbox": {
+      "width": 7440, 
+      "top": 5400, 
+      "height": 240, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 5850, 
+   "buttons": [
+    {
+     "text": "Arr\u00eat d'urgence !!!", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StopRBLI - Evac&FillProcedure"
+      }
+     ], 
+     "uniquename": "Arr\u00eat d'urgence !!!_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 2880, 
+      "height": 420, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Lancement de la proc\u00e9dure", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - Evac&FillProcedure"
+      }
+     ], 
+     "uniquename": "Lancement de la proc\u00e9dure_1", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 1080, 
+      "height": 420, 
+      "left": 840
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de la routine", 
+     "request": "R-StatusRoutine - Evac&FillProcedure", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 840
+     }
+    }
+   ]
+  }, 
+  "IO - Activation des feux stop": {
+   "inputs": [
+    {
+     "color": "rgb(191,191,191)", 
+     "text": "Choix du temps d'activation (Xx80ms) (Min5s/Max20s)", 
+     "request": "*IO-IOCBLI - StopLampOutput", 
+     "width": 5375, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8880, 
+      "top": 360, 
+      "height": 360, 
+      "left": 240
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Activation des feux stop", 
+     "bbox": {
+      "width": 9240, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Cette activation d\u00e8clenche l'allumage", 
+     "bbox": {
+      "width": 7560, 
+      "top": 3240, 
+      "height": 360, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "des feux stop. Dur\u00e9e 20s", 
+     "bbox": {
+      "width": 7560, 
+      "top": 3600, 
+      "height": 360, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Description du Test", 
+     "bbox": {
+      "width": 7560, 
+      "top": 2760, 
+      "height": 480, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de l'activation", 
+     "bbox": {
+      "width": 8880, 
+      "top": 1800, 
+      "height": 840, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lancement de l'activation", 
+     "bbox": {
+      "width": 8880, 
+      "top": 720, 
+      "height": 960, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Pour un bon fonctionnement mettre en mode reboucl\u00e9", 
+     "bbox": {
+      "width": 7560, 
+      "top": 3960, 
+      "height": 360, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 4530, 
+   "buttons": [
+    {
+     "text": "Lancer l'activation", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "*IO-IOCBLI - StopLampOutput"
+      }
+     ], 
+     "uniquename": "Lancer l'activation_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 1080, 
+      "height": 420, 
+      "left": 480
+     }
+    }
+   ], 
+   "width": 9450, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat du processus d'activation", 
+     "request": "*IO-StatusIO - StopLampOutput", 
+     "width": 3635, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 480
+     }
+    }
+   ]
+  }, 
+  "Lecture Effacement - Offsets ESP": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Attention :", 
+     "bbox": {
+      "width": 8880, 
+      "top": 3600, 
+      "height": 240, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Effacement des offsets ESP", 
+     "bbox": {
+      "width": 8880, 
+      "top": 2520, 
+      "height": 960, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Offset ESP", 
+     "bbox": {
+      "width": 8880, 
+      "top": 120, 
+      "height": 480, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lecture des offsets ESP", 
+     "bbox": {
+      "width": 8880, 
+      "top": 600, 
+      "height": 1800, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "La modification des offsets Esp est", 
+     "bbox": {
+      "width": 8880, 
+      "top": 3840, 
+      "height": 240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "interdite aux personnes non autoris\u00e9es", 
+     "bbox": {
+      "width": 8880, 
+      "top": 4080, 
+      "height": 240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 4500, 
+   "buttons": [
+    {
+     "text": "Lancement de l'effacement", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "*RW-WDBLI - ClearOffsets"
+      }
+     ], 
+     "uniquename": "Lancement de l'effacement_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 2880, 
+      "height": 382, 
+      "left": 480
+     }
+    }
+   ], 
+   "width": 9450, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Offset SWA", 
+     "request": "*RW-RDBLI - ReadOffsets", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 960, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Offset ay", 
+     "request": "*RW-RDBLI - ReadOffsets", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Offset vgi", 
+     "request": "*RW-RDBLI - ReadOffsets", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 480
+     }
+    }
+   ]
+  }, 
+  "Lecture - Resum\u00e9 du param\u00e8trage": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Param\u00e8trage", 
+     "bbox": {
+      "width": 10320, 
+      "top": 2160, 
+      "height": 2040, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9sum\u00e9 du param\u00e8trage ESP", 
+     "bbox": {
+      "width": 10440, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Software", 
+     "bbox": {
+      "width": 8520, 
+      "top": 720, 
+      "height": 1200, 
+      "left": 1200
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 4410, 
+   "buttons": [], 
+   "width": 10650, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Dimension du pneumatique", 
+     "request": "RW-RDBLI - IndexTire", 
+     "width": 4805, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9960, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Seuil de reconnexion automatique de l'ESP", 
+     "request": "*RW-RDBLI - ESPReconnection", 
+     "width": 4805, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9960, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Variante V\u00e9hicule", 
+     "request": "*RW-RDBLI - VehicleConfiguration", 
+     "width": 1580, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9960, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de la fonction Allumage des Feux Stop", 
+     "request": "*RW-RDBLI - BrakeLampsFunction", 
+     "width": 4805, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9960, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur BB-Number", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 1320
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Syst\u00e8me Serveur", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 1320
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur Version Number", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur Version Number 2", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 15, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 6960
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur Version Number 3et4", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 8400
+     }
+    }
+   ]
+  }, 
+  "Routine - Purge apr\u00e8s vente": {
+   "inputs": [
+    {
+     "color": "rgb(207,207,207)", 
+     "text": "Choix du type d'arr\u00eat", 
+     "request": "R-StopRBLI - BleedingProcedure", 
+     "width": 2765, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7320, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 840
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Arr\u00eat d'urgence !!!", 
+     "bbox": {
+      "width": 7560, 
+      "top": 3360, 
+      "height": 1200, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Cette routine permet d'effectuer une", 
+     "bbox": {
+      "width": 7560, 
+      "top": 4560, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Description du Test", 
+     "bbox": {
+      "width": 7560, 
+      "top": 4200, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "et pomper sur la p\u00e9dale de frein \u00e0 la ", 
+     "bbox": {
+      "width": 7560, 
+      "top": 5640, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat d'avancement du processus", 
+     "bbox": {
+      "width": 7440, 
+      "top": 2160, 
+      "height": 720, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "fr\u00e9quence de 1 Hz.", 
+     "bbox": {
+      "width": 7560, 
+      "top": 6000, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lancement de la purge apr\u00e8s vente", 
+     "bbox": {
+      "width": 7560, 
+      "top": 480, 
+      "height": 1560, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Phase 1 : Desserrer la vis de purge ArG.", 
+     "bbox": {
+      "width": 7560, 
+      "top": 6360, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Phase 2 : Desserrer la vis de purge AvG.", 
+     "bbox": {
+      "width": 7560, 
+      "top": 6720, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Phase 3 : Desserrer la vis de purge AvD.", 
+     "bbox": {
+      "width": 7560, 
+      "top": 7080, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Phase 4 : Desserrer la vis de purge ArD.", 
+     "bbox": {
+      "width": 7560, 
+      "top": 7440, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Pour un bon fonctionnement mettre en mode reboucl\u00e9", 
+     "bbox": {
+      "width": 7560, 
+      "top": 7800, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "purge apr\u00e8s vente. Pour cela il faut :", 
+     "bbox": {
+      "width": 7560, 
+      "top": 4920, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "respecter scrupuleusement l\u2019ordre des phases", 
+     "bbox": {
+      "width": 7560, 
+      "top": 5280, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Routine de purge ap\u00e8s vente", 
+     "bbox": {
+      "width": 8760, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 8370, 
+   "buttons": [
+    {
+     "text": "Arr\u00eat d'urgence !!!", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StopRBLI - BleedingProcedure"
+      }
+     ], 
+     "uniquename": "Arr\u00eat d'urgence !!!_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7320, 
+      "top": 3600, 
+      "height": 420, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Lancement de la procedure phase 1", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - BleedingProcedure Part1"
+      }
+     ], 
+     "uniquename": "Lancement de la procedure phase 1_1", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1080, 
+      "height": 420, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Lancement de la procedure phase 2", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - BleedingProcedure Part2"
+      }
+     ], 
+     "uniquename": "Lancement de la procedure phase 2_2", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1560, 
+      "height": 420, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Lancement de la procedure phase 3", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - BleedingProcedure Part3"
+      }
+     ], 
+     "uniquename": "Lancement de la procedure phase 3_3", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1080, 
+      "height": 420, 
+      "left": 4560
+     }
+    }, 
+    {
+     "text": "Lancement de la procedure phase 4", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - BleedingProcedure Part4"
+      }
+     ], 
+     "uniquename": "Lancement de la procedure phase 4_4", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1560, 
+      "height": 420, 
+      "left": 4560
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de la routine", 
+     "request": "R-StatusRoutine - BleedingProcedure", 
+     "width": 2765, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 960
+     }
+    }
+   ]
+  }, 
+  "Lecture Ecriture - Information pneumatique": {
+   "inputs": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Dimension du pneumatique", 
+     "request": "RW-WDBLI - IndexTireRecording", 
+     "width": 3425, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 480
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Attention :", 
+     "bbox": {
+      "width": 8880, 
+      "top": 4320, 
+      "height": 240, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Ecriture d'un nouveau pneumatique", 
+     "bbox": {
+      "width": 8880, 
+      "top": 3000, 
+      "height": 1189, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Informations des pneumatiques", 
+     "bbox": {
+      "width": 8880, 
+      "top": 120, 
+      "height": 480, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lecture des informations des pneumatiques", 
+     "bbox": {
+      "width": 8880, 
+      "top": 600, 
+      "height": 2280, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Les informations circonf\u00e9rence des pneumatiques", 
+     "bbox": {
+      "width": 8880, 
+      "top": 4560, 
+      "height": 240, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ne sont mises \u00e0 jour qu'apr\u00e8s", 
+     "bbox": {
+      "width": 8880, 
+      "top": 4800, 
+      "height": 240, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "une sortie du mode diagnostic", 
+     "bbox": {
+      "width": 8880, 
+      "top": 5040, 
+      "height": 240, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 5490, 
+   "buttons": [
+    {
+     "text": "Lancement de l'\u00e9criture", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "RW-WDBLI - IndexTireRecording"
+      }
+     ], 
+     "uniquename": "Lancement de l'\u00e9criture_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 3720, 
+      "height": 382, 
+      "left": 480
+     }
+    }
+   ], 
+   "width": 9450, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Circonf\u00e9rence pneu", 
+     "request": "RW-RDBLI - OdometerFrame", 
+     "width": 3425, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 960, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Circonf\u00e9rence pneu minimum", 
+     "request": "RW-RDBLI - OdometerFrame", 
+     "width": 3425, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Circonf\u00e9rence pneu maximum", 
+     "request": "RW-RDBLI - OdometerFrame", 
+     "width": 3425, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Odom\u00e8tre", 
+     "request": "RW-RDBLI - OdometerFrame", 
+     "width": 3425, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Dimension du pneumatique", 
+     "request": "RW-RDBLI - OdometerFrame", 
+     "width": 3425, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 480
+     }
+    }
+   ]
+  }, 
+  "IO - Vitesse v\u00e9hicule filaire": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "activ\u00e9 durant cette routine.", 
+     "bbox": {
+      "width": 7440, 
+      "top": 5640, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Attention : La tachym\u00e8trie n\u2019est pas", 
+     "bbox": {
+      "width": 7440, 
+      "top": 5280, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Description du Test", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3120, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat d'avancement de l'activation", 
+     "bbox": {
+      "width": 8400, 
+      "top": 2040, 
+      "height": 840, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "frequentiel (F=100Hz soit environ 70Km/h)", 
+     "bbox": {
+      "width": 7440, 
+      "top": 4200, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "g\u00e9n\u00e9ration d'un signal (dur\u00e9e 20s)", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3840, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "L'activation d\u00e9clenche la", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3480, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lancement de l'activation", 
+     "bbox": {
+      "width": 8400, 
+      "top": 720, 
+      "height": 1200, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Pour un bon fonctionnement mettre en mode reboucl\u00e9", 
+     "bbox": {
+      "width": 7440, 
+      "top": 4920, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Sortie vitesse v\u00e9hicule filaire", 
+     "bbox": {
+      "width": 8400, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "sur la sortie filaire Vitesse v\u00e9hicule.", 
+     "bbox": {
+      "width": 7440, 
+      "top": 4560, 
+      "height": 360, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6330, 
+   "buttons": [
+    {
+     "text": "Lancer l'activation", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "IO-IOCBLI - VSOonWire"
+      }
+     ], 
+     "uniquename": "Lancer l'activation_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 1200, 
+      "height": 420, 
+      "left": 240
+     }
+    }
+   ], 
+   "width": 8610, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat du processus d'activation", 
+     "request": "IO-IOStatus - VSOonWire", 
+     "width": 3440, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 240
+     }
+    }
+   ]
+  }, 
+  "Lecture Ecriture - Code VIN et date apr\u00e8s vente": {
+   "inputs": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Jour", 
+     "request": "RW-WDBLI - DateAfterSales", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Mois", 
+     "request": "RW-WDBLI - DateAfterSales", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Ann\u00e9e", 
+     "request": "RW-WDBLI - DateAfterSales", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 4920
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code VIN et date d'intervention apr\u00e8s vente", 
+     "bbox": {
+      "width": 9000, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Ecriture code VIN", 
+     "bbox": {
+      "width": 9000, 
+      "top": 4080, 
+      "height": 360, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Ecriture Date", 
+     "bbox": {
+      "width": 4440, 
+      "top": 720, 
+      "height": 1920, 
+      "left": 4680
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lecture code VIN", 
+     "bbox": {
+      "width": 9000, 
+      "top": 2760, 
+      "height": 1200, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lecture Date", 
+     "bbox": {
+      "width": 4440, 
+      "top": 720, 
+      "height": 1920, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "Pour l \u00e9criture du VIN, utiliser la page  DDT2000 qui calcule automatiquement le CRC", 
+     "bbox": {
+      "width": 9000, 
+      "top": 4440, 
+      "height": 1320, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "LIEN: page de Garde DDT2000 ----> PLAYER ---->IDENT+INFO---> VIN", 
+     "bbox": {
+      "width": 9000, 
+      "top": 6000, 
+      "height": 1080, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 7260, 
+   "buttons": [
+    {
+     "text": "Ecriture Date", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "RW-WDBLI - DateAfterSales"
+      }
+     ], 
+     "uniquename": "Ecriture Date_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 4920
+     }
+    }
+   ], 
+   "width": 9330, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Code VIN", 
+     "request": "RW-RDBLI - VIN", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8680, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Jour", 
+     "request": "RW-RDBLI_DateAfterSale", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Mois", 
+     "request": "RW-RDBLI_DateAfterSale", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Ann\u00e9e", 
+     "request": "RW-RDBLI_DateAfterSale", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Crc", 
+     "request": "RW-RDBLI - VIN", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 4920
+     }
+    }
+   ]
+  }, 
+  "Routine - Comptage des p\u00f4les": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Arr\u00eat du comptage", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3960, 
+      "height": 1320, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Cette routine d\u00e9clenche le comptage des p\u00f4les", 
+     "bbox": {
+      "width": 7440, 
+      "top": 6720, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Choix de la roue", 
+     "bbox": {
+      "width": 7440, 
+      "top": 600, 
+      "height": 2400, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "de la roue s\u00e9lectionn\u00e9e. Apr\u00e8s un tour de roue", 
+     "bbox": {
+      "width": 7440, 
+      "top": 7080, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Description du Test", 
+     "bbox": {
+      "width": 7440, 
+      "top": 6360, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat d'avancement du comptage", 
+     "bbox": {
+      "width": 7440, 
+      "top": 3120, 
+      "height": 720, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "le nombre de p\u00f4les doit \u00eatre \u00e9gal \u00e0 96 (+/- 2).", 
+     "bbox": {
+      "width": 7440, 
+      "top": 7440, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Pour un bon fonctionnement mettre en mode reboucl\u00e9", 
+     "bbox": {
+      "width": 7440, 
+      "top": 7800, 
+      "height": 360, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "R\u00e9sultat", 
+     "bbox": {
+      "width": 7440, 
+      "top": 5400, 
+      "height": 840, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Routine de comptage des p\u00f4les", 
+     "bbox": {
+      "width": 8760, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 8250, 
+   "buttons": [
+    {
+     "text": "Fin du comptage", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - StopPolesCounting"
+      }
+     ], 
+     "uniquename": "Fin du comptage_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 4320, 
+      "height": 420, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Lancement du comptage de la roue ArD", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - StartPolesCounting_RR"
+      }
+     ], 
+     "uniquename": "Lancement du comptage de la roue ArD_1", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 2400, 
+      "height": 435, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Lancement du comptage de la roue ArG", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - StartPolesCounting_RL"
+      }
+     ], 
+     "uniquename": "Lancement du comptage de la roue ArG_2", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 1920, 
+      "height": 435, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Lancement du comptage de la roue AvD", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - StartPolesCounting_FR"
+      }
+     ], 
+     "uniquename": "Lancement du comptage de la roue AvD_3", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 1440, 
+      "height": 435, 
+      "left": 840
+     }
+    }, 
+    {
+     "text": "Lancement du comptage de la roue AvG", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "R-StartRBLI - StartPolesCounting_FL"
+      }
+     ], 
+     "uniquename": "Lancement du comptage de la roue AvG_4", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 960, 
+      "height": 435, 
+      "left": 840
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de la routine", 
+     "request": "R-StatusRoutine - StartPolesCounting", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7240, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de la routine", 
+     "request": "R-StartRBLI - StopPolesCounting", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Nombre de dents", 
+     "request": "R-StartRBLI - StopPolesCounting", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 5760, 
+      "height": 300, 
+      "left": 840
+     }
+    }
+   ]
+  }, 
+  "IO - Activation des capteurs vitesse roue(0)": {
+   "inputs": [
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "Choix du temps d'activation (Xx80ms) (Min5s/Max20s)", 
+     "request": "*IO-IOCBLI - WheelSpeedOutput", 
+     "width": 4925, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8760, 
+      "top": 360, 
+      "height": 300, 
+      "left": 240
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Activation des capteurs vitesse roue", 
+     "bbox": {
+      "width": 9240, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Cette activation d\u00e8clenche l'alimentation", 
+     "bbox": {
+      "width": 7560, 
+      "top": 3240, 
+      "height": 360, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "des capteurs vitesse roue. Dur\u00e9e 20s", 
+     "bbox": {
+      "width": 7560, 
+      "top": 3600, 
+      "height": 360, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Description du Test", 
+     "bbox": {
+      "width": 7560, 
+      "top": 2760, 
+      "height": 480, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de l'activation", 
+     "bbox": {
+      "width": 8880, 
+      "top": 1800, 
+      "height": 840, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lancement de l'activation", 
+     "bbox": {
+      "width": 8880, 
+      "top": 600, 
+      "height": 960, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Pour un bon fonctionnement mettre en mode reboucl\u00e9", 
+     "bbox": {
+      "width": 7560, 
+      "top": 3960, 
+      "height": 360, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 4530, 
+   "buttons": [
+    {
+     "text": "Lancer l'activation", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "*IO-IOCBLI - WheelSpeedOutput"
+      }
+     ], 
+     "uniquename": "Lancer l'activation_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8400, 
+      "top": 1080, 
+      "height": 420, 
+      "left": 480
+     }
+    }
+   ], 
+   "width": 9450, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat du processus d'activation", 
+     "request": "*IO-StatusIO - WheelSpeedOutput", 
+     "width": 3650, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8440, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 480
+     }
+    }
+   ]
+  }, 
+  "Lecture - Identification syst\u00e8me": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Global", 
+     "bbox": {
+      "width": 8640, 
+      "top": 720, 
+      "height": 1920, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Hardware", 
+     "bbox": {
+      "width": 8640, 
+      "top": 4080, 
+      "height": 3240, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Identification syst\u00e8me", 
+     "bbox": {
+      "width": 8760, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Software", 
+     "bbox": {
+      "width": 8640, 
+      "top": 2760, 
+      "height": 1200, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 7530, 
+   "buttons": [], 
+   "width": 9090, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Code MPR", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8155, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Identificateur de Diagnostic", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8155, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Code ITG", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8155, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Code constructeur", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8155, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur BB-Number", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Syst\u00e8me Serveur", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 2990, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Num\u00e9ro du bloc  : 0 265", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8155, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Num\u00e9ro de l'usine de production du bloc", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Num\u00e9ro de la ligne de production du bloc", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8155, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Num\u00e9ro de l'\u00e9quipe de production du bloc", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Ann\u00e9e de production du bloc", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8155, 
+      "top": 5880, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Semaine de production du bloc", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8155, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Jour de production du bloc", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Compteur", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 4100, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8155, 
+      "top": 6960, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur Version Number", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur Version Number 2", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 15, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 6120
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur Version Number 3et4", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 7560
+     }
+    }
+   ]
+  }, 
+  "Lecture - Informations globales": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Capteurs ESP", 
+     "bbox": {
+      "width": 10320, 
+      "top": 6360, 
+      "height": 1920, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat du calculateur", 
+     "bbox": {
+      "width": 10320, 
+      "top": 1920, 
+      "height": 2640, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Lecture des informations globales", 
+     "bbox": {
+      "width": 10440, 
+      "top": 120, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Software", 
+     "bbox": {
+      "width": 8520, 
+      "top": 600, 
+      "height": 1200, 
+      "left": 1200
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Vitesses Roues", 
+     "bbox": {
+      "width": 10320, 
+      "top": 4680, 
+      "height": 1560, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 8490, 
+   "buttons": [], 
+   "width": 10770, 
+   "displays": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Messagerie CAN", 
+     "request": "*RW-RDBLI_NetworkDiag", 
+     "width": 2165, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat ABS et REF", 
+     "request": "*RW-RDBLI - SystemStatusFrame", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9840, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat MSR", 
+     "request": "*RW-RDBLI - SystemStatusFrame", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9840, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat ESP", 
+     "request": "*RW-RDBLI - SystemStatusFrame", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9840, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat du bouton Esp", 
+     "request": "*RW-RDBLI - SystemStatusFrame", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9840, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Etat de la p\u00e9dale de frein", 
+     "request": "*RW-RDBLI - SystemStatusFrame", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9840, 
+      "top": 4080, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Vitesse roue avant gauche", 
+     "request": "RW-RDBLI - SpeedsFrame", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4920, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Vitesse roue arri\u00e8re gauche", 
+     "request": "RW-RDBLI - SpeedsFrame", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4920, 
+      "top": 5400, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Odom\u00e8tre", 
+     "request": "RW-RDBLI - OdometerFrame", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4920, 
+      "top": 5760, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Acceleration Transversale (Min-1.8/Max1.8)", 
+     "request": "*RW-RDBLI - VehicleDynamicFrame", 
+     "width": 5675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9960, 
+      "top": 6720, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Acceleration Longitudinale (Min-10/Max2.7)", 
+     "request": "*RW-RDBLI - VehicleDynamicFrame", 
+     "width": 5675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9960, 
+      "top": 7080, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Angle volant (Min-720/Max720)", 
+     "request": "*RW-RDBLI - VehicleDynamicFrame", 
+     "width": 5675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9960, 
+      "top": 7440, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Vitesse de lacet (Min-200/Max200)", 
+     "request": "*RW-RDBLI - VehicleDynamicFrame", 
+     "width": 5675, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 9960, 
+      "top": 7800, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur BB-Number", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 960, 
+      "height": 300, 
+      "left": 1320
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Syst\u00e8me Serveur", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 3005, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 8160, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 1320
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Vitesse roue avant droite", 
+     "request": "RW-RDBLI - SpeedsFrame", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4920, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 5520
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Vitesse roue arri\u00e8re droite", 
+     "request": "RW-RDBLI - SpeedsFrame", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4920, 
+      "top": 5400, 
+      "height": 300, 
+      "left": 5520
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "RW-RDBLI - SpeedsFrame", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 4920, 
+      "top": 5760, 
+      "height": 300, 
+      "left": 5520
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur Version Number", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 960, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Alimentation", 
+     "request": "*RW-RDBLI - SystemStatusFrame", 
+     "width": 2165, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 6480
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur Version Number 2", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 15, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 960, 
+      "height": 300, 
+      "left": 6960
+     }
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Algorithme Serveur Version Number 3et4", 
+     "request": "RW-RDBLI - RenaultSystemId", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 960, 
+      "height": 300, 
+      "left": 8400
+     }
+    }
+   ]
+  }
+ }, 
+ "categories": {
+  "Ecrans Usine + Apr\u00e8s vente": [
+   "IO - Activation des \u00e9lectrovannes et de la pompe", 
+   "IO - Activation des feux stop", 
+   "IO - Allumage des warning", 
+   "IO - Vitesse v\u00e9hicule filaire", 
+   "Lecture - Identification syst\u00e8me", 
+   "Lecture - Informations globales", 
+   "Lecture - Resum\u00e9 du param\u00e8trage", 
+   "Lecture Ecriture - Code VIN et date apr\u00e8s vente", 
+   "Lecture Ecriture - Information pneumatique", 
+   "Lecture Ecriture - Param\u00e8tres ESP", 
+   "Lecture Ecriture - ProcessByte", 
+   "Routine - Comptage des p\u00f4les", 
+   "Routine - Proc\u00e9dure de remplissage usine", 
+   "Routine - Purge apr\u00e8s vente", 
+   "Routine - Test du citcuit hydaulique", 
+   "Lecture Effacement - Offsets ESP", 
+   "IO - Activation des capteurs vitesse roue(0)"
+  ]
+ }
+}
