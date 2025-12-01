@@ -23,6 +23,11 @@ struct ECUSelectorView: View {
         }
     }
 
+    var groupedECUs: [(key: String, value: [DatabaseECU])] {
+        let grouped = Dictionary(grouping: filteredECUs, by: { $0.group })
+        return grouped.sorted { $0.key < $1.key }
+    }
+
     var body: some View {
         Group {
             if isLoading {
@@ -30,23 +35,23 @@ struct ECUSelectorView: View {
             } else if ecus.isEmpty {
                 ContentUnavailableView(AppStrings.ECUDatabase.empty, systemImage: "xmark.circle")
             } else {
-                List(filteredECUs) { ecu in
-                    NavigationLink {
-                        ECULoaderView(ecu: ecu, obdService: obdService)
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text(ecu.ecuname)
-                                .font(.headline)
-                            HStack {
-                                Text(ecu.group)
-                                    .font(.caption)
-                                    .padding(4)
-                                    .background(Color.blue.opacity(0.2))
-                                    .cornerRadius(4)
-
-                                Text(ecu.protocol ?? "Unknown")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
+                List {
+                    ForEach(groupedECUs, id: \.key) { groupName, ecus in
+                        Section(header: Text(groupName)) {
+                            ForEach(ecus) { ecu in
+                                NavigationLink {
+                                    ECULoaderView(ecu: ecu, obdService: obdService)
+                                } label: {
+                                    VStack(alignment: .leading) {
+                                        Text(ecu.ecuname)
+                                            .font(.headline)
+                                        HStack {
+                                            Text(ecu.protocol ?? "Unknown")
+                                                .font(.caption)
+                                                .foregroundStyle(.secondary)
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -70,7 +75,8 @@ struct ECUSelectorView: View {
         do {
             let data = try Data(contentsOf: url)
             let dict = try JSONDecoder().decode([String: DatabaseECU].self, from: data)
-            let sortedECUs = dict.map { key, value -> DatabaseECU in
+            let sortedECUs = dict.compactMap { key, value -> DatabaseECU? in
+                guard AllowedECUs.isAllowed(value.ecuname) else { return nil }
                 var ecu = value
                 ecu.fileName = key
                 return ecu
