@@ -97,7 +97,7 @@ struct ECUSelectorView: View {
                                         Text(ecu.ecuname)
                                             .font(.headline)
                                         HStack {
-                                            Text(ecu.protocol ?? "Unknown")
+                                            Text(ecu.protocolName ?? "Unknown")
                                                 .font(.caption)
                                                 .foregroundStyle(.secondary)
                                         }

@@ -28,7 +28,7 @@ struct ECUDiagnosticsView: View {
         List {
             Section(header: Text("ECU Information")) {
                 Text("Name: \(definition.ecuname)")
-                Text("Protocol: \(definition.obd.protocolName ?? ecu?.protocol ?? "Unknown")")
+                Text("Protocol: \(definition.obd.protocolName ?? ecu?.protocolName ?? "Unknown")")
                 if let addr = ecu?.address {
                     Text("Address: \(addr)")
                         .font(.caption)

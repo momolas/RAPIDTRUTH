@@ -11,7 +11,8 @@ struct DatabaseECU: Codable, Hashable, Identifiable {
     var id: String { fileName }
     var fileName: String = "" // Injected after decoding
 
-    let `protocol`: String?
+    // Renamed from 'protocol' to avoid keyword conflicts and compiler ambiguity
+    let protocolName: String?
     let autoidents: [DBAutoIdent]?
     let ecuname: String
     let address: String
@@ -19,7 +20,7 @@ struct DatabaseECU: Codable, Hashable, Identifiable {
     let projects: [String]
 
     enum CodingKeys: String, CodingKey {
-        case `protocol`
+        case protocolName = "protocol"
         case autoidents
         case ecuname
         case address
@@ -27,11 +28,11 @@ struct DatabaseECU: Codable, Hashable, Identifiable {
         case projects
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         // Optional decoding with fallbacks to prevent entire DB failure
-        self.protocol = try container.decodeIfPresent(String.self, forKey: .protocol)
+        self.protocolName = try container.decodeIfPresent(String.self, forKey: .protocolName)
         self.autoidents = try container.decodeIfPresent([DBAutoIdent].self, forKey: .autoidents)
         self.ecuname = try container.decodeIfPresent(String.self, forKey: .ecuname) ?? "Unknown ECU"
         self.address = try container.decodeIfPresent(String.self, forKey: .address) ?? ""
@@ -40,9 +41,9 @@ struct DatabaseECU: Codable, Hashable, Identifiable {
     }
 
     // Default init for manual creation if needed
-    init(fileName: String, protocol: String?, autoidents: [DBAutoIdent]?, ecuname: String, address: String, group: String, projects: [String]) {
+    init(fileName: String, protocolName: String?, autoidents: [DBAutoIdent]?, ecuname: String, address: String, group: String, projects: [String]) {
         self.fileName = fileName
-        self.protocol = `protocol`
+        self.protocolName = protocolName
         self.autoidents = autoidents
         self.ecuname = ecuname
         self.address = address

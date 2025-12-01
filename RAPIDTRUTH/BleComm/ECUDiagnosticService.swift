@@ -70,7 +70,7 @@ class ECUDiagnosticService {
         // Determine Header command based on Protocol
         // X84 is typically CAN (ISO 15765) or KWP2000
 
-        if ecu.protocol?.uppercased() == "CAN" {
+        if ecu.protocolName?.uppercased() == "CAN" {
              // For Renault CAN, standard ID is often 0x700 + Addr
              // e.g. "7A" -> 0x77A. "01" (ABS) -> 0x701? (Wait, ABS is usually 760 or similar, but X84 might use simplified addressing)
              // Let's assume the DB "address" is the lower byte of the 11-bit CAN ID 0x7xx.
@@ -85,7 +85,7 @@ class ECUDiagnosticService {
              let header = "7\(addressStr)"
              _ = try await obdService.sendRawCommand("AT SH \(header)")
 
-        } else if ecu.protocol?.uppercased().contains("KWP") == true {
+        } else if ecu.protocolName?.uppercased().contains("KWP") == true {
              // KWP2000 (ISO 14230)
              // Header format: Priority Target Source
              // Target = Address. Source = F1 (Scanner). Priority = 81 (Physical) or C1/80.
