@@ -66,4 +66,15 @@ struct AppStrings {
         static let emptyTitle = "Aucune Macro"
         static let emptyDescription = "Créez une macro pour automatiser des commandes."
     }
+
+    struct ECUDatabase {
+        static let title = "Base de données ECU"
+        static let loading = "Chargement des calculateurs..."
+        static let empty = "Aucun calculateur trouvé"
+        static let searchPrompt = "Rechercher un calculateur"
+        static let errorTitle = "Erreur de chargement"
+        static let fileNotFound = "Impossible de charger le fichier"
+        static let definitionError = "Le fichier de définition est introuvable ou corrompu."
+        static let loadingDefinition = "Chargement de la définition..."
+    }
 }

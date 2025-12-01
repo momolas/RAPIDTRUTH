@@ -35,15 +35,9 @@ struct CodingView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 HStack {
                     NavigationLink {
-                        if let url = Bundle.main.url(forResource: "parking_sensor", withExtension: "json"),
-                           let data = try? Data(contentsOf: url),
-                           let definition = try? JSONDecoder().decode(ECUDefinition.self, from: data) {
-                            ECUDiagnosticsView(definition: definition, obdService: obdService)
-                        } else {
-                            Text("Error loading resource")
-                        }
+                        ECUSelectorView(obdService: obdService)
                     } label: {
-                        Image(systemName: "doc.text.fill")
+                        Label("Base de données", systemImage: "server.rack")
                     }
 
                     Button(action: { showingAddSheet = true }) {
