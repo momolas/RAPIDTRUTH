@@ -1,0 +1,2322 @@
+{
+ "screens": {
+  "Torque management ($A0)": {
+   "inputs": [], 
+   "color": "rgb(192,192,192)", 
+   "labels": [
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Gear ratios / Gear shift", 
+     "bbox": {
+      "width": 7680, 
+      "top": 600, 
+      "height": 1680, 
+      "left": 1680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "TORQUE MANAGEMENT", 
+     "bbox": {
+      "width": 9240, 
+      "top": 120, 
+      "height": 300, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Converter", 
+     "bbox": {
+      "width": 7680, 
+      "top": 5040, 
+      "height": 1560, 
+      "left": 1680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Torques", 
+     "bbox": {
+      "width": 7680, 
+      "top": 2400, 
+      "height": 2520, 
+      "left": 1680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6900, 
+   "buttons": [], 
+   "width": 11100, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Initial gear ratio", 
+     "request": "Torque management frame", 
+     "width": 1505, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 2040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Final gear ratio", 
+     "request": "Torque management frame", 
+     "width": 1490, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Torque converter state", 
+     "request": "Torque management frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4440, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 3360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Drag Reduction", 
+     "request": "Torque management frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4440, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 3360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "AT_TorqueRequestInProgress", 
+     "request": "Torque management frame", 
+     "width": 2795, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "FastTorqueRequest", 
+     "request": "Torque management frame", 
+     "width": 3665, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 3240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Limit_SlowTorque Request", 
+     "request": "Torque management frame", 
+     "width": 3665, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 3240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "MeanEffectiveTorque", 
+     "request": "Torque management frame", 
+     "width": 3665, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 3240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "EngineTorque_WithoutGBRequest", 
+     "request": "Torque management frame", 
+     "width": 3680, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 3240
+     }
+    }
+   ]
+  }, 
+  "ATCU calibration file": {
+   "inputs": [], 
+   "color": "rgb(192,192,192)", 
+   "labels": [
+    {
+     "color": "rgb(0,255,128)", 
+     "text": "ATCU CALIBRATION FILE", 
+     "bbox": {
+      "width": 8400, 
+      "top": 75, 
+      "height": 2925, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(128,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 3180, 
+   "buttons": [], 
+   "width": 9540, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vehicle type", 
+     "request": "Read Software Name", 
+     "width": 1995, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 600, 
+      "height": 300, 
+      "left": 3240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Engine type", 
+     "request": "Read Software Name", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 960, 
+      "height": 300, 
+      "left": 3240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Software number", 
+     "request": "Read Software Name", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 3240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Jatco France index", 
+     "request": "Read Software Name", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 3240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RSA index", 
+     "request": "Read Software Name", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 3240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Calibration author", 
+     "request": "Read Software Name", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 3240
+     }
+    }
+   ]
+  }, 
+  "ATCU Inputs Outputs management ($A2)": {
+   "inputs": [], 
+   "color": "rgb(192,192,192)", 
+   "labels": [
+    {
+     "color": "rgb(64,128,128)", 
+     "text": "Pressure switches", 
+     "bbox": {
+      "width": 7680, 
+      "top": 600, 
+      "height": 2280, 
+      "left": 1560
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,64)", 
+     "text": "ATCU INPUTS OUTPUTS MANAGEMENT", 
+     "bbox": {
+      "width": 9120, 
+      "top": 120, 
+      "height": 300, 
+      "left": 840
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(64,128,128)", 
+     "text": "Sensors", 
+     "bbox": {
+      "width": 7680, 
+      "top": 5760, 
+      "height": 1680, 
+      "left": 1560
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(64,128,128)", 
+     "text": "Lever inhibitor switches", 
+     "bbox": {
+      "width": 4920, 
+      "top": 3000, 
+      "height": 2640, 
+      "left": 1560
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(64,128,128)", 
+     "text": "Brake switch", 
+     "bbox": {
+      "width": 2640, 
+      "top": 3000, 
+      "height": 2640, 
+      "left": 6600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Low/C and 35R/C pressure switches suppressed in 68-68", 
+     "bbox": {
+      "width": 2445, 
+      "top": 2040, 
+      "height": 600, 
+      "left": 6480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 7620, 
+   "buttons": [], 
+   "width": 10860, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Low and reverse brake pressure switch", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 960, 
+      "height": 300, 
+      "left": 1920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "High clutch pressure switch", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 1920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "2-6 brake pressure switch", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 1920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "3-5 reverse clutch pressure switch", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 1920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Low clutch pressure switch", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 1920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Lever inhibitor switch D", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2195, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 2640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Lever inhibitor switch N", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2195, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 2640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Lever inhibitor switch R", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2195, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 2640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Lever inhibitor switch P", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2195, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 2640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake switch", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 1505, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 4080, 
+      "height": 300, 
+      "left": 6840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vehicle speed", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 6960, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Turbine speed", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Oil temperature", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Battery voltage", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 6240, 
+      "height": 300, 
+      "left": 2160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Oil pressure", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 6960, 
+      "height": 300, 
+      "left": 2160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Engine speed", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 6600, 
+      "height": 300, 
+      "left": 2160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Manual mode", 
+     "request": "ATCU Inputs Outputs management frame", 
+     "width": 1430, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 2280
+     }
+    }
+   ]
+  }, 
+  "Output Control": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Output Temporary Control List", 
+     "request": "Output Control", 
+     "width": 3530, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7080, 
+      "top": 4320, 
+      "height": 360, 
+      "left": 1800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Output Control Command", 
+     "request": "Output Control", 
+     "width": 3530, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7080, 
+      "top": 5160, 
+      "height": 360, 
+      "left": 1800
+     }
+    }
+   ], 
+   "color": "rgb(0,128,128)", 
+   "labels": [
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Specific output control", 
+     "bbox": {
+      "width": 9000, 
+      "top": 3600, 
+      "height": 2850, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,128,128)", 
+     "text": "OUTPUT CONTROL", 
+     "bbox": {
+      "width": 3720, 
+      "top": 60, 
+      "height": 420, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Working conditions", 
+     "bbox": {
+      "width": 9000, 
+      "top": 600, 
+      "height": 1560, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "All outputs control", 
+     "bbox": {
+      "width": 9000, 
+      "top": 2280, 
+      "height": 1200, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,64,128)", 
+     "text": " Vehicle speed < 5 km/h", 
+     "bbox": {
+      "width": 3105, 
+      "top": 1523, 
+      "height": 338, 
+      "left": 3810
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,64,128)", 
+     "text": " Lever in position P", 
+     "bbox": {
+      "width": 3105, 
+      "top": 1185, 
+      "height": 338, 
+      "left": 3810
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "", 
+     "bbox": {
+      "width": 600, 
+      "top": 227520, 
+      "height": 300, 
+      "left": 5960175
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Before pressing the button, select an item in each of the 2 pull-down menus above.", 
+     "bbox": {
+      "width": 3780, 
+      "top": 5790, 
+      "height": 435, 
+      "left": 2280
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "The control lasts only 6 sec", 
+     "bbox": {
+      "width": 2445, 
+      "top": 2955, 
+      "height": 270, 
+      "left": 5430
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6540, 
+   "buttons": [
+    {
+     "text": "Output control", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Output Control"
+      }
+     ], 
+     "uniquename": "Output control_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 1680, 
+      "top": 5715, 
+      "height": 600, 
+      "left": 6390
+     }
+    }, 
+    {
+     "text": "Start", 
+     "messages": [
+      "All output solenoids control"
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "All output solenoids control"
+      }
+     ], 
+     "uniquename": "Start_1", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2040, 
+      "top": 2835, 
+      "height": 480, 
+      "left": 2640
+     }
+    }
+   ], 
+   "width": 11100, 
+   "displays": []
+  }, 
+  "Gear shifts management ($A1)": {
+   "inputs": [], 
+   "color": "rgb(192,192,192)", 
+   "labels": [
+    {
+     "color": "rgb(255,128,192)", 
+     "text": "Gear ratios / Gear shift", 
+     "bbox": {
+      "width": 7680, 
+      "top": 720, 
+      "height": 840, 
+      "left": 1680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,255,0)", 
+     "text": "GEAR SHIFTS MANAGEMENT", 
+     "bbox": {
+      "width": 9120, 
+      "top": 240, 
+      "height": 300, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,192)", 
+     "text": "Acceleration pedals", 
+     "bbox": {
+      "width": 7680, 
+      "top": 3960, 
+      "height": 1560, 
+      "left": 1680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,192)", 
+     "text": "Brake pedal", 
+     "bbox": {
+      "width": 7680, 
+      "top": 5640, 
+      "height": 840, 
+      "left": 1680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,192)", 
+     "text": "Lever position", 
+     "bbox": {
+      "width": 7680, 
+      "top": 1680, 
+      "height": 840, 
+      "left": 1680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,192)", 
+     "text": "ASC", 
+     "bbox": {
+      "width": 7680, 
+      "top": 2640, 
+      "height": 1200, 
+      "left": 1680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6660, 
+   "buttons": [], 
+   "width": 10980, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Shift lever position", 
+     "request": "Gear shifts management frame", 
+     "width": 1850, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 3240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Selected program", 
+     "request": "Gear shifts management frame", 
+     "width": 1820, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5400, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 2760
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Gear setpoint of ASC", 
+     "request": "Gear shifts management frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 3600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Raw pedal position", 
+     "request": "Gear shifts management frame", 
+     "width": 2060, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 3720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ergonomic pedal", 
+     "request": "Gear shifts management frame", 
+     "width": 2075, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 3720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Kick hard information", 
+     "request": "Gear shifts management frame", 
+     "width": 2075, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 3720
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Brake information from CAN", 
+     "request": "Gear shifts management frame", 
+     "width": 2795, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7440, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 1800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Initial gear ratio", 
+     "request": "Torque management frame", 
+     "width": 1535, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 2040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Final gear ratio", 
+     "request": "Torque management frame", 
+     "width": 1520, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 5640
+     }
+    }
+   ]
+  }, 
+  "Multiplex Network Diagnostic": {
+   "inputs": [], 
+   "color": "rgb(207,207,207)", 
+   "labels": [
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "MULTIPLEX NETWORK DIAGNOSTIC", 
+     "bbox": {
+      "width": 8040, 
+      "top": 120, 
+      "height": 4920, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 5340, 
+   "buttons": [
+    {
+     "text": "Clear all failure groups", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Clear Diagnostic Information"
+      }
+     ], 
+     "uniquename": "Clear all failure groups_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3165, 
+      "top": 3840, 
+      "height": 750, 
+      "left": 2760
+     }
+    }
+   ], 
+   "width": 8580, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bus off parameter", 
+     "request": "Multiplex Network Diagnostic", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 960, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mute module parameter", 
+     "request": "Multiplex Network Diagnostic", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer ECM absent", 
+     "request": "Multiplex Network Diagnostic", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer ABS absent", 
+     "request": "Multiplex Network Diagnostic", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer BCM absent", 
+     "request": "Multiplex Network Diagnostic", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer ACC absent", 
+     "request": "Multiplex Network Diagnostic", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer AT AJ0", 
+     "request": "Multiplex Network Diagnostic", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 2880
+     }
+    }
+   ]
+  }, 
+  "ATCU references": {
+   "inputs": [], 
+   "color": "rgb(192,192,192)", 
+   "labels": [
+    {
+     "color": "rgb(128,255,255)", 
+     "text": "ATCU REFERENCES", 
+     "bbox": {
+      "width": 9000, 
+      "top": 120, 
+      "height": 300, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(64,128,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Approval number", 
+     "bbox": {
+      "width": 7680, 
+      "top": 720, 
+      "height": 840, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Part number", 
+     "bbox": {
+      "width": 7680, 
+      "top": 1680, 
+      "height": 1200, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 3180, 
+   "buttons": [], 
+   "width": 9540, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ApprovalNumber", 
+     "request": "DataRead.History.Reprog.Current", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6240, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 1200
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Spare parts number", 
+     "request": "Read RENAULT System Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6360, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 1200
+     }
+    }
+   ]
+  }, 
+  "Identification": {
+   "inputs": [
+    {
+     "color": "rgb(255,128,255)", 
+     "text": "Session Name", 
+     "request": "Start Diagnostic Session", 
+     "width": 1925, 
+     "fontcolor": "rgb(15,15,15)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 6840, 
+      "top": 720, 
+      "height": 345, 
+      "left": 240
+     }
+    }
+   ], 
+   "color": "rgb(223,223,223)", 
+   "labels": [
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "Tra\u00e7ability", 
+     "bbox": {
+      "width": 9435, 
+      "top": 5580, 
+      "height": 1980, 
+      "left": 49
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "ATCU's Identification", 
+     "bbox": {
+      "width": 9465, 
+      "top": 1440, 
+      "height": 4050, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,64,128)", 
+     "text": "IDENTIFICATION", 
+     "bbox": {
+      "width": 9465, 
+      "top": 90, 
+      "height": 480, 
+      "left": 45
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 7620, 
+   "buttons": [
+    {
+     "text": "Start session", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Start Diagnostic Session"
+      }
+     ], 
+     "uniquename": "Start session_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 1800, 
+      "top": 615, 
+      "height": 570, 
+      "left": 7605
+     }
+    }
+   ], 
+   "width": 9540, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Spare parts number", 
+     "request": "Read RENAULT System Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 1920, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Diagnostic identification number", 
+     "request": "Read RENAULT System Identification", 
+     "width": 3065, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 2254, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Supplier number", 
+     "request": "Read RENAULT System Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 2590, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Hardware number", 
+     "request": "Read RENAULT System Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 2924, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Software number", 
+     "request": "Read RENAULT System Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 3258, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Edition number", 
+     "request": "Read RENAULT System Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 3594, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Calibration number", 
+     "request": "Read RENAULT System Identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 3930, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Other system features", 
+     "request": "Read RENAULT System Identification", 
+     "width": 2285, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 4264, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Manufacturer identification code", 
+     "request": "Read RENAULT System Identification", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 4598, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mux messaging reference", 
+     "request": "Multiplex Network Diagnostic", 
+     "width": 2540, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4185, 
+      "top": 5040, 
+      "height": 279, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Supplier number", 
+     "request": "Tracability", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 6075, 
+      "height": 300, 
+      "left": 3120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Supplier production line", 
+     "request": "Tracability", 
+     "width": 2270, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 6435, 
+      "height": 300, 
+      "left": 3120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Date of production", 
+     "request": "Tracability", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 6795, 
+      "height": 300, 
+      "left": 3120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Production number", 
+     "request": "Tracability", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 7155, 
+      "height": 300, 
+      "left": 3120
+     }
+    }
+   ]
+  }, 
+  "Data COP/COPIS": {
+   "inputs": [], 
+   "color": "rgb(192,192,192)", 
+   "labels": [
+    {
+     "color": "rgb(128,128,192)", 
+     "text": "Shift in progress", 
+     "bbox": {
+      "width": 7680, 
+      "top": 600, 
+      "height": 840, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,64)", 
+     "text": "DATA COP/COPIS", 
+     "bbox": {
+      "width": 8880, 
+      "top": 120, 
+      "height": 300, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,192)", 
+     "text": "Converter state", 
+     "bbox": {
+      "width": 7680, 
+      "top": 2880, 
+      "height": 840, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,192)", 
+     "text": "Torques", 
+     "bbox": {
+      "width": 7680, 
+      "top": 1560, 
+      "height": 1200, 
+      "left": 960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 4380, 
+   "buttons": [], 
+   "width": 9540, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Torque converter state", 
+     "request": "Torque management frame", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5040, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 2400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "AT_TorqueRequestInProgress", 
+     "request": "Torque management frame", 
+     "width": 2795, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 960, 
+      "height": 300, 
+      "left": 1920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "FastTorqueRequest", 
+     "request": "Torque management frame", 
+     "width": 3665, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Limit_SlowTorque Request", 
+     "request": "Torque management frame", 
+     "width": 3665, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 2520
+     }
+    }
+   ]
+  }, 
+  "Reinitialization": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ResetMode", 
+     "request": "ECUReset", 
+     "width": 1730, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 4915, 
+      "top": 945, 
+      "height": 300, 
+      "left": 2070
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "REINITIALIZATION", 
+     "bbox": {
+      "width": 8925, 
+      "top": 30, 
+      "height": 5910, 
+      "left": 45
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "ECUReset", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "ECUReset"
+      }
+     ], 
+     "uniquename": "ECUReset_0", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 2355, 
+      "top": 1515, 
+      "height": 720, 
+      "left": 3345
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": []
+  }
+ }, 
+ "categories": {
+  "After-sales / Plants": [
+   "Identification", 
+   "Multiplex Network Diagnostic", 
+   "Output Control", 
+   "Torque management ($A0)", 
+   "Gear shifts management ($A1)", 
+   "ATCU Inputs Outputs management ($A2)", 
+   "ATCU calibration file", 
+   "ATCU references", 
+   "Reinitialization"
+  ], 
+  "COP/COPIS": [
+   "Data COP/COPIS"
+  ]
+ }
+}

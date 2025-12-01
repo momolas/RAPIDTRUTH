@@ -1,0 +1,5537 @@
+{
+"obd": {
+	"baudrate": 500000, 
+	"protocol": "CAN", 
+	"recv_id": "00", 
+	"funcname": "CAN", 
+	"funcaddr": "00", 
+	"send_id": "00"
+}, 
+"devices": [
+	{
+	"dtc": 0, 
+	"devicedata": {
+		"Totalisation g\u00e9n\u00e9rale_84": "0"
+	}, 
+	"dtctype": 3, 
+	"name": "Odom\u00e8tre"
+	}
+], 
+"ecuname": "v84.10", 
+"autoidents": [], 
+"endian": "Big", 
+"requests": [
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_NAV": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0747", 
+	"name": "DTOOL_to_NAV"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"D\u00e9faut syst\u00e8me AIRBAG_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Indication de sortie de reset Airbag_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Contact ceinture conducteur": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Passenger AIRBAG_OFF_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Pr\u00e9sence passager sur si\u00e8ge": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Contact ceinture passager": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Information voyants AIRBAG disponibles_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Crash d\u00e9tect\u00e9_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Risque Non D\u00e9tection Crash_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "0651", 
+	"name": "AIRBAG_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"INJ_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E8", 
+	"name": "ECM_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Buzzer UCT": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Demande de fermeture rouleau": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Commande des l\u00e8ve-vitres \u00e9lectriques": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Position du toit ouvrant": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"D\u00e9faut toit ouvrant": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"D\u00e9faillance arceaux": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Terminer_Manoeuvre_toit": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Indication de sortie de reset UCT": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Mauvaise utilisation du toit": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "0684", 
+	"name": "UCT_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_UPC": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "074D", 
+	"name": "DTOOL_to_UPC"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Totalisation g\u00e9n\u00e9rale_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"T\u00e9moin d\u00e9faut AIRBAG op\u00e9rationnel_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Alerte mini carburant_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"TdB_Refus de dormir": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"TdB_Demande de Veille Endormissement": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat t\u00e9moin D\u00e9faut AIRBAG_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Mini GPL_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Autotest voyants pilot\u00e9 par le TdB_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Incident circuit frein_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Etat t\u00e9moin PassengerAIRBAG_OFF_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Indication de sortie de reset TdB_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Type v\u00e9hicule": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Diagnostic jauge carburant_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Contact frein de parking_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Niveau de carburant_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"T\u00e9moin PassengerAIRBAG_OFF op\u00e9rationnel_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"S\u00e9lection mode neige par le client": {
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "05C5", 
+	"name": "CLUSTER_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Indication de sortie de reset RNAV_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Type radio_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "06E5", 
+	"name": "RADIO_GeneralData"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"UPC_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "076D", 
+	"name": "UPC_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Etat Serrage Frein de Parking": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Demande Buzzer_FPA": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Requ\u00eate d'affichage P ou N": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"D\u00e9faut frein de parking": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Inclinaison v\u00e9hicule en d\u00e9vers": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Interdiction affichage \u00e9tat serrage sur vignette": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Inclinaison v\u00e9hicule en pente": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Position embrayage": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Commande d'actionnement freinage en cours": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Indication de sortie de reset FPA": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 4, 
+	"sentbytes": "075E", 
+	"name": "Frein_de_Parking"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Champ contr\u00f4le des donn\u00e9es Verlog_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Donn\u00e9es Verlog_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "0500", 
+	"name": "UCH_VERLOG"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Dongle_command_BCM": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Puissance \u00e9lectrique command\u00e9e (UCH)": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Contact embrayage fin de course_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"D\u00e9faillance anti-d\u00e9marrage": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Lunette Arri\u00e8re chauffante demand\u00e9e": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Dongle_ID_BCM_1": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Dongle_ID_BCM_2": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Arr\u00eat moteur d'urgence": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Mode de d\u00e9marrage_UCH": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Etat Appui Push VSC": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Demande de climatisation": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Activation pompe lave projecteurs": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Recopie Position du toit ouvrant": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"PowerLatchTA_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"V\u00e9hicule \u00e0 cl\u00e9 ou sans cl\u00e9": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ALS activ\u00e9": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"V\u00e9hicule roulant": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Alerte d\u00e9faillance s\u00e9curit\u00e9 enfant": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Demande essuyage avant": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Contact p\u00e9dale de frein \u00e0 fermeture_UCH": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Information jour_nuit": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"ALS en d\u00e9faut": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Autorisation de d\u00e9marrage_Verlog": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Recopie Etat du compresseur de CLIM": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"UCH_Ordre de Veille Endormissement": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Demande de ralenti acc\u00e9l\u00e9r\u00e9 (UCH)": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"DiagMuxOn_UCH": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Selection lave projecteurs": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Mode parc livreur": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "035D", 
+	"name": "UCH_SystemControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"UCH_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0765", 
+	"name": "UCH_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Kick down activ\u00e9": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Couple moteur hors consigne TA_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"P\u00e9dale ergonomique r\u00e9elle ou reconstitu\u00e9e": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Couple maximal instantan\u00e9": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Etats r\u00e9gulateur et limiteur de vitesse_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Couple minimal instantan\u00e9": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "0161", 
+	"name": "ECM_to_AT"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Totalisation g\u00e9n\u00e9rale(APV)_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Niveau d'huile affich\u00e9_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Niveau de carburant(APV)_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Autonomie vidange_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat t\u00e9moin MIL_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "0715", 
+	"name": "CLUSTER_BackUp"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DiagMuxOn_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Couple r\u00e9sistant_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Couple anticip\u00e9_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat de r\u00e9alisation de la consigne de couple_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Contact p\u00e9dale de frein \u00e0 ouverture_INJ_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Acquittement de la requ\u00eate de couple TA": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Contact embrayage_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"P\u00e9dale brute r\u00e9elle ou reconstitu\u00e9e": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"D\u00e9faillance filtre \u00e0 particule": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"R\u00e9gime moteur_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Acquittement ASR/MSR_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Couple moyen effectif_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0181", 
+	"name": "ECM_TorqueControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_ALLUCEOBD": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07DF", 
+	"name": "DTOOL_to_ALLUCEOBD"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Champ contr\u00f4le de la question verlog_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Question verlog_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 7, 
+	"sentbytes": "0511", 
+	"name": "ECM_VERLOG"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Puissance m\u00e9ca alternateur instantan\u00e9e": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat d\u00e9marreur (copie)": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Borne DF_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Marche arri\u00e8re engag\u00e9e_84 (UPC)": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Puissance m\u00e9ca alternateur anticip\u00e9e": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Point Mort": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Num\u00e9ro alternateur": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"InfoIRotor_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Etat des GmV moteur": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "0215", 
+	"name": "UPC_Fast_Frame"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Demande feux de position": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Demande feux de croisement": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"D\u00e9faut essuyage": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Temp\u00e9rature eau moteur_84 (copie)": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Affichage informations VSC_84": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Pile carte \u00e0 changer": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Indication de sortie de reset UCH_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Num\u00e9ro Carte ou clef_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Demande feux de brouillard avant": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Temp\u00e9rature Ext\u00e9rieure_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Demande feux de route": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Pr\u00e9sence Remorque_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Etats Clignotants": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Demande Buzzer": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Demande de d\u00e9filement ADAC": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Etat de condamnation portes et coffre": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Gel de la consigne temp\u00e9rature air souffl\u00e9": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Inhibition SSPP_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Etat alimentation by UCH": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"D\u00e9faillance verrouillage colonne ou UCH": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"D\u00e9faut essuyage automatique": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Demande DTRL": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Etat de la LARC demand\u00e9e manuellement": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Etat distribution APC(copie)": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Etat feu de brouillard arri\u00e8re_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Etat ouvrants": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Marche arri\u00e8re engag\u00e9e_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "060D", 
+	"name": "UCH_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Type consommation carburant_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Voyant d\u00e9faut d\u00e9pollution_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Consommation carburant_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Seuil coupure en surr\u00e9gime_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Consommation carburant nominale": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Temp\u00e9rature eau moteur_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Clignotement vitesse de consigne RV/LV_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"D\u00e9faut injection gravit\u00e9 1_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"D\u00e9faut injection gravit\u00e9 2_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Vitesse de consigne_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Alerte temp\u00e9rature eau_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Transition descendante de temp\u00e9rature moteur": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"DiagMuxOn_84(copy)": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Temp\u00e9rature de r\u00e9gulation moteur": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Etats moteur_84 (copie)": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Pr\u00e9chauffage Diesel_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Consigne de r\u00e9gime ralenti_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Indication de sortie de reset INJ_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"D\u00e9tection eau dans le gasoil": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Affichage \u00e9tat RV/LV": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat filtre \u00e0 particule": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"T\u00e9moin mode \u00e9conomique": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Coupure climatisation": {
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0551", 
+	"name": "ECM_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"FPA_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0775", 
+	"name": "APB_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_CLIM": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0744", 
+	"name": "DTOOL_to_CLIM"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"NAV_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0767", 
+	"name": "NAV_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_FPA": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0755", 
+	"name": "DTOOL_to_APB"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Pression GPL/GNV_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"D\u00e9faut majeur syst\u00e8me GPL/GNV_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"GPL/GNV_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"D\u00e9faut mineur syst\u00e8me GPL/GNV_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Syst\u00e8me GPL/GNV pr\u00eat_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Consommation GPL/GNV Invalide_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Temp\u00e9rature GPL/GNV_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"R\u00e9servoir GPL/GNV vide_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Information jauge GPL/GNV_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Diagnostic jauge GPL/GNV_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"D\u00e9faut d\u00e9pollution GPL/GNV_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Fonctionnement client GPLGNV/Essence_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Type de carburation_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"D\u00e9bit GPL/GNV r\u00e9alis\u00e9_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Syst\u00e8me GPL/GNV en d\u00e9faut_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0531", 
+	"name": "GCU_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Dongle_command_EPS": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"D\u00e9faut DAE": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Indication de sortie de reset DAE": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Dongle_ID_EPS": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Index DAE non d\u00e9tect\u00e9": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "05E4", 
+	"name": "EPS_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Pression roue arri\u00e8re droite_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Pression roue avant gauche_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Pression roue avant droite_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Pression roue arri\u00e8re gauche_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Etat roue arri\u00e8re droite_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"D\u00e9s\u00e9quilibre Droite/Gauche_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"T\u00e9moin SSPP-Stop_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Etat roue avant gauche_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Etat roue avant droite_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Etat roue arri\u00e8re gauche_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Buzzer Survitesse_PAX": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Buzzer SSPP": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Autonomie roulage en PAX": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Pression inadapt\u00e9e \u00e0 la charge_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"T\u00e9moin fuite_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Pression inadapt\u00e9e \u00e0 la vitesse_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Etat pression v\u00e9hicule_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"T\u00e9moin SSPP-Serv_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0630", 
+	"name": "SSPP_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Checksum roues avant": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Vitesse roue avant gauche": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Vitesse v\u00e9hicule_84 (copie)": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Vitesse roue avant droite": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Compteur roues avant": {
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0284", 
+	"name": "Front_Wheel_Speed_Frame"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Indication de sortie de reset UCC_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Type UCC": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "06E4", 
+	"name": "NAV_GeneralData"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"AIRBAG_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0772", 
+	"name": "AIRBAG_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Extinctions Codes (copie)": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Temps absolu depuis 1\u00e8re mise APC": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"D\u00e9lai max avant commutation": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Vitesse v\u00e9hicule pour UPC": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Type de r\u00e9veil": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Distance totale parcourue": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Charge pilot\u00e9e par UCH va \u00eatre commut\u00e9e": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 8
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "05FD", 
+	"name": "UCH_PowerManagement"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Consigne de temp\u00e9rature air souffl\u00e9": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Bit de validit\u00e9 de l'appui touche LARC": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Indication de sortie de reset Climatisation_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Appui touche LARC": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"S\u00e9lection AC": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Temp\u00e9rature \u00e9vaporateur": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Etat du ventilateur habitacle": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"S\u00e9lection automatique LARC": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "0374", 
+	"name": "CLIM_ControlFrame"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Checksum roues arri\u00e8re": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Compteur roues arri\u00e8re": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Vitesse roue arri\u00e8re gauche_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Vitesse v\u00e9hicule_CVT": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Vitesse roue arri\u00e8re droite_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0285", 
+	"name": "Rear_Wheel_Speed_Frame"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_UCT": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "074B", 
+	"name": "DTOOL_to_UCT"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"COSLAD_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0771", 
+	"name": "COSLAD_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Vitesse rotation volant": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Indication de sortie de reset Swa": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Angle volant": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Statut interne capteur angle volant": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Compteur messages angle volant": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Checksum angle volant": {
+		"ref": true, 
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "00C2", 
+	"name": "Steering_Wheel_Angle"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_DAE": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0742", 
+	"name": "DTOOL_to_EPS"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Rapport engag\u00e9_84 (copie)": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Consigne de r\u00e9gime ralenti minimum_AT": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Underdrive_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Demande appui frein": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Changement de rapport refus\u00e9/accept\u00e9_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Programme s\u00e9lectionn\u00e9 TA_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Loi_Eco_S\u00e9lectionn\u00e9e_TA": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Indication de sortie de reset TA_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Alerte Boite auto": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Affichage position TA_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"D\u00e9fauts/Etats TA_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Loi_Impulsionnelle_S\u00e9lectionn\u00e9e_TA": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Loi_Neige_S\u00e9lectionn\u00e9e_TA": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "0565", 
+	"name": "AT_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"TdB_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0763", 
+	"name": "CLUSTER_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DAE_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0762", 
+	"name": "EPS_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Demande feux de croisement_BAE": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Indication de sortie de reset BAE": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Demande feux de route_BAE": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Demande activation clignotant droit_BAE": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Demande activation clignotant gauche_BAE": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Demande feux de position_BAE": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "06A5", 
+	"name": "DSU_GeneralData"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Octet 2 Remplissage_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Octet 1 Remplissage_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "0075", 
+	"name": "UCH_Filling"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_TdB": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0743", 
+	"name": "DTOOL_to_CLUSTER"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_Freins": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0740", 
+	"name": "DTOOL_to_Brake"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_AIRBAG": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0752", 
+	"name": "DTOOL_to_AIRBAG"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"CLIM_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0764", 
+	"name": "CLIM_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Acc\u00e9l\u00e9ration transversale_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Acc\u00e9l\u00e9ration longitudinale calcul\u00e9e": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Vitesse de lacet_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "02A0", 
+	"name": "Vehicle_Dynamic"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_UCH": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0745", 
+	"name": "DTOOL_to_UCH"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Demande de d\u00e9verrouillage de la colonne_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Code verrou colonne_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"+APC_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"UCH_Vivant_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Demande de verrouillage de la colonne_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"RAZ_Code_Verrou_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 4, 
+	"sentbytes": "0505", 
+	"name": "UCH_to_ESCL3"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Rapport engag\u00e9_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Couple pr\u00e9lev\u00e9 au moteur par la TA": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Commande GMV (TA)_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Clock AT": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Position TA": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Embray\u00e9_d\u00e9bray\u00e9_84 (r\u00e9duction de tra\u00een\u00e9e)": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Type de pilotage de couple TA": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Consigne de couple rapide_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Limit / Consigne couple lent_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"D\u00e9faut d\u00e9pollution TA_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Autorisation de d\u00e9marrage TA_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Gain GMP_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Requ\u00eate de couple BVA en cours": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"D\u00e9faut majeur BVR_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Etat convertisseur de couple_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Demande d'augmentation de r\u00e9gime ralenti_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0175", 
+	"name": "AT_TorqueControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Octet 1 AIRBAG_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Octet 2 AIRBAG_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "0023", 
+	"name": "AIRBAGCrash"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_ALL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07D0", 
+	"name": "DTOOL_to_ALL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Consigne de couple statique ASR_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ShiftMapChangeRequest": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Demande arr\u00eat TCP": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Consigne de couple transf\u00e9r\u00e9": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"MSR d\u00e9sactiv\u00e9_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"ESP d\u00e9sactiv\u00e9_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"AYC en r\u00e9gulation_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"MSR en r\u00e9gulation_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Clock ESP_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Consigne de couple dynamique ASR_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Autorisation changement de rapport_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ASR en r\u00e9gulation_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Consigne de couple MSR_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"ASRMalfunction": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Type de pilotage de couple_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ESP en d\u00e9faut_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Demande d'incr\u00e9ment de rapport_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 7, 
+	"sentbytes": "0244", 
+	"name": "Brake_StabilityControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"UCT_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "076B", 
+	"name": "UCT_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Vierge / cod\u00e9_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"D\u00e9verrouillage termin\u00e9_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Relecture Alimentation_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Indication de sortie de reset Verrou_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Incoh\u00e9rence Message UCH_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Position ind\u00e9finie_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Inhibition verrouillage_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Compteur essais de configuration_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"D\u00e9bit configur\u00e9_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"D\u00e9faut actionneur_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Verrou vivant_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Trame UCH_to_ESCL3 absente_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Time-out sur le test capteur_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"D\u00e9faut mineur interne \u00e9lectronique_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"D\u00e9faut majeur interne \u00e9lectronique_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Autorisation test capteur_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Verrouillage termin\u00e9_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Tension de fonctionnement hors limites_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Antiscan actif_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Inhibition safety line_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Inhibition Vitesse_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Configuration 250/500kbits_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Code Mauvais_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Position verrou_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 4, 
+	"sentbytes": "0581", 
+	"name": "ESCL3_to_UCH"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_INJ": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E0", 
+	"name": "DTOOL_to_ECM"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Consigne de d\u00e9bit GPL/GNV_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Pression collecteur_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Consigne pompe \u00e0 essence_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Temp\u00e9rature air admission_84": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Facteur correctif d\u00e9bit/cylindre_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Consigne t\u00e9moin GPL/GNV_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Mode de fonctionnement moteur_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Consigne voyant bouton GPL/GNV_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Num\u00e9ro de cylindre associ\u00e9 au facteur correctif_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Type m\u00e9lange gaz_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Consigne de fonctionnement du syst\u00e8me GPL/GNV_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Num\u00e9ro de cylindre_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0061", 
+	"name": "ECM_to_GCU"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Freins_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0760", 
+	"name": "Brake_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Etat voyant ceinture": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Vitesse Affich\u00e9e": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Pourcentage \u00e9clairage max rh\u00e9ostat\u00e9 de jour_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Pourcentage \u00e9clairage max rh\u00e9ostat\u00e9 de nuit_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "0645", 
+	"name": "CLUSTER_GeneralStatus_2"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_AT": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E1", 
+	"name": "DTOOL_to_AT"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"GCU_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07EA", 
+	"name": "GCU_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Indication de sortie de reset COSLAD": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Extinctions Codes": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "0685", 
+	"name": "COSLAD_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Etat LARC": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Etat pompe lave-projecteurs": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Etat du compresseur de CLIM": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Etat feux de route": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Etat feux de position_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"UPC_Demande de Veille Endormissement": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Relecture APC": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Etat moteur Essuie-vitre avant": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Autorisation de Commutation de Charge": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat d\u00e9marreur": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Protection essuie-vitre avant": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Tension batterie by UPC": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Arr\u00eat fixe Essuie-vitre Avant by UPC": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Etat feux de croisement": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Dongle_command_USM": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat feux de brouillard avant": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Etat distribution APC": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Manocontact pression huile": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Alerte batterie faible": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Dongle_ID_USM": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"UPC_Refus de dormir": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"T\u00e9moin Batterie": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Indication de sortie de reset UPC": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "0625", 
+	"name": "UPC_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"AT_vers_DTOOL": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E9", 
+	"name": "AT_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_COSLAD": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0751", 
+	"name": "DTOOL_to_COSLAD"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Puissance m\u00e9canique maximale autoris\u00e9e_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Gel/Coupure des consommateurs \u00e9lectriques_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Puissance maximum alternateur": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Demande d'activation LARC par INJ": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Consigne activation des GMV moteur": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Commande du compresseur de clim": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Etats moteur_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Autorisation de d\u00e9marrage_INJ": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Pente de puissance autoris\u00e9e": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Autorisation de d\u00e9marrage TA via INJ": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"R\u00e9gime moteur_84(copie)": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "01F9", 
+	"name": "ECM_SystemControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_vers_GCU": {
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E2", 
+	"name": "DTOOL_to_GCU"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Contact p\u00e9dale de frein \u00e0 fermeture_ABS_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Voyant \u00e9tat REF": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"D\u00e9tection blocage de roue": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Indication de sortie de reset ABS_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"REF en r\u00e9gulation_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Vitesse v\u00e9hicule (moyenne roues avant)_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ABS en r\u00e9gulation_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Pr\u00e9sence VSU": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Voyant \u00e9tat ABS": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat remplissage_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ABS en d\u00e9faut_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ABS_Requ\u00eate allumage warning": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Voyant \u00e9tat ESP": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Distance parcourue_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Voyant \u00e9tat VSU": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0354", 
+	"name": "Brake_GeneralData"
+	}
+], 
+"data": {
+	"D\u00e9s\u00e9quilibre Droite/Gauche_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = normal", 
+		"1": "01 = d\u00e9s\u00e9quilibre droite-gauche avant", 
+		"2": "10 = d\u00e9s\u00e9quilibre droite-gauche arri\u00e8re", 
+		"3": "11 = d\u00e9s\u00e9quilibre droite-gauche avant et arri\u00e8re"
+	}
+	}, 
+	"D\u00e9verrouillage termin\u00e9_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = mouvement de d\u00e9verrouillage non termin\u00e9", 
+		"1": "1 = mouvement de d\u00e9verrouillage termin\u00e9"
+	}
+	}, 
+	"Interdiction affichage \u00e9tat serrage sur vignette": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = autorisation affichage \u00e9tat serrage sur vignette", 
+		"1": "1 = interdiction affichage \u00e9tat serrage sur vignette"
+	}
+	}, 
+	"Pourcentage \u00e9clairage max rh\u00e9ostat\u00e9 de jour_84": {
+	"scaled": true, 
+	"step": 0.4, 
+	"unit": "%"
+	}, 
+	"DTOOL_vers_UPC": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Fonctionnement client GPLGNV/Essence_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = fonctionnement en essence", 
+		"1": "1 = fonctionnement en GPL ou GNV"
+	}
+	}, 
+	"Borne DF_84": {
+	"scaled": true, 
+	"step": 0.390625, 
+	"unit": "%"
+	}, 
+	"Autorisation de d\u00e9marrage_INJ": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = d\u00e9marrage interdit", 
+		"1": "01 = d\u00e9marrage autoris\u00e9", 
+		"2": "10 = demande d'arr\u00eat d\u00e9marreur", 
+		"3": "11 = d\u00e9marrage interdit: d\u00e9faut ECM"
+	}
+	}, 
+	"DTOOL_vers_COSLAD": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Time-out sur le test capteur_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = dur\u00e9e du test capteur correcte", 
+		"1": "1 = test capteur trop long"
+	}
+	}, 
+	"Octet 2 Remplissage_84": {
+	"scaled": true
+	}, 
+	"Etat distribution APC(copie)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = lignes APC non distribu\u00e9es", 
+		"1": "1 = lignes APC distribu\u00e9es"
+	}
+	}, 
+	"Couple moyen effectif_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"D\u00e9faut majeur interne \u00e9lectronique_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut interne majeur \u00e9lectronique", 
+		"1": "1 = d\u00e9faut  majeur interne \u00e9lectronique"
+	}
+	}, 
+	"R\u00e9servoir GPL/GNV vide_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = r\u00e9servoir GPL/GNV non vide", 
+		"1": "1 = r\u00e9servoir GPL/GNV vide"
+	}
+	}, 
+	"Totalisation g\u00e9n\u00e9rale(APV)_84": {
+	"scaled": true, 
+	"bytescount": 3, 
+	"bitscount": 24, 
+	"unit": "km"
+	}, 
+	"Indication de sortie de reset DAE": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Autorisation de d\u00e9marrage TA via INJ": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = d\u00e9marrage interdit", 
+		"1": "01 = d\u00e9marrage autoris\u00e9", 
+		"2": "10 = v\u00e9hicule \u00e9quip\u00e9 en BVM", 
+		"3": "11 = indisponible (trame TA absente)"
+	}
+	}, 
+	"Information jour_nuit": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = jour", 
+		"1": "1 = nuit"
+	}
+	}, 
+	"Relecture Alimentation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = capteur \u00e0 effet hall aliment\u00e9", 
+		"1": "1 = capteur \u00e0 effet hall non aliment\u00e9"
+	}
+	}, 
+	"Consigne de fonctionnement du syst\u00e8me GPL/GNV_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = Essence", 
+		"1": "01 = Demande activation syst\u00e8me GPL/GNV", 
+		"2": "10 = Demande d\u00e9sactivation syst\u00e8me GPL/GNV", 
+		"3": "11 = GPL/GNV"
+	}
+	}, 
+	"Indication de sortie de reset TA_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"P\u00e9dale ergonomique r\u00e9elle ou reconstitu\u00e9e": {
+	"scaled": true
+	}, 
+	"Acquittement ASR/MSR_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = dialogue non correct", 
+		"1": "1 = dialogue correct"
+	}
+	}, 
+	"Etat du ventilateur habitacle": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = ventilateur habitacle off", 
+		"1": "01 = ventilateur habitacle on", 
+		"2": "1x = invalide"
+	}
+	}, 
+	"Type de pilotage de couple_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = pas de pilotage couple", 
+		"1": "101 = consignes type ASR", 
+		"2": "110 = consignes type MSR"
+	}
+	}, 
+	"Niveau de carburant_84": {
+	"scaled": true, 
+	"bitscount": 7, 
+	"unit": "l"
+	}, 
+	"T\u00e9moin mode \u00e9conomique": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = t\u00e9moin \u00e9teint", 
+		"1": "1 = t\u00e9moin allum\u00e9"
+	}
+	}, 
+	"Incoh\u00e9rence Message UCH_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = donn\u00e9es de la trame CAN \u00e9mise par l'UCH coh\u00e9rentes", 
+		"1": "1 = erreur de coh\u00e9rence dans la trame CAN provenant de l'UCH"
+	}
+	}, 
+	"Contact embrayage_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = pied non appuy\u00e9 (embray\u00e9)", 
+		"1": "01 = pied appuy\u00e9", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Distance totale parcourue": {
+	"scaled": true, 
+	"bytescount": 3, 
+	"bitscount": 20, 
+	"unit": "km"
+	}, 
+	"Arr\u00eat moteur d'urgence": {
+	"lists": {
+		"0": "BCh = Demande d'arr\u00eat moteur"
+	}
+	}, 
+	"Consigne de couple statique ASR_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"Demande feux de croisement_BAE": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de croisement non demand\u00e9s", 
+		"1": "1 = feux de croisement demand\u00e9s"
+	}
+	}, 
+	"TdB_Demande de Veille Endormissement": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = r\u00e9serv\u00e9", 
+		"1": "01 = r\u00e9serv\u00e9", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = confirmation de r\u00e9veil"
+	}
+	}, 
+	"Pile carte \u00e0 changer": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pile carte OK", 
+		"1": "1 = pile carte \u00e0 changer"
+	}
+	}, 
+	"Demande de d\u00e9filement ADAC": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = pas d'appui", 
+		"1": "01 = d\u00e9filement sens +", 
+		"2": "10 = d\u00e9filement sens -", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Incident circuit frein_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas d'incident circuit frein", 
+		"1": "1 = incident circuit frein"
+	}
+	}, 
+	"Vitesse roue avant droite": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.0417, 
+	"bitscount": 16, 
+	"unit": "rpm"
+	}, 
+	"Indication de sortie de reset Climatisation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Temp\u00e9rature Ext\u00e9rieure_84": {
+	"scaled": true, 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"Pr\u00e9sence Remorque_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de remorque d\u00e9tect\u00e9e", 
+		"1": "1 = remorque d\u00e9tect\u00e9e"
+	}
+	}, 
+	"Rapport engag\u00e9_84": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0000 = d\u00e9bray\u00e9", 
+		"1": "0001 = rapport 1", 
+		"2": "0010 = rapport 2", 
+		"3": "0011 = rapport 3", 
+		"4": "0100 = rapport 4", 
+		"5": "0101 = rapport 5", 
+		"6": "0110 = rapport 6", 
+		"7": "1001 = marche arri\u00e8re", 
+		"8": "1010 = point mort", 
+		"9": "1111 = BV en refuge"
+	}
+	}, 
+	"TdB_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"GCU_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Charge pilot\u00e9e par UCH va \u00eatre commut\u00e9e": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas de nouvelle charge pr\u00e9vue  en commutation", 
+		"1": "1 = Nouvelle charge pr\u00e9vue en commutation"
+	}
+	}, 
+	"Type de pilotage de couple TA": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = limitation en couple sans modification de rapport", 
+		"1": "101 = consigne de r\u00e9duction", 
+		"2": "110 = consigne d'augmentation du couple", 
+		"3": "111 = controle en couple total"
+	}
+	}, 
+	"Voyant \u00e9tat VSU": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = VSU op\u00e9rationnel ou v\u00e9hicule non \u00e9quip\u00e9 (lamp off)", 
+		"1": "01 = VSU en d\u00e9faut", 
+		"2": "10 = VSU op\u00e9rationnel mais non programm\u00e9", 
+		"3": "11 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Checksum angle volant": {
+	"scaled": true
+	}, 
+	"Rapport engag\u00e9_84 (copie)": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0000 = d\u00e9bray\u00e9", 
+		"1": "0001 = rapport 1", 
+		"2": "0010 = rapport 2", 
+		"3": "0011 = rapport 3", 
+		"4": "0100 = rapport 4", 
+		"5": "0101 = rapport 5", 
+		"6": "0110 = rapport 6", 
+		"7": "1001 = marche arri\u00e8re", 
+		"8": "1010 = point mort", 
+		"9": "1111 = BV en refuge"
+	}
+	}, 
+	"Acc\u00e9l\u00e9ration transversale_84": {
+	"bitscount": 16, 
+	"scaled": true, 
+	"step": 0.004, 
+	"bytescount": 2, 
+	"offset": -131.068, 
+	"unit": "g"
+	}, 
+	"Vitesse v\u00e9hicule_CVT": {
+	"scaled": true, 
+	"unit": "km/h"
+	}, 
+	"D\u00e9faut essuyage automatique": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = essuyage automatique OK", 
+		"1": "1 = esuyage automatique en d\u00e9faut"
+	}
+	}, 
+	"Demande Buzzer_FPA": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas de demande buzzer", 
+		"1": "1 = Demande Buzzer"
+	}
+	}, 
+	"UPC_Refus de dormir": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = r\u00e9serv\u00e9", 
+		"1": "01 = UPC non pr\u00eat \u00e0 s'endormir", 
+		"2": "10 = UPC pr\u00eat \u00e0 s'endormir", 
+		"3": "11 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Information jauge GPL/GNV_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 9, 
+	"unit": "Ohm"
+	}, 
+	"Consigne de couple rapide_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"Indication de sortie de reset UPC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Couple maximal instantan\u00e9": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"DTOOL_vers_DAE": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Indication de sortie de reset BAE": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie de reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Puissance m\u00e9ca alternateur anticip\u00e9e": {
+	"scaled": true, 
+	"step": 40.0, 
+	"unit": "Watts"
+	}, 
+	"Requ\u00eate d'affichage P ou N": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de demande d'affichage \"Levier en P ou N\"", 
+		"1": "1 = Demande d'affichage \"Levier en P ou N\""
+	}
+	}, 
+	"Dongle_ID_BCM_1": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"Dongle_ID_BCM_2": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"Temp\u00e9rature eau moteur_84 (copie)": {
+	"scaled": true, 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"DTOOL_vers_UCH": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Underdrive_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas d'underdrive", 
+		"1": "1 = underdrive"
+	}
+	}, 
+	"D\u00e9faut frein de parking": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = Pas de d\u00e9faut FPA", 
+		"1": "01 = D\u00e9faut mineur FPA - Service", 
+		"2": "10 = D\u00e9faut majeur FPA - Stop", 
+		"3": "11 = D\u00e9faut intersyst\u00e8me"
+	}
+	}, 
+	"Donn\u00e9es Verlog_84": {
+	"bytescount": 4, 
+	"byte": true, 
+	"bitscount": 32
+	}, 
+	"Demande de verrouillage de la colonne_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de demande verrouillage colonne", 
+		"1": "1 = demande de verrouillage colonne"
+	}
+	}, 
+	"D\u00e9faut mineur interne \u00e9lectronique_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut interne \u00e9lectronique mineur", 
+		"1": "1 = d\u00e9faut mineur interne \u00e9lectronique"
+	}
+	}, 
+	"Gel de la consigne temp\u00e9rature air souffl\u00e9": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de gel de la consigne temp\u00e9rature air souffl\u00e9", 
+		"1": "1 = gel de la consigne temp\u00e9rature air souffl\u00e9"
+	}
+	}, 
+	"Point Mort": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = position point mort non atteinte", 
+		"1": "01 = position point mort atteinte", 
+		"2": "10 = v\u00e9hicule non \u00e9quip\u00e9", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Autorisation changement de rapport_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = changement interdit", 
+		"1": "01 = rapport descendant autoris\u00e9", 
+		"2": "10 = rapport montant autoris\u00e9", 
+		"3": "11 = rapport descendant ou montant autoris\u00e9"
+	}
+	}, 
+	"Consigne pompe \u00e0 essence_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = demande d'activation de la pompe", 
+		"1": "1 = demande de coupure de la pompe"
+	}
+	}, 
+	"Marche arri\u00e8re engag\u00e9e_84 (UPC)": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = marche arri\u00e8re non engag\u00e9e", 
+		"1": "01 = marche arri\u00e8re engag\u00e9e", 
+		"2": "10 = reserv\u00e9", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Facteur correctif d\u00e9bit/cylindre_84": {
+	"scaled": true, 
+	"step": 0.784, 
+	"unit": "%", 
+	"offset": -100.0
+	}, 
+	"REF en r\u00e9gulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = REF hors r\u00e9gulation", 
+		"1": "1 = REF en r\u00e9gulation"
+	}
+	}, 
+	"DTOOL_vers_AT": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Mauvaise utilisation du toit": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Utilisation correcte du toit", 
+		"1": "1 = Condition(s) de toit manquante(s)"
+	}
+	}, 
+	"Demande feux de position": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de position non demand\u00e9s", 
+		"1": "1 = feux de position demand\u00e9s"
+	}
+	}, 
+	"Pression roue avant droite_84": {
+	"scaled": true, 
+	"step": 13.725, 
+	"unit": "mbar"
+	}, 
+	"Vitesse v\u00e9hicule pour UPC": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0000 = 0 <= V < 6", 
+		"1": "0001 = 6 <= V <12", 
+		"2": "0010 = 12 <= V < 18", 
+		"3": "0011 = 18 <= V < 24", 
+		"4": "0100 = 24 <= V < 30", 
+		"5": "0101 = 30 <= V < 36", 
+		"6": "0110 = 36 <= V < 42", 
+		"7": "0111 = 42 <= V < 48", 
+		"8": "1000 = 48 <= V < 54", 
+		"9": "1001 = 54 <= V < 60", 
+		"10": "1010 = 60 <= V < 66", 
+		"11": "1011 = 66 <= V < 72", 
+		"12": "1100 = 72 <= V < 78", 
+		"13": "1101 = 78 <= V < 84", 
+		"14": "1110 = 84 <= V"
+	}
+	}, 
+	"Autotest voyants pilot\u00e9 par le TdB_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas d'autotest en cours", 
+		"1": "1 = autotest en cours"
+	}
+	}, 
+	"D\u00e9faillance anti-d\u00e9marrage": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = anti-d\u00e9marrage OK", 
+		"1": "1 = d\u00e9faillance anti-d\u00e9marrage"
+	}
+	}, 
+	"FPA_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Etat roue avant droite_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = pression OK", 
+		"1": "001 = capteur manquant", 
+		"2": "010 = pneu trop gonfl\u00e9", 
+		"3": "011 = pneu singulier en sur-gonflage", 
+		"4": "100 = pneu singulier en sous-gonflage", 
+		"5": "101 = pertes d'air anormales", 
+		"6": "110 = pneu un peu sous-gonfl\u00e9 (au dessous du seuil d'alerte 1)", 
+		"7": "111 = pneu dangeureusement sous-gonfl\u00e9 (au dessous du seuil d'alerte 2)"
+	}
+	}, 
+	"Protection essuie-vitre avant": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = protection essuie-vitre avant inactive", 
+		"1": "01 = protection PV activ\u00e9e", 
+		"2": "10 = protection GV activ\u00e9e", 
+		"3": "11 = essuie-vitre avant bloqu\u00e9"
+	}
+	}, 
+	"Demande arr\u00eat TCP": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = arr\u00eat TCP non demand\u00e9", 
+		"1": "1 = arr\u00eat TCP demand\u00e9"
+	}
+	}, 
+	"Acquittement de la requ\u00eate de couple TA": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = dialogue non correct", 
+		"1": "1 = dialogue correct"
+	}
+	}, 
+	"Vitesse de consigne_84": {
+	"scaled": true, 
+	"unit": "km/h"
+	}, 
+	"Etat voyant ceinture": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = voyant \u00e9teint (ceinture mise)", 
+		"1": "01 = voyant allum\u00e9 mise (ceinture non mise)", 
+		"2": "10 = voyant clignotant (ceinture non mise et V>15 km/h et tempo<10s)", 
+		"3": "11 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"T\u00e9moin SSPP-Stop_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = voyant OFF", 
+		"1": "1 = voyant ON"
+	}
+	}, 
+	"DTOOL_vers_NAV": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Buzzer Survitesse_PAX": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de buzzer", 
+		"1": "1 = buzzer continu"
+	}
+	}, 
+	"Etat distribution APC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = lignes APC non distribu\u00e9es", 
+		"1": "1 = lignes APC distribu\u00e9es"
+	}
+	}, 
+	"Buzzer UCT": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = pas de demande de buzzer", 
+		"1": "01 = demande buzzer alerte", 
+		"2": "10 = demande buzzer information", 
+		"3": "11 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"UPC_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Octet 2 AIRBAG_84": {
+	"lists": {
+		"0": "ABh = valeur Octet 2 AIRBAG"
+	}
+	}, 
+	"Etat d\u00e9marreur (copie)": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = d\u00e9marrage non activ\u00e9", 
+		"1": "01 = relaxation courte active", 
+		"2": "10 = relaxation longue active", 
+		"3": "11 = d\u00e9marrage activ\u00e9"
+	}
+	}, 
+	"Vitesse v\u00e9hicule (moyenne roues avant)_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.01, 
+	"bitscount": 16, 
+	"unit": "km/h"
+	}, 
+	"Alerte batterie faible": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas d'alerte (tension batterie sup\u00e9rieure au seuil)", 
+		"1": "1 = alerte (tension batterie inf\u00e9rieure au seuil)"
+	}
+	}, 
+	"Type de carburation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = bi-carburation", 
+		"1": "1 = mono-carburation"
+	}
+	}, 
+	"Code Mauvais_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = code bon", 
+		"1": "1 = code mauvais"
+	}
+	}, 
+	"PowerLatchTA_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de demande de maintien du PowerLatch", 
+		"1": "1 = demande de maintien du PowerLatch"
+	}
+	}, 
+	"Pression roue arri\u00e8re droite_84": {
+	"scaled": true, 
+	"step": 13.725, 
+	"unit": "mbar"
+	}, 
+	"Etat du compresseur de CLIM": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = compresseur de clim non embray\u00e9", 
+		"1": "1 = compresseur de clim embray\u00e9"
+	}
+	}, 
+	"Indication de sortie de reset Verrou_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Position verrou_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "001 = Le capteur \u00e0 effet hall ou sa commande filaire sont d\u00e9fectueux ou capteur ", 
+		"1": "010 = d\u00e9verrouill\u00e9 s\u00e9curis\u00e9", 
+		"2": "011 = position non d\u00e9finie", 
+		"3": "100 = pseudo-arm\u00e9", 
+		"4": "101 = court-circuit du capteur \u00e0 effet hall ou de sa commande"
+	}
+	}, 
+	"Contact frein de parking_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = frein de parking non actionn\u00e9", 
+		"1": "1 = frein de parking actionn\u00e9"
+	}
+	}, 
+	"Couple anticip\u00e9_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"Temps absolu depuis 1\u00e8re mise APC": {
+	"scaled": true, 
+	"bytescount": 3, 
+	"bitscount": 24, 
+	"unit": "mn"
+	}, 
+	"Passenger AIRBAG_OFF_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = t\u00e9moin AIRBAG Passager \u00e9teint", 
+		"1": "1 = t\u00e9moin  AIRBAG Passager allum\u00e9"
+	}
+	}, 
+	"Vitesse rotation volant": {
+	"bitscount": 16, 
+	"scaled": true, 
+	"step": 0.1, 
+	"bytescount": 2, 
+	"offset": -3276.7, 
+	"unit": "\u00b0/s"
+	}, 
+	"AIRBAG_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Inclinaison v\u00e9hicule en d\u00e9vers": {
+	"scaled": true, 
+	"unit": "\u00b0", 
+	"signed": true
+	}, 
+	"INJ_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Indication de sortie de reset UCH_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Index DAE non d\u00e9tect\u00e9": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Non calibr\u00e9 et index\u00e9 ou d\u00e9j\u00e0 calibr\u00e9", 
+		"1": "1 = Non calibr\u00e9 et non index\u00e9 (flashing \u00e0 8Hz, priorit\u00e9 la plus haute)"
+	}
+	}, 
+	"Couple pr\u00e9lev\u00e9 au moteur par la TA": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "Nm"
+	}, 
+	"Etat Serrage Frein de Parking": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = non actionn\u00e9", 
+		"1": "01 = actionn\u00e9", 
+		"2": "10 = valeur par d\u00e9faut en reset", 
+		"3": "11 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Pr\u00e9sence passager sur si\u00e8ge": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = Passager d\u00e9tect\u00e9 sur si\u00e8ge", 
+		"1": "01 = Passager non d\u00e9tect\u00e9 sur si\u00e8ge", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = indisponible"
+	}
+	}, 
+	"Pr\u00e9chauffage Diesel_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = voyant \u00e9teint", 
+		"1": "1 = voyant allum\u00e9"
+	}
+	}, 
+	"D\u00e9faillance arceaux": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas de d\u00e9faut", 
+		"1": "1 = D\u00e9faillance arceaux"
+	}
+	}, 
+	"Alerte d\u00e9faillance s\u00e9curit\u00e9 enfant": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas d'alerte d\u00e9faillance enfant", 
+		"1": "1 = Alerte d\u00e9faillance enfant"
+	}
+	}, 
+	"ABS_Requ\u00eate allumage warning": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = reserv\u00e9", 
+		"1": "01 = allumage warning non demand\u00e9 par l'ABS", 
+		"2": "10 = allumage warning demand\u00e9 par l'ABS", 
+		"3": "11 = reserv\u00e9"
+	}
+	}, 
+	"Recopie Etat du compresseur de CLIM": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = compresseur de clim non embray\u00e9", 
+		"1": "1 = compresseur de clim embray\u00e9"
+	}
+	}, 
+	"UCH_Ordre de Veille Endormissement": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = endormissement demand\u00e9", 
+		"1": "01 = r\u00e9serv\u00e9", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = confirmation de r\u00e9veil"
+	}
+	}, 
+	"Temp\u00e9rature GPL/GNV_84": {
+	"scaled": true, 
+	"unit": "\u00b0", 
+	"offset": -40.0
+	}, 
+	"Statut interne capteur angle volant": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = non calibr\u00e9, non index\u00e9", 
+		"1": "001 = non calibr\u00e9, index\u00e9", 
+		"2": "010 = d\u00e9faut", 
+		"3": "011 = r\u00e9serv\u00e9", 
+		"4": "100 = calibr\u00e9, non initialis\u00e9", 
+		"5": "101 = calibr\u00e9, initialis\u00e9", 
+		"6": "110 = r\u00e9serv\u00e9", 
+		"7": "111 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Buzzer SSPP": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de buzzer", 
+		"1": "1 = buzzer"
+	}
+	}, 
+	"Type consommation carburant_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = consommation essence", 
+		"1": "1 = consommation GPL"
+	}
+	}, 
+	"Indication de sortie de reset RNAV_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Position ind\u00e9finie_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Position OK (coh\u00e9rente avec la position th\u00e9orique calcul\u00e9e)", 
+		"1": "1 = Position ind\u00e9finie (incoh\u00e9rente avec la position th\u00e9orique calcul\u00e9e)"
+	}
+	}, 
+	"Octet 1 AIRBAG_84": {
+	"lists": {
+		"0": "54h = valeur Octet 1 AIRBAG"
+	}
+	}, 
+	"Freins_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"CLIM_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Kick down activ\u00e9": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = kick down au repos", 
+		"1": "1 = kick down activ\u00e9"
+	}
+	}, 
+	"Contact ceinture passager": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = ceinture passager boucl\u00e9e (contact ouvert)", 
+		"1": "01 = ceinture passager non boucl\u00e9e (contact ferm\u00e9)", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = indisponible"
+	}
+	}, 
+	"Activation pompe lave projecteurs": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = activation pompe lave-projecteurs non demand\u00e9e", 
+		"1": "1 = activation pompe lave-projecteurs demand\u00e9e"
+	}
+	}, 
+	"D\u00e9faillance filtre \u00e0 particule": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas de message d'alerte filtre d\u00e9faillant", 
+		"1": "1 = Alerte filtre d\u00e9faillant"
+	}
+	}, 
+	"Dongle_command_USM": {
+	"scaled": true, 
+	"bitscount": 2
+	}, 
+	"Manocontact pression huile": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = manocontact ouvert", 
+		"1": "1 = manocontact ferm\u00e9"
+	}
+	}, 
+	"Indication de sortie de reset ABS_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie de reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"ABS en r\u00e9gulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = ABS hors r\u00e9gulation", 
+		"1": "1 = ABS en r\u00e9gulation"
+	}
+	}, 
+	"Contact p\u00e9dale de frein \u00e0 fermeture_UCH": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = frein non actionn\u00e9", 
+		"1": "01 = frein actionn\u00e9", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Question verlog_84": {
+	"bytescount": 6, 
+	"byte": true, 
+	"bitscount": 48
+	}, 
+	"D\u00e9faut DAE": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = normal", 
+		"1": "01 = d\u00e9faut mineur DAE ->Service", 
+		"2": "10 = d\u00e9faut majeur DAE -> stop", 
+		"3": "11 = mode diagnostic"
+	}
+	}, 
+	"Configuration 250/500kbits_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = 250 kb", 
+		"1": "1 = 500 kb"
+	}
+	}, 
+	"Distance parcourue_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.1, 
+	"bitscount": 16, 
+	"unit": "m"
+	}, 
+	"GPL/GNV_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = GPL", 
+		"1": "1 = GNV"
+	}
+	}, 
+	"D\u00e9bit configur\u00e9_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = d\u00e9bit non configur\u00e9", 
+		"1": "1 = d\u00e9bit configur\u00e9"
+	}
+	}, 
+	"Autonomie roulage en PAX": {
+	"scaled": true, 
+	"step": 2.0, 
+	"unit": "km"
+	}, 
+	"Inclinaison v\u00e9hicule en pente": {
+	"scaled": true, 
+	"unit": "\u00b0", 
+	"signed": true
+	}, 
+	"T\u00e9moin d\u00e9faut AIRBAG op\u00e9rationnel_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = t\u00e9moin non op\u00e9rationnel", 
+		"1": "1 = t\u00e9moin op\u00e9rationnel"
+	}
+	}, 
+	"Affichage informations VSC_84": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "00000 = pas d'affichage", 
+		"1": "00001 = bienvenue", 
+		"2": "00010 = Ins\u00e9rer carte", 
+		"3": "00011 = carte non d\u00e9tect\u00e9e", 
+		"4": "00100 = mains libres - d\u00e9faillance", 
+		"5": "00101 = mains libres - d\u00e9faillance - consulter la notice", 
+		"6": "00110 = Carte non d\u00e9tect\u00e9 + buzzer", 
+		"7": "00111 = appuyer deux fois sur stop", 
+		"8": "01000 = support repose carte d\u00e9faillant - consulter notice", 
+		"9": "01001 = appuyer sur Frein + start", 
+		"10": "01010 = Retirer carte + buzzer", 
+		"11": "01011 = mode carte restreint", 
+		"12": "01100 = r\u00e9serv\u00e9", 
+		"13": "01101 = r\u00e9serv\u00e9", 
+		"14": "01110 = appuyer sur frein + start ou d\u00e9brayer", 
+		"15": "01111 = boite de vitesse sur P ou N", 
+		"16": "10000 = Mettre au point mort ou d\u00e9brayer", 
+		"17": "10001 = Retirer carte", 
+		"18": "10010 = d\u00e9marrage coffre ouvert -> ins\u00e9rer carte", 
+		"19": "10011 = confirmer arret moteur", 
+		"20": "10100 = d\u00e9marrage en cours", 
+		"21": "10101 = p\u00e9dale non maintenu", 
+		"22": "10110 = d\u00e9faillance repose carte", 
+		"23": "11100 = Extinction totale IHM- TdB"
+	}
+	}, 
+	"Tension batterie by UPC": {
+	"scaled": true, 
+	"step": 0.0625, 
+	"unit": "V"
+	}, 
+	"Demande activation clignotant droit_BAE": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = clignotant droit non demand\u00e9", 
+		"1": "1 = clignotant droit demand\u00e9"
+	}
+	}, 
+	"Gain GMP_84": {
+	"scaled": true, 
+	"step": 0.25, 
+	"unit": "N/Nm"
+	}, 
+	"R\u00e9gime moteur_84(copie)": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.125, 
+	"bitscount": 16, 
+	"unit": "Tr/min"
+	}, 
+	"Indication de sortie de reset UCC_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Etats Clignotants": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = pas de clignotant actif", 
+		"1": "001 = clignotant gauche ON et droit OFF", 
+		"2": "010 = clignotant gauche OFF et droit ON", 
+		"3": "011 = clignotant gauche ON et droit ON", 
+		"4": "111 = invalide"
+	}
+	}, 
+	"+APC_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = APC OFF", 
+		"1": "1 = APC ON"
+	}
+	}, 
+	"Autonomie vidange_84": {
+	"scaled": true, 
+	"step": 250.0, 
+	"unit": "km"
+	}, 
+	"InfoIRotor_84": {
+	"scaled": true, 
+	"step": 0.0472, 
+	"unit": "A"
+	}, 
+	"ASRMalfunction": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = l' ASR n'est pas en d\u00e9faut", 
+		"1": "1 = ASR en d\u00e9faut"
+	}
+	}, 
+	"Dongle_ID_USM": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 10
+	}, 
+	"Couple minimal instantan\u00e9": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"TdB_Refus de dormir": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = r\u00e9serv\u00e9", 
+		"1": "01 = TdB non pr\u00eat \u00e0 s'endormir", 
+		"2": "10 = TdB pr\u00eat \u00e0 s'endormir", 
+		"3": "11 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Pression collecteur_84": {
+	"bitscount": 12, 
+	"scaled": true, 
+	"step": 3.7, 
+	"bytescount": 2, 
+	"offset": 103.0, 
+	"unit": "mbar"
+	}, 
+	"Commande du compresseur de clim": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = d\u00e9sactivation du compresseur de clim", 
+		"1": "1 = activation du compresseur demand\u00e9e"
+	}
+	}, 
+	"Consommation GPL/GNV Invalide_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = consommation GPL/GNV valide", 
+		"1": "1 = consommation GPL/GNV invalide"
+	}
+	}, 
+	"Demande de ralenti acc\u00e9l\u00e9r\u00e9 (UCH)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de demande de ralenti accc\u00e9l\u00e9r\u00e9", 
+		"1": "1 = demande de ralenti acc\u00e9l\u00e9r\u00e9"
+	}
+	}, 
+	"Demande feux de route_BAE": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de route non demand\u00e9s", 
+		"1": "1 = feux de route  demand\u00e9s"
+	}
+	}, 
+	"D\u00e9tection eau dans le gasoil": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9tection d'eau dans le gasoil", 
+		"1": "1 = d\u00e9tection d'eau dans le gasoil"
+	}
+	}, 
+	"Etat ouvrants": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "xxxx0 = porte Av.G. ferm\u00e9e", 
+		"1": "xxxx1 = porte Av.G. ouverte", 
+		"2": "xxx0x = porte Av.D. ferm\u00e9e", 
+		"3": "xxx1x = porte Av.D. ouverte", 
+		"4": "xx0xx = porte Ar.G. ferm\u00e9e", 
+		"5": "xx1xx = porte Ar.G. ouverte", 
+		"6": "x0xxx = porte Ar.D. ferm\u00e9e", 
+		"7": "x1xxx = porte Ar.D. ouverte", 
+		"8": "0xxxx = coffre et abattant et lunette arri\u00e8re ouvrante ferm\u00e9", 
+		"9": "1xxxx = coffre ou abattant ou lunette arri\u00e8re ouvrante ouvert"
+	}
+	}, 
+	"DiagMuxOn_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = compta et m\u00e9mo d\u00e9fauts CAN muet/absent non autoris\u00e9es", 
+		"1": "1 = compta et m\u00e9mo d\u00e9fauts CAN muet/absent autoris\u00e9es"
+	}
+	}, 
+	"Couple r\u00e9sistant_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"Syst\u00e8me GPL/GNV en d\u00e9faut_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut", 
+		"1": "1 = syst\u00e8me GPL/GNV en d\u00e9faut"
+	}
+	}, 
+	"Puissance \u00e9lectrique command\u00e9e (UCH)": {
+	"scaled": true, 
+	"step": 100.0, 
+	"bitscount": 5, 
+	"unit": "watts"
+	}, 
+	"Lunette Arri\u00e8re chauffante demand\u00e9e": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = LARC non demand\u00e9e", 
+		"1": "01 = R\u00e9serv\u00e9", 
+		"2": "10 = LARC  demand\u00e9e par INJ", 
+		"3": "11 = LARC demand\u00e9e pour le client"
+	}
+	}, 
+	"Consommation carburant nominale": {
+	"scaled": true, 
+	"step": 80.0, 
+	"unit": "mm3"
+	}, 
+	"Code verrou colonne_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"DAE_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Pente de puissance autoris\u00e9e": {
+	"scaled": true, 
+	"step": 40.0, 
+	"bitscount": 4, 
+	"unit": "W/s"
+	}, 
+	"Num\u00e9ro Carte ou clef_84": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0001 = carte / clef n\u00b01 reconnue par l'UCH", 
+		"1": "0010 = carte / clef n\u00b02 reconnue par l'UCH", 
+		"2": "0100 = carte / clef n\u00b03 reconnue par l'UCH", 
+		"3": "1000 = carte / clef n\u00b04 reconnue par l'UCH", 
+		"4": "1111 = invalide"
+	}
+	}, 
+	"Recopie Position du toit ouvrant": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = toit ferm\u00e9 (sorti)", 
+		"1": "01 = toit ouvert (rentr\u00e9)", 
+		"2": "10 = v\u00e9hicule non \u00e9quip\u00e9", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Alerte Boite auto": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = pas d'alerte boite auto", 
+		"1": "001 = alerte porte ouverte BVR", 
+		"2": "010 = R\u00e9serv\u00e9 (anciennement utilis\u00e9 par BVR)", 
+		"3": "011 = alerte porte ouverte BVA", 
+		"4": "1xx = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Inhibition verrouillage_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas d'inhibition verrouillage", 
+		"1": "1 = inhibition verrouillage"
+	}
+	}, 
+	"V\u00e9hicule \u00e0 cl\u00e9 ou sans cl\u00e9": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = V\u00e9hicule sans cl\u00e9", 
+		"1": "1 = V\u00e9hicule \u00e0 cl\u00e9"
+	}
+	}, 
+	"Dongle_ID_EPS": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 10
+	}, 
+	"Demande essuyage avant": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = arr\u00eat fixe EVAV", 
+		"1": "001 = arr\u00eat forc\u00e9 EVAV", 
+		"2": "010 = un coup de balai PV", 
+		"3": "011 = un coup de balai GV", 
+		"4": "100 = invalide", 
+		"5": "101 = r\u00e9serv\u00e9", 
+		"6": "110 = PV", 
+		"7": "111 = GV"
+	}
+	}, 
+	"V\u00e9hicule roulant": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = v\u00e9hicule arr\u00eat\u00e9", 
+		"1": "1 = v\u00e9hicule roulant"
+	}
+	}, 
+	"Indication de sortie de reset COSLAD": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie de reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Embray\u00e9_d\u00e9bray\u00e9_84 (r\u00e9duction de tra\u00een\u00e9e)": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = park/neutre ou embrayage ouvert", 
+		"1": "01 = d\u00e9bray\u00e9 \u00e0 l'arr\u00eat (r\u00e9duct. de train\u00e9e demand\u00e9e) ou point de l\u00e9chage", 
+		"2": "10 = embray\u00e9 complet ou tra\u00een\u00e9e compl\u00e8te", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Voyant \u00e9tat ESP": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = ESP op\u00e9rationnel ou v\u00e9hicule non \u00e9quip\u00e9 (voyant \u00e9teint)", 
+		"1": "001 = ESP en d\u00e9faut", 
+		"2": "010 = ESP d\u00e9sactiv\u00e9", 
+		"3": "011 = ESP en d\u00e9faut (absence de programmation)", 
+		"4": "100 = ESP en r\u00e9gulation sans d\u00e9faut", 
+		"5": "101 = ESP en r\u00e9gulation avec d\u00e9faut", 
+		"6": "111 = ESP en calibration (mode diagnostic)"
+	}
+	}, 
+	"ALS en d\u00e9faut": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = fonctionnement correct", 
+		"1": "1 = ALS en d\u00e9faut"
+	}
+	}, 
+	"Risque Non D\u00e9tection Crash_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de risque de non d\u00e9tection", 
+		"1": "1 = risque de non d\u00e9tection"
+	}
+	}, 
+	"Puissance m\u00e9canique maximale autoris\u00e9e_84": {
+	"scaled": true, 
+	"step": 100.0, 
+	"bitscount": 5, 
+	"unit": "Watts"
+	}, 
+	"Compteur roues arri\u00e8re": {
+	"scaled": true
+	}, 
+	"Consigne activation des GMV moteur": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = Pas de mise en route des GmV", 
+		"1": "01 = mise en route petite vitesse", 
+		"2": "10 = mise en route vitesse moyenne (GmV Nissan)", 
+		"3": "11 = mise en route grande vitesse"
+	}
+	}, 
+	"Champ contr\u00f4le de la question verlog_84": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"DTOOL_vers_ALLUCEOBD": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"DTOOL_vers_GCU": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Mode parc livreur": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = mode client", 
+		"1": "1 = mode livraison"
+	}
+	}, 
+	"D\u00e9faut majeur syst\u00e8me GPL/GNV_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut majeur syst\u00e8me GPL/GNV", 
+		"1": "1 = d\u00e9faut majeur syst\u00e8me GPL/GNV"
+	}
+	}, 
+	"Pression roue arri\u00e8re gauche_84": {
+	"scaled": true, 
+	"step": 13.725, 
+	"unit": "mbar"
+	}, 
+	"Etat feux de route": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de route \u00e9teints", 
+		"1": "1 = feux de route allum\u00e9s"
+	}
+	}, 
+	"Crash d\u00e9tect\u00e9_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de crash d\u00e9tect\u00e9", 
+		"1": "1 = crash d\u00e9tect\u00e9"
+	}
+	}, 
+	"NAV_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Relecture APC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas d'APC", 
+		"1": "1 = APC confirm\u00e9"
+	}
+	}, 
+	"Vitesse Affich\u00e9e": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.01, 
+	"bitscount": 16, 
+	"unit": "km/h"
+	}, 
+	"D\u00e9faut toit ouvrant": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut du toit ouvrant", 
+		"1": "1 = toit ouvrant en d\u00e9faut (toit bloqu\u00e9)"
+	}
+	}, 
+	"Arr\u00eat fixe Essuie-vitre Avant by UPC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = position hors arr\u00eat", 
+		"1": "1 = position arr\u00eat"
+	}
+	}, 
+	"D\u00e9fauts/Etats TA_84": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0x1x = d\u00e9faut TA", 
+		"1": "000x = pas de d\u00e9faut", 
+		"2": "01xx = alerte T\u00b0 huile (BVA) ou surchauffe embrayage (BVR)", 
+		"3": "1xxx = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Indication de sortie de reset UCT": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"D\u00e9faut injection gravit\u00e9 2_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut injection gravit\u00e9 2 li\u00e9 \u00e0 l'arr\u00eat moteur", 
+		"1": "1 = d\u00e9faut injection gravit\u00e9 2 li\u00e9 \u00e0 l'arr\u00eat moteur"
+	}
+	}, 
+	"Type de r\u00e9veil": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = R\u00e9veil client", 
+		"1": "1 = Reveil syst\u00e8me"
+	}
+	}, 
+	"Demande feux de croisement": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de croisement non demand\u00e9s", 
+		"1": "1 = feux de croisement demand\u00e9s"
+	}
+	}, 
+	"Temp\u00e9rature \u00e9vaporateur": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"Requ\u00eate de couple BVA en cours": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de changement de rapport en cours", 
+		"1": "1 = changement de rapport en cours"
+	}
+	}, 
+	"Demande feux de route": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de route non demand\u00e9s", 
+		"1": "1 = feux de route  demand\u00e9s"
+	}
+	}, 
+	"Autorisation test capteur_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = test capteur interdit", 
+		"1": "1 = test capteur autoris\u00e9"
+	}
+	}, 
+	"Position embrayage": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = embray\u00e9 ou position p\u00e9dale non appuy\u00e9e", 
+		"1": "01 = d\u00e9bray\u00e9 ou position p\u00e9dale appuy\u00e9e", 
+		"2": "10 = zone d'embrayage", 
+		"3": "11 = indisponible (d\u00e9faut, calcul impossible, pr\u00e9sence BVA)"
+	}
+	}, 
+	"Compteur roues avant": {
+	"scaled": true
+	}, 
+	"Diagnostic jauge GPL/GNV_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = jauge GPL/GNV OK", 
+		"1": "01 = jauge GPL/GNV en c.o.", 
+		"2": "10 = jauge GPL/GNV en c.c.", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Appui touche LARC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "= un changement d'\u00e9tat du signal correspond \u00e0 un appui sur le bouton"
+	}
+	}, 
+	"Position TA": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0000 = parking", 
+		"1": "0001 = reverse", 
+		"2": "0010 = neutre", 
+		"3": "0011 = drive", 
+		"4": "0100 = rapport 4", 
+		"5": "0101 = rapport 3", 
+		"6": "0110 = rapport 2", 
+		"7": "0111 = rapport 1", 
+		"8": "1000 = interm\u00e9diaire P/R ou N/R", 
+		"9": "1001 = interm\u00e9diaire N/D", 
+		"10": "1010 = interm\u00e9diaire", 
+		"11": "1011 = mode manuel (TA ou TR)", 
+		"12": "1100 = rapport 6", 
+		"13": "1101 = rapport 7", 
+		"14": "1110 = rapport 5", 
+		"15": "1111 = indisponible (phase d'init ou CMF hors service)"
+	}
+	}, 
+	"D\u00e9faut d\u00e9pollution TA_84": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "xxx0 = pas de demande d'allumage de la MIL", 
+		"1": "xxx1 = demande d'allumage de la MIL", 
+		"2": "0xxx = pas de perturbation algo Misfire", 
+		"3": "1xxx = perturbation algo Misfire"
+	}
+	}, 
+	"Antiscan actif_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = antiscan non actif", 
+		"1": "1 = antiscan actif"
+	}
+	}, 
+	"Etat alimentation by UCH": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = SERV OFF", 
+		"1": "1 = SERV ON"
+	}
+	}, 
+	"Pression inadapt\u00e9e \u00e0 la vitesse_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pression adapt\u00e9e \u00e0 la vitesse", 
+		"1": "1 = pression non adapt\u00e9e \u00e0 la vitesse"
+	}
+	}, 
+	"DTOOL_vers_AIRBAG": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Type radio_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "x1x = r\u00e9serv\u00e9", 
+		"1": "000 = r\u00e9serv\u00e9", 
+		"2": "001 = radio-navigation entr\u00e9e de gamme", 
+		"3": "1xx = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Voyant \u00e9tat REF": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = REF op\u00e9rationnel ou v\u00e9hicule non \u00e9quip\u00e9 (voyant \u00e9teint)", 
+		"1": "01 = REF en d\u00e9faut", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = REF en calibration (mode diagnostic)"
+	}
+	}, 
+	"Consigne de couple dynamique ASR_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"Vitesse v\u00e9hicule_84 (copie)": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.01, 
+	"bitscount": 16, 
+	"unit": "km/h"
+	}, 
+	"Autorisation de d\u00e9marrage TA_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = d\u00e9marrage interdit", 
+		"1": "01 = d\u00e9marrage autoris\u00e9", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = indisponible"
+	}
+	}, 
+	"Alerte mini carburant_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = mini non atteint", 
+		"1": "1 = mini atteint"
+	}
+	}, 
+	"Dongle_command_BCM": {
+	"scaled": true, 
+	"bitscount": 2
+	}, 
+	"Type UCC": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = r\u00e9serv\u00e9", 
+		"1": "001 = UCC3", 
+		"2": "010 = UCC2", 
+		"3": "011 = r\u00e9serv\u00e9", 
+		"4": "1xx = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Acc\u00e9l\u00e9ration longitudinale calcul\u00e9e": {
+	"scaled": true, 
+	"step": 0.05, 
+	"unit": "m/s2", 
+	"offset": -10.0
+	}, 
+	"Programme s\u00e9lectionn\u00e9 TA_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = loi de conduite Normal", 
+		"1": "01 = loi de conduite Eco", 
+		"2": "10 = loi de conduite Impulsionnel (manuel)", 
+		"3": "11 = loi de conduite Neige"
+	}
+	}, 
+	"ABS en d\u00e9faut_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = fonctionnement ABS correct", 
+		"1": "1 = ABS en panne"
+	}
+	}, 
+	"COSLAD_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"ASR en r\u00e9gulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = ASR hors r\u00e9gulation", 
+		"1": "1 = ASR en r\u00e9gulation"
+	}
+	}, 
+	"Pourcentage \u00e9clairage max rh\u00e9ostat\u00e9 de nuit_84": {
+	"scaled": true, 
+	"step": 0.4, 
+	"unit": "%"
+	}, 
+	"S\u00e9lection automatique LARC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = LARC non demand\u00e9e par l'automatisme", 
+		"1": "1 = LARC demand\u00e9e par l'automatisme"
+	}
+	}, 
+	"Compteur essais de configuration_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = aucune tentative de configuration", 
+		"1": "01 = Premier essai de configuration", 
+		"2": "10 = Deuxi\u00e8me essai de configuration", 
+		"3": "11 = Troisi\u00e8me essai de configuration"
+	}
+	}, 
+	"Contact p\u00e9dale de frein \u00e0 ouverture_INJ_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = frein non actionn\u00e9", 
+		"1": "01 = frein actionn\u00e9", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"D\u00e9faut injection gravit\u00e9 1_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut injection gravit\u00e9 1", 
+		"1": "1 = d\u00e9faut injection gravit\u00e9 1"
+	}
+	}, 
+	"Etats moteur_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = moteur arr\u00eat\u00e9", 
+		"1": "01 = moteur c\u00e2l\u00e9", 
+		"2": "10 = moteur tournant autonome", 
+		"3": "11 = moteur tournant entra\u00een\u00e9"
+	}
+	}, 
+	"Pr\u00e9sence VSU": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = boitier ABS ou ESP", 
+		"1": "1 = boitier VSU"
+	}
+	}, 
+	"Consigne de r\u00e9gime ralenti minimum_AT": {
+	"scaled": true, 
+	"step": 8.0, 
+	"unit": "Tr/min"
+	}, 
+	"Demande d'augmentation de r\u00e9gime ralenti_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de demande d'augmentation de r\u00e9gime ralenti", 
+		"1": "1 = demande d'augmentation de r\u00e9gime ralenti"
+	}
+	}, 
+	"RAZ_Code_Verrou_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de remise \u00e0 z\u00e9ro", 
+		"1": "1 = remise \u00e0 z\u00e9ro"
+	}
+	}, 
+	"Num\u00e9ro de cylindre_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = calcul indisponible", 
+		"1": "001 = 1er cylindre", 
+		"2": "010 = 2\u00e8me cylindre", 
+		"3": "011 = 3\u00e8me cylindre", 
+		"4": "100 = 4\u00e8me cylindre", 
+		"5": "101 = 5\u00e8me cylindre", 
+		"6": "110 = 6\u00e8me cylindre", 
+		"7": "111 = d\u00e9faut"
+	}
+	}, 
+	"Vitesse roue avant gauche": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.0417, 
+	"bitscount": 16, 
+	"unit": "rpm"
+	}, 
+	"Compteur messages angle volant": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"Inhibition safety line_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = verrouillage autoris\u00e9 (moteur non tournant)", 
+		"1": "1 = verrouillage interdit (moteur tournant)"
+	}
+	}, 
+	"ShiftMapChangeRequest": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = No Request", 
+		"1": "01 = Request to use TCS map in warm", 
+		"2": "10 = Request to use TCS map in cold", 
+		"3": "11 = not use"
+	}
+	}, 
+	"Information voyants AIRBAG disponibles_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = voyants AIRBAG non disponibles", 
+		"1": "1 = voyants AIRBAG disponibles"
+	}
+	}, 
+	"DTOOL_vers_ALL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Consigne de r\u00e9gime ralenti_84": {
+	"scaled": true, 
+	"step": 8.0, 
+	"unit": "tr/mn"
+	}, 
+	"Consigne de couple transf\u00e9r\u00e9": {
+	"scaled": true, 
+	"step": 3.0, 
+	"unit": "Nm"
+	}, 
+	"Etat roue arri\u00e8re gauche_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = pression OK", 
+		"1": "001 = capteur manquant", 
+		"2": "010 = pneu trop gonfl\u00e9", 
+		"3": "011 = pneu singulier en sur-gonflage", 
+		"4": "100 = pneu singulier en sous-gonflage", 
+		"5": "101 = pertes d'air anormales", 
+		"6": "110 = pneu un peu sous-gonfl\u00e9 (au dessous du seuil d'alerte 1)", 
+		"7": "111 = pneu dangeureusement sous-gonfl\u00e9 (au dessous du seuil d'alerte 2)"
+	}
+	}, 
+	"Vitesse roue arri\u00e8re gauche_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.0417, 
+	"bitscount": 16, 
+	"unit": "rpm"
+	}, 
+	"Niveau d'huile affich\u00e9_84": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0000 = alerte", 
+		"1": "0001 = 1 pav\u00e9 de barre graphe", 
+		"2": "0010 = 2 pav\u00e9s", 
+		"3": "0011 = 3 pav\u00e9s", 
+		"4": "0100 = 4 pav\u00e9s", 
+		"5": "0101 = 5 pav\u00e9s", 
+		"6": "0110 = 6 pav\u00e9s", 
+		"7": "0111 = 7 pav\u00e9s", 
+		"8": "1000 = 8 pav\u00e9s", 
+		"9": "1111 = indisponible"
+	}
+	}, 
+	"Etat pompe lave-projecteurs": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pompe lave projecteur arr\u00eat\u00e9e", 
+		"1": "1 = pompe lave projecteurs activ\u00e9e"
+	}
+	}, 
+	"Consommation carburant_84": {
+	"scaled": true, 
+	"step": 80.0, 
+	"unit": "mm3"
+	}, 
+	"D\u00e9faut essuyage": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut essuyage", 
+		"1": "1 = d\u00e9faut essuyage"
+	}
+	}, 
+	"Commande d'actionnement freinage en cours": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = pas de commande en cours", 
+		"1": "01 = commande de serrage en cours", 
+		"2": "10 = commande de desserrage en cours", 
+		"3": "11 = indisponible"
+	}
+	}, 
+	"Temp\u00e9rature eau moteur_84": {
+	"scaled": true, 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"Mode de d\u00e9marrage_UCH": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = demande d'arr\u00eat moteur", 
+		"1": "01 = r\u00e9serv\u00e9", 
+		"2": "10 = demande de mise APC", 
+		"3": "11 = demande de d\u00e9marrage"
+	}
+	}, 
+	"UCH_Vivant_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "= 1/0 alternativement"
+	}
+	}, 
+	"Etat t\u00e9moin MIL_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = t\u00e9moin MIL \u00e9teint", 
+		"1": "01 = t\u00e9moin MIL allum\u00e9 fixe", 
+		"2": "10 = t\u00e9moin MIL clignotant", 
+		"3": "11 = autotest du t\u00e9moin MIL"
+	}
+	}, 
+	"UCH_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Demande de d\u00e9verrouillage de la colonne_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de demande d\u00e9verrouillage colonne", 
+		"1": "1 = demande d\u00e9verrouillage colonne"
+	}
+	}, 
+	"Etat des GmV moteur": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = GmV arr\u00eat\u00e9s", 
+		"1": "01 = GmV petite vitesse enclench\u00e9", 
+		"2": "10 = GmV vitesse moyenne enclench\u00e9", 
+		"3": "11 = GmV grande vitesse enclench\u00e9"
+	}
+	}, 
+	"Indication de sortie de reset Swa": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie de reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Autorisation de d\u00e9marrage_Verlog": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = d\u00e9marrage interdit", 
+		"1": "1 = d\u00e9marrage autoris\u00e9"
+	}
+	}, 
+	"Demande DTRL": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = DTRL non demand\u00e9", 
+		"1": "1 = DTRL demand\u00e9"
+	}
+	}, 
+	"Selection lave projecteurs": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = lave-projecteur gauche ou haute pression s\u00e9lectionn\u00e9", 
+		"1": "1 = lave-projecteur droit s\u00e9lectionn\u00e9"
+	}
+	}, 
+	"Demande activation clignotant gauche_BAE": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = clignotant gauche non demand\u00e9", 
+		"1": "1 = clignotant gauche demand\u00e9"
+	}
+	}, 
+	"Demande de fermeture rouleau": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = positionnement rouleau OK", 
+		"1": "1 = demande de fermeture rouleau"
+	}
+	}, 
+	"Etat feux de position_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de position \u00e9teints", 
+		"1": "1 = feux de position allum\u00e9s"
+	}
+	}, 
+	"Seuil coupure en surr\u00e9gime_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = seuil bas", 
+		"1": "1 = seuil haut"
+	}
+	}, 
+	"Demande appui frein": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pied sur le frein non n\u00e9cessaire", 
+		"1": "1 = Pied sur le frein n\u00e9cessaire (levier bloqu\u00e9 BVA ou d\u00e9marrage rapport engag\u00e9 "
+	}
+	}, 
+	"Autorisation de Commutation de Charge": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = Commutation non autoris\u00e9e", 
+		"1": "01 = R\u00e9seau en pr\u00e9paration", 
+		"2": "10 = Commutation autoris\u00e9e", 
+		"3": "11 = Invalide (Commutation autoris\u00e9e)"
+	}
+	}, 
+	"T\u00e9moin fuite_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = t\u00e9moin \u00e9teint (pas de fuite)", 
+		"1": "1 = t\u00e9moin allum\u00e9"
+	}
+	}, 
+	"Checksum roues arri\u00e8re": {
+	"scaled": true
+	}, 
+	"Consigne de d\u00e9bit GPL/GNV_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 2.0, 
+	"bitscount": 16, 
+	"unit": "g/h"
+	}, 
+	"Champ contr\u00f4le des donn\u00e9es Verlog_84": {
+	"scaled": true, 
+	"bitscount": 5
+	}, 
+	"Clignotement vitesse de consigne RV/LV_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = affichage fixe", 
+		"1": "1 = affichage clignotant"
+	}
+	}, 
+	"Verrou vivant_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "= 1/0 alternativement"
+	}
+	}, 
+	"Couple moteur hors consigne TA_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"Etat feux de croisement": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de croisement \u00e9teints", 
+		"1": "1 = feux de croisement allum\u00e9s"
+	}
+	}, 
+	"Loi_Eco_S\u00e9lectionn\u00e9e_TA": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Loi Eco non S\u00e9lectionn\u00e9e", 
+		"1": "1 = Loi Eco S\u00e9lectionn\u00e9e"
+	}
+	}, 
+	"Diagnostic jauge carburant_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = connexion jauge OK", 
+		"1": "01 = jauge en c.o.", 
+		"2": "10 = jauge en c.c.", 
+		"3": "11 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Etat feux de brouillard avant": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de brouillard avant \u00e9teints", 
+		"1": "1 = feux de brouillard allum\u00e9s"
+	}
+	}, 
+	"T\u00e9moin PassengerAIRBAG_OFF op\u00e9rationnel_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = t\u00e9moin  PassengerAIRBAG_OFF en d\u00e9faut", 
+		"1": "1 = t\u00e9moin PassengerAIRBAG_OFF op\u00e9rationnel"
+	}
+	}, 
+	"Pression GPL/GNV_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 5.0, 
+	"bitscount": 12, 
+	"unit": "mbar"
+	}, 
+	"Pression roue avant gauche_84": {
+	"scaled": true, 
+	"step": 13.725, 
+	"unit": "mbar"
+	}, 
+	"Demande Buzzer": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "00000 = pas de buzzer demand\u00e9", 
+		"1": "00001 = oubli lanternes", 
+		"2": "00010 = condamnation en roulant activ\u00e9e", 
+		"3": "00011 = condamnation en roulant d\u00e9sactiv\u00e9e", 
+		"4": "00100 = d\u00e9faillance condamnation enfant", 
+		"5": "00101 = r\u00e9serv\u00e9", 
+		"6": "00110 = r\u00e9serv\u00e9", 
+		"7": "00111 = r\u00e9serv\u00e9", 
+		"8": "10000 = retrait clef interdit (\u00e0 confirmer)", 
+		"9": "10001 = coffre ouvert", 
+		"10": "10010 = mode switch on (\u00e0 confirmer)", 
+		"11": "10011 = alerte oubli clef", 
+		"12": "10100 = alerte marche arri\u00e8re", 
+		"13": "10101 = alerte ceinture oubli\u00e9e", 
+		"14": "10110 = DTRL activ\u00e9", 
+		"15": "10111 = DTRL d\u00e9sactiv\u00e9", 
+		"16": "11001 = R\u00e9serv\u00e9 Nissan : alarme pneu crev\u00e9", 
+		"17": "11010 = R\u00e9serv\u00e9 Nissan : Confirmation enregistrement ID emetteur"
+	}
+	}, 
+	"Etat de condamnation portes et coffre": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "x0 = coffre non condamn\u00e9", 
+		"1": "x1 = coffre condamn\u00e9", 
+		"2": "0x = portes non condamn\u00e9es", 
+		"3": "1x = portes condamn\u00e9es"
+	}
+	}, 
+	"MSR d\u00e9sactiv\u00e9_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = MSR actif", 
+		"1": "1 = MSR inactiv\u00e9"
+	}
+	}, 
+	"AT_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Consigne voyant bouton GPL/GNV_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = \u00e9teint", 
+		"1": "01 = clignotant", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = allum\u00e9"
+	}
+	}, 
+	"Extinctions Codes": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = Pas de requ\u00eate d'extinction des codes", 
+		"1": "01 = Extinction du code gauche", 
+		"2": "10 = Extinction du code droit", 
+		"3": "11 = Extinction du code droit et gauche"
+	}
+	}, 
+	"S\u00e9lection AC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = AC non demand\u00e9", 
+		"1": "1 = AC demand\u00e9"
+	}
+	}, 
+	"DiagMuxOn_UCH": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = compta et m\u00e9mo d\u00e9fauts CAN muet/absent masqu\u00e9s", 
+		"1": "1 = compta et m\u00e9mo d\u00e9fauts CAN muet/absent non masqu\u00e9s"
+	}
+	}, 
+	"Etat filtre \u00e0 particule": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas de message d'alerte", 
+		"1": "1 = Alerte filtre encrass\u00e9"
+	}
+	}, 
+	"T\u00e9moin SSPP-Serv_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = voyant OFF", 
+		"1": "1 = voyant ON"
+	}
+	}, 
+	"Extinctions Codes (copie)": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = Pas de requ\u00eate d'extinction des codes", 
+		"1": "01 = Extinction du code gauche", 
+		"2": "10 = Extinction du code droit", 
+		"3": "11 = Extinction du code droit et gauche"
+	}
+	}, 
+	"Syst\u00e8me GPL/GNV pr\u00eat_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = GPL/GNV non pr\u00eat", 
+		"1": "1 = GPL/GNV pr\u00eat"
+	}
+	}, 
+	"AYC en r\u00e9gulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = AYC hors r\u00e9gulation", 
+		"1": "1 = AYC en r\u00e9gulation"
+	}
+	}, 
+	"Checksum roues avant": {
+	"scaled": true
+	}, 
+	"Changement de rapport refus\u00e9/accept\u00e9_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = changement de rapport accept\u00e9", 
+		"1": "1 = changement de rapport refus\u00e9"
+	}
+	}, 
+	"Etat pression v\u00e9hicule_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = OK", 
+		"1": "01 = tendance au surgonflage", 
+		"2": "10 = tendance au sousgonflage", 
+		"3": "11 = SSPP HS"
+	}
+	}, 
+	"ESP d\u00e9sactiv\u00e9_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = ESP disponible", 
+		"1": "1 = ESP inactiv\u00e9"
+	}
+	}, 
+	"Totalisation g\u00e9n\u00e9rale_84": {
+	"scaled": true, 
+	"bytescount": 3, 
+	"bitscount": 24, 
+	"unit": "km"
+	}, 
+	"Octet 1 Remplissage_84": {
+	"scaled": true
+	}, 
+	"UCT_vers_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Num\u00e9ro alternateur": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0000 = invalide", 
+		"1": "0001 = alternateur 1", 
+		"2": "0010 = alternateur 2 (TG10)", 
+		"3": "0011 = alternateur 3 (SG12)", 
+		"4": "0100 = alternateur 4 (LIE150)", 
+		"5": "0101 = alternateur 5 (SG15L)", 
+		"6": "0110 = r\u00e9serv\u00e9", 
+		"7": "0111 = r\u00e9serv\u00e9", 
+		"8": "1000 = r\u00e9serv\u00e9", 
+		"9": "1001 = r\u00e9serv\u00e9", 
+		"10": "1010 = r\u00e9serv\u00e9", 
+		"11": "1011 = r\u00e9serv\u00e9", 
+		"12": "1100 = r\u00e9serv\u00e9", 
+		"13": "1101 = r\u00e9serv\u00e9", 
+		"14": "1110 = r\u00e9serv\u00e9", 
+		"15": "1111 = type sp\u00e9cial"
+	}
+	}, 
+	"Demande feux de brouillard avant": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de brouillard avant non demand\u00e9s", 
+		"1": "1 = feux de brouillard avant demand\u00e9s"
+	}
+	}, 
+	"Etat convertisseur de couple_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = convertisseur d\u00e9pont\u00e9", 
+		"1": "01 = convertisseur en r\u00e9gulation ou glissant", 
+		"2": "10 = convertisseur pont\u00e9 ou ferm\u00e9", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Temp\u00e9rature de r\u00e9gulation moteur": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = 90 \u00b0C", 
+		"1": "001 = 95 \u00b0C", 
+		"2": "010 = 100 \u00b0C", 
+		"3": "011 = 105 \u00b0C", 
+		"4": "100 = 110 \u00b0C", 
+		"5": "101 = 80 \u00b0C", 
+		"6": "110 = 85 \u00b0C", 
+		"7": "111 = indisponible"
+	}
+	}, 
+	"Limit / Consigne couple lent_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"Transition descendante de temp\u00e9rature moteur": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas de transition descendante en cours", 
+		"1": "1 = Transition descendante en cours"
+	}
+	}, 
+	"D\u00e9faut mineur syst\u00e8me GPL/GNV_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut mineur syt\u00e8me GPL/GNV", 
+		"1": "1 = d\u00e9faut mineur syst\u00e8me GPL/GNV"
+	}
+	}, 
+	"Trame UCH_to_ESCL3 absente_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = trame UCH_to_ESCL3 pr\u00e9sente", 
+		"1": "1 = trame UCH_to_ESCL3 absente pendant 1 seconde sur la liaison CAN"
+	}
+	}, 
+	"Position du toit ouvrant": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = toit ferm\u00e9 (sorti)", 
+		"1": "001 = toit ouvert (rentr\u00e9)", 
+		"2": "010 = fermeture du toit en cours", 
+		"3": "011 = ouverture du toit en cours", 
+		"4": "1xx = invalide"
+	}
+	}, 
+	"Commande GMV (TA)_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de pilotage GMV", 
+		"1": "1 = GMV \u00e0 piloter"
+	}
+	}, 
+	"Pression inadapt\u00e9e \u00e0 la charge_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pression adapt\u00e9e \u00e0 la charge", 
+		"1": "1 = pression non adapt\u00e9e \u00e0 la charge"
+	}
+	}, 
+	"D\u00e9faut d\u00e9pollution GPL/GNV_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut d\u00e9pollution du syst\u00e8me GPL/GNV", 
+		"1": "1 = d\u00e9faut d\u00e9pollution du syst\u00e8me GPL/GNV"
+	}
+	}, 
+	"Marche arri\u00e8re engag\u00e9e_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = marche arri\u00e8re non engag\u00e9e", 
+		"1": "01 = marche arri\u00e8re engag\u00e9e", 
+		"2": "10 = invalide", 
+		"3": "11 = reserv\u00e9"
+	}
+	}, 
+	"Demande d'incr\u00e9ment de rapport_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de demande d'incr\u00e9ment de rapport", 
+		"1": "1 = demande d'incr\u00e9ment de rapport"
+	}
+	}, 
+	"Mode de fonctionnement moteur_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = GPL", 
+		"1": "001 = Essence forc\u00e9 (GPL HS)", 
+		"2": "010 = Commutation GPL -> Essence", 
+		"3": "011 = Essence forc\u00e9e (GPL impossible)", 
+		"4": "100 = GPL forc\u00e9", 
+		"5": "101 = Commutation essence -> GPL", 
+		"6": "110 = Essence forc\u00e9 (r\u00e9servoir GPL vide)", 
+		"7": "111 = Essence"
+	}
+	}, 
+	"Vierge / cod\u00e9_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = cod\u00e9", 
+		"1": "1 = vierge"
+	}
+	}, 
+	"DTOOL_vers_UCT": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Loi_Neige_S\u00e9lectionn\u00e9e_TA": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Loi Neige non S\u00e9lectionn\u00e9e", 
+		"1": "1 = Loi Neige S\u00e9lectionn\u00e9e"
+	}
+	}, 
+	"Mini GPL_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = niveau sup\u00e9rieur au minimum", 
+		"1": "1 = minimum atteint"
+	}
+	}, 
+	"Demande feux de position_BAE": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feux de position non demand\u00e9s", 
+		"1": "1 = feux de position demand\u00e9s"
+	}
+	}, 
+	"Vitesse roue arri\u00e8re droite_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.0417, 
+	"bitscount": 16, 
+	"unit": "rpm"
+	}, 
+	"D\u00e9faut actionneur_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut actionneur", 
+		"1": "1 = d\u00e9faut actionneur"
+	}
+	}, 
+	"Contact p\u00e9dale de frein \u00e0 fermeture_ABS_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = frein non actionn\u00e9", 
+		"1": "01 = frein actionn\u00e9", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Verrouillage termin\u00e9_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = mouvement de verrouillage non termin\u00e9", 
+		"1": "1 = mouvement de verrouillage termin\u00e9"
+	}
+	}, 
+	"Etats moteur_84 (copie)": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = moteur arr\u00eat\u00e9", 
+		"1": "01 = moteur c\u00e2l\u00e9", 
+		"2": "10 = moteur tournant autonome", 
+		"3": "11 = moteur tournant entra\u00een\u00e9"
+	}
+	}, 
+	"Etat roue arri\u00e8re droite_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = pression OK", 
+		"1": "001 = capteur manquant", 
+		"2": "010 = pneu trop gonfl\u00e9", 
+		"3": "011 = pneu singulier en sur-gonflage", 
+		"4": "100 = pneu singulier en sous-gonflage", 
+		"5": "101 = pertes d'air anormales", 
+		"6": "110 = pneu un peu sous-gonfl\u00e9 (au dessous du seuil d'alerte 1)", 
+		"7": "111 = pneu dangeureusement sous-gonfl\u00e9 (au dessous du seuil d'alerte 2)"
+	}
+	}, 
+	"Consigne de temp\u00e9rature air souffl\u00e9": {
+	"scaled": true, 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"Niveau de carburant(APV)_84": {
+	"scaled": true, 
+	"bitscount": 7, 
+	"unit": "l"
+	}, 
+	"Puissance m\u00e9ca alternateur instantan\u00e9e": {
+	"scaled": true, 
+	"step": 40.0, 
+	"unit": "Watts"
+	}, 
+	"Indication de sortie de reset Airbag_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Puissance maximum alternateur": {
+	"scaled": true, 
+	"step": 40.0, 
+	"unit": "watts"
+	}, 
+	"Consigne t\u00e9moin GPL/GNV_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = \u00e9teint", 
+		"1": "01 = clignotant", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = allum\u00e9"
+	}
+	}, 
+	"T\u00e9moin Batterie": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = t\u00e9moin batterie \u00e9teint", 
+		"1": "1 = t\u00e9moin batterie allum\u00e9"
+	}
+	}, 
+	"Indication de sortie de reset TdB_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"P\u00e9dale brute r\u00e9elle ou reconstitu\u00e9e": {
+	"scaled": true
+	}, 
+	"Etats r\u00e9gulateur et limiteur de vitesse_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = RV et LV inactifs (OFF, en veille ou suspendu)", 
+		"1": "01 = reprise p\u00e9dale", 
+		"2": "10 = r\u00e9gulation ou limitation active", 
+		"3": "11 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Affichage \u00e9tat RV/LV": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = r\u00e9gulateur et limiteur OFF", 
+		"1": "001 = limiteur actif", 
+		"2": "010 = (limiteur ON et inactif) ou suspendu", 
+		"3": "011 = limiteur demand\u00e9 et en d\u00e9faut", 
+		"4": "100 = r\u00e9gulateur actif", 
+		"5": "101 = (r\u00e9gulateur ON et inactif) ou suspendu", 
+		"6": "110 = r\u00e9gulateur demand\u00e9 et en d\u00e9faut", 
+		"7": "111 = fonctions RV/LV non pr\u00e9sentes sur le v\u00e9hicule"
+	}
+	}, 
+	"Num\u00e9ro de cylindre associ\u00e9 au facteur correctif_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = tous les cylindres", 
+		"1": "001 = 1er cylindre", 
+		"2": "010 = 2\u00e8me cylindre", 
+		"3": "011 = 3\u00e8me cylindre", 
+		"4": "100 = 4\u00e8me cylindre", 
+		"5": "101 = 5\u00e8me cylindre", 
+		"6": "110 = 6\u00e8me cylindre", 
+		"7": "111 = d\u00e9faut"
+	}
+	}, 
+	"Coupure climatisation": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 =  coupure demand\u00e9e", 
+		"1": "1 = pas de coupure demand\u00e9e"
+	}
+	}, 
+	"Dongle_command_EPS": {
+	"scaled": true, 
+	"bitscount": 2
+	}, 
+	"Gel/Coupure des consommateurs \u00e9lectriques_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = aucune demande", 
+		"1": "01 = changements d'\u00e9tats interdits", 
+		"2": "10 = demande de coupure des consommateurs", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Type v\u00e9hicule": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0000 = X74", 
+		"1": "0001 = X73", 
+		"2": "0010 = X81", 
+		"3": "0011 = X65 ph2", 
+		"4": "0100 = D66", 
+		"5": "0101 = X76", 
+		"6": "0110 = X83", 
+		"7": "0111 = X70", 
+		"8": "1000 = F200", 
+		"9": "1001 = X74ph2", 
+		"10": "1011 = X85", 
+		"11": "1100 = J77", 
+		"12": "1101 = B84", 
+		"13": "1110 = J84", 
+		"14": "1111 = non document\u00e9 (erreur programmation fin de cha\u00eene)"
+	}
+	}, 
+	"Contact ceinture conducteur": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = ceinture conducteur boucl\u00e9e (contact ouvert)", 
+		"1": "01 = ceinture conducteur non boucl\u00e9e (contact ferm\u00e9)", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = indisponible"
+	}
+	}, 
+	"Voyant d\u00e9faut d\u00e9pollution_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = voyant MIL \u00e9teint", 
+		"1": "01 = voyant MIL allum\u00e9 permanent", 
+		"2": "10 = voyant MIL clignotant", 
+		"3": "11 = autotest voyant"
+	}
+	}, 
+	"Tension de fonctionnement hors limites_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = tension d'alimentation correcte (9V<=U<=16V)", 
+		"1": "1 = tension d'alimentation hors limites (U<9V ou U>16V)"
+	}
+	}, 
+	"D\u00e9bit GPL/GNV r\u00e9alis\u00e9_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 2.0, 
+	"bitscount": 16, 
+	"unit": "g/h"
+	}, 
+	"Voyant \u00e9tat ABS": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = ABS op\u00e9rationnel ou v\u00e9hicule non \u00e9quip\u00e9 (voyant \u00e9teint)", 
+		"1": "01 = ABS en d\u00e9faut", 
+		"2": "10 = ABS op\u00e9rationnel (absence de programmation)", 
+		"3": "11 = ABS en calibration (mode diagnostic)"
+	}
+	}, 
+	"DTOOL_vers_CLIM": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Etat Appui Push VSC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas d'appui", 
+		"1": "1 = Push appuy\u00e9"
+	}
+	}, 
+	"Etat t\u00e9moin PassengerAIRBAG_OFF_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = t\u00e9moin  PassengerAIRBAG_OFF \u00e9teint", 
+		"1": "1 = t\u00e9moin PassengerAIRBAG_OFF allum\u00e9"
+	}
+	}, 
+	"Alerte temp\u00e9rature eau_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas d'alerte temp\u00e9rature d'eau", 
+		"1": "1 = alerte temp\u00e9rature d'eau"
+	}
+	}, 
+	"DiagMuxOn_84(copy)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = compta et m\u00e9mo d\u00e9fauts CAN muet/absent non autoris\u00e9es", 
+		"1": "1 = compta et m\u00e9mo d\u00e9fauts CAN muet/absent autoris\u00e9es"
+	}
+	}, 
+	"DTOOL_vers_Freins": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"D\u00e9faut majeur BVR_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de d\u00e9faut majeur", 
+		"1": "1 = d\u00e9faut majeur (demande stop moteur)"
+	}
+	}, 
+	"Loi_Impulsionnelle_S\u00e9lectionn\u00e9e_TA": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Loi Impulsionnelle non S\u00e9lectionn\u00e9e", 
+		"1": "1 = Loi Impulsionnelle S\u00e9lectionn\u00e9e"
+	}
+	}, 
+	"Terminer_Manoeuvre_toit": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Toit en position final, pas de demande", 
+		"1": "1 = Terminer manoeuvre toit"
+	}
+	}, 
+	"Commande des l\u00e8ve-vitres \u00e9lectriques": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = pas de commande des l\u00e8ve-vitres \u00e9lectriques", 
+		"1": "01 = r\u00e9serv\u00e9", 
+		"2": "10 = descente simultan\u00e9e des 4  l\u00e8ve-vitres \u00e9lectriques", 
+		"3": "11 = mont\u00e9e simultan\u00e9e des 4  l\u00e8ve-vitres \u00e9lectriques"
+	}
+	}, 
+	"ALS activ\u00e9": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = ALS non activ\u00e9", 
+		"1": "1 = ALS activ\u00e9"
+	}
+	}, 
+	"Demande de climatisation": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = embrayage CLIM OFF", 
+		"1": "1 = embrayage CLIM ON"
+	}
+	}, 
+	"R\u00e9gime moteur_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.125, 
+	"bitscount": 16, 
+	"unit": "Tr/min"
+	}, 
+	"Consigne de couple MSR_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%", 
+	"offset": -25.0
+	}, 
+	"S\u00e9lection mode neige par le client": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = mode neige non s\u00e9lectionn\u00e9 (bouton non appuy\u00e9)", 
+		"1": "1 = mode neige s\u00e9lectionn\u00e9 (bouton appuy\u00e9)"
+	}
+	}, 
+	"Indication de sortie de reset FPA": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"D\u00e9faillance verrouillage colonne ou UCH": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = pas de d\u00e9faut verrou", 
+		"1": "001 = d\u00e9faillance \u00e9lectronique UCH/STOP", 
+		"2": "010 = verrouillage non effectu\u00e9 (apr\u00e8s coupure moteur)", 
+		"3": "011 = r\u00e9serv\u00e9", 
+		"4": "100 = d\u00e9verrouillage non effectu\u00e9 (avant d\u00e9marrage)", 
+		"5": "110 = d\u00e9faillance \u00e9lectronique UCH/SERV", 
+		"6": "111 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"D\u00e9tection blocage de roue": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = Pas de blocage d\u00e9tect\u00e9e ou pr\u00e9sence ABS/ESP", 
+		"1": "1 = Blocage d\u00e9tect\u00e9"
+	}
+	}, 
+	"Etat t\u00e9moin D\u00e9faut AIRBAG_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = voyant \u00e9teint (syst\u00e8me AIRBAG OK)", 
+		"1": "1 = voyant allum\u00e9 fixe (d\u00e9faut syst\u00e8me AIRBAG)"
+	}
+	}, 
+	"ESP en d\u00e9faut_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = ESP op\u00e9rationnel", 
+		"1": "1 = ESP en d\u00e9faut"
+	}
+	}, 
+	"Indication de sortie de reset INJ_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de sortie reset", 
+		"1": "1 = sortie reset"
+	}
+	}, 
+	"Etat feu de brouillard arri\u00e8re_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = feu de brouillard OFF", 
+		"1": "1 = feu de brouillard ON"
+	}
+	}, 
+	"Etat LARC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = LARC arr\u00eat\u00e9e", 
+		"1": "1 = LARC activ\u00e9e"
+	}
+	}, 
+	"Clock AT": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"UPC_Demande de Veille Endormissement": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = r\u00e9serv\u00e9", 
+		"1": "01 = r\u00e9serv\u00e9", 
+		"2": "10 = r\u00e9serv\u00e9", 
+		"3": "11 = confirmation de r\u00e9veil"
+	}
+	}, 
+	"DTOOL_vers_INJ": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Vitesse de lacet_84": {
+	"bitscount": 16, 
+	"scaled": true, 
+	"step": 0.2, 
+	"bytescount": 2, 
+	"offset": -6553.4, 
+	"unit": "\u00b0/s"
+	}, 
+	"MSR en r\u00e9gulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = MSR hors r\u00e9gulation", 
+		"1": "1 = MSR en r\u00e9gulation"
+	}
+	}, 
+	"Etat moteur Essuie-vitre avant": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = moteur Essuie-vitre AV arr\u00eat\u00e9", 
+		"1": "01 = moteur Essuie-vitre AV_PV", 
+		"2": "10 = moteur Essuie-vitre AV_GV", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"Contact embrayage fin de course_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = p\u00e9dale rel\u00e2ch\u00e9e (fin de course non atteinte)", 
+		"1": "01 = p\u00e9dale enfonc\u00e9e (seuil fin de course d\u00e9pass\u00e9)", 
+		"2": "10 = v\u00e9hicule non \u00e9quip\u00e9", 
+		"3": "11 = invalide"
+	}
+	}, 
+	"DTOOL_vers_TdB": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"D\u00e9faut syst\u00e8me AIRBAG_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = fonctionnement syst\u00e8me AIRBAG correct", 
+		"1": "1 = syst\u00e8me AIRBAG en d\u00e9faut"
+	}
+	}, 
+	"Bit de validit\u00e9 de l'appui touche LARC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = appui touche LARC valide", 
+		"1": "1 = appui touche LARC invalide"
+	}
+	}, 
+	"Demande d'activation LARC par INJ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = pas de demande d'activation de la LARC", 
+		"1": "1 = demande d'activation de la LARC"
+	}
+	}, 
+	"Affichage position TA_84": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0000 = parking", 
+		"1": "0001 = reverse", 
+		"2": "0010 = neutre", 
+		"3": "0011 = drive", 
+		"4": "0100 = rapport 4", 
+		"5": "0101 = rapport 3", 
+		"6": "0110 = rapport 2", 
+		"7": "0111 = rapport 1", 
+		"8": "1000 = interm\u00e9diaire P/R ou N/R", 
+		"9": "1001 = interm\u00e9diaire N/D", 
+		"10": "1010 = interm\u00e9diaire", 
+		"11": "1011 = Inutilis\u00e9", 
+		"12": "1100 = rapport 6", 
+		"13": "1101 = rapport 7", 
+		"14": "1110 = rapport 5", 
+		"15": "1111 = CMF hors service."
+	}
+	}, 
+	"Etat de r\u00e9alisation de la consigne de couple_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = fonctionnement normal", 
+		"1": "01 = le couple exact ne peut \u00eatre obtenu (impr\u00e9cision de la mesure)", 
+		"2": "10 = le moteur est temporairement incapable de r\u00e9aliser une consigne de couple", 
+		"3": "11 = impossible d'ex\u00e9cuter la demande"
+	}
+	}, 
+	"Clock ESP_84": {
+	"scaled": true
+	}, 
+	"Etat remplissage_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = attente (pr\u00eat \u00e0 recevoir la trame de remplissage)", 
+		"1": "01 = acquittement (ordre re\u00e7u et en cours d'ex\u00e9cution)", 
+		"2": "10 = termin\u00e9 (s\u00e9quence de pilotage des \u00e9lectrovannes termin\u00e9e)", 
+		"3": "11 = risque de non remplisssage suite \u00e0 une d\u00e9tection de d\u00e9faut"
+	}
+	}, 
+	"Inhibition SSPP_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = fonction SSPP pr\u00e9sente dans le v\u00e9hicule", 
+		"1": "1 = inhibition fonction SSPP dans le v\u00e9hicule"
+	}
+	}, 
+	"Type m\u00e9lange gaz_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = type 1 (50% propane 50% butane en GPL)", 
+		"1": "01 = type 2 (100% propane en GPL)", 
+		"2": "10 = type 3 (100% butane en GPL)", 
+		"3": "11 = r\u00e9serv\u00e9"
+	}
+	}, 
+	"Temp\u00e9rature air admission_84": {
+	"scaled": true, 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"DTOOL_vers_FPA": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"D\u00e9lai max avant commutation": {
+	"scaled": true, 
+	"bitscount": 4, 
+	"unit": "s"
+	}, 
+	"Etat de la LARC demand\u00e9e manuellement": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = LARC non demand\u00e9e manuellement", 
+		"1": "1 = LARC demand\u00e9e manuellement"
+	}
+	}, 
+	"Inhibition Vitesse_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "0 = vitesse nulle", 
+		"1": "1 = vitesse > 0 km/h ou vitesse non re\u00e7ue ou valeur vitesse re\u00e7ue \u00e9gale \u00e0 FFFFh"
+	}
+	}, 
+	"Etat d\u00e9marreur": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "00 = d\u00e9marrage non activ\u00e9", 
+		"1": "01 = relaxation courte active", 
+		"2": "10 = relaxation longue active", 
+		"3": "11 = d\u00e9marrage activ\u00e9"
+	}
+	}, 
+	"Angle volant": {
+	"bitscount": 16, 
+	"scaled": true, 
+	"step": 0.1, 
+	"bytescount": 2, 
+	"offset": -3276.7, 
+	"unit": "\u00b0"
+	}, 
+	"Etat roue avant gauche_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "000 = pression OK", 
+		"1": "001 = capteur manquant", 
+		"2": "010 = pneu trop gonfl\u00e9", 
+		"3": "011 = pneu singulier en sur-gonflage", 
+		"4": "100 = pneu singulier en sous-gonflage", 
+		"5": "101 = pertes d'air anormales", 
+		"6": "110 = pneu un peu sous-gonfl\u00e9 (au dessous du seuil d'alerte 1)", 
+		"7": "111 = pneu dangeureusement sous-gonfl\u00e9 (au dessous du seuil d'alerte 2)"
+	}
+	}
+}
+}

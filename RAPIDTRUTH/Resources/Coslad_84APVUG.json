@@ -1,0 +1,2095 @@
+{
+"obd": {
+	"fastinit": true, 
+	"funcname": "Lampes \u00e0 d\u00e9charge \u00e0 gauche 84", 
+	"kw1": "D0", 
+	"kw2": "8F", 
+	"protocol": "KWP2000", 
+	"funcaddr": "71"
+}, 
+"devices": [
+	{
+	"dtc": 39939, 
+	"devicedata": {
+		"Position du moteur": "0"
+	}, 
+	"dtctype": 3, 
+	"name": "Actionneur"
+	}, 
+	{
+	"dtc": 39940, 
+	"devicedata": {}, 
+	"dtctype": 4, 
+	"name": "Lampe X\u00e9non"
+	}, 
+	{
+	"dtc": 39936, 
+	"devicedata": {
+		"Position du capteur Arri\u00e8re": "0", 
+		"Position du capteur Arri\u00e8re (digits)": "0"
+	}, 
+	"dtctype": 0, 
+	"name": "Capteur arri\u00e8re"
+	}, 
+	{
+	"dtc": 39941, 
+	"devicedata": {
+		"Version du Logiciel": "0", 
+		"Assiette v\u00e9hicule filtr\u00e9e (digits)": "0", 
+		"Type de v\u00e9hicule": "0", 
+		"Assiette v\u00e9hicule brute": "0", 
+		"Adresse du Ballast": "0", 
+		"Etat de l'initialisation": "0", 
+		"Assiette v\u00e9hicule brute (digits)": "0", 
+		"Assiette v\u00e9hicule filtr\u00e9e": "0"
+	}, 
+	"dtctype": 4, 
+	"name": "ECU"
+	}, 
+	{
+	"dtc": 39937, 
+	"devicedata": {
+		"Position du capteur Avant": "0", 
+		"Position du capteur Avant (digits)": "0"
+	}, 
+	"dtctype": 0, 
+	"name": "Capteur avant"
+	}, 
+	{
+	"dtc": 39938, 
+	"devicedata": {
+		"Vitesse du v\u00e9hicule": "0"
+	}, 
+	"dtctype": 0, 
+	"name": "Signal Vitesse"
+	}
+], 
+"ecuname": "Coslad 84APVUG", 
+"autoidents": [
+	{
+	"diagversion": "4", 
+	"supplier": "T93", 
+	"version": "0007", 
+	"soft": "0022"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "T93", 
+	"version": "0011", 
+	"soft": "0022"
+	}
+], 
+"endian": "Big", 
+"requests": [
+	{
+	"receivebyte_dataitems": {
+		"Jour APV": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Ann\u00e9e APV": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Mois APV": {
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "21C2", 
+	"name": "Read last service intervention date"
+	}, 
+	{
+	"name": "Write date of last service", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Jour APV": {
+		"firstbyte": 5
+		}, 
+		"Ann\u00e9e APV": {
+		"firstbyte": 3
+		}, 
+		"Mois APV": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BC2000000"
+	}, 
+	{
+	"name": "Stepper motor control", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Etat": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Position finale de l'actionneur": {
+		"firstbyte": 4
+		}, 
+		"Commande": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "3081110000"
+	}, 
+	{
+	"name": "Control: status control", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Etat": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Commande": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "3081010001"
+	}, 
+	{
+	"name": "Write ECU address", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Adresse du Ballast": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3BC570"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"VIN ASCII": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"VIN BINAIRE": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"VIN CRC": {
+		"ref": true, 
+		"firstbyte": 20
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 21, 
+	"sentbytes": "2181", 
+	"name": "Read VIN"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Adresse ballast non-d\u00e9finie": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Capteurs hors-plage": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Type de v\u00e9hicule non-sp\u00e9cifi\u00e9": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Vitesse non-nulle": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Vitesse maximale autoris\u00e9e": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"D\u00e9faillance capteurs": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Seuil maximal Avant": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Seuil maximal Arri\u00e8re": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Etat de l'initialisation": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Seuil de r\u00e9f\u00e9rence Arri\u00e8re": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Seuil de r\u00e9f\u00e9rence Avant": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Seuil minimal Arri\u00e8re": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Seuil minimal Avant": {
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 11, 
+	"sentbytes": "21C3", 
+	"name": "Read current calibration parameters"
+	}, 
+	{
+	"name": "Control: stop control", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Etat": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Commande": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "3081110001"
+	}, 
+	{
+	"name": "Write configuration number", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Type de v\u00e9hicule": {
+		"bitoffset": 5, 
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3BC100"
+	}, 
+	{
+	"sentbytes": "82", 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"manualsend": true, 
+	"name": "Stop communication"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Nombre de d\u00e9fauts": {
+		"firstbyte": 2
+		}, 
+		"Flag 1": {
+		"firstbyte": 5
+		}, 
+		"DTC 4": {
+		"firstbyte": 12
+		}, 
+		"DTC 6": {
+		"firstbyte": 18
+		}, 
+		"DTC 7": {
+		"firstbyte": 21
+		}, 
+		"Flag 2": {
+		"firstbyte": 8
+		}, 
+		"DTC 5": {
+		"firstbyte": 15
+		}, 
+		"Flag 4": {
+		"firstbyte": 14
+		}, 
+		"Flag 5": {
+		"firstbyte": 17
+		}, 
+		"Flag 6": {
+		"firstbyte": 20
+		}, 
+		"DTC 1": {
+		"firstbyte": 3
+		}, 
+		"Flag 8": {
+		"firstbyte": 26
+		}, 
+		"DTC 2": {
+		"firstbyte": 6
+		}, 
+		"DTC 8": {
+		"firstbyte": 24
+		}, 
+		"DTC 3": {
+		"firstbyte": 9
+		}, 
+		"Flag 7": {
+		"firstbyte": 23
+		}, 
+		"Status 8": {
+		"bitoffset": 3, 
+		"firstbyte": 26
+		}, 
+		"Status 9": {
+		"bitoffset": 3, 
+		"firstbyte": 29
+		}, 
+		"Status 6": {
+		"bitoffset": 3, 
+		"firstbyte": 20
+		}, 
+		"Flag 3": {
+		"firstbyte": 11
+		}, 
+		"Status 4": {
+		"bitoffset": 3, 
+		"firstbyte": 14
+		}, 
+		"Status 5": {
+		"bitoffset": 3, 
+		"firstbyte": 17
+		}, 
+		"Status 2": {
+		"bitoffset": 3, 
+		"firstbyte": 8
+		}, 
+		"Status 3": {
+		"bitoffset": 3, 
+		"firstbyte": 11
+		}, 
+		"Status 1": {
+		"bitoffset": 3, 
+		"firstbyte": 5
+		}, 
+		"Panne8": {
+		"firstbyte": 26
+		}, 
+		"Panne9": {
+		"firstbyte": 29
+		}, 
+		"Flag 9": {
+		"firstbyte": 29
+		}, 
+		"Panne4": {
+		"firstbyte": 14
+		}, 
+		"Panne5": {
+		"firstbyte": 17
+		}, 
+		"Panne6": {
+		"firstbyte": 20
+		}, 
+		"Panne7": {
+		"firstbyte": 23
+		}, 
+		"Panne1": {
+		"firstbyte": 5
+		}, 
+		"Panne2": {
+		"firstbyte": 8
+		}, 
+		"Panne3": {
+		"firstbyte": 11
+		}, 
+		"Status 7": {
+		"bitoffset": 3, 
+		"firstbyte": 23
+		}, 
+		"DTC 9": {
+		"firstbyte": 27
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "17FF00", 
+	"name": "ReadStatusOfDiagnosticTroubleCodes"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"VEM-Key byte 2": {
+		"firstbyte": 3
+		}, 
+		"VEM-Key byte 1": {
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "81", 
+	"name": "Start communication"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Code pi\u00e8ce MPR": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Code ITG fournisseur": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Code Identification diagnostic": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Version du Logiciel": {
+		"ref": true, 
+		"firstbyte": 17
+		}, 
+		"Padding": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"R\u00e9f\u00e9rence Hardware": {
+		"ref": true, 
+		"firstbyte": 12
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 26, 
+	"sentbytes": "2180", 
+	"name": "Read system identification"
+	}, 
+	{
+	"name": "Start diag session", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Choix du type de diag": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "10C0"
+	}, 
+	{
+	"sentbytes": "14FF00", 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"manualsend": true, 
+	"name": "Clear diag information"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Adresse du Ballast": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "21C5", 
+	"name": "Read ECU address"
+	}, 
+	{
+	"name": "Output Control", 
+	"replybytes": "700000", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Output Control Status": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Output Driving": {
+		"firstbyte": 4
+		}, 
+		"Output Control Command": {
+		"firstbyte": 3
+		}, 
+		"Output Temporary Control List": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "3081000001"
+	}, 
+	{
+	"name": "Start Diagnostic Session", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Session Name": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "10C0"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Type de v\u00e9hicule": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "21C1", 
+	"name": "Read configuration number"
+	}, 
+	{
+	"name": "Initialisation", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Seuil de r\u00e9f\u00e9rence Arri\u00e8re": {
+		"firstbyte": 4
+		}, 
+		"Seuil de r\u00e9f\u00e9rence Avant": {
+		"firstbyte": 5
+		}, 
+		"Etat de l'initialisation": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 5, 
+	"sentbytes": "308200"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Assiette v\u00e9hicule brute (digits)": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Assiette v\u00e9hicule filtr\u00e9e (digits)": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Assiette v\u00e9hicule brute": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Valeur du  Vcode": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"Offset de rabattement": {
+		"ref": true, 
+		"firstbyte": 22
+		}, 
+		"Assiette v\u00e9hicule filtr\u00e9e": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Position du capteur Arri\u00e8re": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Bruit de roulement": {
+		"ref": true, 
+		"firstbyte": 16
+		}, 
+		"Position du capteur Avant": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Position du moteur": {
+		"ref": true, 
+		"firstbyte": 14
+		}, 
+		"Variable A de filtrage": {
+		"ref": true, 
+		"firstbyte": 18
+		}, 
+		"Vitesse du v\u00e9hicule": {
+		"ref": true, 
+		"firstbyte": 20
+		}, 
+		"Position du capteur Avant (digits)": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Tension d'alimentation capteurs": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Position du capteur Arri\u00e8re (digits)": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 23, 
+	"sentbytes": "21C0", 
+	"name": "Read system variables"
+	}, 
+	{
+	"name": "ReadDTC", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"StatusDTC": {
+		"firstbyte": 5
+		}, 
+		"FirstDTC": {
+		"firstbyte": 3
+		}, 
+		"FlagDTC": {
+		"firstbyte": 5
+		}, 
+		"Panne M\u00e9moris\u00e9e": {
+		"bitoffset": 1, 
+		"firstbyte": 5
+		}, 
+		"NDTC": {
+		"firstbyte": 2
+		}, 
+		"Panne Pr\u00e9sente": {
+		"bitoffset": 2, 
+		"firstbyte": 5
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"MoreDTC": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "17FF00", 
+	"shiftbytescount": 3
+	}, 
+	{
+	"name": "Control: start control", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Etat": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Position finale de l'actionneur": {
+		"firstbyte": 4
+		}, 
+		"Commande": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "3081000001"
+	}
+], 
+"data": {
+	"Assiette v\u00e9hicule filtr\u00e9e (digits)": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"comment": "Info tps r\u00e9el", 
+	"format": "0"
+	}, 
+	"Assiette v\u00e9hicule brute": {
+	"comment": "Info tps r\u00e9el", 
+	"divideby": 512.0, 
+	"bitscount": 16, 
+	"format": "#0.000", 
+	"signed": true, 
+	"scaled": true, 
+	"bytescount": 2, 
+	"unit": "% rad"
+	}, 
+	"Code pi\u00e8ce MPR": {
+	"comment": "Trame Identification syst\u00e8me (TR_ID_COSLAD)", 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Output Temporary Control List": {
+	"lists": {
+		"129": "Moteur"
+	}
+	}, 
+	"Output Control Command": {
+	"comment": "Testing output : Command enumeration", 
+	"lists": {
+		"0": "Start Temporary", 
+		"1": "Status", 
+		"17": "Stop"
+	}
+	}, 
+	"Position du capteur Arri\u00e8re": {
+	"comment": "Info tps r\u00e9el", 
+	"divideby": 65535.0, 
+	"bitscount": 16, 
+	"format": "#0.000", 
+	"scaled": true, 
+	"step": 100.0, 
+	"bytescount": 2, 
+	"unit": "%"
+	}, 
+	"Bruit de roulement": {
+	"comment": "Info tps r\u00e9el", 
+	"divideby": 512.0, 
+	"bitscount": 16, 
+	"format": "#0.000", 
+	"signed": true, 
+	"scaled": true, 
+	"bytescount": 2
+	}, 
+	"Position du moteur": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"comment": "Info tps r\u00e9el", 
+	"bitscount": 16, 
+	"unit": "pas"
+	}, 
+	"Panne5": {
+	"comment": "Panne", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"Offset de rabattement": {
+	"comment": "Info tps r\u00e9el", 
+	"divideby": 512.0, 
+	"bitscount": 16, 
+	"format": "#0.000", 
+	"signed": true, 
+	"scaled": true, 
+	"bytescount": 2, 
+	"unit": "% rad"
+	}, 
+	"Panne M\u00e9moris\u00e9e": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non", 
+		"1": "oui"
+	}
+	}, 
+	"Output Driving": {
+	"comment": "Ecriture des calibrations", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"VIN CRC": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Seuil maximal Avant": {
+	"comment": "front sensor max value", 
+	"divideby": 255.0, 
+	"format": "#0.000", 
+	"scaled": true, 
+	"step": 100.0, 
+	"unit": "% rc"
+	}, 
+	"Output Control Status": {
+	"lists": {
+		"1": "Running", 
+		"2": "Stopped", 
+		"17": "Manually Stopped"
+	}
+	}, 
+	"Vitesse du v\u00e9hicule": {
+	"comment": "Info tps r\u00e9el    ( conversion: data/288 )", 
+	"bitscount": 16, 
+	"format": "0", 
+	"scaled": true, 
+	"bytescount": 2, 
+	"unit": "km/h"
+	}, 
+	"Panne Pr\u00e9sente": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non", 
+		"1": "oui"
+	}
+	}, 
+	"Position finale de l'actionneur": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"comment": "Ecriture des calibrations", 
+	"bitscount": 16, 
+	"unit": "pas"
+	}, 
+	"Tension d'alimentation capteurs": {
+	"scaled": true, 
+	"comment": "Info tps r\u00e9el", 
+	"step": 0.106, 
+	"unit": "V", 
+	"format": "#0.000"
+	}, 
+	"Choix du type de diag": {
+	"comment": "choix du type de diagnostic", 
+	"lists": {
+		"128": "Constructeur", 
+		"192": "Apr\u00e8s-Vente"
+	}
+	}, 
+	"Assiette v\u00e9hicule brute (digits)": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"comment": "Info tps r\u00e9el", 
+	"format": "0"
+	}, 
+	"Seuil minimal Avant": {
+	"comment": "front sensor min value", 
+	"divideby": 255.0, 
+	"format": "#0.000", 
+	"scaled": true, 
+	"step": 100.0, 
+	"unit": "% rc"
+	}, 
+	"Session Name": {
+	"comment": "choix du type de diagnostic", 
+	"lists": {
+		"128": "Constructeur", 
+		"192": "Apr\u00e8s-Vente"
+	}
+	}, 
+	"Status 9": {
+	"comment": "Type de la panne n\u00b09", 
+	"bitscount": 5, 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "configuration non valide", 
+		"23": "initialisation non effectu\u00e9e"
+	}
+	}, 
+	"Position du capteur Avant (digits)": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"comment": "Info tps r\u00e9el", 
+	"format": "0"
+	}, 
+	"Adresse du Ballast": {
+	"lists": {
+		"112": "Par d\u00e9faut (70)", 
+		"113": "Ballast gauche (71)", 
+		"114": "Ballast droit (72)"
+	}
+	}, 
+	"MoreDTC": {
+	"scaled": true, 
+	"signed": true
+	}, 
+	"Status 8": {
+	"comment": "Type de la panne n\u00b08", 
+	"bitscount": 5, 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "configuration non valide", 
+		"23": "initialisation non effectu\u00e9e"
+	}
+	}, 
+	"Jour APV": {
+	"comment": "Lecture de la date de la derni\u00e8re intervention en Apr\u00e8s-Vente", 
+	"lists": {
+		"1": "1", 
+		"2": "2", 
+		"3": "3", 
+		"4": "4", 
+		"5": "5", 
+		"6": "6", 
+		"7": "7", 
+		"8": "8", 
+		"9": "9", 
+		"10": "10", 
+		"11": "11", 
+		"12": "12", 
+		"13": "13", 
+		"14": "14", 
+		"15": "15", 
+		"16": "16", 
+		"17": "17", 
+		"18": "18", 
+		"19": "19", 
+		"20": "20", 
+		"21": "21", 
+		"22": "22", 
+		"23": "23", 
+		"24": "24", 
+		"25": "25", 
+		"26": "26", 
+		"27": "27", 
+		"28": "28", 
+		"29": "29", 
+		"30": "30", 
+		"31": "31"
+	}
+	}, 
+	"Status 6": {
+	"comment": "Type de la panne n\u00b06", 
+	"bitscount": 5, 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "configuration non valide", 
+		"23": "initialisation non effectu\u00e9e"
+	}
+	}, 
+	"Status 7": {
+	"comment": "Type de la panne n\u00b07", 
+	"bitscount": 5, 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "configuration non valide", 
+		"23": "initialisation non effectu\u00e9e"
+	}
+	}, 
+	"Status 4": {
+	"comment": "Type de la panne n\u00b04", 
+	"bitscount": 5, 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "configuration non valide", 
+		"23": "initialisation non effectu\u00e9e"
+	}
+	}, 
+	"Status 5": {
+	"comment": "Type de la panne n\u00b05", 
+	"bitscount": 5, 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "configuration non valide", 
+		"23": "initialisation non effectu\u00e9e"
+	}
+	}, 
+	"Status 2": {
+	"comment": "Type de la panne n\u00b02", 
+	"bitscount": 5, 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "configuration non valide", 
+		"23": "initialisation non effectu\u00e9e"
+	}
+	}, 
+	"Status 3": {
+	"comment": "Type de la panne n\u00b03", 
+	"bitscount": 5, 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "configuration non valide", 
+		"23": "initialisation non effectu\u00e9e"
+	}
+	}, 
+	"Status 1": {
+	"comment": "Type de la panne n\u00b01", 
+	"bitscount": 5, 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "configuration non valide", 
+		"23": "initialisation non effectu\u00e9e"
+	}
+	}, 
+	"Panne8": {
+	"comment": "Panne", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"FirstDTC": {
+	"comment": "DDT2000", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"Panne4": {
+	"comment": "Panne", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"Nombre de d\u00e9fauts": {
+	"scaled": true, 
+	"comment": "Nombre de DTC detect\u00e9s et enregistr\u00e9s"
+	}, 
+	"Panne6": {
+	"comment": "Panne", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"Panne7": {
+	"comment": "Panne", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"Assiette v\u00e9hicule filtr\u00e9e": {
+	"comment": "Info tps r\u00e9el", 
+	"divideby": 512.0, 
+	"bitscount": 16, 
+	"format": "#0.000", 
+	"signed": true, 
+	"scaled": true, 
+	"bytescount": 2, 
+	"unit": "% rad"
+	}, 
+	"Panne2": {
+	"comment": "Panne", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"Panne3": {
+	"comment": "Panne", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"Code Identification diagnostic": {
+	"scaled": true, 
+	"comment": "Trame Identification syst\u00e8me (TR_ID_COSLAD)"
+	}, 
+	"Version du Logiciel": {
+	"comment": "Trame Identification syst\u00e8me (TR_ID_COSLAD)", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"StatusDTC": {
+	"comment": "for DDT2000 automatique Failure screen", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"Position du capteur Arri\u00e8re (digits)": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"comment": "Info tps r\u00e9el", 
+	"format": "0"
+	}, 
+	"R\u00e9f\u00e9rence Hardware": {
+	"comment": "Trame Identification syst\u00e8me (TR_ID_COSLAD)", 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Etat": {
+	"comment": "Param\u00e8tres de la LAD", 
+	"lists": {
+		"1": "En cours", 
+		"2": "Effectu\u00e9", 
+		"17": "Arr\u00eat\u00e9"
+	}
+	}, 
+	"Capteurs hors-plage": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "D\u00e9faut absent", 
+		"1": "D\u00e9faut pr\u00e9sent"
+	}
+	}, 
+	"Vitesse non-nulle": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "D\u00e9faut absent", 
+		"1": "D\u00e9faut pr\u00e9sent"
+	}
+	}, 
+	"Seuil maximal Arri\u00e8re": {
+	"comment": "rear sensor max value", 
+	"divideby": 255.0, 
+	"format": "#0.000", 
+	"scaled": true, 
+	"step": 100.0, 
+	"unit": "% rc"
+	}, 
+	"Seuil minimal Arri\u00e8re": {
+	"comment": "rear sensor min value", 
+	"divideby": 255.0, 
+	"format": "#0.000", 
+	"scaled": true, 
+	"step": 100.0, 
+	"unit": "% rc"
+	}, 
+	"DTC 6": {
+	"comment": "lieu de la panne n\u00b06", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"DTC 7": {
+	"comment": "lieu de la panne n\u00b07", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"Type de v\u00e9hicule": {
+	"comment": "enregistrement du type de v\u00e9hicule", 
+	"bitscount": 3, 
+	"lists": {
+		"0": "Choisir un mod\u00e8le v\u00e9hicule", 
+		"1": "Mod\u00e8le v\u00e9hicule B ou C", 
+		"2": "Mod\u00e8le v\u00e9hicule L ou K", 
+		"3": "Mod\u00e8le v\u00e9hicule E"
+	}
+	}, 
+	"D\u00e9faillance capteurs": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "D\u00e9faut absent", 
+		"1": "D\u00e9faut pr\u00e9sent"
+	}
+	}, 
+	"DTC 4": {
+	"comment": "lieu de la panne n\u00b04", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"Panne1": {
+	"comment": "Panne", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"Padding": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Flag 1": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Flag 2": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"DTC 5": {
+	"comment": "lieu de la panne n\u00b05", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"DTC 2": {
+	"comment": "lieu de la panne n\u00b02", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"DTC 3": {
+	"comment": "lieu de la panne n\u00b03", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"Flag 6": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"DTC 1": {
+	"comment": "lieu de la panne n\u00b01", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"Flag 8": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Flag 4": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"DTC 8": {
+	"comment": "lieu de la panne n\u00b08", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"Flag 5": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Type de v\u00e9hicule non-sp\u00e9cifi\u00e9": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "D\u00e9faut absent", 
+		"1": "D\u00e9faut pr\u00e9sent"
+	}
+	}, 
+	"Flag 7": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Seuil de r\u00e9f\u00e9rence Arri\u00e8re": {
+	"comment": "RCcapt_AR_0", 
+	"divideby": 255.0, 
+	"format": "#0.000", 
+	"scaled": true, 
+	"step": 100.0, 
+	"unit": "% rc"
+	}, 
+	"Commande": {
+	"comment": "I/O control", 
+	"lists": {
+		"0": "D\u00e9marrer", 
+		"1": "Etat?", 
+		"17": "Arr\u00eater"
+	}
+	}, 
+	"VEM-Key byte 1": {
+	"comment": "Valeurs de d\u00e9faut $D0", 
+	"byte": true
+	}, 
+	"VIN BINAIRE": {
+	"comment": "Vehicle Identification Number", 
+	"bytescount": 17, 
+	"byte": true, 
+	"bitscount": 136
+	}, 
+	"Valeur du  Vcode": {
+	"scaled": true, 
+	"comment": "Info tps r\u00e9el", 
+	"step": 0.1064, 
+	"unit": "V", 
+	"format": "#0.000"
+	}, 
+	"Seuil de r\u00e9f\u00e9rence Avant": {
+	"comment": "RCcapt_AV_0", 
+	"divideby": 255.0, 
+	"format": "#0.000", 
+	"scaled": true, 
+	"step": 100.0, 
+	"unit": "% rc"
+	}, 
+	"DTC 9": {
+	"comment": "lieu de la panne n\u00b09", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"39936": "Capteur arri\u00e8re", 
+		"39937": "Capteur avant", 
+		"39938": "Signal Vitesse", 
+		"39939": "Actionneur", 
+		"39940": "Lampe X\u00e9non", 
+		"39941": "ECU"
+	}
+	}, 
+	"Flag 9": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Code ITG fournisseur": {
+	"bytesascii": true, 
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24, 
+	"comment": "Trame Identification syst\u00e8me (TR_ID_COSLAD)"
+	}, 
+	"Etat de l'initialisation": {
+	"comment": "calibration status (0 : not done / 1 : done)", 
+	"lists": {
+		"0": "Non-effectu\u00e9e", 
+		"1": "Effectu\u00e9e"
+	}
+	}, 
+	"VIN ASCII": {
+	"bytesascii": true, 
+	"bytescount": 17, 
+	"byte": true, 
+	"bitscount": 136, 
+	"comment": "Vehicle Identification Number"
+	}, 
+	"Vitesse maximale autoris\u00e9e": {
+	"scaled": true, 
+	"comment": "vehicle speed threshold", 
+	"unit": "km/h", 
+	"format": "0"
+	}, 
+	"Mois APV": {
+	"comment": "Lecture de la date de la derni\u00e8re intervention en Apr\u00e8s-Vente", 
+	"lists": {
+		"1": "Janvier", 
+		"2": "F\u00e9vrier", 
+		"3": "Mars", 
+		"4": "Avril", 
+		"5": "Mai", 
+		"6": "Juin", 
+		"7": "Juillet", 
+		"8": "Ao\u00fbt", 
+		"9": "Septembre", 
+		"10": "Octobre", 
+		"11": "Novembre", 
+		"12": "D\u00e9cembre"
+	}
+	}, 
+	"Flag 3": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Panne9": {
+	"comment": "Panne", 
+	"lists": {
+		"129": "d\u00e9faillance actionneur", 
+		"130": "d\u00e9faillance lampe", 
+		"131": "adresse ballast non configur\u00e9e", 
+		"5": "d\u00e9faillance", 
+		"6": "signal incoh\u00e9rent", 
+		"7": "pas de signal", 
+		"10": "niveau bas permanent", 
+		"11": "niveau haut permanent", 
+		"13": "anomalie \u00e9lectronique interne", 
+		"19": "valeur hors limites", 
+		"22": "initialisation non valide", 
+		"23": "initialisation non effectu\u00e9e", 
+		"161": "d\u00e9faillance actionneur : Pr\u00e9sente", 
+		"162": "d\u00e9faillance lampe : Pr\u00e9sente", 
+		"163": "adresse ballast non configur\u00e9e : Pr\u00e9sente", 
+		"37": "d\u00e9faillance : Pr\u00e9sente", 
+		"38": "signal incoh\u00e9rent : Pr\u00e9sente", 
+		"39": "pas de signal : Pr\u00e9sente", 
+		"42": "niveau bas permanent : Pr\u00e9sente", 
+		"43": "niveau haut permanent : Pr\u00e9sente", 
+		"45": "anomalie \u00e9lectronique : Pr\u00e9sente", 
+		"51": "valeur hors limites : Pr\u00e9sente", 
+		"54": "configuration non valide : Pr\u00e9sente", 
+		"55": "initialisation non effectu\u00e9e : Pr\u00e9sente", 
+		"193": "d\u00e9faillance actionneur : M\u00e9moris\u00e9e", 
+		"194": "d\u00e9faillance lampe : M\u00e9moris\u00e9e", 
+		"195": "adresse ballast non configur\u00e9e : M\u00e9moris\u00e9e", 
+		"69": "d\u00e9faillance : M\u00e9moris\u00e9e", 
+		"70": "signal incoh\u00e9rent  : M\u00e9moris\u00e9e", 
+		"71": "pas de signal : M\u00e9moris\u00e9e", 
+		"74": "niveau bas permanent : M\u00e9moris\u00e9e", 
+		"75": "niveau haut permanent : M\u00e9moris\u00e9e", 
+		"77": "anomalie \u00e9lectronique : M\u00e9moris\u00e9e", 
+		"83": "valeur hors limites : M\u00e9moris\u00e9e", 
+		"86": "configuration non valide : M\u00e9moris\u00e9e", 
+		"87": "initialisation non effectu\u00e9e : M\u00e9moris\u00e9e", 
+		"225": "d\u00e9faillance actionneur : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"226": "d\u00e9faillance lampe : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"227": "adresse ballast non configur\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"101": "d\u00e9faillance : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"102": "signal incoh\u00e9rent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"103": "pas de signal : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"106": "niveau bas permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"107": "niveau haut permanent : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"109": "anomalie \u00e9lectronique : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"115": "valeur hors limites : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"118": "configuration non valide : Pr\u00e9sente et M\u00e9moris\u00e9e", 
+		"119": "initialisation non effectu\u00e9e : Pr\u00e9sente et M\u00e9moris\u00e9e"
+	}
+	}, 
+	"Position du capteur Avant": {
+	"comment": "Info tps r\u00e9el", 
+	"divideby": 65535.0, 
+	"bitscount": 16, 
+	"format": "#0.000", 
+	"scaled": true, 
+	"step": 100.0, 
+	"bytescount": 2, 
+	"unit": "%"
+	}, 
+	"NDTC": {
+	"scaled": true
+	}, 
+	"Adresse ballast non-d\u00e9finie": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "D\u00e9faut absent", 
+		"1": "D\u00e9faut pr\u00e9sent"
+	}
+	}, 
+	"Variable A de filtrage": {
+	"scaled": true, 
+	"divideby": 255.0, 
+	"comment": "Info tps r\u00e9el", 
+	"format": "#0.000"
+	}, 
+	"Ann\u00e9e APV": {
+	"comment": "Lecture de la date de la derni\u00e8re intervention en Apr\u00e8s-Vente", 
+	"lists": {
+		"0": "2000", 
+		"1": "2001", 
+		"2": "2002", 
+		"3": "2003", 
+		"4": "2004", 
+		"5": "2005", 
+		"6": "2006", 
+		"7": "2007", 
+		"8": "2008", 
+		"9": "2009", 
+		"10": "2010", 
+		"11": "2011", 
+		"12": "2012", 
+		"13": "2013", 
+		"14": "2014", 
+		"15": "2015", 
+		"16": "2016", 
+		"17": "2017", 
+		"18": "2018", 
+		"19": "2019", 
+		"20": "2020"
+	}
+	}, 
+	"FlagDTC": {
+	"comment": "Type de panne:               3bits de poids fort de l'octet STATUT", 
+	"bitscount": 3, 
+	"lists": {
+		"1": "Panne Standard pr\u00e9sente", 
+		"2": "Panne Standard m\u00e9moris\u00e9e", 
+		"3": "Panne standard pr\u00e9sente et m\u00e9moris\u00e9e", 
+		"5": "Panne sp\u00e9cifique pr\u00e9sente", 
+		"6": "Panne sp\u00e9cifique m\u00e9moris\u00e9e", 
+		"7": "Panne sp\u00e9cifique pr\u00e9sente et m\u00e9moris\u00e9e"
+	}
+	}, 
+	"VEM-Key byte 2": {
+	"comment": "Valeurs de d\u00e9faut $8F", 
+	"byte": true
+	}
+}
+}

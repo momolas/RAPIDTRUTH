@@ -1,0 +1,5750 @@
+{
+"obd": {
+	"baudrate": 500000, 
+	"protocol": "CAN", 
+	"recv_id": "00", 
+	"funcname": "CAN", 
+	"funcaddr": "00", 
+	"send_id": "00"
+}, 
+"devices": [], 
+"ecuname": "canv84.12", 
+"autoidents": [], 
+"endian": "Big", 
+"requests": [
+	{
+	"receivebyte_dataitems": {
+		"SoftwareLockValue_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"SLockValueControl_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "0500", 
+	"name": "BCM_VERLOG"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"CrashDetected_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"AIRBAGMalfunction_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ValidAIRBAGInformation_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"PassengerSafetyBeltSwitch": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"CrashDetectionOutOfOrder_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ResetInfo_AIRBAG_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"PassengerDetectionOnSeat": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"PassAIRBAG_OFF_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"DriverSafetyBeltSwitch": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "0651", 
+	"name": "AIRBAG_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"OBD_Request_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0631", 
+	"name": "OBD_Gateway_Request"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"ECM_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E8", 
+	"name": "ECM_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DiagFuelGauge_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"AIRBAGMalfunctionLampState_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"VehicleType": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"MuteRadioOrder": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"HandBrakeSwitch_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ResetInfo_TdB_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"BrakeSystemMalfunction_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"FuelLow_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"SNOW_SW": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"LPGLow_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"FuelLevel_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Cluster_WakeUpSleepReq": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"PassAIRBAG_OFFLampOperational_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"DistanceTotalizer_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Cluster_RefusetoSleep": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"AIRBAGMalfuncLampOperational_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"PassengerAIRBAG_OFFLampState_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"ClusterDrivenLampsAutoCheck_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "05C5", 
+	"name": "CLUSTER_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"PorN_display_request": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ClutchPosition": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ParkingBrakeMalfunction": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ParkingBrakeBindingStatus": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ClampingAlertToDriver": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"BuzzerRequest_FPA": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ClampingStatusDisplayInhibition": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"VehicleForwardTilt": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"ParkingBrakeRequestInProgress": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ResetInfo_APB": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"VehicleSideTilt": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 4, 
+	"sentbytes": "075E", 
+	"name": "Frein_de_Parking"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_USM": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "074D", 
+	"name": "DTOOL_to_USM"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"PAS_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "076E", 
+	"name": "UPA_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"ChildLockMalfunction": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Dongle_command_BCM": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ClimateCoolingRequest_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ClutchSwitchMaximumTravel_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"ElectricalPowerDrived": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"HeadLampsWasherSelection": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"CloseActiveBrakeSwitch_UCH": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Dongle_ID_BCM_1": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Dongle_ID_BCM_2": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"HeadLampsWasherRequest": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"ALSMalfunction": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"DiagMuxOn_BCM": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"BCM_WakeUpSleepCommand": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"KeylessPushState": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ATPowerLatch_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"EmergencyEngineStop": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"IdleSpeedIncrease_UCH_": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"BlowerState": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"ALS_activated": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"RearDefrostRequest": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"VehiculeRunning": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"DayNightInformation": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Key_or_Keyless_Vehicule": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"BrakePadWear": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"FrontWipingRequest": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"ClimateCoolingStatusCopy": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"CustomerEngIddleSpeedReq": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"EngineImmobiliserFailure": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"HardTopPositionCopy": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"StartingMode_BCM": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"DeliveryModeInfo": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"CrankingAuthorization_Verlog": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "035D", 
+	"name": "BCM_SystemControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"UCT_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "076B", 
+	"name": "UCT_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"FuelCutRequestedEngineSpeed": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"OutputShaftRevolution": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"InputShaftRevolution": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ManualModeState": {
+		"ref": true, 
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 7, 
+	"sentbytes": "0178", 
+	"name": "ATCVT_CANHS_R_01"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_PAS": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "074E", 
+	"name": "DTOOL_to_UPA"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"GeneralBadUse": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"FinishRoofMovement": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"Rollbar_failure": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"UCT_Buzzer": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"RollClosureRequest": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ResetInfo_UCT": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"HardTopPosition": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"HardTopFailure": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ElectricWindowRequest": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "0684", 
+	"name": "UCT_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"OBD_Response_AT_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0604", 
+	"name": "OBD_AT_Answer"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_HLS": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0751", 
+	"name": "DTOOL_to_HLS"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"FuelLevel_APV_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"DisplayedOilLevel_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"OilDrainingRange_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"MilLampState_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"DistanceTotalizer_APV_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ShortVehicleID": {
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0715", 
+	"name": "CLUSTER_BackUp"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"ATTorqueAcknowledgement": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"DiagMuxOn_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"RawPedal": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ParticulateFilterFailureDisplay": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"RequestedTorqueAfterProc_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"FrictionTorque_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ASR_MSRAcknowledgement_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"TorqueRequestStatus_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"OpenActiveBrakeSwitch_ECM_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Reserved_1bit": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"ClutchSwitch_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"EngineRPM_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"MeanEffectiveTorque_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0181", 
+	"name": "ECM_TorqueControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"LockUpRequest": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"GradeLogicFlag": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"DriveStyleDetection": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "0184", 
+	"name": "ECMCVT_CANHS_R_01"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_ALLUCEOBD": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07DF", 
+	"name": "DTOOL_to_ALLUCEOBD"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"SLockRequestControl_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"SoftwareLockRequest_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 7, 
+	"sentbytes": "0511", 
+	"name": "ECM_VERLOG"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"AlternatorLoad_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"InstantMecanicalPowerByAlt": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"PredictedMecanicalPowerByAlt": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"StarterStatus_copy": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"RearGearEngaged_84_UPC": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"RotorCurrent_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"AlternatorNumber": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"EngineFanSpeedStatus": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"NeutralContact": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "0215", 
+	"name": "UPC_Fast_Frame"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"EngineCoolantRegulationTemperatu": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"EngineCoolantTemp_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"FuelConsumption_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"ResetInfo_ECM_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"MILLamp_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"DiagMuxOn_84_copy": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ELAMP": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"PDCUTREQ": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"DownTransitionOfEngineCoolantTem": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"RequestedSpeed_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"ParticulateFilterState": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"EngOverSpeedCutOffThreshold_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"IdleSpeedControlRequest_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"NominalFuelConsumption": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"EngineStatus_84__copy_": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"FuelConsumptionType_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"DieselFilterWaterDetection": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"EngineControlFailureLevel2_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"EngineControlFailureLevel1_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"RequestedSpeedBlink_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"CruiseControlStatusDisplay": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"DieselPreHeating_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"WarningWaterTemp_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0551", 
+	"name": "ECM_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"APB_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0775", 
+	"name": "APB_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_CLIM": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0744", 
+	"name": "DTOOL_to_CLIM"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"CruiseControlStatus_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"EngineTorque_WithoutGBReq_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ErgonomicPedal": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"ECM_MechanicalLoadRequest": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"KickDownActivated": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"MaximumInstantTorque": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"MinimumInstantTorque": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "0161", 
+	"name": "ECM_to_AT"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_APB": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0755", 
+	"name": "DTOOL_to_APB"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"MessageCounterRear": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"WheelSpeed_R_R_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"VehicleSpeed_CVT": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"WheelSpeed_R_L_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"ChecksumRear": {
+		"ref": true, 
+		"firstbyte": 8
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0285", 
+	"name": "Rear_Wheel_Speed"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"LPG_NGSystemReady_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"LPG_NGGaugeInformation_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"LPGNG_PetrolOperation_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"LPG_NGTemperature_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"LPG_NGSystemMajorFailure_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"ActualLPG_NGFlow_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"LPG_NGPressure_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"LPG_NGSystemMinorFailure_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"DiagnosticLPG_NGGauge_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"InvalidLPG_NGConsumption_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"LPG_NGTankEmpty_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"LPG_NG_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"CarburetionType_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"LPG_NGMILRequest_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"LPG_NGSystemMalfunction_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0531", 
+	"name": "GCU_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"BCM_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0765", 
+	"name": "BCM_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"ResetInfo_PAS": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"UPAFailureDispRequest": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"UPAStatusDispRequest": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "06CD", 
+	"name": "UPA_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"SSPP_Buzzer": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"DrivingRange_PAX": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"SSPPLeakageLamp_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"SpeedPressureMisadaptation_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"RearRightWheelState_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"FrontLeftWheelPressure_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"LoadPressureMisadaptation_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Right_LeftImbalance_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"RearRightWheelPressure_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"FrontLeftWheelState_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"SSPPStopLamp_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"RearLeftWheelState_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"SSPPServiceLamp_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"FrontRightWheelPressure_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"OverSpeedBuzzer_PAX": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"VehiclePressureState_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"RearLeftWheelPressure_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"FrontRightWheelState_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0630", 
+	"name": "SSPP_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"HLS_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0771", 
+	"name": "HLS_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"AIRBAG_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0772", 
+	"name": "AIRBAG_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DistanceTotalizer": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"VehicleSpeed_UPC": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"WakeUpType": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"AbsoluteTimeSince1rstIgnition": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"OuputStatus__copy_": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"LoadDrivenByBCMToBeCommuted": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"MaxTimeToCommute": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "05FD", 
+	"name": "UCH_PowerManagement"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"HeaterUnitSetPoint": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"RearDefrostPushInvalid": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"ClimateCoolingSelect": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"ResetInfo_CLIM_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"RearDefrostPush": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"CabinFanState": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"RearDefrostAutoSelect": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"EvaporatorTemperature": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "0374", 
+	"name": "CLIM_ControlFrame"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_UCT": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "074B", 
+	"name": "DTOOL_to_UCT"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"ResetInfo_Swa": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"SwaMessageCounter": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"SteeringWheelRotationSpeed": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"SwaChecksum": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"SteeringWheelAngle": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"SwaSensorInternalStatus": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "00C2", 
+	"name": "Steering_Wheel_Angle"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_EPS": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0742", 
+	"name": "DTOOL_to_EPS"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"TransmRangeEngaged_84_copy_": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"AT_Faults_States_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"AT_PositionDisplay_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"AT_Snow_Selected_Mode": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Underdrive_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"AT_MinimumIdleSpeedRequest": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"FullLoad": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"AT_Warning": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"GearShiftRefused_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"AT_Eco_Selected_Mode": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ResetInfo_AT_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"BrakePedalRequest": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"AT_Impulsive_Selected_Mode": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"AT_ProgSelect_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "0565", 
+	"name": "AT_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"CLUSTER_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0763", 
+	"name": "CLUSTER_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"EPS_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0762", 
+	"name": "EPS_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"HighBeamRequest_DSU": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"RightTurnIndicatorRequest_DSU": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ResetInfo_DSU": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"LeftTurnIndicatorRequest_DSU": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"LowBeamRequest_DSU": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"PositionLightsRequest_DSU": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "06A5", 
+	"name": "DSU_GeneralData"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Filling1_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Filling2_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "0075", 
+	"name": "UCH_Filling"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"FlashingIndicatorStatus": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"APCLineStatus_copy_": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"EngineCoolantTemp_84_copy_": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"RearGearEngaged_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"IgnitionState_UCH_": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"ExternalTemp_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"DayRunningLightRequest": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"TrailerPresence_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"RearFogLightStatus_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"ResetInfo_UCH_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"SteeringLock_BCM_Failure": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"DoorLockingState": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Badge_battery_low": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"ManualRearDefrostStatus": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"PositionLightsRequest_UCH_": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"HighBeamRequest_UCH_": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"LowBeamRequest_UCH_": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"DoorSwitches": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Card_Key_Number_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"HeaterUnitSetpointFreeze": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"FrontFogLightsRequest": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"SSPPInhibition_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"WipingMalfunction": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"BuzzerRequest": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"TripDisplayScrollingRequest": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"AutomaticWipingMalfunction": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"SmartKeylessInformationDisplay": {
+		"ref": true, 
+		"firstbyte": 8
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "060D", 
+	"name": "BCM_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_CLUSTER": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0743", 
+	"name": "DTOOL_to_CLUSTER"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Dongle_command_EPS": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"EPSteeringFailure": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Dongle_ID_EPS": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"EPSIndexNotDetected": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ResetInfo_EPS": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "05E4", 
+	"name": "EPS_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_BRAKE": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0740", 
+	"name": "DTOOL_to_Brake"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_BCM": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0745", 
+	"name": "DTOOL_to_BCM"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_AIRBAG": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0752", 
+	"name": "DTOOL_to_AIRBAG"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"CLIM_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0764", 
+	"name": "CLIM_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"UCCType": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ResetInfo_UCC_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"Reserved_1bit": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "06E4", 
+	"name": "NAV_GeneralData"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"LongitudinalAccelerationProc": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"YawRate_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Transversalacceleration_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "02A0", 
+	"name": "Vehicle_Dynamic"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"USM_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "076D", 
+	"name": "USM_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"WheelSpeed_F_R": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"VehicleSpeed_84_copy": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"ChecksumFront": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"WheelSpeed_F_L": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"MessageCounterFront": {
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0284", 
+	"name": "Front_Wheel_Speed"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"IgnitionON_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"ClearSteeringCode_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Steering_Column_Unlock_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"UCHComputerOperatingProperly_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Steering_Column_Lock_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"SteeringLockCode_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 4, 
+	"sentbytes": "0505", 
+	"name": "UCH_to_ESCL3"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"TA_Position": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"AT_TorqueRequestInProgress": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"AT_FanRequest_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"DragReduction_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"TransmRangeEngaged_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"MajorFailure_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"CrankingAuthorisation_AT_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Limit_SlowTorqReq_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"AT_Torque": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"TorqueConverterState_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"AT_Clock": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"PowerTrainGain_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"FastTorqueRequest_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"AT_MILReq_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"IdleSpeedIncreaseRequest_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"AnticipatedRGBPumpState": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"AT_TorqueControlType": {
+		"ref": true, 
+		"firstbyte": 8
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0175", 
+	"name": "AT_TorqueControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"AirbagCrashOrder": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "0023", 
+	"name": "AIRBAGCrash"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_ALL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07D0", 
+	"name": "DTOOL_to_ALL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"MSRinRegulation_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"MSRTorqueRequest_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"ShiftMapChangeRequest": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"AYCinRegulation_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"ESPMalfunction_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"EarlyGearShiftUp_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ASRDynamicTorqueRequest_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"ASRinRegulation_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Shifting_Authorization_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ETCShutdownRequest": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"ASRStaticTorqueRequest_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"MSRDisabled_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"ESPDeactivated_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"RequestedTransferedTorque": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ESPClock_84": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"TorqueControlType_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ASRMalfunction": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 7, 
+	"sentbytes": "0244", 
+	"name": "Brake_StabilityControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"OuputStatus": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"MBLFailureDisplay": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ResetInfo_HLS": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "0685", 
+	"name": "HLS_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"SpeedInhibition_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"BitRateConfiguration_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"WrongCode_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"UnlockingFinished_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"SteeringLockCOP_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"LockingFinished_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"SteeringLockMinorElecFailure_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"BitRateConfigured_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"LockForbidden_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ConfigAttemptCounter_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ResetInfo_Verrou_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"UndefinedPosition_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"InconsistentUCHMessage_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"SafetyLineInhibition_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"OutofRangeOperatingVoltage_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Blank_Coded_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"AbsentFrameUCH_to_ESCL3_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"AntiscanOn_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"SensorTestAuthorized_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ESCL3Position_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"TimeOutOnSensorTest_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"SteeringActuatorFailure_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"PowerSupplyFeedback_84": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"SteeringLockMajorElecFailure_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 4, 
+	"sentbytes": "0581", 
+	"name": "ESCL3_to_UCH"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_ECM": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E0", 
+	"name": "DTOOL_to_ECM"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"GazComposition_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Request_GazolinePumpCutOff_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"EngineMode_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"RequestForLPG_NGFlow_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"IntakeManifoldAirTemperature_84": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"IntakeManifoldPressure_84": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"CorrectionCylinderNumber_84": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"LPG_NGModeRequest_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Flow_CylinderCorrection_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"LPG_NGLampRequest_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"CylinderNumber_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"LPG_NGPushLampRequest_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0061", 
+	"name": "ECM_to_GCU"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"BRAKE_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0760", 
+	"name": "Brake_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"PositionLightsStatus": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"NightDimmedLight_MaxPercent_84": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"DayDimmedLight_MaxPercent_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"DisplayedSpeed": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"SafetyBeltLampState": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "0645", 
+	"name": "CLUSTER_GeneralStatus_2"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_AT": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E1", 
+	"name": "DTOOL_to_AT"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"GCU_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07EA", 
+	"name": "GCU_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"LowBeamStatus": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"LowBatVoltDisplay": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"HeadLampsWasherStatus": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"USM_RefusetoSleep": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"HighBeamStatus": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"StarterStatus": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"FrontFogLightStatus": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"USM_WakeUpSleepReq": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"BatteryVoltage_USM": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Dongle_command_USM": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"OKToCommuteLoadByUSM": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"APCLineStatus": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"OilPressureSwitch": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"FrontWiperStatus": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ResetInfo_USM": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"ClimateCoolingStatus": {
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"FrontWiperStopPosition_USM": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"BatteryLamp": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Dongle_ID_USM": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"IgnitionSupplyConfirmation": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"RearDefrostStatus": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"FrontWiperProtection": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"PositionLightsStatus_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "0625", 
+	"name": "UPC_GeneralStatus"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"AT_to_DTOOL": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E9", 
+	"name": "AT_to_DTOOL"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"MaximumMechanicalPowerAllowed_84": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 2
+		}, 
+		"EngineFanSpeedRequest": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"AlternatorMaximumPower": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"EngineStatus_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"ElectricalPowerCut_Freeze_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"CrankingAuthorization_ECM": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"RearDefrostRequest_ECM": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"CompressorActivation": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"CrankingAuthorisation_ATviaECM": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"EngineRPM_84_copy_": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"AllowedPowerGradient": {
+		"ref": true, 
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "01F9", 
+	"name": "ECM_SystemControl"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"DTOOL_to_GCU": {
+		"ref": true, 
+		"firstbyte": 1
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "07E2", 
+	"name": "DTOOL_to_GCU"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"ESPStateLamp": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"VSUStateLamp": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"ABSMalfunction_84": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ABSStateLamp": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"VSUPresence": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"VehicleSpeed_84": {
+		"ref": true, 
+		"firstbyte": 1
+		}, 
+		"WheelsLockingState": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"ABSinRegulation_84": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Odometer_84": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"EBVStateLamp": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"EBVinRegulation_84": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"CloseActiveBrakeSwitch_ABS_84": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ABS_WarningRequest": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ECBStateLamp": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"HDCStateLamp": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"FillingStatus_84": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ResetInfo_ABS_84": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 8, 
+	"sentbytes": "0354", 
+	"name": "Brake_GeneralData"
+	}
+], 
+"data": {
+	"DistanceTotalizer": {
+	"scaled": true, 
+	"bytescount": 3, 
+	"bitscount": 20
+	}, 
+	"ResetInfo_ECM_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"ElectricalPowerDrived": {
+	"scaled": true, 
+	"step": 100.0, 
+	"bitscount": 5
+	}, 
+	"DistanceTotalizer_84": {
+	"scaled": true, 
+	"bytescount": 3, 
+	"bitscount": 24
+	}, 
+	"BrakePedalRequest": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No press brake pedal request", 
+		"1": "Push brake pedal requested (Shif"
+	}
+	}, 
+	"AntiscanOn_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "antiscan OFF", 
+		"1": "antiscan ON"
+	}
+	}, 
+	"ALSMalfunction": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no ALS malfunction", 
+		"1": "ALS malfunction"
+	}
+	}, 
+	"PassengerAIRBAG_OFFLampState_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "PassengerAIRBAG_OFF lamp OFF", 
+		"1": "PassengerAIRBAG_OFF lamp ON"
+	}
+	}, 
+	"ASRinRegulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no ASR regulation", 
+		"1": "ASR in regulation"
+	}
+	}, 
+	"UndefinedPosition_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "position OK (compliant with the ", 
+		"1": "undefined position (not complian"
+	}
+	}, 
+	"ManualModeState": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "not manual mode", 
+		"1": "Manual mode"
+	}
+	}, 
+	"OverSpeedBuzzer_PAX": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no buzzer request", 
+		"1": "continuous sound request"
+	}
+	}, 
+	"ParticulateFilterState": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No warning message", 
+		"1": "Warning clog up filter"
+	}
+	}, 
+	"FrontWipingRequest": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "front wiper in stop position", 
+		"1": "front wiper forced to stop", 
+		"2": "one low speed wiping requested", 
+		"3": "one high speed wiping requested", 
+		"4": "invalid", 
+		"5": "r\u00e9serv\u00e9", 
+		"6": "low speed wiping requested", 
+		"7": "high speed wiping requested"
+	}
+	}, 
+	"DieselFilterWaterDetection": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no water detected in diesel", 
+		"1": "water detected in diesel"
+	}
+	}, 
+	"HeaterUnitSetpointFreeze": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "heater unit set point not frozen", 
+		"1": "heater unit set point frozen"
+	}
+	}, 
+	"SteeringActuatorFailure_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no actuator failure", 
+		"1": "actuator failure"
+	}
+	}, 
+	"ResetInfo_DSU": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"LeftTurnIndicatorRequest_DSU": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no left turn indicator request", 
+		"1": "left turn indicator request"
+	}
+	}, 
+	"FrontFogLightsRequest": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "front fog lights not requested", 
+		"1": "front fog lights requested"
+	}
+	}, 
+	"RollClosureRequest": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "roll position OK", 
+		"1": "roll closure request"
+	}
+	}, 
+	"DieselPreHeating_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "preglow lamp off", 
+		"1": "preglow lamp on"
+	}
+	}, 
+	"Reserved_1bit": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "fixed value produced"
+	}
+	}, 
+	"EngineStatus_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "engine stopped", 
+		"1": "engine stalled", 
+		"2": "engine running", 
+		"3": "engine cranking"
+	}
+	}, 
+	"AT_MinimumIdleSpeedRequest": {
+	"scaled": true, 
+	"step": 8.0
+	}, 
+	"SteeringWheelRotationSpeed": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.1, 
+	"bitscount": 16, 
+	"offset": -3276.7
+	}, 
+	"ElectricalPowerCut_Freeze_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no request", 
+		"1": "electrical consumption freezing ", 
+		"2": "electrical consumers inhibition ", 
+		"3": "invalid"
+	}
+	}, 
+	"DTOOL_to_HLS": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"SteeringLockMinorElecFailure_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no minor internal electronic fai", 
+		"1": "minor internal electronic failur"
+	}
+	}, 
+	"Steering_Column_Lock_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "steering column locking not requ", 
+		"1": "steering column locking  request"
+	}
+	}, 
+	"LockForbidden_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no locking inhibition", 
+		"1": "locking inhibition"
+	}
+	}, 
+	"Rollbar_failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No rollbar failure", 
+		"1": "Rollbar failure"
+	}
+	}, 
+	"SNOW_SW": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "snow mode switch off", 
+		"1": "snow mode switch on"
+	}
+	}, 
+	"Right_LeftImbalance_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "normal", 
+		"1": "front right/left imbalance", 
+		"2": "rear right/left imbalance", 
+		"3": "front and rear right/left imbala"
+	}
+	}, 
+	"EvaporatorTemperature": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -40.0
+	}, 
+	"SteeringLockCode_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"BlowerState": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Blower fan OFF", 
+		"1": "Blower fan ON"
+	}
+	}, 
+	"IdleSpeedControlRequest_84": {
+	"scaled": true, 
+	"step": 8.0
+	}, 
+	"EngineRPM_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.125, 
+	"bitscount": 16
+	}, 
+	"PassengerDetectionOnSeat": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "Passenger detected on seat", 
+		"1": "Passenger not detected on seat", 
+		"2": "reserved", 
+		"3": "unavailable"
+	}
+	}, 
+	"BatteryLamp": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "battery lamp off", 
+		"1": "battery lamp on"
+	}
+	}, 
+	"MSRTorqueRequest_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"VehicleSpeed_UPC": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "0 <= V < 6", 
+		"1": "6 <= V <12", 
+		"2": "12 <= V < 18", 
+		"3": "18 <= V < 24", 
+		"4": "24 <= V < 30", 
+		"5": "30 <= V < 36", 
+		"6": "36 <= V < 42", 
+		"7": "42 <= V < 48", 
+		"8": "48 <= V < 54", 
+		"9": "54 <= V < 60", 
+		"10": "60 <= V < 66", 
+		"11": "66 <= V < 72", 
+		"12": "72 <= V < 78", 
+		"13": "78 <= V < 84", 
+		"14": "84 <= V "
+	}
+	}, 
+	"USM_WakeUpSleepReq": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "reserved", 
+		"1": "reserved_1", 
+		"2": "reserved_2", 
+		"3": "WakeUp"
+	}
+	}, 
+	"EngineMode_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "LPG mode", 
+		"1": "petrol mode imposed (LPG malfunc", 
+		"2": "LPG->petrol mode switching in pr", 
+		"3": "Petrol mode imposed (LPG impossi", 
+		"4": "LPG mode imposed", 
+		"5": "Petrol->LPG mode switching in pr", 
+		"6": "Petrol mode imposed (LPG tank em", 
+		"7": "petrol"
+	}
+	}, 
+	"ChildLockMalfunction": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No Childproof lock malfunction w", 
+		"1": "Childproof lock malfunction mess"
+	}
+	}, 
+	"IntakeManifoldPressure_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 3.7, 
+	"bitscount": 12, 
+	"offset": 103.0
+	}, 
+	"CabinFanState": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "cabin fan OFF", 
+		"1": "cabin fan ON"
+	}
+	}, 
+	"AT_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"RearDefrostAutoSelect": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no rear defrost automatic select", 
+		"1": "rear defrost automatic selection"
+	}
+	}, 
+	"PositionLightsRequest_DSU": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "position lights not requested", 
+		"1": "position lights requested"
+	}
+	}, 
+	"FuelConsumption_84": {
+	"scaled": true, 
+	"step": 80.0
+	}, 
+	"ClutchSwitchMaximumTravel_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "clutch not pressed (travel limit", 
+		"1": "clutch pressed (travel limit rea", 
+		"2": "vehicle not equipped", 
+		"3": "invalid"
+	}
+	}, 
+	"FuelCutRequestedEngineSpeed": {
+	"scaled": true, 
+	"step": 50.0
+	}, 
+	"RearLeftWheelState_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "pressure OK", 
+		"1": "sensor missing", 
+		"2": "tyre too inflated", 
+		"3": "single over inflated tyre", 
+		"4": "single under inflated tyre", 
+		"5": "abnormal air losses", 
+		"6": "tyre slightly under inflated (pr", 
+		"7": "tyre seriously under inflated  ("
+	}
+	}, 
+	"DiagFuelGauge_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "fuel gauge link OK", 
+		"1": "open circuit", 
+		"2": "short circuit", 
+		"3": "reserved"
+	}
+	}, 
+	"USM_RefusetoSleep": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "reserved", 
+		"1": "USM refuse to sleep ", 
+		"2": "USM ready to sleep", 
+		"3": "reserved_3"
+	}
+	}, 
+	"Dongle_ID_BCM_2": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"MSRinRegulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no MSR regulation", 
+		"1": "MSR regulation"
+	}
+	}, 
+	"RearFogLightStatus_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "rear fog light off", 
+		"1": "rear fog light on"
+	}
+	}, 
+	"Underdrive_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "underdrive off", 
+		"1": "underdrive on"
+	}
+	}, 
+	"LongitudinalAccelerationProc": {
+	"scaled": true, 
+	"step": 0.05, 
+	"offset": -10.0
+	}, 
+	"ATTorqueAcknowledgement": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "data received in frame AT_Torque", 
+		"1": "data received  in frame AT_Torqu"
+	}
+	}, 
+	"OilPressureSwitch": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "pressure switch open", 
+		"1": "pressure switch closed"
+	}
+	}, 
+	"BrakePadWear": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no fault", 
+		"1": "short circuit 12 V", 
+		"2": "pad to be changed"
+	}
+	}, 
+	"PassAIRBAG_OFFLampOperational_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "PassengerAIRBAG_OFF lamp malfunc", 
+		"1": "PassengerAIRBAG_OFF lamp OK"
+	}
+	}, 
+	"SensorTestAuthorized_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "sensor test forbidden", 
+		"1": "sensor test authorized"
+	}
+	}, 
+	"SafetyBeltLampState": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "lamp OFF (safety belt fastened)", 
+		"1": "lamp ON (safety belt not fastene", 
+		"2": "lamp blinking (safety belt not f", 
+		"3": "reserved"
+	}
+	}, 
+	"FuelConsumptionType_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "petrol consumption", 
+		"1": "LPG or GNV consumption"
+	}
+	}, 
+	"GradeLogicFlag": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No slope", 
+		"1": "Slope"
+	}
+	}, 
+	"HandBrakeSwitch_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "parking brake not applied", 
+		"1": "parking brake applied"
+	}
+	}, 
+	"OBD_Request_84": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"IntakeManifoldAirTemperature_84": {
+	"scaled": true, 
+	"offset": -40.0
+	}, 
+	"AT_ProgSelect_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "normal mode", 
+		"1": "Eco mode", 
+		"2": "impulsive mode", 
+		"3": "snow mode"
+	}
+	}, 
+	"CloseActiveBrakeSwitch_ABS_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "brake not active", 
+		"1": "brake active", 
+		"2": "not used", 
+		"3": "invalid"
+	}
+	}, 
+	"LPGNG_PetrolOperation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "petrol mode (driver request)", 
+		"1": "LPG/NG mode (driver request)"
+	}
+	}, 
+	"DTOOL_to_USM": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"DTOOL_to_BRAKE": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"AbsoluteTimeSince1rstIgnition": {
+	"scaled": true, 
+	"bytescount": 3, 
+	"bitscount": 24
+	}, 
+	"HeadLampsWasherSelection": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "left headlamp washer selected or", 
+		"1": "right headlamp washer selected"
+	}
+	}, 
+	"LPG_NGGaugeInformation_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 9
+	}, 
+	"Request_GazolinePumpCutOff_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "pump activation request", 
+		"1": "pump cutoff request"
+	}
+	}, 
+	"FullLoad": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Full Load off", 
+		"1": "Full Load on"
+	}
+	}, 
+	"RequestedTorqueAfterProc_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"AT_Torque": {
+	"scaled": true, 
+	"step": 0.5
+	}, 
+	"PositionLightsRequest_UCH_": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "position lights not requested", 
+		"1": "position lights requested"
+	}
+	}, 
+	"VehiculeRunning": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "vehicle stopped", 
+		"1": "vehicle running"
+	}
+	}, 
+	"Blank_Coded_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "coded", 
+		"1": "blank"
+	}
+	}, 
+	"EBVinRegulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no EBV regulation", 
+		"1": "EBV in regulation"
+	}
+	}, 
+	"RearRightWheelPressure_84": {
+	"scaled": true, 
+	"step": 13.725
+	}, 
+	"LockUpRequest": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "No request", 
+		"1": "Close lock up", 
+		"2": "Open lock up (slow)", 
+		"3": "Open lock up (fast)"
+	}
+	}, 
+	"EngineControlFailureLevel1_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no engine level 1 failure", 
+		"1": "engine level 1 failure"
+	}
+	}, 
+	"EngineTorque_WithoutGBReq_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"ClimateCoolingStatusCopy": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Climate cooling compressor off", 
+		"1": "Climate cooling compressor on"
+	}
+	}, 
+	"DragReduction_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "P/N (AT) or unclutched (RGB)", 
+		"1": "declutched at rest (drag reducti", 
+		"2": "fully clutched or full drag (RGB", 
+		"3": "invalid"
+	}
+	}, 
+	"HardTopPosition": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "hard top closed", 
+		"1": "hard top open", 
+		"2": "hard top closing", 
+		"3": "hard top opening"
+	}
+	}, 
+	"GearShiftRefused_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "gear shift accepted", 
+		"1": "gear shift refused"
+	}
+	}, 
+	"GCU_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"TripDisplayScrollingRequest": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no driver request", 
+		"1": "upward scrolling request ", 
+		"2": "downward scrolling request ", 
+		"3": "ADAC reset"
+	}
+	}, 
+	"CrankingAuthorisation_ATviaECM": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "cranking not allowed", 
+		"1": "cranking allowed", 
+		"2": "Manual Gearbox", 
+		"3": "unvalaible (AT frame missing)"
+	}
+	}, 
+	"ResetInfo_UCC_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"AT_PositionDisplay_84": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "parking (normal mode)", 
+		"1": "reverse (normal mode)", 
+		"2": "neutral  (normal mode)", 
+		"3": "drive  (normal mode)", 
+		"4": "4th gear (manual mode)", 
+		"5": "3rd gear (manual mode)", 
+		"6": "2nd gear (manual mode)", 
+		"7": "1st gear (manual mode)", 
+		"8": "intemediate P/R or N/R", 
+		"9": "intermediate N/D", 
+		"10": "intermediate", 
+		"11": "Unused", 
+		"12": "6th gear (manual mode)", 
+		"13": "7th gear (manual mode)", 
+		"14": "5th gear (manual mode)", 
+		"15": "lever switches failure"
+	}
+	}, 
+	"ETCShutdownRequest": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no ETC shutdown request", 
+		"1": "ETC shutdown request"
+	}
+	}, 
+	"Limit_SlowTorqReq_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"ESPClock_84": {
+	"scaled": true
+	}, 
+	"AllowedPowerGradient": {
+	"scaled": true, 
+	"step": 40.0, 
+	"bitscount": 4
+	}, 
+	"TransmRangeEngaged_84_copy_": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "declutched at rest", 
+		"1": "1st range", 
+		"2": "2nd range", 
+		"3": "3rd range", 
+		"4": "4th range", 
+		"5": "5th range", 
+		"6": "6th range", 
+		"9": "reverse", 
+		"10": "neutral or parking", 
+		"15": "AT limphome"
+	}
+	}, 
+	"AT_Faults_States_84": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"SafetyLineInhibition_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "locking allowed (engine stopped)", 
+		"1": "locking forbidden (engine runnin"
+	}
+	}, 
+	"MeanEffectiveTorque_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"AYCinRegulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no AYC regulation", 
+		"1": "AYC in regulation"
+	}
+	}, 
+	"AT_Warning": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "no AT_warning", 
+		"1": "RGB_OpenDoorWarning", 
+		"2": "Reserved", 
+		"3": "AGB_OpenDoorWarning"
+	}
+	}, 
+	"ResetInfo_AIRBAG_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"DayDimmedLight_MaxPercent_84": {
+	"scaled": true, 
+	"step": 0.4
+	}, 
+	"EngineControlFailureLevel2_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no engine level 2 failure", 
+		"1": "engine level 2 failure"
+	}
+	}, 
+	"CLIM_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"ABSStateLamp": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "ABS operational or vehicle not e", 
+		"1": "ABS failure", 
+		"2": "ABS operational , not prgrammed", 
+		"3": "ABS in calibration (diagnostic m"
+	}
+	}, 
+	"AT_Snow_Selected_Mode": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No snow mode request", 
+		"1": "Snow mode request"
+	}
+	}, 
+	"FrontWiperProtection": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no front wiper protection", 
+		"1": "front wiper low speed protection", 
+		"2": "front wiper high speed protectio", 
+		"3": "front wiper blocked"
+	}
+	}, 
+	"FlashingIndicatorStatus": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "left and right flashing indicato", 
+		"1": "left flashing indicator ON and r", 
+		"2": "left flashing indicator OFF and ", 
+		"3": "left flashing indicator ON and r_3", 
+		"7": "invalid value"
+	}
+	}, 
+	"SLockRequestControl_84": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"EngineCoolantTemp_84": {
+	"scaled": true, 
+	"offset": -40.0
+	}, 
+	"HLS_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"MessageCounterRear": {
+	"scaled": true
+	}, 
+	"EngineFanSpeedRequest": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no engine fan  requested", 
+		"1": "low speed engine fan request", 
+		"2": "mid speed engine fan request", 
+		"3": "high speed engine fan  request"
+	}
+	}, 
+	"LPG_NGLampRequest_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "lamp off", 
+		"1": "lamp flashing", 
+		"2": "reserved", 
+		"3": "lamp ON"
+	}
+	}, 
+	"CloseActiveBrakeSwitch_UCH": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "brake not activated", 
+		"1": "brake activated", 
+		"2": "not used", 
+		"3": "invalid"
+	}
+	}, 
+	"ExternalTemp_84": {
+	"scaled": true, 
+	"offset": -40.0
+	}, 
+	"FuelLevel_APV_84": {
+	"scaled": true, 
+	"bitscount": 7
+	}, 
+	"HeadLampsWasherRequest": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "headlamps washer not requested", 
+		"1": "headlamps washer requested"
+	}
+	}, 
+	"SteeringLock_BCM_Failure": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "no steering lock  failure", 
+		"1": "electronical failure BCM/STOP", 
+		"2": "steering column locking failure", 
+		"3": "reserved", 
+		"4": "steering colum unlocking failure", 
+		"6": "electronical failure BCM/SERV", 
+		"7": "reserved_7"
+	}
+	}, 
+	"PassengerSafetyBeltSwitch": {
+	"bitscount": 2, 
+	"lists": {
+		"0": " Passenger Safety Belt fastened ", 
+		"1": "Passenger Safety Belt not fasten", 
+		"2": "reserved", 
+		"3": "unavailable"
+	}
+	}, 
+	"Dongle_command_USM": {
+	"scaled": true, 
+	"bitscount": 2
+	}, 
+	"SSPPStopLamp_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "lamp OFF", 
+		"1": "lamp ON"
+	}
+	}, 
+	"ElectricWindowRequest": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no electric window movement requ", 
+		"1": "reserved", 
+		"2": "4 electric window simultaneous d", 
+		"3": "4 electric window simultaneous u"
+	}
+	}, 
+	"EPSteeringFailure": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "normal", 
+		"1": "Small failure (TBD) -> Service", 
+		"2": "Serious failure (TBD)->stop", 
+		"3": "diagnostic mode (2Hz flashing se"
+	}
+	}, 
+	"ABSMalfunction_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "ABS OK", 
+		"1": "ABS malfunction"
+	}
+	}, 
+	"LPGLow_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "LPG level OK", 
+		"1": "LPG level low"
+	}
+	}, 
+	"DayNightInformation": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Day time", 
+		"1": "Night time"
+	}
+	}, 
+	"AT_TorqueControlType": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "torque limitation without transm", 
+		"1": "Reserved", 
+		"2": "Reserved_2", 
+		"3": "Reserved_3", 
+		"4": "Reserved_4", 
+		"5": "Upper torque value limitation", 
+		"6": "Lower torque value limitation", 
+		"7": "Full torque control"
+	}
+	}, 
+	"CrankingAuthorisation_AT_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "cranking not allowed", 
+		"1": "cranking allowed", 
+		"2": "reserved", 
+		"3": "unavailable"
+	}
+	}, 
+	"ESCL3Position_84": {
+	"bitscount": 3, 
+	"lists": {
+		"1": "sensor or wire command failure o", 
+		"2": "unlocked and secured position", 
+		"3": "undefined position", 
+		"4": "pseudo-armed", 
+		"5": "sensor or wire command short-cir"
+	}
+	}, 
+	"ParkingBrakeRequestInProgress": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no parking brake request in prog", 
+		"1": "Brake tightening request in prog", 
+		"2": "Brake release request in progres", 
+		"3": "unavailable"
+	}
+	}, 
+	"SpeedPressureMisadaptation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "pressure adapted to vehicle spee", 
+		"1": "pressure not adapted to vehicle "
+	}
+	}, 
+	"OBD_Response_AT_84": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"ResetInfo_TdB_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"DisplayedOilLevel_84": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "warning", 
+		"1": "1 bargraph element displayed", 
+		"2": "2 bargraph element displayed", 
+		"3": "3 bargraph element displayed", 
+		"4": "4 bargraph element displayed", 
+		"5": "5 bargraph element displayed", 
+		"6": "6 bargraph element displayed", 
+		"7": "7 bargraph element displayed", 
+		"8": "8 bargraph element displayed", 
+		"15": "not available"
+	}
+	}, 
+	"ActualLPG_NGFlow_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 2.0, 
+	"bitscount": 16
+	}, 
+	"IgnitionState_UCH_": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "accessory supply off", 
+		"1": "accessory supply on"
+	}
+	}, 
+	"HardTopPositionCopy": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "hard top closed", 
+		"1": "hard top open", 
+		"2": "vehicle not equipped", 
+		"3": "invalid"
+	}
+	}, 
+	"WipingMalfunction": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no wiping malfunction", 
+		"1": "wiping malfunction"
+	}
+	}, 
+	"AT_Clock": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"SwaSensorInternalStatus": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "not calibrated, not indexed", 
+		"1": "not calibrated, indexed", 
+		"2": "fault", 
+		"3": "reserved", 
+		"4": "calibrated, not initialised", 
+		"5": "calibrated, initialised", 
+		"6": "reserved_6", 
+		"7": "reserved_7"
+	}
+	}, 
+	"LPG_NGTemperature_84": {
+	"scaled": true, 
+	"offset": -40.0
+	}, 
+	"ErgonomicPedal": {
+	"scaled": true
+	}, 
+	"FrontLeftWheelPressure_84": {
+	"scaled": true, 
+	"step": 13.725
+	}, 
+	"ClampingStatusDisplayInhibition": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "display of clamping status autho", 
+		"1": "display of clamping status forbi"
+	}
+	}, 
+	"CylinderNumber_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "invalid calculation", 
+		"1": "1st cylinder", 
+		"2": "2nd cylinder", 
+		"3": "3rd cylinder", 
+		"4": "4th cylinder", 
+		"5": "5th cylinder", 
+		"6": "6th cylinder", 
+		"7": "failure"
+	}
+	}, 
+	"DayRunningLightRequest": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Day running light not requested", 
+		"1": "Day running light request"
+	}
+	}, 
+	"FrontFogLightStatus": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "front fog lights off", 
+		"1": "front fog lights on"
+	}
+	}, 
+	"BitRateConfigured_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "bit rate not configured", 
+		"1": "bit rate configured"
+	}
+	}, 
+	"BatteryVoltage_USM": {
+	"scaled": true, 
+	"step": 0.0625
+	}, 
+	"ResetInfo_UCT": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"VehicleForwardTilt": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"VSUStateLamp": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "VSU operational ou vehicle not e", 
+		"1": "VSU failure", 
+		"2": "VSU operational, not programmed", 
+		"3": "reserved"
+	}
+	}, 
+	"ParticulateFilterFailureDisplay": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No Particulate filter failure wa", 
+		"1": "Particulate filter failure warni"
+	}
+	}, 
+	"LowBeamStatus": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "low beam off", 
+		"1": "low beam on"
+	}
+	}, 
+	"LowBeamRequest_DSU": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "low beam not requested", 
+		"1": "low beam requested"
+	}
+	}, 
+	"ChecksumFront": {
+	"scaled": true
+	}, 
+	"KickDownActivated": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "kick down off", 
+		"1": "kick down activated"
+	}
+	}, 
+	"Card_Key_Number_84": {
+	"bitscount": 4, 
+	"lists": {
+		"8": "card / key n\u00b04 identified by BCM", 
+		"1": "card / key n\u00b01 identified by BCM", 
+		"2": "card / key n\u00b02 identified by BCM", 
+		"4": "card / key n\u00b03 identified by BCM", 
+		"15": "invalid"
+	}
+	}, 
+	"ASRMalfunction": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No ASR malfunction", 
+		"1": "ASR malfunction"
+	}
+	}, 
+	"Dongle_ID_USM": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 10
+	}, 
+	"TimeOutOnSensorTest_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "sensor test timing is correct", 
+		"1": "sensor test is too long"
+	}
+	}, 
+	"RearDefrostPushInvalid": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "rear defrost push data valid", 
+		"1": "Rear defrost push dat invalid"
+	}
+	}, 
+	"SwaMessageCounter": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"BCM_WakeUpSleepCommand": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "Go to Sleep", 
+		"1": "reserved", 
+		"2": "reserved_2", 
+		"3": "WakeUp"
+	}
+	}, 
+	"WheelSpeed_F_L": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.0417, 
+	"bitscount": 16
+	}, 
+	"WheelSpeed_F_R": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.0417, 
+	"bitscount": 16
+	}, 
+	"ClearSteeringCode_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "ESCL code not cleared", 
+		"1": "ESCL code cleared"
+	}
+	}, 
+	"FastTorqueRequest_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"AutomaticWipingMalfunction": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "automatic wiping OK", 
+		"1": "automatic wiping malfunction"
+	}
+	}, 
+	"CrankingAuthorization_Verlog": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "cranking not allowed", 
+		"1": "cranking allowed"
+	}
+	}, 
+	"DiagMuxOn_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "counting and storage of CAN mute", 
+		"1": "counting and storage of CAN mute_1"
+	}
+	}, 
+	"FrictionTorque_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"ParkingBrakeMalfunction": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "No FPA default", 
+		"1": "Minor FPA default - Service", 
+		"2": "Major FPA default - Stop", 
+		"3": "Intersystem Default"
+	}
+	}, 
+	"PositionLightsStatus": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "position lights off", 
+		"1": "position lights on"
+	}
+	}, 
+	"MILLamp_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "MIL lamp off", 
+		"1": "MIL lamp on", 
+		"2": "MIL flashing", 
+		"3": "lamp autotest "
+	}
+	}, 
+	"CompressorActivation": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no compressor activation request", 
+		"1": "compressor activation requested"
+	}
+	}, 
+	"StarterStatus": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "cranking relay switched off", 
+		"1": "short relaxation active", 
+		"2": "long relaxation active", 
+		"3": "cranking relay switched on"
+	}
+	}, 
+	"TrailerPresence_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no trailer detected", 
+		"1": "trailer detected"
+	}
+	}, 
+	"AIRBAGMalfunction_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no AIRBAG system malfunction", 
+		"1": "AIRBAG system malfunction"
+	}
+	}, 
+	"AT_FanRequest_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no engine fan request", 
+		"1": "engine fan request"
+	}
+	}, 
+	"PDCUTREQ": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "cut requested", 
+		"1": "no cut requested"
+	}
+	}, 
+	"ResetInfo_HLS": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"RequestedSpeed_84": {
+	"scaled": true
+	}, 
+	"CorrectionCylinderNumber_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "all cylinders", 
+		"1": "1st cylinder", 
+		"2": "2nd cylinder", 
+		"3": "3rd cylinder", 
+		"4": "4th cylinder", 
+		"5": "5th cylinder", 
+		"6": "6th cylinder", 
+		"7": "failure"
+	}
+	}, 
+	"DoorLockingState": {
+	"scaled": true, 
+	"bitscount": 2
+	}, 
+	"OutofRangeOperatingVoltage_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "operating voltage OK (9V<=U<=16V", 
+		"1": "operating out of range (U<9V or "
+	}
+	}, 
+	"AIRBAGMalfunctionLampState_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "lamp OFF (AIRBAG system OK)", 
+		"1": "lamp ON (AIRBAG system malfuncti"
+	}
+	}, 
+	"ALS_activated": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "ALS not active", 
+		"1": "ALS active"
+	}
+	}, 
+	"ClimateCoolingSelect": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "climate cooling not requested", 
+		"1": "climate cooling requested"
+	}
+	}, 
+	"Dongle_ID_EPS": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 10
+	}, 
+	"DTOOL_to_CLUSTER": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Cluster_RefusetoSleep": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "reserved", 
+		"1": "Cluster refuse to sleep ", 
+		"2": "Cluster ready to sleep", 
+		"3": "reserved_3"
+	}
+	}, 
+	"ESPDeactivated_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "ESP available", 
+		"1": "ESP disabled by the driver"
+	}
+	}, 
+	"FrontRightWheelPressure_84": {
+	"scaled": true, 
+	"step": 13.725
+	}, 
+	"SSPPServiceLamp_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "lamp OFF", 
+		"1": "lamp ON"
+	}
+	}, 
+	"MaximumInstantTorque": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"ClusterDrivenLampsAutoCheck_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no self-test in progress", 
+		"1": "self-test in progress"
+	}
+	}, 
+	"DTOOL_to_PAS": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"FrontRightWheelState_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "pressure OK", 
+		"1": "sensor missing", 
+		"2": "tyre too inflated", 
+		"3": "single over inflated tyre", 
+		"4": "single under inflated tyre", 
+		"5": "abnormal air losses", 
+		"6": "tyre slightly under inflated (pr", 
+		"7": "tyre seriously under inflated  ("
+	}
+	}, 
+	"AT_TorqueRequestInProgress": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no shift in progress", 
+		"1": "shift in progress"
+	}
+	}, 
+	"ABSinRegulation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "ABS not in regulation", 
+		"1": "ABS in regulation"
+	}
+	}, 
+	"DistanceTotalizer_APV_84": {
+	"scaled": true, 
+	"bytescount": 3, 
+	"bitscount": 24
+	}, 
+	"PowerSupplyFeedback_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Hall Effect Sensor supplied", 
+		"1": "Hall Effect Sensor not supplied"
+	}
+	}, 
+	"SSPPLeakageLamp_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "lamp OFF (no leakage)", 
+		"1": "lamp ON"
+	}
+	}, 
+	"ClutchPosition": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "clutched or clutch pedal not pre", 
+		"1": "declutched or clutch pedal press", 
+		"2": "clutching range", 
+		"3": "not available (malfunction, calc"
+	}
+	}, 
+	"LPG_NGPressure_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 5.0, 
+	"bitscount": 12
+	}, 
+	"ECM_MechanicalLoadRequest": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No mechanical load requested by ", 
+		"1": "Mechanical load requested by ECM"
+	}
+	}, 
+	"IgnitionSupplyConfirmation": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no primary ignition supply", 
+		"1": "primary ignition supply on"
+	}
+	}, 
+	"WrongCode_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "right code", 
+		"1": "wrong code"
+	}
+	}, 
+	"USM_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"DTOOL_to_BCM": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"DriverSafetyBeltSwitch": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "Driver Safety Belt fastened", 
+		"1": "Driver Safety Belt Unfastened", 
+		"2": "reserved", 
+		"3": "unavailable"
+	}
+	}, 
+	"OKToCommuteLoadByUSM": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "USM forbid the commutation", 
+		"1": "USM forbid the commutation and p", 
+		"2": "USM allows the communication", 
+		"3": "Invalid (USM allows the communic"
+	}
+	}, 
+	"CLUSTER_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"NominalFuelConsumption": {
+	"scaled": true, 
+	"step": 80.0
+	}, 
+	"LPG_NG_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "LPG", 
+		"1": "NG"
+	}
+	}, 
+	"MinimumInstantTorque": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"DTOOL_to_EPS": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"UCT_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"EngineImmobiliserFailure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "immobiliser OK", 
+		"1": "immobiliser failure"
+	}
+	}, 
+	"HeadLampsWasherStatus": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "headlamp washer off", 
+		"1": "headlamp washer on"
+	}
+	}, 
+	"HDCStateLamp": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "Not lighting", 
+		"1": "Flashing", 
+		"2": "Lighting", 
+		"3": "Not used"
+	}
+	}, 
+	"SmartKeylessInformationDisplay": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "nothing to display", 
+		"1": "welcome", 
+		"2": "insert card", 
+		"3": "card not detected", 
+		"4": "scenario 2 - malfunction", 
+		"5": "scenario 2 - malfunction - consu", 
+		"6": "card not detected + buzzer", 
+		"7": "push twice stop", 
+		"8": "card reader stand failure - cons", 
+		"9": "push brake pedal + start button", 
+		"10": "Remove Key card + buzzer ", 
+		"11": "restricted card mode", 
+		"12": "reserved", 
+		"13": "reserved_13", 
+		"14": "push brake pedal + button or dec", 
+		"15": "gear lever on Park or Neutral", 
+		"16": "gear lever on neutral or declutc", 
+		"17": "Remove Key card", 
+		"18": "boot open cranking -> insert car", 
+		"19": "confirm engine stop", 
+		"20": "cranking in progress", 
+		"21": "pedal not kept", 
+		"22": "card reader failure", 
+		"28": "Cluster Full black out"
+	}
+	}, 
+	"Dongle_command_BCM": {
+	"scaled": true, 
+	"bitscount": 2
+	}, 
+	"VehicleSpeed_CVT": {
+	"scaled": true
+	}, 
+	"MilLampState_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "MIL lamp OFF", 
+		"1": "MIL lamp on", 
+		"2": "MIL lamp blinking", 
+		"3": "MIL Lamp autotest"
+	}
+	}, 
+	"LockingFinished_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "locking movement not finished", 
+		"1": "locking movement finished"
+	}
+	}, 
+	"DiagMuxOn_BCM": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "counting and storage of CAN mute", 
+		"1": "counting and storage of CAN mute_1"
+	}
+	}, 
+	"ConfigAttemptCounter_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no configuration attempt", 
+		"1": "first configuration attempt", 
+		"2": "second configuration attempt", 
+		"3": "third configuration attempt"
+	}
+	}, 
+	"RearGearEngaged_84_UPC": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "rear gear not engaged", 
+		"1": "rear gear engaged", 
+		"2": "not used", 
+		"3": "invalid"
+	}
+	}, 
+	"ResetInfo_Verrou_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"RearRightWheelState_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "pressure OK", 
+		"1": "sensor missing", 
+		"2": "tyre too inflated", 
+		"3": "single over inflated  tyre", 
+		"4": "single under inflated tyre", 
+		"5": "abnormal air losses", 
+		"6": "tyre slightly under inflated (pr", 
+		"7": "tyre seriously under inflated (p"
+	}
+	}, 
+	"EmergencyEngineStop": {
+	"scaled": true
+	}, 
+	"NeutralContact": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "neutral contact not reached", 
+		"1": "neutral contact reached", 
+		"2": "vehicle not equipped", 
+		"3": "invalid"
+	}
+	}, 
+	"RearLeftWheelPressure_84": {
+	"scaled": true, 
+	"step": 13.725
+	}, 
+	"VehicleType": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "X74", 
+		"1": "X73", 
+		"2": "X81", 
+		"3": "X65 ph2", 
+		"4": "D66", 
+		"5": "X76", 
+		"6": "X83", 
+		"7": "X70", 
+		"8": "F200", 
+		"9": "X74ph2", 
+		"10": "X61", 
+		"11": "X85", 
+		"12": "J77", 
+		"13": "B84", 
+		"14": "J84", 
+		"15": "non document\u00e9 (erreur programmat"
+	}
+	}, 
+	"FuelLevel_84": {
+	"scaled": true, 
+	"bitscount": 7
+	}, 
+	"ClimateCoolingStatus": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Climate cooling compressor off", 
+		"1": "Climate cooling compressor on"
+	}
+	}, 
+	"ResetInfo_APB": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"ShortVehicleID": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"15": "Digit not programmed should be c"
+	}
+	}, 
+	"ECBStateLamp": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "Brake is not failed", 
+		"1": "Finished calibration", 
+		"2": "Under calibration", 
+		"3": "Brake is failed or lamp check"
+	}
+	}, 
+	"ShiftMapChangeRequest": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "No Request", 
+		"1": "Request to use TCS map in warm", 
+		"2": "Request to use TCS map in cold", 
+		"3": "not use"
+	}
+	}, 
+	"ASR_MSRAcknowledgement_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "data received in frame Brake_Sta", 
+		"1": "data received in frame Brake_Sta_1"
+	}
+	}, 
+	"WheelSpeed_R_L_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.0417, 
+	"bitscount": 16
+	}, 
+	"EngineFanSpeedStatus": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "Engine fan stopped", 
+		"1": "Low speed engine fan active", 
+		"2": "Mid speed engine fan active", 
+		"3": "High speed engine fan active"
+	}
+	}, 
+	"ResetInfo_ABS_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"MuteRadioOrder": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No mute radio order", 
+		"1": "Mute radio order"
+	}
+	}, 
+	"OutputShaftRevolution": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"LPG_NGModeRequest_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "Petrol mode", 
+		"1": "LPG/NG system activation request", 
+		"2": "LPG/NG system deactivation reque", 
+		"3": "LPG/NG mode"
+	}
+	}, 
+	"ChecksumRear": {
+	"scaled": true
+	}, 
+	"TA_Position": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "parking", 
+		"1": "reverse", 
+		"2": "neutral", 
+		"3": "drive", 
+		"4": "4th gear", 
+		"5": "3rd gear", 
+		"6": "2nd gear", 
+		"7": "1st gear", 
+		"8": "intermediate P/R or N/R", 
+		"9": "intermediate N/D", 
+		"10": "intermediate", 
+		"11": "manual mode", 
+		"12": "6th gear", 
+		"13": "7th gear", 
+		"14": "5th gear", 
+		"15": "not available (init or lever swi"
+	}
+	}, 
+	"LowBatVoltDisplay": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Battery Voltage over threshold -", 
+		"1": "Battery voltage low (under thres"
+	}
+	}, 
+	"ESPMalfunction_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no ESP malfunction", 
+		"1": "ESP malfunction"
+	}
+	}, 
+	"ResetInfo_EPS": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"TorqueRequestStatus_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "normal", 
+		"1": "exact torque request can not be ", 
+		"2": "transient state preventing torqu", 
+		"3": "torque request can not be achiev"
+	}
+	}, 
+	"WheelSpeed_R_R_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.0417, 
+	"bitscount": 16
+	}, 
+	"ResetInfo_AT_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no  exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"IdleSpeedIncreaseRequest_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no idle speed increase request", 
+		"1": "idle speed increase request"
+	}
+	}, 
+	"IdleSpeedIncrease_UCH_": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no idle speed increase request", 
+		"1": "idle speed increase request"
+	}
+	}, 
+	"EngineRPM_84_copy_": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.125, 
+	"bitscount": 16
+	}, 
+	"HighBeamRequest_UCH_": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "high beam not requested", 
+		"1": "high beam requested"
+	}
+	}, 
+	"FinishRoofMovement": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Roof in final position (No reque", 
+		"1": "Finish Roof Movement"
+	}
+	}, 
+	"UCCType": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "reserved", 
+		"1": "UCC3", 
+		"2": "UCC2", 
+		"3": "reserved_3"
+	}
+	}, 
+	"PredictedMecanicalPowerByAlt": {
+	"scaled": true, 
+	"step": 40.0
+	}, 
+	"OilDrainingRange_84": {
+	"scaled": true, 
+	"step": 250.0
+	}, 
+	"MessageCounterFront": {
+	"scaled": true
+	}, 
+	"ResetInfo_PAS": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset (PAS)", 
+		"1": "exit from reset (PAS)"
+	}
+	}, 
+	"AT_Eco_Selected_Mode": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No eco Mode Request", 
+		"1": "Eco Mode Request"
+	}
+	}, 
+	"RotorCurrent_84": {
+	"scaled": true, 
+	"step": 0.0472
+	}, 
+	"MaxTimeToCommute": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"TorqueConverterState_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "unlocked converter", 
+		"1": "sliding converter", 
+		"2": "locked up converter", 
+		"3": "invalid"
+	}
+	}, 
+	"TorqueControlType_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "no torque request", 
+		"1": "Reserved", 
+		"2": "Reserved_2", 
+		"3": "Reserved_3", 
+		"4": "Reserved_4", 
+		"5": "ASR torque request (decrease tor", 
+		"6": "MSR torque request (increase tor", 
+		"7": "Reserved_7"
+	}
+	}, 
+	"UCHComputerOperatingProperly_84": {
+	"scaled": true, 
+	"bitscount": 1
+	}, 
+	"LoadPressureMisadaptation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "pressure adapted to the vehicle ", 
+		"1": "pression not adapted to the vehi"
+	}
+	}, 
+	"StartingMode_BCM": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "engine stopped request", 
+		"1": "reserved", 
+		"2": "ignition request", 
+		"3": "starting request"
+	}
+	}, 
+	"LPG_NGTankEmpty_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "LPG/NG tank not empty", 
+		"1": "LPG/NG tank empty"
+	}
+	}, 
+	"SteeringWheelAngle": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.1, 
+	"bitscount": 16, 
+	"offset": -3276.7
+	}, 
+	"SpeedInhibition_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "vehicle speed equal to 0 km/h", 
+		"1": "vehicle speed > 0 km/h or frame "
+	}
+	}, 
+	"Flow_CylinderCorrection_84": {
+	"scaled": true, 
+	"step": 0.784, 
+	"offset": -100.0
+	}, 
+	"ClimateCoolingRequest_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no air conditionning requested", 
+		"1": "air conditionning requested"
+	}
+	}, 
+	"SwaChecksum": {
+	"scaled": true
+	}, 
+	"BuzzerRequest_FPA": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No Buzzer request", 
+		"1": "Buzzer request"
+	}
+	}, 
+	"AT_MILReq_84": {
+	"scaled": true, 
+	"bitscount": 4
+	}, 
+	"SoftwareLockValue_84": {
+	"bytescount": 4, 
+	"byte": true, 
+	"bitscount": 32
+	}, 
+	"GeneralBadUse": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Correct use of the hard top", 
+		"1": "Missing hard top condition(s)"
+	}
+	}, 
+	"DTOOL_to_AT": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"EarlyGearShiftUp_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no shift up request", 
+		"1": "shift up request"
+	}
+	}, 
+	"ELAMP": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "economy lamp off", 
+		"1": "economy lamp on"
+	}
+	}, 
+	"AlternatorMaximumPower": {
+	"scaled": true, 
+	"step": 40.0
+	}, 
+	"ATPowerLatch_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "powerlatch holding not requested", 
+		"1": "powerlatch holding requested (AT"
+	}
+	}, 
+	"SLockValueControl_84": {
+	"scaled": true, 
+	"bitscount": 5
+	}, 
+	"RequestedTransferedTorque": {
+	"scaled": true, 
+	"step": 3.0
+	}, 
+	"AIRBAG_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"DTOOL_to_UCT": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"Odometer_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.1, 
+	"bitscount": 16
+	}, 
+	"DoorSwitches": {
+	"scaled": true, 
+	"bitscount": 5
+	}, 
+	"WheelsLockingState": {
+	"bitscount": 1, 
+	"lists": {
+		"0": " No wheels locking or ABS/ESP pr", 
+		"1": "Wheels locking detected"
+	}
+	}, 
+	"UCT_Buzzer": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no buzzer request", 
+		"1": "alarm buzzer request", 
+		"2": "information buzzer request", 
+		"3": "reserved"
+	}
+	}, 
+	"SSPP_Buzzer": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no buzzer", 
+		"1": "buzzer"
+	}
+	}, 
+	"InvalidLPG_NGConsumption_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "valid LPG/NG consumption", 
+		"1": "invalid LPG/NG consumption"
+	}
+	}, 
+	"EPSIndexNotDetected": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Not calibrated and indexed or al", 
+		"1": "not calibrated and not indexed ("
+	}
+	}, 
+	"WarningWaterTemp_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no water temperature warning", 
+		"1": "water temperature warning"
+	}
+	}, 
+	"SteeringLockMajorElecFailure_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no major internal electronic fai", 
+		"1": "major internal electronic failur"
+	}
+	}, 
+	"InstantMecanicalPowerByAlt": {
+	"scaled": true, 
+	"step": 40.0
+	}, 
+	"WakeUpType": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Customer wake up", 
+		"1": "System wake up"
+	}
+	}, 
+	"LoadDrivenByBCMToBeCommuted": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No new load provided for commuta", 
+		"1": "New load provided for commutatio"
+	}
+	}, 
+	"Shifting_Authorization_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "gear shift forbidden", 
+		"1": "shift down authorized", 
+		"2": "shift up authorized", 
+		"3": "shift up or down authorized"
+	}
+	}, 
+	"ClutchSwitch_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "pedal not pressed (clutched)", 
+		"1": "pedal pressed", 
+		"2": "not used", 
+		"3": "invalid"
+	}
+	}, 
+	"MSRDisabled_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "MSR available", 
+		"1": "MSR disabled"
+	}
+	}, 
+	"GazComposition_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "type 1 (50% propane 50% butane)", 
+		"1": "type 2 (100% propane for LPG)", 
+		"2": "type 3 (100% butane for LPG)", 
+		"3": "reserved"
+	}
+	}, 
+	"APCLineStatus_copy_": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Primary ignition supply off", 
+		"1": "Primary ignition supply on"
+	}
+	}, 
+	"DTOOL_to_ALLUCEOBD": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"CrashDetectionOutOfOrder_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "crash detection system OK", 
+		"1": "crash non detection risk"
+	}
+	}, 
+	"LPG_NGSystemMajorFailure_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no LPG/NG system major failure", 
+		"1": "LPG/NG system major failure"
+	}
+	}, 
+	"UPAFailureDispRequest": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No failure display request", 
+		"1": "UPA failure display request"
+	}
+	}, 
+	"DTOOL_to_CLIM": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"DownTransitionOfEngineCoolantTem": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No down transition in progress", 
+		"1": "Down transition in progress"
+	}
+	}, 
+	"DTOOL_to_APB": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"AlternatorNumber": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "invalid", 
+		"1": "alternator 1", 
+		"2": "alternator 2 (TG10)", 
+		"3": "alternator 3 (SG12)", 
+		"4": "alternator 4 (LIE150)", 
+		"5": "alternator 5 (SG15L)", 
+		"6": "not used", 
+		"7": "not used_7", 
+		"8": "not used_8", 
+		"9": "not used_9", 
+		"10": "not used_10", 
+		"11": "not used_11", 
+		"12": "not used_12", 
+		"13": "not used_13", 
+		"14": "not used_14", 
+		"15": "special type"
+	}
+	}, 
+	"AnticipatedRGBPumpState": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "Unavailable value", 
+		"1": "BVR Pump Active", 
+		"2": "BVR Pump Inactive", 
+		"3": "Not Used"
+	}
+	}, 
+	"MBLFailureDisplay": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No MBL failure display request", 
+		"1": "MBL failure display requested"
+	}
+	}, 
+	"VSUPresence": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "ABS or ESP unit", 
+		"1": "VSU unit"
+	}
+	}, 
+	"FrontWiperStatus": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "front wiper stopped", 
+		"1": "low speed active", 
+		"2": "high speed active", 
+		"3": "unavailable"
+	}
+	}, 
+	"EPS_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"DriveStyleDetection": {
+	"scaled": true, 
+	"step": 0.392157
+	}, 
+	"HardTopFailure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no hardtop failure", 
+		"1": "hardtop failure"
+	}
+	}, 
+	"HeaterUnitSetPoint": {
+	"scaled": true, 
+	"offset": -40.0
+	}, 
+	"LPG_NGPushLampRequest_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "lamp off", 
+		"1": "lamp flashing", 
+		"2": "reserved", 
+		"3": "allum\u00e9"
+	}
+	}, 
+	"FuelLow_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "fuel level OK", 
+		"1": "fuel level low"
+	}
+	}, 
+	"VehicleSpeed_84_copy": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.01, 
+	"bitscount": 16
+	}, 
+	"DTOOL_to_ECM": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"LPG_NGSystemMinorFailure_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no LPG/NG system minor failure", 
+		"1": "LPG/NG system minor failure"
+	}
+	}, 
+	"BuzzerRequest": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "no buzzer request", 
+		"1": "position lights omission", 
+		"2": "automatic lock up activated", 
+		"3": "automatic lock up deactivated", 
+		"4": "childproof lock malfunction", 
+		"5": "not used", 
+		"6": "not used_6", 
+		"7": "not used_7", 
+		"16": "anti-key lock in warning", 
+		"17": "back door open warning", 
+		"18": "mode switch on", 
+		"19": "leave the key in key cylinder", 
+		"20": "reverse warning", 
+		"21": "seat belt warning", 
+		"22": "Day Time Running Light activated", 
+		"23": "Day Time Running Light activated_23", 
+		"25": "Reserved Nissan for Flat tyre Wa", 
+		"26": "Reserved Nissan for Transmitter "
+	}
+	}, 
+	"AT_Impulsive_Selected_Mode": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No Impulsive Mode request", 
+		"1": "Impulsive Mode request"
+	}
+	}, 
+	"LPG_NGSystemReady_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "LPG/NG system not ready", 
+		"1": "LPG/NG system ready"
+	}
+	}, 
+	"DrivingRange_PAX": {
+	"scaled": true, 
+	"step": 2.0
+	}, 
+	"ECM_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"SteeringLockCOP_84": {
+	"scaled": true, 
+	"bitscount": 1
+	}, 
+	"RawPedal": {
+	"scaled": true
+	}, 
+	"Filling2_84": {
+	"scaled": true
+	}, 
+	"UnlockingFinished_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "unlocking movement not finished", 
+		"1": "unlocking movement finished"
+	}
+	}, 
+	"SoftwareLockRequest_84": {
+	"bytescount": 6, 
+	"byte": true, 
+	"bitscount": 48
+	}, 
+	"ESPStateLamp": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "ESP operational or vehicle not e", 
+		"1": "ESP failure", 
+		"2": "ESP deactivated", 
+		"3": "ESP failure (not programmed)", 
+		"4": "ESP regulating without malfuncti", 
+		"5": "ESP regulating with malfunction", 
+		"7": "ESP in calibration (diagnostic m"
+	}
+	}, 
+	"MaximumMechanicalPowerAllowed_84": {
+	"scaled": true, 
+	"step": 100.0, 
+	"bitscount": 5
+	}, 
+	"EBVStateLamp": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "EBV operational or vehicle not e", 
+		"1": "EBV failure", 
+		"2": "not used", 
+		"3": "EBV in calibration (diagnostic m"
+	}
+	}, 
+	"Dongle_ID_BCM_1": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"HighBeamRequest_DSU": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "high beam not requested", 
+		"1": "high beam requested"
+	}
+	}, 
+	"RearDefrostRequest": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "rear defrost not requested", 
+		"1": "Reserved", 
+		"2": "rear defrost requested by the EC", 
+		"3": "rear defrost requested for user"
+	}
+	}, 
+	"LowBeamRequest_UCH_": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "low beam not requested", 
+		"1": "low beam requested"
+	}
+	}, 
+	"RearDefrostRequest_ECM": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no rear defrost request", 
+		"1": "rear defrost request"
+	}
+	}, 
+	"YawRate_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.2, 
+	"bitscount": 16, 
+	"offset": -6553.4
+	}, 
+	"AlternatorLoad_84": {
+	"scaled": true, 
+	"step": 0.390625
+	}, 
+	"CarburetionType_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "bi-carburation", 
+		"1": "mono-carburation"
+	}
+	}, 
+	"DiagnosticLPG_NGGauge_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "LPG/NG gauge link OK", 
+		"1": "open circuit", 
+		"2": "short circuit", 
+		"3": "invalid"
+	}
+	}, 
+	"LPG_NGSystemMalfunction_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no failure", 
+		"1": "LPG/NG system failure"
+	}
+	}, 
+	"OuputStatus__copy_": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "No request", 
+		"1": "Turn off Left lowbeam", 
+		"2": "Turn Off right lowbeam", 
+		"3": "Turn Off left and right lowbeam"
+	}
+	}, 
+	"VehiclePressureState_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "pressure OK", 
+		"1": "pressure too high", 
+		"2": "pressure too low", 
+		"3": "SSPP out of order"
+	}
+	}, 
+	"SSPPInhibition_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "vehicle equipped with the tyre p", 
+		"1": "vehicle not equipped with the ty"
+	}
+	}, 
+	"CrankingAuthorization_ECM": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "cranking not allowed", 
+		"1": "cranking allowed", 
+		"2": "cranking stopped required", 
+		"3": "cranking not allowed: ECM failur"
+	}
+	}, 
+	"AIRBAGMalfuncLampOperational_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "lamp malfunction", 
+		"1": "lamp OK"
+	}
+	}, 
+	"EngOverSpeedCutOffThreshold_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "low threshold", 
+		"1": "high threshold"
+	}
+	}, 
+	"Dongle_command_EPS": {
+	"scaled": true, 
+	"bitscount": 2
+	}, 
+	"EngineCoolantRegulationTemperatu": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "90 \u00b0C", 
+		"1": "95 \u00b0C", 
+		"2": "100 \u00b0C", 
+		"3": "105 \u00b0C", 
+		"4": "110 \u00b0C", 
+		"5": "80 \u00b0C", 
+		"6": "85 \u00b0C", 
+		"7": "unavailable"
+	}
+	}, 
+	"FrontLeftWheelState_84": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "pressure OK", 
+		"1": "sensor missing", 
+		"2": "tyre too inflated", 
+		"3": "single over inflated tyre", 
+		"4": "single under inflated tyre", 
+		"5": "abnormal air losses", 
+		"6": "tyre slightly under inflated (pr", 
+		"7": "tyre seriously under inflated  ("
+	}
+	}, 
+	"BCM_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"VehicleSpeed_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.01, 
+	"bitscount": 16
+	}, 
+	"BitRateConfiguration_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "250 kb", 
+		"1": "500 kb"
+	}
+	}, 
+	"Filling1_84": {
+	"scaled": true
+	}, 
+	"TransmRangeEngaged_84": {
+	"bitscount": 4, 
+	"lists": {
+		"0": "declutched at rest", 
+		"1": "1st range", 
+		"2": "2nd range", 
+		"3": "3rd range", 
+		"4": "4th range", 
+		"5": "5th range", 
+		"6": "6th range", 
+		"9": "reverse", 
+		"10": "neutral", 
+		"15": "AT in limphome"
+	}
+	}, 
+	"EngineCoolantTemp_84_copy_": {
+	"scaled": true, 
+	"offset": -40.0
+	}, 
+	"RearGearEngaged_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "rear gear not engaged", 
+		"1": "rear gear engaged", 
+		"2": "invalid", 
+		"3": "not used"
+	}
+	}, 
+	"ASRStaticTorqueRequest_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"FrontWiperStopPosition_USM": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "stop position not reached", 
+		"1": "stop position reached"
+	}
+	}, 
+	"HighBeamStatus": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "high beam off", 
+		"1": "high beam on"
+	}
+	}, 
+	"FillingStatus_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "waiting (ready to receive UCH_fi", 
+		"1": "acknowledgement (command receive", 
+		"2": "complete (electrovalves driving ", 
+		"3": "risk of no filling consecutive t"
+	}
+	}, 
+	"Transversalacceleration_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.004, 
+	"bitscount": 16, 
+	"offset": -131.068
+	}, 
+	"MajorFailure_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no major failure", 
+		"1": "major failure (engine stop reque"
+	}
+	}, 
+	"PorN_display_request": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No  'Lever in P or N position' d", 
+		"1": "'Lever in P or N position' displ"
+	}
+	}, 
+	"AirbagCrashOrder": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"DiagMuxOn_84_copy": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "counting and storage of CAN mute", 
+		"1": "counting and storage of CAN mute_1"
+	}
+	}, 
+	"Cluster_WakeUpSleepReq": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "reserved", 
+		"1": "reserved_1", 
+		"2": "reserved_2", 
+		"3": "WakeUp"
+	}
+	}, 
+	"ResetInfo_UCH_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"KeylessPushState": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Keyless Push not pressed", 
+		"1": "Keyless Push pressed"
+	}
+	}, 
+	"APB_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"RearDefrostPush": {
+	"scaled": true, 
+	"bitscount": 1
+	}, 
+	"PowerTrainGain_84": {
+	"scaled": true, 
+	"step": 0.25
+	}, 
+	"RequestForLPG_NGFlow_84": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 2.0, 
+	"bitscount": 16
+	}, 
+	"Badge_battery_low": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "badge battery OK", 
+		"1": "badge battery low"
+	}
+	}, 
+	"ManualRearDefrostStatus": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "rear defrost not requested manua", 
+		"1": "rear defrost manually requested"
+	}
+	}, 
+	"InputShaftRevolution": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"AbsentFrameUCH_to_ESCL3_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "frame UCH_to_ESCL3 present", 
+		"1": "frame UCH_to_ESCL3 has been miss"
+	}
+	}, 
+	"OuputStatus": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "No request", 
+		"1": "Turn off Left lowbeam", 
+		"2": "Turn Off right lowbeam", 
+		"3": "Turn off Left and Right lowbeam"
+	}
+	}, 
+	"IgnitionON_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "primary ignition OFF", 
+		"1": "primary ignition ON"
+	}
+	}, 
+	"DTOOL_to_AIRBAG": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"DTOOL_to_ALL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"RearDefrostStatus": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "rear defrost off", 
+		"1": "rear defrost on"
+	}
+	}, 
+	"NightDimmedLight_MaxPercent_84": {
+	"scaled": true, 
+	"step": 0.4
+	}, 
+	"ParkingBrakeBindingStatus": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "brake not activated", 
+		"1": "brake applied", 
+		"2": "Default value (reset)", 
+		"3": "reserved"
+	}
+	}, 
+	"UPAStatusDispRequest": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "no upa status display request", 
+		"1": "UPA activated ", 
+		"2": "UPA deactivated "
+	}
+	}, 
+	"CruiseControlStatusDisplay": {
+	"bitscount": 3, 
+	"lists": {
+		"0": "Cruise Control (CC) and Speed Li", 
+		"1": "SL active", 
+		"2": "(SL on and inactive) or suspende", 
+		"3": "SL requested and in failure", 
+		"4": "CC active", 
+		"5": "(CC ON and inactive) or suspende", 
+		"6": "CC requested and in failure", 
+		"7": "vehicle not equipped with CC and"
+	}
+	}, 
+	"OpenActiveBrakeSwitch_ECM_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "brake not activated", 
+		"1": "brake activated", 
+		"2": "not used", 
+		"3": "invalid"
+	}
+	}, 
+	"DeliveryModeInfo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "customer mode", 
+		"1": "delivery mode"
+	}
+	}, 
+	"ResetInfo_USM": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"LPG_NGMILRequest_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no LPG/NG OBD malfunction", 
+		"1": "LPG/NG OBD malfunction"
+	}
+	}, 
+	"CrashDetected_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no crash detected", 
+		"1": "crash detected"
+	}
+	}, 
+	"PAS_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"VehicleSideTilt": {
+	"scaled": true
+	}, 
+	"CruiseControlStatus_84": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "CC and SL inactive (OFF, in stan", 
+		"1": "pedal recovery", 
+		"2": "CC or SL active", 
+		"3": "not used"
+	}
+	}, 
+	"BrakeSystemMalfunction_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no brake system malfunction", 
+		"1": "brake system malfunction"
+	}
+	}, 
+	"ValidAIRBAGInformation_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "invalid lamps requests", 
+		"1": "valid lamps requests"
+	}
+	}, 
+	"Steering_Column_Unlock_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "steering column unlocking not re", 
+		"1": "steering column unlocking  reque"
+	}
+	}, 
+	"BRAKE_to_DTOOL": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"DTOOL_to_GCU": {
+	"bytescount": 8, 
+	"byte": true, 
+	"bitscount": 64
+	}, 
+	"InconsistentUCHMessage_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "data received in UCH frame consi", 
+		"1": "data received in UCH frame not c"
+	}
+	}, 
+	"ClampingAlertToDriver": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No clamping alert", 
+		"1": "Clamping alert to Driver"
+	}
+	}, 
+	"ASRDynamicTorqueRequest_84": {
+	"scaled": true, 
+	"step": 0.5, 
+	"offset": -25.0
+	}, 
+	"PassAIRBAG_OFF_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Passenger AIRBAG lamp off", 
+		"1": "Passenger AIRBAG lamp on"
+	}
+	}, 
+	"ResetInfo_Swa": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"ResetInfo_CLIM_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no exit from reset", 
+		"1": "exit from reset"
+	}
+	}, 
+	"RightTurnIndicatorRequest_DSU": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no right turn indicator request", 
+		"1": "rignt turn indicator request"
+	}
+	}, 
+	"APCLineStatus": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Primary ignition supply off", 
+		"1": "Primary ignition supply on"
+	}
+	}, 
+	"ABS_WarningRequest": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "reserved", 
+		"1": "warning lamps off request", 
+		"2": "warning lamps on request", 
+		"3": "reserved_3"
+	}
+	}, 
+	"Key_or_Keyless_Vehicule": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Keyless vehicule", 
+		"1": "vehicule with key"
+	}
+	}, 
+	"RequestedSpeedBlink_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "fix display", 
+		"1": "flashing display"
+	}
+	}, 
+	"CustomerEngIddleSpeedReq": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "no engine iddle speed request by", 
+		"1": "engine iddle speed request by cu"
+	}
+	}, 
+	"StarterStatus_copy": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "cranking relay swtiched off", 
+		"1": "short relaxation active", 
+		"2": "long relaxation active", 
+		"3": "cranking relay switched on"
+	}
+	}, 
+	"DisplayedSpeed": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"step": 0.01, 
+	"bitscount": 16
+	}, 
+	"EngineStatus_84__copy_": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "engine stopped", 
+		"1": "engine stalled", 
+		"2": "engine running", 
+		"3": "engine cranking"
+	}
+	}, 
+	"PositionLightsStatus_84": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "position lights off", 
+		"1": "position lights on"
+	}
+	}
+}
+}

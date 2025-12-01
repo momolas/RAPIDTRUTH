@@ -1,0 +1,5029 @@
+{
+"obd": {
+	"baudrate": 10400, 
+	"protocol": "CAN", 
+	"recv_id": "763", 
+	"funcname": "Tableau de bord", 
+	"funcaddr": "51", 
+	"send_id": "743"
+}, 
+"devices": [
+	{
+	"dtc": 37891, 
+	"devicedata": {
+		"Valeur lue sur entr\u00e9e Rh\u00e9ostat (en mV)": "0", 
+		"+Lanterne (CAN)": "0"
+	}, 
+	"dtctype": 0, 
+	"name": "Capteur Rh\u00e9ostat"
+	}, 
+	{
+	"dtc": 37889, 
+	"devicedata": {
+		"Mesure U1": "0", 
+		"Mesure DeltaU": "0", 
+		"Mesure U2": "0"
+	}, 
+	"dtctype": 0, 
+	"name": "Capteur Niveau Huile"
+	}, 
+	{
+	"dtc": 37890, 
+	"devicedata": {
+		"Carburant consomm\u00e9": "0", 
+		"L2": "0", 
+		"L0": "0", 
+		"L1": "0"
+	}, 
+	"dtctype": 0, 
+	"name": "Capteur Jauge Carburant"
+	}
+], 
+"ecuname": "Tdb_J84_S\u00e9rie_03_01_05", 
+"autoidents": [
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "0508", 
+	"soft": "0009"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "0509", 
+	"soft": "0009"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "06B0", 
+	"soft": "0009"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "0601", 
+	"soft": "0009"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "050A", 
+	"soft": "0009"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "050B", 
+	"soft": "0009"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "0510", 
+	"soft": "0009"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "0511", 
+	"soft": "0009"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "050C", 
+	"soft": "0009"
+	}, 
+	{
+	"diagversion": "4", 
+	"supplier": "213", 
+	"version": "0514", 
+	"soft": "0009"
+	}
+], 
+"endian": "Big", 
+"requests": [
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 5": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010500", 
+	"name": "Ecriture param\u00e9trage du palier 5 A3"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30051100", 
+	"name": "Commande barregraphe COMPTE-TOURS : arret"
+	}, 
+	{
+	"name": "Commande SEG SSPP : arret", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Segments VFD SSPP": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30021100"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 4": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010400", 
+	"name": "Ecriture param\u00e9trage du palier 4 instrum"
+	}, 
+	{
+	"name": "ClearDTC", 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "14FF00", 
+	"replybytes": "54FF00"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30091164", 
+	"name": "Commande Eclairage Afficheurs : arret"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D1201000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_SurvitessePAX"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0501000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_ClignotantClac"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D1100000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_AlerteSSPP"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage clignotant Clac", 
+	"replybytes": "619D05", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Fr\u00e9quence4_Motif de base": {
+		"firstbyte": 21
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence3_Motif de base": {
+		"firstbyte": 17
+		}, 
+		"Fr\u00e9quence5_Motif de base": {
+		"firstbyte": 25
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Dur\u00e9e5_Motif de base": {
+		"firstbyte": 27
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e4_Motif de base": {
+		"firstbyte": 23
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}, 
+		"Dur\u00e9e3_Motif de base": {
+		"firstbyte": 19
+		}
+	}, 
+	"minbytes": 28, 
+	"sentbytes": "219D05"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D1000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_Alerte1ereGravit\u00e9"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Type de bo\u00eete": {
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110400", 
+	"name": "Ecriture Config : Type de bo\u00eete"
+	}, 
+	{
+	"name": "Lecture VIN", 
+	"replybytes": "6181", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"VIN (CRC)": {
+		"firstbyte": 20
+		}, 
+		"VIN (Num\u00e9ro d'Identification)": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 21, 
+	"sentbytes": "2181"
+	}, 
+	{
+	"name": "Commande SEG SSPP : marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Segments VFD SSPP": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30022000"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 6": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010600", 
+	"name": "Ecriture param\u00e9trage du palier 6 instrum"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage clignotant Clic", 
+	"replybytes": "619D04", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Fr\u00e9quence4_Motif de base": {
+		"firstbyte": 21
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence3_Motif de base": {
+		"firstbyte": 17
+		}, 
+		"Fr\u00e9quence5_Motif de base": {
+		"firstbyte": 25
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Dur\u00e9e5_Motif de base": {
+		"firstbyte": 27
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e4_Motif de base": {
+		"firstbyte": 23
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}, 
+		"Dur\u00e9e3_Motif de base": {
+		"firstbyte": 19
+		}
+	}, 
+	"minbytes": 28, 
+	"sentbytes": "219D04"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Temps actif_tempo active": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D01020000", 
+	"name": "ConfigDesM\u00e9lodies_TA_OubliCeintureHaute"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Capacit\u00e9 du r\u00e9servoir (en litres)": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B11143B", 
+	"name": "Ecriture Param : Capacit\u00e9 du r\u00e9servoir"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage d\u00e9faillance conda_enfant", 
+	"replybytes": "619D0C", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}
+	}, 
+	"minbytes": 16, 
+	"sentbytes": "219D0C"
+	}, 
+	{
+	"name": "Ecriture EEPROM LMax_GPL & AlerteGPL", 
+	"replybytes": "71FA00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Niveau d'alerte GPL": {
+		"firstbyte": 9
+		}, 
+		"LMax GPL": {
+		"firstbyte": 8
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FA0005007C023205"
+	}, 
+	{
+	"name": "Ecriture EEPROM_kilometrage", 
+	"replybytes": "71FA00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FA0005000024FFFF00000000FFFF00000000FFFF00000000FFFF00000000FFFF0000FFFF00001B4F1B4F"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Type de langue": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110100", 
+	"name": "Ecriture Config : Type de langue"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D020000000000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_DiagRenault"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 2": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010200", 
+	"name": "Ecriture param\u00e9trage du palier 2 instrum"
+	}, 
+	{
+	"name": "Ouverture de session chaine et A-V", 
+	"replybytes": "50", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Diagnosticmode": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "10C0"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Fr\u00e9quence4_Motif de base": {
+		"firstbyte": 19
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence3_Motif de base": {
+		"firstbyte": 15
+		}, 
+		"Fr\u00e9quence5_Motif de base": {
+		"firstbyte": 23
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e5_Motif de base": {
+		"firstbyte": 25
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e4_Motif de base": {
+		"firstbyte": 21
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Dur\u00e9e3_Motif de base": {
+		"firstbyte": 17
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D050000000000000000000000000000000000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_ClignotantClac"
+	}, 
+	{
+	"name": "Commande barregraphe TEMP EAU : marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Consigne Temp\u00e9rature": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30072000"
+	}, 
+	{
+	"name": "Commande SEG BVA : arret", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Segments VFD BVA": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30021100"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Fr\u00e9quence4_Motif de base": {
+		"firstbyte": 19
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence3_Motif de base": {
+		"firstbyte": 15
+		}, 
+		"Fr\u00e9quence5_Motif de base": {
+		"firstbyte": 23
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e5_Motif de base": {
+		"firstbyte": 25
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e4_Motif de base": {
+		"firstbyte": 21
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Dur\u00e9e3_Motif de base": {
+		"firstbyte": 17
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D040000000000000000000000000000000000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_ClignotantClic"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 8": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010800", 
+	"name": "Ecriture param\u00e9trage du palier 8 A3"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0B01000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_D\u00e9sactivationCondaAuto"
+	}, 
+	{
+	"name": "Output Control", 
+	"replybytes": "700000", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Output Control Status": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Compteur VITESSE.mode": {
+		"firstbyte": 4
+		}, 
+		"Output Control Command": {
+		"firstbyte": 3
+		}, 
+		"VOYANTS.mode": {
+		"firstbyte": 4
+		}, 
+		"Barregraphe COMPTE-TOURS.mode": {
+		"firstbyte": 4
+		}, 
+		"Eclairage Afficheurs.mode": {
+		"firstbyte": 4
+		}, 
+		"SEGMENTS.mode": {
+		"firstbyte": 4
+		}, 
+		"Barregraphe CARBURANT.mode": {
+		"firstbyte": 4
+		}, 
+		"Barregraphe TEMPERATURE EAU.mode": {
+		"firstbyte": 4
+		}, 
+		"Output Permanent Control List": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30000000"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Unit\u00e9 de distance": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110C00", 
+	"name": "Ecriture Config : Unit\u00e9 de distance ADAC"
+	}, 
+	{
+	"name": "TesterPresent 01 (avec demande de r\u00e9ponse)", 
+	"replybytes": "7E", 
+	"deny_sds": [], 
+	"sendbyte_dataitems": {
+		"Avec demande de r\u00e9ponse": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3E01"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Type de m\u00e9lodie": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "30FE2000", 
+	"name": "Lancement M\u00e9lodie"
+	}, 
+	{
+	"name": "Lecture Configuration", 
+	"replybytes": "6111", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Unit\u00e9 de temp\u00e9rature": {
+		"firstbyte": 15
+		}, 
+		"Unit\u00e9 de distance": {
+		"firstbyte": 14
+		}, 
+		"Autonomie de vidange en distance": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"Type de langue": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Autonomie de vidange en temps": {
+		"ref": true, 
+		"firstbyte": 20
+		}, 
+		"Prestation Survitesse Arabie": {
+		"ref": true, 
+		"firstbyte": 17
+		}, 
+		"Type de bo\u00eete": {
+		"firstbyte": 6
+		}, 
+		"Pr\u00e9sence SSPP/PAX": {
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Type d'affichage ADAC": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Type de carburation": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Type sc\u00e9nario VSC": {
+		"firstbyte": 8
+		}, 
+		"Type de carrosserie": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Prestation RV/LV": {
+		"ref": true, 
+		"firstbyte": 16
+		}, 
+		"Niveau d'alerte carburant": {
+		"ref": true, 
+		"firstbyte": 23
+		}, 
+		"Pr\u00e9sence ABS/ ESP/VSU": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Type de frein de parking": {
+		"firstbyte": 4
+		}, 
+		"Capacit\u00e9 du r\u00e9servoir (en litres)": {
+		"ref": true, 
+		"firstbyte": 22
+		}
+	}, 
+	"minbytes": 23, 
+	"sentbytes": "2111"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D1401000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_AlerteBVA"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Date derni\u00e8re intervention AV \u00e0 \u00e9crire": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3BB0010620", 
+	"name": "Ecriture Date Derni\u00e8re Intervention APV"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0100000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_OubliCeintureHaute"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 5": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010500", 
+	"name": "Ecriture param\u00e9trage du palier 5 instrum"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage oublilanternes", 
+	"replybytes": "619D06", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}
+	}, 
+	"minbytes": 16, 
+	"sentbytes": "219D06"
+	}, 
+	{
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "30FE11", 
+	"name": "Arret m\u00e9lodie"
+	}, 
+	{
+	"name": "Lecture EEPROM LMax GPL et Alerte GPL", 
+	"replybytes": "71FB000000", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Niveau d'alerte GPL": {
+		"firstbyte": 5
+		}, 
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}, 
+		"LMax GPL": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 5, 
+	"sentbytes": "31FB0005007C02"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 0": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010000", 
+	"name": "Ecriture param\u00e9trage du palier 0 instrum"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0D01000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_RV/LV"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0A00000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_ActivationCondaAuto"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 2": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010200", 
+	"name": "Ecriture param\u00e9trage du palier 2 A3"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30031101", 
+	"name": "Commande affichage radio : arret"
+	}, 
+	{
+	"name": "Lecture Donn\u00e9es CAN Inter-syst\u00e8mes", 
+	"replybytes": "6182", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"R\u00e9f\u00e9rence version messagerie": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"ABS absent: compteur  C_absent au maxi": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"UCH absent: compteur C_absent au maxi": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"EPS absent": {
+		"ref": true, 
+		"firstbyte": 24
+		}, 
+		"UCH absent": {
+		"firstbyte": 10
+		}, 
+		"MODULE MUET: compteur C_Mute au maxi": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"MODULE MUET": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"AIRBAG absent: compteur  M_absent": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"EPS absent: compteur M_absent": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 24
+		}, 
+		"MODULE MUET: Compteur M_Mute": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"UCH absent: compteur M_absent": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Etat  BUS: compteur C_BusOFF au Maxi": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"ABS absent": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"AIRBAG absent": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Etat BUS: Compteur M_BusOff": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Etat BUS ON ou OFF": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Cluster absent": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"UPC absent": {
+		"firstbyte": 26
+		}, 
+		"UPC absent: compteur C_absent au maxi": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 26
+		}, 
+		"EPSabsent: compteur C_absent au maxi": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 24
+		}, 
+		"UPC absent: compteur M_absent": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 26
+		}, 
+		"ABS absent: compteur M_absent": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"AIRBAG absent: compteur C_absent au maxi": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 11
+		}
+	}, 
+	"minbytes": 31, 
+	"sentbytes": "2182"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30031100", 
+	"name": "Commande tous segments adac : arr\u00eat"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_OubliCeintureBasse"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage alerte BVA", 
+	"replybytes": "619D14", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}
+	}, 
+	"minbytes": 16, 
+	"sentbytes": "219D14"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Prestation Survitesse Arabie": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110F00", 
+	"name": "Ecriture Config : Option Survitesse Arabie"
+	}, 
+	{
+	"name": "Prise en compte ecriture EEPROM", 
+	"replybytes": "71FC00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FC0001"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage activationALS", 
+	"replybytes": "619D08", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D08"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0901000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_D\u00e9sactivationALS"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 3": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010300", 
+	"name": "Ecriture param\u00e9trage du palier 3 instrum"
+	}, 
+	{
+	"name": "Lecture parametrage buzzer", 
+	"replybytes": "619D", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Type de m\u00e9lodie": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 16, 
+	"sentbytes": "219D00"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 9": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010900", 
+	"name": "Ecriture param\u00e9trage du palier 9 A3"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 8": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010800", 
+	"name": "Ecriture param\u00e9trage du palier 8 instrum"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "300A1100", 
+	"name": "Commande buzzer : arret"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Pr\u00e9sence ABS/ ESP/VSU": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110A10", 
+	"name": "Ecriture Config : ESP/ABS/VSU"
+	}, 
+	{
+	"name": "Commande digits VITESSE : marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Consigne Vitesse": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30042000"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage alerte carburant", 
+	"replybytes": "619D0F", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D0F"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage RV/LV", 
+	"replybytes": "619D0D", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D0D"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Autonomie de vidange en temps": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B111218", 
+	"name": "Ecriture Param : Autonomie de vidange Mois"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage oubliceinturebasse", 
+	"replybytes": "619D00", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D00"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Unit\u00e9 de temp\u00e9rature": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110D00", 
+	"name": "Ecriture Config : Unit\u00e9 de temp\u00e9rature"
+	}, 
+	{
+	"name": "Lecture valeurs rh\u00e9ostat", 
+	"replybytes": "6194", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Luminosit\u00e9 en 250eme": {
+		"firstbyte": 3
+		}, 
+		"Valeur lue sur entr\u00e9e Rh\u00e9ostat (en mV)": {
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 5, 
+	"sentbytes": "2194"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage d\u00e9sactivation conda_auto", 
+	"replybytes": "619D0B", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D0B"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage survitesse arabie", 
+	"replybytes": "619D0E", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Fr\u00e9quence4_Motif de base": {
+		"firstbyte": 21
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence3_Motif de base": {
+		"firstbyte": 17
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e4_Motif de base": {
+		"firstbyte": 23
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}, 
+		"Dur\u00e9e3_Motif de base": {
+		"firstbyte": 19
+		}
+	}, 
+	"minbytes": 24, 
+	"sentbytes": "219D0E"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Autonomie de vidange en distance": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B11111E", 
+	"name": "Ecriture Param : Autonomie de vidange Km"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 3": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010300", 
+	"name": "Ecriture param\u00e9trage du palier 3 A3"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0A01000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_ActivationCondaAuto"
+	}, 
+	{
+	"name": "Ecriture EEPROM_Soft5_08_tensionProtec", 
+	"replybytes": "71FA00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FA000500DA0435015302"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0401000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_ClignotantClic"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage diagnosticrenault", 
+	"replybytes": "619D02", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}
+	}, 
+	"minbytes": 16, 
+	"sentbytes": "219D02"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D1001000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_Alerte1ereGravit\u00e9"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage alerte SSPP", 
+	"replybytes": "619D11", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D11"
+	}, 
+	{
+	"name": "Commande SEG OUV : marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Segments VFD Ouvrants": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30022000"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 0": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010000", 
+	"name": "Ecriture param\u00e9trage du palier 0 A3"
+	}, 
+	{
+	"name": "ReadDTC", 
+	"replybytes": "57", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Historical Failure": {
+		"bitoffset": 1, 
+		"firstbyte": 5
+		}, 
+		"Current Failure": {
+		"bitoffset": 2, 
+		"firstbyte": 5
+		}, 
+		"NDTC": {
+		"firstbyte": 2
+		}, 
+		"Standard Fault": {
+		"bitoffset": 3, 
+		"firstbyte": 5
+		}, 
+		"FirstDTC": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "17FF00", 
+	"shiftbytescount": 3
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0900000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_D\u00e9sactivationALS"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"VIN (CRC)": {
+		"firstbyte": 20
+		}, 
+		"VIN (Num\u00e9ro d'Identification)": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B8101020304050607080910111213141516171819", 
+	"name": "Ecriture VIN"
+	}, 
+	{
+	"name": "Lecture EEPROM NbRazOdoGeneral", 
+	"replybytes": "71FB0000", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Nb Raz Odo General": {
+		"firstbyte": 4
+		}, 
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 4, 
+	"sentbytes": "31FB000500D801"
+	}, 
+	{
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "310100", 
+	"name": "Routine SORTIE TEST INTERNE"
+	}, 
+	{
+	"name": "TesterPresent", 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "3E", 
+	"replybytes": "7E"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 9": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010900", 
+	"name": "Ecriture param\u00e9trage du palier 9 instrum"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30032000", 
+	"name": "Commande tous segments adac : marche"
+	}, 
+	{
+	"name": "Commande SEG BVA : marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Segments VFD BVA": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30022000"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0C0000000000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_D\u00e9faillanceCondaEnfant"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Prestation RV/LV": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110E10", 
+	"name": "Ecriture Config : Option RV/LV"
+	}, 
+	{
+	"name": "Commande VOYANTS: arret", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Voyant": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30011100"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Type de carrosserie": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110350", 
+	"name": "Ecriture Config : Type de carrosserie"
+	}, 
+	{
+	"name": "Ecriture EEPROM KmajS1 et KminS1", 
+	"replybytes": "71FA00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"JC_KminS1": {
+		"firstbyte": 8
+		}, 
+		"JC_KmajS1": {
+		"firstbyte": 9
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FA00050072026464"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0C01000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_D\u00e9faillanceCondaEnfant"
+	}, 
+	{
+	"name": "Lecture Mapping EEPROM", 
+	"replybytes": "71FB00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Mapping EEPROM": {
+		"firstbyte": 4
+		}, 
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 255, 
+	"sentbytes": "31FB00050000FF"
+	}, 
+	{
+	"name": "Ouverture de session fournisseur test soudure", 
+	"replybytes": "50", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Diagnosticmode": {
+		"firstbyte": 2
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Session Name": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "10FD"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 7": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010700", 
+	"name": "Ecriture param\u00e9trage du palier 7 instrum"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 1": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010100", 
+	"name": "Ecriture param\u00e9trage du palier 1 A3"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0F01000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_AlerteCarburant"
+	}, 
+	{
+	"name": "Copy Commande SEGMENTS Grille BVA:arr\u00eat", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Etat Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30021100"
+	}, 
+	{
+	"name": "Commande SEG BVA/SSPP/OUV:arr\u00eat", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Segments VFD SSPP/Ouvrants/BVA": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30021100"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat instrum 1": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F00010100", 
+	"name": "Ecriture param\u00e9trage du palier 1 instrum"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Temps d'affichage mini pour instrum": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F0200000000", 
+	"name": "Ecriture param\u00e9trage dur\u00e9e min instrum"
+	}, 
+	{
+	"name": "Commande SEG BVA/SSPP/OUV:marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Segments VFD SSPP/Ouvrants/BVA": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30022000"
+	}, 
+	{
+	"name": "Lecture n\u00b0 homologation CV", 
+	"replybytes": "6117", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Numero homologation compteur vitesse": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "2117"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Type sc\u00e9nario VSC": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110600", 
+	"name": "Ecriture Config : type sc\u00e9nario VSC"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D1101000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_AlerteSSPP"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage alerte premi\u00e8re gravit\u00e9", 
+	"replybytes": "619D10", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D10"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0601000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_OubliLanternes"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage survitesse PAX", 
+	"replybytes": "619D12", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Fr\u00e9quence4_Motif de base": {
+		"firstbyte": 21
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence3_Motif de base": {
+		"firstbyte": 17
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e4_Motif de base": {
+		"firstbyte": 23
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}, 
+		"Dur\u00e9e3_Motif de base": {
+		"firstbyte": 19
+		}
+	}, 
+	"minbytes": 24, 
+	"sentbytes": "219D12"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0201000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_DiagRenault"
+	}, 
+	{
+	"name": "Lecture Date Derni\u00e8re Intervention APV", 
+	"replybytes": "61B0", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Date derni\u00e8re intervention AV \u00e0 lire": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 5, 
+	"sentbytes": "21B0"
+	}, 
+	{
+	"name": "Ecriture EEPROM_nbRAZ_Adac", 
+	"replybytes": "71FA00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FA000500D80100"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 6": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010600", 
+	"name": "Ecriture param\u00e9trage du palier 6 A3"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D140000000000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_AlerteBVA"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D1500000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_AlerteFreinParkingInactif"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30032001", 
+	"name": "Commande affichage radio : marche"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Temps actif_tempo active": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D00020000", 
+	"name": "ConfigDesM\u00e9lodies_TA_OubliCeintureBasse"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Temps d'affichage maxi pour instrum": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F0300000000", 
+	"name": "Ecriture param\u00e9trage dur\u00e9e max instrum"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D1501000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_AlerteFreinInactif"
+	}, 
+	{
+	"name": "Ecriture EEPROM_Soft5_08_numVersion", 
+	"replybytes": "71FA00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FA000500D4020005"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Type d'affichage ADAC": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110700", 
+	"name": "Ecriture Config : Type d'affichage ADAC"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Temps d'affichage mini pour A3": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F0400000000", 
+	"name": "Ecriture param\u00e9trage dur\u00e9e min A3"
+	}, 
+	{
+	"name": "Commande barregraphe CARBURANT : marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Consigne Carburant": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30062000"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage alertefreinparking", 
+	"replybytes": "619D15", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D15"
+	}, 
+	{
+	"name": "Lecture EEPROM KmajS2 et KminS2", 
+	"replybytes": "71FB000000", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"JC_KminS2": {
+		"firstbyte": 4
+		}, 
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}, 
+		"JC_KmajS2": {
+		"firstbyte": 5
+		}
+	}, 
+	"minbytes": 5, 
+	"sentbytes": "31FB0005007402"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0E01000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_SurvitesseArabie"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage oublicarte", 
+	"replybytes": "619D07", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 15
+		}
+	}, 
+	"minbytes": 16, 
+	"sentbytes": "219D07"
+	}, 
+	{
+	"name": "Ecriture EEPROM_Soft5_08_numRevision", 
+	"replybytes": "71FA00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FA000500D6020000"
+	}, 
+	{
+	"name": "Lecture Valeurs Mesur\u00e9es", 
+	"replybytes": "6112", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Carburant consomm\u00e9": {
+		"ref": true, 
+		"firstbyte": 15
+		}, 
+		"Mesure DeltaU": {
+		"ref": true, 
+		"firstbyte": 20
+		}, 
+		"D\u00e9bit carburant": {
+		"ref": true, 
+		"firstbyte": 17
+		}, 
+		"L0": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Temp\u00e9rature ext\u00e9rieure (CAN)": {
+		"firstbyte": 28
+		}, 
+		"Mesure U1": {
+		"ref": true, 
+		"firstbyte": 18
+		}, 
+		"Mesure U2": {
+		"ref": true, 
+		"firstbyte": 22
+		}, 
+		"L1 GPL": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"L0 GPL": {
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"L2 GPL": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"L2": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Tension Rh\u00e9ostat": {
+		"firstbyte": 26
+		}, 
+		"L1": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Tension Batterie": {
+		"firstbyte": 24
+		}
+	}, 
+	"minbytes": 28, 
+	"sentbytes": "2112"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0D00000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_RV/LV"
+	}, 
+	{
+	"name": "Commande barregraphe COMPTE-TOURS : marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Consigne R\u00e9gime": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30052000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30071100", 
+	"name": "Commande barregraphe TEMP EAU : arret"
+	}, 
+	{
+	"name": "Ouverture de session fournisseur", 
+	"replybytes": "50", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Diagnosticmode": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "10FB"
+	}, 
+	{
+	"name": "Lecture Etat des Entr\u00e9es/Sorties", 
+	"replybytes": "6110", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Absence d'info CAN D\u00e9bit carburant : panne pr\u00e9sente": {
+		"firstbyte": 7
+		}, 
+		"Information capteur GNV/GNC (Ohms) CAN": {
+		"firstbyte": 14
+		}, 
+		"Jauge carburant (circuit ouvert) m\u00e9mo": {
+		"bitoffset": 7, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Jauge carburant (court-circuit)": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"APC (CAN)": {
+		"bitoffset": 3, 
+		"firstbyte": 4
+		}, 
+		"Jauge carburant (court-circuit) m\u00e9mo": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Jauge carburant (circuit ouvert)": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Absence d'info CAN D\u00e9bit carburant: panne m\u00e9mo": {
+		"bitoffset": 7, 
+		"firstbyte": 6
+		}, 
+		"Etat entr\u00e9e filaire radio_on_in": {
+		"bitoffset": 5, 
+		"firstbyte": 7
+		}, 
+		"Jauge carburant GPL (court-circuit)": {
+		"bitoffset": 6, 
+		"firstbyte": 6
+		}, 
+		"Etat contact Incident frein-NIVOCOD (filaire)": {
+		"bitoffset": 7, 
+		"firstbyte": 3
+		}, 
+		"+Lanterne (CAN)": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Etat Touche D\u00e9filADAC sens + (CAN)": {
+		"firstbyte": 3
+		}, 
+		"Etat Contact frein de parking (filaire)": {
+		"bitoffset": 2, 
+		"firstbyte": 3
+		}, 
+		"Etat alerte ceinture  passager (avec d\u00e9tection passager)(CAN)": {
+		"bitoffset": 4, 
+		"firstbyte": 3
+		}, 
+		"Etat Touche RAZ ODO": {
+		"bitoffset": 1, 
+		"firstbyte": 3
+		}, 
+		"Absence d'info CAN Jauge GPL: panne pr\u00e9sente": {
+		"bitoffset": 2, 
+		"firstbyte": 7
+		}, 
+		"Etat d\u00e9faut pression huile (CAN)": {
+		"bitoffset": 5, 
+		"firstbyte": 3
+		}, 
+		"Feux brouillard AV (CAN)": {
+		"bitoffset": 7, 
+		"firstbyte": 4
+		}, 
+		"Information carburant consomm\u00e9 (mm3) CAN": {
+		"firstbyte": 17
+		}, 
+		"Absence d'info CAN Jauge GPL: panne m\u00e9mo": {
+		"bitoffset": 1, 
+		"firstbyte": 7
+		}, 
+		"Feux route (CAN)": {
+		"bitoffset": 6, 
+		"firstbyte": 4
+		}, 
+		"D\u00e9tection d\u00e9faut pression huile (allumage voyant)": {
+		"bitoffset": 6, 
+		"firstbyte": 3
+		}, 
+		"Etat charge batterie (CAN)": {
+		"bitoffset": 1, 
+		"firstbyte": 4
+		}, 
+		"Absence d'information CAN T\u00b0 Eau: panne pr\u00e9sente": {
+		"bitoffset": 4, 
+		"firstbyte": 7
+		}, 
+		"Niveau huile (circuit ouvert) m\u00e9mo": {
+		"bitoffset": 3, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Niveau huile (court-circuit) m\u00e9mo": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Niveau huile (circuit ouvert)": {
+		"bitoffset": 5, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Rh\u00e9ostat : \u00e9tat pr\u00e9sence \u00e0 partir URh\u00e9o (avec tol)": {
+		"bitoffset": 6, 
+		"firstbyte": 7
+		}, 
+		"Feux brouillard AR (CAN)": {
+		"firstbyte": 5
+		}, 
+		"Etat contact ceinture  conducteur (CAN)": {
+		"bitoffset": 3, 
+		"firstbyte": 3
+		}, 
+		"Jauge carburant GPL (court-circuit) m\u00e9mo": {
+		"bitoffset": 4, 
+		"firstbyte": 6
+		}, 
+		"R\u00e9gime moteur (tr/mn) CAN": {
+		"firstbyte": 8
+		}, 
+		"Jauge carburant GPL (circuit ouvert)": {
+		"bitoffset": 5, 
+		"firstbyte": 6
+		}, 
+		"Vitesse v\u00e9hicule (km/h) CAN": {
+		"firstbyte": 10
+		}, 
+		"Absence d'information CAN T\u00b0 Eau : panne m\u00e9mo": {
+		"bitoffset": 3, 
+		"firstbyte": 7
+		}, 
+		"Jauge carburant GPL (circuit ouvert) m\u00e9mo": {
+		"bitoffset": 3, 
+		"firstbyte": 6
+		}, 
+		"D\u00e9tection d\u00e9faut charge batterie (allumage voyant)": {
+		"bitoffset": 2, 
+		"firstbyte": 4
+		}, 
+		"Information capteur jauge GPL (Ohms) CAN": {
+		"firstbyte": 12
+		}, 
+		"Niveau huile (court-circuit)": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Information temp\u00e9rature moteur (\u00b0C) CAN": {
+		"firstbyte": 16
+		}, 
+		"Feux croisement (CAN)": {
+		"bitoffset": 5, 
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 17, 
+	"sentbytes": "2110"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 7": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010700", 
+	"name": "Ecriture param\u00e9trage du palier 7 A3"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Niveau d'alerte carburant": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B111506", 
+	"name": "Ecriture Param : Niveau d'alerte carburant"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage d\u00e9sactivationALS", 
+	"replybytes": "619D09", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D09"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0B00000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_D\u00e9sactivationCondaAuto"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Fr\u00e9quence4_Motif de base": {
+		"firstbyte": 19
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence3_Motif de base": {
+		"firstbyte": 15
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e4_Motif de base": {
+		"firstbyte": 21
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Dur\u00e9e3_Motif de base": {
+		"firstbyte": 17
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0E00000000000000000000000000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_SurvitesseArabie"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Avec demande de r\u00e9ponse": {
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"name": "TesterPresent 02 (avec demande de non r\u00e9ponse)", 
+	"sentbytes": "3E02"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Palier rheostat A3 4": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F01010400", 
+	"name": "Ecriture param\u00e9trage du palier 4 A3"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30041100", 
+	"name": "Commande digits VITESSE : arret"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Type de frein de parking": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110200", 
+	"name": "Ecriture Config : Type de frein de parking"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Type de carburation": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110500", 
+	"name": "Ecriture Config : Type de carburation"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0F00000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_AlerteCarburant"
+	}, 
+	{
+	"name": "Lecture infos tra\u00e7abilit\u00e9 TdB", 
+	"replybytes": "6184", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Num\u00e9ro de s\u00e9rie tra\u00e7abilit\u00e9 pi\u00e8ce": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 18, 
+	"sentbytes": "2184"
+	}, 
+	{
+	"name": "Ecriture EEPROM Seuil B et SeuilH", 
+	"replybytes": "71FA00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"JC_SeuilB": {
+		"firstbyte": 8
+		}, 
+		"JC_SeuilH": {
+		"firstbyte": 9
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FA00050076020A37"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0801000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_ActivationALS"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Fr\u00e9quence4_Motif de base": {
+		"firstbyte": 19
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence3_Motif de base": {
+		"firstbyte": 15
+		}, 
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e4_Motif de base": {
+		"firstbyte": 21
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Dur\u00e9e3_Motif de base": {
+		"firstbyte": 17
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D1200000000000000000000000000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_SurvitessePAX"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Temps d'affichage maxi pour A3": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B9F0500000000", 
+	"name": "Ecriture param\u00e9trage dur\u00e9e max A3"
+	}, 
+	{
+	"name": "Commande VOYANTS: marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Voyant": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30012000"
+	}, 
+	{
+	"name": "Copy Commande SEGMENTS Grille BVA:marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Etat Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30022000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "300A2000", 
+	"name": "Commande buzzer : marche"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30061100", 
+	"name": "Commande barregraphe CARBURANT : arret"
+	}, 
+	{
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "310200", 
+	"name": "Routine RESTART TDB"
+	}, 
+	{
+	"name": "Lecture Identification Calculateur", 
+	"replybytes": "6180", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Num\u00e9ro du logiciel": {
+		"firstbyte": 17
+		}, 
+		"Num\u00e9ro de version": {
+		"firstbyte": 19
+		}, 
+		"Num\u00e9ro de pi\u00e8ce MPR (en BCD)": {
+		"firstbyte": 3
+		}, 
+		"Code identification diagnostic": {
+		"firstbyte": 8
+		}, 
+		"Num\u00e9ro de calibration": {
+		"firstbyte": 21
+		}, 
+		"Num\u00e9ro de s\u00e9rie": {
+		"firstbyte": 3
+		}, 
+		"Code identification constructeur": {
+		"firstbyte": 26
+		}, 
+		"Num\u00e9ro fournisseur (code ITG)": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Num\u00e9ro hardware (en BCD)": {
+		"firstbyte": 12
+		}
+	}, 
+	"minbytes": 26, 
+	"sentbytes": "2180"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage activation conda_auto", 
+	"replybytes": "619D0A", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 4
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D0A"
+	}, 
+	{
+	"name": "Lecture parametrage rheostat", 
+	"replybytes": "619F", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Palier rheostat instrum 6": {
+		"firstbyte": 9
+		}, 
+		"Palier rheostat instrum 7": {
+		"firstbyte": 10
+		}, 
+		"Palier rheostat instrum 4": {
+		"firstbyte": 7
+		}, 
+		"Palier rheostat instrum 5": {
+		"firstbyte": 8
+		}, 
+		"Palier rheostat instrum 2": {
+		"firstbyte": 5
+		}, 
+		"Palier rheostat instrum 3": {
+		"firstbyte": 6
+		}, 
+		"Palier rheostat instrum 0": {
+		"firstbyte": 3
+		}, 
+		"Palier rheostat instrum 1": {
+		"firstbyte": 4
+		}, 
+		"Palier rheostat instrum 8": {
+		"firstbyte": 11
+		}, 
+		"Palier rheostat instrum 9": {
+		"firstbyte": 12
+		}, 
+		"Temps d'affichage mini pour instrum": {
+		"firstbyte": 23
+		}, 
+		"Temps d'affichage mini pour A3": {
+		"firstbyte": 27
+		}, 
+		"Temps d'affichage maxi pour instrum": {
+		"firstbyte": 25
+		}, 
+		"Temps d'affichage maxi pour A3": {
+		"firstbyte": 29
+		}, 
+		"Palier rheostat A3 9": {
+		"firstbyte": 22
+		}, 
+		"Palier rheostat A3 8": {
+		"firstbyte": 21
+		}, 
+		"Palier rheostat A3 5": {
+		"firstbyte": 18
+		}, 
+		"Palier rheostat A3 4": {
+		"firstbyte": 17
+		}, 
+		"Palier rheostat A3 7": {
+		"firstbyte": 20
+		}, 
+		"Palier rheostat A3 6": {
+		"firstbyte": 19
+		}, 
+		"Palier rheostat A3 1": {
+		"firstbyte": 14
+		}, 
+		"Palier rheostat A3 0": {
+		"firstbyte": 13
+		}, 
+		"Palier rheostat A3 3": {
+		"firstbyte": 16
+		}, 
+		"Palier rheostat A3 2": {
+		"firstbyte": 15
+		}
+	}, 
+	"minbytes": 30, 
+	"sentbytes": "219F"
+	}, 
+	{
+	"name": "Commande SEG OUV : arret", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Identificateur Segments VFD Ouvrants": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30021100"
+	}, 
+	{
+	"name": "Lecture param\u00e9trage oubliceinturehaute", 
+	"replybytes": "619D01", 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"receivebyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 7
+		}
+	}, 
+	"minbytes": 12, 
+	"sentbytes": "219D01"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+		"firstbyte": 5
+		}, 
+		"Temps mort_S\u00e9quence Sonore": {
+		"firstbyte": 6
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0701000000", 
+	"name": "ConfigDesM\u00e9lodies_SS_OubliCarte"
+	}, 
+	{
+	"name": "Ecriture EEPROM KmajS2 et KminS2", 
+	"replybytes": "71FA00", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"JC_KminS2": {
+		"firstbyte": 8
+		}, 
+		"JC_KmajS2": {
+		"firstbyte": 9
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "31FA00050074024682"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D070000000000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_OubliCarte"
+	}, 
+	{
+	"name": "Lecture EEPROM K et seuils jaugeage", 
+	"replybytes": "71FB00000000000000", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Routine en r\u00e9ponse": {
+		"firstbyte": 3
+		}, 
+		"JC_SeuilB": {
+		"firstbyte": 8
+		}, 
+		"JC_KmajS2": {
+		"firstbyte": 7
+		}, 
+		"JC_KminS1": {
+		"firstbyte": 4
+		}, 
+		"JC_KmajS1": {
+		"firstbyte": 5
+		}, 
+		"JC_KminS2": {
+		"firstbyte": 6
+		}, 
+		"JC_SeuilH": {
+		"firstbyte": 9
+		}
+	}, 
+	"minbytes": 9, 
+	"sentbytes": "31FB0005007206"
+	}, 
+	{
+	"name": "Ouverture de session d\u00e9veloppement", 
+	"replybytes": "50", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Diagnosticmode": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "1086"
+	}, 
+	{
+	"name": "Start Diagnostic Session", 
+	"replybytes": "50", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Diagnosticmode": {
+		"firstbyte": 2
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Session Name": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "1081"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "30062000", 
+	"name": "Commande barregraphe CARBURANT : arret2"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Pr\u00e9sence SSPP/PAX": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "3B110B10", 
+	"name": "Ecriture Config : SSPP/PAX"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D0800000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_ActivationALS"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Fr\u00e9quence2_Motif de base": {
+		"firstbyte": 11
+		}, 
+		"Dur\u00e9e2_Motif de base": {
+		"firstbyte": 13
+		}, 
+		"Dur\u00e9e_Motif de base": {
+		"firstbyte": 9
+		}, 
+		"Fr\u00e9quence_Motif de base": {
+		"firstbyte": 7
+		}, 
+		"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+		"firstbyte": 5
+		}
+	}, 
+	"deny_sds": [
+		"nosds", 
+		"plant", 
+		"aftersales", 
+		"engineering"
+	], 
+	"minbytes": 2, 
+	"sentbytes": "3B9D060000000000000000000000", 
+	"name": "ConfigDesM\u00e9lodies_MDB_OubliLanternes"
+	}, 
+	{
+	"name": "Commande Eclairage Afficheurs : marche", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Status Pilotage": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Consigne Eclairage Afficheurs": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30092000"
+	}
+], 
+"data": {
+	"R\u00e9f\u00e9rence version messagerie": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Num\u00e9ro de s\u00e9rie tra\u00e7abilit\u00e9 pi\u00e8ce": {
+	"comment": "num\u00e9ro de s\u00e9rie unitaire de la pi\u00e8ce pour service de tra\u00e7abilit\u00e9 $21$84", 
+	"bytescount": 16, 
+	"byte": true, 
+	"bitscount": 128
+	}, 
+	"Barregraphe COMPTE-TOURS.mode": {
+	"scaled": true, 
+	"step": 100.0, 
+	"unit": "tr/mn"
+	}, 
+	"Num\u00e9ro de s\u00e9rie": {
+	"comment": "numero de s\u00e9rie pi\u00e8ce pour service identification TdB $21$80", 
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24
+	}, 
+	"EPS absent": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pr\u00e9sent", 
+		"1": "absent"
+	}
+	}, 
+	"Tension Batterie": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"divideby": 1000.0, 
+	"bitscount": 16, 
+	"unit": "Volts"
+	}, 
+	"Temps actif_tempo active": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "s"
+	}, 
+	"Temps d'affichage mini pour instrum": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"Etat alerte ceinture  passager (avec d\u00e9tection passager)(CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "pas d'alerte", 
+		"1": "alerte demand\u00e9e"
+	}
+	}, 
+	"Identificateur Segments VFD Ouvrants": {
+	"lists": {
+		"1": "Porte Avant Droite", 
+		"6": "Porte Avant Gauche", 
+		"9": "Porte Arri\u00e8re Droite", 
+		"14": "Porte Arri\u00e8re Gauche", 
+		"23": "Corps de V\u00e9hicule", 
+		"31": "Coffre"
+	}
+	}, 
+	"Output Control Command": {
+	"comment": "Testing output : Command enumeration", 
+	"lists": {
+		"32": "Start Permanent", 
+		"1": "Status", 
+		"17": "Stop"
+	}
+	}, 
+	"R\u00e9gime moteur (tr/mn) CAN": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"EPS absent: compteur M_absent": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"Temps d'affichage mini pour A3": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"Current Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"Feux brouillard AV (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"Code identification constructeur": {
+	"lists": {
+		"0": "Code constructeur Renault (par d\u00e9faut)"
+	}
+	}, 
+	"Consigne Vitesse": {
+	"scaled": true, 
+	"unit": "km/h"
+	}, 
+	"Capacit\u00e9 du r\u00e9servoir (en litres)": {
+	"scaled": true, 
+	"unit": "Litres"
+	}, 
+	"Mesure DeltaU": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"comment": "Delta de tension de sonde  NH entre t1 et t2", 
+	"bitscount": 16, 
+	"unit": "mV"
+	}, 
+	"Type de langue": {
+	"lists": {
+		"0": "Francais (par d\u00e9faut)", 
+		"80": "Hollandais", 
+		"16": "Anglais", 
+		"32": "Italien", 
+		"64": "Espagnol", 
+		"112": "Turc", 
+		"128": "Polonais", 
+		"96": "Portugais", 
+		"48": "Allemand"
+	}
+	}, 
+	"Consigne Eclairage Afficheurs": {
+	"scaled": true
+	}, 
+	"Niveau huile (court-circuit) m\u00e9mo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de panne m\u00e9moris\u00e9e", 
+		"1": "Panne m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Code identification diagnostic": {
+	"lists": {
+		"4": "Code Identification correct"
+	}
+	}, 
+	"Identificateur Segments VFD SSPP/Ouvrants/BVA": {
+	"lists": {
+		"0": "Contour Roue Avant Droite", 
+		"1": "Porte Avant Droite", 
+		"2": "Contour D (BVA)", 
+		"3": "P sans contour (BVA)", 
+		"4": "Chiffre  3  ( BVA)", 
+		"5": "Chiffre 2 (BVA)", 
+		"6": "Porte Avant Gauche", 
+		"7": "Contour Roue Avant Gauche", 
+		"8": "Int\u00e9rieur Roue Avant Droite", 
+		"9": "Porte Arri\u00e8re Droite", 
+		"10": "D sans contour  (BVA)", 
+		"11": "Contour P (BVA)", 
+		"12": "Chiffre 4 (BVA)", 
+		"13": "Chiffre  6 (BVA)", 
+		"14": "Porte Arri\u00e8re Gauche", 
+		"15": "Int\u00e9rieur Roue Avant Gauche", 
+		"16": "N.U.", 
+		"17": "Contour Roue Arri\u00e8re Droite", 
+		"18": "N sans contour (BVA)", 
+		"19": "Contour R (BVA)", 
+		"20": "Chiffre 5 (BVA)", 
+		"21": "Chiffre 1 (BVA)", 
+		"22": "Contour Roue Arri\u00e8re Gauche", 
+		"23": "Corps de V\u00e9hicule", 
+		"24": "N.U. 24", 
+		"25": "Int\u00e9rieur Roue Arri\u00e8re Droite", 
+		"26": "Contour N (BVA)", 
+		"27": "R sans contour (BVA)", 
+		"28": "Chiffre 0 (BVA)", 
+		"29": "Contour digit 7 segments ( BVA )", 
+		"30": "Int\u00e9rieur Roue Arri\u00e8re Gauche", 
+		"31": "Coffre", 
+		"32": "Chiffre 8 (BVA)"
+	}
+	}, 
+	"Feux brouillard AR (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"JC_KmajS1": {
+	"scaled": true, 
+	"divideby": 100.0
+	}, 
+	"Palier rheostat A3 8": {
+	"scaled": true
+	}, 
+	"JC_KmajS2": {
+	"scaled": true, 
+	"divideby": 100.0
+	}, 
+	"Palier rheostat A3 5": {
+	"scaled": true
+	}, 
+	"Palier rheostat A3 4": {
+	"scaled": true
+	}, 
+	"Palier rheostat A3 7": {
+	"scaled": true
+	}, 
+	"Palier rheostat A3 6": {
+	"scaled": true
+	}, 
+	"Palier rheostat A3 1": {
+	"scaled": true
+	}, 
+	"Palier rheostat A3 0": {
+	"scaled": true
+	}, 
+	"Palier rheostat A3 3": {
+	"scaled": true
+	}, 
+	"Palier rheostat A3 2": {
+	"scaled": true
+	}, 
+	"Vitesse v\u00e9hicule (km/h) CAN": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"EPSabsent: compteur C_absent au maxi": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "inf\u00e9rieur au max", 
+		"1": "Maximum atteint"
+	}
+	}, 
+	"Output Control Status": {
+	"lists": {
+		"1": "Running", 
+		"2": "Stopped", 
+		"17": "Manually Stopped"
+	}
+	}, 
+	"Jauge carburant (court-circuit) m\u00e9mo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de panne m\u00e9moris\u00e9e", 
+		"1": "Panne m\u00e9moris\u00e9e"
+	}
+	}, 
+	"VOYANTS.mode": {
+	"lists": {
+		"0": "Service", 
+		"1": "Feux de Brouillard Avant", 
+		"2": "Airbag Passager", 
+		"3": "Stop", 
+		"4": "ABS", 
+		"5": "Feux de Route", 
+		"6": "Feux de Croisement", 
+		"7": "Feux de Brouillard Arri\u00e8re", 
+		"8": "ESP", 
+		"9": "Clignotant Gauche", 
+		"10": "RV", 
+		"11": "LV", 
+		"12": "Clignotant Droit", 
+		"13": "Ouvrant / Crevaison", 
+		"14": "Incident Frein", 
+		"15": "Ceinture Conducteur", 
+		"16": "Pression Huile", 
+		"17": "GPL", 
+		"18": "Mini Carburant", 
+		"19": "Charge Batterie", 
+		"20": "OBD", 
+		"21": "D\u00e9faut Airbag"
+	}
+	}, 
+	"Num\u00e9ro de calibration": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Luminosit\u00e9 en 250eme": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"Dur\u00e9e5_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "ms"
+	}, 
+	"ABS absent: compteur M_absent": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"Num\u00e9ro fournisseur (code ITG)": {
+	"bytesascii": true, 
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24
+	}, 
+	"D\u00e9tection d\u00e9faut pression huile (allumage voyant)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "conditions non remplies", 
+		"1": "conditions remplies (contact ferm\u00e9 et vitesse>seuil)"
+	}
+	}, 
+	"Niveau d'alerte GPL": {
+	"scaled": true, 
+	"unit": "Litres"
+	}, 
+	"Mapping EEPROM": {
+	"bytescount": 252, 
+	"byte": true, 
+	"bitscount": 2016
+	}, 
+	"Niveau huile (court-circuit)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Panne non pr\u00e9sente", 
+		"1": "Panne pr\u00e9sente"
+	}
+	}, 
+	"Jauge carburant (circuit ouvert) m\u00e9mo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de panne m\u00e9moris\u00e9e", 
+		"1": "Panne m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Type de carburation": {
+	"lists": {
+		"0": "Essence (par d\u00e9faut)", 
+		"16": "Diesel", 
+		"32": "Bicarburation Essence/GPL", 
+		"48": "Bicarburation Essence/GNV"
+	}
+	}, 
+	"Pr\u00e9sence SSPP/PAX": {
+	"lists": {
+		"0": "Sans SSPP ni PAX", 
+		"16": "Avec SSPP sans PAX (par d\u00e9faut)", 
+		"32": "Avec SSPP avec PAX"
+	}
+	}, 
+	"UCH absent: compteur C_absent au maxi": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "inf\u00e9rieur au max", 
+		"1": "Maximum atteint"
+	}
+	}, 
+	"Compteur VITESSE.mode": {
+	"scaled": true, 
+	"unit": "km/h"
+	}, 
+	"Etat entr\u00e9e filaire radio_on_in": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absence de 12 Volts", 
+		"1": "Pr\u00e9sence 12V"
+	}
+	}, 
+	"Absence d'info CAN D\u00e9bit carburant: panne m\u00e9mo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de panne m\u00e9moris\u00e9e", 
+		"1": "Panne m\u00e9moris\u00e9e"
+	}
+	}, 
+	"JC_KminS2": {
+	"scaled": true, 
+	"divideby": 100.0
+	}, 
+	"Absence d'info CAN D\u00e9bit carburant : panne pr\u00e9sente": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Panne non pr\u00e9sente", 
+		"1": "Panne pr\u00e9sente"
+	}
+	}, 
+	"MODULE MUET": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Module pr\u00e9sent", 
+		"1": "module muet"
+	}
+	}, 
+	"Etat Touche D\u00e9filADAC sens + (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non activ\u00e9e", 
+		"1": "activ\u00e9e"
+	}
+	}, 
+	"Date derni\u00e8re intervention AV \u00e0 lire": {
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24
+	}, 
+	"Absence d'info CAN Jauge GPL: panne pr\u00e9sente": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Panne non pr\u00e9sente", 
+		"1": "Panne pr\u00e9sente"
+	}
+	}, 
+	"Identificateur Segments VFD BVA": {
+	"lists": {
+		"32": "Chiffre 8 (BVA)", 
+		"2": "Contour D (BVA)", 
+		"3": "P sans contour (BVA)", 
+		"4": "Chiffre  3  ( BVA)", 
+		"5": "Chiffre 2 (BVA)", 
+		"10": "D sans contour  (BVA)", 
+		"11": "Contour P (BVA)", 
+		"12": "Chiffre 4 (BVA)", 
+		"13": "Chiffre  6 (BVA)", 
+		"18": "N sans contour (BVA)", 
+		"19": "Contour R (BVA)", 
+		"20": "Chiffre 5 (BVA)", 
+		"21": "Chiffre 1 (BVA)", 
+		"26": "Contour N (BVA)", 
+		"27": "R sans contour (BVA)", 
+		"28": "Chiffre 0 (BVA)", 
+		"29": "Contour digit 7 segments ( BVA )"
+	}
+	}, 
+	"Nombre de r\u00e9p\u00e9tition_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"Dur\u00e9e2_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "ms"
+	}, 
+	"ABS absent": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pr\u00e9sent", 
+		"1": "absent"
+	}
+	}, 
+	"Output Permanent Control List": {
+	"lists": {
+		"1": "VOYANTS", 
+		"2": "SEGMENTS vignette SSPP/ouvrants et grille BVA", 
+		"3": "Afficheur zone alphanumerique et afficheur multimedia", 
+		"4": "Compteur VITESSE", 
+		"5": "Barregraphe COMPTE-TOURS", 
+		"6": "Barregraphe Jauge CARBURANT", 
+		"7": "Barregraphe TEMPERATURE EAU", 
+		"8": "(R\u00e9serv\u00e9 BCEKL 84)", 
+		"9": "Eclairage Afficheurs", 
+		"10": "BUZZER (type buzzer oubli \u00e9clairage)"
+	}
+	}, 
+	"VIN (Num\u00e9ro d'Identification)": {
+	"bytesascii": true, 
+	"bytescount": 17, 
+	"byte": true, 
+	"bitscount": 136
+	}, 
+	"Absence d'information CAN T\u00b0 Eau: panne pr\u00e9sente": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Panne non pr\u00e9sente", 
+		"1": "Panne pr\u00e9sente"
+	}
+	}, 
+	"Temp\u00e9rature ext\u00e9rieure (CAN)": {
+	"scaled": true, 
+	"unit": "\u00b0C"
+	}, 
+	"Mesure U1": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"comment": "1er mesure de tension NH", 
+	"bitscount": 16, 
+	"unit": "mV"
+	}, 
+	"Session Name": {
+	"lists": {
+		"192": "Session contr\u00f4le en cha\u00eene et diagnostic apr\u00e8s-vente", 
+		"129": "Session par d\u00e9faut", 
+		"251": "Session fournisseur", 
+		"253": "Session fournisseur test soudure", 
+		"134": "Session d\u00e9veloppement"
+	}
+	}, 
+	"Mesure U2": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"comment": "2eme mesure de tension NH", 
+	"bitscount": 16, 
+	"unit": "mV"
+	}, 
+	"Identificateur Voyant": {
+	"lists": {
+		"0": "Service", 
+		"1": "Feux de Brouillard Avant", 
+		"2": "Airbag Passager OFF", 
+		"3": "Stop", 
+		"4": "ABS", 
+		"5": "Feux de Route", 
+		"6": "Feux de Croisement", 
+		"7": "Feux de Brouillard Arri\u00e8re", 
+		"8": "ESP", 
+		"9": "Clignotant Gauche", 
+		"10": "RV", 
+		"11": "LV", 
+		"12": "Clignotant Droit", 
+		"14": "Incident Frein", 
+		"15": "Ceinture Conducteur", 
+		"16": "Pression Huile", 
+		"17": "GAS (GPL)", 
+		"18": "Mini Carburant", 
+		"19": "Charge Batterie", 
+		"20": "MIL/ OBD", 
+		"21": "D\u00e9faut Airbag", 
+		"22": "Shift Lock", 
+		"23": "alerte T\u00b0 eau moteur", 
+		"24": "D\u00e9faut FPA", 
+		"25": "Pr\u00e9chauffage Diesel"
+	}
+	}, 
+	"D\u00e9bit carburant": {
+	"scaled": true, 
+	"unit": "Litres / Heure"
+	}, 
+	"Etat contact ceinture  conducteur (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "ceinture attach\u00e9e", 
+		"1": "ceinture non attach\u00e9e"
+	}
+	}, 
+	"FirstDTC": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"37889": "Capteur Niveau Huile", 
+		"37890": "Capteur Jauge Carburant", 
+		"37891": "Capteur Rh\u00e9ostat"
+	}
+	}, 
+	"Jauge carburant GPL (court-circuit) m\u00e9mo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de panne m\u00e9moris\u00e9e", 
+		"1": "Panne m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Num\u00e9ro hardware (en BCD)": {
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"AIRBAG absent: compteur C_absent au maxi": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "inf\u00e9rieur au max", 
+		"1": "Maximum atteint"
+	}
+	}, 
+	"L1 GPL": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"divideby": 1000.0, 
+	"bitscount": 16, 
+	"unit": "litres"
+	}, 
+	"UPC absent: compteur C_absent au maxi": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "inf\u00e9rieur au max", 
+		"1": "Maximum atteint"
+	}
+	}, 
+	"Fr\u00e9quence_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "Hertz"
+	}, 
+	"Information capteur jauge GPL (Ohms) CAN": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Consigne Temp\u00e9rature": {
+	"scaled": true, 
+	"unit": "\u00b0C"
+	}, 
+	"Absence d'info CAN Jauge GPL: panne m\u00e9mo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de panne m\u00e9moris\u00e9e", 
+		"1": "Panne m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Unit\u00e9 de distance": {
+	"lists": {
+		"0": "Km (par d\u00e9faut)", 
+		"16": "Miles"
+	}
+	}, 
+	"L0": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"divideby": 1000.0, 
+	"bitscount": 16, 
+	"unit": "litres"
+	}, 
+	"Nombre de r\u00e9p\u00e9tition_S\u00e9quence Sonore": {
+	"scaled": true
+	}, 
+	"ABS absent: compteur  C_absent au maxi": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "inf\u00e9rieur au max", 
+		"1": "Maximum atteint"
+	}
+	}, 
+	"APC (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "APC absent", 
+		"1": "APC pr\u00e9sent"
+	}
+	}, 
+	"Fr\u00e9quence4_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "Hertz"
+	}, 
+	"UCH absent": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pr\u00e9sent", 
+		"1": "Absent"
+	}
+	}, 
+	"Jauge carburant GPL (court-circuit)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Panne non pr\u00e9sente", 
+		"1": "Panne pr\u00e9sente"
+	}
+	}, 
+	"Type de frein de parking": {
+	"lists": {
+		"0": "FPA", 
+		"16": "FPM"
+	}
+	}, 
+	"VIN (CRC)": {
+	"bytesascii": true, 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Etat Pilotage": {
+	"lists": {
+		"32": "Actif", 
+		"17": "Inactif"
+	}
+	}, 
+	"Etat Contact frein de parking (filaire)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "frein desserr\u00e9", 
+		"1": "frein serr\u00e9"
+	}
+	}, 
+	"Information temp\u00e9rature moteur (\u00b0C) CAN": {
+	"scaled": true, 
+	"offset": -40.0
+	}, 
+	"MODULE MUET: Compteur M_Mute": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"UCH absent: compteur M_absent": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"Eclairage Afficheurs.mode": {
+	"scaled": true
+	}, 
+	"Dur\u00e9e4_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "ms"
+	}, 
+	"Information capteur GNV/GNC (Ohms) CAN": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Feux croisement (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"Feux route (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"Dur\u00e9e3_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "ms"
+	}, 
+	"Etat charge batterie (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Contact ouvert", 
+		"1": "Contact ferm\u00e9"
+	}
+	}, 
+	"Num\u00e9ro de version": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Etat BUS: Compteur M_BusOff": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"Num\u00e9ro du logiciel": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"8": "B84", 
+		"9": "J84"
+	}
+	}, 
+	"Etat BUS ON ou OFF": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Bus ON", 
+		"1": "Bus OFF"
+	}
+	}, 
+	"Niveau huile (circuit ouvert)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Panne non pr\u00e9sente", 
+		"1": "Panne pr\u00e9sente"
+	}
+	}, 
+	"L2 GPL": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"divideby": 1000.0, 
+	"bitscount": 16, 
+	"unit": "litres"
+	}, 
+	"Type d'affichage ADAC": {
+	"lists": {
+		"0": "Europe Litres / 100 Kms (par d\u00e9faut)", 
+		"16": "GB Miles / 1 Gallon", 
+		"32": "Br\u00e9sil Kms / 1 Litre"
+	}
+	}, 
+	"Nb Raz Odo General": {
+	"scaled": true
+	}, 
+	"Pr\u00e9sence ABS/ ESP/VSU": {
+	"lists": {
+		"0": "avec ABS (sans ESP)", 
+		"16": "Avec ESP et ABS (par d\u00e9faut)", 
+		"32": "Avec VSU (sans ESP ni ABS)"
+	}
+	}, 
+	"Jauge carburant GPL (circuit ouvert)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Panne non pr\u00e9sente", 
+		"1": "Panne pr\u00e9sente"
+	}
+	}, 
+	"Identificateur Segments VFD SSPP": {
+	"lists": {
+		"0": "Contour Roue Avant Droite", 
+		"7": "Contour Roue Avant Gauche", 
+		"8": "Int\u00e9rieur Roue Avant Droite", 
+		"15": "Int\u00e9rieur Roue Avant Gauche", 
+		"17": "Contour Roue Arri\u00e8re Droite", 
+		"22": "Contour Roue Arri\u00e8re Gauche", 
+		"23": "Corps de V\u00e9hicule", 
+		"25": "Int\u00e9rieur Roue Arri\u00e8re Droite", 
+		"30": "Int\u00e9rieur Roue Arri\u00e8re Gauche"
+	}
+	}, 
+	"Historical Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"UPC absent": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "pr\u00e9sent", 
+		"1": "absent"
+	}
+	}, 
+	"Etat d\u00e9faut pression huile (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Contact ouvert", 
+		"1": "Contact ferm\u00e9"
+	}
+	}, 
+	"Avec demande de r\u00e9ponse": {
+	"lists": {
+		"1": "R\u00e9ponse demand\u00e9e", 
+		"2": "pas de r\u00e9ponse demand\u00e9e"
+	}
+	}, 
+	"Barregraphe CARBURANT.mode": {
+	"scaled": true, 
+	"unit": "Litres"
+	}, 
+	"Palier rheostat instrum 6": {
+	"scaled": true
+	}, 
+	"Palier rheostat instrum 7": {
+	"scaled": true
+	}, 
+	"Palier rheostat instrum 4": {
+	"scaled": true
+	}, 
+	"Palier rheostat instrum 5": {
+	"scaled": true
+	}, 
+	"Palier rheostat instrum 2": {
+	"scaled": true
+	}, 
+	"Palier rheostat instrum 3": {
+	"scaled": true
+	}, 
+	"Palier rheostat instrum 0": {
+	"scaled": true
+	}, 
+	"Palier rheostat instrum 1": {
+	"scaled": true
+	}, 
+	"Fr\u00e9quence2_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "Hertz"
+	}, 
+	"Jauge carburant (circuit ouvert)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Panne non pr\u00e9sente", 
+		"1": "Panne pr\u00e9sente"
+	}
+	}, 
+	"Palier rheostat instrum 8": {
+	"scaled": true
+	}, 
+	"Palier rheostat instrum 9": {
+	"scaled": true
+	}, 
+	"JC_KminS1": {
+	"scaled": true, 
+	"divideby": 100.0
+	}, 
+	"Status Routine en r\u00e9ponse": {
+	"lists": {
+		"0": "Routine non lanc\u00e9e", 
+		"1": "Routine en cours", 
+		"2": "Routine termin\u00e9e OK", 
+		"4": "Routine termin\u00e9e Non OK", 
+		"8": "Routine termin\u00e9e et probl\u00e8me global", 
+		"16": "Erreur d'\u00e9criture"
+	}
+	}, 
+	"Date derni\u00e8re intervention AV \u00e0 \u00e9crire": {
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24
+	}, 
+	"Jauge carburant (court-circuit)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Panne non pr\u00e9sente", 
+		"1": "Panne pr\u00e9sente"
+	}
+	}, 
+	"Type de carrosserie": {
+	"lists": {
+		"0": "R\u00e9serv\u00e9 B84", 
+		"80": "J84  4*2 (par d\u00e9faut)", 
+		"16": "R\u00e9serv\u00e9 C84", 
+		"32": "R\u00e9serv\u00e9 E84", 
+		"64": "R\u00e9serv\u00e9 L84", 
+		"112": "J81", 
+		"96": "R84", 
+		"48": "R\u00e9serv\u00e9 K84"
+	}
+	}, 
+	"Autonomie de vidange en temps": {
+	"lists": {
+		"0": "0 mois (r\u00e9serv\u00e9 au BE)", 
+		"1": "1 mois ( r\u00e9serv\u00e9 au BE)", 
+		"3": "3 mois", 
+		"36": "36 mois", 
+		"6": "6 mois", 
+		"72": "72 mois", 
+		"12": "12 mois", 
+		"48": "48  mois", 
+		"24": "24 mois (par d\u00e9faut)", 
+		"60": "60 mois"
+	}
+	}, 
+	"MODULE MUET: compteur C_Mute au maxi": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Inf\u00e9rieur au maxi", 
+		"1": "Maximum atteint"
+	}
+	}, 
+	"Etat contact Incident frein-NIVOCOD (filaire)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Contact ouvert", 
+		"1": "Contact ferm\u00e9 (niveau<minimum)"
+	}
+	}, 
+	"+Lanterne (CAN)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Absent", 
+		"1": "Pr\u00e9sent"
+	}
+	}, 
+	"Fr\u00e9quence3_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "Hertz"
+	}, 
+	"AIRBAG absent: compteur  M_absent": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"Consigne R\u00e9gime": {
+	"scaled": true, 
+	"step": 100.0, 
+	"unit": "tr/mn"
+	}, 
+	"Temps mort_S\u00e9quence Sonore": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "ms"
+	}, 
+	"Dur\u00e9e_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "ms"
+	}, 
+	"Prestation Survitesse Arabie": {
+	"lists": {
+		"0": "Sans  buzzer survitesse arabie (par d\u00e9faut)", 
+		"16": "Avec buzzer survitesse arabie"
+	}
+	}, 
+	"Consigne Carburant": {
+	"scaled": true, 
+	"unit": "Litres"
+	}, 
+	"L0 GPL": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"divideby": 1000.0, 
+	"bitscount": 16, 
+	"unit": "litres"
+	}, 
+	"SEGMENTS.mode": {
+	"lists": {
+		"0": "Roue Avant Droite (Ext)", 
+		"1": "Porte Avant Droite", 
+		"2": "D Positif", 
+		"3": "P N\u00e9gatif", 
+		"4": "Digit Segment 3", 
+		"5": "Digit Segment 2", 
+		"6": "Porte Avant Gauche", 
+		"7": "Roue Avant Gauche (Ext)", 
+		"8": "Roue Avant Droite (Int)", 
+		"9": "Porte Arri\u00e8re Droite", 
+		"10": "D N\u00e9gatif", 
+		"11": "P Positif", 
+		"12": "Digit Segment 4", 
+		"13": "Digit Segment 6", 
+		"14": "Porte Arri\u00e8re Gauche", 
+		"15": "Roue Avant Gauche (Int)", 
+		"16": "N.U.", 
+		"17": "Roue Arri\u00e8re Droite (Ext)", 
+		"18": "N N\u00e9gatif", 
+		"19": "R Positif", 
+		"20": "Digit Segment 5", 
+		"21": "Digit Segment 1", 
+		"22": "Roue Arri\u00e8re Gauche (Ext)", 
+		"23": "Corps de V\u00e9hicule", 
+		"24": "N.U. 24", 
+		"25": "Roue Arri\u00e8re Droite (Int)", 
+		"26": "N Positif", 
+		"27": "R N\u00e9gatif", 
+		"28": "Digit Segment 0", 
+		"29": "Fl\u00e8che Auto/Manuel", 
+		"30": "Roue Arri\u00e8re Gauche (Int)", 
+		"31": "Coffre"
+	}
+	}, 
+	"Etat  BUS: compteur C_BusOFF au Maxi": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Inf\u00e9rieur au maxi", 
+		"1": "Maximum atteint"
+	}
+	}, 
+	"Diagnosticmode": {
+	"lists": {
+		"192": "contr\u00f4le en cha\u00eene et diagnostic apr\u00e8s-vente", 
+		"129": "par d\u00e9faut", 
+		"251": "Mode fournisseur", 
+		"253": "Mode fournisseur Test soudure", 
+		"134": "d\u00e9veloppement"
+	}
+	}, 
+	"Information carburant consomm\u00e9 (mm3) CAN": {
+	"byte": true
+	}, 
+	"Temps d'affichage maxi pour instrum": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"JC_SeuilB": {
+	"scaled": true, 
+	"comment": "Seuil Bas jaugeage", 
+	"unit": "litres"
+	}, 
+	"Niveau d'alerte carburant": {
+	"scaled": true, 
+	"unit": "Litres"
+	}, 
+	"Valeur lue sur entr\u00e9e Rh\u00e9ostat (en mV)": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"JC_SeuilH": {
+	"scaled": true, 
+	"comment": "Seuil Haut jaugeage", 
+	"unit": "litres"
+	}, 
+	"AIRBAG absent": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pr\u00e9sent", 
+		"1": "Absent"
+	}
+	}, 
+	"Unit\u00e9 de temp\u00e9rature": {
+	"lists": {
+		"0": "\u00b0C", 
+		"16": "\u00b0F"
+	}
+	}, 
+	"Numero homologation compteur vitesse": {
+	"bytesascii": true, 
+	"bytescount": 10, 
+	"byte": true, 
+	"bitscount": 80
+	}, 
+	"Fr\u00e9quence5_Motif de base": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"unit": "Hertz"
+	}, 
+	"Niveau huile (circuit ouvert) m\u00e9mo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de panne m\u00e9moris\u00e9e", 
+		"1": "Panne m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Cluster absent": {
+	"byte": true
+	}, 
+	"Num\u00e9ro de pi\u00e8ce MPR (en BCD)": {
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Status Pilotage": {
+	"lists": {
+		"1": "Pilotage en cours", 
+		"2": "Pilotage termin\u00e9", 
+		"17": "Pilotage arr\u00eat\u00e9"
+	}
+	}, 
+	"Rh\u00e9ostat : \u00e9tat pr\u00e9sence \u00e0 partir URh\u00e9o (avec tol)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Rh\u00e9ostat pr\u00e9sent", 
+		"1": "Rh\u00e9ostat absent"
+	}
+	}, 
+	"Type de bo\u00eete": {
+	"lists": {
+		"0": "BVA (par d\u00e9faut)", 
+		"16": "BVM"
+	}
+	}, 
+	"L2": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"divideby": 1000.0, 
+	"bitscount": 16, 
+	"unit": "litres"
+	}, 
+	"Tension Rh\u00e9ostat": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"divideby": 1000.0, 
+	"bitscount": 16, 
+	"unit": "Volts"
+	}, 
+	"L1": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"divideby": 1000.0, 
+	"bitscount": 16, 
+	"unit": "litres"
+	}, 
+	"Autonomie de vidange en distance": {
+	"lists": {
+		"0": "0 km (r\u00e9serv\u00e9 au BE)", 
+		"1": "1000 km (r\u00e9serv\u00e9 au BE)", 
+		"2": "2000 km", 
+		"5": "5000 km", 
+		"70": "70000 km", 
+		"40": "40000 km", 
+		"10": "10000 km", 
+		"15": "15000 km", 
+		"80": "80000 km", 
+		"50": "50000 km", 
+		"20": "20000 km", 
+		"25": "25000 km", 
+		"60": "60000 km", 
+		"30": "30000 km (par d\u00e9faut)"
+	}
+	}, 
+	"NDTC": {
+	"scaled": true, 
+	"comment": "Nombre de pannes pour DDT2000"
+	}, 
+	"Barregraphe TEMPERATURE EAU.mode": {
+	"scaled": true, 
+	"unit": "\u00b0C"
+	}, 
+	"Carburant consomm\u00e9": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"divideby": 10.0, 
+	"bitscount": 16, 
+	"unit": "Litres"
+	}, 
+	"Prestation RV/LV": {
+	"lists": {
+		"0": "Sans RVLV", 
+		"16": "Avec RVLV (par d\u00e9faut)"
+	}
+	}, 
+	"Absence d'information CAN T\u00b0 Eau : panne m\u00e9mo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de panne m\u00e9moris\u00e9e", 
+		"1": "Panne m\u00e9moris\u00e9e"
+	}
+	}, 
+	"Jauge carburant GPL (circuit ouvert) m\u00e9mo": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pas de panne m\u00e9moris\u00e9e", 
+		"1": "Panne m\u00e9moris\u00e9e"
+	}
+	}, 
+	"LMax GPL": {
+	"scaled": true, 
+	"unit": "Litres"
+	}, 
+	"D\u00e9tection d\u00e9faut charge batterie (allumage voyant)": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Conditions non remplies", 
+		"1": "Conditions remplies (contact ferm\u00e9 et r\u00e9gime>seuil et temps>seuil)"
+	}
+	}, 
+	"Standard Fault": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "No possible classification about the type of fault", 
+		"1": "Circuit ouvert", 
+		"2": "Court-circuit \u00e0 la masse", 
+		"3": "Court-circuit au +batterie", 
+		"4": "Param\u00e8tre en but\u00e9e mini", 
+		"5": "Param\u00e8tre en but\u00e9e maxi", 
+		"8": "En-dessous du seuil mini", 
+		"9": "Au-dessus du seuil maxi", 
+		"12": "Lignes en court-circuit", 
+		"13": "Anomalie \u00e9lectronique interne", 
+		"14": "Anomalie r\u00e9seau", 
+		"18": "Tension anormale", 
+		"19": "Valeur hors-limite"
+	}
+	}, 
+	"UPC absent: compteur M_absent": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"Temps d'affichage maxi pour A3": {
+	"scaled": true, 
+	"bytescount": 2, 
+	"bitscount": 16
+	}, 
+	"Type de m\u00e9lodie": {
+	"lists": {
+		"0": "Oubli ceinture gravit\u00e9 basse", 
+		"1": "Oubli ceinture gravit\u00e9 haute", 
+		"2": "Diagnostic Renault", 
+		"3": "R\u00e9serv\u00e9", 
+		"4": "Clignotant clic", 
+		"5": "Clignotant clac", 
+		"6": "Oubli lanternes", 
+		"7": "Oubli carte", 
+		"8": "Activation allumage automatique des feux", 
+		"9": "D\u00e9sactivation allumage automatique des feux", 
+		"10": "Activation condamnation automatique", 
+		"11": "D\u00e9sactivation condamnation automatique", 
+		"12": "D\u00e9faillance condamnation enfant", 
+		"13": "RV/LV", 
+		"14": "Survitesse Arabie", 
+		"15": "Alerte carburant", 
+		"16": "Alerte premi\u00e8re gravit\u00e9", 
+		"17": "Alerte SSPP", 
+		"18": "Survitesse PAX", 
+		"19": "R\u00e9serve", 
+		"20": "Alerte BVA", 
+		"21": "Alerte frein de parking inactif"
+	}
+	}, 
+	"Type sc\u00e9nario VSC": {
+	"lists": {
+		"0": "VSC1", 
+		"16": "VSC2"
+	}
+	}, 
+	"Palier rheostat A3 9": {
+	"scaled": true
+	}, 
+	"Etat Touche RAZ ODO": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non activ\u00e9e ( valeur par d\u00e9faut pour J84 sans toutche RAZ Odo"
+	}
+	}
+}
+}

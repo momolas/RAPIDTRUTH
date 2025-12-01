@@ -1,0 +1,2233 @@
+{
+ "screens": {
+  "1) Choix du type de DIAG": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Choix du type de diag", 
+     "request": "Start diag session", 
+     "width": 2480, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7156, 
+      "top": 2160, 
+      "height": 338, 
+      "left": 922
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 4397, 
+      "top": 240, 
+      "height": 480, 
+      "left": 2301
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(213,213,255)", 
+     "text": "Type de DIAG s\u00e9lectionn\u00e9", 
+     "bbox": {
+      "width": 8040, 
+      "top": 1080, 
+      "height": 3960, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(128,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Book Antiqua", 
+      "italic": "0", 
+      "size": 16.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Lancer la session", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Start diag session"
+      }
+     ], 
+     "uniquename": "Lancer la session_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 2760, 
+      "height": 720, 
+      "left": 900
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": []
+  }, 
+  "Lecture du VIN": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 4560, 
+      "top": 600, 
+      "height": 480, 
+      "left": 2220
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,0)", 
+     "text": "Lecture du VIN", 
+     "bbox": {
+      "width": 7440, 
+      "top": 1800, 
+      "height": 2520, 
+      "left": 780
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 16.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6930, 
+   "buttons": [
+    {
+     "text": "Lecture", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Read VIN"
+      }
+     ], 
+     "uniquename": "Lecture_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 3600, 
+      "height": 576, 
+      "left": 1440
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "VIN BINAIRE", 
+     "request": "Read VIN", 
+     "width": 1205, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "VIN ASCII", 
+     "request": "Read VIN", 
+     "width": 1205, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "VIN CRC", 
+     "request": "Read VIN", 
+     "width": 1205, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 1440
+     }
+    }
+   ]
+  }, 
+  "2) Identification du v\u00e9hicule": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Type de v\u00e9hicule", 
+     "request": "Write configuration number", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5938, 
+      "top": 2040, 
+      "height": 320, 
+      "left": 1531
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 4560, 
+      "top": 720, 
+      "height": 480, 
+      "left": 2220
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "Mod\u00e8le de v\u00e9hicule", 
+     "bbox": {
+      "width": 7200, 
+      "top": 1440, 
+      "height": 3840, 
+      "left": 900
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 16.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Enregistrer le mod\u00e8le", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Write configuration number"
+      }
+     ], 
+     "uniquename": "Enregistrer le mod\u00e8le_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 5938, 
+      "top": 2640, 
+      "height": 768, 
+      "left": 1531
+     }
+    }, 
+    {
+     "text": "Lire le type", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Read configuration number"
+      }
+     ], 
+     "uniquename": "Lire le type_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 5938, 
+      "top": 4200, 
+      "height": 768, 
+      "left": 1531
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Type de v\u00e9hicule", 
+     "request": "Read configuration number", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5938, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 1531
+     }
+    }
+   ]
+  }, 
+  "Commande des actionneurs": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position finale de l'actionneur", 
+     "request": "Control: start control", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 1665
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(128,0,255)", 
+     "text": "Commande des actionneurs", 
+     "bbox": {
+      "width": 5400, 
+      "top": 1080, 
+      "height": 4800, 
+      "left": 1305
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 4080, 
+      "top": 240, 
+      "height": 480, 
+      "left": 1965
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "D\u00e9placement", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Control: start control"
+      }
+     ], 
+     "uniquename": "D\u00e9placement_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 2400, 
+      "height": 1200, 
+      "left": 1665
+     }
+    }, 
+    {
+     "text": "Stop", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Control: stop control"
+      }
+     ], 
+     "uniquename": "Stop_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 4560, 
+      "height": 1200, 
+      "left": 1665
+     }
+    }
+   ], 
+   "width": 8010, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position du moteur", 
+     "request": "Read system variables", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4680, 
+      "top": 3960, 
+      "height": 328, 
+      "left": 1665
+     }
+    }
+   ]
+  }, 
+  "Lecture de la date d'intervention": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 5100, 
+      "top": 720, 
+      "height": 480, 
+      "left": 1950
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "Date de la derni\u00e8re intervention", 
+     "bbox": {
+      "width": 6480, 
+      "top": 1440, 
+      "height": 3960, 
+      "left": 1260
+     }, 
+     "fontcolor": "rgb(255,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Lecture", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Read last service intervention date"
+      }
+     ], 
+     "uniquename": "Lecture_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 4080, 
+      "height": 960, 
+      "left": 2500
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Jour APV", 
+     "request": "Read last service intervention date", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 2040, 
+      "height": 348, 
+      "left": 2500
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mois APV", 
+     "request": "Read last service intervention date", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 2606, 
+      "height": 348, 
+      "left": 2500
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ann\u00e9e APV", 
+     "request": "Read last service intervention date", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 3132, 
+      "height": 348, 
+      "left": 2500
+     }
+    }
+   ]
+  }, 
+  "Lecture des d\u00e9fauts": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 4462, 
+      "top": 0, 
+      "height": 480, 
+      "left": 3889
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Lecture des d\u00e9fauts", 
+     "bbox": {
+      "width": 11040, 
+      "top": 720, 
+      "height": 7800, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(64,0,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 8730, 
+   "buttons": [
+    {
+     "text": "Effacement des d\u00e9fauts", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Clear diag information"
+      }
+     ], 
+     "uniquename": "Effacement des d\u00e9fauts_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2400, 
+      "top": 7080, 
+      "height": 1080, 
+      "left": 9000
+     }
+    }, 
+    {
+     "text": "Lecture des d\u00e9fauts", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "500", 
+       "RequestName": "ReadStatusOfDiagnosticTroubleCodes"
+      }
+     ], 
+     "uniquename": "Lecture des d\u00e9fauts_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2400, 
+      "top": 7080, 
+      "height": 1080, 
+      "left": 6360
+     }
+    }
+   ], 
+   "width": 11730, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Nombre de d\u00e9fauts", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 1820, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2760, 
+      "top": 1080, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC 1", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 1800, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Flag 1", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 2160, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne1", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 7.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC 2", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 3120, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Flag 2", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 3480, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne2", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 7.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 3840, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC 3", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 4440, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Flag 3", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 4800, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne3", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 7.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 5160, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC 4", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 5760, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Flag 4", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 6120, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne4", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 7.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 6480, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC 5", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 7080, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Flag 5", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 7440, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne5", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 7.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 7800, 
+      "height": 360, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC 6", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 1800, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Flag 6", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 2160, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne6", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 7.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC 7", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 3120, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Flag 7", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 3480, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne7", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 7.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 3840, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC 8", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 4440, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Flag 8", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 4800, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne8", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 7.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 5160, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "DTC 9", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 5760, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Flag 9", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 6120, 
+      "height": 360, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne9", 
+     "request": "ReadStatusOfDiagnosticTroubleCodes", 
+     "width": 485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 7.0
+     }, 
+     "rect": {
+      "width": 5058, 
+      "top": 6480, 
+      "height": 360, 
+      "left": 6360
+     }
+    }
+   ]
+  }, 
+  "3) Adressage du Ballast": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Adresse du Ballast", 
+     "request": "Write ECU address", 
+     "width": 1610, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 5493, 
+      "top": 2280, 
+      "height": 336, 
+      "left": 1753
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "Adressage du Ballast", 
+     "bbox": {
+      "width": 7200, 
+      "top": 1440, 
+      "height": 4263, 
+      "left": 900
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 16.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 5453, 
+      "top": 600, 
+      "height": 568, 
+      "left": 1773
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Ecriture", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Write ECU address"
+      }
+     ], 
+     "uniquename": "Ecriture_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 5493, 
+      "top": 2880, 
+      "height": 673, 
+      "left": 1753
+     }
+    }, 
+    {
+     "text": "Lecture", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Read ECU address"
+      }
+     ], 
+     "uniquename": "Lecture_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 5493, 
+      "top": 4680, 
+      "height": 673, 
+      "left": 1753
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Adresse du Ballast", 
+     "request": "Read ECU address", 
+     "width": 1640, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 5493, 
+      "top": 4026, 
+      "height": 336, 
+      "left": 1753
+     }
+    }
+   ]
+  }, 
+  "4) Initialisation du v\u00e9hicule": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 4080, 
+      "top": 120, 
+      "height": 480, 
+      "left": 3045
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,0,128)", 
+     "text": "D\u00e9fauts emp\u00eachant l'initialisation", 
+     "bbox": {
+      "width": 8640, 
+      "top": 3360, 
+      "height": 3360, 
+      "left": 765
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(193,66,204)", 
+     "text": "Initialisation du v\u00e9hicule", 
+     "bbox": {
+      "width": 8640, 
+      "top": 840, 
+      "height": 2278, 
+      "left": 765
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 9210, 
+   "buttons": [
+    {
+     "text": "Lancer l'initialisation", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Initialisation"
+      }
+     ], 
+     "uniquename": "Lancer l'initialisation_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 8100, 
+      "top": 1320, 
+      "height": 840, 
+      "left": 1035
+     }
+    }
+   ], 
+   "width": 10170, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat de l'initialisation", 
+     "request": "Read current calibration parameters", 
+     "width": 4040, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8100, 
+      "top": 2400, 
+      "height": 360, 
+      "left": 1035
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Adresse ballast non-d\u00e9finie", 
+     "request": "Read current calibration parameters", 
+     "width": 4025, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8100, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 1035
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Type de v\u00e9hicule non-sp\u00e9cifi\u00e9", 
+     "request": "Read current calibration parameters", 
+     "width": 4025, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8100, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 1035
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Capteurs hors-plage", 
+     "request": "Read current calibration parameters", 
+     "width": 4025, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8100, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 1035
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9faillance capteurs", 
+     "request": "Read current calibration parameters", 
+     "width": 4025, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8100, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 1035
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse non-nulle", 
+     "request": "Read current calibration parameters", 
+     "width": 4025, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 8100, 
+      "top": 6120, 
+      "height": 300, 
+      "left": 1035
+     }
+    }
+   ]
+  }, 
+  "Lecture de l'identification": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 4380, 
+      "top": 240, 
+      "height": 480, 
+      "left": 2535
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(85,85,255)", 
+     "text": "Identification du syt\u00e8me", 
+     "bbox": {
+      "width": 7740, 
+      "top": 1440, 
+      "height": 5160, 
+      "left": 855
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 7530, 
+   "buttons": [
+    {
+     "text": "Lecture", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Read system identification"
+      }
+     ], 
+     "uniquename": "Lecture_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 6600, 
+      "top": 2160, 
+      "height": 1080, 
+      "left": 1425
+     }
+    }
+   ], 
+   "width": 9450, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code pi\u00e8ce MPR", 
+     "request": "Read system identification", 
+     "width": 2645, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6600, 
+      "top": 3600, 
+      "height": 339, 
+      "left": 1425
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code Identification diagnostic", 
+     "request": "Read system identification", 
+     "width": 2645, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6600, 
+      "top": 4174, 
+      "height": 339, 
+      "left": 1425
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code ITG fournisseur", 
+     "request": "Read system identification", 
+     "width": 2645, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6600, 
+      "top": 4748, 
+      "height": 339, 
+      "left": 1425
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9f\u00e9rence Hardware", 
+     "request": "Read system identification", 
+     "width": 2645, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6600, 
+      "top": 5322, 
+      "height": 339, 
+      "left": 1425
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Version du Logiciel", 
+     "request": "Read system identification", 
+     "width": 2645, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6600, 
+      "top": 5895, 
+      "height": 339, 
+      "left": 1425
+     }
+    }
+   ]
+  }, 
+  "Lecture de l'ETat COSLAD": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "COSLAD X84", 
+     "bbox": {
+      "width": 5160, 
+      "top": 240, 
+      "height": 510, 
+      "left": 2925
+     }, 
+     "fontcolor": "rgb(0,0,128)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,0,255)", 
+     "text": "Lecture instantan\u00e9e", 
+     "bbox": {
+      "width": 4910, 
+      "top": 1440, 
+      "height": 7680, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "Book Antiqua", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(40,232,98)", 
+     "text": "Param\u00e8tres \u00e0 l'initialisation", 
+     "bbox": {
+      "width": 4910, 
+      "top": 1440, 
+      "height": 7680, 
+      "left": 5335
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "0", 
+      "name": "Book Antiqua", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 9210, 
+   "buttons": [
+    {
+     "text": "Lecture", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Read system variables"
+      }
+     ], 
+     "uniquename": "Lecture_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 2160, 
+      "height": 960, 
+      "left": 424
+     }
+    }, 
+    {
+     "text": "Lecture", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Read current calibration parameters"
+      }
+     ], 
+     "uniquename": "Lecture_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 2160, 
+      "height": 960, 
+      "left": 5640
+     }
+    }
+   ], 
+   "width": 11010, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position du capteur Arri\u00e8re", 
+     "request": "Read system variables", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 3360, 
+      "height": 351, 
+      "left": 424
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position du capteur Arri\u00e8re (digits)", 
+     "request": "Read system variables", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 3944, 
+      "height": 351, 
+      "left": 424
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position du capteur Avant", 
+     "request": "Read system variables", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 4528, 
+      "height": 351, 
+      "left": 424
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position du capteur Avant (digits)", 
+     "request": "Read system variables", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 5113, 
+      "height": 351, 
+      "left": 424
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Assiette v\u00e9hicule filtr\u00e9e", 
+     "request": "Read system variables", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 5697, 
+      "height": 351, 
+      "left": 424
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Assiette v\u00e9hicule filtr\u00e9e (digits)", 
+     "request": "Read system variables", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 6281, 
+      "height": 351, 
+      "left": 424
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Assiette v\u00e9hicule brute (digits)", 
+     "request": "Read system variables", 
+     "width": 3305, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 7440, 
+      "height": 353, 
+      "left": 424
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Position du moteur", 
+     "request": "Read system variables", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 8056, 
+      "height": 351, 
+      "left": 424
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse du v\u00e9hicule", 
+     "request": "Read system variables", 
+     "width": 3305, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 8640, 
+      "height": 338, 
+      "left": 424
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Assiette v\u00e9hicule brute", 
+     "request": "Read system variables", 
+     "width": 3305, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4300, 
+      "top": 6825, 
+      "height": 360, 
+      "left": 425
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Seuil de r\u00e9f\u00e9rence Arri\u00e8re", 
+     "request": "Read current calibration parameters", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 3360, 
+      "height": 338, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Seuil minimal Arri\u00e8re", 
+     "request": "Read current calibration parameters", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 3944, 
+      "height": 338, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Seuil maximal Arri\u00e8re", 
+     "request": "Read current calibration parameters", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 4541, 
+      "height": 338, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Seuil de r\u00e9f\u00e9rence Avant", 
+     "request": "Read current calibration parameters", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 5113, 
+      "height": 338, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Seuil minimal Avant", 
+     "request": "Read current calibration parameters", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 5697, 
+      "height": 338, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Seuil maximal Avant", 
+     "request": "Read current calibration parameters", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 6281, 
+      "height": 338, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse maximale autoris\u00e9e", 
+     "request": "Read current calibration parameters", 
+     "width": 3320, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4301, 
+      "top": 7462, 
+      "height": 338, 
+      "left": 5640
+     }
+    }
+   ]
+  }
+ }, 
+ "categories": {
+  "Ecrans USINE ou  APV": [
+   "1) Choix du type de DIAG", 
+   "2) Identification du v\u00e9hicule", 
+   "3) Adressage du Ballast", 
+   "4) Initialisation du v\u00e9hicule", 
+   "Commande des actionneurs", 
+   "Lecture de la date d'intervention", 
+   "Lecture de l'ETat COSLAD", 
+   "Lecture de l'identification", 
+   "Lecture des d\u00e9fauts", 
+   "Lecture du VIN"
+  ]
+ }
+}

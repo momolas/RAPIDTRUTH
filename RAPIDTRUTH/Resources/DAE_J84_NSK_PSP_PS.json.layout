@@ -1,0 +1,2184 @@
+{
+ "screens": {
+  "Assist Gain": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(191,191,191)", 
+     "text": "Assist Level", 
+     "bbox": {
+      "width": 5055, 
+      "top": 600, 
+      "height": 3375, 
+      "left": 1800
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Start Diag Developpement", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "SDS - Start Diagnostic $86"
+      }
+     ], 
+     "uniquename": "Start Diag Developpement_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 3000, 
+      "top": 1440, 
+      "height": 600, 
+      "left": 2760
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Assist Control Gain (1502 sw)", 
+     "request": "RMBA - Assist Control Gain (1502 sw)", 
+     "width": 3050, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2400, 
+      "height": 360, 
+      "left": 2160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Assist Control Gain (1601 sw)", 
+     "request": "RMBA - Assist Control Gain (1601 sw)", 
+     "width": 3050, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 2160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Assist Control Gain (1602 sw)", 
+     "request": "RMBA - Assist Control Gain (1602 sw)", 
+     "width": 3050, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 2160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Assist Control Gain (1700 sw)", 
+     "request": "RMBA - Assist Control Gain (1700 sw)", 
+     "width": 3065, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 2160
+     }
+    }
+   ]
+  }, 
+  "Read Syst Identification": {
+   "inputs": [], 
+   "color": "rgb(127,127,127)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Identification systeme", 
+     "bbox": {
+      "width": 5040, 
+      "top": 120, 
+      "height": 5520, 
+      "left": 1320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Spare Parts Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 720, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Diagnostic Identification Code", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2825, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Supplier Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2825, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Hardware Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SoftWare Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2855, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Edition Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tuning Number (Syst Ident)", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Other System Features", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 3690, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Manufacturer Identification Code", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2855, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 4050, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tuning version (Syst Ident)", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2795, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4705, 
+      "top": 3270, 
+      "height": 300, 
+      "left": 1470
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Traceability data", 
+     "request": "RDBLI - Traceability", 
+     "width": 1085, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4800, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 1440
+     }
+    }
+   ]
+  }, 
+  "Calibration": {
+   "inputs": [], 
+   "color": "rgb(127,127,127)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Routine de calibration", 
+     "bbox": {
+      "width": 6840, 
+      "top": 120, 
+      "height": 5280, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Etat de la Calibration", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "SRBLID - Calibration Status"
+      }
+     ], 
+     "uniquename": "Etat de la Calibration_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 960, 
+      "height": 720, 
+      "left": 2280
+     }
+    }, 
+    {
+     "text": "Lancement Calibration (si index rep\u00e9r\u00e9)", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "SRBLID - Angle Calibration"
+      }
+     ], 
+     "uniquename": "Lancement Calibration (si index rep\u00e9r\u00e9)_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 2400, 
+      "height": 720, 
+      "left": 1320
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Calibration status", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4590, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 1800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Routine Status", 
+     "request": "SRBLID - Calibration Status", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 1920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Angle_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 1800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Calculated Angle Offset", 
+     "request": "RDBLI - System Frame", 
+     "width": 2510, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 2040
+     }
+    }
+   ]
+  }, 
+  "Supported LIds": {
+   "inputs": [], 
+   "color": "rgb(127,127,127)", 
+   "labels": [
+    {
+     "color": "rgb(191,191,191)", 
+     "text": "LIds for Reading", 
+     "bbox": {
+      "width": 6840, 
+      "top": 360, 
+      "height": 2040, 
+      "left": 1440
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(191,191,191)", 
+     "text": "LIds for Writing", 
+     "bbox": {
+      "width": 6840, 
+      "top": 2640, 
+      "height": 2040, 
+      "left": 1440
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data A", 
+     "request": "RDBLI- Supported LI", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 960, 
+      "height": 300, 
+      "left": 2760
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data B", 
+     "request": "RDBLI- Supported LI", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1260, 
+      "height": 300, 
+      "left": 2760
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data C", 
+     "request": "RDBLI- Supported LI", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 2760
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data D", 
+     "request": "RDBLI- Supported LI", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1860, 
+      "height": 300, 
+      "left": 2760
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data A", 
+     "request": "WDBLI - Supported LI", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 2760
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data B", 
+     "request": "WDBLI - Supported LI", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 2760
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data C", 
+     "request": "WDBLI - Supported LI", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 2760
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data D", 
+     "request": "WDBLI - Supported LI", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4140, 
+      "height": 300, 
+      "left": 2760
+     }
+    }
+   ]
+  }, 
+  "Read/Write Date AV": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Day", 
+     "request": "WDBLI - Date of After-Sales", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Month", 
+     "request": "WDBLI - Date of After-Sales", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Year", 
+     "request": "WDBLI - Date of After-Sales", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 600
+     }
+    }
+   ], 
+   "color": "rgb(127,127,127)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Ecriture Date Apr\u00e8s Vente", 
+     "bbox": {
+      "width": 6240, 
+      "top": 2280, 
+      "height": 2160, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Lecture Date Apr\u00e8s Vente", 
+     "bbox": {
+      "width": 6240, 
+      "top": 360, 
+      "height": 1680, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Write Date", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI - Date of After-Sales"
+      }
+     ], 
+     "uniquename": "Write Date_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "rect": {
+      "width": 1740, 
+      "top": 3240, 
+      "height": 765, 
+      "left": 4800
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Day", 
+     "request": "RDBLI - Date of After Sales", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 840, 
+      "height": 300, 
+      "left": 1560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Month", 
+     "request": "RDBLI - Date of After Sales", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1140, 
+      "height": 300, 
+      "left": 1560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Year", 
+     "request": "RDBLI - Date of After Sales", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 1560
+     }
+    }
+   ]
+  }, 
+  "PSW information": {
+   "inputs": [], 
+   "color": "rgb(175,175,175)", 
+   "labels": [
+    {
+     "color": "rgb(175,175,175)", 
+     "text": "PSW Information for J84 EPS", 
+     "bbox": {
+      "width": 5640, 
+      "top": 360, 
+      "height": 480, 
+      "left": 1560
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Spare Parts Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Diagnostic Identification Code", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2735, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1500, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Supplier Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Hardware Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2100, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "SoftWare Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Edition Number", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2700, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tuning Number (Syst Ident)", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2465, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tuning version (Syst Ident)", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2465, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3300, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Other System Features", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2450, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Manufacturer Identification Code", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3900, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Internal NSK fault codes", 
+     "request": "RDBLI - Internal Faults Store", 
+     "width": 2210, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6360, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pulling Compensation Type", 
+     "request": "RDBLI - Pulling Compensation Type", 
+     "width": 2510, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pulling Torque Offset", 
+     "request": "RDBLI - Pulling Torque Offset", 
+     "width": 2420, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Calibration status", 
+     "request": "RDBLI - System Frame", 
+     "width": 1730, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Calculated Angle Offset", 
+     "request": "RDBLI - System Frame", 
+     "width": 2570, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Traceability data", 
+     "request": "RDBLI - Traceability", 
+     "width": 1655, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6360, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Limited Pulling Comp Torque", 
+     "request": "RDBLI - System Frame", 
+     "width": 3065, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Angle_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2570, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 4440
+     }
+    }
+   ]
+  }, 
+  "Pulling Compensation": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pulling Compensation Type", 
+     "request": "WDBLI - Pulling Compensation Type", 
+     "width": 2465, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 2820, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pulling Torque Offset", 
+     "request": "WDBLI - Pulling Torque Offset", 
+     "width": 2465, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 840
+     }
+    }
+   ], 
+   "color": "rgb(127,127,127)", 
+   "labels": [
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Read Pulling Compensation Parameters", 
+     "bbox": {
+      "width": 5640, 
+      "top": 360, 
+      "height": 1680, 
+      "left": 1320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Write Pulling Compensation Parameters", 
+     "bbox": {
+      "width": 7080, 
+      "top": 2160, 
+      "height": 1800, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(223,223,223)", 
+     "text": "Current Limited Pulling Compensation Torque", 
+     "bbox": {
+      "width": 5130, 
+      "top": 4425, 
+      "height": 1215, 
+      "left": 1800
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "WRITE", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI - Pulling Compensation Type"
+      }
+     ], 
+     "uniquename": "WRITE_0", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 2760, 
+      "height": 480, 
+      "left": 6600
+     }
+    }, 
+    {
+     "text": "WRITE", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI - Pulling Torque Offset"
+      }
+     ], 
+     "uniquename": "WRITE_1", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 1080, 
+      "top": 3240, 
+      "height": 480, 
+      "left": 6600
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pulling Compensation Type", 
+     "request": "RDBLI - Pulling Compensation Type", 
+     "width": 2540, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5400, 
+      "top": 960, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pulling Torque Offset", 
+     "request": "RDBLI - Pulling Torque Offset", 
+     "width": 2525, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 1440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Limited Pulling Comp Torque", 
+     "request": "RDBLI - System Frame", 
+     "width": 3065, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4195, 
+      "top": 4995, 
+      "height": 300, 
+      "left": 2205
+     }
+    }
+   ]
+  }, 
+  "Info systeme": {
+   "inputs": [], 
+   "color": "rgb(127,127,127)", 
+   "labels": [
+    {
+     "color": "rgb(207,207,207)", 
+     "text": "Trame Infos syst\u00e8me", 
+     "bbox": {
+      "width": 8520, 
+      "top": 0, 
+      "height": 6270, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [
+    {
+     "Delay": "1", 
+     "RequestName": "SDS - Start Diagnostic $86"
+    }
+   ], 
+   "height": 6300, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Voltage_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 480, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Torque_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 780, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Angle_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Velocity_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 1380, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Power assistance_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2285, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 844
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigned Power_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2330, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 1980, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigned Torque_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2585, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ECU Temperature", 
+     "request": "RDBLI - System Frame", 
+     "width": 2300, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 2580, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Derating Level", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vehicle Speed", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 3180, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Fault indicator_ST", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Engine status", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4585, 
+      "top": 4050, 
+      "height": 300, 
+      "left": 840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Calibration status", 
+     "request": "RDBLI - System Frame", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4590, 
+      "top": 4335, 
+      "height": 300, 
+      "left": 844
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Angle Sensor Index Status", 
+     "request": "RDBLI - System Frame", 
+     "width": 2435, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4555, 
+      "top": 3765, 
+      "height": 300, 
+      "left": 844
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Calculated Angle Offset", 
+     "request": "RDBLI - System Frame", 
+     "width": 2360, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4540, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 889
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Limited Pulling Comp Torque", 
+     "request": "RDBLI - System Frame", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4510, 
+      "top": 4980, 
+      "height": 300, 
+      "left": 889
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Motor Temperature", 
+     "request": "RDBLI - System Frame", 
+     "width": 2180, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4495, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 889
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Filtered Vehicle Speed", 
+     "request": "RDBLI - System Frame", 
+     "width": 2660, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4450, 
+      "top": 5580, 
+      "height": 300, 
+      "left": 889
+     }
+    }
+   ]
+  }, 
+  "NSK Fault Codes": {
+   "inputs": [], 
+   "color": "rgb(111,111,111)", 
+   "labels": [
+    {
+     "color": "rgb(191,191,191)", 
+     "text": "NSK Fault Codes", 
+     "bbox": {
+      "width": 7485, 
+      "top": 360, 
+      "height": 1800, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Internal NSK fault codes", 
+     "request": "RDBLI - Internal Faults Store", 
+     "width": 2270, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7200, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 600
+     }
+    }
+   ]
+  }, 
+  "Select tuning": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tuning Number (ID 02)", 
+     "request": "WDBLI - EPS Tuning", 
+     "width": 1670, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3480, 
+      "height": 600, 
+      "left": 1680
+     }
+    }
+   ], 
+   "color": "rgb(127,127,127)", 
+   "labels": [
+    {
+     "color": "rgb(239,239,239)", 
+     "text": "Ecriture du tuning", 
+     "bbox": {
+      "width": 5040, 
+      "top": 2880, 
+      "height": 1560, 
+      "left": 1560
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(239,239,239)", 
+     "text": "Lecture du tuning", 
+     "bbox": {
+      "width": 5040, 
+      "top": 480, 
+      "height": 2160, 
+      "left": 1560
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "Write", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "WDBLI - EPS Tuning"
+      }
+     ], 
+     "uniquename": "Write_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "rect": {
+      "width": 1560, 
+      "top": 3360, 
+      "height": 900, 
+      "left": 4800
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tuning Number (Syst Ident)", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2465, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 960, 
+      "height": 480, 
+      "left": 1800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tuning Number (ID 02)", 
+     "request": "RDBLI - Tuning Number", 
+     "width": 2465, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 2040, 
+      "height": 480, 
+      "left": 1800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tuning version (Syst Ident)", 
+     "request": "RDBLI - System Identification RENAULT", 
+     "width": 2945, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1440, 
+      "height": 360, 
+      "left": 2400
+     }
+    }
+   ]
+  }, 
+  "Start/Stop Diagnostic": {
+   "inputs": [], 
+   "color": "rgb(127,127,127)", 
+   "labels": [], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [
+    {
+     "text": "START DIAGNOSTIC 81 = STOP", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "SDS - Start Diagnostic Def $81"
+      }
+     ], 
+     "uniquename": "START DIAGNOSTIC 81 = STOP_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "rect": {
+      "width": 5640, 
+      "top": 3240, 
+      "height": 735, 
+      "left": 1680
+     }
+    }, 
+    {
+     "text": "START DIAGNOSTIC 86 (D\u00e9veloppement)", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "SDS - Start Diagnostic $86"
+      }
+     ], 
+     "uniquename": "START DIAGNOSTIC 86 (D\u00e9veloppement)_1", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "rect": {
+      "width": 5640, 
+      "top": 1560, 
+      "height": 735, 
+      "left": 1680
+     }
+    }, 
+    {
+     "text": "START DIAGNOSTIC C0 (APV)", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "SDS - Start Diagnostic Mode $C0"
+      }
+     ], 
+     "uniquename": "START DIAGNOSTIC C0 (APV)_2", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "rect": {
+      "width": 5640, 
+      "top": 480, 
+      "height": 735, 
+      "left": 1680
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": []
+  }
+ }, 
+ "categories": {
+  "Diagnostic": [
+   "Calibration", 
+   "Info systeme", 
+   "Pulling Compensation", 
+   "Read Syst Identification", 
+   "Read/Write Date AV", 
+   "Select tuning", 
+   "Start/Stop Diagnostic", 
+   "Supported LIds", 
+   "NSK Fault Codes", 
+   "Assist Gain", 
+   "PSW information"
+  ]
+ }
+}
