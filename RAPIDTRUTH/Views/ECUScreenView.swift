@@ -11,12 +11,21 @@ struct ECUScreenView: View {
     let screenName: String
     let screen: ECUScreen
     let definition: ECUDefinition
+    let ecu: DatabaseECU?
     let service: ECUDiagnosticService
 
     @State private var inputValues: [String: String] = [:]
     @State private var displayValues: [String: String] = [:]
     @State private var isExecuting = false
     @State private var lastError: String?
+
+    init(screenName: String, screen: ECUScreen, definition: ECUDefinition, ecu: DatabaseECU? = nil, service: ECUDiagnosticService) {
+        self.screenName = screenName
+        self.screen = screen
+        self.definition = definition
+        self.ecu = ecu
+        self.service = service
+    }
 
     // Sort elements vertically to create a linear layout
     var sortedElements: [ECUElement] {
@@ -139,7 +148,7 @@ struct ECUScreenView: View {
                         // For now we execute the request as defined (which usually has default bytes)
                         // Implementing full parameter injection requires detailed reversing of sentbyte_dataitems
 
-                        let results = try await service.execute(request: request, definition: definition)
+                        let results = try await service.execute(request: request, definition: definition, ecu: ecu)
 
                         await MainActor.run {
                             // Update display values

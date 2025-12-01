@@ -123,19 +123,6 @@ struct ECUSelectorView: View {
             let data = try Data(contentsOf: url)
             let dict = try JSONDecoder().decode([String: DatabaseECU].self, from: data)
             let sortedECUs = dict.compactMap { key, value -> DatabaseECU? in
-                // We keep the AllowedECUs filter for now, but it might need to be relaxed
-                // if we are loading a completely new DB.
-                // Assuming allowed list is relevant for X84 mostly.
-                // If we load X86, we might want to skip this check or update AllowedECUs.
-                // For safety, let's allow all if filename contains "X86" or just warn.
-                // Better approach: If AllowedECUs blocks everything, we show nothing.
-                // Let's rely on the definition.
-
-                // If DB is X84, we filter.
-                if url.lastPathComponent.contains("X84") {
-                     guard AllowedECUs.isAllowed(value.ecuname) else { return nil }
-                }
-
                 var ecu = value
                 ecu.fileName = key
                 return ecu
@@ -162,7 +149,7 @@ struct ECULoaderView: View {
     var body: some View {
         Group {
             if let definition = definition {
-                ECUDiagnosticsView(definition: definition, obdService: obdService)
+                ECUDiagnosticsView(definition: definition, ecu: ecu, obdService: obdService)
                     .navigationTitle(ecu.ecuname)
             } else if error != nil {
                 ContentUnavailableView(AppStrings.ECUDatabase.errorTitle,
