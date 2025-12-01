@@ -1,0 +1,1747 @@
+{
+"obd": {
+	"fastinit": true, 
+	"funcname": "Aide au parking", 
+	"kw1": "F1", 
+	"kw2": "E", 
+	"protocol": "KWP2000", 
+	"funcaddr": "0E"
+}, 
+"devices": [
+	{
+	"dtc": 36866, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Defaut Capteur Interieur gauche"
+	}, 
+	{
+	"dtc": 36874, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "D\u00e9faut Push"
+	}, 
+	{
+	"dtc": 36872, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Defaut Marche Arriere"
+	}, 
+	{
+	"dtc": 36868, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Defaut Capteur Exterieur Droit"
+	}, 
+	{
+	"dtc": 36867, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Defaut Capteur Interieur Droit"
+	}, 
+	{
+	"dtc": 36869, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Defaut calculateur"
+	}, 
+	{
+	"dtc": 36865, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Defaut Capteur Exterieur Gauche"
+	}, 
+	{
+	"dtc": 36870, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Defaut Buzzer"
+	}, 
+	{
+	"dtc": 36873, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "D\u00e9faut LED"
+	}, 
+	{
+	"dtc": 36871, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Defaut Tension Capteur"
+	}
+], 
+"ecuname": "AAP Arriere X84Ph2", 
+"autoidents": [
+	{
+	"diagversion": "4", 
+	"supplier": "AFK", 
+	"version": "5050", 
+	"soft": "97FF"
+	}
+], 
+"endian": "Big", 
+"requests": [
+	{
+	"name": "WDBLI Frequence Buzzer", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Frequence Buzzer": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BC100"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Level_ext 4ms": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Level_ext 2,5ms": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Level_ext 8ms": {
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Flags_ext": {
+		"ref": true, 
+		"firstbyte": 15
+		}, 
+		"Level_ext 3,5ms": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Level_ext 3ms": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Level_ext 1,5ms": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Level_ext 5ms": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Level_ext 7ms": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Level_ext 2ms": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Level_ext 9ms": {
+		"ref": true, 
+		"firstbyte": 14
+		}, 
+		"Level_ext 4,5ms": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Level_ext 6ms": {
+		"ref": true, 
+		"firstbyte": 11
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 15, 
+	"sentbytes": "2192", 
+	"name": "RDBLI_Seuils_extern"
+	}, 
+	{
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "14FF00", 
+	"name": "Msg_Raz_Pannes"
+	}, 
+	{
+	"name": "WDBLI VIN", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"CRC": {
+		"firstbyte": 20
+		}, 
+		"VIN": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3B8100000000000000000000000000000000000000"
+	}, 
+	{
+	"name": "WDBLI_Zone_remorque", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Zone de detection remorque": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BE000"
+	}, 
+	{
+	"name": "WDBLI Data Valeo", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Jour Prog UCE": {
+		"firstbyte": 5
+		}, 
+		"Mois Prog UCE": {
+		"firstbyte": 4
+		}, 
+		"Annee Prog UCE": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BD1000000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Lect Mois Prog ECU": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Lect Jour Prog ECU": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Lect Annee Prog ECU": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "2195", 
+	"name": "RDBLI_Date_Prog_ECU"
+	}, 
+	{
+	"name": "Identification Veh", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Choix du Vehicule": {
+		"firstbyte": 3
+		}, 
+		"Type boite de vitesse": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BA10000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"MR-R": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"R-MR": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"ML-MR": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ML": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"L-ML": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ML-L": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"L": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"R": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"MR": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"MR-ML": {
+		"ref": true, 
+		"firstbyte": 8
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 12, 
+	"sentbytes": "21D1", 
+	"name": "RDBLI_All_Distances"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Status - Etat du syst\u00e8me": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Distance_capt_int_droit": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Distance_capt_int_gauche": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Distance_capt_ext_droit": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Tension_ECU": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Tension_Capteur": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Distance_capt_ext_gauche": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Distance_calculee": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Vit_veh": {
+		"ref": true, 
+		"firstbyte": 8
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 11, 
+	"sentbytes": "21D0", 
+	"name": "RDBLI_Trame_Etat"
+	}, 
+	{
+	"name": "SRBLI_Activation capteurs", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Status Activation Systeme": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Activation systeme": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "319000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Tracabilite EOLT": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 12, 
+	"sentbytes": "2197", 
+	"name": "RDBLI_Tracabilite_EOLT"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Lect_Freq_Buzzer": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "2172", 
+	"name": "RDBLI_Frequence_Buzzer"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"ARGI-ARDI": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"ARDE": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"ARDI": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"ARGI-ARGE": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"ARDE-ARDI": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"ARGI": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"ARGE-ARGI": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"ARDI-ARGI": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"ARDI-ARDE": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"ARGE": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 12, 
+	"sentbytes": "21D1", 
+	"name": "RDBLI_Mesures Distances"
+	}, 
+	{
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "14FF00", 
+	"name": "ClearDiagnosticInformation.All"
+	}, 
+	{
+	"name": "WDBLI_Code_MPR", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Code MPR": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BD90000000000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Level 2,5ms": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Level 8ms": {
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Level 4ms": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Level 3ms": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Level 1,5ms": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Level 5ms": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Flags": {
+		"ref": true, 
+		"firstbyte": 15
+		}, 
+		"Level 3,5ms": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Level 4,5ms": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Level 6ms": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Level 7ms": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Level 2ms": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Level 9ms": {
+		"ref": true, 
+		"firstbyte": 14
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 15, 
+	"sentbytes": "2191", 
+	"name": "RDBLI_Seuils_centre"
+	}, 
+	{
+	"name": "WDBLI_Version_HW", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Version HW": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BD70000000000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Octet 6": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Octet 7": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Octet 4": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Octet 5": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Octet 2": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Octet 3": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Octet 1": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Octet 8": {
+		"ref": true, 
+		"firstbyte": 10
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 10, 
+	"sentbytes": "2190", 
+	"name": "RDBLID_SUPPLIER_DATA"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Attenuation Time  Sensor ROR": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Attenuation Time  Sensor RIR": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Attenuation Time  Sensor RIL": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Attenuation Time  Sensor ROL": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 6, 
+	"sentbytes": "2194", 
+	"name": "RDBLI_Temps Attenuation"
+	}, 
+	{
+	"name": "WDBLI Volume Buzzer", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Controle volume buzzer": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BB100"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Lecture du VIN": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 17, 
+	"sentbytes": "2181", 
+	"name": "RDBLI_VIN"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Zone de detection remorque": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "21E0", 
+	"name": "RDBLI_Zone _remorque"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Lect_Volume_Buzzer": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "2171", 
+	"name": "RDBLI_Volume_Buzzer"
+	}, 
+	{
+	"name": "WDBLI_VDiag", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Code Ident Diag": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BE500"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Tracabilit\u00e9": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 12, 
+	"sentbytes": "2196", 
+	"name": "RDBLI_Tracabilite"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Flag Config": {
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 3, 
+	"sentbytes": "21E3", 
+	"name": "RDBLI_Flag_Config"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Nbre de DTC": {
+		"firstbyte": 2
+		}, 
+		"Status4": {
+		"firstbyte": 14
+		}, 
+		"Status7": {
+		"firstbyte": 23
+		}, 
+		"Status6": {
+		"firstbyte": 20
+		}, 
+		"Status1": {
+		"firstbyte": 5
+		}, 
+		"Status3": {
+		"firstbyte": 11
+		}, 
+		"Status2": {
+		"firstbyte": 8
+		}, 
+		"Status5": {
+		"firstbyte": 17
+		}, 
+		"Status8": {
+		"firstbyte": 26
+		}, 
+		"DTC5": {
+		"firstbyte": 15
+		}, 
+		"DTC4": {
+		"firstbyte": 12
+		}, 
+		"DTC7": {
+		"firstbyte": 21
+		}, 
+		"DTC6": {
+		"firstbyte": 18
+		}, 
+		"DTC1": {
+		"firstbyte": 3
+		}, 
+		"DTC3": {
+		"firstbyte": 9
+		}, 
+		"DTC2": {
+		"firstbyte": 6
+		}, 
+		"DTC8": {
+		"firstbyte": 24
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "17FF00", 
+	"name": "RDTCS_Lecture_Defauts"
+	}, 
+	{
+	"name": "WDBLI_Version_UCE", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"N\u00b0 Version UCE": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BD80000"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Session Name": {
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 1, 
+	"sentbytes": "10C0", 
+	"name": "Start Diagnostic Session"
+	}, 
+	{
+	"name": "ReadDTC", 
+	"replybytes": "5700000000", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Historical Failure": {
+		"bitoffset": 1, 
+		"firstbyte": 5
+		}, 
+		"Current Failure": {
+		"bitoffset": 2, 
+		"firstbyte": 5
+		}, 
+		"NDTC": {
+		"firstbyte": 2
+		}, 
+		"Standard Fault": {
+		"bitoffset": 3, 
+		"firstbyte": 5
+		}, 
+		"FirstDTC": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"MoreDTC": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "17FF00", 
+	"shiftbytescount": 3
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"distance between inner sensors": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"measurement range outer sensors": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Distance between outer and inner sensors": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"measurement range inner sensors": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Zone arri\u00e8re de d\u00e9tection continue": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Offset inner sensors": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Offset outer sensors": {
+		"ref": true, 
+		"firstbyte": 7
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 9, 
+	"sentbytes": "2193", 
+	"name": "RDBLI Geometrie Pare-chocs"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Identification Vehicule": {
+		"ref": true, 
+		"firstbyte": 21
+		}, 
+		"N\u00b0 Logiciel": {
+		"ref": true, 
+		"firstbyte": 17
+		}, 
+		"Code MPR": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"N\u00b0 Version UCE": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"Code ITG Fournisseur": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"N\u00b0 Hardware": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Code Ident Diag": {
+		"ref": true, 
+		"firstbyte": 8
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 22, 
+	"sentbytes": "2180", 
+	"name": "RDBLI_Systeme"
+	}
+], 
+"data": {
+	"Lect Mois Prog ECU": {
+	"byte": true
+	}, 
+	"Attenuation Time  Sensor RIL": {
+	"scaled": true, 
+	"divideby": 1000.0, 
+	"step": 16.0, 
+	"unit": "ms"
+	}, 
+	"Level_ext 8ms": {
+	"scaled": true
+	}, 
+	"Frequence Buzzer": {
+	"lists": {
+		"2": "Frequence 800hz", 
+		"3": "Frequence 1000hz", 
+		"4": "Frequence 1500hz", 
+		"5": "Frequence 2000hz"
+	}
+	}, 
+	"Level_ext 3,5ms": {
+	"scaled": true
+	}, 
+	"Distance between corner and center sensors": {
+	"scaled": true
+	}, 
+	"Attenuation Time  Sensor RIR": {
+	"scaled": true, 
+	"divideby": 1000.0, 
+	"step": 16.0, 
+	"unit": "ms"
+	}, 
+	"N\u00b0 Hardware": {
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Nbre de DTC": {
+	"scaled": true
+	}, 
+	"Seuil Corner a 8ms": {
+	"scaled": true
+	}, 
+	"Flags Seuil Corner": {
+	"scaled": true
+	}, 
+	"ARGI-ARGE": {
+	"scaled": true
+	}, 
+	"Historical Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"Current Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"Seuil a 4ms": {
+	"scaled": true
+	}, 
+	"Seuil a 9ms": {
+	"scaled": true
+	}, 
+	"Seuil a 3,5ms": {
+	"scaled": true
+	}, 
+	"Code Ident Diag": {
+	"byte": true
+	}, 
+	"Seuil Corner a 5ms": {
+	"scaled": true
+	}, 
+	"Mois Prog UCE": {
+	"lists": {
+		"1": "janvier", 
+		"2": "Fevrier", 
+		"3": "Mars", 
+		"4": "Avril", 
+		"5": "Mai", 
+		"6": "Juin", 
+		"7": "Juillet", 
+		"8": "Aout", 
+		"9": "Septembre", 
+		"10": "Octobre", 
+		"11": "Novembre", 
+		"12": "Decembre"
+	}
+	}, 
+	"ML-L": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"L": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"DTC5": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"36865": "Defaut Capteur Exterieur Gauche", 
+		"36866": "Defaut Capteur Interieur gauche", 
+		"36867": "Defaut Capteur Interieur Droit", 
+		"36868": "Defaut Capteur Exterieur Droit", 
+		"36869": "Defaut calculateur", 
+		"36870": "Defaut Buzzer", 
+		"36871": "Defaut Tension Capteur", 
+		"36872": "Defaut Marche Arriere", 
+		"36873": "D\u00e9faut LED", 
+		"36874": "D\u00e9faut Push"
+	}
+	}, 
+	"Tension_ECU": {
+	"scaled": true, 
+	"divideby": 51.0, 
+	"step": 3.1, 
+	"offset": 30.6
+	}, 
+	"DTC7": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"36865": "Defaut Capteur Exterieur Gauche", 
+		"36866": "Defaut Capteur Interieur gauche", 
+		"36867": "Defaut Capteur Interieur Droit", 
+		"36868": "Defaut Capteur Exterieur Droit", 
+		"36869": "Defaut calculateur", 
+		"36870": "Defaut Buzzer", 
+		"36871": "Defaut Tension Capteur", 
+		"36872": "Defaut Marche Arriere", 
+		"36873": "D\u00e9faut LED", 
+		"36874": "D\u00e9faut Push"
+	}
+	}, 
+	"DTC6": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"36865": "Defaut Capteur Exterieur Gauche", 
+		"36866": "Defaut Capteur Interieur gauche", 
+		"36867": "Defaut Capteur Interieur Droit", 
+		"36868": "Defaut Capteur Exterieur Droit", 
+		"36869": "Defaut calculateur", 
+		"36870": "Defaut Buzzer", 
+		"36871": "Defaut Tension Capteur", 
+		"36872": "Defaut Marche Arriere", 
+		"36873": "D\u00e9faut LED", 
+		"36874": "D\u00e9faut Push"
+	}
+	}, 
+	"DTC1": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"36865": "Defaut Capteur Exterieur Gauche", 
+		"36866": "Defaut Capteur Interieur gauche", 
+		"36867": "Defaut Capteur Interieur Droit", 
+		"36868": "Defaut Capteur Exterieur Droit", 
+		"36869": "Defaut calculateur", 
+		"36870": "Defaut Buzzer", 
+		"36871": "Defaut Tension Capteur", 
+		"36872": "Defaut Marche Arriere", 
+		"36873": "D\u00e9faut LED", 
+		"36874": "D\u00e9faut Push"
+	}
+	}, 
+	"DTC3": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"36865": "Defaut Capteur Exterieur Gauche", 
+		"36866": "Defaut Capteur Interieur gauche", 
+		"36867": "Defaut Capteur Interieur Droit", 
+		"36868": "Defaut Capteur Exterieur Droit", 
+		"36869": "Defaut calculateur", 
+		"36870": "Defaut Buzzer", 
+		"36871": "Defaut Tension Capteur", 
+		"36872": "Defaut Marche Arriere", 
+		"36873": "D\u00e9faut LED", 
+		"36874": "D\u00e9faut Push"
+	}
+	}, 
+	"DTC2": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"36865": "Defaut Capteur Exterieur Gauche", 
+		"36866": "Defaut Capteur Interieur gauche", 
+		"36867": "Defaut Capteur Interieur Droit", 
+		"36868": "Defaut Capteur Exterieur Droit", 
+		"36869": "Defaut calculateur", 
+		"36870": "Defaut Buzzer", 
+		"36871": "Defaut Tension Capteur", 
+		"36872": "Defaut Marche Arriere", 
+		"36873": "D\u00e9faut LED", 
+		"36874": "D\u00e9faut Push"
+	}
+	}, 
+	"Offset inner sensors": {
+	"scaled": true
+	}, 
+	"DTC8": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"36865": "Defaut Capteur Exterieur Gauche", 
+		"36866": "Defaut Capteur Interieur gauche", 
+		"36867": "Defaut Capteur Interieur Droit", 
+		"36868": "Defaut Capteur Exterieur Droit", 
+		"36869": "Defaut calculateur", 
+		"36870": "Defaut Buzzer", 
+		"36871": "Defaut Tension Capteur", 
+		"36872": "Defaut Marche Arriere", 
+		"36873": "D\u00e9faut LED", 
+		"36874": "D\u00e9faut Push"
+	}
+	}, 
+	"Level 9ms": {
+	"scaled": true
+	}, 
+	"ARGI-ARDI": {
+	"scaled": true
+	}, 
+	"Level 7ms": {
+	"scaled": true
+	}, 
+	"Seuil a 2,5ms": {
+	"scaled": true
+	}, 
+	"VIN": {
+	"bytescount": 17, 
+	"byte": true, 
+	"bitscount": 136
+	}, 
+	"Seuil a 1,5ms": {
+	"scaled": true
+	}, 
+	"Level 3,5ms": {
+	"scaled": true
+	}, 
+	"Level 2ms": {
+	"scaled": true
+	}, 
+	"Octet 6": {
+	"byte": true
+	}, 
+	"Octet 7": {
+	"byte": true
+	}, 
+	"Octet 4": {
+	"byte": true
+	}, 
+	"Octet 5": {
+	"byte": true
+	}, 
+	"Octet 2": {
+	"byte": true
+	}, 
+	"Octet 3": {
+	"byte": true
+	}, 
+	"Octet 1": {
+	"byte": true
+	}, 
+	"Version HW": {
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Nouveau Champ": {
+	"bytescount": 9, 
+	"byte": true, 
+	"bitscount": 72
+	}, 
+	"Status7": {
+	"lists": {
+		"98": "CC Plus, PP et PM", 
+		"99": "CO, CC masse, PP et PM", 
+		"66": "CC Plus, PM", 
+		"236": "Erreur RAM, PP et PM", 
+		"202": "Erreur ROM, PM", 
+		"203": "Erreur EEPROM, PM", 
+		"204": "Erreur RAM, PM", 
+		"109": "Erreur interne, PP et PM", 
+		"77": "Erreur Interne, PM", 
+		"67": "CO, CC masse, PM", 
+		"235": "Erreur EEPROM, PP et PM", 
+		"234": "Erreur ROM, PP et PM"
+	}
+	}, 
+	"Octet 8": {
+	"byte": true
+	}, 
+	"ARGI": {
+	"scaled": true
+	}, 
+	"Status - Etat du syst\u00e8me": {
+	"lists": {
+		"0": "MA OFF - Fct OFF", 
+		"1": "Marche arriere ON - Fct ON", 
+		"4": "Buzzer ON - Fct OFF", 
+		"5": "Buzzer ON - Fct ON", 
+		"16": "MA OFF-FONCTION OFF - Appui 5s", 
+		"32": "Hors fonction", 
+		"8": "MA OFF - Fonction OFF", 
+		"9": "MA ON - Fonction OFF", 
+		"12": "MA OFF-Buzzer ON-Fonction OFF", 
+		"13": "MA ON-Buzzer ON-Fonction OFF", 
+		"48": "Systeme desactive permanent sans marche arriere", 
+		"17": "MA ON-Fonction OFF - Appui 5s", 
+		"40": "Systeme desactive avec marche arriere", 
+		"53": "Systeme desactive permanent avec marche arriere", 
+		"41": "Systeme desactive sans marche arriere", 
+		"36": "Hors  Fonction", 
+		"33": "En fonction", 
+		"37": "En  Fonction"
+	}
+	}, 
+	"MR-ML": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"Offset corner sensors": {
+	"scaled": true
+	}, 
+	"ARGE": {
+	"scaled": true
+	}, 
+	"Choix du Vehicule": {
+	"lists": {
+		"1": "B84Ph2", 
+		"2": "C84Ph2", 
+		"3": "E84Ph2", 
+		"4": "L84Ph2", 
+		"6": "J84 Arriere", 
+		"7": "K84Ph2"
+	}
+	}, 
+	"Seuil a 7ms": {
+	"scaled": true
+	}, 
+	"Session Name": {
+	"lists": {
+		"128": "Fournisseur", 
+		"176": "Usine", 
+		"192": "Apres-vente"
+	}
+	}, 
+	"Valeur \u00e0 \u00e9crire": {
+	"byte": true
+	}, 
+	"Seuil Corner a 9ms": {
+	"scaled": true
+	}, 
+	"ARGE-ARGI": {
+	"scaled": true
+	}, 
+	"Lect Jour Prog ECU": {
+	"byte": true
+	}, 
+	"Seuil Corner a 6ms": {
+	"scaled": true
+	}, 
+	"Distance between center sensors": {
+	"scaled": true
+	}, 
+	"Status5": {
+	"lists": {
+		"98": "CC Plus, PP et PM", 
+		"99": "CO, CC masse, PP et PM", 
+		"66": "CC Plus, PM", 
+		"236": "Erreur RAM, PP et PM", 
+		"202": "Erreur ROM, PM", 
+		"203": "Erreur EEPROM, PM", 
+		"204": "Erreur RAM, PM", 
+		"109": "Erreur interne, PP et PM", 
+		"77": "Erreur Interne, PM", 
+		"67": "CO, CC masse, PM", 
+		"235": "Erreur EEPROM, PP et PM", 
+		"234": "Erreur ROM, PP et PM"
+	}
+	}, 
+	"Status4": {
+	"lists": {
+		"98": "CC Plus, PP et PM", 
+		"99": "CO, CC masse, PP et PM", 
+		"66": "CC Plus, PM", 
+		"236": "Erreur RAM, PP et PM", 
+		"202": "Erreur ROM, PM", 
+		"203": "Erreur EEPROM, PM", 
+		"204": "Erreur RAM, PM", 
+		"109": "Erreur interne, PP et PM", 
+		"77": "Erreur Interne, PM", 
+		"67": "CO, CC masse, PM", 
+		"235": "Erreur EEPROM, PP et PM", 
+		"234": "Erreur ROM, PP et PM"
+	}
+	}, 
+	"Level 2,5ms": {
+	"scaled": true
+	}, 
+	"Status6": {
+	"lists": {
+		"98": "CC Plus, PP et PM", 
+		"99": "CO, CC masse, PP et PM", 
+		"66": "CC Plus, PM", 
+		"236": "Erreur RAM, PP et PM", 
+		"202": "Erreur ROM, PM", 
+		"203": "Erreur EEPROM, PM", 
+		"204": "Erreur RAM, PM", 
+		"109": "Erreur interne, PP et PM", 
+		"77": "Erreur Interne, PM", 
+		"67": "CO, CC masse, PM", 
+		"235": "Erreur EEPROM, PP et PM", 
+		"234": "Erreur ROM, PP et PM"
+	}
+	}, 
+	"Status1": {
+	"lists": {
+		"98": "CC Plus, PP et PM", 
+		"99": "CO, CC masse, PP et PM", 
+		"66": "CC Plus, PM", 
+		"236": "Erreur RAM, PP et PM", 
+		"202": "Erreur ROM, PM", 
+		"203": "Erreur EEPROM, PM", 
+		"204": "Erreur RAM, PM", 
+		"109": "Erreur interne, PP et PM", 
+		"77": "Erreur Interne, PM", 
+		"67": "CO, CC masse, PM", 
+		"235": "Erreur EEPROM, PP et PM", 
+		"234": "Erreur ROM, PP et PM"
+	}
+	}, 
+	"MoreDTC": {
+	"scaled": true, 
+	"signed": true
+	}, 
+	"Status3": {
+	"lists": {
+		"98": "CC Plus, PP et PM", 
+		"99": "CO, CC masse, PP et PM", 
+		"66": "CC Plus, PM", 
+		"236": "Erreur RAM, PP et PM", 
+		"202": "Erreur ROM, PM", 
+		"203": "Erreur EEPROM, PM", 
+		"204": "Erreur RAM, PM", 
+		"109": "Erreur interne, PP et PM", 
+		"77": "Erreur Interne, PM", 
+		"67": "CO, CC masse, PM", 
+		"235": "Erreur EEPROM, PP et PM", 
+		"234": "Erreur ROM, PP et PM"
+	}
+	}, 
+	"Status2": {
+	"lists": {
+		"98": "CC Plus, PP et PM", 
+		"99": "CO, CC masse, PP et PM", 
+		"66": "CC Plus, PM", 
+		"236": "Erreur RAM, PP et PM", 
+		"202": "Erreur ROM, PM", 
+		"203": "Erreur EEPROM, PM", 
+		"204": "Erreur RAM, PM", 
+		"109": "Erreur interne, PP et PM", 
+		"77": "Erreur Interne, PM", 
+		"67": "CO, CC masse, PM", 
+		"235": "Erreur EEPROM, PP et PM", 
+		"234": "Erreur ROM, PP et PM"
+	}
+	}, 
+	"Code MPR": {
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Status8": {
+	"lists": {
+		"98": "CC Plus, PP et PM", 
+		"99": "CO, CC masse, PP et PM", 
+		"66": "CC Plus, PM", 
+		"236": "Erreur RAM, PP et PM", 
+		"202": "Erreur ROM, PM", 
+		"203": "Erreur EEPROM, PM", 
+		"204": "Erreur RAM, PM", 
+		"109": "Erreur interne, PP et PM", 
+		"77": "Erreur Interne, PM", 
+		"67": "CO, CC masse, PM", 
+		"235": "Erreur EEPROM, PP et PM", 
+		"234": "Erreur ROM, PP et PM"
+	}
+	}, 
+	"Level 5ms": {
+	"scaled": true
+	}, 
+	"Seuil a 8ms": {
+	"scaled": true
+	}, 
+	"FirstDTC": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"36865": "Defaut Capteur Exterieur Gauche", 
+		"36866": "Defaut Capteur Interieur gauche", 
+		"36867": "Defaut Capteur Interieur Droit", 
+		"36868": "Defaut Capteur Exterieur Droit", 
+		"36869": "Defaut calculateur", 
+		"36870": "Defaut Buzzer", 
+		"36871": "Defaut Tension Capteur", 
+		"36872": "Defaut Marche Arriere", 
+		"36873": "D\u00e9faut LED", 
+		"36874": "D\u00e9faut Push"
+	}
+	}, 
+	"Zone de detection remorque": {
+	"scaled": true
+	}, 
+	"Tension_Capteur": {
+	"scaled": true, 
+	"divideby": 2397.0, 
+	"step": 147.0
+	}, 
+	"Type boite de vitesse": {
+	"lists": {
+		"186": "Boite Automatique", 
+		"181": "Boite Manuelle"
+	}
+	}, 
+	"Level_ext 4ms": {
+	"scaled": true
+	}, 
+	"Lect Annee Prog ECU": {
+	"lists": {
+		"0": "2000", 
+		"1": "2001", 
+		"2": "2002", 
+		"3": "2003", 
+		"4": "2004", 
+		"99": "1999"
+	}
+	}, 
+	"measurement range outer sensors": {
+	"scaled": true
+	}, 
+	"ML": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"Seuil Corner a 3,5ms": {
+	"scaled": true
+	}, 
+	"MR": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"Level 4,5ms": {
+	"scaled": true
+	}, 
+	"Level_ext 9ms": {
+	"scaled": true
+	}, 
+	"Distance_capt_ext_gauche": {
+	"scaled": true
+	}, 
+	"Seuil Corner a 3ms": {
+	"scaled": true
+	}, 
+	"Level 1,5ms": {
+	"scaled": true
+	}, 
+	"Level_ext 2ms": {
+	"scaled": true
+	}, 
+	"Distance_calculee": {
+	"scaled": true
+	}, 
+	"Level_ext 4,5ms": {
+	"scaled": true
+	}, 
+	"Jour Prog UCE": {
+	"byte": true
+	}, 
+	"Seuil Corner a 7ms": {
+	"scaled": true
+	}, 
+	"Identification Vehicule": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"698": "C84Ph2 - Boite Automatique", 
+		"437": "B84Ph2 - Boite Manuelle", 
+		"1210": "L84Ph2 - Boite Automatique", 
+		"442": "B84Ph2 - Boite Automatique", 
+		"954": "E84Ph2 - Boite Automatique", 
+		"693": "C84Ph2 - Boite Manuelle", 
+		"1466": "Par defaut - Boite Automatique", 
+		"1461": "Par defaut - Boite Manuelle", 
+		"1717": "J84 Arriere - Boite Manuelle", 
+		"949": "E84Ph2 - Boite Manuelle", 
+		"1722": "J84 arriere - Boite Automatique", 
+		"1973": "K84Ph2 - Boite Manuelle", 
+		"1978": "K84Ph2 - Boite Automatique", 
+		"1205": "L84Ph2 - Boite Manuelle"
+	}
+	}, 
+	"N\u00b0 Logiciel": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Seuil a 6ms": {
+	"scaled": true
+	}, 
+	"Seuil a 3ms": {
+	"scaled": true
+	}, 
+	"Range center sensors": {
+	"scaled": true
+	}, 
+	"ARDE-ARDI": {
+	"scaled": true
+	}, 
+	"Level_ext 1,5ms": {
+	"scaled": true
+	}, 
+	"Seuil Corner a 2ms": {
+	"scaled": true
+	}, 
+	"Level_ext 6ms": {
+	"scaled": true
+	}, 
+	"MR-R": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"Level 4ms": {
+	"scaled": true
+	}, 
+	"Distance_capt_int_gauche": {
+	"scaled": true
+	}, 
+	"L-ML": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"Flag Config": {
+	"lists": {
+		"8": "Essai", 
+		"128": "Bouton on / off present"
+	}
+	}, 
+	"ML-MR": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"Distance_capt_ext_droit": {
+	"scaled": true
+	}, 
+	"R": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"Seuil Corner a 4,5ms": {
+	"scaled": true
+	}, 
+	"ARDI-ARDE": {
+	"scaled": true
+	}, 
+	"Lect_Volume_Buzzer": {
+	"lists": {
+		"0": "d\u00e9tection arri\u00e8re inhib\u00e9e", 
+		"2": "Volume faible", 
+		"3": "Volume moyen", 
+		"4": "Volume Moyen fort", 
+		"5": "Volume Fort", 
+		"6": "Volume Fort+", 
+		"7": "Volume Fort++"
+	}
+	}, 
+	"Level 8ms": {
+	"scaled": true
+	}, 
+	"Level_ext 2,5ms": {
+	"scaled": true
+	}, 
+	"CRC": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Distance between outer and inner sensors": {
+	"scaled": true
+	}, 
+	"Seuil Corner a 2,5ms": {
+	"scaled": true
+	}, 
+	"N\u00b0 Version UCE": {
+	"bytesascii": true, 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Controle volume buzzer": {
+	"lists": {
+		"0": "desactiver la fonction", 
+		"2": "Volume faible", 
+		"3": "Volume moyen", 
+		"4": "Volume moyen fort", 
+		"5": "Volume Fort", 
+		"6": "Volume Fort+", 
+		"7": "Volume Fort++"
+	}
+	}, 
+	"Status Activation Systeme": {
+	"lists": {
+		"1": "En cours d'execution", 
+		"2": "Routine termin\u00e9e Ok", 
+		"4": "Routine termin\u00e9e NOk"
+	}
+	}, 
+	"Seuil Corner a 1,5ms": {
+	"scaled": true
+	}, 
+	"ARDI": {
+	"scaled": true
+	}, 
+	"Seuil a 4,5ms": {
+	"scaled": true
+	}, 
+	"measurement range inner sensors": {
+	"scaled": true
+	}, 
+	"Activation systeme": {
+	"lists": {
+		"0": "Lancer Routine", 
+		"1": "Status Routine"
+	}
+	}, 
+	"Vit_veh": {
+	"scaled": true
+	}, 
+	"Attenuation Time  Sensor ROR": {
+	"scaled": true, 
+	"divideby": 1000.0, 
+	"step": 16.0, 
+	"unit": "ms"
+	}, 
+	"Offset center sensors": {
+	"scaled": true
+	}, 
+	"R-MR": {
+	"scaled": true, 
+	"unit": "cm"
+	}, 
+	"Range corner sensors": {
+	"scaled": true
+	}, 
+	"Distance_capt_int_droit": {
+	"scaled": true
+	}, 
+	"Level_ext 3ms": {
+	"scaled": true
+	}, 
+	"Level_ext 5ms": {
+	"scaled": true
+	}, 
+	"ARDI-ARGI": {
+	"scaled": true
+	}, 
+	"Level 6ms": {
+	"scaled": true
+	}, 
+	"Seuil a 2ms": {
+	"scaled": true
+	}, 
+	"Attenuation Time  Sensor ROL": {
+	"scaled": true, 
+	"divideby": 1000.0, 
+	"step": 16.0, 
+	"unit": "ms"
+	}, 
+	"Code ITG Fournisseur": {
+	"bytesascii": true, 
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24
+	}, 
+	"Flags_ext": {
+	"scaled": true
+	}, 
+	"Seuil a 5ms": {
+	"scaled": true
+	}, 
+	"Level_ext 7ms": {
+	"scaled": true
+	}, 
+	"Seuil Corner a 4ms": {
+	"scaled": true
+	}, 
+	"Lecture du VIN": {
+	"bytescount": 17, 
+	"byte": true, 
+	"bitscount": 136
+	}, 
+	"Lect_Freq_Buzzer": {
+	"lists": {
+		"0": "Frequence 500hz", 
+		"1": "Frequence 666hz", 
+		"2": "Frequence 800hz", 
+		"3": "Frequence 1000hz", 
+		"4": "Frequence 2000hz"
+	}
+	}, 
+	"Continuous tone detection range": {
+	"scaled": true
+	}, 
+	"Tracabilite EOLT": {
+	"bytescount": 10, 
+	"byte": true, 
+	"bitscount": 80
+	}, 
+	"Flags": {
+	"scaled": true
+	}, 
+	"Offset outer sensors": {
+	"scaled": true
+	}, 
+	"NDTC": {
+	"scaled": true
+	}, 
+	"distance between inner sensors": {
+	"scaled": true
+	}, 
+	"ARDE": {
+	"scaled": true
+	}, 
+	"Annee Prog UCE": {
+	"lists": {
+		"0": "Annee 2000", 
+		"1": "Annee 2001", 
+		"2": "Annee 2002", 
+		"3": "Annee 2003", 
+		"4": "Annee 2004", 
+		"5": "Annee 2005", 
+		"6": "Annee 2006", 
+		"98": "Annee 1998"
+	}
+	}, 
+	"DTC4": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"36865": "Defaut Capteur Exterieur Gauche", 
+		"36866": "Defaut Capteur Interieur gauche", 
+		"36867": "Defaut Capteur Interieur Droit", 
+		"36868": "Defaut Capteur Exterieur Droit", 
+		"36869": "Defaut calculateur", 
+		"36870": "Defaut Buzzer", 
+		"36871": "Defaut Tension Capteur", 
+		"36872": "Defaut Marche Arriere", 
+		"36873": "D\u00e9faut LED", 
+		"36874": "D\u00e9faut Push"
+	}
+	}, 
+	"Flags Seuil": {
+	"scaled": true
+	}, 
+	"Valeur Donn\u00e9e": {
+	"byte": true
+	}, 
+	"Level 3ms": {
+	"scaled": true
+	}, 
+	"Zone arri\u00e8re de d\u00e9tection continue": {
+	"scaled": true
+	}, 
+	"Tracabilit\u00e9": {
+	"bytescount": 10, 
+	"byte": true, 
+	"bitscount": 80
+	}, 
+	"Standard Fault": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "not used", 
+		"1": "open circuit", 
+		"2": "short circuit to ground", 
+		"3": "short circuit at+b", 
+		"4": "parameter at min. limit", 
+		"5": "parameter at max limit", 
+		"6": "incoherency , not plausible", 
+		"7": "no signal", 
+		"8": "below min. threshold", 
+		"9": "above max threshold", 
+		"13": "internal error"
+	}
+	}
+}
+}

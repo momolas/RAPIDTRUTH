@@ -11,7 +11,6 @@ struct ECUDiagnosticsView: View {
     let definition: ECUDefinition
     let obdService: OBDService
     @State private var service: ECUDiagnosticService
-
     @State private var layout: ECULayout?
     @State private var selectedRequest: ECURequest?
     @State private var results: [String: String] = [:]

@@ -1,0 +1,7425 @@
+{
+ "screens": {
+  "IMA": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data injecteur 1", 
+     "request": "Ecriture IMA : correction injecteurs", 
+     "width": 1490, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data injecteur 2", 
+     "request": "Ecriture IMA : correction injecteurs", 
+     "width": 1490, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3060, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data injecteur 3", 
+     "request": "Ecriture IMA : correction injecteurs", 
+     "width": 1490, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Data injecteur 4", 
+     "request": "Ecriture IMA : correction injecteurs", 
+     "width": 1490, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3660, 
+      "height": 300, 
+      "left": 360
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "1=31", 
+     "bbox": {
+      "width": 420, 
+      "top": 5400, 
+      "height": 180, 
+      "left": 2880
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "2=32", 
+     "bbox": {
+      "width": 420, 
+      "top": 5640, 
+      "height": 180, 
+      "left": 2880
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "3=33", 
+     "bbox": {
+      "width": 420, 
+      "top": 5880, 
+      "height": 180, 
+      "left": 2880
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "4=34", 
+     "bbox": {
+      "width": 420, 
+      "top": 6120, 
+      "height": 180, 
+      "left": 2880
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "5=35", 
+     "bbox": {
+      "width": 420, 
+      "top": 4680, 
+      "height": 180, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "6=36", 
+     "bbox": {
+      "width": 420, 
+      "top": 4920, 
+      "height": 180, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "7=37", 
+     "bbox": {
+      "width": 420, 
+      "top": 5160, 
+      "height": 180, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "8=38", 
+     "bbox": {
+      "width": 420, 
+      "top": 5400, 
+      "height": 180, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "A=41", 
+     "bbox": {
+      "width": 420, 
+      "top": 4680, 
+      "height": 180, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "B=42", 
+     "bbox": {
+      "width": 420, 
+      "top": 4920, 
+      "height": 180, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "C=43", 
+     "bbox": {
+      "width": 420, 
+      "top": 5160, 
+      "height": 180, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(0,128,255)", 
+     "text": "Corrections IMA", 
+     "bbox": {
+      "width": 8760, 
+      "top": 240, 
+      "height": 480, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D=44", 
+     "bbox": {
+      "width": 420, 
+      "top": 5400, 
+      "height": 180, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "E=45", 
+     "bbox": {
+      "width": 420, 
+      "top": 5640, 
+      "height": 180, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,0)", 
+     "text": "Ecriture des corrections IMA", 
+     "bbox": {
+      "width": 8760, 
+      "top": 2280, 
+      "height": 2040, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "F=46", 
+     "bbox": {
+      "width": 420, 
+      "top": 5880, 
+      "height": 180, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "G=47", 
+     "bbox": {
+      "width": 420, 
+      "top": 6120, 
+      "height": 180, 
+      "left": 360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "H=48", 
+     "bbox": {
+      "width": 420, 
+      "top": 4680, 
+      "height": 180, 
+      "left": 1200
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "I=49", 
+     "bbox": {
+      "width": 420, 
+      "top": 4920, 
+      "height": 180, 
+      "left": 1200
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "K=4B", 
+     "bbox": {
+      "width": 420, 
+      "top": 5160, 
+      "height": 180, 
+      "left": 1200
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "L=4C", 
+     "bbox": {
+      "width": 420, 
+      "top": 5400, 
+      "height": 180, 
+      "left": 1200
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Lecture des corrections IMA", 
+     "bbox": {
+      "width": 8760, 
+      "top": 720, 
+      "height": 1560, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "M=4D", 
+     "bbox": {
+      "width": 420, 
+      "top": 5640, 
+      "height": 180, 
+      "left": 1200
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "N=4E", 
+     "bbox": {
+      "width": 420, 
+      "top": 5880, 
+      "height": 180, 
+      "left": 1200
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "O=4F", 
+     "bbox": {
+      "width": 420, 
+      "top": 6120, 
+      "height": 180, 
+      "left": 1200
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "P=50", 
+     "bbox": {
+      "width": 420, 
+      "top": 4680, 
+      "height": 180, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R=52", 
+     "bbox": {
+      "width": 420, 
+      "top": 4920, 
+      "height": 180, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "S=53", 
+     "bbox": {
+      "width": 420, 
+      "top": 5160, 
+      "height": 180, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,128,255)", 
+     "text": "Statut fonction IMA", 
+     "bbox": {
+      "width": 4680, 
+      "top": 4320, 
+      "height": 2040, 
+      "left": 4200
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "T=54", 
+     "bbox": {
+      "width": 420, 
+      "top": 5400, 
+      "height": 180, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,255,128)", 
+     "text": "Table de correspondance:", 
+     "bbox": {
+      "width": 4140, 
+      "top": 4320, 
+      "height": 240, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "U=55", 
+     "bbox": {
+      "width": 420, 
+      "top": 5640, 
+      "height": 180, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "V=56", 
+     "bbox": {
+      "width": 420, 
+      "top": 5880, 
+      "height": 180, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "W=57", 
+     "bbox": {
+      "width": 420, 
+      "top": 6120, 
+      "height": 180, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "X=58", 
+     "bbox": {
+      "width": 420, 
+      "top": 4680, 
+      "height": 180, 
+      "left": 2880
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Y=59", 
+     "bbox": {
+      "width": 420, 
+      "top": 4920, 
+      "height": 180, 
+      "left": 2880
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Z=5A", 
+     "bbox": {
+      "width": 420, 
+      "top": 5160, 
+      "height": 180, 
+      "left": 2880
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 7050, 
+   "buttons": [
+    {
+     "text": "Ecriture des corrections", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "100", 
+       "RequestName": "Ecriture IMA : correction injecteurs"
+      }
+     ], 
+     "uniquename": "Ecriture des corrections_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 3240, 
+      "top": 2880, 
+      "height": 480, 
+      "left": 4200
+     }
+    }
+   ], 
+   "width": 9450, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Correction injecteur 1", 
+     "request": "Trame AD - (IMA : lecture corrections)", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Correction injecteur 2", 
+     "request": "Trame AD - (IMA : lecture corrections)", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status IMA", 
+     "request": "Trame AD - (IMA : lecture corrections)", 
+     "width": 1430, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status Ecriture IMA", 
+     "request": "Trame AD - (IMA : lecture corrections)", 
+     "width": 1430, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4320, 
+      "top": 5400, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Correction injecteur 3", 
+     "request": "Trame AD - (IMA : lecture corrections)", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Correction injecteur 4", 
+     "request": "Trame AD - (IMA : lecture corrections)", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 4800
+     }
+    }
+   ]
+  }, 
+  "Contr\u00f4le param\u00e8tres moteur": {
+   "inputs": [], 
+   "color": "rgb(192,192,192)", 
+   "labels": [
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Capteur p\u00e9dale", 
+     "bbox": {
+      "width": 3420, 
+      "top": 3120, 
+      "height": 1680, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Contr\u00f4le Moteur", 
+     "bbox": {
+      "width": 11940, 
+      "top": 0, 
+      "height": 300, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "D\u00e9bits et pressions", 
+     "bbox": {
+      "width": 4200, 
+      "top": 360, 
+      "height": 2700, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Divers", 
+     "bbox": {
+      "width": 3960, 
+      "top": 360, 
+      "height": 6540, 
+      "left": 8040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "EGR", 
+     "bbox": {
+      "width": 4200, 
+      "top": 3120, 
+      "height": 1680, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Moteur / V\u00e9hicule", 
+     "bbox": {
+      "width": 3420, 
+      "top": 360, 
+      "height": 2700, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Temp\u00e9ratures", 
+     "bbox": {
+      "width": 3420, 
+      "top": 4980, 
+      "height": 1860, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "Tensions", 
+     "bbox": {
+      "width": 4200, 
+      "top": 4920, 
+      "height": 1920, 
+      "left": 3720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 7230, 
+   "buttons": [], 
+   "width": 12210, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "Trame A0", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 600, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne ralenti", 
+     "request": "Trame A0", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 900, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Kilom\u00e9trage", 
+     "request": "Trame A0", 
+     "width": 2270, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "Trame A0", 
+     "width": 2270, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 1620, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code verlog appris", 
+     "request": "Trame A2", 
+     "width": 2270, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9marrage authoris\u00e9", 
+     "request": "Trame A2", 
+     "width": 2270, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 2340, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension piste 1", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 2370, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension piste 2", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 2370, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 3780, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Charge utilis\u00e9e", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 2370, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 4080, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Charge piste 1", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 2370, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 4380, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature carburant", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 2435, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 5280, 
+      "height": 360, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature huile", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 2435, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 5640, 
+      "height": 360, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature air", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 2435, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 6000, 
+      "height": 360, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature eau", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 2435, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 6360, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit d'air par cylindre", 
+     "request": "Trame A3", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 720, 
+      "height": 360, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit moteur (avec ASD)", 
+     "request": "Trame A5", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression atmosph\u00e9rique", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression suralimentation filtr\u00e9e", 
+     "request": "Trame A3", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 1980, 
+      "height": 300, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression rail actuelle", 
+     "request": "Trame A6", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension batterie", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3155, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5280, 
+      "height": 360, 
+      "left": 3840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Recopie EGR", 
+     "request": "Trame A3", 
+     "width": 2990, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 3480, 
+      "height": 315, 
+      "left": 3960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ecart d\u00e9bit air", 
+     "request": "Trame A3", 
+     "width": 2990, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 3795, 
+      "height": 315, 
+      "left": 3960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ecart recopie EGR", 
+     "request": "Trame A3", 
+     "width": 2990, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 4110, 
+      "height": 315, 
+      "left": 3960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO Vanne EGR", 
+     "request": "Trame A3", 
+     "width": 2990, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 4425, 
+      "height": 315, 
+      "left": 3960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "APC", 
+     "request": "Trame A0", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 720, 
+      "height": 300, 
+      "left": 8160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information pr\u00e9chauffage", 
+     "request": "Trame A0", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 8160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Frein appuy\u00e9", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1500, 
+      "height": 300, 
+      "left": 8160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information frein principal", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 8160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information frein redondant", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 2100, 
+      "height": 300, 
+      "left": 8160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information embrayage", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 8160
+     }
+    }
+   ]
+  }, 
+  "Verlog / Reprog": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "FONCTDIV", 
+     "bbox": {
+      "width": 4440, 
+      "top": 240, 
+      "height": 1800, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "PARAM Moteur", 
+     "bbox": {
+      "width": 4440, 
+      "top": 2160, 
+      "height": 2280, 
+      "left": 720
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 4650, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne EEPROM VL3", 
+     "request": "Trame AF - Div", 
+     "width": 3375, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 600, 
+      "height": 240, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code appris", 
+     "request": "Trame AF - Div", 
+     "width": 3375, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 1080, 
+      "height": 240, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat prot\u00e9g\u00e9", 
+     "request": "Trame AF - Div", 
+     "width": 3375, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 1560, 
+      "height": 240, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "Trame A0", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "Trame A0", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 2880, 
+      "height": 360, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature eau", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 3240, 
+      "height": 360, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension batterie", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 3600, 
+      "height": 360, 
+      "left": 960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9marrage authoris\u00e9", 
+     "request": "Trame A2", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 3960, 
+      "height": 360, 
+      "left": 960
+     }
+    }
+   ]
+  }, 
+  "R\u00e9init apprentissages": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ResetMode", 
+     "request": "ECUR Reset", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 1095, 
+      "height": 300, 
+      "left": 2220
+     }
+    }
+   ], 
+   "color": "rgb(128,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "R\u00e9initialisation Apprentissages", 
+     "bbox": {
+      "width": 7320, 
+      "top": 600, 
+      "height": 2160, 
+      "left": 600
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 7380, 
+   "buttons": [
+    {
+     "text": "Ecu Reset", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "ECUR Reset"
+      }
+     ], 
+     "uniquename": "Ecu Reset_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 1515, 
+      "height": 420, 
+      "left": 2220
+     }
+    }
+   ], 
+   "width": 9780, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "", 
+     "request": "ECUR Reset", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 2040, 
+      "height": 540, 
+      "left": 2220
+     }
+    }
+   ]
+  }, 
+  "APV": {
+   "inputs": [], 
+   "color": "rgb(255,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,128,255)", 
+     "text": "Ecran APV", 
+     "bbox": {
+      "width": 2040, 
+      "top": 120, 
+      "height": 300, 
+      "left": 3240
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 5730, 
+   "buttons": [], 
+   "width": 9210, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "Trame A0", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 600, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Kilom\u00e9trage", 
+     "request": "Trame A0", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "Trame A0", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "APC", 
+     "request": "Trame A0", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1800, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension batterie", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2100, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Synchro", 
+     "request": "Trame A0", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat moteur", 
+     "request": "Trame A2", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2940, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit d'air par cylindre", 
+     "request": "Trame A3", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3480, 
+      "height": 360, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit d'air par temps", 
+     "request": "Trame A3", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3840, 
+      "height": 360, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression rail actuelle", 
+     "request": "Trame A6", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Rapport de transmission Drive Train", 
+     "request": "Trame A6", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne ralenti", 
+     "request": "Trame A0", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 600, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature huile", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature eau", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1380, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature air", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature carburant", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1980, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression atmosph\u00e9rique", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression suralimentation filtr\u00e9e", 
+     "request": "Trame A3", 
+     "width": 3230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2820, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information pr\u00e9chauffage", 
+     "request": "Trame A0", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Frein appuy\u00e9", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3660, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information embrayage", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ratio p\u00e9dale acc\u00e9l\u00e9rateur", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4260, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Code verlog appris", 
+     "request": "Trame A2", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4680, 
+      "height": 300, 
+      "left": 5160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9marrage authoris\u00e9", 
+     "request": "Trame A2", 
+     "width": 3245, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4980, 
+      "height": 300, 
+      "left": 5160
+     }
+    }
+   ]
+  }, 
+  "Pilotage des actuateurs": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Sortie \u00e0 piloter", 
+     "request": "Pilotage sorties", 
+     "width": 1260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4140, 
+      "top": 720, 
+      "height": 300, 
+      "left": 2040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Commande", 
+     "request": "Pilotage sorties", 
+     "width": 1260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2820, 
+      "top": 1140, 
+      "height": 300, 
+      "left": 2040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Nombre de cycle", 
+     "request": "Pilotage sorties", 
+     "width": 1260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2820, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 2040
+     }
+    }
+   ], 
+   "color": "rgb(128,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "ETATS ACTUATEURS", 
+     "bbox": {
+      "width": 7800, 
+      "top": 2280, 
+      "height": 2040, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "PILOTAGE ACTUATEURS", 
+     "bbox": {
+      "width": 7800, 
+      "top": 240, 
+      "height": 1920, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Pr\u00e9sent qu'en F9Q260 Nissan", 
+     "bbox": {
+      "width": 3720, 
+      "top": 3000, 
+      "height": 1320, 
+      "left": 4320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "0"
+    }
+   ], 
+   "presend": [], 
+   "height": 8700, 
+   "buttons": [
+    {
+     "text": "Pilotage", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Pilotage sorties"
+      }
+     ], 
+     "uniquename": "Pilotage_0", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 1140, 
+      "top": 1140, 
+      "height": 720, 
+      "left": 5040
+     }
+    }
+   ], 
+   "width": 11625, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Diagnostic pr\u00e9chauffage", 
+     "request": "Trame A0", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO turbo", 
+     "request": "Trame A3", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 2940, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO Vanne EGR", 
+     "request": "Trame A3", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO Volet etouffoir", 
+     "request": "Trame A3", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO MPROP", 
+     "request": "Trame A6", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais thermoplongeur 1", 
+     "request": "Trame A4", 
+     "width": 2780, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais thermoplongeur 2", 
+     "request": "Trame A4", 
+     "width": 2780, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais thermoplongeur 3", 
+     "request": "Trame A4", 
+     "width": 2780, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 4320
+     }
+    }
+   ]
+  }, 
+  "RV / LV": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "FLGRLV1", 
+     "bbox": {
+      "width": 4440, 
+      "top": 120, 
+      "height": 1440, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "FLGRLV2", 
+     "bbox": {
+      "width": 4440, 
+      "top": 1680, 
+      "height": 2400, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "FLGRLV3", 
+     "bbox": {
+      "width": 4440, 
+      "top": 4200, 
+      "height": 1560, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "FLGRLV5", 
+     "bbox": {
+      "width": 4440, 
+      "top": 120, 
+      "height": 2040, 
+      "left": 4680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "FLGRLV6", 
+     "bbox": {
+      "width": 4440, 
+      "top": 2280, 
+      "height": 2040, 
+      "left": 4680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "FLGRLV7", 
+     "bbox": {
+      "width": 4440, 
+      "top": 6600, 
+      "height": 1320, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "FLGRLV7", 
+     "bbox": {
+      "width": 4440, 
+      "top": 5880, 
+      "height": 600, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "FLGRLV8", 
+     "bbox": {
+      "width": 4440, 
+      "top": 4440, 
+      "height": 2040, 
+      "left": 4680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "VITESSE", 
+     "bbox": {
+      "width": 4440, 
+      "top": 6600, 
+      "height": 600, 
+      "left": 4680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "VITRV", 
+     "bbox": {
+      "width": 4440, 
+      "top": 7200, 
+      "height": 720, 
+      "left": 4680
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 9450, 
+   "buttons": [], 
+   "width": 9810, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bool\u00e9en contact stop \u00e0 ouverture", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 6120, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9sactivation car vitesse v\u00e9hicule invalide", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3860, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 6840, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9sactivation car probl\u00e8me controle moteur", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3860, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 7140, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9sactivation car d\u00e9tection de panne RV-LV", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3860, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 7440, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bool\u00e9en panne m\u00e9moris\u00e9e switch frein", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3425, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 480, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bool\u00e9en panne pr\u00e9sente switch frein", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3425, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 780, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bool\u00e9en contact stop \u00e0 fermeture", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3425, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bouton SUSPENDRE appuy\u00e9", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bouton REPRENDRE appuy\u00e9", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2340, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bouton SET ET PLUS appuy\u00e9", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bouton SET ET MOINS appuy\u00e9", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2940, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bouton MARCHE / ARRET RV appuy\u00e9", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bouton MARCHE / ARRET LV appuy\u00e9", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3500, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne m\u00e9moris\u00e9e switch ON/OFF", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne pr\u00e9sente switch ON/OFF", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4740, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne m\u00e9moris\u00e9e boutons RVLV", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne pr\u00e9sente boutons RVLV", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3485, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5340, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9tection changement etat position RV", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3770, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 480, 
+      "height": 288, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9tection changement etat position LV", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3770, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 768, 
+      "height": 288, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9tection changement \u00e9tat boutons Volant", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3770, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1056, 
+      "height": 288, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9tection changement \u00e9tat contact embrayage", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3770, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1344, 
+      "height": 288, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9tection changement \u00e9tat contact stop ferm.", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3770, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1632, 
+      "height": 288, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne m\u00e9moris\u00e9e 2 switchs frein", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3785, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Panne pr\u00e9sente 2 switchs frein", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3785, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2940, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat r\u00e9gulateur de vitesse", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3785, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Requete clignotement vitesse", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3785, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat affichage RV", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3785, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9sactivation car appui frein", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9sactivation car demande ASR-MSR", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 5100, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9sactivation car appui bouton suspendre", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 5400, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9sactivation car d\u00e9saccouplage moteur-boite", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 5700, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9sactivation car d\u00e9tection point mort BVM", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 6840, 
+      "height": 300, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne de vitesse RV (CE)", 
+     "request": "Trame Fonction RVLV", 
+     "width": 3575, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 7440, 
+      "height": 312, 
+      "left": 4800
+     }
+    }
+   ]
+  }, 
+  "Tensions capteurs": {
+   "inputs": [], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(0,255,128)", 
+     "text": "TENSIONS DES CAPTEURS", 
+     "bbox": {
+      "width": 9120, 
+      "top": 240, 
+      "height": 4200, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 9330, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "Trame A0", 
+     "width": 3285, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 720, 
+      "height": 360, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension batterie", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1080, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension piste 1", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension piste 2", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1860, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur pression atmo", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3350, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur PAVT", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3350, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2580, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur pression fr\u00e9on", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3350, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur temp\u00e9rature eau", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3725, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 720, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur temp\u00e9rature air", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3725, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1020, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur temp\u00e9rature huile", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3725, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur temp\u00e9rature carburant", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3725, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1620, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur temp\u00e9rature air ext", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3725, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur pression rail", 
+     "request": "Trame A6", 
+     "width": 3695, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2340, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Courant de la MPROP mesur\u00e9", 
+     "request": "Trame A6", 
+     "width": 3695, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur niveau reservoir Ce", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3725, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension d\u00e9bitm\u00e8tre d'air", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3725, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 3420, 
+      "height": 300, 
+      "left": 4920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension position relative EGR", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3725, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 4920
+     }
+    }
+   ]
+  }, 
+  "EEPROM - EGR": {
+   "inputs": [], 
+   "color": "rgb(255,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,0,255)", 
+     "text": "Ecriture EEPROM - Trame Controle Moteur", 
+     "bbox": {
+      "width": 6840, 
+      "top": 2040, 
+      "height": 480, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial Narrow", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,0,255)", 
+     "text": "Lecture EEPROM - Trame Controle Moteur", 
+     "bbox": {
+      "width": 6840, 
+      "top": 240, 
+      "height": 480, 
+      "left": 480
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial Narrow", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 7050, 
+   "buttons": [
+    {
+     "text": "R\u00e9 initialisation des offsets EGR", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Ecriture Trame CM : EGR Turbo"
+      }
+     ], 
+     "uniquename": "R\u00e9 initialisation des offsets EGR_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 2760, 
+      "height": 600, 
+      "left": 1920
+     }
+    }
+   ], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Premier offset Vanne EGR", 
+     "request": "Trame AE - (Engine Control)", 
+     "width": 3185, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 840, 
+      "height": 300, 
+      "left": 1920
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Dernier Offset Vanne EGR", 
+     "request": "Trame AE - (Engine Control)", 
+     "width": 3185, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 1140, 
+      "height": 300, 
+      "left": 1920
+     }
+    }
+   ]
+  }, 
+  "Identification": {
+   "inputs": [], 
+   "color": "rgb(0,128,192)", 
+   "labels": [
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "Identification du calculateur EDC16", 
+     "bbox": {
+      "width": 5730, 
+      "top": 360, 
+      "height": 405, 
+      "left": 1800
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial Black", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de pi\u00e8ce PIE", 
+     "request": "Trame identification", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 2400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro d'indice DIAG", 
+     "request": "Trame identification", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1620, 
+      "height": 300, 
+      "left": 2400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de fournisseur", 
+     "request": "Trame identification", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 2400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de hardware", 
+     "request": "Trame identification", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2220, 
+      "height": 300, 
+      "left": 2400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de software", 
+     "request": "Trame identification", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 2400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de version soft", 
+     "request": "Trame identification", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 2820, 
+      "height": 300, 
+      "left": 2400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de calibration", 
+     "request": "Trame identification", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 2400
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de r\u00e9serve", 
+     "request": "Trame identification", 
+     "width": 2405, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4560, 
+      "top": 3420, 
+      "height": 300, 
+      "left": 2400
+     }
+    }
+   ]
+  }, 
+  "Contr\u00f4le Trame Mux": {
+   "inputs": [], 
+   "color": "rgb(128,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "Trame r\u00e9seau MUX", 
+     "bbox": {
+      "width": 2640, 
+      "top": 480, 
+      "height": 4200, 
+      "left": 2040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 5010, 
+   "buttons": [], 
+   "width": 12120, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Message Mux - MSB", 
+     "request": "Trame diag mux", 
+     "width": 1620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 960, 
+      "height": 240, 
+      "left": 2280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Message Mux - LSB", 
+     "request": "Trame diag mux", 
+     "width": 1620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 1200, 
+      "height": 240, 
+      "left": 2280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Param\u00e8tre Bus Off", 
+     "request": "Trame diag mux", 
+     "width": 1620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 1680, 
+      "height": 240, 
+      "left": 2280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Param\u00e8tre Mute", 
+     "request": "Trame diag mux", 
+     "width": 1620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 1920, 
+      "height": 240, 
+      "left": 2280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Module EDC", 
+     "request": "Trame diag mux", 
+     "width": 1695, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 2400, 
+      "height": 240, 
+      "left": 2280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Module ABS", 
+     "request": "Trame diag mux", 
+     "width": 1695, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 2760, 
+      "height": 240, 
+      "left": 2280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Module BVA", 
+     "request": "Trame diag mux", 
+     "width": 1695, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 3120, 
+      "height": 240, 
+      "left": 2280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Module UCH", 
+     "request": "Trame diag mux", 
+     "width": 1695, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 3480, 
+      "height": 240, 
+      "left": 2280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Module UPC", 
+     "request": "Trame diag mux", 
+     "width": 1715, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 3840, 
+      "height": 240, 
+      "left": 2280
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Module IPU", 
+     "request": "Trame diag mux", 
+     "width": 1715, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2160, 
+      "top": 4200, 
+      "height": 240, 
+      "left": 2280
+     }
+    }
+   ]
+  }, 
+  "Air/EGR/Turbo": {
+   "inputs": [], 
+   "color": "rgb(128,128,255)", 
+   "labels": [
+    {
+     "color": "rgb(0,0,255)", 
+     "text": "Air / EGR / Turbo", 
+     "bbox": {
+      "width": 8400, 
+      "top": 240, 
+      "height": 1080, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6000, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit d\u00e9sir\u00e9 avant limitation syst\u00e8me et sans LiGov", 
+     "request": "Trame A5", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1440, 
+      "height": 480, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit avant limitation et avec LiGov", 
+     "request": "Trame A5", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2040, 
+      "height": 480, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit moteur + FBC", 
+     "request": "Trame A5", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2640, 
+      "height": 360, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit d'air par cylindre", 
+     "request": "Trame A3", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3120, 
+      "height": 360, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit d'air par temps", 
+     "request": "Trame A3", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3480, 
+      "height": 360, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit d'air estim\u00e9", 
+     "request": "Trame A3", 
+     "width": 3170, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3840, 
+      "height": 360, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Way of drive", 
+     "request": "Trame A0", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression suralimentation filtr\u00e9e", 
+     "request": "Trame A3", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4620, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne pression suralimentation", 
+     "request": "Trame A3", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4920, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat turbo", 
+     "request": "Trame A3", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5220, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO turbo", 
+     "request": "Trame A3", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5520, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "Trame A0", 
+     "width": 2900, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 720, 
+      "height": 360, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Rapport V/N", 
+     "request": "Trame A0", 
+     "width": 2795, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 720, 
+      "height": 360, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne d\u00e9bit d'air EGR", 
+     "request": "Trame A3", 
+     "width": 3185, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1440, 
+      "height": 360, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ecart d\u00e9bit air", 
+     "request": "Trame A3", 
+     "width": 3185, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 1920, 
+      "height": 360, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne de position vanne EGR", 
+     "request": "Trame A3", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne ByPass EGR", 
+     "request": "Trame A3", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2820, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Recopie EGR", 
+     "request": "Trame A3", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Ecart recopie EGR", 
+     "request": "Trame A3", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3420, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat coupure EGR", 
+     "request": "Trame A3", 
+     "width": 3185, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4080, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO Vanne EGR", 
+     "request": "Trame A3", 
+     "width": 3185, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO Volet etouffoir", 
+     "request": "Trame A3", 
+     "width": 3185, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4860, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO Swirl", 
+     "request": "Trame A3", 
+     "width": 3185, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 4680
+     }
+    }
+   ]
+  }, 
+  "Clim / Chauffage": {
+   "inputs": [], 
+   "color": "rgb(192,192,192)", 
+   "labels": [
+    {
+     "color": "rgb(0,255,128)", 
+     "text": "CLIMATISATION et VENTILATION", 
+     "bbox": {
+      "width": 7800, 
+      "top": 285, 
+      "height": 1155, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 7770, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat GMV 1", 
+     "request": "Trame A4", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Commande GMV1 par CLIM", 
+     "request": "Trame A4", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 1980, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat GMV 2", 
+     "request": "Trame A4", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Commande GMV2 par CLIM", 
+     "request": "Trame A4", 
+     "width": 2840, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3600, 
+      "top": 2580, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Demande clim.", 
+     "request": "Trame A4", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression fr\u00e9on", 
+     "request": "Trame A4", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 3420, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Demande ralenti de la clim", 
+     "request": "Trame A4", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat sortie compresseur clim", 
+     "request": "Trame A4", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 4020, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Coupure CLIM", 
+     "request": "Trame A4", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 4320, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat erreur CLIM", 
+     "request": "Trame A4", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 4620, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur pression fr\u00e9on", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur temp\u00e9rature eau", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 3290, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3840, 
+      "top": 5340, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "Trame A0", 
+     "width": 2600, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 600, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Vitesse v\u00e9hicule", 
+     "request": "Trame A0", 
+     "width": 2600, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 960, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature eau", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 2585, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 600, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat moteur", 
+     "request": "Trame A2", 
+     "width": 2585, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 960, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais thermoplongeur 1", 
+     "request": "Trame A4", 
+     "width": 2960, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais thermoplongeur 2", 
+     "request": "Trame A4", 
+     "width": 2960, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 1980, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais thermoplongeur 3", 
+     "request": "Trame A4", 
+     "width": 2960, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 2280, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Puissance THP d\u00e9sir\u00e9e", 
+     "request": "Trame A4", 
+     "width": 2960, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 2580, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Coupure THP", 
+     "request": "Trame A4", 
+     "width": 2960, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 2880, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Demande de ralenti THP", 
+     "request": "Trame A4", 
+     "width": 2960, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 3180, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Courant alternateur", 
+     "request": "Trame A4", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Charge alternateur", 
+     "request": "Trame A4", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 4140, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Puissance max. CTP", 
+     "request": "Trame A4", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status gel CTP", 
+     "request": "Trame A4", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 5100, 
+      "height": 300, 
+      "left": 4320
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Coupure CTP", 
+     "request": "Trame A4", 
+     "width": 2930, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 5400, 
+      "height": 300, 
+      "left": 4320
+     }
+    }
+   ]
+  }, 
+  "Routines - Usine": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "routine \u00e0 lancer", 
+     "request": "SRBLI start routine", 
+     "width": 1200, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 540, 
+      "height": 300, 
+      "left": 1020
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "param\u00e8tre lancement routine", 
+     "request": "SRBLI start routine", 
+     "width": 2160, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 900, 
+      "height": 300, 
+      "left": 1020
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "routine \u00e0 arr\u00eater", 
+     "request": "SRBLI arr\u00eat  routine", 
+     "width": 1800, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 1020
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "param\u00e8tre routine \u00e0 arr\u00eater", 
+     "request": "SRBLI arr\u00eat  routine", 
+     "width": 2040, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 1020
+     }
+    }
+   ], 
+   "color": "rgb(255,255,255)", 
+   "labels": [
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "ARRET ROUTINE", 
+     "bbox": {
+      "width": 6960, 
+      "top": 1800, 
+      "height": 1140, 
+      "left": 840
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "INFOS USINES", 
+     "bbox": {
+      "width": 6960, 
+      "top": 3120, 
+      "height": 1080, 
+      "left": 840
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "LANCEMENT ROUTINE", 
+     "bbox": {
+      "width": 6960, 
+      "top": 180, 
+      "height": 1500, 
+      "left": 840
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 4650, 
+   "buttons": [
+    {
+     "text": "ARRET", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "SRBLI arr\u00eat  routine"
+      }
+     ], 
+     "uniquename": "ARRET_0", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 2160, 
+      "height": 660, 
+      "left": 5400
+     }
+    }, 
+    {
+     "text": "LANCEMENT", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "SRBLI start routine"
+      }
+     ], 
+     "uniquename": "LANCEMENT_1", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2220, 
+      "top": 540, 
+      "height": 1020, 
+      "left": 5400
+     }
+    }
+   ], 
+   "width": 11625, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "status de la routine \u00e0 lancer", 
+     "request": "SRBLI start routine", 
+     "width": 2160, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 1260, 
+      "height": 300, 
+      "left": 1020
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Test statique", 
+     "request": "Trame A0", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3480, 
+      "height": 300, 
+      "left": 1080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Inhibition consomateurs electriques", 
+     "request": "Trame A0", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 1080
+     }
+    }
+   ]
+  }, 
+  "Surveillance": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Sortie \u00e0 piloter", 
+     "request": "Pilotage sorties", 
+     "width": 1380, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 720, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Commande", 
+     "request": "Pilotage sorties", 
+     "width": 1380, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 1020, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Nombre de cycle", 
+     "request": "Pilotage sorties", 
+     "width": 3300, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Sortie \u00e0 surveiller", 
+     "request": "Status sorties", 
+     "width": 1380, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 2220, 
+      "height": 300, 
+      "left": 120
+     }
+    }
+   ], 
+   "color": "rgb(5,0,0)", 
+   "labels": [
+    {
+     "color": "rgb(0,255,128)", 
+     "text": "Entrees digitales", 
+     "bbox": {
+      "width": 2520, 
+      "top": 360, 
+      "height": 2700, 
+      "left": 4320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(192,192,192)", 
+     "text": "Etats / Sorties / Actuateurs", 
+     "bbox": {
+      "width": 11940, 
+      "top": 0, 
+      "height": 300, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,128)", 
+     "text": "Etats logiciels", 
+     "bbox": {
+      "width": 3360, 
+      "top": 360, 
+      "height": 2700, 
+      "left": 6960
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 9.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "Pilotage et surveillance", 
+     "bbox": {
+      "width": 4140, 
+      "top": 360, 
+      "height": 2700, 
+      "left": 60
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 10.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,255)", 
+     "text": "Sorties et actuateurs", 
+     "bbox": {
+      "width": 8640, 
+      "top": 3240, 
+      "height": 2880, 
+      "left": 0
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 7380, 
+   "buttons": [
+    {
+     "text": "Envoi Pilotage", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Pilotage sorties"
+      }
+     ], 
+     "uniquename": "Envoi Pilotage_0", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 1500, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 1500
+     }
+    }
+   ], 
+   "width": 9780, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Status de la sortie", 
+     "request": "Status sorties", 
+     "width": 1380, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4020, 
+      "top": 2580, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais pr\u00e9chauffage", 
+     "request": "Trame A0", 
+     "width": 2765, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat GMV 1", 
+     "request": "Trame A4", 
+     "width": 2765, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 3900, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat GMV 2", 
+     "request": "Trame A4", 
+     "width": 2765, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais thermoplongeur 1", 
+     "request": "Trame A4", 
+     "width": 2765, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 4500, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais thermoplongeur 2", 
+     "request": "Trame A4", 
+     "width": 2765, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat relais thermoplongeur 3", 
+     "request": "Trame A4", 
+     "width": 2765, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 5100, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat sortie climatisation", 
+     "request": "Trame A4", 
+     "width": 2765, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 5400, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "APC", 
+     "request": "Trame A0", 
+     "width": 1970, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 840, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Demande clim.", 
+     "request": "Trame A4", 
+     "width": 1970, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information pr\u00e9chauffage", 
+     "request": "Trame A0", 
+     "width": 1985, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 1560, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information frein principal", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 1985, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information frein redondant", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 1985, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 2220, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Information embrayage", 
+     "request": "Trame A1 - (Tension et capteurs)", 
+     "width": 1985, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 2520, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat regulateur air", 
+     "request": "Trame A3", 
+     "width": 3440, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3600, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Correction de position vanne EGR", 
+     "request": "Trame A3", 
+     "width": 3440, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3900, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat turbo", 
+     "request": "Trame A3", 
+     "width": 3440, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Correction de position \u00e9lectrovanne sural.", 
+     "request": "Trame A3", 
+     "width": 3440, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4500, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Correction de position Swirl", 
+     "request": "Trame A3", 
+     "width": 3440, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 4440
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Synchro", 
+     "request": "Trame A0", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 1080, 
+      "height": 319, 
+      "left": 7080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat d\u00e9marrage", 
+     "request": "Trame A2", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 1527, 
+      "height": 319, 
+      "left": 7080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat VSC", 
+     "request": "Trame A2", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 1848, 
+      "height": 319, 
+      "left": 7080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat moteur", 
+     "request": "Trame A2", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 2167, 
+      "height": 319, 
+      "left": 7080
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat coupure moteur", 
+     "request": "Trame A2", 
+     "width": 2255, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 2487, 
+      "height": 319, 
+      "left": 7080
+     }
+    }
+   ]
+  }, 
+  "D\u00e9bit / injection": {
+   "inputs": [], 
+   "color": "rgb(64,128,128)", 
+   "labels": [
+    {
+     "color": "rgb(0,255,0)", 
+     "text": "D\u00e9bit - Injection", 
+     "bbox": {
+      "width": 3480, 
+      "top": 120, 
+      "height": 720, 
+      "left": 1320
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6330, 
+   "buttons": [], 
+   "width": 10170, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit d\u00e9sir\u00e9 avant limitation syst\u00e8me et sans LiGov", 
+     "request": "Trame A5", 
+     "width": 5345, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 1200, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit avant limitation et avec LiGov", 
+     "request": "Trame A5", 
+     "width": 5345, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 6120, 
+      "top": 1500, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit moteur (avec ASD)", 
+     "request": "Trame A5", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit moteur + FBC", 
+     "request": "Trame A5", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2340, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit maximal", 
+     "request": "Trame A5", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit poste \u00e0 poste", 
+     "request": "Trame A5", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 2940, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit poste \u00e0 poste 1", 
+     "request": "Trame A5", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit poste \u00e0 poste 2", 
+     "request": "Trame A5", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit poste \u00e0 poste 3", 
+     "request": "Trame A5", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9bit poste \u00e0 poste 4", 
+     "request": "Trame A5", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 4140, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temps d'injection PiI1", 
+     "request": "Trame A5", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temps d'injection PiI2", 
+     "request": "Trame A5", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 2340, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temps d'injection MI1", 
+     "request": "Trame A5", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temps d'injection PoI1", 
+     "request": "Trame A5", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 2940, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temps d'injection PoI2", 
+     "request": "Trame A5", 
+     "width": 3260, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension capteur pression rail", 
+     "request": "Trame A6", 
+     "width": 3275, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression rail actuelle", 
+     "request": "Trame A6", 
+     "width": 3275, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 4140, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne de pression rail", 
+     "request": "Trame A6", 
+     "width": 3275, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne de courant de la MPROP", 
+     "request": "Trame A6", 
+     "width": 3275, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 4740, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Courant de la MPROP mesur\u00e9", 
+     "request": "Trame A6", 
+     "width": 3275, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "RCO MPROP", 
+     "request": "Trame A6", 
+     "width": 3275, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4080, 
+      "top": 5340, 
+      "height": 300, 
+      "left": 4680
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "Trame A0", 
+     "width": 3275, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 120, 
+      "height": 360, 
+      "left": 4800
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple interne avant FMTC", 
+     "request": "Trame A6", 
+     "width": 3275, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 480, 
+      "height": 360, 
+      "left": 4800
+     }
+    }
+   ]
+  }, 
+  "Couple / Moteur": {
+   "inputs": [], 
+   "color": "rgb(255,0,0)", 
+   "labels": [
+    {
+     "color": "rgb(255,128,64)", 
+     "text": "Couple / Moteur", 
+     "bbox": {
+      "width": 8640, 
+      "top": 240, 
+      "height": 960, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 6330, 
+   "buttons": [], 
+   "width": 9000, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple Moteur effectif", 
+     "request": "Trame A6", 
+     "width": 3360, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple Moteur effectif Max", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 1740, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple Moteur effectif Min", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple demande conducteur brute", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 2340, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple branche overrun", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 2640, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple demande conducteur limit\u00e9", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 2940, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple apr\u00e8s CrCtl/lim VMAX", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple apr\u00e8s ASR/MSR", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple apr\u00e8s gestion des erreurs", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple sortie moteur", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 4140, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple interne avant FMTC", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Rapport de transmission Drive Train", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Limitation couple sur d\u00e9faut", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Limitation injection sur d\u00e9faut", 
+     "request": "Trame A6", 
+     "width": 3365, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 5580, 
+      "height": 300, 
+      "left": 120
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "Trame A0", 
+     "width": 3275, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 720, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat moteur", 
+     "request": "Trame A2", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4198, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 4558
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne ralenti", 
+     "request": "Trame A0", 
+     "width": 3215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 720, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple rapide demand\u00e9 par la boite", 
+     "request": "Trame A6", 
+     "width": 3575, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Couple lent demand\u00e9 par la boite", 
+     "request": "Trame A6", 
+     "width": 3575, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4245, 
+      "top": 1740, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Rapport V/N", 
+     "request": "Trame A0", 
+     "width": 3545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2160, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Rapport de transmission", 
+     "request": "Trame A0", 
+     "width": 3545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2460, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat conversion couple boite", 
+     "request": "Trame A0", 
+     "width": 3545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4200, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat d\u00e9marrage", 
+     "request": "Trame A2", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4198, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat VSC", 
+     "request": "Trame A2", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4198, 
+      "top": 3540, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Limitation couple", 
+     "request": "Trame A2", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4198, 
+      "top": 4140, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Coupure moteur reversible", 
+     "request": "Trame A2", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4198, 
+      "top": 4440, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Coupure moteur irreversible", 
+     "request": "Trame A2", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4198, 
+      "top": 4740, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat coupure moteur", 
+     "request": "Trame A2", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4198, 
+      "top": 5040, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Chemin de coupure moteur", 
+     "request": "Trame A2", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4198, 
+      "top": 5340, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Controle coupure en powerlatch", 
+     "request": "Trame A2", 
+     "width": 3560, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4198, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 4560
+     }
+    }
+   ]
+  }
+ }, 
+ "categories": {
+  "Ecrans APV - Usine": [
+   "Contr\u00f4le param\u00e8tres moteur", 
+   "Contr\u00f4le Trame Mux", 
+   "IMA", 
+   "Pilotage des actuateurs", 
+   "R\u00e9init apprentissages", 
+   "Routines - Usine", 
+   "RV / LV", 
+   "Surveillance", 
+   "Verlog / Reprog"
+  ], 
+  "Ecrans Flottes": [
+   "Air/EGR/Turbo", 
+   "APV", 
+   "Clim / Chauffage", 
+   "Couple / Moteur", 
+   "D\u00e9bit / injection", 
+   "EEPROM - EGR", 
+   "Identification", 
+   "Tensions capteurs"
+  ]
+ }
+}

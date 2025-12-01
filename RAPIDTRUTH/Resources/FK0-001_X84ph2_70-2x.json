@@ -1,0 +1,779 @@
+{
+"obd": {
+	"baudrate": 10400, 
+	"protocol": "CAN", 
+	"recv_id": "7E9", 
+	"funcname": "BVA", 
+	"funcaddr": "6E", 
+	"send_id": "7E1"
+}, 
+"devices": [
+	{
+	"dtc": 2086, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Manual mode switch system failure"
+	}, 
+	{
+	"dtc": 6008, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Step motor performance failure"
+	}, 
+	{
+	"dtc": 1856, 
+	"devicedata": {}, 
+	"dtctype": 3, 
+	"name": "Lock-up solenoid circuit open/shorted"
+	}, 
+	{
+	"dtc": 1861, 
+	"devicedata": {}, 
+	"dtctype": 3, 
+	"name": "Line pressure solenoid open/shorted"
+	}, 
+	{
+	"dtc": 5923, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Speed sensor system performance failure"
+	}, 
+	{
+	"dtc": 1813, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Primary revolution sensor open/shorted"
+	}, 
+	{
+	"dtc": 1795, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Brake switch circuit failure"
+	}, 
+	{
+	"dtc": 2113, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Primary/secondary oil pressure sensor performance failure"
+	}, 
+	{
+	"dtc": 6007, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Step motor circuit open/shorted"
+	}, 
+	{
+	"dtc": 5952, 
+	"devicedata": {}, 
+	"dtctype": 3, 
+	"name": "Lock-up/select solenoid circuit open/shorted"
+	}, 
+	{
+	"dtc": 1860, 
+	"devicedata": {}, 
+	"dtctype": 3, 
+	"name": "Lock-up solenoid performance failure"
+	}, 
+	{
+	"dtc": 1862, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Function failure of line pressure control of path"
+	}, 
+	{
+	"dtc": 1840, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Calculation ratio failure"
+	}, 
+	{
+	"dtc": 6209, 
+	"devicedata": {}, 
+	"dtctype": 4, 
+	"name": "CAN bus off"
+	}, 
+	{
+	"dtc": 1808, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Oil temperature sensor"
+	}, 
+	{
+	"dtc": 2112, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Secondary oil pressure sensor circuit open/Shorted"
+	}, 
+	{
+	"dtc": 5926, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Engine system failure"
+	}, 
+	{
+	"dtc": 1829, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Engine speed failure"
+	}, 
+	{
+	"dtc": 1601, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Sensor GND disconnection"
+	}, 
+	{
+	"dtc": 5889, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "EEPROM failure"
+	}, 
+	{
+	"dtc": 2117, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Primary oil pressure sensor circuit open/shorted"
+	}, 
+	{
+	"dtc": 1912, 
+	"devicedata": {}, 
+	"dtctype": 3, 
+	"name": "Secondary pressure solenoid open/shorted"
+	}, 
+	{
+	"dtc": 1910, 
+	"devicedata": {}, 
+	"dtctype": 3, 
+	"name": "Secondary pressure solenoid performance failure"
+	}, 
+	{
+	"dtc": 5893, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Throttle position signal failure"
+	}, 
+	{
+	"dtc": 5922, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Vehicle speed from ABS failure"
+	}, 
+	{
+	"dtc": 1797, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Lever position failure"
+	}, 
+	{
+	"dtc": 1824, 
+	"devicedata": {}, 
+	"dtctype": 0, 
+	"name": "Secondary revolution sensor open/shorted"
+	}
+], 
+"ecuname": "FK0-001_L84ph2_70-2x", 
+"autoidents": [
+	{
+	"diagversion": "4", 
+	"supplier": "APY", 
+	"version": "7020", 
+	"soft": "0070"
+	}
+], 
+"endian": "Big", 
+"requests": [
+	{
+	"name": "Solenoid active test", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Record Local Identifier": {
+		"firstbyte": 2
+		}, 
+		"Solenoid Current": {
+		"firstbyte": 4
+		}, 
+		"Input Output Control Parameter": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3000000000"
+	}, 
+	{
+	"name": "Output control", 
+	"replybytes": "700000", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Record Local Identifier": {
+		"firstbyte": 2
+		}, 
+		"Input Output Control Parameter": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "300000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Manufacturer identification code": {
+		"ref": true, 
+		"firstbyte": 26
+		}, 
+		"Software number": {
+		"ref": true, 
+		"firstbyte": 17
+		}, 
+		"Diagnostic identification number": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Other system features": {
+		"ref": true, 
+		"firstbyte": 23
+		}, 
+		"Spare parts number": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Edition number": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"Supplier number": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Hardware number": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Calibration number": {
+		"ref": true, 
+		"firstbyte": 21
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 26, 
+	"sentbytes": "2180", 
+	"name": "Read RENAULT system identification"
+	}, 
+	{
+	"name": "Read Memory By Address", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Record values": {
+		"firstbyte": 2
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Memory address": {
+		"firstbyte": 2
+		}, 
+		"Memory size": {
+		"firstbyte": 6
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "23000000000000"
+	}, 
+	{
+	"name": "ECUReset", 
+	"replybytes": "5100", 
+	"deny_sds": [
+		"nosds"
+	], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"ResetMode": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "11FF"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Producer ECM absent": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Producer ACC absent": {
+		"ref": true, 
+		"firstbyte": 13
+		}, 
+		"Mux messaging reference": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Producer ABS absent": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Bus off parameter": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Mute module parameter": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Producer BCM absent": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Producer AT CVT2": {
+		"ref": true, 
+		"firstbyte": 15
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 62, 
+	"sentbytes": "2182", 
+	"name": "Multiplex network diagnostic"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Supplier Production Line": {
+		"firstbyte": 6
+		}, 
+		"Date of Production": {
+		"firstbyte": 7
+		}, 
+		"Supplier number": {
+		"firstbyte": 3
+		}, 
+		"Production Number": {
+		"firstbyte": 13
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 22, 
+	"sentbytes": "2184", 
+	"name": "Traceability information"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Software name": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 12, 
+	"sentbytes": "2190", 
+	"name": "Read software name"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"CRC": {
+		"ref": true, 
+		"firstbyte": 20
+		}, 
+		"VIN": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 21, 
+	"sentbytes": "2181", 
+	"name": "Read VIN"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"After-sales day": {
+		"firstbyte": 5
+		}, 
+		"After-sales year": {
+		"firstbyte": 3
+		}, 
+		"After-sales month": {
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 5, 
+	"sentbytes": "21B0", 
+	"name": "Read date of last after-sales operation"
+	}, 
+	{
+	"name": "ReadDTC", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"receivebyte_dataitems": {
+		"Type Of Fault": {
+		"firstbyte": 5
+		}, 
+		"Standard Fault": {
+		"bitoffset": 3, 
+		"firstbyte": 5
+		}, 
+		"Historical Failure": {
+		"bitoffset": 1, 
+		"firstbyte": 5
+		}, 
+		"Current Failure": {
+		"bitoffset": 2, 
+		"firstbyte": 5
+		}, 
+		"FirstDTC": {
+		"firstbyte": 3
+		}, 
+		"Specific Fault": {
+		"bitoffset": 3, 
+		"firstbyte": 5
+		}, 
+		"NDTC": {
+		"firstbyte": 2
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"MoreDTC": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "17FF00", 
+	"shiftbytescount": 3
+	}, 
+	{
+	"name": "StartDiagnosticSession", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"SessionName": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "10C0"
+	}, 
+	{
+	"name": "Write date of last after-sales operation", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"After-sales day": {
+		"firstbyte": 5
+		}, 
+		"After-sales year": {
+		"firstbyte": 3
+		}, 
+		"After-sales month": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3BB0000000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"GroupOfDiagnosticInformation": {
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [
+		"nosds"
+	], 
+	"minbytes": 3, 
+	"sentbytes": "14FF00", 
+	"name": "Clear diagnostic information"
+	}, 
+	{
+	"name": "Write VIN", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"CRC": {
+		"firstbyte": 20
+		}, 
+		"VIN": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "3B8100000000000000000000000000000000000000"
+	}
+], 
+"data": {
+	"Supplier Production Line": {
+	"byte": true, 
+	"bytesascii": true
+	}, 
+	"Solenoid Current": {
+	"comment": "Solenoid current (mA)", 
+	"bitscount": 16, 
+	"signed": true, 
+	"scaled": true, 
+	"bytescount": 2, 
+	"unit": "mA"
+	}, 
+	"Producer ACC absent": {
+	"byte": true
+	}, 
+	"Software name": {
+	"bytesascii": true, 
+	"bytescount": 10, 
+	"byte": true, 
+	"bitscount": 80
+	}, 
+	"Other system features": {
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24
+	}, 
+	"Spare parts number": {
+	"comment": "Spare parts number (in BCD)", 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Edition number": {
+	"comment": "Edition number (in HEXA)", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Bus off parameter": {
+	"byte": true
+	}, 
+	"SessionName": {
+	"lists": {
+		"160": "Enginering", 
+		"192": "After sale"
+	}
+	}, 
+	"Calibration number": {
+	"comment": "Calibration number (in HEXA)", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Memory address": {
+	"comment": "Data encoded with 4 bytes", 
+	"bytescount": 4, 
+	"byte": true, 
+	"bitscount": 32
+	}, 
+	"After-sales month": {
+	"byte": true
+	}, 
+	"Session Name": {
+	"lists": {
+		"192": "assembly line and after-sales session", 
+		"129": "default session", 
+		"250": "supplier mode", 
+		"134": "development session"
+	}
+	}, 
+	"Record values": {
+	"byte": true
+	}, 
+	"Historical Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"ResetMode": {
+	"lists": {
+		"255": "All teach-ins"
+	}
+	}, 
+	"Current Failure": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "No", 
+		"1": "Yes"
+	}
+	}, 
+	"After-sales year": {
+	"byte": true
+	}, 
+	"Mute module parameter": {
+	"byte": true
+	}, 
+	"Record Local Identifier": {
+	"comment": "Record Local Identifier", 
+	"lists": {
+		"16": "L/U & SEL Solenoid", 
+		"17": "PL Solenoid", 
+		"18": "SEC Solenoid", 
+		"19": "L/U & SEL ON/OFF Solenoid", 
+		"20": "P Shift Lock Solenoid"
+	}
+	}, 
+	"Diagnostic identification number": {
+	"comment": "Diagnostic identification number (in HEXA)", 
+	"byte": true
+	}, 
+	"Production Number": {
+	"bytesascii": true, 
+	"bytescount": 6, 
+	"byte": true, 
+	"bitscount": 48
+	}, 
+	"GroupOfDiagnosticInformation": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Hardware number": {
+	"comment": "Hardware number (in BCD)", 
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Manufacturer identification code": {
+	"byte": true
+	}, 
+	"MoreDTC": {
+	"scaled": true, 
+	"signed": true
+	}, 
+	"Mux messaging reference": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"After-sales day": {
+	"byte": true
+	}, 
+	"Supplier number": {
+	"bytesascii": true, 
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24
+	}, 
+	"FirstDTC": {
+	"comment": "List of DTCs", 
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"5889": "EEPROM failure", 
+		"1795": "Brake switch circuit failure", 
+		"5893": "Throttle position signal failure", 
+		"1601": "Sensor GND disconnection", 
+		"1808": "Oil temperature sensor", 
+		"1813": "Primary revolution sensor open/shorted", 
+		"1797": "Lever position failure", 
+		"1824": "Secondary revolution sensor open/shorted", 
+		"5922": "Vehicle speed from ABS failure", 
+		"5923": "Speed sensor system performance failure", 
+		"1829": "Engine speed failure", 
+		"5926": "Engine system failure", 
+		"1840": "Calculation ratio failure", 
+		"2112": "Secondary oil pressure sensor circuit open/Shorted", 
+		"6209": "CAN bus off", 
+		"1856": "Lock-up solenoid circuit open/shorted", 
+		"1860": "Lock-up solenoid performance failure", 
+		"1861": "Line pressure solenoid open/shorted", 
+		"5952": "Lock-up/select solenoid circuit open/shorted", 
+		"1912": "Secondary pressure solenoid open/shorted", 
+		"2117": "Primary oil pressure sensor circuit open/shorted", 
+		"2086": "Manual mode switch system failure", 
+		"2113": "Primary/secondary oil pressure sensor performance failure", 
+		"1862": "Function failure of line pressure control of path", 
+		"1910": "Secondary pressure solenoid performance failure", 
+		"6007": "Step motor circuit open/shorted", 
+		"6008": "Step motor performance failure"
+	}
+	}, 
+	"NDTC": {
+	"scaled": true
+	}, 
+	"Software number": {
+	"comment": "Software number (in BCD)", 
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Producer ECM absent": {
+	"byte": true
+	}, 
+	"Type Of Fault": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Standard", 
+		"1": "Specific"
+	}
+	}, 
+	"CRC": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Producer BCM absent": {
+	"byte": true
+	}, 
+	"Date of Production": {
+	"bytesascii": true, 
+	"bytescount": 6, 
+	"byte": true, 
+	"bitscount": 48
+	}, 
+	"VIN": {
+	"bytescount": 17, 
+	"byte": true, 
+	"bitscount": 136
+	}, 
+	"Producer ABS absent": {
+	"byte": true
+	}, 
+	"Memory size": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Specific Fault": {
+	"bitscount": 5
+	}, 
+	"Input Output Control Parameter": {
+	"lists": {
+		"0": "Return Control to ECU", 
+		"1": "Report Current Status", 
+		"7": "Short Term Adjustement"
+	}
+	}, 
+	"Standard Fault": {
+	"bitscount": 5, 
+	"lists": {
+		"0": "No possible classification about the type of fault", 
+		"1": "Open circuit", 
+		"2": "Short circuit to ground", 
+		"3": "Short circuit at battery +", 
+		"4": "Parameter at min limit", 
+		"5": "Parameter at max limit", 
+		"6": "Incoherency, not plausible", 
+		"7": "No signal", 
+		"8": "Below min. threshold", 
+		"9": "Above max. threshold", 
+		"10": "Permanent low level", 
+		"11": "Permanent high level", 
+		"12": "Lines short-circuited", 
+		"13": "Internal electronic anomaly", 
+		"14": "Network default", 
+		"15": "Remote diagnostic", 
+		"16": "Disturbed communication", 
+		"17": "Microcuts", 
+		"18": "Abnormal voltage", 
+		"19": "Value out of range", 
+		"20": "Open circuit or Short circuit to ground", 
+		"21": "Open circuit or Short circuit to battery", 
+		"22": "Initialization / configuration not valid"
+	}
+	}, 
+	"Producer AT CVT2": {
+	"byte": true
+	}
+}
+}

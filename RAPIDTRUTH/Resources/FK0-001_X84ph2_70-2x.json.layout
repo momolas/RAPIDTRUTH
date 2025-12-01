@@ -1,0 +1,731 @@
+{
+ "screens": {
+  "Reinitialization": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "ResetMode", 
+     "request": "ECUReset", 
+     "width": 1730, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 3810, 
+      "top": 960, 
+      "height": 300, 
+      "left": 1920
+     }
+    }
+   ], 
+   "color": "rgb(223,223,223)", 
+   "labels": [
+    {
+     "color": "rgb(255,0,0)", 
+     "text": "REINITIALIZATION", 
+     "bbox": {
+      "width": 7845, 
+      "top": 60, 
+      "height": 3060, 
+      "left": 75
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 3180, 
+   "buttons": [
+    {
+     "text": "ECUReset", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "ECUReset"
+      }
+     ], 
+     "uniquename": "ECUReset_0", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 2355, 
+      "top": 1635, 
+      "height": 720, 
+      "left": 2745
+     }
+    }
+   ], 
+   "width": 7980, 
+   "displays": []
+  }, 
+  "Identification": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "VIN", 
+     "request": "Write VIN", 
+     "width": 545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4335, 
+      "top": 6690, 
+      "height": 300, 
+      "left": 5175
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CRC", 
+     "request": "Write VIN", 
+     "width": 545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1155, 
+      "top": 7035, 
+      "height": 300, 
+      "left": 5175
+     }
+    }
+   ], 
+   "color": "rgb(223,223,223)", 
+   "labels": [
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "VIN", 
+     "bbox": {
+      "width": 9465, 
+      "top": 6240, 
+      "height": 2445, 
+      "left": 45
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "ATCU's Identification", 
+     "bbox": {
+      "width": 9465, 
+      "top": 2385, 
+      "height": 3720, 
+      "left": 60
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": ".", 
+     "bbox": {
+      "width": 105, 
+      "top": 6585, 
+      "height": 1695, 
+      "left": 4755
+     }, 
+     "fontcolor": "rgb(15,15,15)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "Writing", 
+     "bbox": {
+      "width": 2760, 
+      "top": 6270, 
+      "height": 975, 
+      "left": 5940
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,255,64)", 
+     "text": "Reading", 
+     "bbox": {
+      "width": 1995, 
+      "top": 6285, 
+      "height": 720, 
+      "left": 1425
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "1", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(0,64,128)", 
+     "text": "IDENTIFICATION", 
+     "bbox": {
+      "width": 9465, 
+      "top": 90, 
+      "height": 480, 
+      "left": 45
+     }, 
+     "fontcolor": "rgb(255,255,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [
+    {
+     "Delay": "0", 
+     "RequestName": "Read VIN"
+    }
+   ], 
+   "height": 8700, 
+   "buttons": [
+    {
+     "text": "WRITE", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Write VIN"
+      }
+     ], 
+     "uniquename": "WRITE_0", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 2115, 
+      "top": 7665, 
+      "height": 600, 
+      "left": 6255
+     }
+    }, 
+    {
+     "text": "Start session", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "messages": [
+      ""
+     ], 
+     "rect": {
+      "width": 1800, 
+      "top": 615, 
+      "height": 570, 
+      "left": 7605
+     }, 
+     "uniquename": "Start session_1"
+    }
+   ], 
+   "width": 9540, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Spare parts number", 
+     "request": "Read RENAULT system identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 2760, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Diagnostic identification number", 
+     "request": "Read RENAULT system identification", 
+     "width": 3065, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 3094, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Supplier number", 
+     "request": "Read RENAULT system identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 3430, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Hardware number", 
+     "request": "Read RENAULT system identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 3764, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Software number", 
+     "request": "Read RENAULT system identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 4098, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Edition number", 
+     "request": "Read RENAULT system identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 4434, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Calibration number", 
+     "request": "Read RENAULT system identification", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 4770, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Other system features", 
+     "request": "Read RENAULT system identification", 
+     "width": 2285, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 5104, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Manufacturer identification code", 
+     "request": "Read RENAULT system identification", 
+     "width": 3080, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4170, 
+      "top": 5438, 
+      "height": 282, 
+      "left": 2520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "VIN", 
+     "request": "Read VIN", 
+     "width": 545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4360, 
+      "top": 7155, 
+      "height": 300, 
+      "left": 330
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "CRC", 
+     "request": "Read VIN", 
+     "width": 545, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1170, 
+      "top": 7515, 
+      "height": 300, 
+      "left": 330
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mux messaging reference", 
+     "request": "Multiplex network diagnostic", 
+     "width": 2540, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4185, 
+      "top": 5790, 
+      "height": 279, 
+      "left": 2505
+     }
+    }, 
+    {
+     "color": "rgb(255,128,128)", 
+     "text": "Software name", 
+     "request": "Read software name", 
+     "width": 1730, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3960, 
+      "top": 1560, 
+      "height": 420, 
+      "left": 2640
+     }
+    }
+   ]
+  }, 
+  "Multiplex Network Diagnostic": {
+   "inputs": [], 
+   "color": "rgb(207,207,207)", 
+   "labels": [
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "MULTIPLEX NETWORK DIAGNOSTIC", 
+     "bbox": {
+      "width": 8040, 
+      "top": 120, 
+      "height": 4920, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,128,64)", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 18.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 5340, 
+   "buttons": [
+    {
+     "text": "Clear all failure groups", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Clear diagnostic information"
+      }
+     ], 
+     "uniquename": "Clear all failure groups_0", 
+     "font": {
+      "bold": "1", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3165, 
+      "top": 3840, 
+      "height": 750, 
+      "left": 2760
+     }
+    }
+   ], 
+   "width": 8580, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Bus off parameter", 
+     "request": "Multiplex network diagnostic", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 960, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mute module parameter", 
+     "request": "Multiplex network diagnostic", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 1320, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer ECM absent", 
+     "request": "Multiplex network diagnostic", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 1680, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer ABS absent", 
+     "request": "Multiplex network diagnostic", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 2040, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer BCM absent", 
+     "request": "Multiplex network diagnostic", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 2400, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer ACC absent", 
+     "request": "Multiplex network diagnostic", 
+     "width": 2225, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 2760, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Producer AT CVT2", 
+     "request": "Multiplex network diagnostic", 
+     "width": 2000, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2880, 
+      "top": 3120, 
+      "height": 300, 
+      "left": 2880
+     }
+    }
+   ]
+  }
+ }, 
+ "categories": {
+  "After-sales / Plants": [
+   "Identification", 
+   "Reinitialization", 
+   "Multiplex Network Diagnostic"
+  ]
+ }
+}

@@ -1,0 +1,1099 @@
+{
+"obd": {
+	"baudrate": 10400, 
+	"protocol": "CAN", 
+	"recv_id": "764", 
+	"funcname": "Climatisation", 
+	"funcaddr": "29", 
+	"send_id": "744"
+}, 
+"devices": [
+	{
+	"dtc": 0, 
+	"devicedata": {
+		"Tension +Batt": "0", 
+		"Lanterne": "0"
+	}, 
+	"dtctype": 0, 
+	"name": "alimentation"
+	}, 
+	{
+	"dtc": 37122, 
+	"devicedata": {
+		"Sonde d'ensoleillement": "0"
+	}, 
+	"dtctype": 0, 
+	"name": "Capteur ensoleillement"
+	}, 
+	{
+	"dtc": 37128, 
+	"devicedata": {
+		"Position volet distribution": "0"
+	}, 
+	"dtctype": 3, 
+	"name": "Moteur de distribution"
+	}, 
+	{
+	"dtc": 37127, 
+	"devicedata": {
+		"Position volet mixage": "0"
+	}, 
+	"dtctype": 3, 
+	"name": "Moteur de mixage"
+	}, 
+	{
+	"dtc": 37126, 
+	"devicedata": {
+		"Recyclage": "0"
+	}, 
+	"dtctype": 3, 
+	"name": "Moteur de recyclage"
+	}, 
+	{
+	"dtc": 0, 
+	"devicedata": {
+		"Consigne PWM GMV habitacle": "0"
+	}, 
+	"dtctype": 3, 
+	"name": "consigne module pulseur"
+	}, 
+	{
+	"dtc": 37121, 
+	"devicedata": {
+		"Temp\u00e9rature int\u00e9rieure": "0"
+	}, 
+	"dtctype": 0, 
+	"name": "Capteur temp\u00e9rature int\u00e9rieure"
+	}, 
+	{
+	"dtc": 0, 
+	"devicedata": {
+		"Module Muet - Cpt panne pr\u00e9sente au max": "0", 
+		"Bus Off compteur panne m\u00e9mo": "0", 
+		"Module Muet - compteur panne m\u00e9mo": "0", 
+		"Bus Off": "1", 
+		"Bus Off Cpt panne pr\u00e9sente au max": "0", 
+		"Module Muet": "1"
+	}, 
+	"dtctype": 4, 
+	"name": "can"
+	}, 
+	{
+	"dtc": 37125, 
+	"devicedata": {}, 
+	"dtctype": 2, 
+	"name": "eeprom"
+	}
+], 
+"ecuname": "Climatisation r\u00e9gul\u00e9e Redesign P0 X84 S\u00e9rie", 
+"autoidents": [
+	{
+	"diagversion": "68", 
+	"supplier": "042", 
+	"version": "0201", 
+	"soft": "0011"
+	}, 
+	{
+	"diagversion": "68", 
+	"supplier": "042", 
+	"version": "0200", 
+	"soft": "0010"
+	}, 
+	{
+	"diagversion": "68", 
+	"supplier": "042", 
+	"version": "0202", 
+	"soft": "0012"
+	}
+], 
+"endian": "Big", 
+"requests": [
+	{
+	"name": "Output Control", 
+	"replybytes": "700000", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Output Control Status": {
+		"firstbyte": 3
+		}
+	}, 
+	"sendbyte_dataitems": {
+		"Output Temporary Control List": {
+		"firstbyte": 2
+		}, 
+		"moteur de recyclage.sens": {
+		"firstbyte": 4
+		}, 
+		"GMV Habitacle.sens": {
+		"firstbyte": 4
+		}, 
+		"Output Control Command": {
+		"firstbyte": 3
+		}, 
+		"moteur de mixage.sens": {
+		"firstbyte": 4
+		}, 
+		"moteur de distribution.sens": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 3, 
+	"sentbytes": "30010000"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Id Producteur ECM": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Temp\u00e9rature int\u00e9rieure": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Temp\u00e9rature \u00e9vaporateur": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Id UCE Clim": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Tension +Batt": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Id Producteur UCH": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Temp\u00e9rature d'eau": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Sonde d'ensoleillement": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Temp\u00e9rature ext\u00e9rieure": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Id Producteur Clim": {
+		"ref": true, 
+		"firstbyte": 13
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 13, 
+	"sentbytes": "21C1", 
+	"name": "ReadDataByLocalIdentifier Informations Systeme n\u00b01"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Tra\u00e7abilit\u00e9": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"deny_sds": [
+		"plant", 
+		"aftersales", 
+		"engineering", 
+		"supplier"
+	], 
+	"minbytes": 22, 
+	"sentbytes": "2184", 
+	"name": "Lecture Tra\u00e7abilit\u00e9"
+	}, 
+	{
+	"name": "Lecture Identification Syst\u00e8me RENAULT", 
+	"replybytes": "61800000", 
+	"deny_sds": [
+		"plant", 
+		"aftersales", 
+		"engineering", 
+		"supplier"
+	], 
+	"receivebyte_dataitems": {
+		"N\u00b0 Pi\u00e8ce MPR": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"N\u00b0 Calibration s\u00e9rie": {
+		"ref": true, 
+		"firstbyte": 21
+		}, 
+		"Code ITG Fournisseur": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"N\u00b0 version \u00e9tude": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"Code Identification Diagnostic": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"N\u00b0 HardWare": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"N\u00b0 Logiciel s\u00e9rie": {
+		"ref": true, 
+		"firstbyte": 17
+		}, 
+		"N\u00b0 Calibration \u00e9tude": {
+		"ref": true, 
+		"firstbyte": 23
+		}
+	}, 
+	"minbytes": 26, 
+	"sentbytes": "2180"
+	}, 
+	{
+	"name": "Lecture Identification v\u00e9hicule", 
+	"replybytes": "61810000", 
+	"deny_sds": [
+		"plant", 
+		"aftersales", 
+		"engineering", 
+		"supplier"
+	], 
+	"receivebyte_dataitems": {
+		"CRC": {
+		"ref": true, 
+		"firstbyte": 20
+		}, 
+		"VIN": {
+		"ref": true, 
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 21, 
+	"sentbytes": "2181"
+	}, 
+	{
+	"sentbytes": "14FF00", 
+	"deny_sds": [
+		"plant", 
+		"aftersales", 
+		"engineering", 
+		"supplier"
+	], 
+	"minbytes": 3, 
+	"manualsend": true, 
+	"name": "Clear Diagnostic Info"
+	}, 
+	{
+	"name": "Ecrire config Type V\u00e9hicule", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Choix type de caisse": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BC00100"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Config Sonde EVAPO": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Pays": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Id UCE Clim": {
+		"firstbyte": 3
+		}, 
+		"Type CTP": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Type de caisse": {
+		"ref": true, 
+		"firstbyte": 4
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 7, 
+	"sentbytes": "21C0", 
+	"name": "Lecture Configuration syst\u00e8me"
+	}, 
+	{
+	"sendbyte_dataitems": {
+		"Session Name": {
+		"firstbyte": 2
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 2, 
+	"sentbytes": "10C0", 
+	"name": "Start Diagnostic Session"
+	}, 
+	{
+	"name": "ReadDTC", 
+	"replybytes": "5700", 
+	"deny_sds": [], 
+	"receivebyte_dataitems": {
+		"Panne pr\u00e9sente": {
+		"bitoffset": 2, 
+		"firstbyte": 5
+		}, 
+		"Statut panne": {
+		"bitoffset": 3, 
+		"firstbyte": 5
+		}, 
+		"FirstDTC": {
+		"firstbyte": 3
+		}, 
+		"Panne m\u00e9moris\u00e9e": {
+		"bitoffset": 1, 
+		"firstbyte": 5
+		}, 
+		"NDTC": {
+		"firstbyte": 2
+		}
+	}, 
+	"minbytes": 2, 
+	"sentbytes": "17FF00", 
+	"shiftbytescount": 3
+	}, 
+	{
+	"name": "Diagnostic R\u00e9seau Mux", 
+	"replybytes": "6182000000000000", 
+	"deny_sds": [
+		"plant", 
+		"aftersales", 
+		"engineering", 
+		"supplier"
+	], 
+	"receivebyte_dataitems": {
+		"Module Muet - Cpt panne pr\u00e9sente au max": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Bus Off compteur panne m\u00e9mo": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"R\u00e9f\u00e9rence version messagerie": {
+		"ref": true, 
+		"firstbyte": 3
+		}, 
+		"Module Muet - compteur panne m\u00e9mo": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"ABS absent - Cpt panne pr\u00e9sente au max": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"ECM absent-compteur panne pr\u00e9sente au max": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Bus Off": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"CLUSTER absent": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"ECM absent": {
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"CLUSTER absent-compteur panne m\u00e9mo": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"CLIM absent": {
+		"ref": true, 
+		"firstbyte": 14
+		}, 
+		"UCH absent - Cpt panne pr\u00e9sente au max": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"ECM absent-compteur panne m\u00e9mo": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 7
+		}, 
+		"Bus Off Cpt panne pr\u00e9sente au max": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"UCH absent": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"ABS absent - compteur panne m\u00e9mo": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"ABS absent": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"UCH absent - compteur panne m\u00e9mo": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Module Muet": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"CLUSTER-compteur panne pr\u00e9sent au max": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 9
+		}
+	}, 
+	"minbytes": 31, 
+	"sentbytes": "2182"
+	}, 
+	{
+	"name": "Ecrire config Type CTP", 
+	"deny_sds": [], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"Type CTP": {
+		"firstbyte": 4
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3BC00300"
+	}, 
+	{
+	"receivebyte_dataitems": {
+		"Puissance \u00e9lectrique command\u00e9e": {
+		"ref": true, 
+		"firstbyte": 5
+		}, 
+		"Recyclage": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 21
+		}, 
+		"Vitesse v\u00e9hicule": {
+		"ref": true, 
+		"firstbyte": 10
+		}, 
+		"Id UCE Clim": {
+		"firstbyte": 3
+		}, 
+		"Demande LARC par l'automatisme": {
+		"ref": true, 
+		"firstbyte": 17
+		}, 
+		"+APCLineStatus": {
+		"bitoffset": 6, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Consigne PWM GMV habitacle": {
+		"ref": true, 
+		"firstbyte": 15
+		}, 
+		"Consigne de temp\u00e9rature air souffl\u00e9": {
+		"ref": true, 
+		"firstbyte": 16
+		}, 
+		"Recopie position toit ouvrant": {
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Recopie de l'\u00e9tat du compresseur": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 6
+		}, 
+		"Position volet distribution": {
+		"ref": true, 
+		"firstbyte": 19
+		}, 
+		"Id Producteur Clim": {
+		"firstbyte": 22
+		}, 
+		"Id Producteur ECM": {
+		"firstbyte": 14
+		}, 
+		"Id Producteur ABS": {
+		"ref": true, 
+		"firstbyte": 11
+		}, 
+		"Niveau \u00e9clairage Nuit": {
+		"ref": true, 
+		"firstbyte": 8
+		}, 
+		"Etat de demande LARC manuel": {
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Id Producteur CLUSTER": {
+		"ref": true, 
+		"firstbyte": 9
+		}, 
+		"Mode LDA": {
+		"ref": true, 
+		"firstbyte": 12
+		}, 
+		"Demande AC": {
+		"bitoffset": 1, 
+		"ref": true, 
+		"firstbyte": 17
+		}, 
+		"Lanterne": {
+		"bitoffset": 4, 
+		"ref": true, 
+		"firstbyte": 21
+		}, 
+		"Gel temp\u00e9rature air souffl\u00e9": {
+		"bitoffset": 2, 
+		"ref": true, 
+		"firstbyte": 4
+		}, 
+		"Position volet mixage": {
+		"ref": true, 
+		"firstbyte": 18
+		}, 
+		"Id Producteur UCH": {
+		"firstbyte": 7
+		}, 
+		"Etat du ventilateur habitacle": {
+		"ref": true, 
+		"firstbyte": 21
+		}
+	}, 
+	"deny_sds": [], 
+	"minbytes": 22, 
+	"sentbytes": "21C2", 
+	"name": "ReadDataByLocalIdentifier Informations syst\u00e8me n\u00b02"
+	}, 
+	{
+	"name": "Ecriture VIN", 
+	"deny_sds": [
+		"plant", 
+		"aftersales", 
+		"engineering", 
+		"supplier"
+	], 
+	"manualsend": true, 
+	"sendbyte_dataitems": {
+		"CRC": {
+		"firstbyte": 20
+		}, 
+		"VIN": {
+		"firstbyte": 3
+		}
+	}, 
+	"minbytes": 1, 
+	"sentbytes": "3B8100000000000000000000000000000000000000"
+	}
+], 
+"data": {
+	"R\u00e9f\u00e9rence version messagerie": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Output Control Status": {
+	"lists": {
+		"1": "Running", 
+		"2": "Stopped", 
+		"17": "Manually Stopped"
+	}
+	}, 
+	"Code ITG Fournisseur": {
+	"bytesascii": true, 
+	"bytescount": 3, 
+	"byte": true, 
+	"bitscount": 24
+	}, 
+	"Tra\u00e7abilit\u00e9": {
+	"bytesascii": true, 
+	"bytescount": 16, 
+	"byte": true, 
+	"bitscount": 128
+	}, 
+	"Id Producteur UCH": {
+	"scaled": true
+	}, 
+	"Temp\u00e9rature int\u00e9rieure": {
+	"scaled": true, 
+	"step": 0.5, 
+	"format": "#0.00", 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"Bus Off Cpt panne pr\u00e9sente au max": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non max", 
+		"1": "max"
+	}
+	}, 
+	"UCH absent": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pr\u00e9sent", 
+		"1": "Absent"
+	}
+	}, 
+	"Puissance \u00e9lectrique command\u00e9e": {
+	"scaled": true, 
+	"step": 100.0, 
+	"bitscount": 5, 
+	"unit": "W"
+	}, 
+	"Code Identification Diagnostic": {}, 
+	"CLUSTER absent-compteur panne m\u00e9mo": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"Vitesse v\u00e9hicule": {
+	"scaled": true, 
+	"step": 2.56, 
+	"unit": "km/h", 
+	"format": "##0.0"
+	}, 
+	"CRC": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Id UCE Clim": {
+	"scaled": true
+	}, 
+	"UCH absent - Cpt panne pr\u00e9sente au max": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non max", 
+		"1": "max"
+	}
+	}, 
+	"Choix type de caisse": {
+	"lists": {
+		"0": "B84", 
+		"1": "J84", 
+		"2": "R\u00e9serv\u00e9 X84"
+	}
+	}, 
+	"Demande LARC par l'automatisme": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "OFF", 
+		"1": "ON"
+	}
+	}, 
+	"+APCLineStatus": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "OFF", 
+		"1": "ON", 
+		"3": "indisponible"
+	}
+	}, 
+	"N\u00b0 Logiciel s\u00e9rie": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Panne pr\u00e9sente": {
+	"scaled": true, 
+	"bitscount": 1
+	}, 
+	"Consigne PWM GMV habitacle": {
+	"scaled": true, 
+	"step": 0.5, 
+	"unit": "%"
+	}, 
+	"Module Muet - Cpt panne pr\u00e9sente au max": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non max", 
+		"1": "max"
+	}
+	}, 
+	"Consigne de temp\u00e9rature air souffl\u00e9": {
+	"scaled": true, 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"Bus Off": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Bus On", 
+		"1": "Bus Off"
+	}
+	}, 
+	"Type CTP": {
+	"lists": {
+		"0": "Pas de CTP", 
+		"1": "CTP 1000W", 
+		"3": "CTP 1800W"
+	}
+	}, 
+	"Output Temporary Control List": {
+	"lists": {
+		"1": "GMV Habitacle", 
+		"2": "moteur de recyclage", 
+		"3": "moteur de distribution", 
+		"4": "moteur de mixage"
+	}
+	}, 
+	"Recopie position toit ouvrant": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "toit ferm\u00e9 ", 
+		"1": "toit ouvert", 
+		"2": "non \u00e9quip\u00e9", 
+		"3": "indisponible"
+	}
+	}, 
+	"Temp\u00e9rature ext\u00e9rieure": {
+	"scaled": true, 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"Recopie de l'\u00e9tat du compresseur": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "OFF", 
+		"1": "ON", 
+		"3": "indisponible"
+	}
+	}, 
+	"N\u00b0 version \u00e9tude": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Output Control Command": {
+	"comment": "Testing output : Command enumeration", 
+	"lists": {
+		"0": "Start temporary", 
+		"1": "Status", 
+		"17": "Stop", 
+		"32": "Start permanent"
+	}
+	}, 
+	"ECM absent": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "ECM Pr\u00e9sent", 
+		"1": "ECM absent"
+	}
+	}, 
+	"NDTC": {
+	"scaled": true
+	}, 
+	"N\u00b0 HardWare": {
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Temp\u00e9rature \u00e9vaporateur": {
+	"scaled": true, 
+	"step": 0.5, 
+	"format": "#0.00", 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"CLUSTER-compteur panne pr\u00e9sent au max": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non max", 
+		"1": "au max"
+	}
+	}, 
+	"ABS absent": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Pr\u00e9sent", 
+		"1": "Absent"
+	}
+	}, 
+	"Id Producteur CLUSTER": {
+	"scaled": true
+	}, 
+	"Id Producteur Clim": {
+	"scaled": true
+	}, 
+	"Config Sonde EVAPO": {
+	"lists": {
+		"0": "sans sonde \u00e9vaporateur", 
+		"1": "avec sonde \u00e9vaporateur"
+	}
+	}, 
+	"Type de caisse": {
+	"lists": {
+		"0": "B84 ou assimil\u00e9", 
+		"1": "J84 ou assimil\u00e9", 
+		"2": "R\u00e9serv\u00e9 variante X84", 
+		"3": "J77", 
+		"4": "R\u00e9serv\u00e9 variante J77", 
+		"5": "X85"
+	}
+	}, 
+	"Id Producteur ECM": {
+	"scaled": true
+	}, 
+	"Id Producteur ABS": {
+	"scaled": true
+	}, 
+	"ABS absent - Cpt panne pr\u00e9sente au max": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non max", 
+		"1": "max"
+	}
+	}, 
+	"CLUSTER absent": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "CLUSTER Pr\u00e9sent", 
+		"1": "CLUSTER absent"
+	}
+	}, 
+	"Niveau \u00e9clairage Nuit": {
+	"scaled": true, 
+	"step": 0.4, 
+	"unit": "%"
+	}, 
+	"Etat de demande LARC manuel": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "OFF", 
+		"1": "ON", 
+		"3": "indisponible"
+	}
+	}, 
+	"CLIM absent": {
+	"scaled": true
+	}, 
+	"Statut panne": {
+	"bitscount": 5, 
+	"lists": {
+		"1": "Circuit ouvert", 
+		"2": "Court-circuit \u00e0 la masse", 
+		"3": "Court-circuit au +12V", 
+		"4": "En but\u00e9\u00e9 min", 
+		"5": "En but\u00e9e max", 
+		"6": "Incoh\u00e9rence", 
+		"7": "Pas de signal", 
+		"8": "En dessous du seuil min", 
+		"9": "Au dessus du seuil max", 
+		"10": "Niveau bas permanent", 
+		"11": "Niveau haut permanent", 
+		"12": "Lignes en court-circuit", 
+		"13": "Anomalie \u00e9lectronique interne", 
+		"14": "Panne \u00e0 d\u00e9finir", 
+		"20": "Circuit ouvert ou Court Circuit masse", 
+		"21": "Circuit ouvert ou Court Circuit batterie"
+	}
+	}, 
+	"moteur de distribution.sens": {
+	"lists": {
+		"0": "ventilation", 
+		"1": "D\u00e9givrage"
+	}
+	}, 
+	"Recyclage": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "air externe", 
+		"1": "recy", 
+		"2": "volet en mouvement", 
+		"3": "indisponible"
+	}
+	}, 
+	"Mode LDA": {
+	"lists": {
+		"0": "init", 
+		"1": "STOP", 
+		"2": "init interne", 
+		"3": "run_lant", 
+		"4": "WAIT_CONF_SERV", 
+		"5": "WAIT_LDA1", 
+		"6": "LDA1", 
+		"7": "WAIT_LDA2", 
+		"8": "LDA2", 
+		"9": "ILDE"
+	}
+	}, 
+	"Temp\u00e9rature d'eau": {
+	"scaled": true, 
+	"unit": "\u00b0C", 
+	"offset": -40.0
+	}, 
+	"Sonde d'ensoleillement": {
+	"scaled": true, 
+	"step": 3.0, 
+	"unit": "W/m\u00b2"
+	}, 
+	"Demande AC": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "OFF", 
+		"1": "ON"
+	}
+	}, 
+	"Position volet distribution": {
+	"scaled": true, 
+	"unit": "%"
+	}, 
+	"Module Muet": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "Non Muet", 
+		"1": "Muet"
+	}
+	}, 
+	"N\u00b0 Calibration \u00e9tude": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Bus Off compteur panne m\u00e9mo": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"N\u00b0 Pi\u00e8ce MPR": {
+	"bytescount": 5, 
+	"byte": true, 
+	"bitscount": 40
+	}, 
+	"Lanterne": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "OFF", 
+		"1": "ON", 
+		"3": "indisponible"
+	}
+	}, 
+	"Module Muet - compteur panne m\u00e9mo": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"ABS absent - compteur panne m\u00e9mo": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"moteur de recyclage.sens": {
+	"lists": {
+		"0": "Air ext\u00e9rieur", 
+		"1": "Recyclage"
+	}
+	}, 
+	"N\u00b0 Calibration s\u00e9rie": {
+	"bytescount": 2, 
+	"byte": true, 
+	"bitscount": 16
+	}, 
+	"Gel temp\u00e9rature air souffl\u00e9": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "OFF", 
+		"1": "ON", 
+		"3": "indisponible"
+	}
+	}, 
+	"VIN": {
+	"bytesascii": true, 
+	"bytescount": 17, 
+	"byte": true, 
+	"bitscount": 136
+	}, 
+	"Position volet mixage": {
+	"scaled": true, 
+	"unit": "%"
+	}, 
+	"moteur de mixage.sens": {
+	"lists": {
+		"0": "Tout froid", 
+		"1": "Tout chaud"
+	}
+	}, 
+	"UCH absent - compteur panne m\u00e9mo": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"Tension +Batt": {
+	"scaled": true, 
+	"step": 0.078, 
+	"unit": "V", 
+	"format": "#0.00"
+	}, 
+	"ECM absent-compteur panne pr\u00e9sente au max": {
+	"bitscount": 1, 
+	"lists": {
+		"0": "non max", 
+		"1": "au max"
+	}
+	}, 
+	"Session Name": {
+	"lists": {
+		"192": "APV", 
+		"129": "Defaut", 
+		"196": "Diag Fonctionnel CLIM", 
+		"134": "Developpement"
+	}
+	}, 
+	"Etat du ventilateur habitacle": {
+	"bitscount": 2, 
+	"lists": {
+		"0": "OFF", 
+		"1": "ON", 
+		"3": " indisponible"
+	}
+	}, 
+	"Pays": {
+	"lists": {
+		"0": "Europe (France)"
+	}
+	}, 
+	"Panne m\u00e9moris\u00e9e": {
+	"scaled": true, 
+	"bitscount": 1
+	}, 
+	"GMV Habitacle.sens": {
+	"lists": {
+		"0": "consigne pulseur \u00e0 50%"
+	}
+	}, 
+	"ECM absent-compteur panne m\u00e9mo": {
+	"scaled": true, 
+	"bitscount": 6
+	}, 
+	"FirstDTC": {
+	"bytescount": 2, 
+	"bitscount": 16, 
+	"lists": {
+		"37121": "Capteur temp\u00e9rature int\u00e9rieure", 
+		"37122": "Capteur ensoleillement", 
+		"37125": "eeprom", 
+		"37126": "Moteur de recyclage", 
+		"37127": "Moteur de mixage", 
+		"37128": "Moteur de distribution"
+	}
+	}
+}
+}

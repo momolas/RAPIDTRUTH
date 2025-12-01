@@ -1,0 +1,2738 @@
+{
+ "screens": {
+  "Routines": {
+   "inputs": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Routines \u00e0 activer", 
+     "request": "Routines Activation", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3480, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Routine Entry Options", 
+     "request": "Routines Activation", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Routines \u00e0 stopper", 
+     "request": "Routines Stopping", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3520, 
+      "top": 3240, 
+      "height": 300, 
+      "left": 8640
+     }
+    }
+   ], 
+   "color": "rgb(191,191,191)", 
+   "labels": [
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "IDENTIFICATION", 
+     "bbox": {
+      "width": 12240, 
+      "top": 120, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "LANCEMENT / STATUS", 
+     "bbox": {
+      "width": 3600, 
+      "top": 3000, 
+      "height": 600, 
+      "left": 4440
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "ROUTINE A ACTIVER", 
+     "bbox": {
+      "width": 3720, 
+      "top": 3000, 
+      "height": 600, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "ROUTINES A STOPPER", 
+     "bbox": {
+      "width": 3720, 
+      "top": 3000, 
+      "height": 600, 
+      "left": 8520
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "STATUS", 
+     "bbox": {
+      "width": 3600, 
+      "top": 3720, 
+      "height": 600, 
+      "left": 4440
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "", 
+     "bbox": {
+      "width": 12240, 
+      "top": 1320, 
+      "height": 1080, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "ROUTINES COMMAND", 
+     "bbox": {
+      "width": 12240, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "RESERVE", 
+     "bbox": {
+      "width": 960, 
+      "top": 600, 
+      "height": 600, 
+      "left": 9240
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NCAL", 
+     "bbox": {
+      "width": 840, 
+      "top": 600, 
+      "height": 600, 
+      "left": 7440
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NFOUR", 
+     "bbox": {
+      "width": 960, 
+      "top": 600, 
+      "height": 600, 
+      "left": 2760
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NHARD", 
+     "bbox": {
+      "width": 1560, 
+      "top": 600, 
+      "height": 600, 
+      "left": 3840
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NPIECE", 
+     "bbox": {
+      "width": 1560, 
+      "top": 600, 
+      "height": 600, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NPROG", 
+     "bbox": {
+      "width": 840, 
+      "top": 600, 
+      "height": 600, 
+      "left": 5520
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NVERS", 
+     "bbox": {
+      "width": 840, 
+      "top": 600, 
+      "height": 600, 
+      "left": 6480
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "VDIAG", 
+     "bbox": {
+      "width": 720, 
+      "top": 600, 
+      "height": 600, 
+      "left": 1920
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Version 3.0", 
+     "bbox": {
+      "width": 840, 
+      "top": 240, 
+      "height": 240, 
+      "left": 11400
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "VMAP", 
+     "bbox": {
+      "width": 720, 
+      "top": 600, 
+      "height": 600, 
+      "left": 8400
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "MANUFACT ID CODE", 
+     "bbox": {
+      "width": 1920, 
+      "top": 600, 
+      "height": 600, 
+      "left": 10320
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 9570, 
+   "buttons": [
+    {
+     "text": "Launch Routine", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Routines Activation"
+      }
+     ], 
+     "uniquename": "Launch Routine_0", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 3720, 
+      "height": 600, 
+      "left": 240
+     }
+    }, 
+    {
+     "text": "Stop Routine", 
+     "messages": [
+      ""
+     ], 
+     "send": [
+      {
+       "Delay": "0", 
+       "RequestName": "Routines Stopping"
+      }
+     ], 
+     "uniquename": "Stop Routine_1", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "rect": {
+      "width": 3720, 
+      "top": 3720, 
+      "height": 600, 
+      "left": 8520
+     }
+    }
+   ], 
+   "width": 12540, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Routine Entry Status", 
+     "request": "Routines Activation", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3360, 
+      "top": 3960, 
+      "height": 300, 
+      "left": 4560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mode de fonctionnement moteur", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 12000, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne de fonctionnement gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 12000, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro RENAULT du calculateur", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1320, 
+      "top": 840, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro diagnostic", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 480, 
+      "top": 840, 
+      "height": 300, 
+      "left": 2040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de fournisseur", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 840, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de hardware", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1320, 
+      "top": 840, 
+      "height": 300, 
+      "left": 3960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro du programme", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de version logiciel", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de calibration", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 7560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de calibration mise au point", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 480, 
+      "top": 840, 
+      "height": 300, 
+      "left": 8520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Reserve trame ident", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 840, 
+      "height": 300, 
+      "left": 9360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Manufacturer Identification Code", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 480, 
+      "top": 840, 
+      "height": 300, 
+      "left": 11040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Power latch en cours", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 1950, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 4440, 
+      "height": 291, 
+      "left": 600
+     }
+    }
+   ]
+  }, 
+  "Etats et Param\u00e8tres": {
+   "inputs": [], 
+   "color": "rgb(191,191,191)", 
+   "labels": [
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "", 
+     "bbox": {
+      "width": 12240, 
+      "top": 1320, 
+      "height": 1080, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "DEFAILLANCE SYSTEME", 
+     "bbox": {
+      "width": 6000, 
+      "top": 5520, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "DEMANDE CLIENT", 
+     "bbox": {
+      "width": 6000, 
+      "top": 4320, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "TENSIONS", 
+     "bbox": {
+      "width": 4320, 
+      "top": 7440, 
+      "height": 360, 
+      "left": 8040
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "RESERVE", 
+     "bbox": {
+      "width": 960, 
+      "top": 600, 
+      "height": 600, 
+      "left": 9240
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "INJECTION GAZ", 
+     "bbox": {
+      "width": 6000, 
+      "top": 3720, 
+      "height": 360, 
+      "left": 6360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NCAL", 
+     "bbox": {
+      "width": 840, 
+      "top": 600, 
+      "height": 600, 
+      "left": 7440
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NFOUR", 
+     "bbox": {
+      "width": 960, 
+      "top": 600, 
+      "height": 600, 
+      "left": 2760
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NHARD", 
+     "bbox": {
+      "width": 1560, 
+      "top": 600, 
+      "height": 600, 
+      "left": 3840
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NPIECE", 
+     "bbox": {
+      "width": 1560, 
+      "top": 600, 
+      "height": 600, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NPROG", 
+     "bbox": {
+      "width": 840, 
+      "top": 600, 
+      "height": 600, 
+      "left": 5520
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NVERS", 
+     "bbox": {
+      "width": 840, 
+      "top": 600, 
+      "height": 600, 
+      "left": 6480
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(191,191,191)", 
+     "text": "=", 
+     "bbox": {
+      "width": 240, 
+      "top": 3840, 
+      "height": 360, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "REGIMES", 
+     "bbox": {
+      "width": 6000, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 6360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "TEMPERATURES", 
+     "bbox": {
+      "width": 6000, 
+      "top": 4920, 
+      "height": 360, 
+      "left": 6360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "VDIAG", 
+     "bbox": {
+      "width": 720, 
+      "top": 600, 
+      "height": 600, 
+      "left": 1920
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Version 3.0", 
+     "bbox": {
+      "width": 840, 
+      "top": 240, 
+      "height": 240, 
+      "left": 11400
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "VMAP", 
+     "bbox": {
+      "width": 720, 
+      "top": 600, 
+      "height": 600, 
+      "left": 8400
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "", 
+     "bbox": {
+      "width": 6000, 
+      "top": 6840, 
+      "height": 480, 
+      "left": 6360
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(191,191,191)", 
+     "text": "-", 
+     "bbox": {
+      "width": 240, 
+      "top": 3240, 
+      "height": 360, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 14.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "", 
+     "bbox": {
+      "width": 5760, 
+      "top": 3720, 
+      "height": 45, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "MANUFACT ID CODE", 
+     "bbox": {
+      "width": 1920, 
+      "top": 600, 
+      "height": 600, 
+      "left": 10320
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "PRESSIONS", 
+     "bbox": {
+      "width": 6000, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "IDENTIFICATION", 
+     "bbox": {
+      "width": 12240, 
+      "top": 120, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "ETAT DES RELAIS ET ELECTROVANNES", 
+     "bbox": {
+      "width": 7800, 
+      "top": 7440, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 10140, 
+   "buttons": [], 
+   "width": 12540, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mode de fonctionnement moteur", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 12000, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne de fonctionnement gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 12000, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat de la demande client gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4220, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 4800, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat du bouton gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4220, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 5160, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Syst\u00e8me gaz pr\u00eat", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Syst\u00e8me gaz en d\u00e9faut", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 6360, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9faut mineur syst\u00e8me gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 6720, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "D\u00e9faut grave syst\u00e8me gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 7080, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat de sortie du voyant", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7320, 
+      "top": 7920, 
+      "height": 291, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat de sortie de la led", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7320, 
+      "top": 8280, 
+      "height": 291, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat du relais g\u00e9n\u00e9ral (EV r\u00e9servoir)", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7320, 
+      "top": 8640, 
+      "height": 291, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat de l'\u00e9lectrovanne d\u00e9tendeur", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7320, 
+      "top": 9000, 
+      "height": 291, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat du relais de coupure pompe \u00e0 essence", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4215, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7320, 
+      "top": 9360, 
+      "height": 291, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro RENAULT du calculateur", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1320, 
+      "top": 840, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro diagnostic", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 480, 
+      "top": 840, 
+      "height": 300, 
+      "left": 2040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de fournisseur", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 840, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de hardware", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1320, 
+      "top": 840, 
+      "height": 300, 
+      "left": 3960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne de d\u00e9bit gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4235, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 4200, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temps injection gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4235, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 4560, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature eau", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4235, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 5400, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature air", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4235, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 5760, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Autorisation calcul de la temp\u00e9rature gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 6120, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature gaz injecteur", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4235, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 6480, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro du programme", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de version logiciel", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression collecteur", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3980, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5400, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3975, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5400, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "R\u00e9gime moteur mux", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4230, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5520, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de calibration", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 7560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de calibration mise au point", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 480, 
+      "top": 840, 
+      "height": 300, 
+      "left": 8520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Etat \u00e9lectrovanne rampe (not used)", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4220, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 7320, 
+      "top": 9720, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Power latch en cours", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 1950, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 3120, 
+      "top": 6960, 
+      "height": 291, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Moteur cal\u00e9", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 1110, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 2280, 
+      "top": 6960, 
+      "height": 300, 
+      "left": 9840
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Delta de pression global injecteur", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3980, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5400, 
+      "top": 3840, 
+      "height": 300, 
+      "left": 480
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Reserve trame ident", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 840, 
+      "height": 300, 
+      "left": 9360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Manufacturer Identification Code", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 480, 
+      "top": 840, 
+      "height": 300, 
+      "left": 11040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension d'alimentation capteurs", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3155, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 7920, 
+      "height": 300, 
+      "left": 8160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension d'alimentation jauges", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3155, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 8280, 
+      "height": 300, 
+      "left": 8160
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension r\u00e9servoir", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3155, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 4000, 
+      "top": 8640, 
+      "height": 300, 
+      "left": 8160
+     }
+    }
+   ]
+  }, 
+  "Configuration Syst\u00e8me": {
+   "inputs": [], 
+   "color": "rgb(191,191,191)", 
+   "labels": [
+    {
+     "color": "rgb(128,128,255)", 
+     "text": "", 
+     "bbox": {
+      "width": 12240, 
+      "top": 1320, 
+      "height": 1080, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "JAUGEAGE", 
+     "bbox": {
+      "width": 12240, 
+      "top": 2520, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "DIVERS", 
+     "bbox": {
+      "width": 12240, 
+      "top": 6720, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,255,128)", 
+     "text": "CAPTEURS", 
+     "bbox": {
+      "width": 12240, 
+      "top": 4440, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "RESERVE", 
+     "bbox": {
+      "width": 960, 
+      "top": 600, 
+      "height": 600, 
+      "left": 9240
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NCAL", 
+     "bbox": {
+      "width": 840, 
+      "top": 600, 
+      "height": 600, 
+      "left": 7440
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NFOUR", 
+     "bbox": {
+      "width": 960, 
+      "top": 600, 
+      "height": 600, 
+      "left": 2760
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NHARD", 
+     "bbox": {
+      "width": 1560, 
+      "top": 600, 
+      "height": 600, 
+      "left": 3840
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NPIECE", 
+     "bbox": {
+      "width": 1560, 
+      "top": 600, 
+      "height": 600, 
+      "left": 240
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NPROG", 
+     "bbox": {
+      "width": 840, 
+      "top": 600, 
+      "height": 600, 
+      "left": 5520
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "NVERS", 
+     "bbox": {
+      "width": 840, 
+      "top": 600, 
+      "height": 600, 
+      "left": 6480
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "VDIAG", 
+     "bbox": {
+      "width": 720, 
+      "top": 600, 
+      "height": 600, 
+      "left": 1920
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "Version 3.0", 
+     "bbox": {
+      "width": 840, 
+      "top": 240, 
+      "height": 240, 
+      "left": 11400
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.25
+     }, 
+     "alignment": "0"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "VMAP", 
+     "bbox": {
+      "width": 720, 
+      "top": 600, 
+      "height": 600, 
+      "left": 8400
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(15,15,15)", 
+     "text": "MANUFACT ID CODE", 
+     "bbox": {
+      "width": 1920, 
+      "top": 600, 
+      "height": 600, 
+      "left": 10320
+     }, 
+     "fontcolor": "rgb(255,255,255)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 8.0
+     }, 
+     "alignment": "2"
+    }, 
+    {
+     "color": "rgb(255,128,0)", 
+     "text": "IDENTIFICATION", 
+     "bbox": {
+      "width": 12240, 
+      "top": 120, 
+      "height": 360, 
+      "left": 120
+     }, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "1", 
+      "name": "MS Sans Serif", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "alignment": "2"
+    }
+   ], 
+   "presend": [], 
+   "height": 9570, 
+   "buttons": [], 
+   "width": 12540, 
+   "displays": [
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Mode de fonctionnement moteur", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 12000, 
+      "top": 1440, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Consigne de fonctionnement gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 3620, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 12.0
+     }, 
+     "rect": {
+      "width": 12000, 
+      "top": 1920, 
+      "height": 300, 
+      "left": 240
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Configuration capteur de temp\u00e9rature aval gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 11760, 
+      "top": 4920, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Configuration monocarburation", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4065, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 11760, 
+      "top": 7200, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Nombre de d\u00e9part essence usine", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4070, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 11760, 
+      "top": 7560, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Entr\u00e9e analogique utilis\u00e9e pour le jaugeage", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4040, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 11760, 
+      "top": 3000, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Entr\u00e9e analogique de jaugeage activ\u00e9e", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4040, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 11760, 
+      "top": 3360, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Resistance jauge", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4040, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 4080, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression r\u00e9servoir (GNV seulement)", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4040, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 4080, 
+      "height": 300, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Configuration capteur de pression aval gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 11760, 
+      "top": 5280, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Pression gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4055, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Temp\u00e9rature gaz injecteur", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4055, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 6000, 
+      "height": 300, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Autorisation calcul de la temp\u00e9rature gaz", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 11760, 
+      "top": 5640, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro RENAULT du calculateur", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1320, 
+      "top": 840, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro diagnostic", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 480, 
+      "top": 840, 
+      "height": 300, 
+      "left": 2040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de fournisseur", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 840, 
+      "height": 300, 
+      "left": 2880
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de hardware", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 1320, 
+      "top": 840, 
+      "height": 300, 
+      "left": 3960
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro du programme", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 5640
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de version logiciel", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 6600
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de calibration", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 600, 
+      "top": 840, 
+      "height": 300, 
+      "left": 7560
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Num\u00e9ro de calibration mise au point", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 480, 
+      "top": 840, 
+      "height": 300, 
+      "left": 8520
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Reserve trame ident", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 720, 
+      "top": 840, 
+      "height": 300, 
+      "left": 9360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Manufacturer Identification Code", 
+     "request": "Trame Identification", 
+     "width": 0, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 480, 
+      "top": 840, 
+      "height": 300, 
+      "left": 11040
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension d'alimentation capteurs", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4055, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 6360, 
+      "height": 300, 
+      "left": 360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension d'alimentation jauges", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4040, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 6360
+     }
+    }, 
+    {
+     "color": "rgb(255,255,255)", 
+     "text": "Tension r\u00e9servoir", 
+     "request": "Trame 01 - Etats et Param\u00e8tres", 
+     "width": 4040, 
+     "fontcolor": "rgb(0,0,0)", 
+     "font": {
+      "bold": "0", 
+      "name": "Arial", 
+      "italic": "0", 
+      "size": 10.0
+     }, 
+     "rect": {
+      "width": 5760, 
+      "top": 3720, 
+      "height": 300, 
+      "left": 360
+     }
+    }
+   ]
+  }
+ }, 
+ "categories": {
+  "Ecrans": [
+   "Etats et Param\u00e8tres", 
+   "Routines", 
+   "Configuration Syst\u00e8me"
+  ]
+ }
+}
