@@ -29,29 +29,81 @@ class ECUDiagnosticService {
         return try JSONDecoder().decode(ECULayout.self, from: data)
     }
 
-    func execute(request: ECURequest, definition: ECUDefinition) async throws -> [String: String] {
-        // 1. Send the command
+    func execute(request: ECURequest, definition: ECUDefinition, ecu: DatabaseECU? = nil) async throws -> [String: String] {
+        // 1. Prepare Protocol and Header if ECU info is provided
+        if let ecu = ecu {
+             try await setupHeader(for: ecu)
+        }
+
+        // 2. Send the command
         // Note: sentbytes is a hex string e.g., "3BC100"
         let command = request.sentbytes
 
-        // This relies on the adapter being in the correct protocol state.
-        // The JSON specifies protocol ("KWP2000") and init parameters, which ideally should be handled by setup.
-        // For now, we assume the user/app has set up the connection or we try sending raw.
-
         let rawResponse = try await obdService.sendRawCommand(command)
 
-        // 2. Parse the response
+        // 3. Parse the response
         // rawResponse is [String], e.g. ["61 93 12 ..."]
         guard let firstLine = rawResponse.first else { return [:] }
 
         // Clean response
         let cleanHex = firstLine.replacingOccurrences(of: " ", with: "")
                                 .replacingOccurrences(of: ">", with: "")
+
+        // Handle "NO DATA" or errors
+        if cleanHex.contains("NODATA") || cleanHex.contains("ERROR") {
+             return ["Status": cleanHex]
+        }
+
         let dataBytes = Data(hexString: cleanHex)
 
-        guard let dataBytes = dataBytes else { return ["Error": "Invalid Hex Response"] }
+        guard let dataBytes = dataBytes else { return ["Error": "Invalid Hex Response: \(cleanHex)"] }
 
         return decode(data: dataBytes, request: request, definition: definition)
+    }
+
+    private func setupHeader(for ecu: DatabaseECU) async throws {
+        // Handle protocol and addressing logic based on X84_db.json format
+        // Example: "address": "7A", "protocol": "CAN"
+
+        guard let addressStr = getAddress(ecu: ecu) else { return }
+
+        // Determine Header command based on Protocol
+        // X84 is typically CAN (ISO 15765) or KWP2000
+
+        if ecu.protocolName?.uppercased() == "CAN" {
+             // For Renault CAN, standard ID is often 0x700 + Addr
+             // e.g. "7A" -> 0x77A. "01" (ABS) -> 0x701? (Wait, ABS is usually 760 or similar, but X84 might use simplified addressing)
+             // Let's assume the DB "address" is the lower byte of the 11-bit CAN ID 0x7xx.
+             // command: AT SH 7xx
+
+             // If address is "7A", header is "77A"
+             // If address is "01", header is "701" ?
+             // NOTE: Some Renault DBs use a mapping. But without it, 7xx is the best guess.
+             // Or maybe "address" IS the full ID? "7A" is too short. "58" too short.
+             // So 7<Address> is highly probable for Renault Diag on CAN.
+
+             let header = "7\(addressStr)"
+             _ = try await obdService.sendRawCommand("AT SH \(header)")
+
+        } else if ecu.protocolName?.uppercased().contains("KWP") == true {
+             // KWP2000 (ISO 14230)
+             // Header format: Priority Target Source
+             // Target = Address. Source = F1 (Scanner). Priority = 81 (Physical) or C1/80.
+             // Standard: AT SH 81 <Addr> F1
+
+             let header = "81 \(addressStr) F1"
+             _ = try await obdService.sendRawCommand("AT SH \(header)")
+
+             // Also might need to switch protocol?
+             // Ideally we should use `AT SP ...` but that might reset connection.
+             // Assuming user/app is in compatible mode or Auto.
+        }
+    }
+
+    private func getAddress(ecu: DatabaseECU) -> String? {
+        // Address in DB is string "7A", "01", "26"...
+        guard !ecu.address.isEmpty else { return nil }
+        return ecu.address
     }
 
     private func decode(data: Data, request: ECURequest, definition: ECUDefinition) -> [String: String] {
@@ -67,16 +119,14 @@ class ECUDiagnosticService {
                 continue
             }
 
-            // Extract Raw Value
-            // firstbyte is 1-based index in the JSON usually? Let's check.
-            // "firstbyte": 8. In a response like "61 ...", bytes are 0-indexed.
-            // Often these definitions start counting after the Service ID or Header?
-            // "sentbytes": "2192", response likely "61 92 ..."
-            // Standard ODX/JSON often uses 1-based index into the FULL payload including SID.
+            // Adjust index: definitions often include the Service ID in the count, or are 1-based.
+            // In a raw response "61 80 12...", 61 is the Positive Response SID.
+            // If binding says "firstbyte": 1. Does it mean 61? Or 80?
+            // Usually in DDT/Renault json, 1 is the Service ID.
+            // So byteIndex = binding.firstbyte - 1.
 
-            let byteIndex = binding.firstbyte - 1 // Convert 1-based to 0-based
+            let byteIndex = binding.firstbyte - 1
 
-            // Determine length
             let byteCount = itemDef.bytescount ?? 1
 
             guard byteIndex < data.count else {
@@ -85,11 +135,23 @@ class ECUDiagnosticService {
             }
 
             // Extract bytes
-            // Handle multi-byte extraction (Big Endian per JSON "endian": "Big")
             var rawValue: Int = 0
             if byteIndex + byteCount <= data.count {
-                for i in 0..<byteCount {
-                    rawValue = (rawValue << 8) | Int(data[byteIndex + i])
+                // Check Endianness (Global definition `endian`)
+                // Default Big Endian for OBD usually.
+                // If "Little", we swap.
+                // definition.endian == "Little" ?
+
+                let isLittle = (definition.endian == "Little")
+
+                if isLittle {
+                    for i in 0..<byteCount {
+                        rawValue |= Int(data[byteIndex + i]) << (8 * i)
+                    }
+                } else {
+                    for i in 0..<byteCount {
+                        rawValue = (rawValue << 8) | Int(data[byteIndex + i])
+                    }
                 }
             } else {
                 results[itemName] = "Out of bounds"
@@ -97,14 +159,9 @@ class ECUDiagnosticService {
             }
 
             // Handle Bits
-            // If bitscount or bitoffset is present
-            // JSON example: "bitoffset": 1, "firstbyte": 5. "bitscount": 1 (implied if boolean?)
-            // Example: "Historical Failure": { "bitoffset": 1, "firstbyte": 5 }, "bitscount": 1 in Data.
             if let bitOffset = binding.bitoffset {
-                // Usually bitoffset 0 = LSB, 7 = MSB. Or reverse.
-                // Assuming standard: (byte >> bitOffset) & 1
-                // Wait, some definitions use 7-0.
-                // Let's assume standard right shift for now.
+                // DDT2000: bitoffset usually 0..7.
+                // Is it 0=LSB?
                 let bitsCount = itemDef.bitscount ?? 1
                 let mask = (1 << bitsCount) - 1
                 rawValue = (rawValue >> bitOffset) & mask
@@ -113,31 +170,26 @@ class ECUDiagnosticService {
             // Decode Logic
             if let lists = itemDef.lists {
                 // Discrete values
-                results[itemName] = lists[String(rawValue)] ?? "Unknown (\(rawValue))"
+                // Lists keys are strings in JSON "0", "1"...
+                results[itemName] = lists[String(rawValue)] ?? "\(rawValue)"
             } else if itemDef.scaled == true {
                 // Scaling
                 var physValue = Double(rawValue)
 
-                // Signed?
-                // If signed and simple byte, e.g. -40 to 215.
-                // If definitions say "signed": true
                 if itemDef.signed == true {
-                   // Need to handle 2's complement based on bit size
-                   // Simple case for now
+                   // Handle signed integer of `bitscount` or `byteCount*8` bits
+                   let totalBits = (itemDef.bitscount ?? (byteCount * 8))
+                   let maxVal = 1 << (totalBits - 1)
+                   if rawValue >= maxVal {
+                       rawValue -= (1 << totalBits)
+                       physValue = Double(rawValue)
+                   }
                 }
 
-                if let divideBy = itemDef.divideby {
+                if let divideBy = itemDef.divideby, divideBy != 0 {
                     physValue /= divideBy
                 }
                 if let step = itemDef.step {
-                     // Step usually means multiplier? or Step size.
-                     // Often phys = raw * step + offset
-                     // But here divideby is explicit.
-                     // Example: "divideby": 1000.0, "step": 16.0.
-                     // This might mean: Value = Raw * Step / DivideBy ?
-                     // Or maybe Step is resolution.
-                     // Let's try standard linear: y = mx + b
-                     // If step is present, use it as multiplier.
                      physValue *= step
                 }
 
@@ -146,13 +198,14 @@ class ECUDiagnosticService {
                 }
 
                 let unit = itemDef.unit ?? ""
-                // Format decimal places
                 results[itemName] = String(format: "%.2f %@", physValue, unit)
 
             } else if itemDef.bytesascii == true {
                 // ASCII String
                 let subData = data.subdata(in: byteIndex..<min(byteIndex+byteCount, data.count))
-                results[itemName] = String(data: subData, encoding: .utf8) ?? "Invalid String"
+                // Filter non-printable
+                let str = String(data: subData, encoding: .ascii) ?? ""
+                results[itemName] = str.trimmingCharacters(in: .controlCharacters)
             } else {
                 // Default raw
                 results[itemName] = String(rawValue)

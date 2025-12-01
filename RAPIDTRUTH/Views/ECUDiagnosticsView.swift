@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ECUDiagnosticsView: View {
     let definition: ECUDefinition
+    let ecu: DatabaseECU? // Added context from DB
     let obdService: OBDService
     @State private var service: ECUDiagnosticService
     @State private var layout: ECULayout?
@@ -16,8 +17,9 @@ struct ECUDiagnosticsView: View {
     @State private var results: [String: String] = [:]
     @State private var isExecuting = false
 
-    init(definition: ECUDefinition, obdService: OBDService) {
+    init(definition: ECUDefinition, ecu: DatabaseECU? = nil, obdService: OBDService) {
         self.definition = definition
+        self.ecu = ecu
         self.obdService = obdService
         self._service = State(initialValue: ECUDiagnosticService(obdService: obdService))
     }
@@ -26,7 +28,12 @@ struct ECUDiagnosticsView: View {
         List {
             Section(header: Text("ECU Information")) {
                 Text("Name: \(definition.ecuname)")
-                Text("Protocol: \(definition.obd.protocolName ?? "Unknown")")
+                Text("Protocol: \(definition.obd.protocolName ?? ecu?.protocolName ?? "Unknown")")
+                if let addr = ecu?.address {
+                    Text("Address: \(addr)")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
             }
 
             if let layout = layout {
@@ -38,6 +45,7 @@ struct ECUDiagnosticsView: View {
                                     screenName: screenName,
                                     screen: screen,
                                     definition: definition,
+                                    ecu: ecu, // Pass down to screen
                                     service: service
                                 )) {
                                     Text(screenName)
@@ -103,9 +111,12 @@ struct ECUDiagnosticsView: View {
     }
 
     private func loadLayout() {
-        // Try to load corresponding layout file
-        // Assumption: resource name matches definition but with .layout.json extension
-        // In real app, we might pass the layout URL directly
+        // Use logic to find layout file based on definition name
+        // Ideally we check if a file definition.ecuname + ".layout" exists?
+        // Or passed from outside.
+        // For now, retaining the hardcoded fallback for parking_sensor if dynamic fails
+
+        // This logic was hardcoded in previous file.
         if let url = Bundle.main.url(forResource: "parking_sensor.layout", withExtension: "json") {
             do {
                 self.layout = try service.loadLayout(from: url)
@@ -122,7 +133,8 @@ struct ECUDiagnosticsView: View {
 
         Task {
             do {
-                results = try await service.execute(request: request, definition: definition)
+                // Pass the ECU context (address) to execution
+                results = try await service.execute(request: request, definition: definition, ecu: ecu)
             } catch {
                 results = ["Error": error.localizedDescription]
             }
