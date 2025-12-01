@@ -11,6 +11,7 @@ struct ECUSelectorView: View {
     @State private var searchText = ""
     @State private var isLoading = true
     @State private var selectedDB: URL?
+    @State private var debugMessage: String = "" // For on-screen debugging
 
     // List all available DB files
     private var availableDBs: [URL] {
@@ -68,7 +69,12 @@ struct ECUSelectorView: View {
     var body: some View {
         Group {
             if isLoading {
-                ProgressView(AppStrings.ECUDatabase.loading)
+                VStack {
+                    ProgressView(AppStrings.ECUDatabase.loading)
+                    if !debugMessage.isEmpty {
+                        Text(debugMessage).font(.caption).foregroundStyle(.red).padding()
+                    }
+                }
             } else if ecus.isEmpty {
                  VStack {
                     if availableDBs.count > 1 {
@@ -84,6 +90,9 @@ struct ECUSelectorView: View {
                         .padding()
                     }
                     ContentUnavailableView(AppStrings.ECUDatabase.empty, systemImage: "xmark.circle")
+                    if !debugMessage.isEmpty {
+                        Text("Debug: " + debugMessage).font(.caption).foregroundStyle(.red).padding()
+                    }
                 }
             } else {
                 List {
@@ -135,11 +144,17 @@ struct ECUSelectorView: View {
         .task {
             // Load default or first available
             let dbs = availableDBs
+            print("Available DBs: \(dbs)")
+            await MainActor.run { self.debugMessage = "Found \(dbs.count) DBs" }
+
             if let defaultDB = dbs.first(where: { $0.lastPathComponent == "X84_db.json" }) ?? dbs.first {
                 await loadDB(url: defaultDB)
             } else {
                 print("No database found.")
-                await MainActor.run { self.isLoading = false }
+                await MainActor.run {
+                    self.isLoading = false
+                    self.debugMessage += "\nNo DB found in bundle."
+                }
             }
         }
     }
@@ -148,10 +163,17 @@ struct ECUSelectorView: View {
         await MainActor.run {
             self.isLoading = true
             self.selectedDB = url
+            self.debugMessage = "Loading \(url.lastPathComponent)..."
         }
 
         do {
             let data = try Data(contentsOf: url)
+            print("Data size: \(data.count)")
+
+            // Debug first few bytes
+            let str = String(data: data.prefix(100), encoding: .utf8) ?? "Invalid UTF8"
+            print("Header: \(str)")
+
             let dict = try JSONDecoder().decode([String: DatabaseECU].self, from: data)
             let sortedECUs = dict.compactMap { key, value -> DatabaseECU? in
                 var ecu = value
@@ -162,10 +184,14 @@ struct ECUSelectorView: View {
             await MainActor.run {
                 self.ecus = sortedECUs
                 self.isLoading = false
+                self.debugMessage = "Loaded \(sortedECUs.count) ECUs"
             }
         } catch {
             print("Error loading \(url.lastPathComponent): \(error)")
-            await MainActor.run { self.isLoading = false }
+            await MainActor.run {
+                self.isLoading = false
+                self.debugMessage = "Error: \(error.localizedDescription)"
+            }
         }
     }
 }
