@@ -10,6 +10,14 @@ struct ECUSelectorView: View {
     @State private var ecus: [DatabaseECU] = []
     @State private var searchText = ""
     @State private var isLoading = true
+    @State private var selectedDB: URL?
+
+    // List all available DB files
+    private var availableDBs: [URL] {
+        Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil)?.filter {
+            $0.lastPathComponent.hasSuffix("_db.json")
+        } ?? []
+    }
 
     var filteredECUs: [DatabaseECU] {
         if searchText.isEmpty {
@@ -33,7 +41,21 @@ struct ECUSelectorView: View {
             if isLoading {
                 ProgressView(AppStrings.ECUDatabase.loading)
             } else if ecus.isEmpty {
-                ContentUnavailableView(AppStrings.ECUDatabase.empty, systemImage: "xmark.circle")
+                 VStack {
+                    if availableDBs.count > 1 {
+                        Menu {
+                            ForEach(availableDBs, id: \.self) { url in
+                                Button(url.lastPathComponent) {
+                                    Task { await loadDB(url: url) }
+                                }
+                            }
+                        } label: {
+                            Label("Select Database", systemImage: "cylinder.split.1x2")
+                        }
+                        .padding()
+                    }
+                    ContentUnavailableView(AppStrings.ECUDatabase.empty, systemImage: "xmark.circle")
+                }
             } else {
                 List {
                     ForEach(groupedECUs, id: \.key) { groupName, ecus in
@@ -57,26 +79,50 @@ struct ECUSelectorView: View {
                     }
                 }
                 .searchable(text: $searchText, prompt: AppStrings.ECUDatabase.searchPrompt)
+                .toolbar {
+                    if availableDBs.count > 1 {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Menu {
+                                ForEach(availableDBs, id: \.self) { url in
+                                    Button {
+                                        Task { await loadDB(url: url) }
+                                    } label: {
+                                        if selectedDB == url {
+                                            Label(url.lastPathComponent, systemImage: "checkmark")
+                                        } else {
+                                            Text(url.lastPathComponent)
+                                        }
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "cylinder.split.1x2")
+                            }
+                        }
+                    }
+                }
             }
         }
         .navigationTitle(AppStrings.ECUDatabase.title)
         .task {
-            await loadDB()
+            // Load default or first available
+            if let defaultDB = availableDBs.first(where: { $0.lastPathComponent == "X84_db.json" }) ?? availableDBs.first {
+                await loadDB(url: defaultDB)
+            } else {
+                await MainActor.run { self.isLoading = false }
+            }
         }
     }
 
-    private func loadDB() async {
-        guard let url = Bundle.main.url(forResource: "X84_db", withExtension: "json") else {
-            print("X84_db.json not found")
-            await MainActor.run { self.isLoading = false }
-            return
+    private func loadDB(url: URL) async {
+        await MainActor.run {
+            self.isLoading = true
+            self.selectedDB = url
         }
 
         do {
             let data = try Data(contentsOf: url)
             let dict = try JSONDecoder().decode([String: DatabaseECU].self, from: data)
             let sortedECUs = dict.compactMap { key, value -> DatabaseECU? in
-                guard AllowedECUs.isAllowed(value.ecuname) else { return nil }
                 var ecu = value
                 ecu.fileName = key
                 return ecu
@@ -87,7 +133,7 @@ struct ECUSelectorView: View {
                 self.isLoading = false
             }
         } catch {
-            print("Error loading X84_db.json: \(error)")
+            print("Error loading \(url.lastPathComponent): \(error)")
             await MainActor.run { self.isLoading = false }
         }
     }
@@ -103,7 +149,7 @@ struct ECULoaderView: View {
     var body: some View {
         Group {
             if let definition = definition {
-                ECUDiagnosticsView(definition: definition, obdService: obdService)
+                ECUDiagnosticsView(definition: definition, ecu: ecu, obdService: obdService)
                     .navigationTitle(ecu.ecuname)
             } else if error != nil {
                 ContentUnavailableView(AppStrings.ECUDatabase.errorTitle,
