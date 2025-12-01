@@ -22,14 +22,7 @@ extension Color {
     static func currentColorScheme() -> ColorScheme {
         return UITraitCollection.current.userInterfaceStyle == .dark ? .dark : .light
     }
-
-//    static func startColor(for colorScheme: ColorScheme = currentColorScheme()) -> Color {
-//        switch colorScheme {
-//            case .dark: return Color(red: 238 / 255, green: 244 / 255, blue: 237 / 255)
-//            case .light: return Color(red: 241 / 255, green: 242 / 255, blue: 246 / 255)
-//        }
-//    }
-//
+    
     static func endColor(for colorScheme: ColorScheme = currentColorScheme()) -> Color {
         switch colorScheme {
             case .dark: return Color(red: 37 / 255, green: 38 / 255, blue: 31 / 255)
