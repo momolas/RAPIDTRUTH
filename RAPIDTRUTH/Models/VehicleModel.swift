@@ -24,7 +24,3 @@ final class VehicleModel {
         self.obdinfo = obdinfo
     }
 }
-
-// Ensure OBDInfo is Codable for SwiftData storage (it already is)
-// If OBDInfo becomes a @Model relationship later, it would be better, but for now storing it as a struct (binary data) is acceptable or as distinct fields.
-// However, SwiftData supports Codable structs as properties.
