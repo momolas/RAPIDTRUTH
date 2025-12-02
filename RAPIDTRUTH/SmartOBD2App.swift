@@ -42,9 +42,6 @@ struct SmartOBD2App: App {
         }
         self.container = modelContainer
 
-        // Garage needs to interact with the context.
-        // For simplicity in this migration, we initialize it here.
-        // Garage is @MainActor, and SmartOBD2App is now @MainActor, so this is safe.
         let context = ModelContext(modelContainer)
         self.garage = Garage(modelContext: context)
     }
