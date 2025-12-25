@@ -106,7 +106,7 @@ struct MacroRow: View {
                 do {
                     _ = try await obdService.sendRawCommand(cmd)
                     // Small delay to prevent flooding
-                    try await Task.sleep(nanoseconds: 200_000_000)
+                    try await Task.sleep(for: .milliseconds(200))
                 } catch {
                     print("Macro error on command \(cmd): \(error)")
                     success = false
@@ -126,7 +126,7 @@ struct MacroRow: View {
 
                 // Reset status after 3 seconds
                 Task {
-                    try? await Task.sleep(nanoseconds: 3_000_000_000)
+                    try? await Task.sleep(for: .seconds(3))
                     statusIcon = "play.circle.fill"
                     statusColor = .blue
                 }

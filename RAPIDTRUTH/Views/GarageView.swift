@@ -18,7 +18,7 @@ struct GarageView: View {
                                        systemImage: "car",
                                        description: Text(AppStrings.Garage.emptyDescription))
             } else {
-                ScrollView(.vertical, showsIndicators: false) {
+                ScrollView(.vertical) {
                     VStack(spacing: 16) {
                         ForEach(garage.garageVehicles) { vehicle in
                             VehicleRow(vehicle: vehicle,
@@ -35,6 +35,7 @@ struct GarageView: View {
                     }
                     .padding()
                 }
+                .scrollIndicators(.hidden)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

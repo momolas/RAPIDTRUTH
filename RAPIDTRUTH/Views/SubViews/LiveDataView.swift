@@ -54,7 +54,7 @@ struct LiveDataView: View {
                     }
 
                 case .graphs:
-                    ScrollView(.vertical, showsIndicators: false) {
+                    ScrollView(.vertical) {
                         ForEach(viewModel.order, id: \.self) { cmd in
                             if let dataItem = viewModel.data[cmd] {
                                 Text(dataItem.command.properties.description +
@@ -67,6 +67,7 @@ struct LiveDataView: View {
                             }
                         }
                     }
+                    .scrollIndicators(.hidden)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 15)
                 }

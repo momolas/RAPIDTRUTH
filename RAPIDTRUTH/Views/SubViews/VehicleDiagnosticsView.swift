@@ -102,7 +102,7 @@ struct VehicleDiagnosticsView: View {
                         .foregroundStyle(.white)
                         .padding(15)
                         .background(Color.pinknew)
-                        .cornerRadius(10)
+                        .clipShape(.rect(cornerRadius: 10))
                     }
                 }
 
