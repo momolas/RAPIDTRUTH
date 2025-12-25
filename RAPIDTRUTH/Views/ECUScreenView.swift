@@ -102,7 +102,7 @@ struct ECUScreenView: View {
                                 .padding()
                                 .background(Color.blue)
                                 .foregroundStyle(.white)
-                                .cornerRadius(8)
+                                .clipShape(.rect(cornerRadius: 8))
                         }
                         .disabled(isExecuting)
 
@@ -118,7 +118,7 @@ struct ECUScreenView: View {
                         }
                         .padding()
                         .background(Color(.secondarySystemBackground))
-                        .cornerRadius(8)
+                        .clipShape(.rect(cornerRadius: 8))
                     }
                 }
             }
@@ -158,7 +158,7 @@ struct ECUScreenView: View {
                         }
 
                         if let delay = Double(action.Delay ?? "0"), delay > 0 {
-                            try? await Task.sleep(nanoseconds: UInt64(delay * 1_000_000))
+                            try? await Task.sleep(for: .milliseconds(Int(delay)))
                         }
 
                     } catch {

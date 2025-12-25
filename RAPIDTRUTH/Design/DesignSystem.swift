@@ -65,7 +65,7 @@ struct GlassCard: ViewModifier {
         content
             .background(.ultraThinMaterial)
             .background(LinearGradient.cardGradient)
-            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .clipShape(.rect(cornerRadius: cornerRadius))
             .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)

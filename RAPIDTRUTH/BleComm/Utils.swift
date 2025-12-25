@@ -25,7 +25,7 @@ public func withTimeout<R>(seconds: TimeInterval, operation: @escaping @Sendable
 		// Start timeout child task.
         group.addTask {
             if seconds > 0 {
-                try await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
+                try await Task.sleep(for: .nanoseconds(Int(seconds * 1_000_000_000)))
             }
             try Task.checkCancellation()
             // We’ve reached the timeout.
