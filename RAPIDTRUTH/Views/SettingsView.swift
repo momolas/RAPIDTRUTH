@@ -72,10 +72,8 @@ struct RoundedRectangleStyle: ViewModifier {
 	func body(content: Content) -> some View {
 		content
 			.padding()
-			.background(
-				RoundedRectangle(cornerRadius: 10)
-					.fill(Color.endColor())
-			)
+			.background(Color.endColor())
+			.clipShape(.rect(cornerRadius: 10))
 	}
 }
 

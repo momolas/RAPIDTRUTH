@@ -32,31 +32,34 @@ struct AddPIDView: View {
                 Text("Supported sensors for \(car.year) \(car.make) \(car.model)")
                 Divider().background(Color.white)
 
-                ScrollView(.vertical, showsIndicators: false) {
+                ScrollView(.vertical) {
                     if let supportedPIDs = car.obdinfo?.supportedPIDs {
                         ForEach(supportedPIDs, id: \.self) { pid in
-                            HStack {
-                                Text(pid.properties.description)
-                                    .font(.caption)
-                                    .padding()
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(Color.endColor())
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .stroke(viewModel.data.keys.contains(pid) ? Color.blue : Color.clear, lineWidth: 2)
-                                    )
-                            )
-                            .padding(.horizontal)
-                            .padding(.vertical, 5)
-                            .onTapGesture {
+                            Button {
                                 viewModel.addPIDToRequest(pid)
+                            } label: {
+                                HStack {
+                                    Text(pid.properties.description)
+                                        .font(.caption)
+                                        .padding()
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(Color.endColor())
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(viewModel.data.keys.contains(pid) ? Color.blue : Color.clear, lineWidth: 2)
+                                        )
+                                )
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
                             }
+                            .buttonStyle(.plain)
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding()
