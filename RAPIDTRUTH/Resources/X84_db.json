@@ -1950,7 +1950,4 @@
 			"x84bugABS",
 			"x84Ph2"
 		]
-	},
-	"Climatisation_regulee_Redesign_P0_X84_SERIE.json": {
-		"protocol": "CAN",
-		"autoidents":
+	}}
