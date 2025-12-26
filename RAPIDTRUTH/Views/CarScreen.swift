@@ -25,9 +25,8 @@ struct CarScreen: View {
                 TextField("Enter Command", text: $command)
                     .font(.system(size: 16))
                     .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 25)
-                    )
+                    .background(Color.primary.opacity(0.1))
+                    .clipShape(.rect(cornerRadius: 25))
                     .padding(.horizontal, 10)
                     .frame(height: 40)
                 Button {
@@ -58,7 +57,7 @@ struct CarScreen: View {
             .padding()
             .background(Color.gray.opacity(0.1))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            ScrollView(.vertical, showsIndicators: false) {
+            ScrollView(.vertical) {
                 ForEach(history) { history in
                     VStack {
                         Text(history.command)
@@ -69,10 +68,11 @@ struct CarScreen: View {
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .background(Color(.systemGray6))
-                    .cornerRadius(10)
+                    .clipShape(.rect(cornerRadius: 10))
                     .padding()
                 }
             }
+            .scrollIndicators(.hidden)
         }
     }
 }

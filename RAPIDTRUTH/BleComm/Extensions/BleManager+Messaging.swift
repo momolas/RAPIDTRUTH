@@ -82,19 +82,28 @@ extension BLEManager {
                 }
             }
 
-            // Set up a timeout timer
-            let timeoutWorkItem = DispatchWorkItem { [weak self] in
+            // Set up a timeout task
+            let timeoutTask = Task { [weak self] in
+                try? await Task.sleep(for: .seconds(5))
+                guard !Task.isCancelled else { return }
+
                 guard let self = self else { return }
                 self.logger.warning("Timeout waiting for response")
                 handler(nil, SendMessageError.timeout)
-                self.sendMessageCompletion = nil
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: timeoutWorkItem)
 
-            self.sendMessageCompletion = { response, error in
-                timeoutWorkItem.cancel()
+                await MainActor.run {
+                    self.sendMessageCompletion = nil
+                }
+            }
+
+            self.sendMessageCompletion = { [weak self] response, error in
+                timeoutTask.cancel()
                 handler(response, error)
-                self.sendMessageCompletion = nil
+
+                // Clear the completion handler to release references
+                Task { @MainActor [weak self] in
+                    self?.sendMessageCompletion = nil
+                }
             }
         }
     }

@@ -53,10 +53,8 @@ struct SectionView<Destination: View>: View {
             }
             .padding(.horizontal)
             .frame(maxWidth: .infinity, minHeight: 160)
-            .background {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.cyclamen)
-            }
+            .background(Color.cyclamen)
+            .clipShape(.rect(cornerRadius: 10))
         }
     }
 }

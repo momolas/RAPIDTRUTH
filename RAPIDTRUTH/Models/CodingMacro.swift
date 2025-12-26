@@ -10,9 +10,9 @@ import SwiftData
 
 @Model
 final class CodingMacro {
-    var name: String
-    var desc: String
-    var commands: [String] // List of raw hex commands
+    var name: String = ""
+    var desc: String = ""
+    var commands: [String] = [] // List of raw hex commands
     var vehicleMake: String? // Optional: filter by make
 
     init(name: String, desc: String, commands: [String], vehicleMake: String? = nil) {
