@@ -40,8 +40,8 @@ struct CodingView: View {
                         Label("Base de données", systemImage: "server.rack")
                     }
 
-                    Button(action: { showingAddSheet = true }) {
-                        Label("Add", systemImage: "plus")
+                    Button("Add", systemImage: "plus") {
+                        showingAddSheet = true
                     }
                 }
             }
@@ -125,7 +125,7 @@ struct MacroRow: View {
                 }
 
                 // Reset status after 3 seconds
-                Task {
+                Task { @MainActor in
                     try? await Task.sleep(for: .seconds(3))
                     statusIcon = "play.circle.fill"
                     statusColor = .blue
