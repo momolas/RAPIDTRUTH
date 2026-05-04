@@ -221,7 +221,7 @@ struct ConnectionView: View {
         
         // If unknown, decode and save
         do {
-            let service = getActiveDecoderService(settings: settings)
+            let service = getActiveDecoderService()
             let decoded = try await service.decode(vin: vin)
             
             let yearInt = decoded.year ?? 0

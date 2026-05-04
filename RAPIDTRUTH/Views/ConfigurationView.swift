@@ -4,6 +4,16 @@ struct ConfigurationView: View {
     let elm: ELM327
     @Environment(\.dismiss) var dismiss
     @State private var configManager = ConfigurationManager()
+    private var ble = BLEManager.shared
+
+    init(elm: ELM327) {
+        self.elm = elm
+    }
+
+    private var isConnected: Bool {
+        if case .connected = ble.connectionState { return true }
+        return false
+    }
 
     var body: some View {
         NavigationStack {
@@ -38,18 +48,18 @@ struct ConfigurationView: View {
                             Spacer()
                         }
                     }
-                    .disabled(configManager.isWriting || configManager.isReading || elm.state != .connected)
+                    .disabled(configManager.isWriting || configManager.isReading || !isConnected)
                     .listRowBackground(Color.blue)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                 }
                 
                 if configManager.showSuccessMessage {
                     Section {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
+                                .foregroundStyle(.green)
                             Text("Codage réussi !")
-                                .foregroundColor(.green)
+                                .foregroundStyle(.green)
                         }
                     }
                 }
@@ -57,7 +67,7 @@ struct ConfigurationView: View {
                 if let error = configManager.actionError {
                     Section {
                         Text(error)
-                            .foregroundColor(.red)
+                            .foregroundStyle(.red)
                     }
                 }
             }
@@ -79,11 +89,11 @@ struct ConfigurationView: View {
                             Image(systemName: "arrow.clockwise")
                         }
                     }
-                    .disabled(configManager.isReading || configManager.isWriting || elm.state != .connected)
+                    .disabled(configManager.isReading || configManager.isWriting || !isConnected)
                 }
             }
             .task {
-                if elm.state == .connected {
+                if isConnected {
                     await configManager.readConfig(elm: elm)
                 }
             }

@@ -4,12 +4,23 @@ struct DiagnosticsView: View {
     let elm: ELM327
     let profile: Profile
     @State private var dtcLoader = DTCLoader()
+    private var ble = BLEManager.shared
+
+    init(elm: ELM327, profile: Profile) {
+        self.elm = elm
+        self.profile = profile
+    }
+
+    private var isConnected: Bool {
+        if case .connected = ble.connectionState { return true }
+        return false
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Text("Diagnostic Trouble Codes (DTC)")
-                    .font(.appSubhead)
+                    .font(.cardTitle)
                     .foregroundStyle(.secondary)
                 Spacer()
             }
@@ -88,7 +99,7 @@ struct DiagnosticsView: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(dtcLoader.isScanning || dtcLoader.isClearing || elm.state != .connected)
+                .disabled(dtcLoader.isScanning || dtcLoader.isClearing || !isConnected)
 
                 if !dtcLoader.dtcs.isEmpty {
                     Button(action: {
@@ -100,7 +111,7 @@ struct DiagnosticsView: View {
                     }
                     .buttonStyle(.bordered)
                     .tint(.red)
-                    .disabled(dtcLoader.isClearing || elm.state != .connected)
+                    .disabled(dtcLoader.isClearing || !isConnected)
                 }
             }
         }

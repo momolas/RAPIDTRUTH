@@ -56,9 +56,17 @@ enum DemoELMResponses {
             // Return one pending DTC: P0420
             return "47 04 20 00 00 00 00\r>"
         }
-        
+
         if cmd == "04" {
-            return "OK\r>"
+            // Clear DTCs successful
+            return "44\r>"
+        }
+
+        // Maintenance Routines (Mode 31)
+        if cmd.hasPrefix("31") {
+            let routine = cmd.dropFirst(2)
+            // 71 is positive response for 31
+            return "71 \(routine)\r>"
         }
 
         // Renault KWP2000 DTC Read

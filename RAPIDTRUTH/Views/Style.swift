@@ -24,6 +24,7 @@ extension Font {
     static let appBrand    = Font.system(.title2, design: .monospaced, weight: .bold)
     static let stepTitle   = Font.title2.weight(.semibold)
     static let cardTitle   = Font.subheadline.weight(.semibold)
+    static let appButton   = Font.subheadline.weight(.semibold)
     static let valueLabel  = Font.callout.weight(.semibold)
     static let valueNumber = Font.callout.monospaced().weight(.semibold)
     static let bodyText    = Font.callout

@@ -136,7 +136,7 @@ struct AddVehicleView: View {
     private func runDecode(vin candidate: String) async {
         status = .decoding
         do {
-            let service = getActiveDecoderService(settings: settings)
+            let service = getActiveDecoderService()
             let decoded = try await service.decode(vin: candidate)
             lastDecodedVIN = candidate
             applyDecoded(decoded)

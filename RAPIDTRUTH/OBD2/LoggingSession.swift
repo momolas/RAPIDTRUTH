@@ -205,7 +205,7 @@ final class LoggingSession {
             state = .logging(rowCount: 0, sessionID: sessionID)
         } catch {
             state = .error((error as? LocalizedError)?.errorDescription ?? error.localizedDescription)
-            await cleanup(reason: "error")
+            cleanup(reason: "error")
         }
     }
 

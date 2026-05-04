@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct SessionsListView: View {
-    var settings = SettingsStore.shared
+    // Fixed to Scenic 2 — no multi-vehicle management.
+    private let owner = "rapidtruth"
+    private let vehicleSlug = "renault_scenic2_m9r722"
     var session = LoggingSession.shared
     @State private var sessions: [SessionRecord] = []
     @State private var page: Int = 0
@@ -44,7 +46,7 @@ struct SessionsListView: View {
         }
         .onAppear { reload() }
         .onChange(of: session.state) { _, _ in reload() }
-        .onChange(of: settings.activeVehicleSlug) { _, _ in reload() }
+
     }
 
     private var paginationBar: some View {
@@ -113,19 +115,13 @@ struct SessionsListView: View {
     /// `sessions/2026-05-04T...csv`) to the on-disk URL inside the app's
     /// Documents directory.
     private func sessionFileURL(for record: SessionRecord) -> URL {
-        let owner = settings.owner
-        let slug = settings.activeVehicleSlug ?? ""
-        let relative = "data/\(owner)/\(slug)/\(record.file)"
+        let relative = "data/\(owner)/\(vehicleSlug)/\(record.file)"
         return AppStorage.shared.url(for: relative)
     }
 
     private func reload() {
-        guard let slug = settings.activeVehicleSlug else {
-            sessions = []
-            page = 0
-            return
-        }
-        let path = AppPath.sessionsManifest(settings.owner, slug)
+        let slug = vehicleSlug
+        let path = AppPath.sessionsManifest(owner, slug)
         guard AppStorage.shared.exists(path),
               let text = try? AppStorage.shared.readText(path) else {
             sessions = []

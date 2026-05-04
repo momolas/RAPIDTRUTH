@@ -64,14 +64,14 @@ final class Sampler {
         ecus: [String: EcuDef],
         sampleRateHz: Double,
         sessionStartMs: Int,
-        evaluator: FormulaEvaluator = FormulaEvaluator()
+        evaluator: FormulaEvaluator? = nil
     ) {
         self.elm = elm
         self.pids = pids
         self.ecus = ecus
         self.sampleRateHz = sampleRateHz
         self.sessionStartMs = sessionStartMs
-        self.evaluator = evaluator
+        self.evaluator = evaluator ?? FormulaEvaluator()
     }
 
     func start() {

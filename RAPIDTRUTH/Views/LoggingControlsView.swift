@@ -2,11 +2,17 @@ import SwiftUI
 
 struct LoggingControlsView: View {
     @Bindable var settings = SettingsStore.shared
-    var vehicleStore = VehicleStore.shared
-    var profileRegistry = ProfileRegistry.shared
-    var ble = BLEManager.shared
-    var session = LoggingSession.shared
+    private var profileRegistry = ProfileRegistry.shared
+    private var ble = BLEManager.shared
+    private var session = LoggingSession.shared
     let elm: ELM327
+
+    private let owner = "rapidtruth"
+    private let vehicleSlug = "renault_scenic2_m9r722"
+
+    init(elm: ELM327) {
+        self.elm = elm
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -30,7 +36,7 @@ struct LoggingControlsView: View {
 
                 if isLogging {
                     Button("Stop") {
-                        Task { await session.stop() }
+                        session.stop()
                     }
                     .buttonStyle(.bordered)
                 } else {
@@ -82,7 +88,7 @@ struct LoggingControlsView: View {
     }
 
     private var canStart: Bool {
-        if case .connected = ble.connectionState, settings.activeVehicleSlug != nil {
+        if case .connected = ble.connectionState {
             return !isLogging
         }
         return false
@@ -104,11 +110,25 @@ struct LoggingControlsView: View {
     }
 
     private func startLogging() {
-        guard let slug = settings.activeVehicleSlug,
-              let vehicle = vehicleStore.vehicles.first(where: { $0.slug == slug }),
-              let profile = profileRegistry.profile(id: vehicle.profileId) else {
-            return
-        }
+        guard let profile = profileRegistry.profile(id: vehicleSlug) else { return }
+        // Synthetic vehicle record from the hardwired Scenic 2 profile
+        let vehicle = Vehicle(
+            slug: vehicleSlug,
+            owner: owner,
+            displayName: "Renault Scénic 2 M9R",
+            year: 2007,
+            make: "Renault",
+            model: "Scénic 2",
+            trim: "2.0 dCi",
+            vin: nil,
+            profileId: vehicleSlug,
+            profileVersion: "1.0",
+            createdAtUTC: "2026-01-01T00:00:00Z",
+            lastUsedUTC: nil,
+            supportedStandardPIDs: [],
+            supportedProfilePIDs: [],
+            disabledPIDs: []
+        )
         Task {
             await session.start(
                 vehicle: vehicle,

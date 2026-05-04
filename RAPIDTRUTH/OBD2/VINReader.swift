@@ -50,7 +50,7 @@ enum VINReader {
     }
 
     /// Drops a `<digit>:` prefix on lines like `0:4902014A` → `4902014A`.
-    private static func stripFrameIndex(_ line: String) -> String {
+    nonisolated private static func stripFrameIndex(_ line: String) -> String {
         guard let colonIdx = line.firstIndex(of: ":") else { return line }
         let prefix = line[..<colonIdx]
         // Frame indices are short single-digit (sometimes 2-digit) hex counters.
