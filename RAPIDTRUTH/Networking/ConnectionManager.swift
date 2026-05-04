@@ -49,10 +49,7 @@ final class ConnectionManager: OBDTransport {
         }
     }
 
-    var demoMode: Bool {
-        activeTransport.demoMode
-    }
-    
+
     var activeTransport: OBDTransport {
         switch connectionType {
         case .ble: return BLEManager.shared
@@ -84,10 +81,7 @@ final class ConnectionManager: OBDTransport {
         try await activeTransport.send(data)
     }
     
-    func enterDemoMode() {
-        activeTransport.enterDemoMode()
-    }
-    
+
     func disconnect() {
         activeTransport.disconnect()
     }

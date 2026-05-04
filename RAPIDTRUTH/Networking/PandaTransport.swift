@@ -13,7 +13,6 @@ enum PandaState: Equatable {
 @Observable
 final class PandaTransport: OBDTransport {
     private(set) var state: PandaState = .idle
-    private(set) var demoMode: Bool = false
     
     let inboundStream: AsyncStream<Data>
     private let inboundContinuation: AsyncStream<Data>.Continuation
@@ -29,13 +28,8 @@ final class PandaTransport: OBDTransport {
         self.inboundContinuation = stream.continuation
     }
     
-    func enterDemoMode() {
-        demoMode = true
-        state = .connected
-    }
-    
+
     func connect(host: String = "192.168.0.10", port: UInt16 = 1337) {
-        if demoMode { return }
         disconnect()
         
         state = .connecting
@@ -71,11 +65,6 @@ final class PandaTransport: OBDTransport {
     }
     
     func disconnect() {
-        if demoMode {
-            demoMode = false
-            state = .idle
-            return
-        }
         connection?.cancel()
         connection = nil
         state = .idle
@@ -106,7 +95,6 @@ final class PandaTransport: OBDTransport {
     }
     
     func send(_ data: Data) async throws {
-        if demoMode { return }
         guard let connection = connection, state == .connected else {
             throw NSError(domain: "PandaTransport", code: -1, userInfo: [NSLocalizedDescriptionKey: "Not connected to Panda adapter"])
         }

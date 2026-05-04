@@ -18,4 +18,10 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environment(SettingsStore.shared)
+        .environment(ConnectionManager.shared)
+        .environment(BLEManager.shared)
+        .environment(WiFiManager.shared)
+        .environment(PandaTransport.shared)
+        .environment(VehicleStore.shared)
 }

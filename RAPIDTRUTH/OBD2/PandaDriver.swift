@@ -18,8 +18,12 @@ final class PandaDriver: VehicleInterface {
     // Task reading from transport
     private var inboundTask: Task<Void, Never>?
 
-    init(transport: PandaTransport = .shared) {
+    init(transport: PandaTransport) {
         self.transport = transport
+    }
+
+    convenience init() {
+        self.init(transport: .shared)
     }
 
     func attach() {

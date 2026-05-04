@@ -91,14 +91,6 @@ struct ConnectionView: View {
                 HStack(spacing: 6) {
                     Text(stateTitle)
                         .font(.valueNumber)
-                    if connectionManager.demoMode {
-                        Text("DEMO")
-                            .font(.monoTiny)
-                            .padding(.horizontal, 5).padding(.vertical, 2)
-                            .background(Color.orange.opacity(0.2))
-                            .foregroundStyle(.orange)
-                            .clipShape(.rect(cornerRadius: 4))
-                    }
                 }
                 Text(stateSubtitle)
                     .font(.captionText)
@@ -188,11 +180,7 @@ struct ConnectionView: View {
             switch connectionManager.state {
             case .idle: return "Tap Connect ELM to start."
             case .connecting(let n): return "Establishing \(n) connection..."
-            case .connected(let n):
-                if connectionManager.demoMode {
-                    return "Canned ECU responses — tap Disconnect to pair a real adapter."
-                }
-                return "Connected via \(n)"
+            case .connected(let n): return "Connected via \(n)"
             case .error(let msg): return msg
             }
         }

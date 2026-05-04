@@ -13,7 +13,6 @@ enum WiFiState: Equatable {
 @Observable
 final class WiFiManager: OBDTransport {
     private(set) var state: WiFiState = .idle
-    private(set) var demoMode: Bool = false
     
     let inboundStream: AsyncStream<Data>
     private let inboundContinuation: AsyncStream<Data>.Continuation
@@ -29,13 +28,8 @@ final class WiFiManager: OBDTransport {
         self.inboundContinuation = stream.continuation
     }
     
-    func enterDemoMode() {
-        demoMode = true
-        state = .connected
-    }
-    
+
     func connect(host: String = "192.168.0.10", port: UInt16 = 35000) {
-        if demoMode { return }
         disconnect()
         
         state = .connecting
@@ -69,11 +63,6 @@ final class WiFiManager: OBDTransport {
     }
     
     func disconnect() {
-        if demoMode {
-            demoMode = false
-            state = .idle
-            return
-        }
         connection?.cancel()
         connection = nil
         state = .idle
@@ -104,7 +93,6 @@ final class WiFiManager: OBDTransport {
     }
     
     func send(_ data: Data) async throws {
-        if demoMode { return }
         guard let connection = connection, state == .connected else {
             throw NSError(domain: "WiFiManager", code: -1, userInfo: [NSLocalizedDescriptionKey: "Not connected to Wi-Fi adapter"])
         }

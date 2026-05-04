@@ -18,6 +18,7 @@ struct RAPIDTRUTHApp: App {
                 .environment(ConnectionManager.shared)
                 .environment(BLEManager.shared)
                 .environment(WiFiManager.shared)
+                .environment(PandaTransport.shared)
                 .environment(VehicleStore.shared)
                 .onOpenURL { url in
                     handleImport(url: url)
