@@ -1,0 +1,317 @@
+{
+    "profile_id": "renault_scenic2_m9r722",
+    "profile_version": "1.0",
+    "display_name": "Renault Scenic 2 (M9R 2.0 dCi)",
+    "description": "Profil officiel extrait des bases DDT2000 pour M9R 722 EDC16CP33.",
+    "vehicle_match": {
+        "make": "Renault",
+        "models": [
+            "Scenic 2",
+            "Megane 2"
+        ]
+    },
+    "ecus": {
+        "injection": {
+            "request_header": "7E0",
+            "response_header": "7E8"
+        },
+        "abs": {
+            "request_header": "740",
+            "response_header": "760"
+        },
+        "tdb": {
+            "request_header": "743",
+            "response_header": "763"
+        },
+        "uch": {
+            "request_header": "745",
+            "response_header": "765"
+        },
+        "fpa": {
+            "request_header": "755",
+            "response_header": "775"
+        },
+        "clim": {
+            "request_header": "744",
+            "response_header": "764"
+        },
+        "dae": {
+            "request_header": "742",
+            "response_header": "762"
+        },
+        "upc": {
+            "request_header": "74D",
+            "response_header": "76D"
+        },
+        "airbag": {
+            "request_header": "752",
+            "response_header": "772"
+        },
+        "uct": {
+            "request_header": "74B",
+            "response_header": "76B"
+        }
+    },
+    "pids": [
+        {
+            "id": "rpm",
+            "display_name": "Régime moteur",
+            "ecu": "injection",
+            "mode": "21",
+            "pid": "C7",
+            "unit": "tr/min",
+            "formula": "((F<<24 | G<<16)>>16)",
+            "category": "engine"
+        },
+        {
+            "id": "rail_pressure",
+            "display_name": "Pression rail",
+            "ecu": "injection",
+            "mode": "21",
+            "pid": "A1",
+            "unit": "hPa",
+            "formula": "(((AI<<24 | AJ<<16)>>16) * 100.0)",
+            "category": "engine"
+        },
+        {
+            "id": "ambient_temp",
+            "display_name": "Température d'air extérieure",
+            "ecu": "injection",
+            "mode": "21",
+            "pid": "A1",
+            "unit": "°C",
+            "formula": "((((AK<<24 | AL<<16)>>16) * 0.1) + -273.0)",
+            "category": "engine"
+        },
+        {
+            "id": "coolant_temp",
+            "display_name": "Température eau",
+            "ecu": "injection",
+            "mode": "21",
+            "pid": "A1",
+            "unit": "°C",
+            "formula": "((((W<<24 | X<<16)>>16) * 0.1) + -273.0)",
+            "category": "engine"
+        },
+        {
+            "id": "boost_target",
+            "display_name": "Consigne pression suralimentation",
+            "ecu": "injection",
+            "mode": "21",
+            "pid": "A3",
+            "unit": "hPa",
+            "formula": "((X<<24 | Y<<16)>>16)",
+            "category": "engine"
+        },
+        {
+            "id": "boost_pressure",
+            "display_name": "Pression suralimentation filtrée",
+            "ecu": "injection",
+            "mode": "21",
+            "pid": "A3",
+            "unit": "hPa",
+            "formula": "((V<<24 | W<<16)>>16)",
+            "category": "engine"
+        },
+        {
+            "id": "dpf_soot",
+            "display_name": "Masse de suie dans le FàP",
+            "ecu": "injection",
+            "mode": "21",
+            "pid": "A7",
+            "unit": "g",
+            "formula": "((X<<24 | Y<<16 | Z<<8 | AA) * 0.02)",
+            "category": "emissions"
+        },
+        {
+            "id": "dpf_temp_in",
+            "display_name": "Température avant FàP",
+            "ecu": "injection",
+            "mode": "21",
+            "pid": "A7",
+            "unit": "°C",
+            "formula": "((((AT<<24 | AU<<16)>>16) * 0.1) + -273.0)",
+            "category": "emissions"
+        },
+        {
+            "id": "dpf_distance",
+            "display_name": "Distance parcourue depuis dernière régénération",
+            "ecu": "injection",
+            "mode": "21",
+            "pid": "A7",
+            "unit": "km",
+            "formula": "((T<<24 | U<<16 | V<<8 | W) * 2.0)",
+            "category": "emissions"
+        },
+        {
+            "id": "yaw_rate",
+            "display_name": "Vitesse de lacet",
+            "ecu": "abs",
+            "mode": "21",
+            "pid": "07",
+            "unit": "°/s) (min : -200 ; max :200",
+            "formula": "(((F*256 + G) * 2.0) + -65534.0)",
+            "category": "other"
+        },
+        {
+            "id": "abs_speed",
+            "display_name": "Vitesse véhicule",
+            "ecu": "abs",
+            "mode": "21",
+            "pid": "04",
+            "unit": "Km/H",
+            "formula": "(I*256 + J)",
+            "category": "other"
+        },
+        {
+            "id": "tdb_speed",
+            "display_name": "Vitesse véhicule (km/h) CAN",
+            "ecu": "tdb",
+            "mode": "21",
+            "pid": "10",
+            "unit": "",
+            "formula": "(H*256 + I)",
+            "category": "other"
+        },
+        {
+            "id": "tire_press_1",
+            "display_name": "SSPP pression a froid roue 1",
+            "ecu": "uch",
+            "mode": "21",
+            "pid": "66",
+            "unit": "",
+            "formula": "(F * 3500.0)",
+            "category": "other"
+        },
+        {
+            "id": "tire_press_2",
+            "display_name": "SSPP pression a froid roue 2",
+            "ecu": "uch",
+            "mode": "21",
+            "pid": "66",
+            "unit": "",
+            "formula": "(L * 3500.0)",
+            "category": "other"
+        },
+        {
+            "id": "tire_press_3",
+            "display_name": "SSPP pression a froid roue 3",
+            "ecu": "uch",
+            "mode": "21",
+            "pid": "66",
+            "unit": "",
+            "formula": "(R * 3500.0)",
+            "category": "other"
+        },
+        {
+            "id": "tire_press_4",
+            "display_name": "SSPP pression a froid roue 4",
+            "ecu": "uch",
+            "mode": "21",
+            "pid": "66",
+            "unit": "",
+            "formula": "(X * 3500.0)",
+            "category": "other"
+        },
+        {
+            "id": "fpa_clutch",
+            "display_name": "Position embrayage",
+            "ecu": "fpa",
+            "mode": "21",
+            "pid": "90",
+            "unit": "",
+            "formula": "F",
+            "category": "other"
+        },
+        {
+            "id": "fpa_battery",
+            "display_name": "Tension batterie",
+            "ecu": "fpa",
+            "mode": "21",
+            "pid": "90",
+            "unit": "V",
+            "formula": "((A * 0.069) + 1.0)",
+            "category": "other"
+        },
+        {
+            "id": "clim_ext_temp",
+            "display_name": "Température extérieure",
+            "ecu": "clim",
+            "mode": "21",
+            "pid": "A0",
+            "unit": "°C",
+            "formula": "(E + -40.0)",
+            "category": "other"
+        },
+        {
+            "id": "clim_evap_temp",
+            "display_name": "Température évaporateur",
+            "ecu": "clim",
+            "mode": "21",
+            "pid": "C1",
+            "unit": "°C",
+            "formula": "((F * 0.5) + -40.0)",
+            "category": "other"
+        },
+        {
+            "id": "clim_target_temp",
+            "display_name": "Consigne de température air soufflé",
+            "ecu": "clim",
+            "mode": "21",
+            "pid": "C2",
+            "unit": "°C",
+            "formula": "(N + -40.0)",
+            "category": "other"
+        },
+        {
+            "id": "dae_angle",
+            "display_name": "Angle_ST",
+            "ecu": "dae",
+            "mode": "21",
+            "pid": "01",
+            "unit": "Degrees",
+            "formula": "((D*256 + E) + -32767.0)",
+            "category": "other"
+        },
+        {
+            "id": "upc_alt",
+            "display_name": "in_Alternator_Failure",
+            "ecu": "upc",
+            "mode": "21",
+            "pid": "02",
+            "unit": "",
+            "formula": "C",
+            "category": "other"
+        },
+        {
+            "id": "airbag_batt",
+            "display_name": "valeur tension d'alimentation calculateur",
+            "ecu": "airbag",
+            "mode": "21",
+            "pid": "06",
+            "unit": "Volt",
+            "formula": "(U * 0.082)",
+            "category": "other"
+        },
+        {
+            "id": "airbag_imp",
+            "display_name": "impédance BIB arière coté passager",
+            "ecu": "airbag",
+            "mode": "21",
+            "pid": "05",
+            "unit": "Ohm",
+            "formula": "(AA * 0.0695)",
+            "category": "other"
+        },
+        {
+            "id": "uct_roof",
+            "display_name": "Roof Position",
+            "ecu": "uct",
+            "mode": "21",
+            "pid": "04",
+            "unit": "",
+            "formula": "F",
+            "category": "other"
+        }
+    ]
+}

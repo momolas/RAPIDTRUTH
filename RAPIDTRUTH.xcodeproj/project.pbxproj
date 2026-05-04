@@ -6,12 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		CD6FF14B2F83DB860009ACA0 /* Swift-UDS in Frameworks */ = {isa = PBXBuildFile; productRef = CD6FF14A2F83DB860009ACA0 /* Swift-UDS */; };
-		CD6FF14D2F83DB860009ACA0 /* Swift-UDS-Adapter in Frameworks */ = {isa = PBXBuildFile; productRef = CD6FF14C2F83DB860009ACA0 /* Swift-UDS-Adapter */; };
-		CD6FF14F2F83DB860009ACA0 /* Swift-UDS-Session in Frameworks */ = {isa = PBXBuildFile; productRef = CD6FF14E2F83DB860009ACA0 /* Swift-UDS-Session */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		CD6FF13B2F83D4000009ACA0 /* RAPIDTRUTH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RAPIDTRUTH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -29,9 +23,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD6FF14B2F83DB860009ACA0 /* Swift-UDS in Frameworks */,
-				CD6FF14F2F83DB860009ACA0 /* Swift-UDS-Session in Frameworks */,
-				CD6FF14D2F83DB860009ACA0 /* Swift-UDS-Adapter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,9 +65,6 @@
 			);
 			name = RAPIDTRUTH;
 			packageProductDependencies = (
-				CD6FF14A2F83DB860009ACA0 /* Swift-UDS */,
-				CD6FF14C2F83DB860009ACA0 /* Swift-UDS-Adapter */,
-				CD6FF14E2F83DB860009ACA0 /* Swift-UDS-Session */,
 			);
 			productName = RAPIDTRUTH;
 			productReference = CD6FF13B2F83D4000009ACA0 /* RAPIDTRUTH.app */;
@@ -107,7 +95,6 @@
 			mainGroup = CD6FF1322F83D4000009ACA0;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				CD6FF1492F83DB860009ACA0 /* XCRemoteSwiftPackageReference "Swift-UDS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CD6FF13C2F83D4000009ACA0 /* Products */;
@@ -347,35 +334,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		CD6FF1492F83DB860009ACA0 /* XCRemoteSwiftPackageReference "Swift-UDS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/momolas/Swift-UDS.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		CD6FF14A2F83DB860009ACA0 /* Swift-UDS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD6FF1492F83DB860009ACA0 /* XCRemoteSwiftPackageReference "Swift-UDS" */;
-			productName = "Swift-UDS";
-		};
-		CD6FF14C2F83DB860009ACA0 /* Swift-UDS-Adapter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD6FF1492F83DB860009ACA0 /* XCRemoteSwiftPackageReference "Swift-UDS" */;
-			productName = "Swift-UDS-Adapter";
-		};
-		CD6FF14E2F83DB860009ACA0 /* Swift-UDS-Session */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD6FF1492F83DB860009ACA0 /* XCRemoteSwiftPackageReference "Swift-UDS" */;
-			productName = "Swift-UDS-Session";
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CD6FF1332F83D4000009ACA0 /* Project object */;
 }

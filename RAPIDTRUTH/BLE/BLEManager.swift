@@ -1,0 +1,585 @@
+import CoreBluetooth
+import Foundation
+import Observation
+
+/// Wraps `CBCentralManager` + `CBPeripheral` delegates with an Observable
+/// state machine + async/await on top.
+///
+/// Responsibilities:
+///   - track Bluetooth power state
+///   - scan for devices advertising any `KnownServices.serviceUUIDs`
+///   - connect to a chosen peripheral, discover services + characteristics,
+///     pick the (tx, rx) pair following the same priority/fallback rules as
+///     the web app's `BleTransport`
+///   - expose an `AsyncStream<Data>` of inbound notifications
+///   - expose a `send(_:)` that chunks writes to fit the MTU
+///
+/// Single shared instance: `BLEManager.shared`.
+@MainActor
+@Observable
+final class BLEManager: NSObject {
+
+    // MARK: - State
+
+    enum PowerState {
+        case unknown
+        case poweredOff
+        case unauthorized
+        case poweredOn
+        case unsupported
+    }
+
+    enum ConnectionState: Equatable {
+        case idle
+        case scanning
+        case connecting(name: String)
+        case discovering(name: String)
+        case connected(name: String, picked: PickedDescription)
+        case error(String)
+    }
+
+    struct PickedDescription: Equatable {
+        let serviceUUID: String
+        let txUUID: String
+        let rxUUID: String
+        let source: PickSource
+    }
+
+    enum PickSource: String {
+        case known    // matched an entry in KnownServices.serviceUUIDs
+        case fallback // probed all services for any tx/rx pair
+    }
+
+    struct DiscoveredDevice: Identifiable, Equatable {
+        let id: UUID                    // CBPeripheral.identifier
+        let name: String
+        let rssi: Int
+        let advertisedServices: [String]
+
+        nonisolated static func == (lhs: DiscoveredDevice, rhs: DiscoveredDevice) -> Bool {
+            lhs.id == rhs.id
+        }
+    }
+
+    // MARK: - Observable state
+
+    private(set) var powerState: PowerState = .unknown
+    private(set) var connectionState: ConnectionState = .idle
+    private(set) var discovered: [DiscoveredDevice] = []
+
+    /// Demo mode: skip real BLE and pretend a `DEMO ADAPTER` is connected
+    /// so the rest of the app can run end-to-end (live readout, sessions,
+    /// CSV writes) with no hardware. Triggered by the "Use demo mode"
+    /// link in onboarding step 2 — see `enterDemoMode()`.
+    private(set) var demoMode: Bool = false
+
+    /// Synthesize a connected state and flip the demo flag. ELM327 reads
+    /// the same flag via its own `demoMode` property; the caller is
+    /// expected to set both. Idempotent.
+    func enterDemoMode() {
+        guard !demoMode else { return }
+        demoMode = true
+        connectionState = .connected(
+            name: "DEMO ADAPTER",
+            picked: PickedDescription(
+                serviceUUID: "0000FFF0-0000-1000-8000-00805F9B34FB",
+                txUUID: "0000FFF2-0000-1000-8000-00805F9B34FB",
+                rxUUID: "0000FFF1-0000-1000-8000-00805F9B34FB",
+                source: .known
+            )
+        )
+    }
+
+    // MARK: - Inbound notification stream
+
+    /// Yields raw byte chunks as the rx characteristic notifies. Subscribers
+    /// (the ELM327 layer, in Phase 2) line-buffer these into responses.
+    let inboundStream: AsyncStream<Data>
+    private let inboundContinuation: AsyncStream<Data>.Continuation
+
+    // MARK: - Internals
+
+    private var central: CBCentralManager!
+    private var peripheral: CBPeripheral?
+    private var picked: (service: CBService, tx: CBCharacteristic, rx: CBCharacteristic)?
+
+    /// Continuation woken when `centralManagerDidUpdateState` fires.
+    private var powerStateContinuations: [CheckedContinuation<PowerState, Never>] = []
+    /// Continuation woken when `didConnect` fires for the in-flight peripheral.
+    private var connectContinuation: CheckedContinuation<Void, Error>?
+    /// Continuation woken when service+characteristic discovery completes.
+    private var discoverContinuation: CheckedContinuation<PickedDescription, Error>?
+    /// Tracks which characteristics still need their characteristics discovered
+    /// before we can pick.
+    private var pendingServiceDiscovery: Int = 0
+    /// Continuation woken when the rx characteristic's notification state is
+    /// confirmed to be enabled. Without waiting for this, writes to tx may
+    /// arrive at the adapter before the GATT subscription is actually live,
+    /// and the response notifications get dropped.
+    private var notifyContinuation: CheckedContinuation<Void, Error>?
+    /// Continuations waiting for the BLE radio's send-without-response
+    /// queue to drain. Resumed when CoreBluetooth fires
+    /// `peripheralIsReady(toSendWriteWithoutResponse:)`.
+    private var canWriteContinuations: [CheckedContinuation<Void, Never>] = []
+
+    static let shared = BLEManager()
+
+    override init() {
+        // bufferingNewest(256) caps memory if the inbound iterator ever
+        // falls behind a chatty adapter — old chunks are useless once the
+        // ELM327 framing has moved past the prompt anyway, so dropping
+        // them is correct, not just expedient. unbounded was a real OOM
+        // risk on long sessions where the MainActor briefly stalled.
+        let stream = AsyncStream<Data>.makeStream(bufferingPolicy: .bufferingNewest(256))
+        self.inboundStream = stream.stream
+        self.inboundContinuation = stream.continuation
+        super.init()
+        // Nil queue → delegate callbacks come on the main queue, which matches
+        // our @MainActor isolation. Power-on may take a moment; we wait via
+        // `awaitPoweredOn()` before scanning.
+        self.central = CBCentralManager(delegate: self, queue: nil, options: nil)
+    }
+
+    // MARK: - Public API
+
+    /// Awaits Bluetooth power-on. Returns the eventual `PowerState`.
+    /// If already powered on / off / unauthorized, returns immediately.
+    func awaitPowerStateSettled() async -> PowerState {
+        if powerState != .unknown { return powerState }
+        return await withCheckedContinuation { continuation in
+            powerStateContinuations.append(continuation)
+        }
+    }
+
+    /// Begin scanning for nearby BLE peripherals advertising any of the
+    /// `KnownServices.serviceUUIDs`. Updates `discovered` as devices are seen.
+    func startScan() {
+        guard central.state == .poweredOn else {
+            NSLog("[OBD2-BLE] startScan: skipped, central not poweredOn")
+            return
+        }
+        NSLog("[OBD2-BLE] startScan: filtering for \(KnownServices.serviceUUIDs.map { $0.uuidString })")
+        discovered.removeAll()
+        connectionState = .scanning
+        central.scanForPeripherals(
+            withServices: KnownServices.serviceUUIDs,
+            options: [CBCentralManagerScanOptionAllowDuplicatesKey: false]
+        )
+    }
+
+    func stopScan() {
+        central.stopScan()
+        if case .scanning = connectionState {
+            connectionState = .idle
+        }
+    }
+
+    /// Connect to a previously-discovered device, discover its OBD2 service +
+    /// tx/rx characteristics, and subscribe for notifications. Resolves once
+    /// the transport is ready for `send(_:)`.
+    func connect(_ device: DiscoveredDevice) async throws -> PickedDescription {
+        stopScan()
+        guard let cbPeripheral = central.retrievePeripherals(withIdentifiers: [device.id]).first else {
+            throw BLEError.deviceNotFound
+        }
+        cbPeripheral.delegate = self
+        self.peripheral = cbPeripheral
+        connectionState = .connecting(name: device.name)
+
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            self.connectContinuation = continuation
+            self.central.connect(cbPeripheral, options: nil)
+        }
+
+        connectionState = .discovering(name: device.name)
+        let picked = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<PickedDescription, Error>) in
+            self.discoverContinuation = continuation
+            cbPeripheral.discoverServices(KnownServices.serviceUUIDs)
+        }
+        connectionState = .connected(name: device.name, picked: picked)
+        return picked
+    }
+
+    /// Disconnect cleanly and reset connection state.
+    func disconnect() {
+        if demoMode {
+            // No real peripheral to tear down — just exit demo mode.
+            demoMode = false
+            connectionState = .idle
+            return
+        }
+        if let p = peripheral {
+            central.cancelPeripheralConnection(p)
+        }
+        peripheral = nil
+        picked = nil
+        connectionState = .idle
+    }
+
+    /// Write bytes to the tx characteristic, chunked to 20 bytes (typical
+    /// MTU floor for un-negotiated BLE links).
+    ///
+    /// Prefers `.writeWithoutResponse` when the characteristic supports it.
+    /// Some ELM327 BLE clones (notably various Veepeak units) advertise
+    /// `.write` capability but only actually process writes received via
+    /// `.writeWithoutResponse` — switching the default to `.withResponse`
+    /// silently broke ATZ handshakes on those adapters.
+    ///
+    /// To avoid the queue-overflow problem the unACKed path can have under
+    /// fast back-to-back writes, we gate each write on
+    /// `canSendWriteWithoutResponse`. If the BLE radio's queue is full,
+    /// we await `peripheralIsReady(toSendWriteWithoutResponse:)` before
+    /// the next write.
+    func send(_ data: Data) async throws {
+        guard let peripheral, let picked else { throw BLEError.notConnected }
+        let chunkSize = 20
+        let preferNoResponse = picked.tx.properties.contains(.writeWithoutResponse)
+        let writeType: CBCharacteristicWriteType =
+            preferNoResponse ? .withoutResponse : .withResponse
+        let typeString = writeType == .withoutResponse ? "withoutResponse" : "withResponse"
+        let hex = data.map { String(format: "%02X", $0) }.joined(separator: " ")
+        let asciiPreview = String(data: data, encoding: .ascii)?
+            .replacingOccurrences(of: "\r", with: "\\r")
+            .replacingOccurrences(of: "\n", with: "\\n") ?? "?"
+        NSLog("[OBD2-BLE] send: type=\(typeString) bytes=\(data.count) ascii=\"\(asciiPreview)\" hex=[\(hex)]")
+
+        var index = 0
+        while index < data.count {
+            let end = min(index + chunkSize, data.count)
+            let chunk = data.subdata(in: index..<end)
+
+            if writeType == .withoutResponse, !peripheral.canSendWriteWithoutResponse {
+                NSLog("[OBD2-BLE] send: queue full, awaiting peripheralIsReady")
+                await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+                    self.canWriteContinuations.append(continuation)
+                }
+            }
+
+            peripheral.writeValue(chunk, for: picked.tx, type: writeType)
+            index = end
+        }
+    }
+
+    // MARK: - Power state plumbing
+
+    private func resolvePowerStateContinuations(_ state: PowerState) {
+        let pending = powerStateContinuations
+        powerStateContinuations.removeAll()
+        for continuation in pending {
+            continuation.resume(returning: state)
+        }
+    }
+}
+
+// MARK: - CBCentralManagerDelegate
+
+extension BLEManager: CBCentralManagerDelegate {
+    nonisolated func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        let next: PowerState = switch central.state {
+        case .poweredOn: .poweredOn
+        case .poweredOff: .poweredOff
+        case .unauthorized: .unauthorized
+        case .unsupported: .unsupported
+        case .resetting, .unknown: .unknown
+        @unknown default: .unknown
+        }
+        NSLog("[OBD2-BLE] centralManagerDidUpdateState → \(next)")
+        Task { @MainActor in
+            self.powerState = next
+            if next != .unknown {
+                self.resolvePowerStateContinuations(next)
+            }
+        }
+    }
+
+    nonisolated func centralManager(
+        _ central: CBCentralManager,
+        didDiscover peripheral: CBPeripheral,
+        advertisementData: [String: Any],
+        rssi RSSI: NSNumber
+    ) {
+        let id = peripheral.identifier
+        let name = peripheral.name ?? (advertisementData[CBAdvertisementDataLocalNameKey] as? String) ?? "(unnamed)"
+        let rssi = RSSI.intValue
+        let advertisedServices = ((advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID]) ?? []).map { $0.uuidString }
+        let device = DiscoveredDevice(id: id, name: name, rssi: rssi, advertisedServices: advertisedServices)
+
+        Task { @MainActor in
+            if let existing = self.discovered.firstIndex(where: { $0.id == id }) {
+                self.discovered[existing] = device
+            } else {
+                self.discovered.append(device)
+            }
+        }
+    }
+
+    nonisolated func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        NSLog("[OBD2-BLE] didConnect: \(peripheral.identifier.uuidString) name=\(peripheral.name ?? "?")")
+        Task { @MainActor in
+            self.connectContinuation?.resume()
+            self.connectContinuation = nil
+        }
+    }
+
+    nonisolated func centralManager(
+        _ central: CBCentralManager,
+        didFailToConnect peripheral: CBPeripheral,
+        error: Error?
+    ) {
+        let message = error?.localizedDescription ?? "Connection failed."
+        NSLog("[OBD2-BLE] didFailToConnect: \(message)")
+        Task { @MainActor in
+            self.connectContinuation?.resume(throwing: BLEError.connectFailed(message))
+            self.connectContinuation = nil
+            self.connectionState = .error(message)
+        }
+    }
+
+    nonisolated func centralManager(
+        _ central: CBCentralManager,
+        didDisconnectPeripheral peripheral: CBPeripheral,
+        error: Error?
+    ) {
+        NSLog("[OBD2-BLE] didDisconnectPeripheral error=\(error?.localizedDescription ?? "nil")")
+        Task { @MainActor in
+            self.peripheral = nil
+            self.picked = nil
+            if let error = error {
+                self.connectionState = .error("Disconnected: \(error.localizedDescription)")
+            } else {
+                self.connectionState = .idle
+            }
+        }
+    }
+}
+
+// MARK: - CBPeripheralDelegate
+
+extension BLEManager: CBPeripheralDelegate {
+    nonisolated func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        let services = peripheral.services ?? []
+        NSLog("[OBD2-BLE] didDiscoverServices: count=\(services.count) uuids=\(services.map { $0.uuid.uuidString }) error=\(error?.localizedDescription ?? "nil")")
+        if let error {
+            Task { @MainActor in
+                self.discoverContinuation?.resume(throwing: BLEError.serviceDiscoveryFailed(error.localizedDescription))
+                self.discoverContinuation = nil
+            }
+            return
+        }
+        Task { @MainActor in
+            self.pendingServiceDiscovery = services.count
+        }
+        for service in services {
+            peripheral.discoverCharacteristics(nil, for: service)
+        }
+    }
+
+    nonisolated func peripheral(
+        _ peripheral: CBPeripheral,
+        didDiscoverCharacteristicsFor service: CBService,
+        error: Error?
+    ) {
+        let chars = service.characteristics ?? []
+        let charDescriptions = chars.map { c -> String in
+            var props: [String] = []
+            if c.properties.contains(.read) { props.append("read") }
+            if c.properties.contains(.write) { props.append("write") }
+            if c.properties.contains(.writeWithoutResponse) { props.append("writeNoResp") }
+            if c.properties.contains(.notify) { props.append("notify") }
+            if c.properties.contains(.indicate) { props.append("indicate") }
+            return "\(c.uuid.uuidString)[\(props.joined(separator: ","))]"
+        }
+        NSLog("[OBD2-BLE] didDiscoverCharacteristicsFor service=\(service.uuid.uuidString) chars=\(charDescriptions) error=\(error?.localizedDescription ?? "nil")")
+        Task { @MainActor in
+            self.pendingServiceDiscovery -= 1
+            if self.pendingServiceDiscovery > 0 { return }
+
+            // All services have reported their characteristics. Pick a tx/rx
+            // pair using the same priority/fallback logic as the web app.
+            guard let services = peripheral.services else {
+                self.discoverContinuation?.resume(throwing: BLEError.noUsableService)
+                self.discoverContinuation = nil
+                return
+            }
+
+            if let pickResult = self.pickTxRx(from: services) {
+                self.picked = (pickResult.service, pickResult.tx, pickResult.rx)
+                let description = PickedDescription(
+                    serviceUUID: pickResult.service.uuid.uuidString,
+                    txUUID: pickResult.tx.uuid.uuidString,
+                    rxUUID: pickResult.rx.uuid.uuidString,
+                    source: pickResult.source
+                )
+                NSLog("[OBD2-BLE] picked service=\(description.serviceUUID) tx=\(description.txUUID) rx=\(description.rxUUID) source=\(pickResult.source.rawValue)")
+                // Subscribe and wait for the subscription to be confirmed by
+                // peripheral(_:didUpdateNotificationStateFor:error:) before
+                // resolving the discover continuation. Without this, a
+                // subsequent write to tx can race ahead of the actual
+                // notification subscription on the adapter side, and the
+                // response gets dropped.
+                Task { @MainActor in
+                    do {
+                        try await self.subscribeAndConfirm(
+                            peripheral: peripheral,
+                            characteristic: pickResult.rx
+                        )
+                        self.discoverContinuation?.resume(returning: description)
+                        self.discoverContinuation = nil
+                    } catch {
+                        self.discoverContinuation?.resume(throwing: error)
+                        self.discoverContinuation = nil
+                    }
+                }
+            } else {
+                self.discoverContinuation?.resume(throwing: BLEError.noUsableService)
+                self.discoverContinuation = nil
+            }
+        }
+    }
+
+    nonisolated func peripheral(
+        _ peripheral: CBPeripheral,
+        didUpdateValueFor characteristic: CBCharacteristic,
+        error: Error?
+    ) {
+        let value = characteristic.value
+        let hex = value?.map { String(format: "%02X", $0) }.joined(separator: " ") ?? "nil"
+        NSLog("[OBD2-BLE] didUpdateValueFor char=\(characteristic.uuid.uuidString) bytes=\(value?.count ?? 0) hex=[\(hex)] error=\(error?.localizedDescription ?? "nil")")
+        guard let value else { return }
+        // Forward bytes to the inbound stream regardless of which characteristic
+        // they came from — only one rx is subscribed at a time.
+        inboundContinuation.yield(value)
+    }
+
+    nonisolated func peripheral(
+        _ peripheral: CBPeripheral,
+        didUpdateNotificationStateFor characteristic: CBCharacteristic,
+        error: Error?
+    ) {
+        NSLog("[OBD2-BLE] didUpdateNotificationStateFor char=\(characteristic.uuid.uuidString) isNotifying=\(characteristic.isNotifying) error=\(error?.localizedDescription ?? "nil")")
+        Task { @MainActor in
+            if let error = error {
+                self.notifyContinuation?.resume(
+                    throwing: BLEError.serviceDiscoveryFailed(
+                        "subscription failed: \(error.localizedDescription)"
+                    )
+                )
+            } else {
+                self.notifyContinuation?.resume()
+            }
+            self.notifyContinuation = nil
+        }
+    }
+
+    nonisolated func peripheral(
+        _ peripheral: CBPeripheral,
+        didWriteValueFor characteristic: CBCharacteristic,
+        error: Error?
+    ) {
+        // Only fires for `.withResponse` writes. Useful to know if peer is
+        // actually ack'ing.
+        NSLog("[OBD2-BLE] didWriteValueFor char=\(characteristic.uuid.uuidString) error=\(error?.localizedDescription ?? "nil")")
+    }
+
+    nonisolated func peripheralIsReady(toSendWriteWithoutResponse peripheral: CBPeripheral) {
+        NSLog("[OBD2-BLE] peripheralIsReady (toSendWriteWithoutResponse)")
+        Task { @MainActor in
+            let pending = self.canWriteContinuations
+            self.canWriteContinuations.removeAll()
+            for c in pending { c.resume() }
+        }
+    }
+}
+
+// MARK: - Notification subscription helper
+
+private extension BLEManager {
+    func subscribeAndConfirm(
+        peripheral: CBPeripheral,
+        characteristic: CBCharacteristic
+    ) async throws {
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            self.notifyContinuation = continuation
+            peripheral.setNotifyValue(true, for: characteristic)
+        }
+    }
+}
+
+// MARK: - Service / characteristic picking
+
+private extension BLEManager {
+    struct PickResult {
+        let service: CBService
+        let tx: CBCharacteristic
+        let rx: CBCharacteristic
+        let source: PickSource
+    }
+
+    func pickTxRx(from services: [CBService]) -> PickResult? {
+        // 1) Priority: try known service UUIDs in order.
+        for wanted in KnownServices.serviceUUIDs {
+            if let svc = services.first(where: { $0.uuid == wanted }),
+               let chars = svc.characteristics,
+               let pair = pickFromCharacteristics(chars) {
+                return PickResult(service: svc, tx: pair.tx, rx: pair.rx, source: .known)
+            }
+        }
+        // 2) Fallback: probe every service for a writable + notifiable pair.
+        for svc in services {
+            guard let chars = svc.characteristics else { continue }
+            if let pair = pickFromCharacteristics(chars) {
+                return PickResult(service: svc, tx: pair.tx, rx: pair.rx, source: .fallback)
+            }
+        }
+        return nil
+    }
+
+    func pickFromCharacteristics(_ chars: [CBCharacteristic]) -> (tx: CBCharacteristic, rx: CBCharacteristic)? {
+        let writable = chars.filter { $0.properties.contains(.write) || $0.properties.contains(.writeWithoutResponse) }
+        let notifiable = chars.filter { $0.properties.contains(.notify) || $0.properties.contains(.indicate) }
+        guard !writable.isEmpty, !notifiable.isEmpty else { return nil }
+
+        // Prefer a write-only characteristic for tx and notify-only for rx so
+        // we don't accidentally choose the same characteristic for both paths
+        // when distinct ones exist.
+        let txOnly = writable.first { c in
+            !c.properties.contains(.notify) && !c.properties.contains(.indicate)
+        }
+        let rxOnly = notifiable.first { c in
+            !c.properties.contains(.write) && !c.properties.contains(.writeWithoutResponse)
+        }
+        let tx = txOnly ?? writable[0]
+        let rx = rxOnly ?? notifiable.first(where: { $0.uuid != tx.uuid }) ?? notifiable[0]
+        return (tx, rx)
+    }
+}
+
+// MARK: - Errors
+
+enum BLEError: LocalizedError {
+    case deviceNotFound
+    case connectFailed(String)
+    case serviceDiscoveryFailed(String)
+    case noUsableService
+    case notConnected
+
+    var errorDescription: String? {
+        switch self {
+        case .deviceNotFound:
+            return "Could not find that device. Try scanning again."
+        case .connectFailed(let msg):
+            return "Connect failed: \(msg)"
+        case .serviceDiscoveryFailed(let msg):
+            return "Service discovery failed: \(msg)"
+        case .noUsableService:
+            return "This adapter doesn't expose a writable + notifiable characteristic pair. Check the manual or try a different adapter."
+        case .notConnected:
+            return "Transport not connected."
+        }
+    }
+}
+
+// MARK: - OBDTransport
+
+extension BLEManager: OBDTransport {}
+
