@@ -13,7 +13,7 @@ final class ConfigurationManager {
     var actionError: String?
     var showSuccessMessage = false
 
-    func readConfig(elm: ELM327) async {
+    func readConfig(interface: VehicleInterface) async {
         isReading = true
         actionError = nil
         showSuccessMessage = false
@@ -21,8 +21,8 @@ final class ConfigurationManager {
         do {
             // Read UCH config (Auto Lock Doors)
             // ATSH 745 (UCH), then we simulate 22 21 00
-            _ = try await elm.send("ATSH745", timeout: 0.8)
-            let uchRes = try await elm.send("222100", timeout: 4.0)
+            try await interface.setTarget(txID: "745", rxID: nil)
+            let uchRes = try await interface.sendDiagnosticRequest("222100", timeout: 4.0)
             
             // Expected mock response: 62 21 00 [Flags]
             // We'll mock that bit 0 of the first byte is autoLockDoors
@@ -32,8 +32,8 @@ final class ConfigurationManager {
             }
             
             // Read TdB config (Language, Seatbelt)
-            _ = try await elm.send("ATSH743", timeout: 0.8)
-            let tdbRes = try await elm.send("222101", timeout: 4.0)
+            try await interface.setTarget(txID: "743", rxID: nil)
+            let tdbRes = try await interface.sendDiagnosticRequest("222101", timeout: 4.0)
             
             if tdbRes.contains("62 21 01") {
                 // Language mapping mock: "00" = FR, "01" = EN
@@ -48,22 +48,22 @@ final class ConfigurationManager {
         isReading = false
     }
 
-    func writeConfig(elm: ELM327) async {
+    func writeConfig(interface: VehicleInterface) async {
         isWriting = true
         actionError = nil
         showSuccessMessage = false
         
         do {
             // Write UCH
-            _ = try await elm.send("ATSH745", timeout: 0.8)
+            try await interface.setTarget(txID: "745", rxID: nil)
             let uchPayload = autoLockDoors ? "01" : "00"
-            _ = try await elm.send("2E2100\(uchPayload)", timeout: 4.0)
+            _ = try await interface.sendDiagnosticRequest("2E2100\(uchPayload)", timeout: 4.0)
             
             // Write TdB
-            _ = try await elm.send("ATSH743", timeout: 0.8)
+            try await interface.setTarget(txID: "743", rxID: nil)
             let langPayload = dashboardLanguage == "EN" ? "01" : "00"
             let beepPayload = seatbeltWarning ? "BEEP" : "NOBEEP"
-            _ = try await elm.send("2E2101\(langPayload)\(beepPayload)", timeout: 4.0)
+            _ = try await interface.sendDiagnosticRequest("2E2101\(langPayload)\(beepPayload)", timeout: 4.0)
             
             // Show success for 2 seconds
             showSuccessMessage = true

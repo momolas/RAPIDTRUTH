@@ -3,13 +3,10 @@ import SwiftUI
 struct ConnectionView: View {
     @Environment(ConnectionManager.self) private var connectionManager
     @Environment(WiFiManager.self) private var wifiManager
+    @Environment(PandaTransport.self) private var pandaTransport
     @Environment(BLEManager.self) private var bleManager
     
-    // Shared ELM327 owned by the parent (MainShellView). Must NOT be a
-    // separate @State — two ELM327 instances would race for AsyncStream
-    // chunks from ConnectionManager's inboundStream and silently swallow
-    // each other's responses.
-    let elm: ELM327
+    @Bindable var adapterManager: AdapterManager
     @State private var showPicker = false
     @State private var statusError: String?
 
@@ -21,14 +18,23 @@ struct ConnectionView: View {
                 connectionButton
             }
             
-            // Picker to choose between BLE and WiFi
-            Picker("Connection Type", selection: Bindable(connectionManager).connectionType) {
-                ForEach(ConnectionType.allCases) { type in
+            Picker("Adapter Protocol", selection: $adapterManager.adapterType) {
+                ForEach(AdapterType.allCases) { type in
                     Text(type.rawValue).tag(type)
                 }
             }
             .pickerStyle(.segmented)
             .padding(.vertical, 4)
+
+            if adapterManager.adapterType == .elm327 {
+                Picker("Connection Type", selection: Bindable(connectionManager).connectionType) {
+                    ForEach(ConnectionType.allCases) { type in
+                        Text(type.rawValue).tag(type)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding(.bottom, 4)
+            }
 
             if let statusError {
                 Text(statusError)
@@ -39,11 +45,12 @@ struct ConnectionView: View {
                     .clipShape(.rect(cornerRadius: 6))
             }
 
-            DisclosureGroup("Adapter log (\(elm.log.count))") {
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 2) {
-                        ForEach(elm.log) { entry in
-                            HStack(alignment: .top, spacing: 8) {
+            if adapterManager.adapterType == .elm327 {
+                DisclosureGroup("Adapter log (\(adapterManager.elm327.log.count))") {
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 2) {
+                            ForEach(adapterManager.elm327.log) { entry in
+                                HStack(alignment: .top, spacing: 8) {
                                 Text(entry.direction.rawValue.uppercased())
                                     .font(.monoTiny)
                                     .foregroundStyle(color(for: entry.direction))
@@ -61,13 +68,12 @@ struct ConnectionView: View {
                 .padding(8)
                 .background(Color.black.opacity(0.4))
                 .clipShape(.rect(cornerRadius: 6))
+                }
+                .font(.statusText)
+                .foregroundStyle(.secondary)
             }
-            .font(.statusText)
-            .foregroundStyle(.secondary)
         }
-        .padding(16)
-        .background(Color(red: 22 / 255, green: 24 / 255, blue: 29 / 255))
-        .clipShape(.rect(cornerRadius: 12))
+        .appCard()
         .sheet(isPresented: $showPicker) {
             DevicePickerView { device in
                 statusError = nil
@@ -103,58 +109,103 @@ struct ConnectionView: View {
 
     @ViewBuilder
     private var connectionButton: some View {
-        switch connectionManager.state {
-        case .idle, .error:
-            Button("Connect") {
-                statusError = nil
-                if connectionManager.connectionType == .ble {
-                    showPicker = true
-                } else {
-                    Task { await connectWiFi() }
+        if adapterManager.adapterType == .panda {
+            switch pandaTransport.state {
+            case .idle, .error:
+                Button("Connect Panda") {
+                    statusError = nil
+                    Task { await connectPanda() }
                 }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+            case .connecting:
+                Button("Cancel") { pandaTransport.disconnect() }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
+            case .connected:
+                Button("Disconnect") {
+                    adapterManager.pandaDriver.detach()
+                    pandaTransport.disconnect()
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.small)
-        case .connecting:
-            Button("Cancel") {
-                connectionManager.disconnect()
+        } else {
+            switch connectionManager.state {
+            case .idle, .error:
+                Button("Connect ELM") {
+                    statusError = nil
+                    if connectionManager.connectionType == .ble {
+                        showPicker = true
+                    } else {
+                        Task { await connectWiFi() }
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+            case .connecting:
+                Button("Cancel") { connectionManager.disconnect() }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
+            case .connected:
+                Button("Disconnect") {
+                    adapterManager.elm327.detach()
+                    connectionManager.disconnect()
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
             }
-            .buttonStyle(.bordered)
-            .controlSize(.small)
-        case .connected:
-            Button("Disconnect") {
-                elm.detach()
-                connectionManager.disconnect()
-            }
-            .buttonStyle(.bordered)
-            .controlSize(.small)
         }
     }
 
     private var stateTitle: String {
-        switch connectionManager.state {
-        case .idle: return "idle"
-        case .connecting(let n): return "connecting → \(n)"
-        case .connected(let n): return "connected: \(n)"
-        case .error: return "error"
+        if adapterManager.adapterType == .panda {
+            switch pandaTransport.state {
+            case .idle: return "idle"
+            case .connecting: return "connecting → UDP 1337"
+            case .connected: return "connected: Panda CAN"
+            case .error: return "error"
+            }
+        } else {
+            switch connectionManager.state {
+            case .idle: return "idle"
+            case .connecting(let n): return "connecting → \(n)"
+            case .connected(let n): return "connected: \(n)"
+            case .error: return "error"
+            }
         }
     }
 
     private var stateSubtitle: String {
-        switch connectionManager.state {
-        case .idle: return "Tap Connect to start."
-        case .connecting(let n): return "Establishing \(n) connection..."
-        case .connected(let n):
-            if connectionManager.demoMode {
-                return "Canned ECU responses — tap Disconnect to pair a real adapter."
+        if adapterManager.adapterType == .panda {
+            switch pandaTransport.state {
+            case .idle: return "Tap Connect Panda to start."
+            case .connecting: return "Establishing Panda UDP connection..."
+            case .connected: return "Connected via Panda Native Protocol"
+            case .error(let msg): return msg
             }
-            return "Connected via \(n)"
-        case .error(let msg): return msg
+        } else {
+            switch connectionManager.state {
+            case .idle: return "Tap Connect ELM to start."
+            case .connecting(let n): return "Establishing \(n) connection..."
+            case .connected(let n):
+                if connectionManager.demoMode {
+                    return "Canned ECU responses — tap Disconnect to pair a real adapter."
+                }
+                return "Connected via \(n)"
+            case .error(let msg): return msg
+            }
         }
     }
 
     private var badgeColor: Color {
-        switch connectionManager.state {
+        let st = adapterManager.adapterType == .panda ?
+            (pandaTransport.state == .connected ? GlobalConnectionState.connected("Panda") :
+                (pandaTransport.state == .connecting ? .connecting("Panda") :
+                    (pandaTransport.state == .idle ? .idle : .error("Panda"))))
+            : connectionManager.state
+            
+        switch st {
         case .idle: return .secondary
         case .connecting: return .blue
         case .connected: return .green
@@ -174,11 +225,32 @@ struct ConnectionView: View {
     private func connectBLE(to device: BLEManager.DiscoveredDevice) async {
         do {
             _ = try await bleManager.connect(device)
-            elm.attach()
-            _ = try await elm.initSequence()
+            adapterManager.elm327.attach()
+            _ = try await adapterManager.elm327.initSequence()
             await detectVehicle()
         } catch {
             statusError = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
+        }
+    }
+
+    private func connectPanda() async {
+        pandaTransport.connect()
+        // Wait for state
+        var timeout = 0
+        while pandaTransport.state == .connecting && timeout < 50 {
+            try? await Task.sleep(for: .milliseconds(100))
+            timeout += 1
+        }
+        
+        if pandaTransport.state == .connected {
+            adapterManager.pandaDriver.attach()
+            // Panda doesn't need an ATZ/initSequence like ELM327. We can just detect vehicle.
+            await detectVehicle()
+        } else if case .error(let msg) = pandaTransport.state {
+            statusError = msg
+        } else {
+            statusError = "Connection timeout"
+            pandaTransport.disconnect()
         }
     }
 
@@ -192,9 +264,9 @@ struct ConnectionView: View {
         }
         
         if wifiManager.state == .connected {
-            elm.attach()
+            adapterManager.elm327.attach()
             do {
-                _ = try await elm.initSequence()
+                _ = try await adapterManager.elm327.initSequence()
                 await detectVehicle()
             } catch {
                 statusError = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
@@ -208,7 +280,7 @@ struct ConnectionView: View {
     }
 
     private func detectVehicle() async {
-        guard let vin = try? await VINReader.read(elm: elm) else { return }
+        guard let vin = try? await VINReader.read(interface: adapterManager.activeInterface) else { return }
         
         let settings = SettingsStore.shared
         let vehicleStore = VehicleStore.shared

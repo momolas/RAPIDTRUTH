@@ -238,3 +238,16 @@ enum ELMError: LocalizedError {
         }
     }
 }
+
+extension ELM327: VehicleInterface {
+    func setTarget(txID: String, rxID: String?) async throws {
+        _ = try await self.send("ATSH\(txID)", timeout: 0.8)
+        if let rxID {
+            _ = try await self.send("ATCRA\(rxID)", timeout: 0.8)
+        }
+    }
+
+    func sendDiagnosticRequest(_ hexString: String, timeout: TimeInterval) async throws -> String {
+        return try await self.send(hexString, timeout: timeout)
+    }
+}

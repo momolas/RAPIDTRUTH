@@ -44,6 +44,7 @@ struct SessionsListView: View {
                 }
             }
         }
+        .appCard()
         .onAppear { reload() }
         .onChange(of: session.state) { _, _ in reload() }
 

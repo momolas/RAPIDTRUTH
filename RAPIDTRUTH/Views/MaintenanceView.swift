@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MaintenanceView: View {
-    let elm: ELM327
+    let interface: VehicleInterface
     @Environment(\.dismiss) var dismiss
     @State private var maintenanceManager = MaintenanceManager()
     private var ble = BLEManager.shared
@@ -15,14 +15,16 @@ struct MaintenanceView: View {
         return false
     }
 
-    init(elm: ELM327) {
-        self.elm = elm
+    init(interface: VehicleInterface) {
+        self.interface = interface
     }
+
+
 
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.black.edgesIgnoringSafeArea(.all)
+                Color.appBackground.ignoresSafeArea()
 
                 Form {
                     Section {
@@ -34,7 +36,7 @@ struct MaintenanceView: View {
                                     .font(.caption)
                                     .foregroundStyle(.gray)
                             }
-                            .listRowBackground(Color(white: 0.1))
+                            .listRowBackground(Color.appCardBackground)
                         }
 
                         if let error = maintenanceManager.errorMessage {
@@ -69,11 +71,11 @@ struct MaintenanceView: View {
                             }
                         }
                         .disabled(!isConnected || maintenanceManager.isExecuting)
-                        .listRowBackground(Color(white: 0.1))
+                        .listRowBackground(Color.appCardBackground)
                         .alert("Remise à zéro Vidange", isPresented: $showingOilAlert) {
                             Button("Annuler", role: .cancel) { }
                             Button("Confirmer", role: .destructive) {
-                                Task { await maintenanceManager.resetOilService(elm: elm) }
+                                Task { await maintenanceManager.resetOilService(interface: interface) }
                             }
                         } message: {
                             Text("Êtes-vous sûr de vouloir réinitialiser l'indicateur de maintenance ? L'opération est irréversible.")
@@ -97,11 +99,11 @@ struct MaintenanceView: View {
                             }
                         }
                         .disabled(!isConnected || maintenanceManager.isExecuting)
-                        .listRowBackground(Color(white: 0.1))
+                        .listRowBackground(Color.appCardBackground)
                         .alert("Mode Atelier Frein de Parking", isPresented: $showingEPBAlert) {
                             Button("Annuler", role: .cancel) { }
                             Button("Activer", role: .destructive) {
-                                Task { await maintenanceManager.enterEPBMaintenanceMode(elm: elm) }
+                                Task { await maintenanceManager.enterEPBMaintenanceMode(interface: interface) }
                             }
                         } message: {
                             Text("Attention : Cette action relâche les mâchoires du frein de stationnement pour permettre le remplacement des plaquettes. Assurez-vous que le véhicule est sur une surface plane et calé.")
@@ -125,11 +127,11 @@ struct MaintenanceView: View {
                             }
                         }
                         .disabled(!isConnected || maintenanceManager.isExecuting)
-                        .listRowBackground(Color(white: 0.1))
+                        .listRowBackground(Color.appCardBackground)
                         .alert("Régénération FAP DANGER", isPresented: $showingDPFAlert) {
                             Button("Annuler", role: .cancel) { }
                             Button("Lancer Régénération", role: .destructive) {
-                                Task { await maintenanceManager.forceDPFRegeneration(elm: elm) }
+                                Task { await maintenanceManager.forceDPFRegeneration(interface: interface) }
                             }
                         } message: {
                             Text("AVERTISSEMENT : La régénération statique fera monter le régime moteur et la température d'échappement très haut (>600°C). Effectuez cette opération en extérieur, sur une surface ininflammable, capot ouvert, avec un réservoir au moins au quart plein. Ne quittez pas le véhicule pendant l'opération.")

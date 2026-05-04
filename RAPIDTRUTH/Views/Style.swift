@@ -1,5 +1,10 @@
 import SwiftUI
 
+extension Color {
+    static let appBackground = Color(red: 14 / 255, green: 15 / 255, blue: 18 / 255)
+    static let appCardBackground = Color(red: 22 / 255, green: 24 / 255, blue: 29 / 255)
+}
+
 /// Centralized typography scale for the iOS app. Use these tokens instead
 /// of inline `.font(.caption.monospaced())` etc. so the visual hierarchy
 /// is one file's responsibility, not scattered across every view.
@@ -33,4 +38,23 @@ extension Font {
     static let captionTiny = Font.caption2
     static let monoSmall   = Font.caption.monospaced()
     static let monoTiny    = Font.caption2.monospaced()
+}
+
+struct AppCardModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(16)
+            .background(Color.appCardBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.white.opacity(0.05), lineWidth: 1)
+            )
+    }
+}
+
+extension View {
+    func appCard() -> some View {
+        self.modifier(AppCardModifier())
+    }
 }

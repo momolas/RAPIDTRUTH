@@ -32,6 +32,7 @@ struct LiveReadoutView: View {
                 }
             }
         }
+        .appCard()
     }
 
     private func categorySection(category: PidCategory, values: [Sampler.LiveValue]) -> some View {
@@ -72,7 +73,7 @@ struct LiveReadoutView: View {
         }
         .padding(8)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(red: 22 / 255, green: 24 / 255, blue: 29 / 255))
+        .background(Color.white.opacity(0.05))
         .clipShape(.rect(cornerRadius: 6))
     }
 

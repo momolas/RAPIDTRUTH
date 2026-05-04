@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct DiagnosticsView: View {
-    let elm: ELM327
+    let interface: VehicleInterface
     let profile: Profile
     @State private var dtcLoader = DTCLoader()
     private var ble = BLEManager.shared
 
-    init(elm: ELM327, profile: Profile) {
-        self.elm = elm
+    init(interface: VehicleInterface, profile: Profile) {
+        self.interface = interface
         self.profile = profile
     }
 
@@ -92,7 +92,7 @@ struct DiagnosticsView: View {
 
             HStack(spacing: 16) {
                 Button(action: {
-                    Task { await dtcLoader.scan(elm: elm, profile: profile) }
+                    Task { await dtcLoader.scan(interface: interface, profile: profile) }
                 }) {
                     Text("Scan Faults")
                         .font(.appButton)
@@ -103,7 +103,7 @@ struct DiagnosticsView: View {
 
                 if !dtcLoader.dtcs.isEmpty {
                     Button(action: {
-                        Task { await dtcLoader.clear(elm: elm, profile: profile) }
+                        Task { await dtcLoader.clear(interface: interface, profile: profile) }
                     }) {
                         Text(dtcLoader.isClearing ? "Clearing..." : "Clear All")
                             .font(.appButton)
@@ -115,12 +115,6 @@ struct DiagnosticsView: View {
                 }
             }
         }
-        .padding()
-        .background(Color.white.opacity(0.03))
-        .cornerRadius(16)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.white.opacity(0.1), lineWidth: 1)
-        )
+        .appCard()
     }
 }

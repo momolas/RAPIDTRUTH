@@ -5,19 +5,14 @@ enum VINReader {
     /// multi-frame ISO-TP response. Returns nil if the ECU doesn't respond
     /// with a VIN, or the parsed string isn't a 17-char alphanumeric VIN.
     @MainActor
-    static func read(elm: ELM327) async throws -> String? {
+    static func read(interface: VehicleInterface) async throws -> String? {
         // First OBD2 query after ATSP0 triggers protocol auto-detect on the
         // adapter, which can take 4–6s on Veepeak units. Send a benign 0100
         // (supported PIDs Mode 01) as a warmup so the protocol is latched
         // before the multi-frame Mode 09 query. Swallow timeouts here — if
         // the warmup fails the 0902 retry loop below will still report.
-        do {
-            _ = try await elm.send("0100", timeout: 8.0)
-        } catch {
-            NSLog("[OBD2-VIN] 0100 warmup failed: \(error) — proceeding to 0902 anyway")
-        }
-
-        let response = try await sendWithRetry(elm: elm, command: "0902", timeout: 8.0, retries: 1)
+        try await interface.setTarget(txID: "7DF", rxID: "7E8")
+        let response = try await interface.sendDiagnosticRequest("0902", timeout: 8.0)
         NSLog("[OBD2-VIN] 0902 raw response: \"\(response.replacingOccurrences(of: "\n", with: "\\n"))\"")
         return parseVINResponse(response)
     }

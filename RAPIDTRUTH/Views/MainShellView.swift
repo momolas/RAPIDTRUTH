@@ -4,7 +4,7 @@ import SwiftUI
 /// No multi-vehicle management, no onboarding. The app opens directly on the
 /// diagnostic dashboard.
 struct MainShellView: View {
-    let elm: ELM327
+    @Bindable var adapterManager: AdapterManager
     private var profileRegistry = ProfileRegistry.shared
     private var ble = BLEManager.shared
     private var session = LoggingSession.shared
@@ -12,8 +12,8 @@ struct MainShellView: View {
     @State private var showConfiguration = false
     @State private var showMaintenance = false
 
-    init(elm: ELM327) {
-        self.elm = elm
+    init(adapterManager: AdapterManager) {
+        self.adapterManager = adapterManager
     }
 
     /// Always resolves to the Scenic 2 profile. If for some reason the bundle
@@ -28,7 +28,15 @@ struct MainShellView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    header
+					HStack(alignment: .firstTextBaseline) {
+						HStack(spacing: 0) {
+							Text("RAPID").foregroundStyle(.white)
+							Text("/TRUTH").foregroundStyle(Color(red: 92 / 255, green: 196 / 255, blue: 1.0))
+						}
+						.font(.appBrand)
+						
+						Spacer()
+					}
 
                     if let error = profileRegistry.loadError {
                         Text("Profile error: \(error)")
@@ -36,11 +44,11 @@ struct MainShellView: View {
                             .foregroundStyle(.red)
                     }
 
-                    // 1 — Connexion ELM327
-                    ConnectionView(elm: elm)
+                    // 1 — Connexion
+                    ConnectionView(adapterManager: adapterManager)
 
                     // 2 — Diagnostic réseau (DTC tous calculateurs)
-                    DiagnosticsView(elm: elm, profile: profile)
+                    DiagnosticsView(interface: adapterManager.activeInterface, profile: profile)
 
                     // 3 — Codage & Configuration
                     HStack(spacing: 12) {
@@ -73,10 +81,6 @@ struct MainShellView: View {
                             .cornerRadius(12)
                         }
                     }
-                    .padding(.horizontal)
-
-                    // 4 — Enregistrement / Logging
-                    LoggingControlsView(elm: elm)
 
                     // 5 — Données temps réel
                     LiveReadoutView()
@@ -86,39 +90,16 @@ struct MainShellView: View {
                 }
                 .padding(16)
             }
-            .background(Color(red: 14 / 255, green: 15 / 255, blue: 18 / 255).ignoresSafeArea())
+            .background(Color.appBackground.ignoresSafeArea())
             .navigationTitle("")
             .toolbar(.hidden, for: .navigationBar)
         }
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showConfiguration) {
-            ConfigurationView(elm: elm)
+            ConfigurationView(interface: adapterManager.activeInterface)
         }
         .sheet(isPresented: $showMaintenance) {
-            MaintenanceView(elm: elm)
-        }
-    }
-
-    // MARK: - Header
-
-    private var header: some View {
-        HStack(alignment: .firstTextBaseline) {
-            HStack(spacing: 0) {
-                Text("RAPID").foregroundStyle(.white)
-                Text("/TRUTH").foregroundStyle(Color(red: 92 / 255, green: 196 / 255, blue: 1.0))
-            }
-            .font(.appBrand)
-
-            Spacer()
-
-            VStack(alignment: .trailing, spacing: 2) {
-                Text("Renault Scénic 2")
-                    .font(.monoSmall)
-                    .foregroundStyle(.secondary)
-                Text("M9R 2.0 dCi · X84")
-                    .font(.monoTiny)
-                    .foregroundStyle(.tertiary)
-            }
+            MaintenanceView(interface: adapterManager.activeInterface)
         }
     }
 }

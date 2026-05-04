@@ -23,7 +23,7 @@ final class DTCLoader {
     var scanError: String?
     var currentEcuScanning: String?
 
-    func scan(elm: ELM327, profile: Profile) async {
+    func scan(interface: VehicleInterface, profile: Profile) async {
         isScanning = true
         scanError = nil
         dtcs.removeAll()
@@ -33,10 +33,10 @@ final class DTCLoader {
             
             for (ecuName, ecuDef) in profile.ecus {
                 currentEcuScanning = ecuName
-                _ = try await elm.send("ATSH\(ecuDef.requestHeader)", timeout: 0.8)
+                try await interface.setTarget(txID: ecuDef.requestHeader, rxID: nil)
                 
                 // Read DTC by Status (KWP2000 Renault specific)
-                let hexResponse = try await elm.send("17FF00", timeout: 4.0)
+                let hexResponse = try await interface.sendDiagnosticRequest("17FF00", timeout: 4.0)
                 let ecuDTCs = parseRenaultDTCs(from: hexResponse, ecuName: ecuName)
                 allFound.append(contentsOf: ecuDTCs)
             }
@@ -50,14 +50,14 @@ final class DTCLoader {
         isScanning = false
     }
 
-    func clear(elm: ELM327, profile: Profile) async {
+    func clear(interface: VehicleInterface, profile: Profile) async {
         isClearing = true
         scanError = nil
         do {
             for (_, ecuDef) in profile.ecus {
-                _ = try await elm.send("ATSH\(ecuDef.requestHeader)", timeout: 0.8)
+                try await interface.setTarget(txID: ecuDef.requestHeader, rxID: nil)
                 // Clear Diagnostic Information
-                _ = try await elm.send("14FF00", timeout: 4.0)
+                _ = try await interface.sendDiagnosticRequest("14FF00", timeout: 4.0)
                 try? await Task.sleep(for: .milliseconds(500))
             }
             dtcs.removeAll()

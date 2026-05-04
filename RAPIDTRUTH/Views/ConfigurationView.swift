@@ -1,13 +1,15 @@
 import SwiftUI
 
 struct ConfigurationView: View {
-    let elm: ELM327
+    let interface: VehicleInterface
     @Environment(\.dismiss) var dismiss
     @State private var configManager = ConfigurationManager()
     private var ble = BLEManager.shared
 
-    init(elm: ELM327) {
-        self.elm = elm
+
+
+    init(interface: VehicleInterface) {
+        self.interface = interface
     }
 
     private var isConnected: Bool {
@@ -23,17 +25,20 @@ struct ConfigurationView: View {
                         Text("Français").tag("FR")
                         Text("English").tag("EN")
                     }
+                    .listRowBackground(Color.appCardBackground)
                     
                     Toggle("Alerte Ceinture (Bip)", isOn: $configManager.seatbeltWarning)
+                        .listRowBackground(Color.appCardBackground)
                 }
                 
                 Section(header: Text("Unité Centrale Habitacle (UCH)")) {
                     Toggle("Condamnation Auto (CAR)", isOn: $configManager.autoLockDoors)
+                        .listRowBackground(Color.appCardBackground)
                 }
                 
                 Section {
                     Button(action: {
-                        Task { await configManager.writeConfig(elm: elm) }
+                        Task { await configManager.writeConfig(interface: interface) }
                     }) {
                         HStack {
                             Spacer()
@@ -81,7 +86,7 @@ struct ConfigurationView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
-                        Task { await configManager.readConfig(elm: elm) }
+                        Task { await configManager.readConfig(interface: interface) }
                     }) {
                         if configManager.isReading {
                             ProgressView()
@@ -94,9 +99,11 @@ struct ConfigurationView: View {
             }
             .task {
                 if isConnected {
-                    await configManager.readConfig(elm: elm)
+                    await configManager.readConfig(interface: interface)
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color.appBackground.ignoresSafeArea())
         }
     }
 }
