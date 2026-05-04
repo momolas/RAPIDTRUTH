@@ -105,6 +105,8 @@ final class ProfileRegistry {
         for url in entries where url.pathExtension.lowercased() == "json" {
             // Skip the template marker file from community-profiles/.
             if url.lastPathComponent.hasPrefix("_") { continue }
+            // Skip DTC language databases
+            if url.lastPathComponent.hasPrefix("dtc_") { continue }
             do {
                 let data = try Data(contentsOf: url)
                 let profile = try JSONDecoder().decode(Profile.self, from: data)
