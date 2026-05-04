@@ -3,15 +3,15 @@ import SwiftUI
 struct LoggingControlsView: View {
     @Bindable var settings = SettingsStore.shared
     private var profileRegistry = ProfileRegistry.shared
-    private var ble = BLEManager.shared
+    private var panda = PandaTransport.shared
     private var session = LoggingSession.shared
-    let elm: ELM327
+    let driver: PandaDriver
 
     private let owner = "rapidtruth"
     private let vehicleSlug = "renault_scenic2_m9r722"
 
-    init(elm: ELM327) {
-        self.elm = elm
+    init(driver: PandaDriver) {
+        self.driver = driver
     }
 
     var body: some View {
@@ -88,7 +88,7 @@ struct LoggingControlsView: View {
     }
 
     private var canStart: Bool {
-        if case .connected = ble.connectionState {
+        if case .connected = panda.state {
             return !isLogging
         }
         return false
@@ -133,7 +133,7 @@ struct LoggingControlsView: View {
             await session.start(
                 vehicle: vehicle,
                 profile: profile,
-                elm: elm,
+                driver: driver,
                 sampleRateHz: settings.sampleRateHz,
                 rawMode: settings.rawCapture
             )

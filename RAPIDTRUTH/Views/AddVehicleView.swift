@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AddVehicleView: View {
-    let elm: ELM327
+    let driver: PandaDriver
     /// Optional callback fired right after a vehicle is successfully saved
     /// (and before the sheet dismisses itself). Onboarding uses this to
     /// know when its third step is complete.
@@ -11,7 +11,7 @@ struct AddVehicleView: View {
     var settings = SettingsStore.shared
     var profileRegistry = ProfileRegistry.shared
     var vehicleStore = VehicleStore.shared
-    var connectionManager = ConnectionManager.shared
+    var pandaTransport = PandaTransport.shared
 
     @State private var year: String = ""
     @State private var make: String = ""
@@ -107,8 +107,8 @@ struct AddVehicleView: View {
     }
 
     private func runVINReadIfConnected() async {
-        guard case .connected = connectionManager.state else {
-            NSLog("[OBD2-VIN] auto-read skipped: not connected (state=\(String(describing: connectionManager.state)))")
+        guard case .connected = pandaTransport.state else {
+            NSLog("[OBD2-VIN] auto-read skipped: not connected (state=\(String(describing: pandaTransport.state)))")
             return
         }
         // Don't clobber a VIN the user has already typed.
@@ -116,7 +116,7 @@ struct AddVehicleView: View {
         NSLog("[OBD2-VIN] auto-read: starting")
         status = .readingVIN
         do {
-            if let read = try await VINReader.read(interface: elm) {
+            if let read = try await VINReader.read(interface: driver) {
                 NSLog("[OBD2-VIN] auto-read: got VIN \(read)")
                 vin = read
                 await runDecode(vin: read)
@@ -124,9 +124,7 @@ struct AddVehicleView: View {
                 NSLog("[OBD2-VIN] auto-read: VINReader returned nil (no 4902 prefix in response)")
                 status = .vinReadFailed("ECU didn't return a parseable VIN")
             }
-        } catch let err as ELMError {
-            NSLog("[OBD2-VIN] auto-read: ELMError \(err)")
-            status = .vinReadFailed(err.errorDescription ?? "ELM error")
+
         } catch {
             NSLog("[OBD2-VIN] auto-read: error \(error)")
             status = .vinReadFailed(error.localizedDescription)

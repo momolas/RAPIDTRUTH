@@ -5,14 +5,14 @@ enum StandardPIDDiscovery {
     /// and walk the supported-PID bitmaps to enumerate every standard PID
     /// the ECU declares it supports. Returns hex pid strings ("0C", "1F", …).
     @MainActor
-    static func discover(elm: ELM327) async throws -> [String] {
+    static func discover(driver: PandaDriver) async throws -> [String] {
         var supported: [Int] = []
         var nextRange = 0x00 // start with PIDs 01-20 (request "0100")
         while nextRange <= 0xC0 {
             let request = String(format: "01%02X", nextRange)
             let response: String
             do {
-                response = try await elm.send(request, timeout: 3.0)
+                response = try await driver.sendDiagnosticRequest(request, timeout: 3.0)
             } catch {
                 break
             }

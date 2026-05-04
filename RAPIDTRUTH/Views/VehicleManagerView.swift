@@ -6,7 +6,7 @@ import UniformTypeIdentifiers
 /// main shell. Houses the three actions that used to clutter the main
 /// shell — Add, Import profile, Re-probe — in one place.
 struct VehicleManagerSheet: View {
-    let elm: ELM327
+    let driver: PandaDriver
     @Environment(\.dismiss) private var dismiss
     var settings = SettingsStore.shared
     var vehicleStore = VehicleStore.shared
@@ -56,7 +56,7 @@ struct VehicleManagerSheet: View {
         }
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showAdd) {
-            AddVehicleView(elm: elm)
+            AddVehicleView(driver: driver)
                 .onDisappear {
                     vehicleStore.reload(owner: settings.owner)
                 }

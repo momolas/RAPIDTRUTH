@@ -11,7 +11,7 @@ enum PandaState: Equatable {
 
 @MainActor
 @Observable
-final class PandaTransport: OBDTransport {
+final class PandaTransport {
     private(set) var state: PandaState = .idle
     
     let inboundStream: AsyncStream<Data>

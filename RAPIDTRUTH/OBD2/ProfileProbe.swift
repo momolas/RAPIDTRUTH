@@ -6,7 +6,7 @@ enum ProfileProbe {
     /// rather than NO DATA, error, or no response at all. Returns the list
     /// of supported PID IDs (matching the profile's `pids[].id`).
     @MainActor
-    static func probe(elm: ELM327, profile: Profile) async throws -> [String] {
+    static func probe(driver: PandaDriver, profile: Profile) async throws -> [String] {
         var supported: [String] = []
         // Group PIDs by ECU and set ATSH<request_header> once per group.
         // Mode 21 PIDs on non-engine ECUs (hybrid_controller, etc.) only
@@ -18,13 +18,13 @@ enum ProfileProbe {
         }
         for ecuName in grouped.keys.sorted() {
             if let ecu = profile.ecus[ecuName] {
-                _ = try? await elm.send("ATSH\(ecu.requestHeader)", timeout: 0.8)
+                _ = try? await driver.setTarget(txID: ecu.requestHeader, rxID: nil)
             }
             for pidDef in grouped[ecuName] ?? [] {
                 let request = pidDef.mode + pidDef.pid
                 let positiveResponseCode = try positiveResponseCode(mode: pidDef.mode, pid: pidDef.pid)
                 do {
-                    let response = try await elm.send(request, timeout: 1.5)
+                    let response = try await driver.sendDiagnosticRequest(request, timeout: 1.5)
                     let normalized = response
                         .uppercased()
                         .replacingOccurrences(of: " ", with: "")

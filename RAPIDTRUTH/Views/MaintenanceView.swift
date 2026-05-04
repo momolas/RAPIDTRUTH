@@ -4,14 +4,13 @@ struct MaintenanceView: View {
     let interface: VehicleInterface
     @Environment(\.dismiss) var dismiss
     @State private var maintenanceManager = MaintenanceManager()
-    private var ble = BLEManager.shared
-
+    private var pandaTransport = PandaTransport.shared
     @State private var showingDPFAlert = false
     @State private var showingEPBAlert = false
     @State private var showingOilAlert = false
 
     private var isConnected: Bool {
-        if case .connected = ble.connectionState { return true }
+        if case .connected = pandaTransport.state { return true }
         return false
     }
 

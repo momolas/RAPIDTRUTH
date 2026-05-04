@@ -15,9 +15,6 @@ struct RAPIDTRUTHApp: App {
         WindowGroup {
             ContentView()
                 .environment(SettingsStore.shared)
-                .environment(ConnectionManager.shared)
-                .environment(BLEManager.shared)
-                .environment(WiFiManager.shared)
                 .environment(PandaTransport.shared)
                 .environment(VehicleStore.shared)
                 .onOpenURL { url in

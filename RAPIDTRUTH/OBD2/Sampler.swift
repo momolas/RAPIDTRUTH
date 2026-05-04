@@ -24,7 +24,7 @@ final class Sampler {
         let values: [String: String]
     }
 
-    private let elm: ELM327
+    private let driver: PandaDriver
     private let pids: [PidDef]
     private let ecus: [String: EcuDef]
     private let evaluator: FormulaEvaluator
@@ -59,14 +59,14 @@ final class Sampler {
     var onTick: ((TickRow) -> Void)?
 
     init(
-        elm: ELM327,
+        driver: PandaDriver,
         pids: [PidDef],
         ecus: [String: EcuDef],
         sampleRateHz: Double,
         sessionStartMs: Int,
         evaluator: FormulaEvaluator? = nil
     ) {
-        self.elm = elm
+        self.driver = driver
         self.pids = pids
         self.ecus = ecus
         self.sampleRateHz = sampleRateHz
@@ -125,13 +125,13 @@ final class Sampler {
         let groups = groupByEcu(pids.filter { !disabledPIDs.contains($0.id) })
         for (ecuName, groupPIDs) in groups {
             if let ecu = ecus[ecuName] {
-                _ = try? await elm.send("ATSH\(ecu.requestHeader)", timeout: 0.8)
+                _ = try? await driver.setTarget(txID: ecu.requestHeader, rxID: nil)
             }
             for (mode, pid, defs) in dedupeByQuery(groupPIDs) {
                 let request = mode + pid
                 let response: String
                 do {
-                    response = try await elm.send(request, timeout: 1.0)
+                    response = try await driver.sendDiagnosticRequest(request, timeout: 1.0)
                 } catch {
                     for def in defs { bumpStrike(def.id) }
                     try? await Task.sleep(for: .nanoseconds(Int(interQueryGapNs)))

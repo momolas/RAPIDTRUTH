@@ -6,7 +6,7 @@ import SwiftUI
 /// chrome for a feature most users touch a handful of times. The card
 /// is the single entry point now; everything else hides behind it.
 struct VehicleCardView: View {
-    let elm: ELM327
+    let driver: PandaDriver
     var settings = SettingsStore.shared
     var vehicleStore = VehicleStore.shared
 
@@ -59,7 +59,7 @@ struct VehicleCardView: View {
         }
         .buttonStyle(.plain)
         .sheet(isPresented: $showManager) {
-            VehicleManagerSheet(elm: elm)
+            VehicleManagerSheet(driver: driver)
         }
         .onAppear {
             vehicleStore.reload(owner: settings.owner)

@@ -86,22 +86,6 @@ enum VINReader {
         return nil
     }
 
-    @MainActor
-    private static func sendWithRetry(elm: ELM327, command: String, timeout: TimeInterval, retries: Int) async throws -> String {
-        var lastError: Error?
-        for attempt in 0...retries {
-            do {
-                return try await elm.send(command, timeout: timeout)
-            } catch let err as ELMError {
-                if case .timeout = err, attempt < retries {
-                    NSLog("[OBD2-VIN] \(command) timeout on attempt \(attempt + 1); retrying")
-                    lastError = err
-                    continue
-                }
-                throw err
-            }
-        }
-        throw lastError ?? ELMError.timeout(command: command)
-    }
+
 
 }

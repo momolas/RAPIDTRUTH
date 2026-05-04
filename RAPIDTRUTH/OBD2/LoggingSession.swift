@@ -18,7 +18,7 @@ final class LoggingSession {
     private(set) var liveValues: [String: Sampler.LiveValue] = [:]
     private(set) var enabledPIDs: [PidDef] = []
 
-    private var elm: ELM327?
+    private var driver: PandaDriver?
     private var sampler: Sampler?
     private var writer: CSVWriter?
     private var vehicle: Vehicle?
@@ -47,7 +47,7 @@ final class LoggingSession {
     func start(
         vehicle: Vehicle,
         profile: Profile,
-        elm: ELM327,
+        driver: PandaDriver,
         sampleRateHz: Double,
         rawMode: Bool
     ) async {
@@ -62,7 +62,7 @@ final class LoggingSession {
         case .idle, .error:
             break
         }
-        self.elm = elm
+        self.driver = driver
         self.profile = profile
         self.vehicle = vehicle
         self.sampleRateHz = sampleRateHz
@@ -76,7 +76,7 @@ final class LoggingSession {
             //    time on full discovery + probe (each of which takes ~15s
             //    of timeouts when the ECU is silent).
             state = .preparing(step: "Checking vehicle…")
-            if try await !ECULiveness.check(elm: elm) {
+            if try await !ECULiveness.check(driver: driver) {
                 throw LoggingSessionError.ecuNotResponding
             }
 
@@ -88,11 +88,11 @@ final class LoggingSession {
                 // if the cache is empty so we have something to log.
                 if supportedStandard.isEmpty {
                     state = .preparing(step: "Discovering standard PIDs…")
-                    supportedStandard = (try? await StandardPIDDiscovery.discover(elm: elm)) ?? []
+                    supportedStandard = (try? await StandardPIDDiscovery.discover(driver: driver)) ?? []
                 }
             } else if supportedStandard.isEmpty {
                 state = .preparing(step: "Discovering standard PIDs…")
-                supportedStandard = (try? await StandardPIDDiscovery.discover(elm: elm)) ?? []
+                supportedStandard = (try? await StandardPIDDiscovery.discover(driver: driver)) ?? []
             }
 
             // 1b. Probe profile PIDs (or trust cache).
@@ -102,7 +102,7 @@ final class LoggingSession {
                 supportedProfile = profile.pids.map { $0.id }
             } else if supportedProfile.isEmpty {
                 state = .preparing(step: "Probing profile PIDs…")
-                supportedProfile = try await ProfileProbe.probe(elm: elm, profile: profile)
+                supportedProfile = try await ProfileProbe.probe(driver: driver, profile: profile)
             }
 
             // 1c. Build the combined registry (standard + profile PIDs).
@@ -147,7 +147,7 @@ final class LoggingSession {
 
             // 4. Start sampler.
             let sampler = Sampler(
-                elm: elm,
+                driver: driver,
                 pids: enabledPIDs,
                 ecus: profile.ecus,
                 sampleRateHz: sampleRateHz,
@@ -261,7 +261,7 @@ final class LoggingSession {
 
         sampler = nil
         writer = nil
-        elm = nil
+        driver = nil
         profile = nil
         liveValues.removeAll()
         emptyTickStreak = 0

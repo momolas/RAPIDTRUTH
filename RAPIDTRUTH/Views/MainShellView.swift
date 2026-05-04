@@ -4,16 +4,15 @@ import SwiftUI
 /// No multi-vehicle management, no onboarding. The app opens directly on the
 /// diagnostic dashboard.
 struct MainShellView: View {
-    @Bindable var adapterManager: AdapterManager
+    let driver: PandaDriver
     private var profileRegistry = ProfileRegistry.shared
-    private var ble = BLEManager.shared
     private var session = LoggingSession.shared
 
     @State private var showConfiguration = false
     @State private var showMaintenance = false
 
-    init(adapterManager: AdapterManager) {
-        self.adapterManager = adapterManager
+    init(driver: PandaDriver) {
+        self.driver = driver
     }
 
     /// Always resolves to the Scenic 2 profile. If for some reason the bundle
@@ -28,15 +27,15 @@ struct MainShellView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-					HStack(alignment: .firstTextBaseline) {
-						HStack(spacing: 0) {
-							Text("RAPID").foregroundStyle(.white)
-							Text("/TRUTH").foregroundStyle(Color(red: 92 / 255, green: 196 / 255, blue: 1.0))
-						}
-						.font(.appBrand)
-						
-						Spacer()
-					}
+                    HStack(alignment: .firstTextBaseline) {
+                        HStack(spacing: 0) {
+                            Text("RAPID").foregroundStyle(.white)
+                            Text("/TRUTH").foregroundStyle(Color(red: 92 / 255, green: 196 / 255, blue: 1.0))
+                        }
+                        .font(.appBrand)
+                        
+                        Spacer()
+                    }
 
                     if let error = profileRegistry.loadError {
                         Text("Profile error: \(error)")
@@ -45,10 +44,10 @@ struct MainShellView: View {
                     }
 
                     // 1 — Connexion
-                    ConnectionView(adapterManager: adapterManager)
+                    ConnectionView(driver: driver)
 
                     // 2 — Diagnostic réseau (DTC tous calculateurs)
-                    DiagnosticsView(interface: adapterManager.activeInterface, profile: profile)
+                    DiagnosticsView(interface: driver, profile: profile)
 
                     // 3 — Codage & Configuration
                     HStack(spacing: 12) {
@@ -96,10 +95,10 @@ struct MainShellView: View {
         }
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showConfiguration) {
-            ConfigurationView(interface: adapterManager.activeInterface)
+            ConfigurationView(interface: driver)
         }
         .sheet(isPresented: $showMaintenance) {
-            MaintenanceView(interface: adapterManager.activeInterface)
+            MaintenanceView(interface: driver)
         }
     }
 }

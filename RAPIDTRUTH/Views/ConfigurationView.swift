@@ -4,8 +4,7 @@ struct ConfigurationView: View {
     let interface: VehicleInterface
     @Environment(\.dismiss) var dismiss
     @State private var configManager = ConfigurationManager()
-    private var ble = BLEManager.shared
-
+    private var pandaTransport = PandaTransport.shared
 
 
     init(interface: VehicleInterface) {
@@ -13,7 +12,7 @@ struct ConfigurationView: View {
     }
 
     private var isConnected: Bool {
-        if case .connected = ble.connectionState { return true }
+        if case .connected = pandaTransport.state { return true }
         return false
     }
 

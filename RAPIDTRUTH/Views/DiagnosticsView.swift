@@ -4,15 +4,14 @@ struct DiagnosticsView: View {
     let interface: VehicleInterface
     let profile: Profile
     @State private var dtcLoader = DTCLoader()
-    private var ble = BLEManager.shared
-
+    private var pandaTransport = PandaTransport.shared
     init(interface: VehicleInterface, profile: Profile) {
         self.interface = interface
         self.profile = profile
     }
 
     private var isConnected: Bool {
-        if case .connected = ble.connectionState { return true }
+        if case .connected = pandaTransport.state { return true }
         return false
     }
 
