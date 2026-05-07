@@ -33,7 +33,7 @@ final class ELM327 {
     /// SwiftUI's identity diffing was the dominant resident-set cost.
     private let maxLogEntries = 150
 
-    private let connectionManager: ConnectionManager
+    private let bleManager: BLEManager
     private var inboundTask: Task<Void, Never>?
 
     /// Single-flight gate — only one command in flight at a time.
@@ -43,7 +43,7 @@ final class ELM327 {
 
 
     init() {
-        self.connectionManager = ConnectionManager.shared
+        self.bleManager = BLEManager.shared
     }
 
     /// Begin consuming inbound data, framing on the `>` prompt. Idempotent —
@@ -56,7 +56,7 @@ final class ELM327 {
         log.removeAll()
         lineBuffer = ""
         if inboundTask != nil { return }
-        let stream = connectionManager.inboundStream
+        let stream = bleManager.inboundStream
         inboundTask = Task { [weak self] in
             for await data in stream {
                 guard let self else { break }
@@ -112,7 +112,7 @@ final class ELM327 {
             }
             Task {
                 do {
-                    try await self.connectionManager.send(outbound)
+                    try await self.bleManager.send(outbound)
                 } catch {
                     self.timeoutTask?.cancel()
                     self.timeoutTask = nil

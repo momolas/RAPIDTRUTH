@@ -1,10 +1,15 @@
 import SwiftUI
 
-/// Root view of RAPIDTRUTH — hardwired to the Renault Scenic 2 (M9R) profile.
-/// No multi-vehicle management, no onboarding. The app opens directly on the
-/// diagnostic dashboard.
+enum DongleType: String, CaseIterable, Identifiable {
+    case panda = "White Panda (Wi-Fi)"
+    case elm327 = "ELM327 (BLE)"
+    var id: String { self.rawValue }
+}
+
 struct MainShellView: View {
-    let driver: PandaDriver
+    let driver: VehicleInterface
+    @Binding var selectedDongle: DongleType
+    
     private var profileRegistry = ProfileRegistry.shared
     private var session = LoggingSession.shared
 
@@ -12,8 +17,9 @@ struct MainShellView: View {
     @State private var showMaintenance = false
     @State private var showFuzzer = false
 
-    init(driver: PandaDriver) {
+    init(driver: VehicleInterface, selectedDongle: Binding<DongleType>) {
         self.driver = driver
+        self._selectedDongle = selectedDongle
     }
 
     /// Always resolves to the Scenic 2 profile. If for some reason the bundle
@@ -45,7 +51,7 @@ struct MainShellView: View {
                     }
 
                     // 1 — Connexion
-                    ConnectionView(driver: driver)
+                    ConnectionView(driver: driver, selectedDongle: $selectedDongle)
 
                     // 2 — Diagnostic réseau (DTC tous calculateurs)
                     DiagnosticsView(interface: driver, profile: profile)

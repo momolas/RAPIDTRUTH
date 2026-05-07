@@ -13,6 +13,7 @@ enum PandaState: Equatable {
 @Observable
 final class PandaTransport {
     private(set) var state: PandaState = .idle
+    private(set) var discoveredPandas: [String] = []
     
     let inboundStream: AsyncStream<Data>
     private let inboundContinuation: AsyncStream<Data>.Continuation
@@ -29,11 +30,28 @@ final class PandaTransport {
     }
     
 
-    func connect(host: String = "192.168.0.10", port: UInt16 = 1337) {
+    func scanForPandas() {
+        discoveredPandas.removeAll()
+        // Wait a small delay to simulate scan
+        Task {
+            try? await Task.sleep(for: .seconds(1))
+            let deducedIP = discoverPandaIP()
+            if !self.discoveredPandas.contains(deducedIP) {
+                self.discoveredPandas.append(deducedIP)
+            }
+        }
+    }
+    
+    func stopScan() {
+        // No-op for now since it's just deducing the IP.
+    }
+
+    func connect(host: String? = nil, port: UInt16 = 1337) {
         disconnect()
         
         state = .connecting
-        let endpoint = NWEndpoint.Host(host)
+        let targetHost = host ?? discoverPandaIP()
+        let endpoint = NWEndpoint.Host(targetHost)
         let nwPort = NWEndpoint.Port(rawValue: port)!
         
         // Panda uses UDP on port 1337
@@ -62,6 +80,53 @@ final class PandaTransport {
         }
         
         connection.start(queue: queue)
+    }
+    
+    private func discoverPandaIP() -> String {
+        guard let localIP = getWiFiAddress() else {
+            return "192.168.0.10" // Default fallback
+        }
+        
+        let components = localIP.components(separatedBy: ".")
+        guard components.count == 4 else { return "192.168.0.10" }
+        
+        let baseIP = "\(components[0]).\(components[1]).\(components[2])"
+        
+        // If it's a 192.168.43.x network (Android hotspot style), Panda is usually .1
+        if baseIP == "192.168.43" {
+            return "\(baseIP).1"
+        }
+        
+        // By default, white Panda acts as DHCP server and sets itself to .10
+        return "\(baseIP).10"
+    }
+    
+    private func getWiFiAddress() -> String? {
+        var address: String?
+        var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil
+        
+        if getifaddrs(&ifaddr) == 0 {
+            var ptr = ifaddr
+            while ptr != nil {
+                defer { ptr = ptr?.pointee.ifa_next }
+                
+                let interface = ptr?.pointee
+                let addrFamily = interface?.ifa_addr.pointee.sa_family
+                
+                if addrFamily == UInt8(AF_INET) { // IPv4
+                    if let name = String(cString: (interface?.ifa_name)!, encoding: .utf8), name == "en0" { // Wi-Fi
+                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                        getnameinfo(interface?.ifa_addr, socklen_t((interface?.ifa_addr.pointee.sa_len)!),
+                                    &hostname, socklen_t(hostname.count),
+                                    nil, socklen_t(0), NI_NUMERICHOST)
+                        address = String(cString: hostname)
+                    }
+                }
+            }
+            freeifaddrs(ifaddr)
+        }
+        
+        return address
     }
     
     func disconnect() {

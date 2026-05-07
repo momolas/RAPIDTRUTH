@@ -553,5 +553,5 @@ enum BLEError: LocalizedError {
 
 // MARK: - OBDTransport
 
-extension BLEManager: OBDTransport {}
+
 
