@@ -18,8 +18,6 @@ struct MaintenanceView: View {
         self.interface = interface
     }
 
-
-
     var body: some View {
         NavigationStack {
             ZStack {
@@ -56,7 +54,7 @@ struct MaintenanceView: View {
                     Section(header: Text("Vidange & Entretien").foregroundStyle(.gray)) {
                         Button(action: {
                             showingOilAlert = true
-                        }) {
+						}, label: {
                             HStack {
                                 Image(systemName: "drop.fill")
                                     .foregroundStyle(.orange)
@@ -68,7 +66,7 @@ struct MaintenanceView: View {
                                     .foregroundStyle(.gray)
                                     .font(.caption)
                             }
-                        }
+                        })
                         .disabled(!isConnected || maintenanceManager.isExecuting)
                         .listRowBackground(Color.appCardBackground)
                         .alert("Remise à zéro Vidange", isPresented: $showingOilAlert) {
@@ -82,9 +80,9 @@ struct MaintenanceView: View {
                     }
 
                     Section(header: Text("Freinage").foregroundStyle(.gray)) {
-                        Button(action: {
-                            showingEPBAlert = true
-                        }) {
+						Button(action: {
+							showingEPBAlert = true
+						}, label: {
                             HStack {
                                 Image(systemName: "parkingsign.circle.fill")
                                     .foregroundStyle(.red)
@@ -96,7 +94,7 @@ struct MaintenanceView: View {
                                     .foregroundStyle(.gray)
                                     .font(.caption)
                             }
-                        }
+                        })
                         .disabled(!isConnected || maintenanceManager.isExecuting)
                         .listRowBackground(Color.appCardBackground)
                         .alert("Mode Atelier Frein de Parking", isPresented: $showingEPBAlert) {
@@ -110,9 +108,9 @@ struct MaintenanceView: View {
                     }
 
                     Section(header: Text("Échappement").foregroundStyle(.gray)) {
-                        Button(action: {
-                            showingDPFAlert = true
-                        }) {
+						Button(action: {
+							showingDPFAlert = true
+						}, label: {
                             HStack {
                                 Image(systemName: "smoke.fill")
                                     .foregroundStyle(.gray)
@@ -124,7 +122,7 @@ struct MaintenanceView: View {
                                     .foregroundStyle(.gray)
                                     .font(.caption)
                             }
-                        }
+                        })
                         .disabled(!isConnected || maintenanceManager.isExecuting)
                         .listRowBackground(Color.appCardBackground)
                         .alert("Régénération FAP DANGER", isPresented: $showingDPFAlert) {
@@ -150,13 +148,13 @@ struct MaintenanceView: View {
                     }
                     .padding()
                     .background(Color(white: 0.2))
-                    .cornerRadius(12)
+					.clipShape(.rect(cornerRadius: 5))
                 }
             }
             .navigationTitle("Fonctions de Service")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+				ToolbarItem(placement: .navigationBarLeading) {
                     Button("Fermer") {
                         dismiss()
                     }

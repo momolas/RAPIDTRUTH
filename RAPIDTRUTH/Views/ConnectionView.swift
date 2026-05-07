@@ -20,7 +20,6 @@ struct ConnectionView: View {
                     .foregroundStyle(.red)
                     .padding(8)
                     .background(Color.red.opacity(0.08))
-                    .clipShape(.rect(cornerRadius: 6))
             }
         }
         .appCard()
@@ -52,10 +51,12 @@ struct ConnectionView: View {
                 Task { await connectPanda() }
             }
             .buttonStyle(.borderedProminent)
+			.buttonBorderShape(.roundedRectangle)
             .controlSize(.small)
         case .connecting:
             Button("Cancel") { pandaTransport.disconnect() }
                 .buttonStyle(.bordered)
+				.buttonBorderShape(.roundedRectangle)
                 .controlSize(.small)
         case .connected:
             Button("Disconnect") {
@@ -63,6 +64,7 @@ struct ConnectionView: View {
                 pandaTransport.disconnect()
             }
             .buttonStyle(.bordered)
+			.buttonBorderShape(.roundedRectangle)
             .controlSize(.small)
         }
     }
@@ -164,4 +166,9 @@ struct ConnectionView: View {
             NSLog("[ConnectionView] Auto-detect failed to decode or save: \(error)")
         }
     }
+}
+
+#Preview {
+	ConnectionView(driver: PandaDriver())
+		.environment(PandaTransport.shared)
 }

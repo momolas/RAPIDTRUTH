@@ -80,11 +80,11 @@ struct DiagnosticsView: View {
                                 .padding(.vertical, 4)
                                 .background(dtc.state == .active ? Color.red.opacity(0.2) : Color.orange.opacity(0.2))
                                 .foregroundStyle(dtc.state == .active ? .red : .orange)
-                                .cornerRadius(8)
+                                .cornerRadius(5)
                         }
                         .padding()
                         .background(Color.white.opacity(0.05))
-                        .cornerRadius(12)
+                        .cornerRadius(5)
                     }
                 }
             }
@@ -98,6 +98,7 @@ struct DiagnosticsView: View {
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
+				.buttonBorderShape(.roundedRectangle)
                 .disabled(dtcLoader.isScanning || dtcLoader.isClearing || !isConnected)
 
                 if !dtcLoader.dtcs.isEmpty {

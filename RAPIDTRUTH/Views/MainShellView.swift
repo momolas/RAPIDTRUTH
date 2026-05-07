@@ -10,6 +10,7 @@ struct MainShellView: View {
 
     @State private var showConfiguration = false
     @State private var showMaintenance = false
+    @State private var showFuzzer = false
 
     init(driver: PandaDriver) {
         self.driver = driver
@@ -49,36 +50,53 @@ struct MainShellView: View {
                     // 2 — Diagnostic réseau (DTC tous calculateurs)
                     DiagnosticsView(interface: driver, profile: profile)
 
-                    // 3 — Codage & Configuration
-                    HStack(spacing: 12) {
+                    // 3 — Codage & Configuration & Service & Fuzzer
+                    VStack(spacing: 12) {
+                        HStack(spacing: 12) {
+                            Button(action: {
+                                showConfiguration = true
+							}, label: {
+                                HStack {
+                                    Image(systemName: "wrench.and.screwdriver.fill")
+                                    Text("Codage & Configuration")
+                                }
+                                .font(.appButton)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.purple.opacity(0.8))
+                                .foregroundStyle(.white)
+								.clipShape(.rect(cornerRadius: 5))
+                            })
+
+                            Button(action: {
+                                showMaintenance = true
+							}, label: {
+                                HStack {
+                                    Image(systemName: "wrench.fill")
+                                    Text("Service")
+                                }
+                                .font(.appButton)
+                                .padding()
+                                .background(Color.orange.opacity(0.8))
+                                .foregroundStyle(.white)
+								.clipShape(.rect(cornerRadius: 5))
+                            })
+                        }
+                        
                         Button(action: {
-                            showConfiguration = true
-                        }) {
+                            showFuzzer = true
+						}, label: {
                             HStack {
-                                Image(systemName: "wrench.and.screwdriver.fill")
-                                Text("Codage & Configuration")
+                                Image(systemName: "ladybug.fill")
+                                Text("Fuzzer OBD (Avancé)")
                             }
                             .font(.appButton)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.purple.opacity(0.8))
+                            .background(Color.red.opacity(0.8))
                             .foregroundStyle(.white)
-                            .cornerRadius(12)
-                        }
-
-                        Button(action: {
-                            showMaintenance = true
-                        }) {
-                            HStack {
-                                Image(systemName: "wrench.fill")
-                                Text("Service")
-                            }
-                            .font(.appButton)
-                            .padding()
-                            .background(Color.orange.opacity(0.8))
-                            .foregroundStyle(.white)
-                            .cornerRadius(12)
-                        }
+							.clipShape(.rect(cornerRadius: 5))
+                        })
                     }
 
                     // 5 — Données temps réel
@@ -99,6 +117,9 @@ struct MainShellView: View {
         }
         .sheet(isPresented: $showMaintenance) {
             MaintenanceView(interface: driver)
+        }
+        .sheet(isPresented: $showFuzzer) {
+            FuzzerView(interface: driver)
         }
     }
 }
