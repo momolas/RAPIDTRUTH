@@ -33,6 +33,29 @@ struct FuzzerView: View {
                         }
                     }
                 } else {
+                    Section(header: Text("Découverte Réseau")) {
+                        if !fuzzer.discoveredECUs.isEmpty {
+                            Text("ECUs trouvés: \(fuzzer.discoveredECUs.joined(separator: ", "))")
+                                .font(.subheadline)
+                        }
+                        
+						Button(action: {
+							Task {
+								let range = ["7E0", "7E1", "7E2", "7E3", "7E4", "7E5", "7E6", "7E7", "740", "741", "742", "743", "744", "745", "756", "7A0"]
+								await fuzzer.scanNetwork(interface: interface, range: range)
+							}
+						},label: {
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                                Text("Scanner le Réseau CAN")
+                            }
+                            .frame(maxWidth: .infinity)
+                        })
+                        .buttonStyle(.bordered)
+						.buttonBorderShape(.roundedRectangle)
+                        .disabled(fuzzer.isRunning)
+                    }
+                    
                     Section(header: Text("Configuration du Fuzzer")) {
                         TextField("ECU Cible (ex: 7E0)", text: $targetEcu)
                         TextField("DID Début (Hex)", text: $startDidHex)
@@ -41,12 +64,12 @@ struct FuzzerView: View {
                     
                     Section {
                         if fuzzer.isRunning {
-                            Button(action: {
-                                fuzzer.cancel()
-                            }) {
-                                Text("Arrêter le Fuzzing")
+							Button(action: {
+								fuzzer.cancel()
+							},label: {
+                                Text(fuzzer.currentScanTarget.contains("Scan") ? "Arrêter le Scan" : "Arrêter le Fuzzing")
                                     .frame(maxWidth: .infinity)
-                            }
+                            })
                             .buttonStyle(.borderedProminent)
 							.buttonBorderShape(.roundedRectangle)
                             .tint(.red)
@@ -57,10 +80,10 @@ struct FuzzerView: View {
                         } else {
                             Button(action: {
                                 startFuzzing()
-                            }) {
+							},label: {
                                 Text("Démarrer le Fuzzing")
                                     .frame(maxWidth: .infinity)
-                            }
+                            })
                             .buttonStyle(.borderedProminent)
 							.buttonBorderShape(.roundedRectangle)
                             .tint(.orange)

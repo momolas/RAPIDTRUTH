@@ -14,6 +14,7 @@ final class OBDFuzzer {
     var currentProgress: Float = 0.0
     var discoveredECUs: [String] = []
     var results: [FuzzResult] = []
+    var supportedDIDs: [String: [String]] = [:]
     var currentScanTarget: String = ""
     var actionError: String? = nil
     
@@ -24,6 +25,11 @@ final class OBDFuzzer {
         actionError = nil
         results.removeAll()
         currentScanTarget = "ECU: \(ecu)"
+        
+        // Initialize or get the existing list of DIDs for this ECU
+        if supportedDIDs[ecu] == nil {
+            supportedDIDs[ecu] = []
+        }
         
         let total = endDid - startDid + 1
         
@@ -45,6 +51,9 @@ final class OBDFuzzer {
                 if !resp.isEmpty, !resp.hasPrefix("7F"), resp != "NO_DATA", !resp.contains("ERROR") {
                     // Valid response found
                     results.append(FuzzResult(did: didString, response: resp))
+                    if !(supportedDIDs[ecu]?.contains(didString) ?? false) {
+                        supportedDIDs[ecu]?.append(didString)
+                    }
                 }
                 
                 // Small delay to prevent CAN bus flooding
@@ -52,6 +61,46 @@ final class OBDFuzzer {
             }
         } catch {
             actionError = "Fuzzing stopped: \(error.localizedDescription)"
+        }
+        
+        isRunning = false
+        currentProgress = 1.0
+    }
+    
+    func scanNetwork(interface: VehicleInterface, range: [String]) async {
+        guard !isRunning else { return }
+        isRunning = true
+        actionError = nil
+        discoveredECUs.removeAll()
+        currentScanTarget = "Scan Réseau..."
+        
+        let total = range.count
+        
+        do {
+            for (index, ecu) in range.enumerated() {
+                if !isRunning { break }
+                
+                currentProgress = Float(index) / Float(total)
+                
+                try await interface.setTarget(txID: ecu, rxID: nil)
+                
+                // 1. Tester Present (UDS)
+                let resp1 = try await interface.sendDiagnosticRequest("3E00", timeout: 0.2)
+                if !resp1.isEmpty && !resp1.contains("ERROR") && resp1 != "NO_DATA" {
+                    discoveredECUs.append(ecu)
+                    continue
+                }
+                
+                // 2. Read Supported PIDs (OBD-II) fallback
+                let resp2 = try await interface.sendDiagnosticRequest("0100", timeout: 0.2)
+                if !resp2.isEmpty && !resp2.contains("ERROR") && resp2 != "NO_DATA" {
+                    discoveredECUs.append(ecu)
+                }
+                
+                try await Task.sleep(nanoseconds: 20_000_000)
+            }
+        } catch {
+            actionError = "Scan arrêté: \(error.localizedDescription)"
         }
         
         isRunning = false
