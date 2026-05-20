@@ -146,6 +146,7 @@ final class PandaDriver: VehicleInterface {
             }
         }
         else if pci == 2 { // Consecutive Frame
+            guard expectedLength > 0 else { return }
             // let index = data[0] & 0x0F
             isotpBuffer.append(data[1...])
             if isotpBuffer.count >= expectedLength {

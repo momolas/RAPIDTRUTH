@@ -137,7 +137,7 @@ final class PandaTransport {
     
     private func startReceiveLoop() {
         guard let connection else { return }
-        connection.receive(minimumIncompleteLength: 1, maximumLength: 4096) { [weak self] data, _, isComplete, error in
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 4096) { [weak self] data, _, _, error in
             Task { @MainActor [weak self] in
                 guard let self else { return }
                 if let error {
@@ -152,7 +152,7 @@ final class PandaTransport {
                     self.inboundContinuation.yield(data)
                 }
                 
-                if !isComplete && self.connection != nil {
+                if self.connection != nil {
                     self.startReceiveLoop() // Read next chunk
                 }
             }

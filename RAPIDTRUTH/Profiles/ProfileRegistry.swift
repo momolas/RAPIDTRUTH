@@ -89,6 +89,10 @@ final class ProfileRegistry {
             return lhs.displayName.localizedCaseInsensitiveCompare(rhs.displayName) == .orderedAscending
         }
 
+        if loaded.isEmpty && loadError == nil {
+            loadError = "No valid profiles could be loaded."
+        }
+
         profiles = loaded
     }
 
@@ -107,15 +111,25 @@ final class ProfileRegistry {
             if url.lastPathComponent.hasPrefix("_") { continue }
             // Skip DTC language databases
             if url.lastPathComponent.hasPrefix("dtc_") { continue }
+            var parsedProfile: Profile?
             do {
                 let data = try Data(contentsOf: url)
-                let profile = try JSONDecoder().decode(Profile.self, from: data)
-                if override || !seen.contains(profile.profileId) {
-                    out.append(profile)
-                    seen.insert(profile.profileId)
+                do {
+                    parsedProfile = try JSONDecoder().decode(Profile.self, from: data)
+                } catch {
+                    // Fallback: try parsing as a DDT2000 JSON file
+                    parsedProfile = try? DDT2000Parser.parse(fileURL: url)
+                    if parsedProfile == nil { throw error }
+                }
+                
+                if let profile = parsedProfile {
+                    if override || !seen.contains(profile.profileId) {
+                        out.append(profile)
+                        seen.insert(profile.profileId)
+                    }
                 }
             } catch {
-                loadError = "Failed to parse \(url.lastPathComponent): \(error.localizedDescription)"
+                NSLog("Failed to parse \(url.lastPathComponent): \(error.localizedDescription)")
             }
         }
         return out

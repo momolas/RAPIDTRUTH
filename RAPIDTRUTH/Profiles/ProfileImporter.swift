@@ -42,9 +42,17 @@ enum ProfileImporter {
         do {
             profile = try JSONDecoder().decode(Profile.self, from: data)
         } catch let DecodingError.keyNotFound(key, _) {
-            throw ImportError.missingFields(key.stringValue)
+            if let ddtProfile = try? DDT2000Parser.parse(fileURL: url) {
+                profile = ddtProfile
+            } else {
+                throw ImportError.missingFields(key.stringValue)
+            }
         } catch {
-            throw ImportError.invalidJSON(error.localizedDescription)
+            if let ddtProfile = try? DDT2000Parser.parse(fileURL: url) {
+                profile = ddtProfile
+            } else {
+                throw ImportError.invalidJSON(error.localizedDescription)
+            }
         }
 
         if profile.profileId.isEmpty {

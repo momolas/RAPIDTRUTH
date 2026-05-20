@@ -45,11 +45,11 @@ struct AppCardModifier: ViewModifier {
         content
             .padding(16)
             .background(Color.appCardBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .overlay(
+            .clipShape(.rect(cornerRadius: 12))
+            .overlay {
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(Color.white.opacity(0.05), lineWidth: 1)
-            )
+            }
     }
 }
 

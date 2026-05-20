@@ -55,7 +55,7 @@ final class Sampler {
     /// (matching the web app's pacing).
     private let interQueryGapNs: UInt64 = 20_000_000  // 20 ms
 
-    var onValue: ((LiveValue) -> Void)?
+    var onValues: (([LiveValue]) -> Void)?
     var onTick: ((TickRow) -> Void)?
 
     init(
@@ -114,6 +114,8 @@ final class Sampler {
         let timestampISO = ISO8601DateFormatter.utcMs.string(from: Date())
 
         var values: [String: String] = [:]
+        var liveValuesCollected: [LiveValue] = []
+        
         // Group enabled PIDs by ECU, then dedupe identical (mode, pid)
         // queries within each group. Several PidDefs can share one query
         // and read different bytes — e.g. battery_temp_1..4 all use
@@ -125,7 +127,7 @@ final class Sampler {
         let groups = groupByEcu(pids.filter { !disabledPIDs.contains($0.id) })
         for (ecuName, groupPIDs) in groups {
             if let ecu = ecus[ecuName] {
-                _ = try? await driver.setTarget(txID: ecu.requestHeader, rxID: nil)
+                _ = try? await driver.setTarget(txID: ecu.requestHeader, rxID: ecu.responseHeader)
             }
             for (mode, pid, defs) in dedupeByQuery(groupPIDs) {
                 let request = mode + pid
@@ -188,10 +190,15 @@ final class Sampler {
                         displayName: def.displayName,
                         category: def.category
                     )
-                    onValue?(live)
+                    liveValuesCollected.append(live)
                 }
             }
         }
+        
+        if !liveValuesCollected.isEmpty {
+            onValues?(liveValuesCollected)
+        }
+        
         return TickRow(timestampISO: timestampISO, elapsedMs: elapsedMs, values: values)
     }
 

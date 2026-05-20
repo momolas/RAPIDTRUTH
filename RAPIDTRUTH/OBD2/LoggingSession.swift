@@ -153,9 +153,11 @@ final class LoggingSession {
                 sampleRateHz: sampleRateHz,
                 sessionStartMs: sessionStartMs
             )
-            sampler.onValue = { [weak self] live in
+            sampler.onValues = { [weak self] batch in
                 guard let self, case .logging = self.state else { return }
-                self.liveValues[live.pidID] = live
+                for live in batch {
+                    self.liveValues[live.pidID] = live
+                }
             }
             sampler.onTick = { [weak self] row in
                 // The sampler dispatches onTick via `MainActor.run` at the

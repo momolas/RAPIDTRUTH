@@ -18,11 +18,11 @@ struct FuzzerView: View {
                         VStack(alignment: .leading, spacing: 12) {
                             HStack {
                                 Image(systemName: "exclamationmark.triangle.fill")
-                                    .foregroundColor(.red)
+                                    .foregroundStyle(.red)
                                     .font(.title)
                                 Text("Avertissement de Sécurité")
                                     .font(.headline)
-                                    .foregroundColor(.red)
+                                    .foregroundStyle(.red)
                             }
                             Text("Le fuzzing OBD peut entraîner des comportements inattendus du véhicule, y compris des plantages d'ECU. Ce fuzzer est strictement limité à la LECTURE (Service 22).")
                                 .font(.subheadline)
@@ -92,7 +92,7 @@ struct FuzzerView: View {
                     
                     if let error = fuzzer.actionError {
                         Section {
-                            Text(error).foregroundColor(.red)
+                            Text(error).foregroundStyle(.red)
                         }
                     }
                     
@@ -104,7 +104,7 @@ struct FuzzerView: View {
                                         .font(.headline)
                                     Text("Resp: \(result.response)")
                                         .font(.subheadline)
-                                        .foregroundColor(.secondary)
+                                        .foregroundStyle(.secondary)
                                 }
                             }
                         }
