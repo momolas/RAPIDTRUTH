@@ -13,12 +13,12 @@ struct SessionRowView: View {
                         .font(.monoSmall)
                         .foregroundStyle(.primary)
                     Text("\(record.rowCount) rows · \(formatDuration(ms: record.durationMs))")
-                        .font(.monoTiny)
+                        .font(.monoSmall)
                         .foregroundStyle(.tertiary)
                 }
                 Spacer()
                 Text(record.endedReason)
-                    .font(.monoTiny)
+                    .font(.monoSmall)
                     .foregroundStyle(.tertiary)
                 Image(systemName: "square.and.arrow.up")
                     .font(.captionText)
@@ -29,7 +29,7 @@ struct SessionRowView: View {
                 if #available(iOS 26, *) {
                     Color.clear.glassEffect(.regular.interactive(), in: .rect(cornerRadius: 6))
                 } else {
-                    Color(red: 22 / 255, green: 24 / 255, blue: 29 / 255)
+                    Color.appCardBackground
                         .clipShape(.rect(cornerRadius: 6))
                 }
             }

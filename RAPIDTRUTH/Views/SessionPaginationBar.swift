@@ -6,12 +6,11 @@ struct SessionPaginationBar: View {
 
     var body: some View {
         HStack {
-            Button {
+            Button("Previous Page", systemImage: "chevron.left") {
                 page = max(0, page - 1)
-            } label: {
-                Image(systemName: "chevron.left")
             }
             .paginationButtonStyle()
+            .labelStyle(.iconOnly)
             .controlSize(.small)
             .disabled(page == 0)
 
@@ -23,12 +22,11 @@ struct SessionPaginationBar: View {
 
             Spacer()
 
-            Button {
+            Button("Next Page", systemImage: "chevron.right") {
                 page = min(pageCount - 1, page + 1)
-            } label: {
-                Image(systemName: "chevron.right")
             }
             .paginationButtonStyle()
+            .labelStyle(.iconOnly)
             .controlSize(.small)
             .disabled(page >= pageCount - 1)
         }

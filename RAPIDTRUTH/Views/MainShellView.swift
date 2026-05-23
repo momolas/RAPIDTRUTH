@@ -44,7 +44,7 @@ struct MainShellView: View {
                     HStack(alignment: .firstTextBaseline) {
                         HStack(spacing: 0) {
                             Text("RAPID").foregroundStyle(.white)
-                            Text("/TRUTH").foregroundStyle(Color(red: 92 / 255, green: 196 / 255, blue: 1.0))
+                            Text("/TRUTH").foregroundStyle(Color.appAccent)
                         }
                         .font(.appBrand)
                         

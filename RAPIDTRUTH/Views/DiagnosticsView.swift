@@ -97,8 +97,8 @@ struct DiagnosticsView: View {
                         .font(.appButton)
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.borderedProminent)
-				.buttonBorderShape(.roundedRectangle)
+                .glassActionButton(prominent: true)
+                .buttonBorderShape(.roundedRectangle)
                 .disabled(dtcLoader.isScanning || dtcLoader.isClearing || !isConnected)
 
                 if !dtcLoader.dtcs.isEmpty {
@@ -109,7 +109,7 @@ struct DiagnosticsView: View {
                             .font(.appButton)
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.bordered)
+                    .glassActionButton(prominent: false)
                     .tint(.red)
                     .disabled(dtcLoader.isClearing || !isConnected)
                 }

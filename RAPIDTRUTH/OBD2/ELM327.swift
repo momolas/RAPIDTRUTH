@@ -157,7 +157,7 @@ final class ELM327 {
             let body = String(lineBuffer[..<promptRange.lowerBound])
             lineBuffer.removeSubrange(..<promptRange.upperBound)
             let cleaned = body
-                .replacingOccurrences(of: "\r", with: "\n")
+                .replacing("\r", with: "\n")
                 .trimmingCharacters(in: .whitespacesAndNewlines)
             deliver(cleaned)
         }
@@ -178,7 +178,7 @@ final class ELM327 {
     private func expectOK(_ command: String, postDelayMs: Int = 0) async throws {
         NSLog("[OBD2-ELM] expectOK(\(command)): sending")
         let response = try await send(command)
-        NSLog("[OBD2-ELM] expectOK(\(command)): got response \"\(response.replacingOccurrences(of: "\n", with: "\\n"))\"")
+        NSLog("[OBD2-ELM] expectOK(\(command)): got response \"\(response.replacing("\n", with: "\\n"))\"")
         let normalized = response.uppercased().trimmingCharacters(in: .whitespacesAndNewlines)
         guard normalized.contains("OK") else {
             NSLog("[OBD2-ELM] expectOK(\(command)): FAIL — \"OK\" not in response")

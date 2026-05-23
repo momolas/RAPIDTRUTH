@@ -20,7 +20,7 @@ struct VehicleManagerSheet: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
-                    actionRow
+                    VehicleManagerActionRow(showAdd: $showAdd, showImporter: $showImporter)
 
                     if let statusMessage {
                         Text(statusMessage)
@@ -39,13 +39,17 @@ struct VehicleManagerSheet: View {
                             .padding(.vertical, 16)
                     } else {
                         ForEach(vehicleStore.vehicles) { vehicle in
-                            vehicleRow(vehicle)
+                            VehicleRow(
+                                vehicle: vehicle,
+                                onReprobe: { reprobePIDs(for: vehicle) },
+                                onRemove: { removeVehicle(vehicle) }
+                            )
                         }
                     }
                 }
                 .padding(16)
             }
-            .background(Color(red: 14 / 255, green: 15 / 255, blue: 18 / 255).ignoresSafeArea())
+            .background(Color.appBackground.ignoresSafeArea())
             .navigationTitle("Vehicles")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -83,86 +87,6 @@ struct VehicleManagerSheet: View {
         .onAppear {
             vehicleStore.reload(owner: settings.owner)
         }
-    }
-
-    private var actionRow: some View {
-        HStack(spacing: 8) {
-            Button {
-                showAdd = true
-            } label: {
-                Label("Add vehicle", systemImage: "plus.circle.fill")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-
-            Button {
-                showImporter = true
-            } label: {
-                Image(systemName: "square.and.arrow.down")
-                    .frame(width: 32, height: 32)
-            }
-            .buttonStyle(.bordered)
-            .controlSize(.large)
-            .help("Import a profile JSON")
-        }
-    }
-
-    private func vehicleRow(_ vehicle: Vehicle) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(vehicle.displayName)
-                        .font(.valueLabel)
-                    Text(vehicle.slug + " · " + vehicle.profileId)
-                        .font(.monoSmall)
-                        .foregroundStyle(.tertiary)
-                    Text("\(vehicle.supportedStandardPIDs.count) std · \(vehicle.supportedProfilePIDs.count) profile PIDs cached")
-                        .font(.monoTiny)
-                        .foregroundStyle(.tertiary)
-                }
-                Spacer()
-                if settings.activeVehicleSlug == vehicle.slug {
-                    Text("ACTIVE")
-                        .font(.monoTiny)
-                        .padding(.horizontal, 6).padding(.vertical, 2)
-                        .background(Color.green.opacity(0.2))
-                        .foregroundStyle(.green)
-                        .clipShape(.rect(cornerRadius: 4))
-                } else {
-                    Button("Activate") {
-                        settings.activeVehicleSlug = vehicle.slug
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
-                }
-            }
-            HStack(alignment: .top, spacing: 8) {
-                Button("Re-probe PIDs") {
-                    reprobePIDs(for: vehicle)
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.small)
-                Text("Clears the cached supported-PID list. Next session re-runs the discovery + probe from scratch.")
-                    .font(.statusText)
-                    .foregroundStyle(.tertiary)
-            }
-            HStack(alignment: .top, spacing: 8) {
-                Button(role: .destructive) {
-                    removeVehicle(vehicle)
-                } label: {
-                    Text("Remove")
-                }
-                .buttonStyle(.bordered)
-                .controlSize(.small)
-                Text("Deletes this vehicle from the app. Recorded sessions on disk are kept.")
-                    .font(.statusText)
-                    .foregroundStyle(.tertiary)
-            }
-        }
-        .padding(12)
-        .background(Color(red: 22 / 255, green: 24 / 255, blue: 29 / 255))
-        .clipShape(.rect(cornerRadius: 8))
     }
 
     private func removeVehicle(_ vehicle: Vehicle) {

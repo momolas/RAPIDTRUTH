@@ -61,7 +61,7 @@ struct LiveChartView: View {
                         if !unit.isEmpty {
                             Text(unit)
                                 .font(.title3.weight(.medium))
-                                .foregroundStyle(Color(red: 92 / 255, green: 196 / 255, blue: 1.0))
+                                .foregroundStyle(Color.appAccent)
                         }
                     }
                 }
@@ -70,7 +70,7 @@ struct LiveChartView: View {
                 // Swift Chart Card
                 VStack(alignment: .leading, spacing: 10) {
                     if chartSamples.isEmpty {
-                        emptyStateView
+                        LiveChartEmptyStateView()
                     } else {
                         Chart {
                             ForEach(chartSamples) { sample in
@@ -81,8 +81,8 @@ struct LiveChartView: View {
                                 .foregroundStyle(
                                     .linearGradient(
                                         colors: [
-                                            Color(red: 92 / 255, green: 196 / 255, blue: 1.0).opacity(0.3),
-                                            Color(red: 92 / 255, green: 196 / 255, blue: 1.0).opacity(0.0)
+                                            Color.appAccent.opacity(0.3),
+                                            Color.appAccent.opacity(0.0)
                                         ],
                                         startPoint: .top,
                                         endPoint: .bottom
@@ -93,7 +93,7 @@ struct LiveChartView: View {
                                     x: .value("Time", sample.timestamp),
                                     y: .value("Value", sample.value)
                                 )
-                                .foregroundStyle(Color(red: 92 / 255, green: 196 / 255, blue: 1.0))
+                                .foregroundStyle(Color.appAccent)
                                 .lineStyle(.init(lineWidth: 3))
                                 
                                 PointMark(
@@ -173,28 +173,11 @@ struct LiveChartView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
                         .font(.appButton)
-                        .foregroundStyle(Color(red: 92 / 255, green: 196 / 255, blue: 1.0))
+                        .foregroundStyle(Color.appAccent)
                 }
             }
         }
         .preferredColorScheme(.dark)
-    }
-    
-    private var emptyStateView: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "chart.xyaxis.line")
-                .font(.system(size: 40))
-                .foregroundStyle(.secondary)
-            Text("Waiting for data points…")
-                .font(.valueLabel)
-                .foregroundStyle(.primary)
-            Text("Keep logging to gather rolling samples for this PID.")
-                .font(.bodyText)
-                .foregroundStyle(.tertiary)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity, minHeight: 250)
-        .padding()
     }
     
     private func formatValue(_ v: Double?) -> String {

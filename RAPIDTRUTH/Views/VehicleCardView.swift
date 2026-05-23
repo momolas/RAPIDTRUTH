@@ -54,7 +54,7 @@ struct VehicleCardView: View {
             }
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color(red: 22 / 255, green: 24 / 255, blue: 29 / 255))
+            .background(Color.appCardBackground)
             .clipShape(.rect(cornerRadius: 12))
         }
         .buttonStyle(.plain)

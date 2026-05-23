@@ -82,7 +82,7 @@ struct LoggingControlsView: View {
             }
         }
         .padding(12)
-        .background(Color(red: 22 / 255, green: 24 / 255, blue: 29 / 255))
+        .background(Color.appCardBackground)
         .clipShape(.rect(cornerRadius: 12))
     }
 
