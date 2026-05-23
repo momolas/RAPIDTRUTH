@@ -39,7 +39,8 @@ struct MainShellView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                AdaptiveGlassEffectContainer(spacing: 16) {
+                    VStack(alignment: .leading, spacing: 16) {
                     HStack(alignment: .firstTextBaseline) {
                         HStack(spacing: 0) {
                             Text("RAPID").foregroundStyle(.white)
@@ -125,6 +126,7 @@ struct MainShellView: View {
                 }
                 .padding(16)
             }
+        }
             .background(Color.appBackground.ignoresSafeArea())
             .navigationTitle("")
             .toolbar(.hidden, for: .navigationBar)

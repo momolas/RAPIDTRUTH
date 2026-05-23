@@ -1,8 +1,10 @@
 import Foundation
+import SwiftData
 
-struct Vehicle: Codable, Identifiable, Hashable {
-    let slug: String
-    let owner: String
+@Model
+final class Vehicle: Identifiable {
+    @Attribute(.unique) var slug: String
+    var owner: String
     var displayName: String
     var year: Int?
     var make: String?
@@ -11,25 +13,49 @@ struct Vehicle: Codable, Identifiable, Hashable {
     var vin: String?
     var profileId: String
     var profileVersion: String
-    let createdAtUTC: String
+    var createdAtUTC: String
     var lastUsedUTC: String?
     var supportedStandardPIDs: [String]
     var supportedProfilePIDs: [String]
     var disabledPIDs: [String]
 
+    @Relationship(deleteRule: .cascade, inverse: \SessionRecord.vehicle)
+    var sessions: [SessionRecord] = []
+
     var id: String { slug }
 
-    enum CodingKeys: String, CodingKey {
-        case slug, owner
-        case displayName = "display_name"
-        case year, make, model, trim, vin
-        case profileId = "profile_id"
-        case profileVersion = "profile_version"
-        case createdAtUTC = "created_at_utc"
-        case lastUsedUTC = "last_used_utc"
-        case supportedStandardPIDs = "supported_standard_pids"
-        case supportedProfilePIDs = "supported_profile_pids"
-        case disabledPIDs = "disabled_pids"
+    init(
+        slug: String,
+        owner: String,
+        displayName: String,
+        year: Int? = nil,
+        make: String? = nil,
+        model: String? = nil,
+        trim: String? = nil,
+        vin: String? = nil,
+        profileId: String,
+        profileVersion: String,
+        createdAtUTC: String,
+        lastUsedUTC: String? = nil,
+        supportedStandardPIDs: [String] = [],
+        supportedProfilePIDs: [String] = [],
+        disabledPIDs: [String] = []
+    ) {
+        self.slug = slug
+        self.owner = owner
+        self.displayName = displayName
+        self.year = year
+        self.make = make
+        self.model = model
+        self.trim = trim
+        self.vin = vin
+        self.profileId = profileId
+        self.profileVersion = profileVersion
+        self.createdAtUTC = createdAtUTC
+        self.lastUsedUTC = lastUsedUTC
+        self.supportedStandardPIDs = supportedStandardPIDs
+        self.supportedProfilePIDs = supportedProfilePIDs
+        self.disabledPIDs = disabledPIDs
     }
 
     static func makeSlug(year: Int?, make: String?, model: String?) -> String {

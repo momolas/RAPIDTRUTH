@@ -23,6 +23,28 @@ struct LiveChartView: View {
         chartSamples.last?.value
     }
     
+    private var minSamplesValue: Double? {
+        guard !chartSamples.isEmpty else { return nil }
+        var minValue = Double.greatestFiniteMagnitude
+        for sample in chartSamples {
+            if sample.value < minValue {
+                minValue = sample.value
+            }
+        }
+        return minValue
+    }
+    
+    private var maxSamplesValue: Double? {
+        guard !chartSamples.isEmpty else { return nil }
+        var maxValue = -Double.greatestFiniteMagnitude
+        for sample in chartSamples {
+            if sample.value > maxValue {
+                maxValue = sample.value
+            }
+        }
+        return maxValue
+    }
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -124,14 +146,14 @@ struct LiveChartView: View {
                         HStack {
                             Text("Min value")
                             Spacer()
-                            Text(formatValue(chartSamples.map { $0.value }.min()) + " " + unit)
+                            Text(formatValue(minSamplesValue) + " " + unit)
                                 .font(.monoSmall)
                                 .foregroundStyle(.secondary)
                         }
                         HStack {
                             Text("Max value")
                             Spacer()
-                            Text(formatValue(chartSamples.map { $0.value }.max()) + " " + unit)
+                            Text(formatValue(maxSamplesValue) + " " + unit)
                                 .font(.monoSmall)
                                 .foregroundStyle(.secondary)
                         }

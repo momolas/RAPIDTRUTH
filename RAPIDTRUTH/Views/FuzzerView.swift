@@ -129,7 +129,7 @@ struct FuzzerView: View {
                     Text("Calculateurs trouvés (tapez pour cibler) :")
                         .font(.caption)
                         .foregroundStyle(.secondary)
-                    ScrollView(.horizontal, showsIndicators: false) {
+                    ScrollView(.horizontal) {
                         HStack(spacing: 8) {
                             ForEach(fuzzer.discoveredECUs, id: \.self) { ecu in
                                 Button(action: {
@@ -147,6 +147,7 @@ struct FuzzerView: View {
                         }
                         .padding(.vertical, 4)
                     }
+                    .scrollIndicators(.hidden)
                 }
             }
             

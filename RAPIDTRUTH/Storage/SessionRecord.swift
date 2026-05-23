@@ -1,36 +1,56 @@
 import Foundation
+import SwiftData
 
-struct SessionRecord: Codable, Identifiable, Hashable {
-    let sessionID: String
-    let startUTC: String
-    let endUTC: String
-    let durationMs: Int
-    let sampleRateHz: Double
-    let rowCount: Int
-    let profileID: String
-    let profileVersion: String
-    let pidCount: Int
-    let file: String
-    let endedReason: String
-    let meanPidCompletionPct: Double
-    let rawMode: Bool
+@Model
+final class SessionRecord: Identifiable {
+    @Attribute(.unique) var sessionID: String
+    var startUTC: String
+    var endUTC: String
+    var durationMs: Int
+    var sampleRateHz: Double
+    var rowCount: Int
+    var profileID: String
+    var profileVersion: String
+    var pidCount: Int
+    var file: String
+    var endedReason: String
+    var meanPidCompletionPct: Double
+    var rawMode: Bool
+
+    var vehicle: Vehicle?
 
     var id: String { sessionID }
 
-    enum CodingKeys: String, CodingKey {
-        case sessionID = "session_id"
-        case startUTC = "start_utc"
-        case endUTC = "end_utc"
-        case durationMs = "duration_ms"
-        case sampleRateHz = "sample_rate_hz"
-        case rowCount = "row_count"
-        case profileID = "profile_id"
-        case profileVersion = "profile_version"
-        case pidCount = "pid_count"
-        case file
-        case endedReason = "ended_reason"
-        case meanPidCompletionPct = "mean_pid_completion_pct"
-        case rawMode = "raw_mode"
+    init(
+        sessionID: String,
+        startUTC: String,
+        endUTC: String,
+        durationMs: Int,
+        sampleRateHz: Double,
+        rowCount: Int,
+        profileID: String,
+        profileVersion: String,
+        pidCount: Int,
+        file: String,
+        endedReason: String,
+        meanPidCompletionPct: Double,
+        rawMode: Bool,
+        vehicle: Vehicle? = nil
+    ) {
+        self.sessionID = sessionID
+        self.startUTC = startUTC
+        self.endUTC = endUTC
+        self.durationMs = durationMs
+        self.sampleRateHz = sampleRateHz
+        self.rowCount = rowCount
+        self.profileID = profileID
+        self.profileVersion = profileVersion
+        self.pidCount = pidCount
+        self.file = file
+        self.endedReason = endedReason
+        self.meanPidCompletionPct = meanPidCompletionPct
+        self.rawMode = rawMode
+        self.vehicle = vehicle
     }
 }
 

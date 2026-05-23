@@ -1,8 +1,8 @@
 import Foundation
 import Observation
+import SwiftData
 
-/// Persists `Vehicle` records as `vehicle.json` files under
-/// `data/<owner>/<slug>/`. Holds an in-memory cache for the UI.
+/// Persists `Vehicle` records using SwiftData. Holds an in-memory cache for the UI.
 @MainActor
 @Observable
 final class VehicleStore {
@@ -12,50 +12,47 @@ final class VehicleStore {
 
     static let shared = VehicleStore()
 
+    let container: ModelContainer
+    let context: ModelContext
+
+    private init() {
+        do {
+            let schema = Schema([Vehicle.self, SessionRecord.self])
+            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+            self.container = try ModelContainer(for: schema, configurations: config)
+            self.context = ModelContext(container)
+        } catch {
+            fatalError("Failed to initialize ModelContainer: \(error)")
+        }
+    }
+
     /// Load every vehicle for `owner`. Replaces the in-memory cache.
     func reload(owner: String) {
         loadError = nil
-        var loaded: [Vehicle] = []
         do {
-            try AppStorage.shared.ensureDir(AppPath.ownerDir(owner))
-        } catch {
-            loadError = "Could not create owner directory: \(error.localizedDescription)"
-            return
-        }
-        let entries: [URL]
-        do {
-            entries = try AppStorage.shared.listDir(AppPath.ownerDir(owner))
-        } catch {
-            loadError = "Could not list owner directory: \(error.localizedDescription)"
-            return
-        }
-        for url in entries where url.hasDirectoryPath {
-            let slug = url.lastPathComponent
-            do {
-                let v = try AppStorage.shared.readJSON(
-                    Vehicle.self,
-                    from: AppPath.vehicleJSON(owner, slug)
-                )
-                loaded.append(v)
-            } catch {
-                // Skip directories without a parseable vehicle.json.
-                continue
+            let descriptor = FetchDescriptor<Vehicle>(
+                predicate: #Predicate<Vehicle> { $0.owner == owner }
+            )
+            var loaded = try context.fetch(descriptor)
+            
+            // Sort by lastUsedUTC or createdAtUTC descending
+            loaded.sort { (a, b) in
+                let aKey = a.lastUsedUTC ?? a.createdAtUTC
+                let bKey = b.lastUsedUTC ?? b.createdAtUTC
+                return aKey > bKey
             }
+            vehicles = loaded
+        } catch {
+            loadError = "Could not fetch vehicles: \(error.localizedDescription)"
         }
-        loaded.sort { (a, b) in
-            (a.lastUsedUTC ?? a.createdAtUTC) > (b.lastUsedUTC ?? b.createdAtUTC)
-        }
-        vehicles = loaded
     }
 
     func save(_ vehicle: Vehicle) throws {
-        try AppStorage.shared.ensureDir(AppPath.vehicleDir(vehicle.owner, vehicle.slug))
-        try AppStorage.shared.writeJSON(vehicle, to: AppPath.vehicleJSON(vehicle.owner, vehicle.slug))
-        if let idx = vehicles.firstIndex(where: { $0.slug == vehicle.slug }) {
-            vehicles[idx] = vehicle
-        } else {
-            vehicles.append(vehicle)
+        if vehicle.modelContext == nil {
+            context.insert(vehicle)
         }
+        try context.save()
+        reload(owner: vehicle.owner)
     }
 
     /// Wipe the cached supported-PID lists on a vehicle so the next logging
@@ -63,7 +60,7 @@ final class VehicleStore {
     /// existing cache is suspected stale (e.g. populated by an earlier
     /// version with buggy ECU addressing).
     func clearPIDCaches(slug: String, owner: String) throws {
-        guard var vehicle = vehicles.first(where: { $0.slug == slug && $0.owner == owner }) else {
+        guard let vehicle = vehicles.first(where: { $0.slug == slug && $0.owner == owner }) else {
             return
         }
         vehicle.supportedStandardPIDs = []
@@ -72,7 +69,15 @@ final class VehicleStore {
     }
 
     func delete(slug: String, owner: String) throws {
-        try AppStorage.shared.remove(AppPath.vehicleDir(owner, slug))
-        vehicles.removeAll { $0.slug == slug }
+        let descriptor = FetchDescriptor<Vehicle>(
+            predicate: #Predicate<Vehicle> { $0.slug == slug && $0.owner == owner }
+        )
+        if let vehicle = try context.fetch(descriptor).first {
+            context.delete(vehicle)
+            try context.save()
+        }
+        // Also remove the filesystem directory where CSV files are saved
+        try? AppStorage.shared.remove(AppPath.vehicleDir(owner, slug))
+        reload(owner: owner)
     }
 }

@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import SwiftData
 
 /// Top-level orchestration for a logging session: probe, open CSV, drive the
 /// sampler, finalize a sessions.jsonl entry on stop.
@@ -271,18 +272,15 @@ final class LoggingSession {
                 file: "sessions/\(filename)",
                 endedReason: reason,
                 meanPidCompletionPct: 100.0,  // TODO: track per-PID completion in Sampler
-                rawMode: rawMode
+                rawMode: rawMode,
+                vehicle: vehicle
             )
+            let context = VehicleStore.shared.context
+            context.insert(record)
             do {
-                let line = try JSONEncoder().encode(record)
-                if let json = String(data: line, encoding: .utf8) {
-                    try AppStorage.shared.appendText(
-                        json + "\n",
-                        to: AppPath.sessionsManifest(vehicle.owner, vehicle.slug)
-                    )
-                }
+                try context.save()
             } catch {
-                // Manifest append failure shouldn't abort the cleanup.
+                NSLog("[OBD2] failed to save session record: \(error)")
             }
         }
 

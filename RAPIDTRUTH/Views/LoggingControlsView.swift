@@ -41,12 +41,12 @@ struct LoggingControlsView: View {
                     Button("Stop") {
                         session.stop()
                     }
-                    .buttonStyle(.bordered)
+                    .glassActionButton(prominent: false)
                 } else {
                     Button("Start logging") {
                         startLogging()
                     }
-                    .buttonStyle(.borderedProminent)
+                    .glassActionButton(prominent: true)
                     .disabled(!canStart)
                 }
             }

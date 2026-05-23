@@ -288,17 +288,17 @@ struct ConnectionActionButton: View {
     var body: some View {
         if isIdleOrError {
             Button("Connect \(selectedDongle == .panda ? "Panda" : "ELM327")", action: onConnect)
-                .buttonStyle(.borderedProminent)
+                .glassActionButton(prominent: true)
                 .buttonBorderShape(.roundedRectangle)
                 .controlSize(.small)
         } else if isConnecting {
             Button("Cancel", action: onDisconnect)
-                .buttonStyle(.bordered)
+                .glassActionButton(prominent: false)
                 .buttonBorderShape(.roundedRectangle)
                 .controlSize(.small)
         } else {
             Button("Disconnect", action: onDisconnect)
-                .buttonStyle(.bordered)
+                .glassActionButton(prominent: false)
                 .buttonBorderShape(.roundedRectangle)
                 .controlSize(.small)
         }

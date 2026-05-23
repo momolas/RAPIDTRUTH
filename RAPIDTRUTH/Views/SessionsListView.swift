@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct SessionsListView: View {
     // Fixed to Scenic 2 — no multi-vehicle management.
@@ -36,80 +37,25 @@ struct SessionsListView: View {
                     .foregroundStyle(.tertiary)
                     .padding(.vertical, 8)
             } else {
-                ForEach(pageSlice) { record in
-                    sessionRow(record)
+                if #available(iOS 26, *) {
+                    GlassEffectContainer(spacing: 8) {
+                        ForEach(pageSlice) { record in
+                            SessionRowView(record: record, fileURL: sessionFileURL(for: record))
+                        }
+                    }
+                } else {
+                    ForEach(pageSlice) { record in
+                        SessionRowView(record: record, fileURL: sessionFileURL(for: record))
+                    }
                 }
                 if pageCount > 1 {
-                    paginationBar
+                    SessionPaginationBar(page: $page, pageCount: pageCount)
                 }
             }
         }
         .appCard()
         .onAppear { reload() }
         .onChange(of: session.state) { _, _ in reload() }
-
-    }
-
-    private var paginationBar: some View {
-        HStack {
-            Button {
-                page = max(0, page - 1)
-            } label: {
-                Image(systemName: "chevron.left")
-            }
-            .buttonStyle(.bordered)
-            .controlSize(.small)
-            .disabled(page == 0)
-
-            Spacer()
-
-            Text("Page \(page + 1) of \(pageCount)")
-                .font(.monoSmall)
-                .foregroundStyle(.tertiary)
-
-            Spacer()
-
-            Button {
-                page = min(pageCount - 1, page + 1)
-            } label: {
-                Image(systemName: "chevron.right")
-            }
-            .buttonStyle(.bordered)
-            .controlSize(.small)
-            .disabled(page >= pageCount - 1)
-        }
-        .padding(.top, 4)
-    }
-
-    @ViewBuilder
-    private func sessionRow(_ record: SessionRecord) -> some View {
-        // Tap a row → iOS share sheet (AirDrop / Mail / Save to Files /
-        // copy / etc.) for the session's CSV. Same UX as long-pressing or
-        // tapping a file in the Files app.
-        let url = sessionFileURL(for: record)
-        ShareLink(item: url) {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(record.startUTC.replacingOccurrences(of: ".000Z", with: "Z"))
-                        .font(.monoSmall)
-                        .foregroundStyle(.primary)
-                    Text("\(record.rowCount) rows · \(formatDuration(ms: record.durationMs))")
-                        .font(.monoTiny)
-                        .foregroundStyle(.tertiary)
-                }
-                Spacer()
-                Text(record.endedReason)
-                    .font(.monoTiny)
-                    .foregroundStyle(.tertiary)
-                Image(systemName: "square.and.arrow.up")
-                    .font(.captionText)
-                    .foregroundStyle(.tertiary)
-            }
-            .padding(8)
-            .background(Color(red: 22 / 255, green: 24 / 255, blue: 29 / 255))
-            .clipShape(.rect(cornerRadius: 6))
-        }
-        .buttonStyle(.plain)
     }
 
     /// Resolve a session record's relative `file` path (e.g.
@@ -122,29 +68,18 @@ struct SessionsListView: View {
 
     private func reload() {
         let slug = vehicleSlug
-        let path = AppPath.sessionsManifest(owner, slug)
-        guard AppStorage.shared.exists(path),
-              let text = try? AppStorage.shared.readText(path) else {
+        let ownerName = owner
+        var descriptor = FetchDescriptor<Vehicle>(
+            predicate: #Predicate<Vehicle> { $0.slug == slug && $0.owner == ownerName }
+        )
+        descriptor.relationshipKeyPathsForPrefetching = [\.sessions]
+        guard let vehicle = try? VehicleStore.shared.context.fetch(descriptor).first else {
             sessions = []
             page = 0
             return
         }
-        var loaded: [SessionRecord] = []
-        for line in text.split(separator: "\n") {
-            guard let data = line.trimmingCharacters(in: .whitespaces).data(using: .utf8) else { continue }
-            if let record = try? JSONDecoder().decode(SessionRecord.self, from: data) {
-                loaded.append(record)
-            }
-        }
-        sessions = loaded.sorted { $0.startUTC > $1.startUTC }
+        sessions = vehicle.sessions.sorted { $0.startUTC > $1.startUTC }
         // Clamp page if a deletion shrank the list past our current page.
         if page >= pageCount { page = max(0, pageCount - 1) }
-    }
-
-    private func formatDuration(ms: Int) -> String {
-        let totalSec = ms / 1000
-        let m = totalSec / 60
-        let s = totalSec % 60
-        return m == 0 ? "\(s)s" : "\(m)m \(s)s"
     }
 }
