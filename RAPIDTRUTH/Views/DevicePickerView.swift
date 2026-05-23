@@ -5,8 +5,8 @@ import SwiftUI
 struct DevicePickerView: View {
     @Environment(\.dismiss) private var dismiss
     let dongleType: DongleType
-    let ble = BLEManager.shared
-    let panda = PandaTransport.shared
+    @Environment(BLEManager.self) private var ble
+    @Environment(PandaTransport.self) private var panda
     
     var onPickBLE: ((BLEManager.DiscoveredDevice) -> Void)? = nil
     var onPickWiFi: ((String) -> Void)? = nil

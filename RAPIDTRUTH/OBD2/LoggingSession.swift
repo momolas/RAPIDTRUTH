@@ -14,11 +14,25 @@ final class LoggingSession {
         case error(String)
     }
 
+    struct HistoricSample: Identifiable, Sendable, Equatable {
+        let id: UUID
+        let timestamp: Date
+        let value: Double
+        
+        init(id: UUID = UUID(), timestamp: Date, value: Double) {
+            self.id = id
+            self.timestamp = timestamp
+            self.value = value
+        }
+    }
+
     private(set) var state: State = .idle
     private(set) var liveValues: [String: Sampler.LiveValue] = [:]
+    private(set) var groupedLiveValues: [PidCategory: [Sampler.LiveValue]] = [:]
     private(set) var enabledPIDs: [PidDef] = []
+    private(set) var history: [String: [HistoricSample]] = [:]
 
-    private var driver: PandaDriver?
+    private var driver: VehicleInterface?
     private var sampler: Sampler?
     private var writer: CSVWriter?
     private var vehicle: Vehicle?
@@ -47,7 +61,8 @@ final class LoggingSession {
     func start(
         vehicle: Vehicle,
         profile: Profile,
-        driver: PandaDriver,
+        driver: VehicleInterface,
+        vehicleStore: VehicleStore,
         sampleRateHz: Double,
         rawMode: Bool
     ) async {
@@ -119,8 +134,8 @@ final class LoggingSession {
                 updated.supportedStandardPIDs = supportedStandard
                 updated.supportedProfilePIDs = supportedProfile
                 updated.profileVersion = profile.profileVersion
-                updated.lastUsedUTC = ISO8601DateFormatter.utcMs.string(from: Date())
-                try VehicleStore.shared.save(updated)
+                updated.lastUsedUTC = Date().formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!))
+                try vehicleStore.save(updated)
                 self.vehicle = updated
             }
 
@@ -128,7 +143,7 @@ final class LoggingSession {
             state = .preparing(step: "Opening CSV…")
             sessionID = SessionID.generate()
             sessionStartMs = Int(Date().timeIntervalSince1970 * 1000)
-            sessionStartISO = ISO8601DateFormatter.utcMs.string(from: Date())
+            sessionStartISO = Date().formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!))
             let filename = (rawMode ? "raw__" : "") + SessionID.sessionFilename(
                 startISO: sessionStartISO,
                 sessionID: sessionID
@@ -155,9 +170,19 @@ final class LoggingSession {
             )
             sampler.onValues = { [weak self] batch in
                 guard let self, case .logging = self.state else { return }
+                let now = Date()
                 for live in batch {
                     self.liveValues[live.pidID] = live
+                    if let val = live.value {
+                        var list = self.history[live.pidID, default: []]
+                        list.append(HistoricSample(timestamp: now, value: val))
+                        if list.count > 100 {
+                            list.removeFirst(list.count - 100)
+                        }
+                        self.history[live.pidID] = list
+                    }
                 }
+                self.updateGroupedLiveValues()
             }
             sampler.onTick = { [weak self] row in
                 // The sampler dispatches onTick via `MainActor.run` at the
@@ -228,7 +253,7 @@ final class LoggingSession {
 
         if let vehicle, let profile, let writer = writerSnapshot {
             let endMs = Int(Date().timeIntervalSince1970 * 1000)
-            let endISO = ISO8601DateFormatter.utcMs.string(from: Date())
+            let endISO = Date().formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!))
             let filename = (rawMode ? "raw__" : "") + SessionID.sessionFilename(
                 startISO: sessionStartISO,
                 sessionID: sessionID
@@ -266,11 +291,24 @@ final class LoggingSession {
         driver = nil
         profile = nil
         liveValues.removeAll()
+        groupedLiveValues.removeAll()
+        history.removeAll()
         emptyTickStreak = 0
         if case .error = state {
             // keep error state so UI can show it
         } else {
             state = .idle
         }
+    }
+
+    private func updateGroupedLiveValues() {
+        var out: [PidCategory: [Sampler.LiveValue]] = [:]
+        for (_, live) in liveValues {
+            out[live.category, default: []].append(live)
+        }
+        for key in out.keys {
+            out[key]?.sort { $0.displayName < $1.displayName }
+        }
+        self.groupedLiveValues = out
     }
 }

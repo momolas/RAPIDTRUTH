@@ -1,7 +1,13 @@
 import SwiftUI
 
+extension Sampler.LiveValue: Identifiable {
+    public var id: String { pidID }
+}
+
 struct LiveReadoutView: View {
-    var session = LoggingSession.shared
+    @Environment(LoggingSession.self) private var session
+    
+    @State private var selectedLivePID: Sampler.LiveValue?
 
     /// Display order matches the web app: Engine first, hybrid drivetrain
     /// next, battery, then transmission/emissions/diagnostics.
@@ -24,18 +30,34 @@ struct LiveReadoutView: View {
                     .foregroundStyle(.tertiary)
                     .padding(.vertical, 8)
             } else {
-                let grouped = groupByCategory(session.liveValues)
                 ForEach(Self.categoryOrder, id: \.self) { category in
-                    if let bucket = grouped[category], !bucket.isEmpty {
-                        categorySection(category: category, values: bucket)
+                    if let bucket = session.groupedLiveValues[category], !bucket.isEmpty {
+                        LiveCategorySectionView(
+                            category: category,
+                            values: bucket,
+                            selectedLivePID: $selectedLivePID
+                        )
                     }
                 }
             }
         }
         .appCard()
+        .sheet(item: $selectedLivePID) { live in
+            LiveChartView(
+                pidID: live.pidID,
+                displayName: live.displayName,
+                unit: live.unit
+            )
+        }
     }
+}
 
-    private func categorySection(category: PidCategory, values: [Sampler.LiveValue]) -> some View {
+struct LiveCategorySectionView: View {
+    let category: PidCategory
+    let values: [Sampler.LiveValue]
+    @Binding var selectedLivePID: Sampler.LiveValue?
+
+    var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(spacing: 6) {
                 Text(category.rawValue.capitalized)
@@ -47,14 +69,23 @@ struct LiveReadoutView: View {
             }
             let columns = [GridItem(.adaptive(minimum: 150), spacing: 6)]
             LazyVGrid(columns: columns, spacing: 6) {
-                ForEach(values, id: \.pidID) { live in
-                    cell(for: live)
+                ForEach(values) { live in
+                    Button {
+                        selectedLivePID = live
+                    } label: {
+                        LiveValueCellView(live: live)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
     }
+}
 
-    private func cell(for live: Sampler.LiveValue) -> some View {
+struct LiveValueCellView: View {
+    let live: Sampler.LiveValue
+
+    var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(live.displayName)
                 .font(.captionTiny)
@@ -77,20 +108,9 @@ struct LiveReadoutView: View {
         .clipShape(.rect(cornerRadius: 6))
     }
 
-    private func groupByCategory(_ values: [String: Sampler.LiveValue]) -> [PidCategory: [Sampler.LiveValue]] {
-        var out: [PidCategory: [Sampler.LiveValue]] = [:]
-        for (_, live) in values {
-            out[live.category, default: []].append(live)
-        }
-        for key in out.keys {
-            out[key]?.sort { $0.displayName < $1.displayName }
-        }
-        return out
-    }
-
     private func formatValue(_ v: Double?) -> String {
         guard let v else { return "—" }
         if v.rounded() == v && abs(v) < 1e9 { return String(Int(v)) }
-        return String(format: "%.2f", v)
+        return v.formatted(.number.precision(.fractionLength(2)))
     }
 }

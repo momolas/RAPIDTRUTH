@@ -3,6 +3,9 @@ import SwiftUI
 struct ConnectionView: View {
     @Environment(PandaTransport.self) private var pandaTransport
     @Environment(BLEManager.self) private var bleManager
+    @Environment(SettingsStore.self) private var settings
+    @Environment(VehicleStore.self) private var vehicleStore
+    @Environment(ProfileRegistry.self) private var profileRegistry
     
     let driver: VehicleInterface
     @Binding var selectedDongle: DongleType
@@ -21,9 +24,29 @@ struct ConnectionView: View {
             .disabled(isConnecting || isConnected)
             
             HStack(alignment: .top) {
-                statusBadge
+                ConnectionStatusBadge(
+                    selectedDongle: selectedDongle,
+                    isConnected: isConnected,
+                    isConnecting: isConnecting,
+                    isIdleOrError: isIdleOrError
+                )
                 Spacer()
-                connectionButton
+                ConnectionActionButton(
+                    selectedDongle: selectedDongle,
+                    isConnecting: isConnecting,
+                    isIdleOrError: isIdleOrError,
+                    onConnect: {
+                        statusError = nil
+                        if selectedDongle == .panda {
+                            Task { await connectPanda() }
+                        } else {
+                            showDevicePicker = true
+                        }
+                    },
+                    onDisconnect: {
+                        disconnectAdapter()
+                    }
+                )
             }
             
             if let statusError {
@@ -83,86 +106,6 @@ struct ConnectionView: View {
         !isConnected && !isConnecting
     }
 
-    private var statusBadge: some View {
-        HStack(spacing: 8) {
-            Circle()
-                .fill(badgeColor)
-                .frame(width: 10, height: 10)
-            VStack(alignment: .leading, spacing: 2) {
-                HStack(spacing: 6) {
-                    Text(stateTitle)
-                        .font(.valueNumber)
-                }
-                Text(stateSubtitle)
-                    .font(.captionText)
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var connectionButton: some View {
-        if isIdleOrError {
-            Button("Connect \(selectedDongle == .panda ? "Panda" : "ELM327")") {
-                statusError = nil
-                if selectedDongle == .panda {
-                    Task { await connectPanda() }
-                } else {
-                    showDevicePicker = true
-                }
-            }
-            .buttonStyle(.borderedProminent)
-            .buttonBorderShape(.roundedRectangle)
-            .controlSize(.small)
-        } else if isConnecting {
-            Button("Cancel") { disconnectAdapter() }
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.roundedRectangle)
-                .controlSize(.small)
-        } else {
-            Button("Disconnect") {
-                disconnectAdapter()
-            }
-            .buttonStyle(.bordered)
-            .buttonBorderShape(.roundedRectangle)
-            .controlSize(.small)
-        }
-    }
-
-    private var stateTitle: String {
-        if isIdleOrError { return "idle" }
-        if isConnecting { return "connecting..." }
-        return "connected"
-    }
-
-    private var stateSubtitle: String {
-        if isIdleOrError {
-            if selectedDongle == .panda, case .error(let e) = pandaTransport.state { return e }
-            if selectedDongle == .elm327, case .error(let e) = bleManager.connectionState { return e }
-            return "Tap Connect to start."
-        }
-        if isConnecting { return "Establishing connection..." }
-        return "Connected via \(selectedDongle == .panda ? "Panda UDP" : "ELM327 BLE")"
-    }
-
-    private var badgeColor: Color {
-        if isIdleOrError {
-            let hasError: Bool
-            if selectedDongle == .panda {
-                hasError = pandaTransport.state != .idle
-            } else {
-                if case .error = bleManager.connectionState {
-                    hasError = true
-                } else {
-                    hasError = false
-                }
-            }
-            return hasError ? .red : .secondary
-        }
-        if isConnecting { return .blue }
-        return .green
-    }
-
     private func connectPanda(ip: String? = nil) async {
         pandaTransport.connect(host: ip)
         var timeout = 0
@@ -172,9 +115,17 @@ struct ConnectionView: View {
         }
         
         if isConnected {
+            if let panda = driver as? PandaDriver {
+                try? await panda.setSafetyModel(.elm327)
+                NSLog("[ConnectionView] Successfully connected to Panda, set safety model to ELM327 by default")
+            }
             await detectVehicle()
         } else {
-            statusError = "Connection timeout or error"
+            if case .error(let message) = pandaTransport.state {
+                statusError = "Connection error: \(message)"
+            } else {
+                statusError = "Connection timeout. Please ensure you are connected to the Panda's Wi-Fi network (SSID: comma-XXXXXXX) and cellular data is disabled if necessary."
+            }
             disconnectAdapter()
         }
     }
@@ -220,9 +171,6 @@ struct ConnectionView: View {
     private func detectVehicle() async {
         guard let vin = try? await VINReader.read(interface: driver) else { return }
         
-        let settings = SettingsStore.shared
-        let vehicleStore = VehicleStore.shared
-        
         // If known, set as active
         if let known = vehicleStore.vehicles.first(where: { $0.vin == vin }) {
             settings.activeVehicleSlug = known.slug
@@ -231,7 +179,7 @@ struct ConnectionView: View {
         
         // If unknown, decode and save
         do {
-            let service = getActiveDecoderService()
+            let service = getActiveDecoderService(settings: settings)
             let decoded = try await service.decode(vin: vin)
             
             let yearInt = decoded.year ?? 0
@@ -240,7 +188,6 @@ struct ConnectionView: View {
             // Fallback slug if empty
             let finalSlug = slug.isEmpty ? "unknown-vehicle-\(vin.prefix(6).lowercased())" : slug
             
-            let profileRegistry = ProfileRegistry.shared
             let suggestedProfile = profileRegistry.suggestedProfile(make: decoded.make, year: yearInt)
             
             let vehicle = Vehicle(
@@ -254,7 +201,7 @@ struct ConnectionView: View {
                 vin: vin,
                 profileId: suggestedProfile.profileId,
                 profileVersion: suggestedProfile.profileVersion,
-                createdAtUTC: ISO8601DateFormatter.utcMs.string(from: Date()),
+                createdAtUTC: Date().formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!)),
                 lastUsedUTC: nil,
                 supportedStandardPIDs: [],
                 supportedProfilePIDs: [],
@@ -265,6 +212,95 @@ struct ConnectionView: View {
             settings.activeVehicleSlug = vehicle.slug
         } catch {
             NSLog("[ConnectionView] Auto-detect failed to decode or save: \(error)")
+        }
+    }
+}
+
+struct ConnectionStatusBadge: View {
+    @Environment(PandaTransport.self) private var pandaTransport
+    @Environment(BLEManager.self) private var bleManager
+    
+    let selectedDongle: DongleType
+    let isConnected: Bool
+    let isConnecting: Bool
+    let isIdleOrError: Bool
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Circle()
+                .fill(badgeColor)
+                .frame(width: 10, height: 10)
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(spacing: 6) {
+                    Text(stateTitle)
+                        .font(.valueNumber)
+                }
+                Text(stateSubtitle)
+                    .font(.captionText)
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    private var stateTitle: String {
+        if isIdleOrError { return "idle" }
+        if isConnecting { return "connecting..." }
+        return "connected"
+    }
+
+    private var stateSubtitle: String {
+        if isIdleOrError {
+            if selectedDongle == .panda, case .error(let e) = pandaTransport.state { return e }
+            if selectedDongle == .elm327, case .error(let e) = bleManager.connectionState { return e }
+            return "Tap Connect to start."
+        }
+        if isConnecting { return "Establishing connection..." }
+        return "Connected via \(selectedDongle == .panda ? "Panda TCP" : "ELM327 BLE")"
+    }
+
+    private var badgeColor: Color {
+        if isIdleOrError {
+            let hasError: Bool
+            if selectedDongle == .panda {
+                hasError = pandaTransport.state != .idle
+            } else {
+                if case .error = bleManager.connectionState {
+                    hasError = true
+                } else {
+                    hasError = false
+                }
+            }
+            return hasError ? .red : .secondary
+        }
+        if isConnecting { return .blue }
+        return .green
+    }
+}
+
+struct ConnectionActionButton: View {
+    let selectedDongle: DongleType
+    let isConnecting: Bool
+    let isIdleOrError: Bool
+    
+    let onConnect: () -> Void
+    let onDisconnect: () -> Void
+
+    var body: some View {
+        if isIdleOrError {
+            Button("Connect \(selectedDongle == .panda ? "Panda" : "ELM327")", action: onConnect)
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.roundedRectangle)
+                .controlSize(.small)
+        } else if isConnecting {
+            Button("Cancel", action: onDisconnect)
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.roundedRectangle)
+                .controlSize(.small)
+        } else {
+            Button("Disconnect", action: onDisconnect)
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.roundedRectangle)
+                .controlSize(.small)
         }
     }
 }

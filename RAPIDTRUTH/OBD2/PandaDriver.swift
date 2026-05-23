@@ -41,6 +41,8 @@ final class PandaDriver: VehicleInterface {
             inFlight.resume(throwing: NSError(domain: "PandaDriver", code: -1, userInfo: [NSLocalizedDescriptionKey: "Detached"]))
             self.inFlight = nil
         }
+        inboundTask?.cancel()
+        inboundTask = nil
         timeoutTask?.cancel()
         timeoutTask = nil
     }
@@ -275,5 +277,23 @@ final class PandaDriver: VehicleInterface {
             i = next
         }
         return data
+    }
+    
+    // MARK: - Safety Config
+    
+    enum SafetyMode: UInt16 {
+        case silent = 0
+        case elm327 = 3
+        case allOutput = 17
+    }
+    
+    func setSafetyModel(_ mode: SafetyMode) async throws {
+        // 0x40 is Vendor Request Out, 0xdc (220) is set_safety_model
+        try await transport.sendControlWrite(requestType: 0x40, request: 0xdc, value: mode.rawValue, index: 0)
+    }
+    
+    deinit {
+        inboundTask?.cancel()
+        timeoutTask?.cancel()
     }
 }

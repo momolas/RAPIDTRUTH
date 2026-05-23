@@ -4,7 +4,7 @@ struct MaintenanceView: View {
     let interface: VehicleInterface
     @Environment(\.dismiss) var dismiss
     @State private var maintenanceManager = MaintenanceManager()
-    private var pandaTransport = PandaTransport.shared
+    @Environment(PandaTransport.self) private var pandaTransport
     @State private var showingDPFAlert = false
     @State private var showingEPBAlert = false
     @State private var showingOilAlert = false
@@ -159,6 +159,22 @@ struct MaintenanceView: View {
                         dismiss()
                     }
                     .foregroundStyle(.white)
+                }
+            }
+            .onAppear {
+                if let panda = interface as? PandaDriver {
+                    Task {
+                        try? await panda.setSafetyModel(.allOutput)
+                        NSLog("[MaintenanceView] Switched Panda safety model to ALLOUTPUT for service operations")
+                    }
+                }
+            }
+            .onDisappear {
+                if let panda = interface as? PandaDriver {
+                    Task {
+                        try? await panda.setSafetyModel(.elm327)
+                        NSLog("[MaintenanceView] Restored Panda safety model to ELM327")
+                    }
                 }
             }
         }

@@ -16,7 +16,10 @@ struct RAPIDTRUTHApp: App {
             ContentView()
                 .environment(SettingsStore.shared)
                 .environment(PandaTransport.shared)
+                .environment(BLEManager.shared)
                 .environment(VehicleStore.shared)
+                .environment(ProfileRegistry.shared)
+                .environment(LoggingSession.shared)
                 .onOpenURL { url in
                     handleImport(url: url)
                 }

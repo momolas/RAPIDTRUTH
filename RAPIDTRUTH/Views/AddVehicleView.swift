@@ -1,17 +1,17 @@
 import SwiftUI
 
 struct AddVehicleView: View {
-    let driver: PandaDriver
+    let driver: VehicleInterface
     /// Optional callback fired right after a vehicle is successfully saved
     /// (and before the sheet dismisses itself). Onboarding uses this to
     /// know when its third step is complete.
     var onSaved: (() -> Void)? = nil
 
     @Environment(\.dismiss) private var dismiss
-    var settings = SettingsStore.shared
-    var profileRegistry = ProfileRegistry.shared
-    var vehicleStore = VehicleStore.shared
-    var pandaTransport = PandaTransport.shared
+    @Environment(SettingsStore.self) private var settings
+    @Environment(ProfileRegistry.self) private var profileRegistry
+    @Environment(VehicleStore.self) private var vehicleStore
+    @Environment(PandaTransport.self) private var pandaTransport
 
     @State private var year: String = ""
     @State private var make: String = ""
@@ -23,6 +23,7 @@ struct AddVehicleView: View {
 
     @State private var status: AutoStatus = .idle
     @State private var lastDecodedVIN: String?
+    @State private var decodeTask: Task<Void, Never>?
 
     enum AutoStatus: Equatable {
         case idle
@@ -73,9 +74,13 @@ struct AddVehicleView: View {
                     Button("Save") { save() }
                 }
             }
-            .onAppear {
+            .task {
                 profileID = profileRegistry.suggestedProfile(make: nil, year: nil).profileId
-                Task { await runVINReadIfConnected() }
+                await runVINReadIfConnected()
+            }
+            .onDisappear {
+                decodeTask?.cancel()
+                decodeTask = nil
             }
         }
     }
@@ -103,7 +108,10 @@ struct AddVehicleView: View {
         let upper = raw.uppercased()
         if upper != raw { vin = upper; return }
         guard isValidVINFormat(upper), upper != lastDecodedVIN else { return }
-        Task { await runDecode(vin: upper) }
+        decodeTask?.cancel()
+        decodeTask = Task {
+            await runDecode(vin: upper)
+        }
     }
 
     private func runVINReadIfConnected() async {
@@ -134,7 +142,7 @@ struct AddVehicleView: View {
     private func runDecode(vin candidate: String) async {
         status = .decoding
         do {
-            let service = getActiveDecoderService()
+            let service = getActiveDecoderService(settings: settings)
             let decoded = try await service.decode(vin: candidate)
             lastDecodedVIN = candidate
             applyDecoded(decoded)
@@ -175,7 +183,7 @@ struct AddVehicleView: View {
             vin: vin.isEmpty ? nil : vin,
             profileId: profile.profileId,
             profileVersion: profile.profileVersion,
-            createdAtUTC: ISO8601DateFormatter.utcMs.string(from: Date()),
+            createdAtUTC: Date().formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!)),
             lastUsedUTC: nil,
             supportedStandardPIDs: [],
             supportedProfilePIDs: [],

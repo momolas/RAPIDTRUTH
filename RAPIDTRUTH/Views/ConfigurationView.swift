@@ -4,8 +4,7 @@ struct ConfigurationView: View {
     let interface: VehicleInterface
     @Environment(\.dismiss) var dismiss
     @State private var configManager = ConfigurationManager()
-    private var pandaTransport = PandaTransport.shared
-
+    @Environment(PandaTransport.self) private var pandaTransport
 
     init(interface: VehicleInterface) {
         self.interface = interface
@@ -40,6 +39,28 @@ struct ConfigurationView: View {
                         
                     Toggle("Alarme Survitesse (120)", isOn: $configManager.overspeedWarning)
                         .listRowBackground(Color.appCardBackground)
+                    
+                    Picker("Motorisation / Carburant", selection: $configManager.fuelType) {
+                        Text("Diesel").tag("DSL")
+                        Text("Essence").tag("GSL")
+                    }
+                    .listRowBackground(Color.appCardBackground)
+                    
+                    Picker("Type de Boîte", selection: $configManager.gearboxType) {
+                        Text("Manuelle (BVM)").tag("BVM")
+                        Text("Automatique (BVA)").tag("BVA")
+                    }
+                    .listRowBackground(Color.appCardBackground)
+                    
+                    Toggle("Synthèse Vocale d'Alerte", isOn: $configManager.voiceSynthesis)
+                        .listRowBackground(Color.appCardBackground)
+                    
+                    Picker("Intervalle de Maintenance (OCS)", selection: $configManager.oilServiceInterval) {
+                        Text("15 000 km / 1 an").tag("15K")
+                        Text("20 000 km / 1 an").tag("20K")
+                        Text("30 000 km / 2 ans").tag("30K")
+                    }
+                    .listRowBackground(Color.appCardBackground)
                 }
                 
                 Section(header: Text("Unité Centrale Habitacle (UCH)")) {
@@ -57,6 +78,37 @@ struct ConfigurationView: View {
                         
                     Toggle("Supercondamnation", isOn: $configManager.deadlocking)
                         .listRowBackground(Color.appCardBackground)
+                    
+                    Toggle("Contrôle de Pression Pneus (SSPP)", isOn: $configManager.tpmsEnabled)
+                        .listRowBackground(Color.appCardBackground)
+                    
+                    Toggle("Essuyage Auto (Capteur Pluie)", isOn: $configManager.autoRainSensor)
+                        .listRowBackground(Color.appCardBackground)
+                    
+                    Toggle("Accès & Démarrage Main-Libre", isOn: $configManager.keylessGo)
+                        .listRowBackground(Color.appCardBackground)
+                    
+                    Toggle("Condamnation Porte Sélective", isOn: $configManager.selectiveUnlocking)
+                        .listRowBackground(Color.appCardBackground)
+                }
+                
+                Section(header: Text("Unité de Commutation (Moteur / UPC)")) {
+                    Toggle("Projecteurs Xénon", isOn: $configManager.xenonHeadlights)
+                        .listRowBackground(Color.appCardBackground)
+                    
+                    Toggle("Feux de Jour (DRL)", isOn: $configManager.drlEnabled)
+                        .listRowBackground(Color.appCardBackground)
+                    
+                    Picker("Puissance Alternateur", selection: $configManager.alternatorClass) {
+                        Text("Classe Standard (110A)").tag("110A")
+                        Text("Classe Grand Froid (150A)").tag("150A")
+                    }
+                    .listRowBackground(Color.appCardBackground)
+                }
+                
+                Section(header: Text("Frein de Parking Assisté (FPA)")) {
+                    Toggle("Mode Pays Froids (Sans serrage auto)", isOn: $configManager.coldClimateMode)
+                        .listRowBackground(Color.appCardBackground)
                 }
                 
                 Section(header: Text("Radio / Multimédia (RadNav)")) {
@@ -68,26 +120,26 @@ struct ConfigurationView: View {
                 }
                 
                 Section {
-					Button(action: {
-						Task { await configManager.writeConfig(interface: interface) }
-					}, label: {
-						HStack {
-							Spacer()
-							if configManager.isWriting {
-								ProgressView()
-									.padding(.trailing, 8)
-								Text("Écriture en cours...")
-							} else {
-								Text("Enregistrer dans l'ECU")
-									.fontWeight(.bold)
-							}
-							Spacer()
-						}
-					})
-					.disabled(configManager.isWriting || configManager.isReading || !isConnected)
-					.listRowBackground(Color.blue)
-					.foregroundStyle(.white)
-					.buttonBorderShape(.roundedRectangle(radius: 5))
+                    Button(action: {
+                        Task { await configManager.writeConfig(interface: interface) }
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            if configManager.isWriting {
+                                ProgressView()
+                                    .padding(.trailing, 8)
+                                Text("Écriture en cours...")
+                            } else {
+                                Text("Enregistrer dans l'ECU")
+                                    .fontWeight(.bold)
+                            }
+                            Spacer()
+                        }
+                    })
+                    .disabled(configManager.isWriting || configManager.isReading || !isConnected)
+                    .listRowBackground(Color.blue)
+                    .foregroundStyle(.white)
+                    .buttonBorderShape(.roundedRectangle(radius: 5))
                 }
                 
                 if configManager.showSuccessMessage {
@@ -132,6 +184,22 @@ struct ConfigurationView: View {
             .task {
                 if isConnected {
                     await configManager.readConfig(interface: interface)
+                }
+            }
+            .onAppear {
+                if let panda = interface as? PandaDriver {
+                    Task {
+                        try? await panda.setSafetyModel(.allOutput)
+                        NSLog("[ConfigurationView] Switched Panda safety model to ALLOUTPUT for coding")
+                    }
+                }
+            }
+            .onDisappear {
+                if let panda = interface as? PandaDriver {
+                    Task {
+                        try? await panda.setSafetyModel(.elm327)
+                        NSLog("[ConfigurationView] Restored Panda safety model to ELM327")
+                    }
                 }
             }
             .scrollContentBackground(.hidden)

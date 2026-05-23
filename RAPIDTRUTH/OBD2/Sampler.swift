@@ -24,7 +24,7 @@ final class Sampler {
         let values: [String: String]
     }
 
-    private let driver: PandaDriver
+    private let driver: VehicleInterface
     private let pids: [PidDef]
     private let ecus: [String: EcuDef]
     private let evaluator: FormulaEvaluator
@@ -59,7 +59,7 @@ final class Sampler {
     var onTick: ((TickRow) -> Void)?
 
     init(
-        driver: PandaDriver,
+        driver: VehicleInterface,
         pids: [PidDef],
         ecus: [String: EcuDef],
         sampleRateHz: Double,
@@ -111,7 +111,7 @@ final class Sampler {
 
         let startMs = Int(Date().timeIntervalSince1970 * 1000)
         let elapsedMs = startMs - sessionStartMs
-        let timestampISO = ISO8601DateFormatter.utcMs.string(from: Date())
+        let timestampISO = Date().formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!))
 
         var values: [String: String] = [:]
         var liveValuesCollected: [LiveValue] = []
@@ -288,11 +288,4 @@ final class Sampler {
     }
 }
 
-extension ISO8601DateFormatter {
-    static let utcMs: ISO8601DateFormatter = {
-        let f = ISO8601DateFormatter()
-        f.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        f.timeZone = TimeZone(identifier: "UTC")
-        return f
-    }()
-}
+

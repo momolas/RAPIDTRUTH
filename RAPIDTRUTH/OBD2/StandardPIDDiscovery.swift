@@ -5,7 +5,7 @@ enum StandardPIDDiscovery {
     /// and walk the supported-PID bitmaps to enumerate every standard PID
     /// the ECU declares it supports. Returns hex pid strings ("0C", "1F", …).
     @MainActor
-    static func discover(driver: PandaDriver) async throws -> [String] {
+    static func discover(driver: VehicleInterface) async throws -> [String] {
         var supported: [Int] = []
         var nextRange = 0x00 // start with PIDs 01-20 (request "0100")
         while nextRange <= 0xC0 {

@@ -69,7 +69,7 @@ enum StandardPids {
         PidDef(id: "fuel_rate",            displayName: "Fuel rate",             ecu: "engine", mode: "01", pid: "5E", unit: "L/h",  formula: "(A*256+B)/20",                       category: .engine,      min: nil, max: nil),
         PidDef(id: "fuel_pressure_meas",   displayName: "Fuel pressure (measured, PID 6D bytes D-E)", ecu: "engine", mode: "01", pid: "6D", unit: "kPa", formula: "(D*256+E)*10",   category: .engine,      min: nil, max: nil),
         PidDef(id: "hv_system_voltage",    displayName: "HV system voltage (PID 9A bytes B-C)", ecu: "engine", mode: "01", pid: "9A", unit: "V",   formula: "(B*256+C)/10",         category: .hybrid,      min: nil, max: nil),
-        PidDef(id: "odometer",             displayName: "Odometer",              ecu: "engine", mode: "01", pid: "A6", unit: "km",   formula: "(A*16777216+B*65536+C*256+D)/10",    category: .engine,      min: nil, max: nil),
+        PidDef(id: "odometer",             displayName: "Odometer",              ecu: "engine", mode: "01", pid: "A6", unit: "km",   formula: "(A*16777216+B*65536+C*256+D)/10",   category: .engine,      min: nil, max: nil),
     ]
 
     private static let byPid: [String: PidDef] = {

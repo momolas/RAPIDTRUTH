@@ -4,7 +4,7 @@ struct SessionsListView: View {
     // Fixed to Scenic 2 — no multi-vehicle management.
     private let owner = "rapidtruth"
     private let vehicleSlug = "renault_scenic2_m9r722"
-    var session = LoggingSession.shared
+    @Environment(LoggingSession.self) private var session
     @State private var sessions: [SessionRecord] = []
     @State private var page: Int = 0
 

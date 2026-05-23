@@ -46,12 +46,15 @@ final class MaintenanceManager {
         do {
             // 1. Setup Header
             try await interface.setTarget(txID: ecuHeader, rxID: nil)
+            try Task.checkCancellation()
 
             // 2. Start Session (Extended Diagnostic)
             _ = try await interface.sendDiagnosticRequest("10C0", timeout: 4.0)
+            try Task.checkCancellation()
 
             // 3. Send Routine Control Command
             let response = try await interface.sendDiagnosticRequest(routineCommand, timeout: 4.0)
+            try Task.checkCancellation()
 
             // 4. Close Session (Return to default)
             _ = try await interface.sendDiagnosticRequest("1081", timeout: 4.0)
@@ -64,7 +67,11 @@ final class MaintenanceManager {
             }
 
         } catch {
-            errorMessage = "Erreur de communication : \(error.localizedDescription)"
+            if error is CancellationError {
+                NSLog("[MaintenanceManager] Routine cancelled")
+            } else {
+                errorMessage = "Erreur de communication : \(error.localizedDescription)"
+            }
         }
 
         isExecuting = false

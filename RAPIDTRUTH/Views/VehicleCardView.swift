@@ -6,9 +6,9 @@ import SwiftUI
 /// chrome for a feature most users touch a handful of times. The card
 /// is the single entry point now; everything else hides behind it.
 struct VehicleCardView: View {
-    let driver: PandaDriver
-    var settings = SettingsStore.shared
-    var vehicleStore = VehicleStore.shared
+    let driver: VehicleInterface
+    @Environment(SettingsStore.self) private var settings
+    @Environment(VehicleStore.self) private var vehicleStore
 
     @State private var showManager = false
 

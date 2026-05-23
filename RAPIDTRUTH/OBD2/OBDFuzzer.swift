@@ -57,7 +57,7 @@ final class OBDFuzzer {
                 }
                 
                 // Small delay to prevent CAN bus flooding
-                try await Task.sleep(nanoseconds: 20_000_000) // 20ms
+                try await Task.sleep(for: .milliseconds(20)) // 20ms
             }
         } catch {
             actionError = "Fuzzing stopped: \(error.localizedDescription)"
@@ -97,7 +97,7 @@ final class OBDFuzzer {
                     discoveredECUs.append(ecu)
                 }
                 
-                try await Task.sleep(nanoseconds: 20_000_000)
+                try await Task.sleep(for: .milliseconds(20))
             }
         } catch {
             actionError = "Scan arrêté: \(error.localizedDescription)"

@@ -10,8 +10,10 @@ struct MainShellView: View {
     let driver: VehicleInterface
     @Binding var selectedDongle: DongleType
     
-    private var profileRegistry = ProfileRegistry.shared
-    private var session = LoggingSession.shared
+    @Environment(SettingsStore.self) private var settings
+    @Environment(VehicleStore.self) private var vehicleStore
+    @Environment(ProfileRegistry.self) private var profileRegistry
+    @Environment(LoggingSession.self) private var session
 
     @State private var showConfiguration = false
     @State private var showMaintenance = false
@@ -22,11 +24,15 @@ struct MainShellView: View {
         self._selectedDongle = selectedDongle
     }
 
-    /// Always resolves to the Scenic 2 profile. If for some reason the bundle
-    /// is missing it, we fall back to the first available profile so the UI
-    /// never crashes.
+    /// Dynamically resolves the active profile from the selected active vehicle,
+    /// falling back to the Scenic 2 profile if none is active or found.
     private var profile: Profile {
-        profileRegistry.profile(id: "renault_scenic2_m9r722")
+        if let slug = settings.activeVehicleSlug,
+           let vehicle = vehicleStore.vehicles.first(where: { $0.slug == slug }),
+           let prof = profileRegistry.profile(id: vehicle.profileId) {
+            return prof
+        }
+        return profileRegistry.profile(id: "renault_scenic2_m9r722")
             ?? profileRegistry.profiles.first!
     }
 
@@ -50,8 +56,14 @@ struct MainShellView: View {
                             .foregroundStyle(.red)
                     }
 
+                    // Vehicle Profile & Discovery Card
+                    VehicleCardView(driver: driver)
+
                     // 1 — Connexion
                     ConnectionView(driver: driver, selectedDongle: $selectedDongle)
+
+                    // 1.5 — Session Logging Controls
+                    LoggingControlsView(driver: driver)
 
                     // 2 — Diagnostic réseau (DTC tous calculateurs)
                     DiagnosticsView(interface: driver, profile: profile)

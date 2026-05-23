@@ -14,8 +14,7 @@ protocol VINDecodingService: Sendable {
 }
 
 @MainActor
-func getActiveDecoderService() -> VINDecodingService {
-    let settings = SettingsStore.shared
+func getActiveDecoderService(settings: SettingsStore) -> VINDecodingService {
     if settings.vinDecoderAPI.lowercased() == "apiplaque" {
         return ApiPlaqueClient(token: settings.apiPlaqueToken)
     }

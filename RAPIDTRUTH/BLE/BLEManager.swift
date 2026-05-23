@@ -186,6 +186,25 @@ final class BLEManager: NSObject {
         peripheral = nil
         picked = nil
         connectionState = .idle
+        
+        // Clean up pending continuations to avoid leaks
+        if let connCont = connectContinuation {
+            connCont.resume(throwing: BLEError.notConnected)
+            connectContinuation = nil
+        }
+        if let discCont = discoverContinuation {
+            discCont.resume(throwing: BLEError.notConnected)
+            discoverContinuation = nil
+        }
+        if let notifyCont = notifyContinuation {
+            notifyCont.resume(throwing: BLEError.notConnected)
+            notifyContinuation = nil
+        }
+        let pendingWrites = canWriteContinuations
+        canWriteContinuations.removeAll()
+        for c in pendingWrites {
+            c.resume()
+        }
     }
 
     /// Write bytes to the tx characteristic, chunked to 20 bytes (typical
@@ -338,8 +357,9 @@ extension BLEManager: CBPeripheralDelegate {
             }
             return
         }
+        let count = services.count
         Task { @MainActor in
-            self.pendingServiceDiscovery = services.count
+            self.pendingServiceDiscovery = count
         }
         for service in services {
             peripheral.discoverCharacteristics(nil, for: service)
@@ -368,7 +388,7 @@ extension BLEManager: CBPeripheralDelegate {
 
             // All services have reported their characteristics. Pick a tx/rx
             // pair using the same priority/fallback logic as the web app.
-            guard let services = peripheral.services else {
+            guard let activePeripheral = self.peripheral, let services = activePeripheral.services else {
                 self.discoverContinuation?.resume(throwing: BLEError.noUsableService)
                 self.discoverContinuation = nil
                 return
@@ -389,18 +409,16 @@ extension BLEManager: CBPeripheralDelegate {
                 // subsequent write to tx can race ahead of the actual
                 // notification subscription on the adapter side, and the
                 // response gets dropped.
-                Task { @MainActor in
-                    do {
-                        try await self.subscribeAndConfirm(
-                            peripheral: peripheral,
-                            characteristic: pickResult.rx
-                        )
-                        self.discoverContinuation?.resume(returning: description)
-                        self.discoverContinuation = nil
-                    } catch {
-                        self.discoverContinuation?.resume(throwing: error)
-                        self.discoverContinuation = nil
-                    }
+                do {
+                    try await self.subscribeAndConfirm(
+                        peripheral: activePeripheral,
+                        characteristic: pickResult.rx
+                    )
+                    self.discoverContinuation?.resume(returning: description)
+                    self.discoverContinuation = nil
+                } catch {
+                    self.discoverContinuation?.resume(throwing: error)
+                    self.discoverContinuation = nil
                 }
             } else {
                 self.discoverContinuation?.resume(throwing: BLEError.noUsableService)

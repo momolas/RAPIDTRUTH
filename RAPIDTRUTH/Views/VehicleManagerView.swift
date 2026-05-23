@@ -6,11 +6,11 @@ import UniformTypeIdentifiers
 /// main shell. Houses the three actions that used to clutter the main
 /// shell — Add, Import profile, Re-probe — in one place.
 struct VehicleManagerSheet: View {
-    let driver: PandaDriver
+    let driver: VehicleInterface
     @Environment(\.dismiss) private var dismiss
-    var settings = SettingsStore.shared
-    var vehicleStore = VehicleStore.shared
-    var profileRegistry = ProfileRegistry.shared
+    @Environment(SettingsStore.self) private var settings
+    @Environment(VehicleStore.self) private var vehicleStore
+    @Environment(ProfileRegistry.self) private var profileRegistry
 
     @State private var showAdd = false
     @State private var showImporter = false

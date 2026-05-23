@@ -87,7 +87,7 @@ final class LocationKeepAlive: NSObject, CLLocationManagerDelegate {
         Task { @MainActor in
             self.authorizationStatus = status
             if self.isActive && (status == .authorizedAlways || status == .authorizedWhenInUse) {
-                manager.startUpdatingLocation()
+                self.manager.startUpdatingLocation()
             }
         }
     }

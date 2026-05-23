@@ -10,7 +10,7 @@ enum ECULiveness {
     /// Returns true if we got a `41 00 …` positive response. False on
     /// timeout, NO_DATA, STOPPED, `?`, or any other non-positive reply.
     @MainActor
-    static func check(driver: PandaDriver) async throws -> Bool {
+    static func check(driver: VehicleInterface) async throws -> Bool {
         let response: String
         do {
             // 4-second window: enough for ELM327's first-query protocol

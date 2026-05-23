@@ -4,7 +4,7 @@ struct DiagnosticsView: View {
     let interface: VehicleInterface
     let profile: Profile
     @State private var dtcLoader = DTCLoader()
-    private var pandaTransport = PandaTransport.shared
+    @Environment(PandaTransport.self) private var pandaTransport
     init(interface: VehicleInterface, profile: Profile) {
         self.interface = interface
         self.profile = profile

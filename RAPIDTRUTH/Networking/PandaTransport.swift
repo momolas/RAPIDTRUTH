@@ -19,6 +19,7 @@ final class PandaTransport {
     private let inboundContinuation: AsyncStream<Data>.Continuation
     
     private var connection: NWConnection?
+    private var scanTask: Task<Void, Never>?
     private let queue = DispatchQueue(label: "obd.panda.queue")
     
     static let shared = PandaTransport()
@@ -31,10 +32,12 @@ final class PandaTransport {
     
 
     func scanForPandas() {
+        scanTask?.cancel()
         discoveredPandas.removeAll()
         // Wait a small delay to simulate scan
-        Task {
+        scanTask = Task {
             try? await Task.sleep(for: .seconds(1))
+            guard !Task.isCancelled else { return }
             let deducedIP = discoverPandaIP()
             if !self.discoveredPandas.contains(deducedIP) {
                 self.discoveredPandas.append(deducedIP)
@@ -43,7 +46,8 @@ final class PandaTransport {
     }
     
     func stopScan() {
-        // No-op for now since it's just deducing the IP.
+        scanTask?.cancel()
+        scanTask = nil
     }
 
     func connect(host: String? = nil, port: UInt16 = 1337) {
@@ -54,8 +58,9 @@ final class PandaTransport {
         let endpoint = NWEndpoint.Host(targetHost)
         let nwPort = NWEndpoint.Port(rawValue: port)!
         
-        // Panda uses UDP on port 1337
-        let parameters = NWParameters.udp
+        // Panda uses TCP on port 1337
+        let parameters = NWParameters.tcp
+        parameters.requiredInterfaceType = .wifi
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         self.connection = connection
         
@@ -70,7 +75,8 @@ final class PandaTransport {
                     self.state = .error(error.localizedDescription)
                     self.disconnect()
                 case .waiting(let error):
-                    self.state = .error(error.localizedDescription)
+                    // Log transient waiting, but do not set .error state since this is temporary
+                    NSLog("[PandaTransport] Connection is waiting for path: \(error.localizedDescription)")
                 case .cancelled:
                     if self.state != .idle { self.state = .idle }
                 default:
@@ -172,6 +178,46 @@ final class PandaTransport {
                     continuation.resume()
                 }
             })
+        }
+    }
+    
+    /// Sends a vendor control transfer write request to the Panda via UDP port 1338 (Wi-Fi).
+    func sendControlWrite(requestType: UInt16, request: UInt16, value: UInt16, index: UInt16, data: Data = Data()) async throws {
+        let targetHost = discoverPandaIP()
+        let endpoint = NWEndpoint.Host(targetHost)
+        let nwPort = NWEndpoint.Port(rawValue: 1338)!
+        
+        let parameters = NWParameters.udp
+        parameters.requiredInterfaceType = .wifi
+        let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            connection.stateUpdateHandler = { state in
+                switch state {
+                case .ready:
+                    var packet = Data()
+                    packet.append(contentsOf: withUnsafeBytes(of: requestType.littleEndian) { Array($0) })
+                    packet.append(contentsOf: withUnsafeBytes(of: request.littleEndian) { Array($0) })
+                    packet.append(contentsOf: withUnsafeBytes(of: value.littleEndian) { Array($0) })
+                    packet.append(contentsOf: withUnsafeBytes(of: index.littleEndian) { Array($0) })
+                    packet.append(data)
+                    
+                    connection.send(content: packet, completion: .contentProcessed { error in
+                        connection.cancel()
+                        if let error = error {
+                            continuation.resume(throwing: error)
+                        } else {
+                            continuation.resume()
+                        }
+                    })
+                case .failed(let error):
+                    connection.cancel()
+                    continuation.resume(throwing: error)
+                default:
+                    break
+                }
+            }
+            connection.start(queue: self.queue)
         }
     }
 }

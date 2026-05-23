@@ -6,7 +6,7 @@ enum ProfileProbe {
     /// rather than NO DATA, error, or no response at all. Returns the list
     /// of supported PID IDs (matching the profile's `pids[].id`).
     @MainActor
-    static func probe(driver: PandaDriver, profile: Profile) async throws -> [String] {
+    static func probe(driver: VehicleInterface, profile: Profile) async throws -> [String] {
         var supported: [String] = []
         // Group PIDs by ECU and set ATSH<request_header> once per group.
         // Mode 21 PIDs on non-engine ECUs (hybrid_controller, etc.) only
