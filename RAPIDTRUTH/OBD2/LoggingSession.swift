@@ -231,6 +231,8 @@ final class LoggingSession {
             LocationKeepAlive.shared.start()
 
             state = .logging(rowCount: 0, sessionID: sessionID)
+        } catch is CancellationError {
+            cleanup(reason: "cancelled")
         } catch {
             state = .error((error as? LocalizedError)?.errorDescription ?? error.localizedDescription)
             cleanup(reason: "error")

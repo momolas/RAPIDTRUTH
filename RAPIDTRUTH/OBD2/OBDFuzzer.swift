@@ -37,6 +37,7 @@ final class OBDFuzzer {
             try await interface.setTarget(txID: ecu, rxID: nil)
             
             for i in 0..<total {
+                try Task.checkCancellation()
                 if !isRunning { break } // Allows cancellation
                 
                 let didValue = startDid + i
@@ -59,6 +60,8 @@ final class OBDFuzzer {
                 // Small delay to prevent CAN bus flooding
                 try await Task.sleep(for: .milliseconds(20)) // 20ms
             }
+        } catch is CancellationError {
+            // Clean exit on cooperative task cancellation
         } catch {
             actionError = "Fuzzing stopped: \(error.localizedDescription)"
         }
@@ -78,6 +81,7 @@ final class OBDFuzzer {
         
         do {
             for (index, ecu) in range.enumerated() {
+                try Task.checkCancellation()
                 if !isRunning { break }
                 
                 currentProgress = Float(index) / Float(total)
@@ -99,6 +103,8 @@ final class OBDFuzzer {
                 
                 try await Task.sleep(for: .milliseconds(20))
             }
+        } catch is CancellationError {
+            // Clean exit on cooperative task cancellation
         } catch {
             actionError = "Scan arrêté: \(error.localizedDescription)"
         }

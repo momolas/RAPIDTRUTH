@@ -11,9 +11,11 @@ enum VINReader {
         // (supported PIDs Mode 01) as a warmup so the protocol is latched
         // before the multi-frame Mode 09 query. Swallow timeouts here — if
         // the warmup fails the 0902 retry loop below will still report.
+        try Task.checkCancellation()
         try await interface.setTarget(txID: "7DF", rxID: "7E8")
+        try Task.checkCancellation()
         let response = try await interface.sendDiagnosticRequest("0902", timeout: 8.0)
-        NSLog("[OBD2-VIN] 0902 raw response: \"\(response.replacingOccurrences(of: "\n", with: "\\n"))\"")
+        NSLog("[OBD2-VIN] 0902 raw response: \"\(response.replacing("\n", with: "\\n"))\"")
         return parseVINResponse(response)
     }
 

@@ -17,14 +17,16 @@ enum ECULiveness {
             // auto-detect on a cold link, short enough to fail fast on a
             // silent ECU.
             response = try await driver.sendDiagnosticRequest("0100", timeout: 4.0)
+        } catch is CancellationError {
+            throw CancellationError()
         } catch {
             return false
         }
         let normalized = response
             .uppercased()
-            .replacingOccurrences(of: " ", with: "")
-            .replacingOccurrences(of: "\n", with: "")
-            .replacingOccurrences(of: "\r", with: "")
+            .replacing(" ", with: "")
+            .replacing("\n", with: "")
+            .replacing("\r", with: "")
         if normalized.contains("NODATA") { return false }
         if normalized.contains("STOPPED") { return false }
         if normalized.contains("UNABLETOCONNECT") { return false }

@@ -266,7 +266,7 @@ final class PandaDriver: VehicleInterface {
 
     private func dataFromHexString(_ hex: String) -> Data {
         var data = Data()
-        var hexStr = hex.replacingOccurrences(of: " ", with: "")
+        var hexStr = hex.replacing(" ", with: "")
         if hexStr.count % 2 != 0 { hexStr = "0" + hexStr }
         var i = hexStr.startIndex
         while i < hexStr.endIndex {

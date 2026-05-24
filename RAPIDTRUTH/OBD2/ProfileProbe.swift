@@ -17,25 +17,29 @@ enum ProfileProbe {
             grouped[pid.ecu, default: []].append(pid)
         }
         for ecuName in grouped.keys.sorted() {
+            try Task.checkCancellation()
             if let ecu = profile.ecus[ecuName] {
                 _ = try? await driver.setTarget(txID: ecu.requestHeader, rxID: nil)
             }
             for pidDef in grouped[ecuName] ?? [] {
+                try Task.checkCancellation()
                 let request = pidDef.mode + pidDef.pid
                 let positiveResponseCode = try positiveResponseCode(mode: pidDef.mode, pid: pidDef.pid)
                 do {
                     let response = try await driver.sendDiagnosticRequest(request, timeout: 1.5)
                     let normalized = response
                         .uppercased()
-                        .replacingOccurrences(of: " ", with: "")
-                        .replacingOccurrences(of: "\n", with: "")
-                        .replacingOccurrences(of: "\r", with: "")
+                        .replacing(" ", with: "")
+                        .replacing("\n", with: "")
+                        .replacing("\r", with: "")
                     if normalized.contains("NODATA") || normalized.contains("STOPPED") {
                         continue
                     }
                     if normalized.contains(positiveResponseCode) {
                         supported.append(pidDef.id)
                     }
+                } catch is CancellationError {
+                    throw CancellationError()
                 } catch {
                     // Timeout or transport error → skip this PID and keep going.
                     continue

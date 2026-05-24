@@ -9,10 +9,13 @@ enum StandardPIDDiscovery {
         var supported: [Int] = []
         var nextRange = 0x00 // start with PIDs 01-20 (request "0100")
         while nextRange <= 0xC0 {
+            try Task.checkCancellation()
             let request = String(format: "01%02X", nextRange)
             let response: String
             do {
                 response = try await driver.sendDiagnosticRequest(request, timeout: 3.0)
+            } catch is CancellationError {
+                throw CancellationError()
             } catch {
                 break
             }
@@ -45,9 +48,9 @@ enum StandardPIDDiscovery {
     private static func parseBitmap(response: String, requestedPid: Int) -> UInt32? {
         guard let bytes = HexParsing.bytes(
             response
-                .replacingOccurrences(of: " ", with: "")
-                .replacingOccurrences(of: "\n", with: "")
-                .replacingOccurrences(of: "\r", with: "")
+                .replacing(" ", with: "")
+                .replacing("\n", with: "")
+                .replacing("\r", with: "")
         ) else { return nil }
         // Find "41 PP" (positive response to mode 01, PID requestedPid).
         let pp = UInt8(requestedPid)

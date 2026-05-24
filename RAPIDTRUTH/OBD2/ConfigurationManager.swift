@@ -114,6 +114,8 @@ final class ConfigurationManager {
                 coldClimateMode = fpaRes.contains("COLD")
             }
             
+        } catch is CancellationError {
+            // Clean exit on cooperative task cancellation
         } catch {
             actionError = "Failed to read configuration: \(error.localizedDescription)"
         }
@@ -193,6 +195,8 @@ final class ConfigurationManager {
                 }
             }
             
+        } catch is CancellationError {
+            // Clean exit on cooperative task cancellation
         } catch {
             actionError = "Failed to write configuration: \(error.localizedDescription)"
         }
