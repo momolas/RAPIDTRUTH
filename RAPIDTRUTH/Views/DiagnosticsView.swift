@@ -90,9 +90,7 @@ struct DiagnosticsView: View {
             }
 
             HStack(spacing: 16) {
-                Button(action: {
-                    Task { await dtcLoader.scan(interface: interface, profile: profile) }
-                }) {
+                Button(action: scanFaults) {
                     Text("Scan Faults")
                         .font(.appButton)
                         .frame(maxWidth: .infinity)
@@ -102,9 +100,7 @@ struct DiagnosticsView: View {
                 .disabled(dtcLoader.isScanning || dtcLoader.isClearing || !isConnected)
 
                 if !dtcLoader.dtcs.isEmpty {
-                    Button(action: {
-                        Task { await dtcLoader.clear(interface: interface, profile: profile) }
-                    }) {
+                    Button(action: clearFaults) {
                         Text(dtcLoader.isClearing ? "Clearing..." : "Clear All")
                             .font(.appButton)
                             .frame(maxWidth: .infinity)
@@ -116,5 +112,17 @@ struct DiagnosticsView: View {
             }
         }
         .appCard()
+    }
+    
+    private func scanFaults() {
+        Task {
+            await dtcLoader.scan(interface: interface, profile: profile)
+        }
+    }
+    
+    private func clearFaults() {
+        Task {
+            await dtcLoader.clear(interface: interface, profile: profile)
+        }
     }
 }

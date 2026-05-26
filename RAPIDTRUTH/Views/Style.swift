@@ -62,20 +62,15 @@ struct AppCardModifier: ViewModifier {
 
 struct AdaptiveGlassEffectContainer<Content: View>: View {
     let spacing: CGFloat
-    let content: () -> Content
-    
-    init(spacing: CGFloat = 16, @ViewBuilder content: @escaping () -> Content) {
-        self.spacing = spacing
-        self.content = content
-    }
+    @ViewBuilder let content: Content
     
     var body: some View {
         if #available(iOS 26, *) {
             GlassEffectContainer(spacing: spacing) {
-                content()
+                content
             }
         } else {
-            content()
+            content
         }
     }
 }

@@ -154,7 +154,7 @@ struct MaintenanceView: View {
             .navigationTitle("Fonctions de Service")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-				ToolbarItem(placement: .navigationBarLeading) {
+				ToolbarItem(placement: .topBarLeading) {
                     Button("Fermer") {
                         dismiss()
                     }

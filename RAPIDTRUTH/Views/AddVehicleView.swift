@@ -13,7 +13,7 @@ struct AddVehicleView: View {
     @Environment(VehicleStore.self) private var vehicleStore
     @Environment(PandaTransport.self) private var pandaTransport
 
-    @State private var year: String = ""
+    @State private var year: Int? = nil
     @State private var make: String = ""
     @State private var model: String = ""
     @State private var trim: String = ""
@@ -38,7 +38,7 @@ struct AddVehicleView: View {
         NavigationStack {
             Form {
                 Section("Vehicle") {
-                    TextField("Year", text: $year)
+                    TextField("Year", value: $year, format: .number.grouping(.never))
                         .keyboardType(.numberPad)
                     TextField("Make (e.g. Toyota)", text: $make)
                     TextField("Model (e.g. Camry)", text: $model)
@@ -153,7 +153,7 @@ struct AddVehicleView: View {
     }
 
     private func applyDecoded(_ decoded: VINDecoderResult) {
-        if let y = decoded.year { year = String(y) }
+        if let y = decoded.year { year = y }
         if !decoded.make.isEmpty { make = decoded.make }
         if !decoded.model.isEmpty { model = decoded.model }
         if !decoded.trim.isEmpty { trim = decoded.trim }
@@ -162,7 +162,7 @@ struct AddVehicleView: View {
     }
 
     private func save() {
-        let yearInt = Int(year)
+        let yearInt = year
         let slug = Vehicle.makeSlug(year: yearInt, make: make.isEmpty ? nil : make, model: model.isEmpty ? nil : model)
         guard !slug.isEmpty else {
             error = "Need at least a year + make or model."
