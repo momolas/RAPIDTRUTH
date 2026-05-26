@@ -64,7 +64,7 @@ struct MainShellView: View {
                     ConnectionView(driver: driver, selectedDongle: $selectedDongle)
 
                     // 1.5 — Session Logging Controls
-                    LoggingControlsView(driver: driver)
+                    //LoggingControlsView(driver: driver)
 
                     // 2 — Diagnostic réseau (DTC tous calculateurs)
                     DiagnosticsView(interface: driver, profile: profile)

@@ -260,6 +260,7 @@
 				DEVELOPMENT_TEAM = X8SJ59XXC8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "RAPIDTRUTH a besoin d'accéder au réseau local pour se connecter à l'adaptateur OBD Panda (Wi-Fi).";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -292,6 +293,7 @@
 				DEVELOPMENT_TEAM = X8SJ59XXC8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "RAPIDTRUTH a besoin d'accéder au réseau local pour se connecter à l'adaptateur OBD Panda (Wi-Fi).";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

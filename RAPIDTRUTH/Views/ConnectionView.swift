@@ -15,13 +15,28 @@ struct ConnectionView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Picker("Dongle", selection: $selectedDongle) {
+            HStack(spacing: 8) {
                 ForEach(DongleType.allCases) { type in
-                    Text(type.rawValue).tag(type)
+                    Button(action: {
+                        selectedDongle = type
+                    }) {
+                        Text(type.rawValue)
+                            .font(.subheadline)
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(selectedDongle == type ? Color.appAccent.opacity(0.15) : Color.white.opacity(0.03))
+                            .foregroundStyle(selectedDongle == type ? Color.appAccent : Color.secondary)
+                            .clipShape(.rect(cornerRadius: 5))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(selectedDongle == type ? Color.appAccent.opacity(0.4) : Color.white.opacity(0.05), lineWidth: 1)
+                            }
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(isConnecting || isConnected)
                 }
             }
-            .pickerStyle(.segmented)
-            .disabled(isConnecting || isConnected)
             
             HStack(alignment: .top) {
                 ConnectionStatusBadge(
