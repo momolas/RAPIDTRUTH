@@ -47,7 +47,7 @@ struct FuzzerNetworkDiscoverySection: View {
                     let range: [String]
                     switch selectedPreset {
                     case .rapid:
-                        range = ["7E0", "7E1", "7E2", "7E3", "7E4", "7E5", "7E6", "7E7", "740", "741", "742", "743", "744", "745", "756", "7A0", "7A2"]
+                        range = ["7E0", "7E1", "7E2", "7E3", "7E4", "7E5", "7E6", "7E7", "740", "741", "742", "743", "744", "745", "756", "7A0", "7A2", "7A4"]
                     case .standard11bit:
                         range = (0x700...0x7EF).map { String(format: "%03X", $0) }
                     case .standard29bit:

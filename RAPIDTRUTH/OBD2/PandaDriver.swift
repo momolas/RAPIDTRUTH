@@ -57,19 +57,18 @@ final class PandaDriver: VehicleInterface {
         if let rxID, let rx = UInt32(rxID, radix: 16) {
             self.rxID = rx
         } else {
-            // Default Renault/Standard mapping. If it's standard 11-bit, rx is tx + 0x08.
-            // But wait, in standard CAN UDS, it's + 0x08. For extended (29-bit), it's more complex.
-            // Assuming 11-bit standard + 0x08. If the header is 745 (UCH), response is 765 (+0x20).
-            // It's safer to explicitly provide rxID in the managers.
-            // For now, if rxID is nil, we default to +0x08 unless it's a known Renault header.
-            if tx == 0x745 { self.rxID = 0x765 }
-            else if tx == 0x743 { self.rxID = 0x763 }
-            else if tx == 0x7A1 { self.rxID = 0x7C1 }
-            else if tx == 0x7A0 { self.rxID = 0x7C0 }
-            else if tx == 0x7A4 { self.rxID = 0x7C4 }
-            else if tx == 0x7A2 { self.rxID = 0x7C2 }
-            else if tx == 0x756 { self.rxID = 0x776 }
-            else { self.rxID = tx + 0x08 }
+            // Renault physical CAN diagnostic headers use a +0x20 offset for response mapping (ranges: 74X, 75X, 76X, 79X, 7AX, 7BX)
+            if (0x740...0x74F).contains(tx) ||
+               (0x750...0x75F).contains(tx) ||
+               (0x760...0x76F).contains(tx) ||
+               (0x790...0x79F).contains(tx) ||
+               (0x7A0...0x7AF).contains(tx) ||
+               (0x7B0...0x7BF).contains(tx) {
+                self.rxID = tx + 0x20
+            } else {
+                // Default standard UDS/OBD2 physical request-response mapping (+0x08)
+                self.rxID = tx + 0x08
+            }
         }
     }
 
