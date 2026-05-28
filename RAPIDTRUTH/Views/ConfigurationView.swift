@@ -104,10 +104,51 @@ struct ConfigurationView: View {
                         Text("Classe Grand Froid (150A)").tag("150A")
                     }
                     .listRowBackground(Color.appCardBackground)
+                    
+                    Picker("Feux de Virage (Cornering)", selection: $configManager.corneringLightsMode) {
+                        Text("Désactivé").tag(0)
+                        Text("Cornering Actif (Antibrouillard)").tag(1)
+                        Text("Phares Adaptatifs (AFS) Seuls").tag(2)
+                        Text("Cornering + AFS Actifs").tag(3)
+                    }
+                    .listRowBackground(Color.appCardBackground)
+                    
+                    Picker("Seuil Vitesse Cornering", selection: $configManager.corneringSpeedThreshold) {
+                        Text("30 km/h").tag(30)
+                        Text("40 km/h").tag(40)
+                        Text("50 km/h").tag(50)
+                        Text("60 km/h").tag(60)
+                    }
+                    .listRowBackground(Color.appCardBackground)
                 }
                 
                 Section(header: Text("Frein de Parking Assisté (FPA)")) {
                     Toggle("Mode Pays Froids (Sans serrage auto)", isOn: $configManager.coldClimateMode)
+                        .listRowBackground(Color.appCardBackground)
+                }
+                
+                Section(header: Text("Aide au Stationnement (AAS)")) {
+                    Picker("Volume du Bruiteur", selection: $configManager.parkAssistVolume) {
+                        Text("Désactivé (Silencieux)").tag(0)
+                        Text("Faible").tag(2)
+                        Text("Moyen").tag(3)
+                        Text("Moyen Fort").tag(4)
+                        Text("Assez Fort").tag(5)
+                        Text("Fort").tag(6)
+                        Text("Très Fort").tag(7)
+                    }
+                    .listRowBackground(Color.appCardBackground)
+                    
+                    Picker("Fréquence du Signal Sonore", selection: $configManager.parkAssistTone) {
+                        Text("500 Hz").tag(0)
+                        Text("666 Hz").tag(1)
+                        Text("800 Hz").tag(2)
+                        Text("1000 Hz").tag(3)
+                        Text("2000 Hz").tag(4)
+                    }
+                    .listRowBackground(Color.appCardBackground)
+                    
+                    Toggle("Bouton d'Inhibition Habitacle", isOn: $configManager.parkAssistInhibitionButton)
                         .listRowBackground(Color.appCardBackground)
                 }
                 

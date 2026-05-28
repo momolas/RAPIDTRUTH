@@ -34,9 +34,16 @@ final class ConfigurationManager {
     var xenonHeadlights: Bool = false
     var drlEnabled: Bool = false
     var alternatorClass: String = "110A" // "110A" or "150A"
+    var corneringLightsMode: Int = 0 // 0: NO_CORNERING_NO_AFS, 1: CORNERING_ON_NO_AFS, 2: NO_CORNERING_AFS_ON, 3: CORNERING_ON_AFS_ON
+    var corneringSpeedThreshold: Int = 40 // Speed threshold in km/h
     
     // FPA (Frein de Parking Assisté)
     var coldClimateMode: Bool = false
+    
+    // AAS (Aide au Stationnement)
+    var parkAssistVolume: Int = 3 // 0 (Désactivé), 2 (Faible), 3 (Moyen), 4 (Moyen Fort), 5 (Assez Fort), 6 (Fort), 7 (Très Fort)
+    var parkAssistTone: Int = 3 // 0 (500Hz), 1 (666Hz), 2 (800Hz), 3 (1000Hz), 4 (2000Hz)
+    var parkAssistInhibitionButton: Bool = true // disabled (false/0) or enabled (true/128)
     
     var isReading = false
     var isWriting = false
@@ -107,11 +114,54 @@ final class ConfigurationManager {
             }
             try Task.checkCancellation()
             
+            // Read Cornering Lights config from UPC (txID 7A2)
+            if let corneringRes = try? await interface.sendDiagnosticRequest("223092", timeout: 4.0) {
+                if let modeByte = parseHexByte(from: corneringRes, prefix: "62 30 92") ?? parseHexByte(from: corneringRes, prefix: "61 92") {
+                    corneringLightsMode = modeByte
+                }
+            }
+            try Task.checkCancellation()
+            
+            if let speedRes = try? await interface.sendDiagnosticRequest("224604", timeout: 4.0) {
+                if let speedByte = parseHexByte(from: speedRes, prefix: "62 46 04") ?? parseHexByte(from: speedRes, prefix: "61 04") {
+                    corneringSpeedThreshold = speedByte
+                }
+            }
+            try Task.checkCancellation()
+            
             // Read FPA config (txID 7A0)
             try await interface.setTarget(txID: "7A0", rxID: nil)
             try Task.checkCancellation()
             if let fpaRes = try? await interface.sendDiagnosticRequest("222104", timeout: 4.0), fpaRes.contains("62 21 04") {
                 coldClimateMode = fpaRes.contains("COLD")
+            }
+            try Task.checkCancellation()
+            
+            // Read AAS config (txID 7A4)
+            try await interface.setTarget(txID: "7A4", rxID: nil)
+            try Task.checkCancellation()
+            
+            // Read Volume (222171)
+            if let volRes = try? await interface.sendDiagnosticRequest("222171", timeout: 4.0) {
+                if let volByte = parseHexByte(from: volRes, prefix: "62 21 71") ?? parseHexByte(from: volRes, prefix: "61 71") {
+                    parkAssistVolume = volByte
+                }
+            }
+            try Task.checkCancellation()
+            
+            // Read Tonalité (222172)
+            if let toneRes = try? await interface.sendDiagnosticRequest("222172", timeout: 4.0) {
+                if let toneByte = parseHexByte(from: toneRes, prefix: "62 21 72") ?? parseHexByte(from: toneRes, prefix: "61 72") {
+                    parkAssistTone = toneByte
+                }
+            }
+            try Task.checkCancellation()
+            
+            // Read Bouton d'Inhibition (2221E3)
+            if let inhibRes = try? await interface.sendDiagnosticRequest("2221E3", timeout: 4.0) {
+                if let inhibByte = parseHexByte(from: inhibRes, prefix: "62 21 E3") ?? parseHexByte(from: inhibRes, prefix: "61 E3") {
+                    parkAssistInhibitionButton = (inhibByte == 128)
+                }
             }
             
         } catch is CancellationError {
@@ -178,11 +228,39 @@ final class ConfigurationManager {
             _ = try? await interface.sendDiagnosticRequest("2E2103\(xenonPayload)\(drlPayload)\(altPayload)", timeout: 4.0)
             try Task.checkCancellation()
             
+            // Write Cornering Lights config (txID 7A2)
+            let corneringModeHex = String(format: "%02X", corneringLightsMode)
+            _ = try? await interface.sendDiagnosticRequest("2E3092\(corneringModeHex)", timeout: 4.0)
+            try Task.checkCancellation()
+            
+            let speedHex = String(format: "%02X", corneringSpeedThreshold)
+            _ = try? await interface.sendDiagnosticRequest("2E4604\(speedHex)", timeout: 4.0)
+            try Task.checkCancellation()
+            
             // Write FPA (txID 7A0)
             try await interface.setTarget(txID: "7A0", rxID: nil)
             try Task.checkCancellation()
             let fpaPayload = coldClimateMode ? "COLD" : "STD"
             _ = try? await interface.sendDiagnosticRequest("2E2104\(fpaPayload)", timeout: 4.0)
+            try Task.checkCancellation()
+            
+            // Write AAS (txID 7A4)
+            try await interface.setTarget(txID: "7A4", rxID: nil)
+            try Task.checkCancellation()
+            
+            // Write Volume (3BB1xx)
+            let volHex = String(format: "%02X", parkAssistVolume)
+            _ = try? await interface.sendDiagnosticRequest("3BB1\(volHex)", timeout: 4.0)
+            try Task.checkCancellation()
+            
+            // Write Tonalité (3BC1xx)
+            let toneHex = String(format: "%02X", parkAssistTone)
+            _ = try? await interface.sendDiagnosticRequest("3BC1\(toneHex)", timeout: 4.0)
+            try Task.checkCancellation()
+            
+            // Write Bouton d'Inhibition (3BE3xx)
+            let inhibHex = parkAssistInhibitionButton ? "80" : "00"
+            _ = try? await interface.sendDiagnosticRequest("3BE3\(inhibHex)", timeout: 4.0)
             try Task.checkCancellation()
             
             // Show success for 3 seconds
@@ -202,5 +280,16 @@ final class ConfigurationManager {
         }
         
         isWriting = false
+    }
+    
+    private func parseHexByte(from response: String, prefix: String) -> Int? {
+        let cleanResponse = response.replacingOccurrences(of: " ", with: "")
+        let cleanPrefix = prefix.replacingOccurrences(of: " ", with: "")
+        
+        guard let range = cleanResponse.range(of: cleanPrefix) else { return nil }
+        let remaining = cleanResponse[range.upperBound...]
+        guard remaining.count >= 2 else { return nil }
+        let byteString = String(remaining.prefix(2))
+        return Int(byteString, radix: 16)
     }
 }

@@ -66,6 +66,9 @@ final class PandaDriver: VehicleInterface {
             else if tx == 0x743 { self.rxID = 0x763 }
             else if tx == 0x7A1 { self.rxID = 0x7C1 }
             else if tx == 0x7A0 { self.rxID = 0x7C0 }
+            else if tx == 0x7A4 { self.rxID = 0x7C4 }
+            else if tx == 0x7A2 { self.rxID = 0x7C2 }
+            else if tx == 0x756 { self.rxID = 0x776 }
             else { self.rxID = tx + 0x08 }
         }
     }
