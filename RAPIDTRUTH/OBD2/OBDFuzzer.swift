@@ -18,6 +18,11 @@ final class OBDFuzzer {
     var currentScanTarget: String = ""
     var actionError: String? = nil
     
+    // Real-time correlation properties
+    var correlations: [SliceCorrelation] = []
+    var analyzedFrameCount: Int = 0
+    private let correlator = SignalCorrelator()
+    
     // We only use safe read services (Service 22: Read Data By Identifier)
     func fuzzService22(interface: VehicleInterface, ecu: String, startDid: Int, endDid: Int) async {
         guard !isRunning else { return }
@@ -115,5 +120,79 @@ final class OBDFuzzer {
     
     func cancel() {
         isRunning = false
+    }
+    
+    // MARK: - Real-Time Correlation Analysis
+    
+    func analyzeDIDCorrelation(interface: VehicleInterface, ecu: String, didHex: String) async {
+        guard !isRunning else { return }
+        isRunning = true
+        actionError = nil
+        correlations.removeAll()
+        analyzedFrameCount = 0
+        correlator.reset()
+        currentScanTarget = "Corrélation: \(didHex)"
+        
+        do {
+            try await interface.setTarget(txID: ecu, rxID: nil)
+            
+            while isRunning {
+                try Task.checkCancellation()
+                if !isRunning { break }
+                
+                // 1. Query targeted UDS DID (Service 22)
+                let req = "22" + didHex
+                guard let resp = try? await interface.sendDiagnosticRequest(req, timeout: 0.5),
+                      !resp.isEmpty, !resp.hasPrefix("7F"), !resp.contains("ERROR"), resp != "NO_DATA" else {
+                    try await Task.sleep(for: .milliseconds(100))
+                    continue
+                }
+                
+                // 2. Query standard OBD-II RPM (010C)
+                var rpmVal = 0.0
+                if let rpmResp = try? await interface.sendDiagnosticRequest("010C", timeout: 0.3),
+                   let rpm = decodeRPM(rpmResp) {
+                    rpmVal = rpm
+                }
+                
+                // 3. Query standard OBD-II Speed (010D)
+                var speedVal = 0.0
+                if let speedResp = try? await interface.sendDiagnosticRequest("010D", timeout: 0.3),
+                   let speed = decodeSpeed(speedResp) {
+                    speedVal = speed
+                }
+                
+                // 4. Update the correlator engine
+                let results = correlator.record(hexResponse: resp, rpm: rpmVal, speed: speedVal)
+                if !results.isEmpty {
+                    self.correlations = results
+                    self.analyzedFrameCount += 1
+                }
+                
+                // 30ms inter-command delay to respect CAN bus
+                try await Task.sleep(for: .milliseconds(30))
+            }
+        } catch is CancellationError {
+            // Clean exit
+        } catch {
+            actionError = "Analyse arrêtée: \(error.localizedDescription)"
+        }
+        
+        isRunning = false
+    }
+    
+    private func decodeRPM(_ hex: String) -> Double? {
+        let clean = hex.replacingOccurrences(of: " ", with: "").uppercased()
+        guard clean.hasPrefix("410C"), clean.count >= 8 else { return nil }
+        guard let a = UInt8(clean.dropFirst(4).prefix(2), radix: 16),
+              let b = UInt8(clean.dropFirst(6).prefix(2), radix: 16) else { return nil }
+        return (Double(a) * 256.0 + Double(b)) / 4.0
+    }
+    
+    private func decodeSpeed(_ hex: String) -> Double? {
+        let clean = hex.replacingOccurrences(of: " ", with: "").uppercased()
+        guard clean.hasPrefix("410D"), clean.count >= 6 else { return nil }
+        guard let a = UInt8(clean.dropFirst(4).prefix(2), radix: 16) else { return nil }
+        return Double(a)
     }
 }

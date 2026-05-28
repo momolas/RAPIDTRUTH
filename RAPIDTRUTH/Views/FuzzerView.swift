@@ -47,29 +47,159 @@ struct FuzzerView: View {
     @State private var selectedPreset: ScanPreset = .rapid
     @State private var selectedDidPreset: DidPreset = .LowerRange
     
+    // Reverse Engineering state properties
+    @State private var selectedTab: Int = 0 // 0: Balayage DIDs (Fuzzer), 1: Corrélation (Reverse Engineering)
+    @State private var targetDidHex: String = "2101"
+    
     var body: some View {
         NavigationStack {
             Form {
                 if !agreedToRisks {
                     FuzzerSafetyWarningView(agreedToRisks: $agreedToRisks)
                 } else {
-                    FuzzerNetworkDiscoverySection(
-                        interface: interface,
-                        fuzzer: fuzzer,
-                        selectedPreset: $selectedPreset,
-                        targetEcu: $targetEcu
-                    )
-                    FuzzerConfigSection(
-                        selectedDidPreset: $selectedDidPreset,
-                        targetEcu: $targetEcu,
-                        startDidHex: $startDidHex,
-                        endDidHex: $endDidHex
-                    )
-                    FuzzerExecutionSection(
-                        fuzzer: fuzzer,
-                        onStartFuzzing: startFuzzing
-                    )
-                    FuzzerResultsSection(fuzzer: fuzzer)
+                    Picker("Mode Fuzzer", selection: $selectedTab) {
+                        Text("Balayage DIDs").tag(0)
+                        Text("Corrélation TR (Reverse)").tag(1)
+                    }
+                    .pickerStyle(.segmented)
+                    .listRowBackground(Color.clear)
+                    
+                    if selectedTab == 0 {
+                        FuzzerNetworkDiscoverySection(
+                            interface: interface,
+                            fuzzer: fuzzer,
+                            selectedPreset: $selectedPreset,
+                            targetEcu: $targetEcu
+                        )
+                        FuzzerConfigSection(
+                            selectedDidPreset: $selectedDidPreset,
+                            targetEcu: $targetEcu,
+                            startDidHex: $startDidHex,
+                            endDidHex: $endDidHex
+                        )
+                        FuzzerExecutionSection(
+                            fuzzer: fuzzer,
+                            onStartFuzzing: startFuzzing
+                        )
+                        FuzzerResultsSection(fuzzer: fuzzer)
+                    } else {
+                        // Section d'analyse de signaux en temps réel
+                        Section(header: Text("Configuration du DID").font(.cardTitle)) {
+                            HStack {
+                                Text("ECU Cible (Hex)")
+                                Spacer()
+                                TextField("7E0", text: $targetEcu)
+                                    .multilineTextAlignment(.trailing)
+                                    .font(.monoSmall)
+                                    .frame(width: 80)
+                            }
+                            HStack {
+                                Text("DID Cible (Hex)")
+                                Spacer()
+                                TextField("2101", text: $targetDidHex)
+                                    .multilineTextAlignment(.trailing)
+                                    .font(.monoSmall)
+                                    .frame(width: 80)
+                            }
+                        }
+                        
+                        Section(header: Text("Analyse de Corrélation").font(.cardTitle)) {
+                            if fuzzer.isRunning {
+                                Button(role: .destructive, action: stopCorrelation) {
+                                    HStack {
+                                        Spacer()
+                                        ProgressView()
+                                            .padding(.trailing, 8)
+                                        Text("Arrêter l'Analyse")
+                                            .font(.appButton)
+                                        Spacer()
+                                    }
+                                }
+                                .glassActionButton(prominent: true)
+                            } else {
+                                Button(action: startCorrelation) {
+                                    Text("Démarrer l'Analyse")
+                                        .font(.appButton)
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .glassActionButton(prominent: true)
+                            }
+                            
+                            if fuzzer.analyzedFrameCount > 0 {
+                                HStack {
+                                    Text("Trames analysées")
+                                        .font(.captionText)
+                                    Spacer()
+                                    Text("\(fuzzer.analyzedFrameCount)")
+                                        .font(.valueNumber)
+                                        .foregroundStyle(Color.appAccent)
+                                }
+                            }
+                        }
+                        
+                        Section(header: Text("Rapports de Pearson (Temps Réel)").font(.cardTitle)) {
+                            if fuzzer.correlations.isEmpty {
+                                VStack(alignment: .center, spacing: 8) {
+                                    Image(systemName: "waveform.path.ecg")
+                                        .font(.largeTitle)
+                                        .foregroundStyle(.tertiary)
+                                    Text("En attente d'acquisition...")
+                                        .font(.statusText)
+                                        .foregroundStyle(.secondary)
+                                    Text("Accélérez ou faites varier l'état pour corréler les signaux.")
+                                        .font(.captionTiny)
+                                        .foregroundStyle(.tertiary)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                            } else {
+                                ForEach(fuzzer.correlations) { result in
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        HStack {
+                                            Text("Tranche \(result.sliceName)")
+                                                .font(.monoSmall)
+                                                .bold()
+                                                .foregroundStyle(.white)
+                                            Spacer()
+                                            Text(result.classification)
+                                                .font(.captionTiny)
+                                                .bold()
+                                                .foregroundStyle(colorForClassification(result.classification))
+                                        }
+                                        
+                                        HStack(spacing: 8) {
+                                            GeometryReader { geo in
+                                                ZStack(alignment: .leading) {
+                                                    RoundedRectangle(cornerRadius: 3)
+                                                        .fill(Color.white.opacity(0.1))
+                                                        .frame(height: 6)
+                                                    
+                                                    RoundedRectangle(cornerRadius: 3)
+                                                        .fill(colorForCoefficient(result.coefficient))
+                                                        .frame(width: geo.size.width * CGFloat(abs(result.coefficient)), height: 6)
+                                                }
+                                            }
+                                            .frame(height: 6)
+                                            
+                                            Text("\((result.coefficient * 100).formatted(.number.precision(.fractionLength(1))))%")
+                                                .font(.valueNumber)
+                                                .foregroundStyle(.secondary)
+                                                .frame(width: 55, alignment: .trailing)
+                                        }
+                                    }
+                                    .padding(.vertical, 6)
+                                    .padding(.horizontal, 10)
+                                    .background(Color.white.opacity(0.02))
+                                    .clipShape(.rect(cornerRadius: 8))
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.white.opacity(0.04), lineWidth: 1)
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .navigationTitle("Fuzzer OBD")
@@ -116,5 +246,41 @@ struct FuzzerView: View {
         Task {
             await fuzzer.fuzzService22(interface: interface, ecu: targetEcu, startDid: start, endDid: end)
         }
+    }
+    
+    private func startCorrelation() {
+        guard targetDidHex.count == 4, Int(targetDidHex, radix: 16) != nil else {
+            fuzzer.actionError = "Le DID cible doit être de 4 caractères hexadécimaux."
+            return
+        }
+        Task {
+            await fuzzer.analyzeDIDCorrelation(interface: interface, ecu: targetEcu, didHex: targetDidHex)
+        }
+    }
+    
+    private func stopCorrelation() {
+        fuzzer.cancel()
+    }
+    
+    private func colorForClassification(_ classification: String) -> Color {
+        if classification.contains("FORT") {
+            return Color.green
+        } else if classification.contains("potentiel") {
+            return Color.appAccent
+        } else if classification.contains("Constant") {
+            return Color.secondary
+        }
+        return Color.secondary
+    }
+    
+    private func colorForCoefficient(_ coef: Double) -> Color {
+        if coef >= 0.75 {
+            return Color.green
+        } else if coef <= -0.75 {
+            return Color.orange
+        } else if coef >= 0.50 {
+            return Color.appAccent
+        }
+        return Color.secondary
     }
 }
