@@ -10,10 +10,8 @@ final class PandaDriver: VehicleInterface {
     private var inFlight: CheckedContinuation<String, Error>?
     private var timeoutTask: Task<Void, Never>?
 
-    // Buffer for ISOTP reconstruction
-    private var isotpBuffer: Data = Data()
-    private var expectedLength: Int = 0
-    private var consecutiveFrameIndex: UInt8 = 0
+    // Multi-stream ISO-TP reassembler
+    private let isotpReassembler = ISOTPReassembler()
     
     // Task reading from transport
     private var inboundTask: Task<Void, Never>?
@@ -81,8 +79,7 @@ final class PandaDriver: VehicleInterface {
         let payload = dataFromHexString(hexString)
         let frames = fragmentISOTP(payload: payload)
 
-        isotpBuffer.removeAll()
-        expectedLength = 0
+        isotpReassembler.reset(address: self.rxID)
         
         return try await withCheckedThrowingContinuation { continuation in
             self.inFlight = continuation
@@ -127,38 +124,21 @@ final class PandaDriver: VehicleInterface {
     }
 
     private func handleISOTPFrame(_ data: Data) {
-        guard data.count > 0 else { return }
-        let pci = data[0] >> 4
-        
-        if pci == 0 { // Single Frame
-            let length = Int(data[0] & 0x0F)
-            guard data.count >= length + 1 else { return }
-            let payload = data[1...(length)]
-            deliver(payload)
-        } 
-        else if pci == 1 { // First Frame
-            let length = Int((UInt16(data[0] & 0x0F) << 8) | UInt16(data[1]))
-            expectedLength = length
-            isotpBuffer = data[2...]
-            consecutiveFrameIndex = 1
-            
+        let result = isotpReassembler.processFrame(address: self.rxID, data: data)
+        switch result {
+        case .completed(let completedData):
+            deliver(completedData)
+        case .needsFlowControl:
             // Send Flow Control: 30 00 00 (Clear to send, block size 0, STmin 0)
             Task {
                 let fcData = Data([0x30, 0x00, 0x00])
                 let packed = packPandaCAN(address: txID, data: fcData, bus: 0)
                 try? await transport.send(packed)
             }
-        }
-        else if pci == 2 { // Consecutive Frame
-            guard expectedLength > 0 else { return }
-            // let index = data[0] & 0x0F
-            isotpBuffer.append(data[1...])
-            if isotpBuffer.count >= expectedLength {
-                deliver(isotpBuffer.prefix(expectedLength))
-            }
-        }
-        else if pci == 3 { // Flow Control
-            // We ignore incoming Flow Control for now (we just sent all CFs at once above).
+        case .error(let errMsg):
+            NSLog("[PandaDriver] ISO-TP Error: \(errMsg)")
+        case .pending:
+            break
         }
     }
 

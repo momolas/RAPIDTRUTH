@@ -11,6 +11,7 @@ enum KnownServices {
     static let serviceUUIDs: [CBUUID] = [
         CBUUID(string: "FFF0"),                               // most common ELM327 BLE clones (Veepeak BLE+, etc.)
         CBUUID(string: "FFE0"),                               // HM-10 / alternate ELM327 BLE family
+        CBUUID(string: "18F0"),
         CBUUID(string: "FFE5"),                               // some Veepeak / Vgate variants
         CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"), // Nordic UART (NUS)
         CBUUID(string: "E7810A71-73AE-499D-8C15-FAA9AEF0C3F2"), // Nordic UART variant in some clones
