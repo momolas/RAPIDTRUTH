@@ -172,7 +172,7 @@ struct ConfigurationView: View {
                                 Text("Écriture en cours...")
                             } else {
                                 Text("Enregistrer dans l'ECU")
-                                    .fontWeight(.bold)
+                                    .bold()
                             }
                             Spacer()
                         }
@@ -220,6 +220,7 @@ struct ConfigurationView: View {
                         }
                     }
                     .disabled(configManager.isReading || configManager.isWriting || !isConnected)
+                    .accessibilityLabel("Actualiser la configuration depuis le véhicule")
                 }
             }
             .task {

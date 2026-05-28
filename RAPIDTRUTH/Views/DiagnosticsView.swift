@@ -100,13 +100,12 @@ struct DiagnosticsView: View {
                 .disabled(dtcLoader.isScanning || dtcLoader.isClearing || !isConnected)
 
                 if !dtcLoader.dtcs.isEmpty {
-                    Button(action: clearFaults) {
+                    Button(role: .destructive, action: clearFaults) {
                         Text(dtcLoader.isClearing ? "Clearing..." : "Clear All")
                             .font(.appButton)
                             .frame(maxWidth: .infinity)
                     }
                     .glassActionButton(prominent: false)
-                    .tint(.red)
                     .disabled(dtcLoader.isClearing || !isConnected)
                 }
             }

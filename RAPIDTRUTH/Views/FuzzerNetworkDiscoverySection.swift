@@ -42,7 +42,7 @@ struct FuzzerNetworkDiscoverySection: View {
                 }
             }
             
-            Button {
+            Button(action: {
                 Task {
                     let range: [String]
                     switch selectedPreset {
@@ -55,12 +55,9 @@ struct FuzzerNetworkDiscoverySection: View {
                     }
                     await fuzzer.scanNetwork(interface: interface, range: range)
                 }
-            } label: {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                    Text("Scanner le Réseau CAN")
-                }
-                .frame(maxWidth: .infinity)
+            }) {
+                Label("Scanner le Réseau CAN", systemImage: "magnifyingglass")
+                    .frame(maxWidth: .infinity)
             }
             .glassActionButton(prominent: false)
             .buttonBorderShape(.roundedRectangle)
