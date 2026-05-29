@@ -149,7 +149,7 @@
             "ecu": "abs",
             "mode": "21",
             "pid": "07",
-            "unit": "°/s) (min : -200 ; max :200",
+            "unit": "°/s",
             "formula": "(((F*256 + G) * 2.0) + -65534.0)",
             "category": "other"
         },
@@ -159,7 +159,7 @@
             "ecu": "abs",
             "mode": "21",
             "pid": "04",
-            "unit": "Km/H",
+            "unit": "km/h",
             "formula": "(I*256 + J)",
             "category": "other"
         },
@@ -169,7 +169,7 @@
             "ecu": "tdb",
             "mode": "21",
             "pid": "10",
-            "unit": "",
+            "unit": "km/h",
             "formula": "(H*256 + I)",
             "category": "other"
         },
@@ -179,7 +179,7 @@
             "ecu": "uch",
             "mode": "21",
             "pid": "66",
-            "unit": "",
+            "unit": "mbar",
             "formula": "(F * 3500.0)",
             "category": "other"
         },
@@ -189,7 +189,7 @@
             "ecu": "uch",
             "mode": "21",
             "pid": "66",
-            "unit": "",
+            "unit": "mbar",
             "formula": "(L * 3500.0)",
             "category": "other"
         },
@@ -199,7 +199,7 @@
             "ecu": "uch",
             "mode": "21",
             "pid": "66",
-            "unit": "",
+            "unit": "mbar",
             "formula": "(R * 3500.0)",
             "category": "other"
         },
@@ -209,7 +209,7 @@
             "ecu": "uch",
             "mode": "21",
             "pid": "66",
-            "unit": "",
+            "unit": "mbar",
             "formula": "(X * 3500.0)",
             "category": "other"
         },
@@ -219,7 +219,7 @@
             "ecu": "fpa",
             "mode": "21",
             "pid": "90",
-            "unit": "",
+            "unit": "%",
             "formula": "F",
             "category": "other"
         },
@@ -231,7 +231,7 @@
             "pid": "90",
             "unit": "V",
             "formula": "((A * 0.069) + 1.0)",
-            "category": "other"
+            "category": "battery"
         },
         {
             "id": "clim_ext_temp",
@@ -269,7 +269,7 @@
             "ecu": "dae",
             "mode": "21",
             "pid": "01",
-            "unit": "Degrees",
+            "unit": "°",
             "formula": "((D*256 + E) + -32767.0)",
             "category": "other"
         },
@@ -289,9 +289,9 @@
             "ecu": "airbag",
             "mode": "21",
             "pid": "06",
-            "unit": "Volt",
+            "unit": "V",
             "formula": "(U * 0.082)",
-            "category": "other"
+            "category": "battery"
         },
         {
             "id": "airbag_imp",

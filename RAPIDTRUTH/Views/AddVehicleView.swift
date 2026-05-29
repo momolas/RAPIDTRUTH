@@ -18,7 +18,7 @@ struct AddVehicleView: View {
     @State private var model: String = ""
     @State private var trim: String = ""
     @State private var vin: String = ""
-    @State private var profileID: String = "generic-obd2"
+    @State private var profileID: String = "generic_obd2"
     @State private var error: String?
 
     @State private var status: AutoStatus = .idle

@@ -35,7 +35,7 @@ final class DTCDescriptionProvider: Sendable {
         }
 
         // 2. Load Generic OBD2 codes
-        if let url = Bundle.main.url(forResource: "dtcmapping", withExtension: "json"),
+        if let url = Bundle.main.url(forResource: "dtc_generic_en", withExtension: "json"),
            let data = try? Data(contentsOf: url),
            let map = try? JSONDecoder().decode([String: String].self, from: data) {
             self.genericDtcMap = map
@@ -43,9 +43,9 @@ final class DTCDescriptionProvider: Sendable {
             let fileManager = FileManager.default
             let bundlePath = Bundle.main.bundlePath
             let possiblePaths = [
-                "\(bundlePath)/dtcmapping.json",
-                "\(bundlePath)/Resources/dtcmapping.json",
-                "\(bundlePath)/RAPIDTRUTH/Profiles/dtcmapping.json"
+                "\(bundlePath)/dtc_generic_en.json",
+                "\(bundlePath)/Resources/dtc_generic_en.json",
+                "\(bundlePath)/RAPIDTRUTH/Profiles/dtc_generic_en.json"
             ]
             
             var loadedMap: [String: String] = [:]

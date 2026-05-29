@@ -22,7 +22,7 @@ final class ProfileRegistry {
     }
 
     /// Heuristic: pick the first profile whose `vehicle_match` lists this
-    /// make + (optional) year. Falls back to "generic-obd2".
+    /// make + (optional) year. Falls back to "generic_obd2".
     func suggestedProfile(make: String?, year: Int?) -> Profile {
         if let make = make?.lowercased() {
             for p in profiles {
@@ -35,12 +35,8 @@ final class ProfileRegistry {
                     }
                 }
             }
-            // Generic Toyota Hybrid for any Toyota / Lexus / Scion w/o explicit match
-            if ["toyota", "lexus", "scion"].contains(make) {
-                if let toyota = profile(id: "generic-toyota-hybrid") { return toyota }
-            }
         }
-        return profile(id: "generic-obd2") ?? profiles.first!
+        return profile(id: "generic_obd2") ?? profiles.first!
     }
 
     func reload() {
@@ -83,8 +79,8 @@ final class ProfileRegistry {
 
         // Stable ordering: generic first, then alphabetical by display name.
         loaded.sort { lhs, rhs in
-            let lg = lhs.profileId.hasPrefix("generic-")
-            let rg = rhs.profileId.hasPrefix("generic-")
+            let lg = lhs.profileId.hasPrefix("generic_")
+            let rg = rhs.profileId.hasPrefix("generic_")
             if lg != rg { return lg }
             return lhs.displayName.localizedCaseInsensitiveCompare(rhs.displayName) == .orderedAscending
         }
