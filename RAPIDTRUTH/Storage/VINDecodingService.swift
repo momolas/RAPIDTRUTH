@@ -13,12 +13,29 @@ protocol VINDecodingService: Sendable {
     func decode(vin: String) async throws -> VINDecoderResult
 }
 
+struct FallbackVINDecoder: VINDecodingService {
+    enum DecodeError: LocalizedError {
+        case notConfigured
+        
+        var errorDescription: String? {
+            return "Aucun décodeur VIN actif n'est configuré."
+        }
+    }
+    
+    func decode(vin: String) async throws -> VINDecoderResult {
+        throw DecodeError.notConfigured
+    }
+}
+
 @MainActor
 func getActiveDecoderService(settings: SettingsStore) -> VINDecodingService {
-    if settings.vinDecoderAPI.lowercased() == "apiplaque" {
+    let api = settings.vinDecoderAPI.lowercased()
+    if api == "apiplaque" {
         return ApiPlaqueClient(token: settings.apiPlaqueToken)
+    } else if api == "autodev" {
+        return AutoDevClient(apiKey: settings.autoDevToken)
     }
-    return NHTSAClient()
+    return FallbackVINDecoder()
 }
 
 func isValidVINFormat(_ candidate: String) -> Bool {

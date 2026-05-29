@@ -84,5 +84,3 @@ struct ApiPlaqueClient: VINDecodingService {
     }
 }
 
-// Helpers from NHTSAClient can be shared, but since they are fileprivate in NHTSAClient, we duplicate or move them.
-// Wait, isValidVINFormat and titleCase are currently fileprivate in NHTSAClient.swift. I should move them.

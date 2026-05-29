@@ -33,7 +33,7 @@ struct VehicleManagerSheet: View {
                     }
 
                     if vehicleStore.vehicles.isEmpty {
-                        Text("No vehicles yet. Tap **Add vehicle** to set one up — VIN auto-read + NHTSA decode pre-fill the year, make, and model.")
+                        Text("No vehicles yet. Tap **Add vehicle** to set one up — VIN auto-read + API decode pre-fill the year, make, and model.")
                             .font(.bodyText)
                             .foregroundStyle(.tertiary)
                             .padding(.vertical, 16)

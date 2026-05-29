@@ -28,6 +28,9 @@ final class SettingsStore {
     var apiPlaqueToken: String {
         didSet { UserDefaults.standard.set(apiPlaqueToken, forKey: Keys.apiPlaqueToken) }
     }
+    var autoDevToken: String {
+        didSet { UserDefaults.standard.set(autoDevToken, forKey: Keys.autoDevToken) }
+    }
 
     static let shared = SettingsStore()
 
@@ -39,6 +42,7 @@ final class SettingsStore {
         static let autoDecodeVIN = "auto_decode_vin"
         static let vinDecoderAPI = "vin_decoder_api"
         static let apiPlaqueToken = "api_plaque_token"
+        static let autoDevToken = "auto_dev_token"
     }
 
     init() {
@@ -49,7 +53,8 @@ final class SettingsStore {
         self.sampleRateHz = storedRate == 0 ? 1.0 : storedRate
         self.rawCapture = defaults.bool(forKey: Keys.rawCapture)
         self.autoDecodeVIN = defaults.object(forKey: Keys.autoDecodeVIN) as? Bool ?? true
-        self.vinDecoderAPI = defaults.string(forKey: Keys.vinDecoderAPI) ?? "apiplaque"
+        self.vinDecoderAPI = defaults.string(forKey: Keys.vinDecoderAPI) ?? "autodev"
         self.apiPlaqueToken = defaults.string(forKey: Keys.apiPlaqueToken) ?? "TokenDemo2026B"
+        self.autoDevToken = defaults.string(forKey: Keys.autoDevToken) ?? "sk_ad_gdptxwx68Zh1AMA_1E0o2gfX"
     }
 }

@@ -35,8 +35,28 @@ struct AddVehicleView: View {
     }
 
     var body: some View {
+        @Bindable var settings = settings
         NavigationStack {
             Form {
+                Section("VIN Decoder API") {
+                    Picker("Service API", selection: $settings.vinDecoderAPI) {
+                        Text("ApiPlaque (France)").tag("apiplaque")
+                        Text("Auto.dev (Global)").tag("autodev")
+                        Text("Aucun (Désactivé)").tag("none")
+                    }
+                    .pickerStyle(.menu)
+                    
+                    if settings.vinDecoderAPI == "apiplaque" {
+                        SecureField("Token ApiPlaque", text: $settings.apiPlaqueToken)
+                            .autocorrectionDisabled()
+                            .autocapitalization(.none)
+                    } else if settings.vinDecoderAPI == "autodev" {
+                        SecureField("Clé d'API Auto.dev", text: $settings.autoDevToken)
+                            .autocorrectionDisabled()
+                            .autocapitalization(.none)
+                    }
+                }
+                
                 Section("Vehicle") {
                     TextField("Year", value: $year, format: .number.grouping(.never))
                         .keyboardType(.numberPad)
