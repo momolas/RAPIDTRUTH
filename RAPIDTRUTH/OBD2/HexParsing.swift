@@ -4,9 +4,9 @@ enum HexParsing {
     /// Convert a hex string ("0BAD" or "0b ad") to bytes. Returns nil if the
     /// input has odd length or contains non-hex chars.
     static func bytes(_ hex: String) -> [UInt8]? {
-        let cleaned = hex.replacingOccurrences(of: " ", with: "")
-            .replacingOccurrences(of: "\n", with: "")
-            .replacingOccurrences(of: "\r", with: "")
+        let cleaned = hex.replacing(" ", with: "")
+            .replacing("\n", with: "")
+            .replacing("\r", with: "")
         guard cleaned.count.isMultiple(of: 2) else { return nil }
         var out: [UInt8] = []
         out.reserveCapacity(cleaned.count / 2)

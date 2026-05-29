@@ -68,7 +68,7 @@ final class Vehicle: Identifiable {
             .components(separatedBy: CharacterSet.alphanumerics.union(.init(charactersIn: "-")).inverted)
             .joined()
         // Collapse multiple dashes, trim leading/trailing.
-        let collapsed = cleaned.replacingOccurrences(of: "-+", with: "-", options: .regularExpression)
+        let collapsed = cleaned.replacing(try! Regex("-+"), with: "-")
         return String(collapsed.trimmingCharacters(in: .init(charactersIn: "-")).prefix(64))
     }
 

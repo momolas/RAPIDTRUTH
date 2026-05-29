@@ -107,7 +107,7 @@ final class DTCLoader {
         var joinedPayload = ""
         
         for line in lines {
-            let clean = line.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "")
+            let clean = line.trimmingCharacters(in: .whitespacesAndNewlines).replacing(" ", with: "")
             if clean.isEmpty || clean.contains("NODATA") || clean.contains("ERROR") || clean.contains(">") { continue }
             
             var frameData = clean
@@ -157,7 +157,7 @@ final class DTCLoader {
         var joinedPayload = ""
         
         for line in lines {
-            let clean = line.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "")
+            let clean = line.trimmingCharacters(in: .whitespacesAndNewlines).replacing(" ", with: "")
             if clean.isEmpty || clean.contains("NODATA") || clean.contains("ERROR") { continue }
             if clean.count <= 3 && Int(clean, radix: 16) != nil { continue }
             

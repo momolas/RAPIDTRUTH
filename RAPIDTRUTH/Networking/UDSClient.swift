@@ -32,7 +32,7 @@ class UDSClient {
         print("📡 Envoi de 'Security Access - Request Seed' (27 01)...")
         let seedResponse = try await driver.sendDiagnosticRequest("2701", timeout: 2.0)
         
-        let cleanedSeedResponse = seedResponse.replacingOccurrences(of: " ", with: "")
+        let cleanedSeedResponse = seedResponse.replacing(" ", with: "")
         guard cleanedSeedResponse.hasPrefix("6701") else {
             throw NSError(domain: "UDSClient", code: 2, userInfo: [NSLocalizedDescriptionKey: "Échec de la demande de Seed: \(seedResponse)"])
         }
@@ -49,7 +49,7 @@ class UDSClient {
         // 4. Security Access (0x27) - Send Key (0x02)
         print("📡 Envoi de 'Security Access - Send Key' (27 02 \(keyHex))...")
         let keyResponse = try await driver.sendDiagnosticRequest("2702" + keyHex, timeout: 2.0)
-        let cleanedKeyResponse = keyResponse.replacingOccurrences(of: " ", with: "")
+        let cleanedKeyResponse = keyResponse.replacing(" ", with: "")
         
         guard cleanedKeyResponse.hasPrefix("6702") else {
             throw NSError(domain: "UDSClient", code: 3, userInfo: [NSLocalizedDescriptionKey: "Échec du déverrouillage de sécurité: \(keyResponse)"])
@@ -69,7 +69,7 @@ class UDSClient {
         // Note: Pour une vraie lecture, il faudra gérer des tailles plus grandes en bouclant
         // sur des blocs (ex: 0x400 octets max par requête 0x23 selon l'ECU).
         let readResponse = try await driver.sendDiagnosticRequest(readRequest, timeout: 5.0)
-        let cleanedReadResponse = readResponse.replacingOccurrences(of: " ", with: "")
+        let cleanedReadResponse = readResponse.replacing(" ", with: "")
         
         guard cleanedReadResponse.hasPrefix("63") else {
             throw NSError(domain: "UDSClient", code: 4, userInfo: [NSLocalizedDescriptionKey: "Échec de lecture mémoire: \(readResponse)"])
@@ -83,7 +83,7 @@ class UDSClient {
     
     private func dataFromHexString(_ hex: String) -> Data {
         var data = Data()
-        var hexStr = hex.replacingOccurrences(of: " ", with: "")
+        var hexStr = hex.replacing(" ", with: "")
         if hexStr.count % 2 != 0 { hexStr = "0" + hexStr }
         var i = hexStr.startIndex
         while i < hexStr.endIndex {

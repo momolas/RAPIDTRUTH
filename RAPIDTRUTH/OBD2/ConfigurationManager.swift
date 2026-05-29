@@ -283,8 +283,8 @@ final class ConfigurationManager {
     }
     
     private func parseHexByte(from response: String, prefix: String) -> Int? {
-        let cleanResponse = response.replacingOccurrences(of: " ", with: "")
-        let cleanPrefix = prefix.replacingOccurrences(of: " ", with: "")
+        let cleanResponse = response.replacing(" ", with: "")
+        let cleanPrefix = prefix.replacing(" ", with: "")
         
         guard let range = cleanResponse.range(of: cleanPrefix) else { return nil }
         let remaining = cleanResponse[range.upperBound...]

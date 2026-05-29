@@ -72,8 +72,8 @@ enum SessionID {
     }
 
     static func sessionFilename(startISO: String, sessionID: String) -> String {
-        let safe = startISO.replacingOccurrences(of: ":", with: "-")
-        let stripped = safe.replacingOccurrences(of: ".\\d{3}Z", with: "Z", options: .regularExpression)
+        let safe = startISO.replacing(":", with: "-")
+        let stripped = safe.replacing(try! Regex("\\.\\d{3}Z"), with: "Z")
         return "\(stripped)__\(sessionID).csv"
     }
 }

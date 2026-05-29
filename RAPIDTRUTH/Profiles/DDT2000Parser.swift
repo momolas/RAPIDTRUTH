@@ -64,7 +64,7 @@ enum DDT2000Parser {
         let dataDefs = db.data ?? [:]
         
         for req in requests {
-            let sentBytes = req.sentbytes.replacingOccurrences(of: " ", with: "").uppercased()
+            let sentBytes = req.sentbytes.replacing(" ", with: "").uppercased()
             // We assume a Mode + PID format if length is at least 4 chars (e.g. "21A0")
             // For DDT2000, we'll store the whole `sentbytes` as the PID id or mode/pid combo.
             var mode = "22"
@@ -106,7 +106,7 @@ enum DDT2000Parser {
                 )
                 
                 // PyREN generates PID IDs based on the data name
-                let id = dataName.lowercased().replacingOccurrences(of: " ", with: "_").replacingOccurrences(of: "'", with: "")
+                let id = dataName.lowercased().replacing(" ", with: "_").replacing("'", with: "")
                 
                 let pidDef = PidDef(
                     id: id,

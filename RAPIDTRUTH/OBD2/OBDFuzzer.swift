@@ -182,7 +182,7 @@ final class OBDFuzzer {
     }
     
     private func decodeRPM(_ hex: String) -> Double? {
-        let clean = hex.replacingOccurrences(of: " ", with: "").uppercased()
+        let clean = hex.replacing(" ", with: "").uppercased()
         guard clean.hasPrefix("410C"), clean.count >= 8 else { return nil }
         guard let a = UInt8(clean.dropFirst(4).prefix(2), radix: 16),
               let b = UInt8(clean.dropFirst(6).prefix(2), radix: 16) else { return nil }
@@ -190,7 +190,7 @@ final class OBDFuzzer {
     }
     
     private func decodeSpeed(_ hex: String) -> Double? {
-        let clean = hex.replacingOccurrences(of: " ", with: "").uppercased()
+        let clean = hex.replacing(" ", with: "").uppercased()
         guard clean.hasPrefix("410D"), clean.count >= 6 else { return nil }
         guard let a = UInt8(clean.dropFirst(4).prefix(2), radix: 16) else { return nil }
         return Double(a)

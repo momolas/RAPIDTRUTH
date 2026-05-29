@@ -230,8 +230,8 @@ final class BLEManager: NSObject {
         let typeString = writeType == .withoutResponse ? "withoutResponse" : "withResponse"
         let hex = data.map { String(format: "%02X", $0) }.joined(separator: " ")
         let asciiPreview = String(data: data, encoding: .ascii)?
-            .replacingOccurrences(of: "\r", with: "\\r")
-            .replacingOccurrences(of: "\n", with: "\\n") ?? "?"
+            .replacing("\r", with: "\\r")
+            .replacing("\n", with: "\\n") ?? "?"
         NSLog("[OBD2-BLE] send: type=\(typeString) bytes=\(data.count) ascii=\"\(asciiPreview)\" hex=[\(hex)]")
 
         var index = 0

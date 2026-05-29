@@ -103,7 +103,7 @@ final class CSVWriter {
 
     private func escape(_ s: String) -> String {
         if s.contains(",") || s.contains("\"") || s.contains("\n") {
-            return "\"" + s.replacingOccurrences(of: "\"", with: "\"\"") + "\""
+            return "\"" + s.replacing("\"", with: "\"\"") + "\""
         }
         return s
     }
