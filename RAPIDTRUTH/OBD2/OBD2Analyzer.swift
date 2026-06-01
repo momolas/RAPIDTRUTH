@@ -515,13 +515,6 @@ final class OBD2Analyzer: Sendable {
         return nil
     }
 
-    /// Décrit le nom en clair d'un DID UDS
-    static func describeDID(_ didHex: String) -> String? {
-        guard let bytes = HexParsing.bytes(didHex), bytes.count == 2 else { return nil }
-        let did = UInt16(bytes[0]) << 8 | UInt16(bytes[1])
-        return didDescriptions[did]
-    }
-
     /// Décrit le nom en clair d'un LID KWP2000 Renault
     static func describeLID(_ lidHex: String) -> String? {
         guard let bytes = HexParsing.bytes(lidHex), let lid = bytes.first else { return nil }
