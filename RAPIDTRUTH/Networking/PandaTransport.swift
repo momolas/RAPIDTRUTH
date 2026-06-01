@@ -29,7 +29,6 @@ final class PandaTransport {
         self.inboundStream = stream.stream
         self.inboundContinuation = stream.continuation
     }
-    
 
     func scanForPandas() {
         scanTask?.cancel()
