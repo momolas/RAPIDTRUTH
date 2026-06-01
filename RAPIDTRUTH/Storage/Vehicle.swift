@@ -19,9 +19,6 @@ final class Vehicle: Identifiable {
     var supportedProfilePIDs: [String]
     var disabledPIDs: [String]
 
-    @Relationship(deleteRule: .cascade, inverse: \SessionRecord.vehicle)
-    var sessions: [SessionRecord] = []
-
     var id: String { slug }
 
     init(

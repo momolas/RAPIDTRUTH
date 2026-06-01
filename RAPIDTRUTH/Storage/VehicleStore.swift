@@ -17,7 +17,7 @@ final class VehicleStore {
 
     private init() {
         do {
-            let schema = Schema([Vehicle.self, SessionRecord.self])
+            let schema = Schema([Vehicle.self])
             let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
             self.container = try ModelContainer(for: schema, configurations: config)
             self.context = ModelContext(container)
