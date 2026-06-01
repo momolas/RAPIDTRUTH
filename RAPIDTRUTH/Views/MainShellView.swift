@@ -18,6 +18,7 @@ struct MainShellView: View {
     @State private var showConfiguration = false
     @State private var showMaintenance = false
     @State private var showFuzzer = false
+    @State private var showUsedCarCheck = false
 
     init(driver: VehicleInterface, selectedDongle: Binding<DongleType>) {
         self.driver = driver
@@ -102,20 +103,37 @@ struct MainShellView: View {
                             })
                         }
                         
-                        Button(action: {
-                            showFuzzer = true
-						}, label: {
-                            HStack {
-                                Image(systemName: "ladybug.fill")
-                                Text("Fuzzer OBD (Avancé)")
-                            }
-                            .font(.appButton)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.red.opacity(0.8))
-                            .foregroundStyle(.white)
-							.clipShape(.rect(cornerRadius: 5))
-                        })
+                        HStack(spacing: 12) {
+                            Button(action: {
+                                showFuzzer = true
+							}, label: {
+                                HStack {
+                                    Image(systemName: "ladybug.fill")
+                                    Text("Fuzzer OBD")
+                                }
+                                .font(.appButton)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.red.opacity(0.8))
+                                .foregroundStyle(.white)
+                                .clipShape(.rect(cornerRadius: 5))
+                            })
+
+                            Button(action: {
+                                showUsedCarCheck = true
+							}, label: {
+                                HStack {
+                                    Image(systemName: "shield.checkerboard")
+                                    Text("Used Car Check")
+                                }
+                                .font(.appButton)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.appAccent.opacity(0.8))
+                                .foregroundStyle(.white)
+                                .clipShape(.rect(cornerRadius: 5))
+                            })
+                        }
                     }
 
                     // 5 — Données temps réel
@@ -140,6 +158,9 @@ struct MainShellView: View {
         }
         .sheet(isPresented: $showFuzzer) {
             FuzzerView(interface: driver)
+        }
+        .sheet(isPresented: $showUsedCarCheck) {
+            UsedCarCheckView(interface: driver)
         }
     }
 }

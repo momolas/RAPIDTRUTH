@@ -61,7 +61,7 @@ struct VehicleCardView: View {
         .sheet(isPresented: $showManager) {
             VehicleManagerSheet(driver: driver)
         }
-        .onAppear {
+        .task {
             vehicleStore.reload(owner: settings.owner)
         }
     }

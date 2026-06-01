@@ -25,7 +25,7 @@ struct RAPIDTRUTHApp: App {
                 }
                 .overlay(alignment: .top) {
                     if let banner = importBanner {
-                        bannerView(banner)
+                        ImportBannerView(banner: banner)
                             .padding(.horizontal, 16)
                             .padding(.top, 8)
                             .transition(.move(edge: .top).combined(with: .opacity))
@@ -51,27 +51,4 @@ struct RAPIDTRUTHApp: App {
             }
         }
     }
-
-    @ViewBuilder
-    private func bannerView(_ banner: ImportBanner) -> some View {
-        let (text, color): (String, Color) = {
-            switch banner {
-            case .success(let msg): return (msg, .green)
-            case .failure(let msg): return (msg, .red)
-            }
-        }()
-        Text(text)
-            .font(.body) // Using .body since .bodyText is a custom style not defined here or maybe in Style.swift
-            .foregroundStyle(.white)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 10)
-            .background(color.opacity(0.9))
-            .clipShape(.rect(cornerRadius: 10))
-            .frame(maxWidth: .infinity)
-    }
-}
-
-private enum ImportBanner: Equatable {
-    case success(String)
-    case failure(String)
 }

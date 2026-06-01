@@ -31,6 +31,8 @@ final class PandaDriver: VehicleInterface {
                 guard let self else { break }
                 self.consume(data)
             }
+            guard let self else { return }
+            self.handleStreamTermination()
         }
     }
 
@@ -43,6 +45,15 @@ final class PandaDriver: VehicleInterface {
         inboundTask = nil
         timeoutTask?.cancel()
         timeoutTask = nil
+    }
+
+    private func handleStreamTermination() {
+        timeoutTask?.cancel()
+        timeoutTask = nil
+        if let continuation = inFlight {
+            inFlight = nil
+            continuation.resume(throwing: NSError(domain: "PandaDriver", code: -1, userInfo: [NSLocalizedDescriptionKey: "Transport disconnected"]))
+        }
     }
 
     func setTarget(txID: String, rxID: String?) async throws {

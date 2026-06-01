@@ -84,7 +84,7 @@ struct VehicleManagerSheet: View {
                 statusMessage = error.localizedDescription
             }
         }
-        .onAppear {
+        .task {
             vehicleStore.reload(owner: settings.owner)
         }
     }

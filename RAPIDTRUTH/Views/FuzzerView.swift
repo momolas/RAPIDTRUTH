@@ -169,16 +169,17 @@ struct FuzzerView: View {
                                         }
                                         
                                         HStack(spacing: 8) {
-                                            GeometryReader { geo in
-                                                ZStack(alignment: .leading) {
-                                                    RoundedRectangle(cornerRadius: 3)
-                                                        .fill(Color.white.opacity(0.1))
-                                                        .frame(height: 6)
-                                                    
-                                                    RoundedRectangle(cornerRadius: 3)
-                                                        .fill(colorForCoefficient(result.coefficient))
-                                                        .frame(width: geo.size.width * CGFloat(abs(result.coefficient)), height: 6)
-                                                }
+                                            ZStack(alignment: .leading) {
+                                                RoundedRectangle(cornerRadius: 3)
+                                                    .fill(Color.white.opacity(0.1))
+                                                    .frame(height: 6)
+                                                
+                                                RoundedRectangle(cornerRadius: 3)
+                                                    .fill(colorForCoefficient(result.coefficient))
+                                                    .frame(height: 6)
+                                                    .visualEffect { content, geometry in
+                                                        content.scaleEffect(x: CGFloat(abs(result.coefficient)), y: 1.0, anchor: .leading)
+                                                    }
                                             }
                                             .frame(height: 6)
                                             

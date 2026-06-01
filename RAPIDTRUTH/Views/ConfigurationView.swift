@@ -224,16 +224,12 @@ struct ConfigurationView: View {
                 }
             }
             .task {
+                if let panda = interface as? PandaDriver {
+                    try? await panda.setSafetyModel(.allOutput)
+                    NSLog("[ConfigurationView] Switched Panda safety model to ALLOUTPUT for coding")
+                }
                 if isConnected {
                     await configManager.readConfig(interface: interface)
-                }
-            }
-            .onAppear {
-                if let panda = interface as? PandaDriver {
-                    Task {
-                        try? await panda.setSafetyModel(.allOutput)
-                        NSLog("[ConfigurationView] Switched Panda safety model to ALLOUTPUT for coding")
-                    }
                 }
             }
             .onDisappear {

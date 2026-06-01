@@ -333,12 +333,9 @@ extension BLEManager: CBCentralManagerDelegate {
     ) {
         NSLog("[OBD2-BLE] didDisconnectPeripheral error=\(error?.localizedDescription ?? "nil")")
         Task { @MainActor in
-            self.peripheral = nil
-            self.picked = nil
+            self.disconnect()
             if let error = error {
                 self.connectionState = .error("Disconnected: \(error.localizedDescription)")
-            } else {
-                self.connectionState = .idle
             }
         }
     }

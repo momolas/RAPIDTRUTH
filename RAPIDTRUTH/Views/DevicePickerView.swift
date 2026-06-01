@@ -35,11 +35,12 @@ struct DevicePickerView: View {
                 }
             }
         }
-        .onAppear {
+        .task {
             if dongleType == .panda {
                 panda.scanForPandas()
             } else {
-                Task { _ = await ble.awaitPowerStateSettled(); ble.startScan() }
+                _ = await ble.awaitPowerStateSettled()
+                ble.startScan()
             }
         }
         .onDisappear {

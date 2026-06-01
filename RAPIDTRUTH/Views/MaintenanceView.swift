@@ -12,7 +12,7 @@ struct MaintenanceView: View {
     @State private var showingOilAlert = false
     @State private var showingABSAlert = false
     
-    @State private var selectedBackupIndex = 0
+    @State private var selectedBackupURL: URL? = nil
     @State private var showingFlashConfirmAlert = false
     
     // New state properties for telecoding pickers and actions
@@ -403,7 +403,7 @@ struct MaintenanceView: View {
                                             .font(.captionText)
                                             .foregroundStyle(.gray)
                                         Spacer()
-                                        Text(String(format: "%.1f KB/s", mapManager.kbPerSecond))
+                                        Text("\(mapManager.kbPerSecond.formatted(.number.precision(.fractionLength(1)))) KB/s")
                                             .font(.monoSmall)
                                             .foregroundStyle(Color.appAccent)
                                     }
@@ -433,11 +433,11 @@ struct MaintenanceView: View {
                                     .font(.captionText)
                                     .foregroundStyle(.gray)
                             } else {
-                                Picker("Fichier Source", selection: $selectedBackupIndex) {
-                                    ForEach(0..<mapManager.backupFiles.count, id: \.self) { index in
-                                        Text(mapManager.backupFiles[index].lastPathComponent)
+                                Picker("Fichier Source", selection: $selectedBackupURL) {
+                                    ForEach(mapManager.backupFiles, id: \.self) { fileURL in
+                                        Text(fileURL.lastPathComponent)
                                             .font(.monoSmall)
-                                            .tag(index)
+                                            .tag(fileURL as URL?)
                                     }
                                 }
                                 .pickerStyle(.menu)
@@ -499,7 +499,7 @@ struct MaintenanceView: View {
                                                 .font(.captionText)
                                                 .foregroundStyle(.gray)
                                             Spacer()
-                                            Text(String(format: "%.1f KB/s", mapManager.kbPerSecond))
+                                            Text("\(mapManager.kbPerSecond.formatted(.number.precision(.fractionLength(1)))) KB/s")
                                                 .font(.monoSmall)
                                                 .foregroundStyle(.red)
                                         }
@@ -513,8 +513,7 @@ struct MaintenanceView: View {
                         .alert("DANGER : CONFIRMATION DU FLASHAGE", isPresented: $showingFlashConfirmAlert) {
                             Button("Annuler", role: .cancel) { }
                             Button("Flasher le calculateur", role: .destructive) {
-                                if selectedBackupIndex < mapManager.backupFiles.count {
-                                    let targetFile = mapManager.backupFiles[selectedBackupIndex]
+                                if let targetFile = selectedBackupURL {
                                     Task {
                                         await mapManager.flashEngineMap(interface: interface, fileURL: targetFile)
                                     }
@@ -568,6 +567,7 @@ struct MaintenanceView: View {
             }
             .task {
                 mapManager.refreshBackupList()
+                selectedBackupURL = mapManager.backupFiles.first
                 if let panda = interface as? PandaDriver {
                     try? await panda.setSafetyModel(.allOutput)
                     NSLog("[MaintenanceView] Switched Panda safety model to ALLOUTPUT for service operations")

@@ -128,10 +128,11 @@ final class ECUMapManager {
             _ = try? await interface.sendDiagnosticRequest("37", timeout: 3.0)
             try await Task.sleep(for: .milliseconds(400))
             
-            // 7. Save file in local Storage (URL.documentsDirectory)
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyyMMdd_HHmmss"
-            let dateString = formatter.string(from: Date())
+            let dateString = Date.now.formatted(.iso8601)
+                .replacing("-", with: "")
+                .replacing(":", with: "")
+                .replacing("T", with: "_")
+                .replacing("Z", with: "")
             let fileURL = URL.documentsDirectory.appending(path: "scenic2_ecu_backup_\(dateString).bin")
             
             try accumulatedData.write(to: fileURL)

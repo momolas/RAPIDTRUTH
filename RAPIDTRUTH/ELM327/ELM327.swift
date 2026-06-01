@@ -69,6 +69,8 @@ final class ELM327 {
                 guard let chunk = String(data: data, encoding: .ascii) else { continue }
                 self.consume(chunk)
             }
+            guard let self else { return }
+            self.handleStreamTermination()
         }
     }
 
@@ -149,6 +151,15 @@ final class ELM327 {
     }
 
     // MARK: - Internals
+
+    private func handleStreamTermination() {
+        timeoutTask?.cancel()
+        timeoutTask = nil
+        if let continuation = inFlight {
+            inFlight = nil
+            continuation.resume(throwing: ELMError.cancelled)
+        }
+    }
 
     private func consume(_ chunk: String) {
         lineBuffer += chunk

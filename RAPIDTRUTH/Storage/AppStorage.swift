@@ -15,12 +15,12 @@ final class AppStorage {
 
     init() {
         // Documents directory always exists for an iOS app.
-        root = fm.urls(for: .documentDirectory, in: .userDomainMask).first!
+        root = URL.documentsDirectory
     }
 
     /// Resolve a path relative to the app's Documents root.
     func url(for relative: String) -> URL {
-        root.appendingPathComponent(relative)
+        root.appending(path: relative)
     }
 
     /// Idempotently create a directory (and its parents).

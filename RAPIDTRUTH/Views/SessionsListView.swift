@@ -54,7 +54,7 @@ struct SessionsListView: View {
             }
         }
         .appCard()
-        .onAppear { reload() }
+        .task { reload() }
         .onChange(of: session.state) { _, _ in reload() }
     }
 
