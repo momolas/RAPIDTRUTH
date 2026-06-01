@@ -131,8 +131,8 @@ struct ConnectionView: View {
         
         if isConnected {
             if let panda = driver as? PandaDriver {
-                try? await panda.setSafetyModel(.elm327)
-                NSLog("[ConnectionView] Successfully connected to Panda, set safety model to ELM327 by default")
+                try? await panda.setSafetyModel(.allOutput)
+                NSLog("[ConnectionView] Successfully connected to Panda, set safety model to ALLOUTPUT by default")
             }
             await detectVehicle()
         } else {

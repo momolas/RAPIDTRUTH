@@ -576,8 +576,8 @@ struct MaintenanceView: View {
             .onDisappear {
                 if let panda = interface as? PandaDriver {
                     Task {
-                        try? await panda.setSafetyModel(.elm327)
-                        NSLog("[MaintenanceView] Restored Panda safety model to ELM327")
+                        try? await panda.setSafetyModel(.allOutput)
+                        NSLog("[MaintenanceView] Kept Panda safety model as ALLOUTPUT")
                     }
                 }
             }

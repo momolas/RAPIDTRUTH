@@ -223,8 +223,8 @@ struct FuzzerView: View {
                 fuzzer.isRunning = false
                 if let panda = interface as? PandaDriver {
                     Task {
-                        try? await panda.setSafetyModel(.elm327)
-                        NSLog("[FuzzerView] Restored Panda safety model to ELM327")
+                        try? await panda.setSafetyModel(.allOutput)
+                        NSLog("[FuzzerView] Kept Panda safety model as ALLOUTPUT")
                     }
                 }
             }
