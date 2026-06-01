@@ -2,13 +2,11 @@ import SwiftUI
 
 enum DongleType: String, CaseIterable, Identifiable {
     case panda = "White Panda (Wi-Fi)"
-    case elm327 = "ELM327 (BLE)"
     var id: String { self.rawValue }
 }
 
 struct MainShellView: View {
     let driver: VehicleInterface
-    @Binding var selectedDongle: DongleType
     
     @Environment(SettingsStore.self) private var settings
     @Environment(VehicleStore.self) private var vehicleStore
@@ -20,9 +18,8 @@ struct MainShellView: View {
     @State private var showFuzzer = false
     @State private var showUsedCarCheck = false
 
-    init(driver: VehicleInterface, selectedDongle: Binding<DongleType>) {
+    init(driver: VehicleInterface) {
         self.driver = driver
-        self._selectedDongle = selectedDongle
     }
 
     /// Dynamically resolves the active profile from the selected active vehicle,
@@ -62,7 +59,7 @@ struct MainShellView: View {
                     VehicleCardView(driver: driver)
 
                     // 1 — Connexion
-                    ConnectionView(driver: driver, selectedDongle: $selectedDongle)
+                    ConnectionView(driver: driver)
 
                     // 1.5 — Session Logging Controls
                     //LoggingControlsView(driver: driver)
