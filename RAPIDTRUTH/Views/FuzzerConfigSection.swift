@@ -1,23 +1,23 @@
 import SwiftUI
 
 struct FuzzerConfigSection: View {
-    @Binding var selectedDidPreset: DidPreset
+    @Binding var selectedLidPreset: LidPreset
     @Binding var targetEcu: String
-    @Binding var startDidHex: String
-    @Binding var endDidHex: String
+    @Binding var startLidHex: String
+    @Binding var endLidHex: String
     
     var body: some View {
-        Section(header: Text("Configuration du Fuzzer")) {
-            Picker("Gamme de DIDs", selection: $selectedDidPreset) {
-                ForEach(DidPreset.allCases) { preset in
+        Section(header: Text("Configuration du Fuzzer (KWP2000)")) {
+            Picker("Plage d'identifiants (LIDs)", selection: $selectedLidPreset) {
+                ForEach(LidPreset.allCases) { preset in
                     Text(preset.rawValue).tag(preset)
                 }
             }
             .pickerStyle(.menu)
             
             TextField("ECU Cible (ex: 7E0)", text: $targetEcu)
-            TextField("DID Début (Hex)", text: $startDidHex)
-            TextField("DID Fin (Hex)", text: $endDidHex)
+            TextField("LID Début (Hex)", text: $startLidHex)
+            TextField("LID Fin (Hex)", text: $endLidHex)
         }
     }
 }

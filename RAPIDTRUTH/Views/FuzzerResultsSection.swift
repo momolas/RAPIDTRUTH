@@ -5,20 +5,20 @@ struct FuzzerResultsSection: View {
     
     var body: some View {
         if !fuzzer.results.isEmpty {
-            Section(header: Text("RÉSOLUTIONS DE DIDS (\(fuzzer.results.count))").font(.cardTitle)) {
+            Section(header: Text("RÉSOLUTIONS DE LIDS (\(fuzzer.results.count))").font(.cardTitle)) {
                 ForEach(fuzzer.results) { result in
                     HStack(spacing: 12) {
-                        // Icône contextuelle selon le DID
-                        Image(systemName: iconForDid(result.did))
-                            .font(.title3)
-                            .foregroundStyle(Color.appAccent)
-                            .frame(width: 32, height: 32)
-                            .background(Color.appAccent.opacity(0.1))
-                            .clipShape(.rect(cornerRadius: 8))
+                        // Icône contextuelle selon le LID
+                        Image(systemName: iconForLid(result.did))
+                             .font(.title3)
+                             .foregroundStyle(Color.appAccent)
+                             .frame(width: 32, height: 32)
+                             .background(Color.appAccent.opacity(0.1))
+                             .clipShape(.rect(cornerRadius: 8))
                             
                         VStack(alignment: .leading, spacing: 4) {
                             HStack {
-                                Text("DID \(result.did)")
+                                Text(result.did)
                                     .font(.monoSmall)
                                     .bold()
                                     .foregroundStyle(.white)
@@ -27,14 +27,16 @@ struct FuzzerResultsSection: View {
                                     .font(.captionText)
                                     .foregroundStyle(.tertiary)
                                 
-                                Text(OBD2Analyzer.describeDID(result.did) ?? "Paramètre Spécifique")
+                                let cleanLidHex = result.did.replacing("LID ", with: "")
+                                Text(OBD2Analyzer.describeLID(cleanLidHex) ?? "Paramètre Spécifique")
                                     .font(.captionText)
                                     .bold()
                                     .foregroundStyle(.secondary)
                             }
                             
                             // Si décodable (ex: VIN, numéro série, ou valeurs physiques)
-                            if let decoded = OBD2Analyzer.decodeResponse(request: "22" + result.did, response: result.response) {
+                            let cleanLidHex = result.did.replacing("LID ", with: "")
+                            if let decoded = OBD2Analyzer.decodeResponse(request: "21" + cleanLidHex, response: result.response) {
                                 Text(decoded)
                                     .font(.valueNumber)
                                     .foregroundStyle(Color.appAccent)
@@ -68,13 +70,15 @@ struct FuzzerResultsSection: View {
     
     // MARK: - Helpers
     
-    private func iconForDid(_ did: String) -> String {
-        switch did.uppercased() {
-        case "F190": return "barcode.viewfinder"
-        case "F18C": return "number.circle.fill"
-        case "F187", "F191": return "shippingbox.fill"
-        case "F188", "F189": return "cpu"
-        case "F186": return "key.fill"
+    private func iconForLid(_ lid: String) -> String {
+        let cleanLid = lid.replacing("LID ", with: "").uppercased()
+        switch cleanLid {
+        case "90": return "barcode.viewfinder"
+        case "8C": return "number.circle.fill"
+        case "87", "84": return "shippingbox.fill"
+        case "88", "89", "01": return "cpu"
+        case "04": return "speedometer"
+        case "A1", "A3": return "thermometer.medium"
         default: return "doc.text.magnifyingglass"
         }
     }

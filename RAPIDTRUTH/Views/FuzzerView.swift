@@ -8,28 +8,25 @@ enum ScanPreset: String, CaseIterable, Identifiable {
     var id: String { self.rawValue }
 }
 
-enum DidPreset: String, CaseIterable, Identifiable {
-    case LowerRange = "Registre Bas (0000-00FF)"
-    case dynamicRange = "Registre Dynamique (D000-D0FF)"
-    case udsIdent = "Identification UDS (F180-F1AF)"
+enum LidPreset: String, CaseIterable, Identifiable {
+    case all = "Exhaustif (00-FF)"
+    case renault = "Renault Standard (01-AF)"
     case custom = "Personnalisé"
     
     var id: String { self.rawValue }
     
     var startHex: String {
         switch self {
-        case .udsIdent: return "F180"
-        case .LowerRange: return "0000"
-        case .dynamicRange: return "D000"
+        case .all: return "00"
+        case .renault: return "01"
         case .custom: return ""
         }
     }
     
     var endHex: String {
         switch self {
-        case .udsIdent: return "F1AF"
-        case .LowerRange: return "00FF"
-        case .dynamicRange: return "D0FF"
+        case .all: return "FF"
+        case .renault: return "AF"
         case .custom: return ""
         }
     }
@@ -41,15 +38,15 @@ struct FuzzerView: View {
     @State private var fuzzer = OBDFuzzer()
     
     @State private var targetEcu: String = "7E0"
-    @State private var startDidHex: String = "0000"
-    @State private var endDidHex: String = "00FF"
+    @State private var startLidHex: String = "00"
+    @State private var endLidHex: String = "FF"
     @State private var agreedToRisks: Bool = false
     @State private var selectedPreset: ScanPreset = .rapid
-    @State private var selectedDidPreset: DidPreset = .LowerRange
+    @State private var selectedLidPreset: LidPreset = .all
     
     // Reverse Engineering state properties
-    @State private var selectedTab: Int = 0 // 0: Balayage DIDs (Fuzzer), 1: Corrélation (Reverse Engineering)
-    @State private var targetDidHex: String = "2101"
+    @State private var selectedTab: Int = 0 // 0: Balayage LIDs (Fuzzer), 1: Corrélation (Reverse Engineering)
+    @State private var targetLidHex: String = "01"
     
     var body: some View {
         NavigationStack {
@@ -58,7 +55,7 @@ struct FuzzerView: View {
                     FuzzerSafetyWarningView(agreedToRisks: $agreedToRisks)
                 } else {
                     Picker("Mode Fuzzer", selection: $selectedTab) {
-                        Text("Balayage DIDs").tag(0)
+                        Text("Balayage LIDs (KWP2000)").tag(0)
                         Text("Corrélation TR (Reverse)").tag(1)
                     }
                     .pickerStyle(.segmented)
@@ -72,10 +69,10 @@ struct FuzzerView: View {
                             targetEcu: $targetEcu
                         )
                         FuzzerConfigSection(
-                            selectedDidPreset: $selectedDidPreset,
+                            selectedLidPreset: $selectedLidPreset,
                             targetEcu: $targetEcu,
-                            startDidHex: $startDidHex,
-                            endDidHex: $endDidHex
+                            startLidHex: $startLidHex,
+                            endLidHex: $endLidHex
                         )
                         FuzzerExecutionSection(
                             fuzzer: fuzzer,
@@ -84,7 +81,7 @@ struct FuzzerView: View {
                         FuzzerResultsSection(fuzzer: fuzzer)
                     } else {
                         // Section d'analyse de signaux en temps réel
-                        Section(header: Text("Configuration du DID").font(.cardTitle)) {
+                        Section(header: Text("Configuration du LID").font(.cardTitle)) {
                             HStack {
                                 Text("ECU Cible (Hex)")
                                 Spacer()
@@ -94,9 +91,9 @@ struct FuzzerView: View {
                                     .frame(width: 80)
                             }
                             HStack {
-                                Text("DID Cible (Hex)")
+                                Text("LID Cible (Hex)")
                                 Spacer()
-                                TextField("2101", text: $targetDidHex)
+                                TextField("01", text: $targetLidHex)
                                     .multilineTextAlignment(.trailing)
                                     .font(.monoSmall)
                                     .frame(width: 80)
@@ -203,17 +200,17 @@ struct FuzzerView: View {
                     }
                 }
             }
-            .navigationTitle("Fuzzer OBD")
+            .navigationTitle("Fuzzer OBD (KWP2000)")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Fermer") { dismiss() }
                 }
             }
-            .onChange(of: selectedDidPreset) { oldValue, newValue in
+            .onChange(of: selectedLidPreset) { oldValue, newValue in
                 if newValue != .custom {
-                    startDidHex = newValue.startHex
-                    endDidHex = newValue.endHex
+                    startLidHex = newValue.startHex
+                    endLidHex = newValue.endHex
                 }
             }
             .task {
@@ -237,25 +234,25 @@ struct FuzzerView: View {
     // MARK: - Actions
     
     private func startFuzzing() {
-        guard let start = Int(startDidHex, radix: 16),
-              let end = Int(endDidHex, radix: 16),
+        guard let start = Int(startLidHex, radix: 16),
+              let end = Int(endLidHex, radix: 16),
               start <= end else {
             fuzzer.actionError = "Valeurs hexadécimales invalides."
             return
         }
         
         Task {
-            await fuzzer.fuzzService22(interface: interface, ecu: targetEcu, startDid: start, endDid: end)
+            await fuzzer.fuzzKWP2000LIDs(interface: interface, ecu: targetEcu, startLid: start, endLid: end)
         }
     }
     
     private func startCorrelation() {
-        guard targetDidHex.count == 4, Int(targetDidHex, radix: 16) != nil else {
-            fuzzer.actionError = "Le DID cible doit être de 4 caractères hexadécimaux."
+        guard targetLidHex.count == 2, Int(targetLidHex, radix: 16) != nil else {
+            fuzzer.actionError = "Le LID cible doit être de 2 caractères hexadécimaux."
             return
         }
         Task {
-            await fuzzer.analyzeDIDCorrelation(interface: interface, ecu: targetEcu, didHex: targetDidHex)
+            await fuzzer.analyzeLIDCorrelation(interface: interface, ecu: targetEcu, lidHex: targetLidHex)
         }
     }
     

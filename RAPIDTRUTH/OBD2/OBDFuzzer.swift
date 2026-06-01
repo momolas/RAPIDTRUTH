@@ -14,7 +14,7 @@ final class OBDFuzzer {
     var currentProgress: Float = 0.0
     var discoveredECUs: [String] = []
     var results: [FuzzResult] = []
-    var supportedDIDs: [String: [String]] = [:]
+    var supportedLIDs: [String: [String]] = [:]
     var currentScanTarget: String = ""
     var actionError: String? = nil
     
@@ -23,52 +23,51 @@ final class OBDFuzzer {
     var analyzedFrameCount: Int = 0
     private let correlator = SignalCorrelator()
     
-    // We only use safe read services (Service 22: Read Data By Identifier)
-    func fuzzService22(interface: VehicleInterface, ecu: String, startDid: Int, endDid: Int) async {
+    /// Balaye les LIDs KWP2000 possibles (Service 21)
+    func fuzzKWP2000LIDs(interface: VehicleInterface, ecu: String, startLid: Int = 0, endLid: Int = 255) async {
         guard !isRunning else { return }
         isRunning = true
         actionError = nil
         results.removeAll()
-        currentScanTarget = "ECU: \(ecu)"
+        currentScanTarget = "KWP2000 ECU: \(ecu)"
         
-        // Initialize or get the existing list of DIDs for this ECU
-        if supportedDIDs[ecu] == nil {
-            supportedDIDs[ecu] = []
+        let total = endLid - startLid + 1
+        
+        // Initialize or get the existing list of LIDs for this ECU
+        if supportedLIDs[ecu] == nil {
+            supportedLIDs[ecu] = []
         }
-        
-        let total = endDid - startDid + 1
         
         do {
             try await interface.setTarget(txID: ecu, rxID: nil)
             
-            for i in 0..<total {
+            for lid in startLid...endLid {
                 try Task.checkCancellation()
-                if !isRunning { break } // Allows cancellation
+                if !isRunning { break }
                 
-                let didValue = startDid + i
-                let didString = String(format: "%04X", didValue)
-                currentProgress = Float(i) / Float(total)
+                let lidString = String(format: "%02X", lid)
+                currentProgress = Float(lid - startLid) / Float(total > 0 ? total : 1)
                 
-                // Send diagnostic request: 22 (Service) + DID
-                let req = "22" + didString
-                let resp = try await interface.sendDiagnosticRequest(req, timeout: 0.5)
+                // Commande KWP2000 ReadLocalIdentifier : 21 + LID
+                let req = "21" + lidString
+                let resp = try await interface.sendDiagnosticRequest(req, timeout: 0.3)
                 
-                // Exclude NRC (7F)
-                if !resp.isEmpty, !resp.hasPrefix("7F"), resp != "NO_DATA", !resp.contains("ERROR") {
+                let cleanResp = resp.replacing(" ", with: "").uppercased()
+                if !cleanResp.isEmpty, !cleanResp.hasPrefix("7F"), cleanResp != "NO_DATA", !cleanResp.contains("ERROR") {
                     // Valid response found
-                    results.append(FuzzResult(did: didString, response: resp))
-                    if !(supportedDIDs[ecu]?.contains(didString) ?? false) {
-                        supportedDIDs[ecu]?.append(didString)
+                    results.append(FuzzResult(did: "LID \(lidString)", response: cleanResp))
+                    if !(supportedLIDs[ecu]?.contains(lidString) ?? false) {
+                        supportedLIDs[ecu]?.append(lidString)
                     }
                 }
                 
-                // Small delay to prevent CAN bus flooding
-                try await Task.sleep(for: .milliseconds(20)) // 20ms
+                // Small delay to prevent CAN/K-Line flooding
+                try await Task.sleep(for: .milliseconds(15))
             }
         } catch is CancellationError {
-            // Clean exit on cooperative task cancellation
+            // Clean exit
         } catch {
-            actionError = "Fuzzing stopped: \(error.localizedDescription)"
+            actionError = "Fuzzing KWP2000 arrêté: \(error.localizedDescription)"
         }
         
         isRunning = false
@@ -93,14 +92,21 @@ final class OBDFuzzer {
                 
                 try await interface.setTarget(txID: ecu, rxID: nil)
                 
-                // 1. Tester Present (UDS)
+                // 1. Tester Present (KWP2000)
+                let respKwp = try await interface.sendDiagnosticRequest("3E", timeout: 0.2)
+                if !respKwp.isEmpty && !respKwp.contains("ERROR") && respKwp != "NO_DATA" {
+                    discoveredECUs.append(ecu)
+                    continue
+                }
+                
+                // 2. Tester Present (UDS) fallback
                 let resp1 = try await interface.sendDiagnosticRequest("3E00", timeout: 0.2)
                 if !resp1.isEmpty && !resp1.contains("ERROR") && resp1 != "NO_DATA" {
                     discoveredECUs.append(ecu)
                     continue
                 }
                 
-                // 2. Read Supported PIDs (OBD-II) fallback
+                // 3. Read Supported PIDs (OBD-II) fallback
                 let resp2 = try await interface.sendDiagnosticRequest("0100", timeout: 0.2)
                 if !resp2.isEmpty && !resp2.contains("ERROR") && resp2 != "NO_DATA" {
                     discoveredECUs.append(ecu)
@@ -124,14 +130,14 @@ final class OBDFuzzer {
     
     // MARK: - Real-Time Correlation Analysis
     
-    func analyzeDIDCorrelation(interface: VehicleInterface, ecu: String, didHex: String) async {
+    func analyzeLIDCorrelation(interface: VehicleInterface, ecu: String, lidHex: String) async {
         guard !isRunning else { return }
         isRunning = true
         actionError = nil
         correlations.removeAll()
         analyzedFrameCount = 0
         correlator.reset()
-        currentScanTarget = "Corrélation: \(didHex)"
+        currentScanTarget = "Corrélation: LID \(lidHex)"
         
         do {
             try await interface.setTarget(txID: ecu, rxID: nil)
@@ -140,8 +146,8 @@ final class OBDFuzzer {
                 try Task.checkCancellation()
                 if !isRunning { break }
                 
-                // 1. Query targeted UDS DID (Service 22)
-                let req = "22" + didHex
+                // 1. Query targeted KWP2000 LID (Service 21)
+                let req = "21" + lidHex
                 guard let resp = try? await interface.sendDiagnosticRequest(req, timeout: 0.5),
                       !resp.isEmpty, !resp.hasPrefix("7F"), !resp.contains("ERROR"), resp != "NO_DATA" else {
                     try await Task.sleep(for: .milliseconds(100))

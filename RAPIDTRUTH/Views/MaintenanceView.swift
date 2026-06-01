@@ -382,7 +382,7 @@ struct MaintenanceView: View {
                             }
                             
                             if !mapManager.isBackingUp && !mapManager.isFlashing {
-                                Button("Démarrer la sauvegarde UDS") {
+                                Button("Démarrer la sauvegarde KWP2000") {
                                     Task {
                                         await mapManager.backupEngineMap(interface: interface)
                                     }
@@ -478,7 +478,7 @@ struct MaintenanceView: View {
                                     Button(action: {
                                         showingFlashConfirmAlert = true
                                     }) {
-                                        Text("Démarrer le Flashage UDS")
+                                        Text("Démarrer le Flashage KWP2000")
                                             .font(.appButton)
                                             .frame(maxWidth: .infinity)
                                             .padding(10)

@@ -47,7 +47,7 @@ final class ECUMapManager {
         }
     }
     
-    /// Starts the backup (read) sequence of the engine map via UDS Service 35 (Request Upload)
+    /// Starts the backup (read) sequence of the engine map via KWP2000 (ISO 14230)
     func backupEngineMap(interface: VehicleInterface) async {
         guard !isBackingUp && !isFlashing else { return }
         
@@ -70,26 +70,26 @@ final class ECUMapManager {
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(300))
             
-            // 2. Start Programming Session (UDS 10 02)
-            statusMessage = "Ouverture de la session de programmation (UDS 10 02)..."
-            let sessionResponse = try? await interface.sendDiagnosticRequest("1002", timeout: 3.0)
+            // 2. Start Programming Session (KWP2000 10 85)
+            statusMessage = "Ouverture de la session de programmation (KWP2000 10 85)..."
+            _ = try? await interface.sendDiagnosticRequest("1085", timeout: 3.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(300))
             
-            // 3. Unlock Security Access (UDS 27 01 / 27 02)
-            statusMessage = "Déverrouillage des accès de sécurité (UDS 27 01)..."
-            let seedResponse = try? await interface.sendDiagnosticRequest("2701", timeout: 3.0)
+            // 3. Unlock Security Access (27 01 / 27 02)
+            statusMessage = "Déverrouillage des accès de sécurité (27 01)..."
+            _ = try? await interface.sendDiagnosticRequest("2701", timeout: 3.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(400))
             
-            statusMessage = "Transmission de la clé d'accès (UDS 27 02)..."
+            statusMessage = "Transmission de la clé d'accès (27 02)..."
             _ = try? await interface.sendDiagnosticRequest("2702AABBCCDD", timeout: 3.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(300))
             
-            // 4. Request Upload (UDS 35) - Specify address 0x000000 and size 0x100000 (1 MB)
-            statusMessage = "Requête d'upload de la cartographie (UDS 35)..."
-            _ = try? await interface.sendDiagnosticRequest("3500440000000000100000", timeout: 4.0)
+            // 4. Request Upload (KWP2000 35) - Specify address 0x000000 and size 0x100000 (1 MB)
+            statusMessage = "Requête d'upload de la cartographie (KWP2000 35)..."
+            _ = try? await interface.sendDiagnosticRequest("35000000100000", timeout: 4.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(400))
             
@@ -133,7 +133,7 @@ final class ECUMapManager {
                 .replacing(":", with: "")
                 .replacing("T", with: "_")
                 .replacing("Z", with: "")
-            let fileURL = URL.documentsDirectory.appending(path: "scenic2_ecu_backup_\(dateString).bin")
+            let fileURL = URL.documentsDirectory.appending(path: "scenic2_ecu_backup_kwp2000_\(dateString).bin")
             
             try accumulatedData.write(to: fileURL)
             
@@ -152,7 +152,7 @@ final class ECUMapManager {
         statusMessage = nil
     }
     
-    /// Starts the flashing (write) sequence of a map file via UDS Service 34 (Request Download)
+    /// Starts the flashing (write) sequence of a map file via KWP2000 (ISO 14230)
     func flashEngineMap(interface: VehicleInterface, fileURL: URL) async {
         guard !isBackingUp && !isFlashing else { return }
         guard checklistBatteryOk && checklistIgnitionOn && checklistGearboxNeutral && checklistSafetyConfirmed else {
@@ -188,27 +188,27 @@ final class ECUMapManager {
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(300))
             
-            // 2. Start Programming Session (UDS 10 02)
-            statusMessage = "Mode programmation : Activation de la session (10 02)..."
-            _ = try? await interface.sendDiagnosticRequest("1002", timeout: 3.0)
+            // 2. Start Programming Session (KWP2000 10 85)
+            statusMessage = "Mode programmation : Activation de la session (10 85)..."
+            _ = try? await interface.sendDiagnosticRequest("1085", timeout: 3.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(500))
             
-            // 3. Unlock Security Access (UDS 27 01 / 27 02)
-            statusMessage = "Requête de graine de sécurité (UDS 27 01)..."
+            // 3. Unlock Security Access (27 01 / 27 02)
+            statusMessage = "Requête de graine de sécurité (27 01)..."
             _ = try? await interface.sendDiagnosticRequest("2701", timeout: 3.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(400))
             
-            statusMessage = "Transmission de la clé d'autorisation (UDS 27 02)..."
+            statusMessage = "Transmission de la clé d'autorisation (27 02)..."
             _ = try? await interface.sendDiagnosticRequest("2702AABBCCDD", timeout: 3.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(400))
             
-            // 4. Request Download (UDS 34) - Tell ECU we want to write memory
-            statusMessage = "Requête d'autorisation d'écriture (UDS 34)..."
-            let sizeHex = String(format: "%08X", fileSize)
-            _ = try? await interface.sendDiagnosticRequest("34004400000000" + sizeHex, timeout: 4.0)
+            // 4. Request Download (KWP2000 34) - Tell ECU we want to write memory
+            let sizeHex = String(format: "%06X", fileSize) // 3 bytes for KWP2000
+            statusMessage = "Requête d'autorisation d'écriture (KWP2000 34)..."
+            _ = try? await interface.sendDiagnosticRequest("34000000" + sizeHex, timeout: 4.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(500))
             
