@@ -11,7 +11,6 @@ struct MainShellView: View {
     @Environment(SettingsStore.self) private var settings
     @Environment(VehicleStore.self) private var vehicleStore
     @Environment(ProfileRegistry.self) private var profileRegistry
-    @Environment(LoggingSession.self) private var session
 
     @State private var showConfiguration = false
     @State private var showMaintenance = false
@@ -132,12 +131,6 @@ struct MainShellView: View {
                             })
                         }
                     }
-
-                    // 5 — Données temps réel
-                    LiveReadoutView()
-
-                    // 6 — Sessions enregistrées
-                    SessionsListView()
                 }
                 .padding(16)
             }
