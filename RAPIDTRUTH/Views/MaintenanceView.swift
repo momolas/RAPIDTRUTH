@@ -8,6 +8,7 @@ struct MaintenanceView: View {
     @State private var showingDPFAlert = false
     @State private var showingEPBAlert = false
     @State private var showingOilAlert = false
+    @State private var showingABSAlert = false
 
     private var isConnected: Bool {
         if case .connected = pandaTransport.state { return true }
@@ -104,6 +105,32 @@ struct MaintenanceView: View {
                             }
                         } message: {
                             Text("Attention : Cette action relâche les mâchoires du frein de stationnement pour permettre le remplacement des plaquettes. Assurez-vous que le véhicule est sur une surface plane et calé.")
+                        }
+
+                        Button(action: {
+                            showingABSAlert = true
+                        }, label: {
+                            HStack {
+                                Image(systemName: "fluid.brakesignal")
+                                    .foregroundStyle(.red)
+                                    .frame(width: 30)
+                                Text("Purge du groupe hydraulique ABS")
+                                    .foregroundStyle(.primary)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundStyle(.gray)
+                                    .font(.caption)
+                            }
+                        })
+                        .disabled(!isConnected || maintenanceManager.isExecuting)
+                        .listRowBackground(Color.appCardBackground)
+                        .alert("Purge du groupe hydraulique ABS", isPresented: $showingABSAlert) {
+                            Button("Annuler", role: .cancel) { }
+                            Button("Démarrer la Purge", role: .destructive) {
+                                Task { await maintenanceManager.purgeABSGroup(interface: interface) }
+                            }
+                        } message: {
+                            Text("Attention : Cette action va activer les solénoïdes et la pompe du bloc hydraulique ABS pour chasser les bulles d'air. Assurez-vous que les vis de purge sont prêtes et ouvertes au moment demandé, et que le réservoir de liquide de frein est plein.")
                         }
                     }
 

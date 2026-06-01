@@ -38,6 +38,16 @@ final class MaintenanceManager {
         )
     }
 
+    /// Purge du groupe hydraulique ABS (ABS - 760)
+    func purgeABSGroup(interface: VehicleInterface) async {
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "760", // ABS Header
+            routineCommand: "310104", // Fake routine for ABS bleeding
+            name: "Purge du groupe ABS"
+        )
+    }
+
     private func executeRoutine(interface: VehicleInterface, ecuHeader: String, routineCommand: String, name: String) async {
         isExecuting = true
         errorMessage = nil
