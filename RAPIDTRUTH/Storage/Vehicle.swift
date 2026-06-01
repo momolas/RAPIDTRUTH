@@ -3,21 +3,21 @@ import SwiftData
 
 @Model
 final class Vehicle: Identifiable {
-    @Attribute(.unique) var slug: String
-    var owner: String
-    var displayName: String
+    var slug: String = ""
+    var owner: String = ""
+    var displayName: String = ""
     var year: Int?
     var make: String?
     var model: String?
     var trim: String?
     var vin: String?
-    var profileId: String
-    var profileVersion: String
-    var createdAtUTC: String
+    var profileId: String = ""
+    var profileVersion: String = ""
+    var createdAtUTC: String = ""
     var lastUsedUTC: String?
-    var supportedStandardPIDs: [String]
-    var supportedProfilePIDs: [String]
-    var disabledPIDs: [String]
+    var supportedStandardPIDs: [String] = []
+    var supportedProfilePIDs: [String] = []
+    var disabledPIDs: [String] = []
 
     var id: String { slug }
 
