@@ -27,18 +27,18 @@ extension Color {
 /// When an existing call doesn't fit cleanly into one of these, prefer
 /// adding a new token here over reintroducing inline font expressions.
 extension Font {
-    static let appBrand    = Font.system(.title2, design: .monospaced, weight: .bold)
-    static let stepTitle   = Font.title2.weight(.semibold)
-    static let cardTitle   = Font.subheadline.weight(.semibold)
-    static let appButton   = Font.subheadline.weight(.semibold)
-    static let valueLabel  = Font.callout.weight(.semibold)
-    static let valueNumber = Font.callout.monospaced().weight(.semibold)
-    static let bodyText    = Font.callout
+	static let appBrand    = Font.largeTitle.weight(.light)
+    static let stepTitle   = Font.title2.weight(.light)
+    static let cardTitle   = Font.subheadline.weight(.light)
+    static let appButton   = Font.subheadline.weight(.light)
+    static let valueLabel  = Font.body.weight(.light)
+	static let valueNumber = Font.body.weight(.light)
+    static let bodyText    = Font.body
     static let statusText  = Font.footnote
     static let captionText = Font.caption
     static let captionTiny = Font.caption2
-    static let monoSmall   = Font.caption.monospaced()
-    static let monoTiny    = Font.caption2.monospaced()
+    static let monoSmall   = Font.caption.weight(.light)
+    static let monoTiny    = Font.caption2.weight(.light)
 }
 
 struct AppCardModifier: ViewModifier {
@@ -85,14 +85,18 @@ extension View {
         if #available(iOS 26, *) {
             if prominent {
                 self.buttonStyle(.glassProminent)
+                    .buttonBorderShape(.roundedRectangle)
             } else {
                 self.buttonStyle(.glass)
+                    .buttonBorderShape(.roundedRectangle)
             }
         } else {
             if prominent {
                 self.buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.roundedRectangle)
             } else {
                 self.buttonStyle(.bordered)
+                    .buttonBorderShape(.roundedRectangle)
             }
         }
     }

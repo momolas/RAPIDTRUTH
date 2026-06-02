@@ -5,66 +5,73 @@ struct FuzzerResultsSection: View {
     
     var body: some View {
         if !fuzzer.results.isEmpty {
-            Section(header: Text("RÉSOLUTIONS DE LIDS (\(fuzzer.results.count))").font(.cardTitle)) {
-                ForEach(fuzzer.results) { result in
-                    HStack(spacing: 12) {
-                        // Icône contextuelle selon le LID
-                        Image(systemName: iconForLid(result.did))
-                             .font(.title3)
-                             .foregroundStyle(Color.appAccent)
-                             .frame(width: 32, height: 32)
-                             .background(Color.appAccent.opacity(0.1))
-                             .clipShape(.rect(cornerRadius: 8))
-                            
-                        VStack(alignment: .leading, spacing: 4) {
-                            HStack {
-                                Text(result.did)
-                                    .font(.monoSmall)
-                                    .bold()
-                                    .foregroundStyle(.white)
+            VStack(alignment: .leading, spacing: 12) {
+                Text("RÉSOLUTIONS DE LIDS (\(fuzzer.results.count))")
+                    .font(.cardTitle)
+                    .foregroundStyle(.secondary)
+                
+                VStack(spacing: 8) {
+                    ForEach(fuzzer.results) { result in
+                        HStack(spacing: 12) {
+                            // Icône contextuelle selon le LID
+                            Image(systemName: iconForLid(result.did))
+                                 .font(.title3)
+                                 .foregroundStyle(Color.appAccent)
+                                 .frame(width: 32, height: 32)
+                                 .background(Color.appAccent.opacity(0.1))
+                                 .clipShape(.rect(cornerRadius: 8))
                                 
-                                Text("•")
-                                    .font(.captionText)
-                                    .foregroundStyle(.tertiary)
+                            VStack(alignment: .leading, spacing: 4) {
+                                HStack {
+                                    Text(result.did)
+                                        .font(.monoSmall)
+                                        .bold()
+                                        .foregroundStyle(.white)
+                                    
+                                    Text("•")
+                                        .font(.captionText)
+                                        .foregroundStyle(.tertiary)
+                                    
+                                    let cleanLidHex = result.did.replacing("LID ", with: "")
+                                    Text(OBD2Analyzer.describeLID(cleanLidHex) ?? "Paramètre Spécifique")
+                                        .font(.captionText)
+                                        .bold()
+                                        .foregroundStyle(.secondary)
+                                }
                                 
+                                // Si décodable (ex: VIN, numéro série, ou valeurs physiques)
                                 let cleanLidHex = result.did.replacing("LID ", with: "")
-                                Text(OBD2Analyzer.describeLID(cleanLidHex) ?? "Paramètre Spécifique")
-                                    .font(.captionText)
-                                    .bold()
-                                    .foregroundStyle(.secondary)
+                                if let decoded = OBD2Analyzer.decodeResponse(request: "21" + cleanLidHex, response: result.response) {
+                                    Text(decoded)
+                                        .font(.valueNumber)
+                                        .foregroundStyle(Color.appAccent)
+                                        .padding(.top, 2)
+                                    
+                                    Text("Brut: \(result.response)")
+                                        .font(.monoTiny)
+                                        .foregroundStyle(.tertiary)
+                                } else {
+                                    // Afficher simplement l'hexdump si non décodable en texte
+                                    Text(spacedHex(result.response))
+                                        .font(.monoSmall)
+                                        .foregroundStyle(.secondary)
+                                }
                             }
                             
-                            // Si décodable (ex: VIN, numéro série, ou valeurs physiques)
-                            let cleanLidHex = result.did.replacing("LID ", with: "")
-                            if let decoded = OBD2Analyzer.decodeResponse(request: "21" + cleanLidHex, response: result.response) {
-                                Text(decoded)
-                                    .font(.valueNumber)
-                                    .foregroundStyle(Color.appAccent)
-                                    .padding(.top, 2)
-                                
-                                Text("Brut: \(result.response)")
-                                    .font(.monoTiny)
-                                    .foregroundStyle(.tertiary)
-                            } else {
-                                // Afficher simplement l'hexdump si non décodable en texte
-                                Text(spacedHex(result.response))
-                                    .font(.monoSmall)
-                                    .foregroundStyle(.secondary)
-                            }
+                            Spacer()
                         }
-                        
-                        Spacer()
-                    }
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 12)
-                    .background(Color.white.opacity(0.02))
-                    .clipShape(.rect(cornerRadius: 8))
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 12)
+                        .background(Color.white.opacity(0.02))
+                        .clipShape(.rect(cornerRadius: 8))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                        }
                     }
                 }
             }
+            .padding(.vertical, 8)
         }
     }
     

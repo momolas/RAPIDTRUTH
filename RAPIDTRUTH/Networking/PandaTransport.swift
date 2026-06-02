@@ -23,6 +23,14 @@ final class PandaTransport {
     private let queue = DispatchQueue(label: "obd.panda.queue")
     
     static let shared = PandaTransport()
+
+    var localIP: String? {
+        getWiFiAddress()
+    }
+
+    var targetIP: String {
+        discoverPandaIP()
+    }
     
     init() {
         let stream = AsyncStream<Data>.makeStream(bufferingPolicy: .bufferingNewest(256))
@@ -59,7 +67,6 @@ final class PandaTransport {
         
         // Panda uses TCP on port 1337
         let parameters = NWParameters.tcp
-        parameters.requiredInterfaceType = .wifi
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         self.connection = connection
         
@@ -142,7 +149,7 @@ final class PandaTransport {
     
     private func startReceiveLoop() {
         guard let connection else { return }
-        connection.receive(minimumIncompleteLength: 1, maximumLength: 4096) { [weak self] data, _, _, error in
+        connection.receive(minimumIncompleteLength: 1, maximumLength: 4096) { [weak self] data, _, isComplete, error in
             Task { @MainActor [weak self] in
                 guard let self else { return }
                 if let error {
@@ -155,6 +162,14 @@ final class PandaTransport {
                 
                 if let data, !data.isEmpty {
                     self.inboundContinuation.yield(data)
+                }
+                
+                if isComplete {
+                    if self.state != .idle {
+                        self.state = .error("La connexion a été fermée par le dongle.")
+                        self.disconnect()
+                    }
+                    return
                 }
                 
                 if self.connection != nil {
@@ -187,7 +202,6 @@ final class PandaTransport {
         let nwPort = NWEndpoint.Port(rawValue: 1338)!
         
         let parameters = NWParameters.udp
-        parameters.requiredInterfaceType = .wifi
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         
         return try await withCheckedThrowingContinuation { continuation in

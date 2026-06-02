@@ -9,6 +9,8 @@ struct ConnectionView: View {
     let driver: VehicleInterface
     
     @State private var statusError: String?
+    @State private var isVehicleConnected = false
+    @State private var detectedVin: String? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -16,7 +18,8 @@ struct ConnectionView: View {
                 ConnectionStatusBadge(
                     isConnected: isConnected,
                     isConnecting: isConnecting,
-                    isIdleOrError: isIdleOrError
+                    isIdleOrError: isIdleOrError,
+                    isVehicleConnected: isVehicleConnected
                 )
                 Spacer()
                 ConnectionActionButton(
@@ -30,6 +33,47 @@ struct ConnectionView: View {
                         disconnectAdapter()
                     }
                 )
+            }
+            
+            if isConnected {
+                Divider().background(Color.white.opacity(0.05))
+                
+                HStack(spacing: 8) {
+                    Circle()
+                        .fill(isVehicleConnected ? Color.green : Color.orange)
+                        .frame(width: 8, height: 8)
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(isVehicleConnected ? "Lien Véhicule Établi" : "En attente du véhicule...")
+                            .font(.captionText).bold()
+                            .foregroundStyle(.white)
+                        
+                        if let detectedVin {
+                            Text("VIN : \(detectedVin)")
+                                .font(.monoTiny)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            Text("Mettez le contact (+APC) pour démarrer l'analyse.")
+                                .font(.captionTiny)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    if !isVehicleConnected {
+                        Button(action: {
+                            statusError = nil
+                            Task { await detectVehicle() }
+                        }) {
+                            Image(systemName: "arrow.clockwise")
+                                .font(.caption)
+                                .foregroundStyle(Color.appAccent)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.top, 4)
             }
             
             if let statusError {
@@ -82,27 +126,31 @@ struct ConnectionView: View {
             panda.detach()
         }
         pandaTransport.disconnect()
+        isVehicleConnected = false
+        detectedVin = nil
     }
 
     private func detectVehicle() async {
-        guard let vin = try? await VINReader.read(interface: driver) else { return }
-        
-        // If known, set as active
-        if let known = vehicleStore.vehicles.first(where: { $0.vin == vin }) {
-            settings.activeVehicleSlug = known.slug
-            return
-        }
-        
-        // If unknown, decode and save
         do {
+            let vin = try? await VINReader.read(interface: driver)
+            detectedVin = vin
+            isVehicleConnected = true
+            
+            // If known, set as active
+            if let vin, let known = vehicleStore.vehicles.first(where: { $0.vin == vin }) {
+                settings.activeVehicleSlug = known.slug
+                return
+            }
+            
+            // If unknown, decode and save
             let service = getActiveDecoderService(settings: settings)
-            let decoded = try await service.decode(vin: vin)
+			let decoded = try await service.decode(vin: vin ?? "unknown")
             
             let yearInt = decoded.year ?? 0
             let slug = Vehicle.makeSlug(year: yearInt, make: decoded.make, model: decoded.model)
             
             // Fallback slug if empty
-            let finalSlug = slug.isEmpty ? "unknown-vehicle-\(vin.prefix(6).lowercased())" : slug
+			let finalSlug = slug.isEmpty ? "unknown-vehicle-\(vin?.prefix(6).lowercased() ?? "unknown")" : slug
             
             let suggestedProfile = profileRegistry.suggestedProfile(make: decoded.make, year: yearInt)
             
@@ -127,7 +175,10 @@ struct ConnectionView: View {
             try vehicleStore.save(vehicle)
             settings.activeVehicleSlug = vehicle.slug
         } catch {
-            NSLog("[ConnectionView] Auto-detect failed to decode or save: \(error)")
+            isVehicleConnected = false
+            detectedVin = nil
+            statusError = "Véhicule non détecté. Assurez-vous que la voiture est sous contact (+APC)."
+            NSLog("[ConnectionView] Auto-detect failed: \(error)")
         }
     }
 }
@@ -138,6 +189,7 @@ struct ConnectionStatusBadge: View {
     let isConnected: Bool
     let isConnecting: Bool
     let isIdleOrError: Bool
+    let isVehicleConnected: Bool
 
     var body: some View {
         HStack(spacing: 8) {
@@ -157,18 +209,20 @@ struct ConnectionStatusBadge: View {
     }
 
     private var stateTitle: String {
-        if isIdleOrError { return "idle" }
-        if isConnecting { return "connecting..." }
-        return "connected"
+        if isIdleOrError { return "Déconnecté" }
+        if isConnecting { return "Connexion..." }
+        if isVehicleConnected { return "Véhicule Connecté" }
+        return "Panda Connecté"
     }
 
     private var stateSubtitle: String {
         if isIdleOrError {
             if case .error(let e) = pandaTransport.state { return e }
-            return "Tap Connect to start."
+            return "Sélectionnez Connecter pour démarrer."
         }
-        if isConnecting { return "Establishing connection..." }
-        return "Connected via Panda TCP"
+        if isConnecting { return "Établissement du lien..." }
+        if isVehicleConnected { return "Lien OBD/CAN actif avec le calculateur" }
+        return "Panda OK, contact (+APC) manquant"
     }
 
     private var badgeColor: Color {
@@ -177,7 +231,8 @@ struct ConnectionStatusBadge: View {
             return hasError ? .red : .secondary
         }
         if isConnecting { return .blue }
-        return .green
+        if isVehicleConnected { return .green }
+        return .orange
     }
 }
 
@@ -192,17 +247,14 @@ struct ConnectionActionButton: View {
         if isIdleOrError {
             Button("Connect Panda", action: onConnect)
                 .glassActionButton(prominent: true)
-                .buttonBorderShape(.roundedRectangle)
                 .controlSize(.small)
         } else if isConnecting {
             Button("Cancel", action: onDisconnect)
                 .glassActionButton(prominent: false)
-                .buttonBorderShape(.roundedRectangle)
                 .controlSize(.small)
         } else {
             Button("Disconnect", action: onDisconnect)
                 .glassActionButton(prominent: false)
-                .buttonBorderShape(.roundedRectangle)
                 .controlSize(.small)
         }
     }
@@ -210,5 +262,8 @@ struct ConnectionActionButton: View {
 
 #Preview {
     ConnectionView(driver: PandaDriver())
+        .environment(SettingsStore.shared)
         .environment(PandaTransport.shared)
+        .environment(VehicleStore.shared)
+        .environment(ProfileRegistry.shared)
 }

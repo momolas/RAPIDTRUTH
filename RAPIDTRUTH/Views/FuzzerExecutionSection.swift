@@ -5,23 +5,27 @@ struct FuzzerExecutionSection: View {
     let onStartFuzzing: () -> Void
     
     var body: some View {
-        Section {
+        VStack(alignment: .leading, spacing: 12) {
             if fuzzer.isRunning {
-                Button(fuzzer.currentScanTarget.contains("Scan") ? "Arrêter le Scan" : "Arrêter le Fuzzing", action: { fuzzer.cancel() })
-                    .glassActionButton(prominent: true)
-                    .buttonBorderShape(.roundedRectangle)
-                    .tint(.red)
-                    .frame(maxWidth: .infinity)
+                Button(action: { fuzzer.cancel() }) {
+                    Text(fuzzer.currentScanTarget.contains("Scan") ? "Arrêter le Scan" : "Arrêter le Fuzzing")
+                        .font(.appButton)
+                        .frame(maxWidth: .infinity)
+                }
+                .glassActionButton(prominent: true)
+                .foregroundStyle(.red)
                 
                 ProgressView(value: fuzzer.currentProgress)
                     .padding(.vertical, 8)
                 
             } else {
-                Button("Démarrer le Fuzzing", action: onStartFuzzing)
-                    .glassActionButton(prominent: true)
-                    .buttonBorderShape(.roundedRectangle)
-                    .tint(.orange)
-                    .frame(maxWidth: .infinity)
+                Button(action: onStartFuzzing) {
+                    Text("Démarrer le Fuzzing")
+                        .font(.appButton)
+                        .frame(maxWidth: .infinity)
+                }
+                .glassActionButton(prominent: true)
+                .foregroundStyle(.orange)
             }
             
             if let error = fuzzer.actionError {
@@ -30,5 +34,6 @@ struct FuzzerExecutionSection: View {
                     .font(.footnote)
             }
         }
+        .padding(.vertical, 8)
     }
 }

@@ -9,6 +9,9 @@ final class PandaDriver: VehicleInterface {
     // We keep track of the in-flight continuation for the response
     private var inFlight: CheckedContinuation<String, Error>?
     private var timeoutTask: Task<Void, Never>?
+    
+    // Serialized execution task queue to prevent "Busy" errors
+    private var lastRequestTask: Task<String, Error>?
 
     // Multi-stream ISO-TP reassembler
     private let isotpReassembler = ISOTPReassembler()
@@ -82,6 +85,18 @@ final class PandaDriver: VehicleInterface {
     }
 
     func sendDiagnosticRequest(_ hexString: String, timeout: TimeInterval) async throws -> String {
+        let previousTask = lastRequestTask
+        let newTask = Task {
+            if let previousTask {
+                _ = try? await previousTask.value
+            }
+            return try await performDiagnosticRequest(hexString, timeout: timeout)
+        }
+        lastRequestTask = newTask
+        return try await newTask.value
+    }
+
+    private func performDiagnosticRequest(_ hexString: String, timeout: TimeInterval) async throws -> String {
         if inFlight != nil {
             throw NSError(domain: "PandaDriver", code: -1, userInfo: [NSLocalizedDescriptionKey: "Busy"])
         }
@@ -103,9 +118,6 @@ final class PandaDriver: VehicleInterface {
             
             Task {
                 do {
-                    // Send frames. If it's multi-frame, we should ideally wait for flow control.
-                    // For simplicity, we just send all frames. Real ISOTP waits for FC.
-                    // But if it's just 1 frame (most requests), it sends immediately.
                     for frame in frames {
                         let packed = self.packPandaCAN(address: self.txID, data: frame, bus: 0)
                         try await self.transport.send(packed)

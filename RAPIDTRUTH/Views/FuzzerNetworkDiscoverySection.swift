@@ -7,13 +7,23 @@ struct FuzzerNetworkDiscoverySection: View {
     @Binding var targetEcu: String
     
     var body: some View {
-        Section(header: Text("Découverte Réseau")) {
-            Picker("Type de Scan", selection: $selectedPreset) {
-                ForEach(ScanPreset.allCases) { preset in
-                    Text(preset.rawValue).tag(preset)
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Découverte Réseau")
+                .font(.cardTitle)
+                .foregroundStyle(.secondary)
+            
+            HStack {
+                Text("Type de Scan")
+                    .font(.bodyText)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Picker("", selection: $selectedPreset) {
+                    ForEach(ScanPreset.allCases) { preset in
+                        Text(preset.rawValue).tag(preset)
+                    }
                 }
+                .pickerStyle(.menu)
             }
-            .pickerStyle(.menu)
             
             if !fuzzer.discoveredECUs.isEmpty {
                 VStack(alignment: .leading, spacing: 6) {
@@ -60,8 +70,8 @@ struct FuzzerNetworkDiscoverySection: View {
                     .frame(maxWidth: .infinity)
             }
             .glassActionButton(prominent: false)
-            .buttonBorderShape(.roundedRectangle)
             .disabled(fuzzer.isRunning)
         }
+        .padding(.vertical, 8)
     }
 }

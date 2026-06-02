@@ -1,8 +1,11 @@
 import SwiftUI
 
-enum DongleType: String, CaseIterable, Identifiable {
-    case panda = "White Panda (Wi-Fi)"
-    var id: String { self.rawValue }
+enum DiagnosticDestination: Hashable, Sendable {
+    case diagnostics
+    case configuration
+    case maintenance
+    case fuzzer
+    case usedCarCheck
 }
 
 struct MainShellView: View {
@@ -11,11 +14,9 @@ struct MainShellView: View {
     @Environment(SettingsStore.self) private var settings
     @Environment(VehicleStore.self) private var vehicleStore
     @Environment(ProfileRegistry.self) private var profileRegistry
-
-    @State private var showConfiguration = false
-    @State private var showMaintenance = false
-    @State private var showFuzzer = false
-    @State private var showUsedCarCheck = false
+    @Environment(PandaTransport.self) private var pandaTransport
+    
+    @State private var navigationPath = NavigationPath()
 
     init(driver: VehicleInterface) {
         self.driver = driver
@@ -34,123 +35,139 @@ struct MainShellView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPath) {
             ScrollView {
                 AdaptiveGlassEffectContainer(spacing: 16) {
                     VStack(alignment: .leading, spacing: 16) {
-                    HStack(alignment: .firstTextBaseline) {
-                        HStack(spacing: 0) {
-                            Text("RAPID").foregroundStyle(.white)
-                            Text("/TRUTH").foregroundStyle(Color.appAccent)
+						Text("RAPIDTRUTH")
+							.font(.appBrand)
+
+                        if let error = profileRegistry.loadError {
+                            Text("Profile error: \(error)")
+                                .font(.statusText)
+                                .foregroundStyle(.red)
                         }
-                        .font(.appBrand)
-                        
-                        Spacer()
-                    }
 
-                    if let error = profileRegistry.loadError {
-                        Text("Profile error: \(error)")
-                            .font(.statusText)
-                            .foregroundStyle(.red)
-                    }
+                        // Vehicle Profile & Discovery Card
+                        VehicleCardView(driver: driver)
 
-                    // Vehicle Profile & Discovery Card
-                    VehicleCardView(driver: driver)
+                        // 1 — Connexion
+                        ConnectionView(driver: driver)
 
-                    // 1 — Connexion
-                    ConnectionView(driver: driver)
-
-                    // 1.5 — Session Logging Controls
-                    //LoggingControlsView(driver: driver)
-
-                    // 2 — Diagnostic réseau (DTC tous calculateurs)
-                    DiagnosticsView(interface: driver, profile: profile)
-
-                    // 3 — Codage & Configuration & Service & Fuzzer
-                    VStack(spacing: 12) {
-                        HStack(spacing: 12) {
-                            Button(action: {
-                                showConfiguration = true
-							}, label: {
-                                HStack {
-                                    Image(systemName: "wrench.and.screwdriver.fill")
-                                    Text("Codage & Configuration")
-                                }
-                                .font(.appButton)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.purple.opacity(0.8))
-                                .foregroundStyle(.white)
-								.clipShape(.rect(cornerRadius: 5))
-                            })
-
-                            Button(action: {
-                                showMaintenance = true
-							}, label: {
-                                HStack {
-                                    Image(systemName: "wrench.fill")
-                                    Text("Service")
-                                }
-                                .font(.appButton)
-                                .padding()
-                                .background(Color.orange.opacity(0.8))
-                                .foregroundStyle(.white)
-								.clipShape(.rect(cornerRadius: 5))
-                            })
-                        }
-                        
-                        HStack(spacing: 12) {
-                            Button(action: {
-                                showFuzzer = true
-							}, label: {
-                                HStack {
-                                    Image(systemName: "ladybug.fill")
-                                    Text("Fuzzer OBD")
-                                }
-                                .font(.appButton)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.red.opacity(0.8))
-                                .foregroundStyle(.white)
-                                .clipShape(.rect(cornerRadius: 5))
-                            })
-
-                            Button(action: {
-                                showUsedCarCheck = true
-							}, label: {
-                                HStack {
-                                    Image(systemName: "shield.checkerboard")
-                                    Text("Used Car Check")
-                                }
-                                .font(.appButton)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.appAccent.opacity(0.8))
-                                .foregroundStyle(.white)
-                                .clipShape(.rect(cornerRadius: 5))
-                            })
+                        // Menu showing modules when connected
+                        if case .connected = pandaTransport.state {
+                            Text("Modules de Diagnostic")
+                                .font(.cardTitle)
+                                .foregroundStyle(.secondary)
+                                .padding(.top, 8)
+                            
+                            NavigationLink(value: DiagnosticDestination.diagnostics) {
+                                DiagnosticMenuCard(
+                                    title: "Diagnostic Réseau (DTC)",
+                                    subtitle: "Lecture et effacement des codes défauts",
+                                    systemImage: "exclamationmark.shield.fill",
+                                    color: .red
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            
+                            NavigationLink(value: DiagnosticDestination.configuration) {
+                                DiagnosticMenuCard(
+                                    title: "Codage & Configuration",
+                                    subtitle: "Personnalisation des options TdB, UCH et UPC",
+                                    systemImage: "slider.horizontal.3",
+                                    color: Color.appAccent
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            
+                            NavigationLink(value: DiagnosticDestination.maintenance) {
+                                DiagnosticMenuCard(
+                                    title: "Fonctions de Service",
+                                    subtitle: "Vidange, EPB, purge ABS et reprogrammation moteur",
+                                    systemImage: "wrench.and.screwdriver.fill",
+                                    color: .orange
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            
+                            NavigationLink(value: DiagnosticDestination.fuzzer) {
+                                DiagnosticMenuCard(
+                                    title: "Fuzzer OBD & Corrélation",
+                                    subtitle: "Balayage de LIDs et reverse engineering en temps réel",
+                                    systemImage: "waveform.path.ecg",
+                                    color: .purple
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            
+                            NavigationLink(value: DiagnosticDestination.usedCarCheck) {
+                                DiagnosticMenuCard(
+                                    title: "Used Car Check",
+                                    subtitle: "Audit odomètre anti-fraude et contrôle des VINs",
+                                    systemImage: "shield.checkerboard",
+                                    color: .green
+                                )
+                            }
+                            .buttonStyle(.plain)
                         }
                     }
+                    .padding(16)
                 }
-                .padding(16)
             }
-        }
             .background(Color.appBackground.ignoresSafeArea())
+            .navigationDestination(for: DiagnosticDestination.self) { destination in
+                switch destination {
+                case .diagnostics:
+                    DiagnosticsView(interface: driver, profile: profile)
+                case .configuration:
+                    ConfigurationView(interface: driver)
+                case .maintenance:
+                    MaintenanceView(interface: driver)
+                case .fuzzer:
+                    FuzzerView(interface: driver)
+                case .usedCarCheck:
+                    UsedCarCheckView(interface: driver)
+                }
+            }
             .navigationTitle("")
             .toolbar(.hidden, for: .navigationBar)
         }
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showConfiguration) {
-            ConfigurationView(interface: driver)
+    }
+}
+
+struct DiagnosticMenuCard: View {
+    let title: String
+    let subtitle: String
+    let systemImage: String
+    let color: Color
+    
+    var body: some View {
+        HStack(spacing: 16) {
+            Image(systemName: systemImage)
+                .font(.title3)
+                .foregroundStyle(color)
+                .frame(width: 40, height: 40)
+                .background(color.opacity(0.1))
+                .clipShape(.rect(cornerRadius: 10))
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.valueLabel)
+                    .foregroundStyle(.white)
+                Text(subtitle)
+                    .font(.captionText)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.leading)
+            }
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .font(.footnote)
+                .foregroundStyle(.tertiary)
         }
-        .sheet(isPresented: $showMaintenance) {
-            MaintenanceView(interface: driver)
-        }
-        .sheet(isPresented: $showFuzzer) {
-            FuzzerView(interface: driver)
-        }
-        .sheet(isPresented: $showUsedCarCheck) {
-            UsedCarCheckView(interface: driver)
-        }
+        .appCard()
     }
 }

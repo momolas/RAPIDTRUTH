@@ -2,9 +2,15 @@ import SwiftUI
 
 struct ConfigurationView: View {
     let interface: VehicleInterface
-    @Environment(\.dismiss) var dismiss
     @State private var configManager = ConfigurationManager()
     @Environment(PandaTransport.self) private var pandaTransport
+
+    @State private var isTdbExpanded = true
+    @State private var isUchExpanded = false
+    @State private var isUpcExpanded = false
+    @State private var isFpaExpanded = false
+    @State private var isAasExpanded = false
+    @State private var isRadNavExpanded = false
 
     init(interface: VehicleInterface) {
         self.interface = interface
@@ -16,154 +22,323 @@ struct ConfigurationView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            Form {
-                Section(header: Text("Tableau de Bord (TdB)")) {
-                    Picker("Langue de l'Afficheur", selection: $configManager.dashboardLanguage) {
-                        Text("Français").tag("FR")
-                        Text("English").tag("EN")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                if !isConnected {
+                    HStack {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundStyle(.orange)
+                        Text("Outil non connecté. Connectez un adaptateur OBD.")
+                            .font(.captionText)
+                            .foregroundStyle(.gray)
                     }
-                    .listRowBackground(Color.appCardBackground)
-                    
-                    Toggle("Alerte Ceinture (Bip)", isOn: $configManager.seatbeltWarning)
-                        .listRowBackground(Color.appCardBackground)
-                        
-                    Toggle("Affichage Horloge / Temp.", isOn: $configManager.clockDisplay)
-                        .listRowBackground(Color.appCardBackground)
-                        
-                    Picker("Unité de Consommation", selection: $configManager.consumptionUnit) {
-                        Text("L/100 km").tag("L/100")
-                        Text("km/L").tag("KM/L")
-                    }
-                    .listRowBackground(Color.appCardBackground)
-                        
-                    Toggle("Alarme Survitesse (120)", isOn: $configManager.overspeedWarning)
-                        .listRowBackground(Color.appCardBackground)
-                    
-                    Picker("Motorisation / Carburant", selection: $configManager.fuelType) {
-                        Text("Diesel").tag("DSL")
-                        Text("Essence").tag("GSL")
-                    }
-                    .listRowBackground(Color.appCardBackground)
-                    
-                    Picker("Type de Boîte", selection: $configManager.gearboxType) {
-                        Text("Manuelle (BVM)").tag("BVM")
-                        Text("Automatique (BVA)").tag("BVA")
-                    }
-                    .listRowBackground(Color.appCardBackground)
-                    
-                    Toggle("Synthèse Vocale d'Alerte", isOn: $configManager.voiceSynthesis)
-                        .listRowBackground(Color.appCardBackground)
-                    
-                    Picker("Intervalle de Maintenance (OCS)", selection: $configManager.oilServiceInterval) {
-                        Text("15 000 km / 1 an").tag("15K")
-                        Text("20 000 km / 1 an").tag("20K")
-                        Text("30 000 km / 2 ans").tag("30K")
-                    }
-                    .listRowBackground(Color.appCardBackground)
+                    .appCard()
                 }
-                
-                Section(header: Text("Unité Centrale Habitacle (UCH)")) {
-                    Toggle("Condamnation Auto (CAR)", isOn: $configManager.autoLockDoors)
-                        .listRowBackground(Color.appCardBackground)
-                        
-                    Toggle("Essuie-glace Arrière Auto", isOn: $configManager.autoRearWiper)
-                        .listRowBackground(Color.appCardBackground)
-                        
-                    Toggle("Éclairage d'Accompagnement", isOn: $configManager.followMeHome)
-                        .listRowBackground(Color.appCardBackground)
-                        
-                    Toggle("Clignotants Impulsionnels", isOn: $configManager.oneTouchTurnSignal)
-                        .listRowBackground(Color.appCardBackground)
-                        
-                    Toggle("Supercondamnation", isOn: $configManager.deadlocking)
-                        .listRowBackground(Color.appCardBackground)
-                    
-                    Toggle("Contrôle de Pression Pneus (SSPP)", isOn: $configManager.tpmsEnabled)
-                        .listRowBackground(Color.appCardBackground)
-                    
-                    Toggle("Essuyage Auto (Capteur Pluie)", isOn: $configManager.autoRainSensor)
-                        .listRowBackground(Color.appCardBackground)
-                    
-                    Toggle("Accès & Démarrage Main-Libre", isOn: $configManager.keylessGo)
-                        .listRowBackground(Color.appCardBackground)
-                    
-                    Toggle("Condamnation Porte Sélective", isOn: $configManager.selectiveUnlocking)
-                        .listRowBackground(Color.appCardBackground)
-                }
-                
-                Section(header: Text("Unité de Commutation (Moteur / UPC)")) {
-                    Toggle("Projecteurs Xénon", isOn: $configManager.xenonHeadlights)
-                        .listRowBackground(Color.appCardBackground)
-                    
-                    Toggle("Feux de Jour (DRL)", isOn: $configManager.drlEnabled)
-                        .listRowBackground(Color.appCardBackground)
-                    
-                    Picker("Puissance Alternateur", selection: $configManager.alternatorClass) {
-                        Text("Classe Standard (110A)").tag("110A")
-                        Text("Classe Grand Froid (150A)").tag("150A")
+
+                VStack(alignment: .leading, spacing: 16) {
+                    // TdB Group
+                    DisclosureGroup(isExpanded: $isTdbExpanded) {
+                        VStack(spacing: 12) {
+                            HStack {
+                                Text("Langue de l'Afficheur")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.dashboardLanguage) {
+                                    Text("Français").tag("FR")
+                                    Text("English").tag("EN")
+                                }
+                                .pickerStyle(.menu)
+                            }
+                            
+                            Toggle(isOn: $configManager.seatbeltWarning) {
+                                Text("Alerte Ceinture (Bip)")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            
+                            Toggle(isOn: $configManager.clockDisplay) {
+                                Text("Affichage Horloge / Temp.")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            
+                            HStack {
+                                Text("Unité de Consommation")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.consumptionUnit) {
+                                    Text("L/100 km").tag("L/100")
+                                    Text("km/L").tag("KM/L")
+                                }
+                                .pickerStyle(.menu)
+                            }
+                            
+                            Toggle(isOn: $configManager.overspeedWarning) {
+                                Text("Alarme Survitesse (120)")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            
+                            HStack {
+                                Text("Motorisation / Carburant")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.fuelType) {
+                                    Text("Diesel").tag("DSL")
+                                    Text("Essence").tag("GSL")
+                                }
+                                .pickerStyle(.menu)
+                            }
+                            
+                            HStack {
+                                Text("Type de Boîte")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.gearboxType) {
+                                    Text("Manuelle (BVM)").tag("BVM")
+                                    Text("Automatique (BVA)").tag("BVA")
+                                }
+                                .pickerStyle(.menu)
+                            }
+                            
+                            Toggle(isOn: $configManager.voiceSynthesis) {
+                                Text("Synthèse Vocale d'Alerte")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            
+                            HStack {
+                                Text("Intervalle de Maintenance")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.oilServiceInterval) {
+                                    Text("15 000 km / 1 an").tag("15K")
+                                    Text("20 000 km / 1 an").tag("20K")
+                                    Text("30 000 km / 2 ans").tag("30K")
+                                }
+                                .pickerStyle(.menu)
+                            }
+                        }
+                        .padding(.vertical, 8)
+                    } label: {
+                        Text("Tableau de Bord (TdB)")
+                            .font(.valueLabel)
+                            .foregroundStyle(.white)
                     }
-                    .listRowBackground(Color.appCardBackground)
                     
-                    Picker("Feux de Virage (Cornering)", selection: $configManager.corneringLightsMode) {
-                        Text("Désactivé").tag(0)
-                        Text("Cornering Actif (Antibrouillard)").tag(1)
-                        Text("Phares Adaptatifs (AFS) Seuls").tag(2)
-                        Text("Cornering + AFS Actifs").tag(3)
+                    Divider().background(Color.white.opacity(0.1))
+
+                    // UCH Group
+                    DisclosureGroup(isExpanded: $isUchExpanded) {
+                        VStack(spacing: 12) {
+                            Toggle(isOn: $configManager.autoLockDoors) {
+                                Text("Condamnation Auto (CAR)")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.autoRearWiper) {
+                                Text("Essuie-glace Arrière Auto")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.followMeHome) {
+                                Text("Éclairage d'Accompagnement")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.oneTouchTurnSignal) {
+                                Text("Clignotants Impulsionnels")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.deadlocking) {
+                                Text("Supercondamnation")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.tpmsEnabled) {
+                                Text("Contrôle de Pression (SSPP)")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.autoRainSensor) {
+                                Text("Essuyage Auto (Pluie)")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.keylessGo) {
+                                Text("Accès & Démarrage Main-Libre")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.selectiveUnlocking) {
+                                Text("Condamnation Porte Sélective")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 8)
+                    } label: {
+                        Text("Unité Centrale Habitacle (UCH)")
+                            .font(.valueLabel)
+                            .foregroundStyle(.white)
                     }
-                    .listRowBackground(Color.appCardBackground)
                     
-                    Picker("Seuil Vitesse Cornering", selection: $configManager.corneringSpeedThreshold) {
-                        Text("30 km/h").tag(30)
-                        Text("40 km/h").tag(40)
-                        Text("50 km/h").tag(50)
-                        Text("60 km/h").tag(60)
+                    Divider().background(Color.white.opacity(0.1))
+
+                    // UPC Group
+                    DisclosureGroup(isExpanded: $isUpcExpanded) {
+                        VStack(spacing: 12) {
+                            Toggle(isOn: $configManager.xenonHeadlights) {
+                                Text("Projecteurs Xénon")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.drlEnabled) {
+                                Text("Feux de Jour (DRL)")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            HStack {
+                                Text("Puissance Alternateur")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.alternatorClass) {
+                                    Text("Standard (110A)").tag("110A")
+                                    Text("Grand Froid (150A)").tag("150A")
+                                }
+                                .pickerStyle(.menu)
+                            }
+                            HStack {
+                                Text("Feux de Virage (Cornering)")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.corneringLightsMode) {
+                                    Text("Désactivé").tag(0)
+                                    Text("Cornering Actif").tag(1)
+                                    Text("AFS Seuls").tag(2)
+                                    Text("Cornering + AFS").tag(3)
+                                }
+                                .pickerStyle(.menu)
+                            }
+                            HStack {
+                                Text("Seuil Vitesse Cornering")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.corneringSpeedThreshold) {
+                                    Text("30 km/h").tag(30)
+                                    Text("40 km/h").tag(40)
+                                    Text("50 km/h").tag(50)
+                                    Text("60 km/h").tag(60)
+                                }
+                                .pickerStyle(.menu)
+                            }
+                        }
+                        .padding(.vertical, 8)
+                    } label: {
+                        Text("Unité Commutation Moteur (UPC)")
+                            .font(.valueLabel)
+                            .foregroundStyle(.white)
                     }
-                    .listRowBackground(Color.appCardBackground)
-                }
-                
-                Section(header: Text("Frein de Parking Assisté (FPA)")) {
-                    Toggle("Mode Pays Froids (Sans serrage auto)", isOn: $configManager.coldClimateMode)
-                        .listRowBackground(Color.appCardBackground)
-                }
-                
-                Section(header: Text("Aide au Stationnement (AAS)")) {
-                    Picker("Volume du Bruiteur", selection: $configManager.parkAssistVolume) {
-                        Text("Désactivé (Silencieux)").tag(0)
-                        Text("Faible").tag(2)
-                        Text("Moyen").tag(3)
-                        Text("Moyen Fort").tag(4)
-                        Text("Assez Fort").tag(5)
-                        Text("Fort").tag(6)
-                        Text("Très Fort").tag(7)
+
+                    Divider().background(Color.white.opacity(0.1))
+
+                    // FPA Group
+                    DisclosureGroup(isExpanded: $isFpaExpanded) {
+                        VStack(spacing: 12) {
+                            Toggle(isOn: $configManager.coldClimateMode) {
+                                Text("Mode Pays Froids (Sans serrage auto)")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 8)
+                    } label: {
+                        Text("Frein de Parking Assisté (FPA)")
+                            .font(.valueLabel)
+                            .foregroundStyle(.white)
                     }
-                    .listRowBackground(Color.appCardBackground)
-                    
-                    Picker("Fréquence du Signal Sonore", selection: $configManager.parkAssistTone) {
-                        Text("500 Hz").tag(0)
-                        Text("666 Hz").tag(1)
-                        Text("800 Hz").tag(2)
-                        Text("1000 Hz").tag(3)
-                        Text("2000 Hz").tag(4)
+
+                    Divider().background(Color.white.opacity(0.1))
+
+                    // AAS Group
+                    DisclosureGroup(isExpanded: $isAasExpanded) {
+                        VStack(spacing: 12) {
+                            HStack {
+                                Text("Volume du Bruiteur")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.parkAssistVolume) {
+                                    Text("Silencieux").tag(0)
+                                    Text("Faible").tag(2)
+                                    Text("Moyen").tag(3)
+                                    Text("Fort").tag(6)
+                                }
+                                .pickerStyle(.menu)
+                            }
+                            HStack {
+                                Text("Fréquence du Signal")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                Spacer()
+                                Picker("", selection: $configManager.parkAssistTone) {
+                                    Text("500 Hz").tag(0)
+                                    Text("666 Hz").tag(1)
+                                    Text("800 Hz").tag(2)
+                                    Text("1000 Hz").tag(3)
+                                }
+                                .pickerStyle(.menu)
+                            }
+                            Toggle(isOn: $configManager.parkAssistInhibitionButton) {
+                                Text("Bouton d'Inhibition Habitacle")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 8)
+                    } label: {
+                        Text("Aide au Stationnement (AAS)")
+                            .font(.valueLabel)
+                            .foregroundStyle(.white)
                     }
-                    .listRowBackground(Color.appCardBackground)
-                    
-                    Toggle("Bouton d'Inhibition Habitacle", isOn: $configManager.parkAssistInhibitionButton)
-                        .listRowBackground(Color.appCardBackground)
-                }
-                
-                Section(header: Text("Radio / Multimédia (RadNav)")) {
-                    Toggle("Android Auto / CarPlay", isOn: $configManager.androidAuto)
-                        .listRowBackground(Color.appCardBackground)
-                        
-                    Toggle("Caméra de Recul", isOn: $configManager.rearViewCamera)
-                        .listRowBackground(Color.appCardBackground)
-                }
-                
-                Section {
+
+                    Divider().background(Color.white.opacity(0.1))
+
+                    // RadNav Group
+                    DisclosureGroup(isExpanded: $isRadNavExpanded) {
+                        VStack(spacing: 12) {
+                            Toggle(isOn: $configManager.androidAuto) {
+                                Text("Android Auto / CarPlay")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Toggle(isOn: $configManager.rearViewCamera) {
+                                Text("Caméra de Recul")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(.vertical, 8)
+                    } label: {
+                        Text("Radio / Multimédia (RadNav)")
+                            .font(.valueLabel)
+                            .foregroundStyle(.white)
+                    }
+
+                    Divider().background(Color.white.opacity(0.1))
+
                     Button(action: {
                         Task { await configManager.writeConfig(interface: interface) }
-                    }, label: {
+                    }) {
                         HStack {
                             Spacer()
                             if configManager.isWriting {
@@ -172,76 +347,69 @@ struct ConfigurationView: View {
                                 Text("Écriture en cours...")
                             } else {
                                 Text("Enregistrer dans l'ECU")
-                                    .bold()
                             }
                             Spacer()
                         }
-                    })
+                        .font(.appButton)
+                        .frame(maxWidth: .infinity)
+                    }
                     .disabled(configManager.isWriting || configManager.isReading || !isConnected)
-                    .listRowBackground(Color.blue)
-                    .foregroundStyle(.white)
-                    .buttonBorderShape(.roundedRectangle(radius: 5))
-                }
-                
-                if configManager.showSuccessMessage {
-                    Section {
+                    .glassActionButton(prominent: true)
+                    .buttonBorderShape(.roundedRectangle)
+                    
+                    if configManager.showSuccessMessage {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundStyle(.green)
                             Text("Codage réussi !")
+                                .font(.statusText)
                                 .foregroundStyle(.green)
                         }
                     }
-                }
-                
-                if let error = configManager.actionError {
-                    Section {
+                    
+                    if let error = configManager.actionError {
                         Text(error)
+                            .font(.statusText)
                             .foregroundStyle(.red)
                     }
                 }
+                .appCard()
             }
-            .navigationTitle("Codage & Configuration")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Fermer") {
-                        dismiss()
+            .padding(16)
+        }
+        .background(Color.appBackground.ignoresSafeArea())
+        .navigationTitle("Codage & Configuration")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: {
+                    Task { await configManager.readConfig(interface: interface) }
+                }) {
+                    if configManager.isReading {
+                        ProgressView()
+                    } else {
+                        Image(systemName: "arrow.clockwise")
                     }
                 }
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: {
-                        Task { await configManager.readConfig(interface: interface) }
-                    }) {
-                        if configManager.isReading {
-                            ProgressView()
-                        } else {
-                            Image(systemName: "arrow.clockwise")
-                        }
-                    }
-                    .disabled(configManager.isReading || configManager.isWriting || !isConnected)
-                    .accessibilityLabel("Actualiser la configuration depuis le véhicule")
-                }
+                .disabled(configManager.isReading || configManager.isWriting || !isConnected)
             }
-            .task {
-                if let panda = interface as? PandaDriver {
+        }
+        .task {
+            if let panda = interface as? PandaDriver {
+                try? await panda.setSafetyModel(.allOutput)
+                NSLog("[ConfigurationView] Switched Panda safety model to ALLOUTPUT for coding")
+            }
+            if isConnected {
+                await configManager.readConfig(interface: interface)
+            }
+        }
+        .onDisappear {
+            if let panda = interface as? PandaDriver {
+                Task {
                     try? await panda.setSafetyModel(.allOutput)
-                    NSLog("[ConfigurationView] Switched Panda safety model to ALLOUTPUT for coding")
-                }
-                if isConnected {
-                    await configManager.readConfig(interface: interface)
+                    NSLog("[ConfigurationView] Kept Panda safety model as ALLOUTPUT")
                 }
             }
-            .onDisappear {
-                if let panda = interface as? PandaDriver {
-                    Task {
-                        try? await panda.setSafetyModel(.allOutput)
-                        NSLog("[ConfigurationView] Kept Panda safety model as ALLOUTPUT")
-                    }
-                }
-            }
-            .scrollContentBackground(.hidden)
-            .background(Color.appBackground.ignoresSafeArea())
         }
     }
 }

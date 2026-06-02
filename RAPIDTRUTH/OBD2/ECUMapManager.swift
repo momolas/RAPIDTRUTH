@@ -66,7 +66,7 @@ final class ECUMapManager {
         do {
             // 1. Target Engine ECU (7E0 / Response 7E8)
             statusMessage = "Ciblage du calculateur moteur (7E0)..."
-            try await interface.setTarget(txID: "7E0", rxID: "7E8")
+            _ = try? await interface.setTarget(txID: "7E0", rxID: "7E8")
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(300))
             

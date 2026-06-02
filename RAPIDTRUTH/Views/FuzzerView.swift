@@ -34,7 +34,6 @@ enum LidPreset: String, CaseIterable, Identifiable {
 
 struct FuzzerView: View {
     let interface: VehicleInterface
-    @Environment(\.dismiss) var dismiss
     @State private var fuzzer = OBDFuzzer()
     
     @State private var targetEcu: String = "7E0"
@@ -47,185 +46,221 @@ struct FuzzerView: View {
     // Reverse Engineering state properties
     @State private var selectedTab: Int = 0 // 0: Balayage LIDs (Fuzzer), 1: Corrélation (Reverse Engineering)
     @State private var targetLidHex: String = "01"
+
+    init(interface: VehicleInterface) {
+        self.interface = interface
+    }
     
     var body: some View {
-        NavigationStack {
-            Form {
-                if !agreedToRisks {
-                    FuzzerSafetyWarningView(agreedToRisks: $agreedToRisks)
-                } else {
-                    Picker("Mode Fuzzer", selection: $selectedTab) {
-                        Text("Balayage LIDs (KWP2000)").tag(0)
-                        Text("Corrélation TR (Reverse)").tag(1)
-                    }
-                    .pickerStyle(.segmented)
-                    .listRowBackground(Color.clear)
-                    
-                    if selectedTab == 0 {
-                        FuzzerNetworkDiscoverySection(
-                            interface: interface,
-                            fuzzer: fuzzer,
-                            selectedPreset: $selectedPreset,
-                            targetEcu: $targetEcu
-                        )
-                        FuzzerConfigSection(
-                            selectedLidPreset: $selectedLidPreset,
-                            targetEcu: $targetEcu,
-                            startLidHex: $startLidHex,
-                            endLidHex: $endLidHex
-                        )
-                        FuzzerExecutionSection(
-                            fuzzer: fuzzer,
-                            onStartFuzzing: startFuzzing
-                        )
-                        FuzzerResultsSection(fuzzer: fuzzer)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 16) {
+                    if !agreedToRisks {
+                        FuzzerSafetyWarningView(agreedToRisks: $agreedToRisks)
                     } else {
-                        // Section d'analyse de signaux en temps réel
-                        Section(header: Text("Configuration du LID").font(.cardTitle)) {
-                            HStack {
-                                Text("ECU Cible (Hex)")
-                                Spacer()
-                                TextField("7E0", text: $targetEcu)
-                                    .multilineTextAlignment(.trailing)
-                                    .font(.monoSmall)
-                                    .frame(width: 80)
-                            }
-                            HStack {
-                                Text("LID Cible (Hex)")
-                                Spacer()
-                                TextField("01", text: $targetLidHex)
-                                    .multilineTextAlignment(.trailing)
-                                    .font(.monoSmall)
-                                    .frame(width: 80)
-                            }
+                        Picker("Mode Fuzzer", selection: $selectedTab) {
+                            Text("Balayage LIDs").tag(0)
+                            Text("Corrélation TR").tag(1)
                         }
+                        .pickerStyle(.segmented)
+                        .padding(.vertical, 4)
                         
-                        Section(header: Text("Analyse de Corrélation").font(.cardTitle)) {
-                            if fuzzer.isRunning {
-                                Button(role: .destructive, action: stopCorrelation) {
-                                    HStack {
-                                        Spacer()
-                                        ProgressView()
-                                            .padding(.trailing, 8)
-                                        Text("Arrêter l'Analyse")
-                                            .font(.appButton)
-                                        Spacer()
-                                    }
+                        if selectedTab == 0 {
+                            FuzzerNetworkDiscoverySection(
+                                interface: interface,
+                                fuzzer: fuzzer,
+                                selectedPreset: $selectedPreset,
+                                targetEcu: $targetEcu
+                            )
+                            
+                            Divider().background(Color.white.opacity(0.1))
+                            
+                            FuzzerConfigSection(
+                                selectedLidPreset: $selectedLidPreset,
+                                targetEcu: $targetEcu,
+                                startLidHex: $startLidHex,
+                                endLidHex: $endLidHex
+                            )
+                            
+                            Divider().background(Color.white.opacity(0.1))
+                            
+                            FuzzerExecutionSection(
+                                fuzzer: fuzzer,
+                                onStartFuzzing: startFuzzing
+                            )
+                            
+                            FuzzerResultsSection(fuzzer: fuzzer)
+                        } else {
+                            // Section d'analyse de signaux en temps réel
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Configuration du LID")
+                                    .font(.cardTitle)
+                                    .foregroundStyle(.secondary)
+                                
+                                HStack {
+                                    Text("ECU Cible (Hex)")
+                                        .font(.bodyText)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                    TextField("7E0", text: $targetEcu)
+                                        .textFieldStyle(.roundedBorder)
+                                        .multilineTextAlignment(.trailing)
+                                        .font(.monoSmall)
+                                        .frame(width: 100)
+                                        .foregroundStyle(.white)
                                 }
-                                .glassActionButton(prominent: true)
-                            } else {
-                                Button(action: startCorrelation) {
-                                    Text("Démarrer l'Analyse")
-                                        .font(.appButton)
-                                        .frame(maxWidth: .infinity)
+                                HStack {
+                                    Text("LID Cible (Hex)")
+                                        .font(.bodyText)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                    TextField("01", text: $targetLidHex)
+                                        .textFieldStyle(.roundedBorder)
+                                        .multilineTextAlignment(.trailing)
+                                        .font(.monoSmall)
+                                        .frame(width: 100)
+                                        .foregroundStyle(.white)
                                 }
-                                .glassActionButton(prominent: true)
                             }
                             
-                            if fuzzer.analyzedFrameCount > 0 {
-                                HStack {
-                                    Text("Trames analysées")
-                                        .font(.captionText)
-                                    Spacer()
-                                    Text("\(fuzzer.analyzedFrameCount)")
-                                        .font(.valueNumber)
-                                        .foregroundStyle(Color.appAccent)
-                                }
-                            }
-                        }
-                        
-                        Section(header: Text("Rapports de Pearson (Temps Réel)").font(.cardTitle)) {
-                            if fuzzer.correlations.isEmpty {
-                                VStack(alignment: .center, spacing: 8) {
-                                    Image(systemName: "waveform.path.ecg")
-                                        .font(.largeTitle)
-                                        .foregroundStyle(.tertiary)
-                                    Text("En attente d'acquisition...")
-                                        .font(.statusText)
-                                        .foregroundStyle(.secondary)
-                                    Text("Accélérez ou faites varier l'état pour corréler les signaux.")
-                                        .font(.captionTiny)
-                                        .foregroundStyle(.tertiary)
-                                        .multilineTextAlignment(.center)
-                                }
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                            } else {
-                                ForEach(fuzzer.correlations) { result in
-                                    VStack(alignment: .leading, spacing: 4) {
+                            Divider().background(Color.white.opacity(0.1))
+                            
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Analyse de Corrélation")
+                                    .font(.cardTitle)
+                                    .foregroundStyle(.secondary)
+                                
+                                if fuzzer.isRunning {
+                                    Button(action: stopCorrelation) {
                                         HStack {
-                                            Text("Tranche \(result.sliceName)")
-                                                .font(.monoSmall)
-                                                .bold()
-                                                .foregroundStyle(.white)
                                             Spacer()
-                                            Text(result.classification)
-                                                .font(.captionTiny)
-                                                .bold()
-                                                .foregroundStyle(colorForClassification(result.classification))
+                                            ProgressView()
+                                                .padding(.trailing, 8)
+                                            Text("Arrêter l'Analyse")
+                                            Spacer()
                                         }
-                                        
-                                        HStack(spacing: 8) {
-                                            ZStack(alignment: .leading) {
-                                                RoundedRectangle(cornerRadius: 3)
-                                                    .fill(Color.white.opacity(0.1))
-                                                    .frame(height: 6)
-                                                
-                                                RoundedRectangle(cornerRadius: 3)
-                                                    .fill(colorForCoefficient(result.coefficient))
-                                                    .frame(height: 6)
-                                                    .visualEffect { content, geometry in
-                                                        content.scaleEffect(x: CGFloat(abs(result.coefficient)), y: 1.0, anchor: .leading)
-                                                    }
-                                            }
-                                            .frame(height: 6)
-                                            
-                                            Text("\((result.coefficient * 100).formatted(.number.precision(.fractionLength(1))))%")
-                                                .font(.valueNumber)
-                                                .foregroundStyle(.secondary)
-                                                .frame(width: 55, alignment: .trailing)
-                                        }
+                                        .font(.appButton)
                                     }
-                                    .padding(.vertical, 6)
-                                    .padding(.horizontal, 10)
-                                    .background(Color.white.opacity(0.02))
-                                    .clipShape(.rect(cornerRadius: 8))
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color.white.opacity(0.04), lineWidth: 1)
+                                    .glassActionButton(prominent: true)
+                                    .foregroundStyle(.red)
+                                } else {
+                                    Button(action: startCorrelation) {
+                                        Text("Démarrer l'Analyse")
+                                            .font(.appButton)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .glassActionButton(prominent: true)
+                                }
+                                
+                                if fuzzer.analyzedFrameCount > 0 {
+                                    HStack {
+                                        Text("Trames analysées")
+                                            .font(.captionText)
+                                        Spacer()
+                                        Text("\(fuzzer.analyzedFrameCount)")
+                                            .font(.valueNumber)
+                                            .foregroundStyle(Color.appAccent)
+                                    }
+                                }
+                            }
+                            
+                            Divider().background(Color.white.opacity(0.1))
+                            
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Rapports de Pearson (Temps Réel)")
+                                    .font(.cardTitle)
+                                    .foregroundStyle(.secondary)
+                                
+                                if fuzzer.correlations.isEmpty {
+                                    VStack(alignment: .center, spacing: 8) {
+                                        Image(systemName: "waveform.path.ecg")
+                                            .font(.largeTitle)
+                                            .foregroundStyle(.tertiary)
+                                        Text("En attente d'acquisition...")
+                                            .font(.statusText)
+                                            .foregroundStyle(.secondary)
+                                        Text("Accélérez ou faites varier l'état pour corréler les signaux.")
+                                            .font(.captionTiny)
+                                            .foregroundStyle(.tertiary)
+                                            .multilineTextAlignment(.center)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                } else {
+                                    ForEach(fuzzer.correlations) { result in
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            HStack {
+                                                Text("Tranche \(result.sliceName)")
+                                                    .font(.monoSmall)
+                                                    .bold()
+                                                    .foregroundStyle(.white)
+                                                Spacer()
+                                                Text(result.classification)
+                                                    .font(.captionTiny)
+                                                    .bold()
+                                                    .foregroundStyle(colorForClassification(result.classification))
+                                            }
+                                            
+                                            HStack(spacing: 8) {
+                                                ZStack(alignment: .leading) {
+                                                    RoundedRectangle(cornerRadius: 3)
+                                                        .fill(Color.white.opacity(0.1))
+                                                        .frame(height: 6)
+                                                    
+                                                    RoundedRectangle(cornerRadius: 3)
+                                                        .fill(colorForCoefficient(result.coefficient))
+                                                        .frame(height: 6)
+                                                        .visualEffect { content, geometry in
+                                                            content.scaleEffect(x: CGFloat(abs(result.coefficient)), y: 1.0, anchor: .leading)
+                                                        }
+                                                }
+                                                .frame(height: 6)
+                                                
+                                                Text("\((result.coefficient * 100).formatted(.number.precision(.fractionLength(1))))%")
+                                                    .font(.valueNumber)
+                                                    .foregroundStyle(.secondary)
+                                                    .frame(width: 55, alignment: .trailing)
+                                            }
+                                        }
+                                        .padding(.vertical, 6)
+                                        .padding(.horizontal, 10)
+                                        .background(Color.white.opacity(0.02))
+                                        .clipShape(.rect(cornerRadius: 8))
+                                        .overlay {
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(Color.white.opacity(0.04), lineWidth: 1)
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+                .appCard()
             }
-            .navigationTitle("Fuzzer OBD (KWP2000)")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Fermer") { dismiss() }
-                }
+            .padding(16)
+        }
+        .background(Color.appBackground.ignoresSafeArea())
+        .navigationTitle("Fuzzer OBD & Corrélation")
+        .navigationBarTitleDisplayMode(.inline)
+        .onChange(of: selectedLidPreset) { oldValue, newValue in
+            if newValue != .custom {
+                startLidHex = newValue.startHex
+                endLidHex = newValue.endHex
             }
-            .onChange(of: selectedLidPreset) { oldValue, newValue in
-                if newValue != .custom {
-                    startLidHex = newValue.startHex
-                    endLidHex = newValue.endHex
-                }
+        }
+        .task {
+            if let panda = interface as? PandaDriver {
+                try? await panda.setSafetyModel(.allOutput)
+                NSLog("[FuzzerView] Switched Panda safety model to ALLOUTPUT for coding")
             }
-            .task {
-                if let panda = interface as? PandaDriver {
+        }
+        .onDisappear {
+            fuzzer.isRunning = false
+            if let panda = interface as? PandaDriver {
+                Task {
                     try? await panda.setSafetyModel(.allOutput)
-                    NSLog("[FuzzerView] Switched Panda safety model to ALLOUTPUT for coding")
-                }
-            }
-            .onDisappear {
-                fuzzer.isRunning = false
-                if let panda = interface as? PandaDriver {
-                    Task {
-                        try? await panda.setSafetyModel(.allOutput)
-                        NSLog("[FuzzerView] Kept Panda safety model as ALLOUTPUT")
-                    }
+                    NSLog("[FuzzerView] Kept Panda safety model as ALLOUTPUT")
                 }
             }
         }

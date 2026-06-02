@@ -19,4 +19,5 @@ struct ContentView: View {
         .environment(SettingsStore.shared)
         .environment(PandaTransport.shared)
         .environment(VehicleStore.shared)
+        .environment(ProfileRegistry.shared)
 }
