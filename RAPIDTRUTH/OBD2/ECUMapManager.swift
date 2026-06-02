@@ -93,7 +93,7 @@ final class ECUMapManager {
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(400))
             
-            // 5. Transfer Data Loop (UDS 36)
+            // 5. Transfer Data Loop (KWP2000 36)
             statusMessage = "Lecture des blocs mémoire en cours..."
             
             for block in 1...totalBlocks {
@@ -103,7 +103,7 @@ final class ECUMapManager {
                 let blockHex = String(format: "%02X", block & 0xFF)
                 
                 // Send physical request to vehicle
-                let blockResponse = try? await interface.sendDiagnosticRequest("36" + blockHex, timeout: 2.0)
+                _ = try? await interface.sendDiagnosticRequest("36" + blockHex, timeout: 2.0)
                 
                 // Simulate data collection (10KB per block)
                 let simulatedBlockData = Data(repeating: UInt8.random(in: 0...255), count: 10 * 1024)
@@ -123,8 +123,8 @@ final class ECUMapManager {
                 try await Task.sleep(for: .milliseconds(80))
             }
             
-            // 6. Request Transfer Exit (UDS 37)
-            statusMessage = "Finalisation du transfert (UDS 37)..."
+            // 6. Request Transfer Exit (KWP2000 37)
+            statusMessage = "Finalisation du transfert (KWP2000 37)..."
             _ = try? await interface.sendDiagnosticRequest("37", timeout: 3.0)
             try await Task.sleep(for: .milliseconds(400))
             
@@ -212,7 +212,7 @@ final class ECUMapManager {
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(500))
             
-            // 5. Transfer Data Loop (UDS 36)
+            // 5. Transfer Data Loop (KWP2000 36)
             statusMessage = "Écriture de la nouvelle cartographie moteur..."
             var sentBytes = 0
             
@@ -239,19 +239,19 @@ final class ECUMapManager {
                 try await Task.sleep(for: .milliseconds(120))
             }
             
-            // 6. Request Transfer Exit (UDS 37)
-            statusMessage = "Sortie du mode transfert (UDS 37)..."
+            // 6. Request Transfer Exit (KWP2000 37)
+            statusMessage = "Sortie du mode transfert (KWP2000 37)..."
             _ = try? await interface.sendDiagnosticRequest("37", timeout: 3.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(400))
             
-            // 7. Check Checksum (UDS 31 Routine Control - Check Checksum)
+            // 7. Check Checksum (KWP2000 31 Routine Control - Check Checksum)
             statusMessage = "Calcul et validation du checksum de l'image de programmation (31 01)..."
-            let checksumResponse = try? await interface.sendDiagnosticRequest("31010202", timeout: 5.0)
+            _ = try? await interface.sendDiagnosticRequest("31010202", timeout: 5.0)
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(800))
             
-            // 8. Reboot ECU (UDS 11 01 Hard Reset)
+            // 8. Reboot ECU (KWP2000 11 01 Hard Reset)
             statusMessage = "Réinitialisation et redémarrage du calculateur moteur (11 01)..."
             _ = try? await interface.sendDiagnosticRequest("1101", timeout: 3.0)
             try await Task.sleep(for: .milliseconds(500))
