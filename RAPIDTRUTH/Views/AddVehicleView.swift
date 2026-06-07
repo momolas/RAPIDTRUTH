@@ -144,6 +144,9 @@ struct AddVehicleView: View {
         NSLog("[OBD2-VIN] auto-read: starting")
         status = .readingVIN
         do {
+            if let panda = driver as? PandaDriver {
+                try? await panda.setSafetyModel(.allOutput)
+            }
             if let read = try await VINReader.read(interface: driver) {
                 NSLog("[OBD2-VIN] auto-read: got VIN \(read)")
                 vin = read

@@ -62,15 +62,13 @@ struct ConnectionView: View {
                     Spacer()
                     
                     if !isVehicleConnected {
-                        Button(action: {
+                        Button("Actualiser", systemImage: "arrow.clockwise") {
                             statusError = nil
                             Task { await detectVehicle() }
-                        }) {
-                            Image(systemName: "arrow.clockwise")
-                                .font(.caption)
-                                .foregroundStyle(Color.appAccent)
                         }
                         .buttonStyle(.plain)
+                        .font(.caption)
+                        .foregroundStyle(Color.appAccent)
                     }
                 }
                 .padding(.top, 4)
@@ -132,25 +130,32 @@ struct ConnectionView: View {
 
     private func detectVehicle() async {
         do {
-            let vin = try? await VINReader.read(interface: driver)
+            if let panda = driver as? PandaDriver {
+                try? await panda.setSafetyModel(.allOutput)
+            }
+            
+            guard let vin = try await VINReader.read(interface: driver) else {
+                throw NSError(domain: "ConnectionView", code: -2, userInfo: [NSLocalizedDescriptionKey: "VIN non détecté"])
+            }
+            
             detectedVin = vin
             isVehicleConnected = true
             
             // If known, set as active
-            if let vin, let known = vehicleStore.vehicles.first(where: { $0.vin == vin }) {
+            if let known = vehicleStore.vehicles.first(where: { $0.vin == vin }) {
                 settings.activeVehicleSlug = known.slug
                 return
             }
             
             // If unknown, decode and save
             let service = getActiveDecoderService(settings: settings)
-			let decoded = try await service.decode(vin: vin ?? "unknown")
+            let decoded = try await service.decode(vin: vin)
             
             let yearInt = decoded.year ?? 0
             let slug = Vehicle.makeSlug(year: yearInt, make: decoded.make, model: decoded.model)
             
             // Fallback slug if empty
-			let finalSlug = slug.isEmpty ? "unknown-vehicle-\(vin?.prefix(6).lowercased() ?? "unknown")" : slug
+            let finalSlug = slug.isEmpty ? "unknown-vehicle-\(vin.prefix(6).lowercased())" : slug
             
             let suggestedProfile = profileRegistry.suggestedProfile(make: decoded.make, year: yearInt)
             

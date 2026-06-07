@@ -337,7 +337,12 @@ struct ConfigurationView: View {
                     Divider().background(Color.white.opacity(0.1))
 
                     Button(action: {
-                        Task { await configManager.writeConfig(interface: interface) }
+                        Task {
+                            if let panda = interface as? PandaDriver {
+                                try? await panda.setSafetyModel(.allOutput)
+                            }
+                            await configManager.writeConfig(interface: interface)
+                        }
                     }) {
                         HStack {
                             Spacer()
@@ -383,7 +388,12 @@ struct ConfigurationView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button(action: {
-                    Task { await configManager.readConfig(interface: interface) }
+                    Task {
+                        if let panda = interface as? PandaDriver {
+                            try? await panda.setSafetyModel(.allOutput)
+                        }
+                        await configManager.readConfig(interface: interface)
+                    }
                 }) {
                     if configManager.isReading {
                         ProgressView()

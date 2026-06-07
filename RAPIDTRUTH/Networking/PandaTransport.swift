@@ -205,6 +205,7 @@ final class PandaTransport {
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         
         return try await withCheckedThrowingContinuation { continuation in
+            let stateTracker = ResumedState()
             connection.stateUpdateHandler = { state in
                 switch state {
                 case .ready:
@@ -217,6 +218,7 @@ final class PandaTransport {
                     
                     connection.send(content: packet, completion: .contentProcessed { error in
                         connection.cancel()
+                        guard stateTracker.tryResume() else { return }
                         if let error = error {
                             continuation.resume(throwing: error)
                         } else {
@@ -225,6 +227,7 @@ final class PandaTransport {
                     })
                 case .failed(let error):
                     connection.cancel()
+                    guard stateTracker.tryResume() else { return }
                     continuation.resume(throwing: error)
                 default:
                     break
@@ -232,5 +235,18 @@ final class PandaTransport {
             }
             connection.start(queue: self.queue)
         }
+    }
+}
+
+private nonisolated final class ResumedState: @unchecked Sendable {
+    private let lock = NSLock()
+    private var hasResumed = false
+    
+    func tryResume() -> Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        if hasResumed { return false }
+        hasResumed = true
+        return true
     }
 }

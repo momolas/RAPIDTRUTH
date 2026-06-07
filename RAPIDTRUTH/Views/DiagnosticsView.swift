@@ -125,12 +125,18 @@ struct DiagnosticsView: View {
     
     private func scanFaults() {
         Task {
+            if let panda = interface as? PandaDriver {
+                try? await panda.setSafetyModel(.allOutput)
+            }
             await dtcLoader.scan(interface: interface, profile: profile)
         }
     }
     
     private func clearFaults() {
         Task {
+            if let panda = interface as? PandaDriver {
+                try? await panda.setSafetyModel(.allOutput)
+            }
             await dtcLoader.clear(interface: interface, profile: profile)
         }
     }

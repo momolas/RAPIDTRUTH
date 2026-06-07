@@ -39,6 +39,9 @@ struct UsedCarCheckView: View {
                     
                     Button(action: {
                         Task {
+                            if let panda = interface as? PandaDriver {
+                                try? await panda.setSafetyModel(.allOutput)
+                            }
                             await manager.runAntiFraudAudit(interface: interface)
                         }
                     }) {

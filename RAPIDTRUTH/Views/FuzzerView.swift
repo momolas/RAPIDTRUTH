@@ -277,6 +277,9 @@ struct FuzzerView: View {
         }
         
         Task {
+            if let panda = interface as? PandaDriver {
+                try? await panda.setSafetyModel(.allOutput)
+            }
             await fuzzer.fuzzKWP2000LIDs(interface: interface, ecu: targetEcu, startLid: start, endLid: end)
         }
     }
@@ -287,6 +290,9 @@ struct FuzzerView: View {
             return
         }
         Task {
+            if let panda = interface as? PandaDriver {
+                try? await panda.setSafetyModel(.allOutput)
+            }
             await fuzzer.analyzeLIDCorrelation(interface: interface, ecu: targetEcu, lidHex: targetLidHex)
         }
     }
