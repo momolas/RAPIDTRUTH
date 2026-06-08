@@ -18,7 +18,6 @@ final class KWP2000Client {
         let hexMode = String(format: "%02X", mode)
         let command = "10" + hexMode
         let response = try await interface.sendDiagnosticRequest(command, timeout: 2.0)
-        
         let cleanResponse = response.replacing(" ", with: "").uppercased()
         
         // KWP2000 Negative Response : 7F 10 [NRC]
@@ -49,7 +48,6 @@ final class KWP2000Client {
         let hexLid = String(format: "%02X", lid)
         let command = "21" + hexLid
         let response = try await interface.sendDiagnosticRequest(command, timeout: 1.5)
-        
         let cleanResponse = response.replacing(" ", with: "").uppercased()
         
         if cleanResponse.hasPrefix("7F21") {
@@ -76,7 +74,6 @@ final class KWP2000Client {
         let cleanData = data.replacing(" ", with: "")
         let command = "3B" + hexLid + cleanData
         let response = try await interface.sendDiagnosticRequest(command, timeout: 2.0)
-        
         let cleanResponse = response.replacing(" ", with: "").uppercased()
         
         if cleanResponse.hasPrefix("7F3B") {
@@ -100,8 +97,8 @@ final class KWP2000Client {
     func performSecurityAccess(level: UInt8, keyCalculator: @Sendable (String) -> String) async throws {
         let requestSeedCmd = String(format: "27%02X", level)
         let seedResponse = try await interface.sendDiagnosticRequest(requestSeedCmd, timeout: 2.0)
-        
         let cleanSeedResponse = seedResponse.replacing(" ", with: "").uppercased()
+
         if cleanSeedResponse.hasPrefix("7F27") {
             let nrcByte = UInt8(cleanSeedResponse.dropFirst(4).prefix(2), radix: 16) ?? 0
             throw KWP2000Error.negativeResponse(service: 0x27, nrc: nrcByte)
@@ -123,8 +120,8 @@ final class KWP2000Client {
         let sendKeyLevel = level + 1
         let sendKeyCmd = String(format: "27%02X", sendKeyLevel) + keyHex
         let keyResponse = try await interface.sendDiagnosticRequest(sendKeyCmd, timeout: 2.0)
-        
         let cleanKeyResponse = keyResponse.replacing(" ", with: "").uppercased()
+
         if cleanKeyResponse.hasPrefix("7F27") {
             let nrcByte = UInt8(cleanKeyResponse.dropFirst(4).prefix(2), radix: 16) ?? 0
             throw KWP2000Error.negativeResponse(service: 0x27, nrc: nrcByte)
@@ -144,6 +141,7 @@ final class KWP2000Client {
     func accessTimingParameters(subFunction: UInt8, parameters: KWP2000TimingParameters? = nil) async throws -> KWP2000TimingParameters {
         let hexSub = String(format: "%02X", subFunction)
         var command = "83" + hexSub
+
         if subFunction == 0x04, let params = parameters {
             command += params.encode()
         }
@@ -169,6 +167,107 @@ final class KWP2000Client {
         return decoded
     }
     
+    /// Démarre la communication KWP2000 (Service 81)
+    /// - Returns: Les octets clés (Key Bytes) renvoyés par l'ECU si présents
+    func startCommunication() async throws -> String {
+        let command = "81"
+        let response = try await interface.sendDiagnosticRequest(command, timeout: 2.0)
+        let cleanResponse = response.replacing(" ", with: "").uppercased()
+        
+        if cleanResponse.hasPrefix("7F81") {
+            let nrcByte = UInt8(cleanResponse.dropFirst(4).prefix(2), radix: 16) ?? 0
+            throw KWP2000Error.negativeResponse(service: 0x81, nrc: nrcByte)
+        }
+        
+        // Réponse positive KWP2000 : C1 + Key Bytes (généralement 2 octets, ex: C1 EF 8F)
+        guard cleanResponse.hasPrefix("C1") else {
+            throw KWP2000Error.unexpectedResponse(expected: "C1", received: response)
+        }
+        
+        return String(cleanResponse.dropFirst(2))
+    }
+    
+    /// Arrête la communication KWP2000 (Service 82)
+    func stopCommunication() async throws {
+        let command = "82"
+        let response = try await interface.sendDiagnosticRequest(command, timeout: 2.0)
+        let cleanResponse = response.replacing(" ", with: "").uppercased()
+        
+        if cleanResponse.hasPrefix("7F82") {
+            let nrcByte = UInt8(cleanResponse.dropFirst(4).prefix(2), radix: 16) ?? 0
+            throw KWP2000Error.negativeResponse(service: 0x82, nrc: nrcByte)
+        }
+        
+        guard cleanResponse.hasPrefix("C2") else {
+            throw KWP2000Error.unexpectedResponse(expected: "C2", received: response)
+        }
+    }
+    
+    /// Lit l'identification de l'ECU (Service 1A)
+    /// - Parameter option: Option d'identification (ex: 0x80 à 0xBF)
+    /// - Returns: Données d'identification brutes
+    func readEcuIdentification(option: UInt8) async throws -> String {
+        let hexOption = String(format: "%02X", option)
+        let command = "1A" + hexOption
+        let response = try await interface.sendDiagnosticRequest(command, timeout: 2.0)
+        let cleanResponse = response.replacing(" ", with: "").uppercased()
+        
+        if cleanResponse.hasPrefix("7F1A") {
+            let nrcByte = UInt8(cleanResponse.dropFirst(4).prefix(2), radix: 16) ?? 0
+            throw KWP2000Error.negativeResponse(service: 0x1A, nrc: nrcByte)
+        }
+        
+        // Réponse positive KWP2000 : 5A + Option
+        let expectedPrefix = "5A" + hexOption
+        guard cleanResponse.hasPrefix(expectedPrefix) else {
+            throw KWP2000Error.unexpectedResponse(expected: expectedPrefix, received: response)
+        }
+        
+        return String(cleanResponse.dropFirst(4))
+    }
+    
+    /// Efface les informations de diagnostic / DTC (Service 14)
+    /// - Parameter group: Le groupe de DTC à effacer (généralement 0xFFFFFF pour tous les DTCs)
+    func clearDiagnosticInformation(group: UInt32 = 0xFFFFFF) async throws {
+        let hexGroup = String(format: "%06X", group)
+        let command = "14" + hexGroup
+        let response = try await interface.sendDiagnosticRequest(command, timeout: 3.0)
+        let cleanResponse = response.replacing(" ", with: "").uppercased()
+        
+        if cleanResponse.hasPrefix("7F14") {
+            let nrcByte = UInt8(cleanResponse.dropFirst(4).prefix(2), radix: 16) ?? 0
+            throw KWP2000Error.negativeResponse(service: 0x14, nrc: nrcByte)
+        }
+        
+        // Réponse positive : 54
+        guard cleanResponse.hasPrefix("54") else {
+            throw KWP2000Error.unexpectedResponse(expected: "54", received: response)
+        }
+    }
+    
+    /// Lit les DTCs par statut (Service 18)
+    /// - Parameters:
+    ///   - statusMask: Le masque de statut des DTCs à lire (généralement 0xFF pour tous les DTCs)
+    /// - Returns: La liste brute de réponse DTC
+    func readDiagnosticTroubleCodesByStatus(statusMask: UInt8 = 0xFF) async throws -> String {
+        let hexMask = String(format: "%02X", statusMask)
+        let command = "1802" + hexMask + "FF00" // Forme courante chez Renault/KWP2000 pour lire par masque
+        let response = try await interface.sendDiagnosticRequest(command, timeout: 3.0)
+        let cleanResponse = response.replacing(" ", with: "").uppercased()
+        
+        if cleanResponse.hasPrefix("7F18") {
+            let nrcByte = UInt8(cleanResponse.dropFirst(4).prefix(2), radix: 16) ?? 0
+            throw KWP2000Error.negativeResponse(service: 0x18, nrc: nrcByte)
+        }
+        
+        // Réponse positive : 58
+        guard cleanResponse.hasPrefix("58") else {
+            throw KWP2000Error.unexpectedResponse(expected: "58", received: response)
+        }
+        
+        return cleanResponse
+    }
+    
     /// Arrête le maintien de session
     func stop() {
         stopTesterPresent()
@@ -190,13 +289,15 @@ final class KWP2000Client {
     func startTesterPresent(interval: TimeInterval = 2.5, suppressResponse: Bool = false) {
         testerPresentTask?.cancel()
         testerPresentTask = Task { [weak self] in
-            while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(interval))
-                guard let self else { break }
-                guard !Task.isCancelled else { break }
-                
-                let command = suppressResponse ? "3E80" : "3E00"
-                _ = try? await self.interface.sendDiagnosticRequest(command, timeout: 0.5)
+            do {
+                while !Task.isCancelled {
+                    try await Task.sleep(for: .seconds(interval))
+                    guard let self else { break }
+                    let command = suppressResponse ? "3E80" : "3E00"
+                    _ = try? await self.interface.sendDiagnosticRequest(command, timeout: 0.5)
+                }
+            } catch {
+                // Arrêt coopératif lors de l'annulation
             }
         }
     }
@@ -224,8 +325,9 @@ struct KWP2000TimingParameters: Sendable {
     static func decode(from hex: String) -> KWP2000TimingParameters? {
         let clean = hex.replacing(" ", with: "")
         guard clean.count >= 10 else { return nil }
-        
+
         var bytes = [UInt8]()
+
         for i in stride(from: 0, to: 10, by: 2) {
             let start = clean.index(clean.startIndex, offsetBy: i)
             let end = clean.index(start, offsetBy: 2)

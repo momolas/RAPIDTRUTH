@@ -45,9 +45,10 @@ enum VINReader {
             // 1c. Try Renault-specific physical engine ping on buses 0, 1, 2
             if activeBus == nil {
                 for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
+                    try Task.checkCancellation()
                     panda.bus = testBus
                     try? await panda.setTarget(txID: "7E0", rxID: "7E8")
-                    _ = await openDiagnosticSession(interface: panda)
+                    _ = try? await openDiagnosticSession(interface: panda)
                     if let response = try? await panda.sendDiagnosticRequest("2181", timeout: 1.0) {
                         let normalized = response.uppercased().replacing(" ", with: "")
                         if normalized.contains("6181") {
@@ -81,6 +82,7 @@ enum VINReader {
                 return vin
             }
         } catch {
+            if error is CancellationError { throw error }
             NSLog("[VINReader] Stage A (11-bit OBD2) failed/timed out: \(error)")
         }
         
@@ -94,6 +96,7 @@ enum VINReader {
                 return vin
             }
         } catch {
+            if error is CancellationError { throw error }
             NSLog("[VINReader] Stage B (29-bit OBD2) failed/timed out: \(error)")
         }
         
@@ -101,7 +104,7 @@ enum VINReader {
         do {
             try Task.checkCancellation()
             try await interface.setTarget(txID: "7E0", rxID: "7E8")
-            _ = await openDiagnosticSession(interface: interface)
+            _ = try await openDiagnosticSession(interface: interface)
             let response = try await interface.sendDiagnosticRequest("2181", timeout: 3.0)
             if let vin = parseRenaultVINResponse(response) {
                 NSLog("[VINReader] Success reading Renault Engine VIN: \(vin)")
@@ -110,6 +113,7 @@ enum VINReader {
             }
             await closeDiagnosticSession(interface: interface)
         } catch {
+            if error is CancellationError { throw error }
             NSLog("[VINReader] Stage C (Renault Engine UDS) failed/timed out: \(error)")
         }
         
@@ -117,7 +121,7 @@ enum VINReader {
         do {
             try Task.checkCancellation()
             try await interface.setTarget(txID: "745", rxID: "765")
-            _ = await openDiagnosticSession(interface: interface)
+            _ = try await openDiagnosticSession(interface: interface)
             let response = try await interface.sendDiagnosticRequest("2181", timeout: 3.0)
             if let vin = parseRenaultVINResponse(response) {
                 NSLog("[VINReader] Success reading Renault UCH VIN: \(vin)")
@@ -126,6 +130,7 @@ enum VINReader {
             }
             await closeDiagnosticSession(interface: interface)
         } catch {
+            if error is CancellationError { throw error }
             NSLog("[VINReader] Stage D (Renault UCH UDS) failed/timed out: \(error)")
         }
         
@@ -134,22 +139,28 @@ enum VINReader {
 
     @discardableResult
     @MainActor
-    private static func openDiagnosticSession(interface: VehicleInterface) async -> Bool {
+    private static func openDiagnosticSession(interface: VehicleInterface) async throws -> Bool {
         // Tente la session Renault 10C0 en premier
-        if let res = try? await interface.sendDiagnosticRequest("10C0", timeout: 1.5) {
+        do {
+            let res = try await interface.sendDiagnosticRequest("10C0", timeout: 1.5)
             let normalized = res.uppercased().replacing(" ", with: "")
             if !normalized.starts(with: "7F") && !normalized.isEmpty {
                 return true
             }
-        }
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch {}
         
         // Repli sur la session étendue standard 1003
-        if let res = try? await interface.sendDiagnosticRequest("1003", timeout: 1.5) {
+        do {
+            let res = try await interface.sendDiagnosticRequest("1003", timeout: 1.5)
             let normalized = res.uppercased().replacing(" ", with: "")
             if !normalized.starts(with: "7F") && !normalized.isEmpty {
                 return true
             }
-        }
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch {}
         
         return false
     }

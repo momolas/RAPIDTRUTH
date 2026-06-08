@@ -50,7 +50,7 @@ final class UsedCarCheckManager {
             currentStep = "Lecture du VIN Moteur (7E0)..."
             try await interface.setTarget(txID: "7E0", rxID: "7E8")
             try Task.checkCancellation()
-            _ = await openDiagnosticSession(interface: interface)
+            _ = try await openDiagnosticSession(interface: interface)
             let rawVinMoteur = try await interface.sendDiagnosticRequest("2181", timeout: 2.0)
             let vinMoteur = decodeVIN(from: rawVinMoteur)
             await closeDiagnosticSession(interface: interface)
@@ -59,7 +59,7 @@ final class UsedCarCheckManager {
             currentStep = "Lecture du VIN Tableau de Bord (743)..."
             try await interface.setTarget(txID: "743", rxID: "763")
             try Task.checkCancellation()
-            _ = await openDiagnosticSession(interface: interface)
+            _ = try await openDiagnosticSession(interface: interface)
             let rawVinTDB = try await interface.sendDiagnosticRequest("2181", timeout: 2.0)
             let vinTDB = decodeVIN(from: rawVinTDB)
             await closeDiagnosticSession(interface: interface)
@@ -68,7 +68,7 @@ final class UsedCarCheckManager {
             currentStep = "Lecture du VIN UCH (745)..."
             try await interface.setTarget(txID: "745", rxID: "765")
             try Task.checkCancellation()
-            _ = await openDiagnosticSession(interface: interface)
+            _ = try await openDiagnosticSession(interface: interface)
             let rawVinUCH = try await interface.sendDiagnosticRequest("2181", timeout: 2.0)
             let vinUCH = decodeVIN(from: rawVinUCH)
             await closeDiagnosticSession(interface: interface)
@@ -78,7 +78,7 @@ final class UsedCarCheckManager {
             currentStep = "Lecture de l'odomètre général TDB (743)..."
             try await interface.setTarget(txID: "743", rxID: "763")
             try Task.checkCancellation()
-            _ = await openDiagnosticSession(interface: interface)
+            _ = try await openDiagnosticSession(interface: interface)
             let rawKmTDB = try await interface.sendDiagnosticRequest("2118", timeout: 2.0)
             let kmTDB = decodeOdometer(from: rawKmTDB)
             await closeDiagnosticSession(interface: interface)
@@ -88,7 +88,7 @@ final class UsedCarCheckManager {
             currentStep = "Audit des données kilométriques de panne moteur (7E0)..."
             try await interface.setTarget(txID: "7E0", rxID: "7E8")
             try Task.checkCancellation()
-            _ = await openDiagnosticSession(interface: interface)
+            _ = try await openDiagnosticSession(interface: interface)
             
             // Re-read DTC Extended Data to extract Mileage freeze frames
             let rawExtendedData = try await interface.sendDiagnosticRequest("190600000080", timeout: 3.0)
@@ -118,22 +118,28 @@ final class UsedCarCheckManager {
     // MARK: - Gestion des Sessions de Diagnostic Renault
     
     @discardableResult
-    private func openDiagnosticSession(interface: VehicleInterface) async -> Bool {
+    private func openDiagnosticSession(interface: VehicleInterface) async throws -> Bool {
         // Tente la session Renault 10C0 en premier
-        if let res = try? await interface.sendDiagnosticRequest("10C0", timeout: 1.5) {
+        do {
+            let res = try await interface.sendDiagnosticRequest("10C0", timeout: 1.5)
             let normalized = res.uppercased().replacing(" ", with: "")
             if !normalized.starts(with: "7F") && !normalized.isEmpty {
                 return true
             }
-        }
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch {}
         
         // Repli sur la session étendue standard 1003
-        if let res = try? await interface.sendDiagnosticRequest("1003", timeout: 1.5) {
+        do {
+            let res = try await interface.sendDiagnosticRequest("1003", timeout: 1.5)
             let normalized = res.uppercased().replacing(" ", with: "")
             if !normalized.starts(with: "7F") && !normalized.isEmpty {
                 return true
             }
-        }
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch {}
         
         return false
     }
