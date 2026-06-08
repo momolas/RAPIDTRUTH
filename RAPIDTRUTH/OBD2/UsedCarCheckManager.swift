@@ -50,40 +50,50 @@ final class UsedCarCheckManager {
             currentStep = "Lecture du VIN Moteur (7E0)..."
             try await interface.setTarget(txID: "7E0", rxID: "7E8")
             try Task.checkCancellation()
+            _ = await openDiagnosticSession(interface: interface)
             let rawVinMoteur = try await interface.sendDiagnosticRequest("2181", timeout: 2.0)
             let vinMoteur = decodeVIN(from: rawVinMoteur)
+            await closeDiagnosticSession(interface: interface)
             try await Task.sleep(for: .milliseconds(300))
             
             currentStep = "Lecture du VIN Tableau de Bord (743)..."
             try await interface.setTarget(txID: "743", rxID: "763")
             try Task.checkCancellation()
+            _ = await openDiagnosticSession(interface: interface)
             let rawVinTDB = try await interface.sendDiagnosticRequest("2181", timeout: 2.0)
             let vinTDB = decodeVIN(from: rawVinTDB)
+            await closeDiagnosticSession(interface: interface)
             try await Task.sleep(for: .milliseconds(300))
             
             currentStep = "Lecture du VIN UCH (745)..."
             try await interface.setTarget(txID: "745", rxID: "765")
             try Task.checkCancellation()
+            _ = await openDiagnosticSession(interface: interface)
             let rawVinUCH = try await interface.sendDiagnosticRequest("2181", timeout: 2.0)
             let vinUCH = decodeVIN(from: rawVinUCH)
+            await closeDiagnosticSession(interface: interface)
             try await Task.sleep(for: .milliseconds(300))
             
             // --- ETAPE 2 : AUDIT KILOMETRAGE DU TABLEAU DE BORD ---
             currentStep = "Lecture de l'odomètre général TDB (743)..."
             try await interface.setTarget(txID: "743", rxID: "763")
             try Task.checkCancellation()
+            _ = await openDiagnosticSession(interface: interface)
             let rawKmTDB = try await interface.sendDiagnosticRequest("2118", timeout: 2.0)
             let kmTDB = decodeOdometer(from: rawKmTDB)
+            await closeDiagnosticSession(interface: interface)
             try await Task.sleep(for: .milliseconds(300))
             
             // --- ETAPE 3 : AUDIT DES ENREGISTREMENTS DE PANNE MOTEUR ---
             currentStep = "Audit des données kilométriques de panne moteur (7E0)..."
             try await interface.setTarget(txID: "7E0", rxID: "7E8")
             try Task.checkCancellation()
+            _ = await openDiagnosticSession(interface: interface)
             
             // Re-read DTC Extended Data to extract Mileage freeze frames
             let rawExtendedData = try await interface.sendDiagnosticRequest("190600000080", timeout: 3.0)
             let maxKmPanne = extractMaxMileageFromExtendedData(rawExtendedData, baseKM: kmTDB)
+            await closeDiagnosticSession(interface: interface)
             try await Task.sleep(for: .milliseconds(200))
             
             // Compilation of the structural audit report
@@ -103,6 +113,33 @@ final class UsedCarCheckManager {
         
         isAuditing = false
         currentStep = ""
+    }
+    
+    // MARK: - Gestion des Sessions de Diagnostic Renault
+    
+    @discardableResult
+    private func openDiagnosticSession(interface: VehicleInterface) async -> Bool {
+        // Tente la session Renault 10C0 en premier
+        if let res = try? await interface.sendDiagnosticRequest("10C0", timeout: 1.5) {
+            let normalized = res.uppercased().replacing(" ", with: "")
+            if !normalized.starts(with: "7F") && !normalized.isEmpty {
+                return true
+            }
+        }
+        
+        // Repli sur la session étendue standard 1003
+        if let res = try? await interface.sendDiagnosticRequest("1003", timeout: 1.5) {
+            let normalized = res.uppercased().replacing(" ", with: "")
+            if !normalized.starts(with: "7F") && !normalized.isEmpty {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    private func closeDiagnosticSession(interface: VehicleInterface) async {
+        _ = try? await interface.sendDiagnosticRequest("1001", timeout: 1.0)
     }
     
     // MARK: - Décodeurs de payloads physiques
