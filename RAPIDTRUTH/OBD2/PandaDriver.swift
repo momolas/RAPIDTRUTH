@@ -5,6 +5,7 @@ final class PandaDriver: VehicleInterface {
     let transport: PandaTransport
     var txID: UInt32 = 0x7E0
     var rxID: UInt32 = 0x7E8 // Usually txID + 8, but for Renault it can be different
+    var bus: UInt8 = 0
 
     // We keep track of the in-flight continuation for the response
     private var inFlight: CheckedContinuation<String, Error>?
@@ -119,7 +120,7 @@ final class PandaDriver: VehicleInterface {
             Task {
                 do {
                     for frame in frames {
-                        let packed = self.packPandaCAN(address: self.txID, data: frame, bus: 0)
+                        let packed = self.packPandaCAN(address: self.txID, data: frame, bus: self.bus)
                         try await self.transport.send(packed)
                         // Tiny delay between frames
                         try await Task.sleep(for: .milliseconds(5))
@@ -155,7 +156,7 @@ final class PandaDriver: VehicleInterface {
             // Send Flow Control: 30 00 00 (Clear to send, block size 0, STmin 0)
             Task {
                 let fcData = Data([0x30, 0x00, 0x00])
-                let packed = packPandaCAN(address: txID, data: fcData, bus: 0)
+                let packed = packPandaCAN(address: txID, data: fcData, bus: self.bus)
                 try? await transport.send(packed)
             }
         case .error(let errMsg):
