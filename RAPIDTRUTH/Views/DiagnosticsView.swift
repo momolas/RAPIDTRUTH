@@ -28,17 +28,18 @@ struct DiagnosticsView: View {
                     }
 
                     if dtcLoader.isScanning {
-                        HStack {
-                            ProgressView()
-                                .padding(.trailing, 8)
+                        HStack(spacing: 12) {
+                            Image(systemName: "arrow.triangle.2.circlepath")
+                                .foregroundStyle(Color.appAccent)
+                                .symbolEffect(.rotate, options: .repeating)
                             if let ecu = dtcLoader.currentEcuScanning {
-                                Text("Scanning \(ecu)...")
+                                Text("Scan en cours : \(ecu)...")
                                     .font(.statusText)
-                                    .foregroundStyle(.tertiary)
+                                    .foregroundStyle(.secondary)
                             } else {
-                                Text("Scanning ECUs...")
+                                Text("Scan des calculateurs...")
                                     .font(.statusText)
-                                    .foregroundStyle(.tertiary)
+                                    .foregroundStyle(.secondary)
                             }
                         }
                         .padding()
@@ -48,10 +49,14 @@ struct DiagnosticsView: View {
                             .foregroundStyle(.red)
                             .padding()
                     } else if dtcLoader.dtcs.isEmpty {
-                        Text("No faults detected. System OK.")
-                            .font(.statusText)
-                            .foregroundStyle(.green)
-                            .padding()
+                        ContentUnavailableView {
+                            Label("Aucun défaut détecté", systemImage: "checkmark.shield.fill")
+                                .foregroundStyle(.green)
+                        } description: {
+                            Text("Le système de diagnostic réseau est sain.")
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding()
                     } else {
                         VStack(spacing: 8) {
                             ForEach(dtcLoader.dtcs) { dtc in

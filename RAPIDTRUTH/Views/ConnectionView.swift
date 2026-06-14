@@ -11,6 +11,7 @@ struct ConnectionView: View {
     @State private var statusError: String?
     @State private var isVehicleConnected = false
     @State private var detectedVin: String? = nil
+    @State private var isAnimating = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -42,6 +43,13 @@ struct ConnectionView: View {
                     Circle()
                         .fill(isVehicleConnected ? Color.green : Color.orange)
                         .frame(width: 8, height: 8)
+                        .scaleEffect(!isVehicleConnected && isAnimating ? 1.25 : 1.0)
+                        .opacity(!isVehicleConnected && isAnimating ? 0.6 : 1.0)
+                        .onAppear {
+                            withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
+                                isAnimating = true
+                            }
+                        }
                     
                     VStack(alignment: .leading, spacing: 2) {
                         Text(isVehicleConnected ? "Lien Véhicule Établi" : "En attente du véhicule...")
@@ -196,11 +204,24 @@ struct ConnectionStatusBadge: View {
     let isIdleOrError: Bool
     let isVehicleConnected: Bool
 
+    @State private var isAnimating = false
+
+    private var shouldPulse: Bool {
+        isConnecting || (isConnected && !isVehicleConnected)
+    }
+
     var body: some View {
         HStack(spacing: 8) {
             Circle()
                 .fill(badgeColor)
                 .frame(width: 10, height: 10)
+                .scaleEffect(shouldPulse && isAnimating ? 1.25 : 1.0)
+                .opacity(shouldPulse && isAnimating ? 0.6 : 1.0)
+                .onAppear {
+                    withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
+                        isAnimating = true
+                    }
+                }
             VStack(alignment: .leading, spacing: 2) {
                 HStack(spacing: 6) {
                     Text(stateTitle)

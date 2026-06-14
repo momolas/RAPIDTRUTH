@@ -51,12 +51,23 @@ struct UsedCarCheckView: View {
                 .appCard()
                 
                 if manager.isAuditing {
-                    VStack(spacing: 12) {
-                        ProgressView()
-                            .tint(Color.appAccent)
-                        Text(manager.currentStep)
-                            .font(.captionText)
-                            .foregroundStyle(.gray)
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "shield.checkerboard")
+                                .font(.title2)
+                                .foregroundStyle(Color.appAccent)
+                                .symbolEffect(.pulse, options: .repeating)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Audit de sécurité en cours...")
+                                    .font(.captionText).bold()
+                                    .foregroundStyle(.white)
+                                Text(manager.currentStep)
+                                    .font(.captionTiny)
+                                    .foregroundStyle(.gray)
+                            }
+                            Spacer()
+                        }
                     }
                     .appCard()
                 }
