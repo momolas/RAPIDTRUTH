@@ -4,22 +4,20 @@ final class DTCDescriptionProvider: Sendable {
     static let shared = DTCDescriptionProvider()
     
     private let dtcMap: [String: String]
-    private let genericDtcMap: [String: String]
     
     private init() {
-        // 1. Load Renault-specific codes
-        if let url = Bundle.main.url(forResource: "dtc_renault_fr", withExtension: "json"),
+        // Load unified DTC mapping (Renault + Generic OBD2)
+        if let url = Bundle.main.url(forResource: "dtc_map", withExtension: "json"),
            let data = try? Data(contentsOf: url),
            let map = try? JSONDecoder().decode([String: String].self, from: data) {
             self.dtcMap = map
         } else {
-            // Also try to find it in the bundle root or Resources directory
             let fileManager = FileManager.default
             let bundlePath = Bundle.main.bundlePath
             let possiblePaths = [
-                "\(bundlePath)/dtc_renault_fr.json",
-                "\(bundlePath)/Resources/dtc_renault_fr.json",
-                "\(bundlePath)/RAPIDTRUTH/Profiles/dtc_renault_fr.json"
+                "\(bundlePath)/dtc_map.json",
+                "\(bundlePath)/Resources/dtc_map.json",
+                "\(bundlePath)/RAPIDTRUTH/Profiles/dtc_map.json"
             ]
             
             var loadedMap: [String: String] = [:]
@@ -33,43 +31,17 @@ final class DTCDescriptionProvider: Sendable {
             }
             self.dtcMap = loadedMap
         }
-
-        // 2. Load Generic OBD2 codes
-        if let url = Bundle.main.url(forResource: "dtc_generic_en", withExtension: "json"),
-           let data = try? Data(contentsOf: url),
-           let map = try? JSONDecoder().decode([String: String].self, from: data) {
-            self.genericDtcMap = map
-        } else {
-            let fileManager = FileManager.default
-            let bundlePath = Bundle.main.bundlePath
-            let possiblePaths = [
-                "\(bundlePath)/dtc_generic_en.json",
-                "\(bundlePath)/Resources/dtc_generic_en.json",
-                "\(bundlePath)/RAPIDTRUTH/Profiles/dtc_generic_en.json"
-            ]
-            
-            var loadedMap: [String: String] = [:]
-            for path in possiblePaths {
-                if fileManager.fileExists(atPath: path),
-                   let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
-                   let map = try? JSONDecoder().decode([String: String].self, from: data) {
-                    loadedMap = map
-                    break
-                }
-            }
-            self.genericDtcMap = loadedMap
-        }
     }
     
     func description(for hexCode: String) -> String? {
-        // e.g. "0104" or "9000"
+        // Try looking up raw hex directly (e.g., Renault specific)
         if let desc = dtcMap[hexCode] {
             return desc
         }
         
-        // Fallback: decode hex to standard format (e.g. "0420" -> "P0420") and search generic mapping
+        // Fallback: decode to standard OBD2 format (e.g. "0420" -> "P0420") and lookup
         if let standardCode = decodeSingleDTC(hexCode) {
-            if let desc = genericDtcMap[standardCode] {
+            if let desc = dtcMap[standardCode] {
                 return desc
             }
         }
