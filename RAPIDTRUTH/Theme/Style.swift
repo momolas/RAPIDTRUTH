@@ -1,10 +1,5 @@
 import SwiftUI
 
-extension Color {
-    static let appBackground = Color(red: 14 / 255, green: 15 / 255, blue: 18 / 255)
-    static let appCardBackground = Color(red: 22 / 255, green: 24 / 255, blue: 29 / 255)
-    static let appAccent = Color(red: 92 / 255, green: 196 / 255, blue: 1.0)
-}
 
 /// Centralized typography scale for the iOS app. Use these tokens instead
 /// of inline `.font(.caption.monospaced())` etc. so the visual hierarchy
@@ -26,20 +21,6 @@ extension Color {
 ///
 /// When an existing call doesn't fit cleanly into one of these, prefer
 /// adding a new token here over reintroducing inline font expressions.
-extension Font {
-	static let appBrand    = Font.largeTitle.weight(.light)
-    static let stepTitle   = Font.title2.weight(.light)
-    static let cardTitle   = Font.subheadline.weight(.light)
-    static let appButton   = Font.subheadline.weight(.light)
-    static let valueLabel  = Font.body.weight(.light)
-	static let valueNumber = Font.body.weight(.light)
-    static let bodyText    = Font.body
-    static let statusText  = Font.footnote
-    static let captionText = Font.caption
-    static let captionTiny = Font.caption2
-    static let monoSmall   = Font.caption.weight(.light)
-    static let monoTiny    = Font.caption2.weight(.light)
-}
 
 struct AppCardModifier: ViewModifier {
     func body(content: Content) -> some View {
@@ -49,16 +30,6 @@ struct AppCardModifier: ViewModifier {
     }
 }
 
-struct AdaptiveGlassEffectContainer<Content: View>: View {
-    let spacing: CGFloat
-    @ViewBuilder let content: Content
-    
-    var body: some View {
-        GlassEffectContainer(spacing: spacing) {
-            content
-        }
-    }
-}
 
 extension View {
     func appCard() -> some View {

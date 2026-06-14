@@ -1,36 +1,5 @@
 import SwiftUI
 
-enum ScanPreset: String, CaseIterable, Identifiable {
-    case rapid = "Rapide (Standard + Renault)"
-    case standard11bit = "Exhaustif 11-bit (700-7EF)"
-    case standard29bit = "Exhaustif 29-bit (18DAxxF1)"
-    
-    var id: String { self.rawValue }
-}
-
-enum LidPreset: String, CaseIterable, Identifiable {
-    case all = "Exhaustif (00-FF)"
-    case renault = "Renault Standard (01-AF)"
-    case custom = "Personnalisé"
-    
-    var id: String { self.rawValue }
-    
-    var startHex: String {
-        switch self {
-        case .all: return "00"
-        case .renault: return "01"
-        case .custom: return ""
-        }
-    }
-    
-    var endHex: String {
-        switch self {
-        case .all: return "FF"
-        case .renault: return "AF"
-        case .custom: return ""
-        }
-    }
-}
 
 struct FuzzerView: View {
     let interface: VehicleInterface

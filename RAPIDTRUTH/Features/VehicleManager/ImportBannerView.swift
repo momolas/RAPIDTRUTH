@@ -1,10 +1,5 @@
 import SwiftUI
 
-enum ImportBanner: Equatable {
-    case success(String)
-    case failure(String)
-}
-
 struct ImportBannerView: View {
     let banner: ImportBanner
 
@@ -14,7 +9,7 @@ struct ImportBannerView: View {
         case .failure(let msg): (msg, .red)
         }
         
-        Text(text)
+        return Text(text)
             .font(.body)
             .foregroundStyle(.white)
             .padding(.horizontal, 14)
