@@ -309,7 +309,7 @@ final class PandaDriver: VehicleInterface {
         try await transport.sendControlWrite(requestType: 0x40, request: 0xdc, value: mode.rawValue, index: 0)
     }
     
-    deinit {
+    isolated deinit {
         inboundTask?.cancel()
         timeoutTask?.cancel()
     }

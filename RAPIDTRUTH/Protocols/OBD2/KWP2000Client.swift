@@ -307,7 +307,7 @@ final class KWP2000Client {
         testerPresentTask = nil
     }
     
-    deinit {
+    isolated deinit {
         testerPresentTask?.cancel()
     }
 }

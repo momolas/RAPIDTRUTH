@@ -10,12 +10,11 @@ struct ImportBannerView: View {
         }
         
         return Text(text)
-            .font(.body)
+            .font(.bodyText)
             .foregroundStyle(.white)
             .padding(.horizontal, 14)
             .padding(.vertical, 10)
-            .background(color.opacity(0.9))
-            .clipShape(.rect(cornerRadius: 10))
+            .glassEffect(.regular.tint(color), in: .rect(cornerRadius: 10))
             .frame(maxWidth: .infinity)
     }
 }
