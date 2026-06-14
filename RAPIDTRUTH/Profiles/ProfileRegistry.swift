@@ -36,7 +36,7 @@ final class ProfileRegistry {
                 }
             }
         }
-        return profile(id: "generic_obd2") ?? profiles.first!
+        return profile(id: "generic_obd2") ?? profiles.first ?? Profile.fallback
     }
 
     func reload() {

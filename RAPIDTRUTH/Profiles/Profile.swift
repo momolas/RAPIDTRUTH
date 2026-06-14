@@ -75,3 +75,17 @@ struct Profile: Codable, Identifiable, Hashable {
         case validatedAgainst = "validated_against"
     }
 }
+
+extension Profile {
+    static let fallback = Profile(
+        profileId: "generic_obd2",
+        profileVersion: "1.0",
+        displayName: "Generic OBD2",
+        description: "Fallback generic profile",
+        vehicleMatch: nil,
+        ecus: [:],
+        pids: [],
+        sources: nil,
+        validatedAgainst: nil
+    )
+}

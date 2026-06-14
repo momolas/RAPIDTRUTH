@@ -43,20 +43,9 @@ extension Font {
 
 struct AppCardModifier: ViewModifier {
     func body(content: Content) -> some View {
-        if #available(iOS 26, *) {
-            content
-                .padding(16)
-                .glassEffect(.regular, in: .rect(cornerRadius: 12))
-        } else {
-            content
-                .padding(16)
-                .background(Color.appCardBackground)
-                .clipShape(.rect(cornerRadius: 12))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.white.opacity(0.05), lineWidth: 1)
-                }
-        }
+        content
+            .padding(16)
+            .glassEffect(.regular, in: .rect(cornerRadius: 12))
     }
 }
 
@@ -65,11 +54,7 @@ struct AdaptiveGlassEffectContainer<Content: View>: View {
     @ViewBuilder let content: Content
     
     var body: some View {
-        if #available(iOS 26, *) {
-            GlassEffectContainer(spacing: spacing) {
-                content
-            }
-        } else {
+        GlassEffectContainer(spacing: spacing) {
             content
         }
     }
@@ -82,22 +67,12 @@ extension View {
     
     @ViewBuilder
     func glassActionButton(prominent: Bool = false) -> some View {
-        if #available(iOS 26, *) {
-            if prominent {
-                self.buttonStyle(.glassProminent)
-                    .buttonBorderShape(.roundedRectangle)
-            } else {
-                self.buttonStyle(.glass)
-                    .buttonBorderShape(.roundedRectangle)
-            }
+        if prominent {
+            self.buttonStyle(.glassProminent)
+                .buttonBorderShape(.roundedRectangle)
         } else {
-            if prominent {
-                self.buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.roundedRectangle)
-            } else {
-                self.buttonStyle(.bordered)
-                    .buttonBorderShape(.roundedRectangle)
-            }
+            self.buttonStyle(.glass)
+                .buttonBorderShape(.roundedRectangle)
         }
     }
 }

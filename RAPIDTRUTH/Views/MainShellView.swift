@@ -31,7 +31,8 @@ struct MainShellView: View {
             return prof
         }
         return profileRegistry.profile(id: "renault_scenic2_m9r722")
-            ?? profileRegistry.profiles.first!
+            ?? profileRegistry.profiles.first
+            ?? Profile.fallback
     }
 
     var body: some View {

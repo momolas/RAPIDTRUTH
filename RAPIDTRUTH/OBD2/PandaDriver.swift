@@ -108,30 +108,41 @@ final class PandaDriver: VehicleInterface {
 
         isotpReassembler.reset(address: self.rxID)
         
-        return try await withCheckedThrowingContinuation { continuation in
-            self.inFlight = continuation
-            self.timeoutTask = Task { [weak self] in
-                try? await Task.sleep(for: .seconds(timeout))
-                guard let self, let in0 = self.inFlight else { return }
-                self.inFlight = nil
-                in0.resume(throwing: NSError(domain: "PandaDriver", code: -1, userInfo: [NSLocalizedDescriptionKey: "Timeout"]))
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                self.inFlight = continuation
+                self.timeoutTask = Task { [weak self] in
+                    try? await Task.sleep(for: .seconds(timeout))
+                    guard let self, let in0 = self.inFlight else { return }
+                    self.inFlight = nil
+                    in0.resume(throwing: NSError(domain: "PandaDriver", code: -1, userInfo: [NSLocalizedDescriptionKey: "Timeout"]))
+                }
+                
+                Task {
+                    do {
+                        for frame in frames {
+                            let packed = self.packPandaCAN(address: self.txID, data: frame, bus: self.bus)
+                            try await self.transport.send(packed)
+                            // Tiny delay between frames
+                            try await Task.sleep(for: .milliseconds(5))
+                        }
+                    } catch {
+                        self.timeoutTask?.cancel()
+                        self.timeoutTask = nil
+                        if let in0 = self.inFlight {
+                            self.inFlight = nil
+                            in0.resume(throwing: error)
+                        }
+                    }
+                }
             }
-            
-            Task {
-                do {
-                    for frame in frames {
-                        let packed = self.packPandaCAN(address: self.txID, data: frame, bus: self.bus)
-                        try await self.transport.send(packed)
-                        // Tiny delay between frames
-                        try await Task.sleep(for: .milliseconds(5))
-                    }
-                } catch {
-                    self.timeoutTask?.cancel()
-                    self.timeoutTask = nil
-                    if let in0 = self.inFlight {
-                        self.inFlight = nil
-                        in0.resume(throwing: error)
-                    }
+        } onCancel: {
+            Task { @MainActor in
+                self.timeoutTask?.cancel()
+                self.timeoutTask = nil
+                if let continuation = self.inFlight {
+                    self.inFlight = nil
+                    continuation.resume(throwing: CancellationError())
                 }
             }
         }

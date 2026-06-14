@@ -206,7 +206,7 @@ struct AddVehicleView: View {
             vin: vin.isEmpty ? nil : vin,
             profileId: profile.profileId,
             profileVersion: profile.profileVersion,
-            createdAtUTC: Date().formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!)),
+            createdAtUTC: Date.now.formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!)),
             lastUsedUTC: nil,
             supportedStandardPIDs: [],
             supportedProfilePIDs: [],

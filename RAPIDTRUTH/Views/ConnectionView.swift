@@ -170,7 +170,7 @@ struct ConnectionView: View {
                 vin: vin,
                 profileId: suggestedProfile.profileId,
                 profileVersion: suggestedProfile.profileVersion,
-                createdAtUTC: Date().formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!)),
+                createdAtUTC: Date.now.formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!)),
                 lastUsedUTC: nil,
                 supportedStandardPIDs: [],
                 supportedProfilePIDs: [],

@@ -28,13 +28,9 @@ struct UsedCarCheckView: View {
                         .foregroundStyle(.secondary)
                     
                     if !isConnected {
-                        HStack {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .foregroundStyle(.orange)
-                            Text("Outil non connecté. Connectez un adaptateur OBD.")
-                                .font(.captionText)
-                                .foregroundStyle(.gray)
-                        }
+                        Label("Outil non connecté. Connectez un adaptateur OBD.", systemImage: "exclamationmark.triangle.fill")
+                            .font(.captionText)
+                            .foregroundStyle(.orange)
                     }
                     
                     Button(action: {
@@ -45,12 +41,9 @@ struct UsedCarCheckView: View {
                             await manager.runAntiFraudAudit(interface: interface)
                         }
                     }) {
-                        HStack {
-                            Image(systemName: "shield.checkerboard")
-                            Text("Lancer l'Audit Anti-Fraude")
-                                .font(.appButton)
-                        }
-                        .frame(maxWidth: .infinity)
+                        Label("Lancer l'Audit Anti-Fraude", systemImage: "shield.checkerboard")
+                            .font(.appButton)
+                            .frame(maxWidth: .infinity)
                     }
                     .disabled(manager.isAuditing || !isConnected)
                     .glassActionButton(prominent: true)

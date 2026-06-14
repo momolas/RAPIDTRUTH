@@ -3,6 +3,9 @@ import SwiftData
 
 @Model
 final class Vehicle: Identifiable {
+    #Unique<Vehicle>([\.slug])
+    #Index<Vehicle>([\.owner], [\.slug], [\.owner, \.slug])
+
     var slug: String = ""
     var owner: String = ""
     var displayName: String = ""

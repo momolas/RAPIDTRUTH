@@ -204,36 +204,40 @@ final class PandaTransport {
         let parameters = NWParameters.udp
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         
-        return try await withCheckedThrowingContinuation { continuation in
-            let stateTracker = ResumedState()
-            connection.stateUpdateHandler = { state in
-                switch state {
-                case .ready:
-                    var packet = Data()
-                    packet.append(contentsOf: withUnsafeBytes(of: requestType.littleEndian) { Array($0) })
-                    packet.append(contentsOf: withUnsafeBytes(of: request.littleEndian) { Array($0) })
-                    packet.append(contentsOf: withUnsafeBytes(of: value.littleEndian) { Array($0) })
-                    packet.append(contentsOf: withUnsafeBytes(of: index.littleEndian) { Array($0) })
-                    packet.append(data)
-                    
-                    connection.send(content: packet, completion: .contentProcessed { error in
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                let stateTracker = ResumedState()
+                connection.stateUpdateHandler = { state in
+                    switch state {
+                    case .ready:
+                        var packet = Data()
+                        packet.append(contentsOf: withUnsafeBytes(of: requestType.littleEndian) { Array($0) })
+                        packet.append(contentsOf: withUnsafeBytes(of: request.littleEndian) { Array($0) })
+                        packet.append(contentsOf: withUnsafeBytes(of: value.littleEndian) { Array($0) })
+                        packet.append(contentsOf: withUnsafeBytes(of: index.littleEndian) { Array($0) })
+                        packet.append(data)
+                        
+                        connection.send(content: packet, completion: .contentProcessed { error in
+                            connection.cancel()
+                            guard stateTracker.tryResume() else { return }
+                            if let error = error {
+                                continuation.resume(throwing: error)
+                            } else {
+                                continuation.resume()
+                            }
+                        })
+                    case .failed(let error):
                         connection.cancel()
                         guard stateTracker.tryResume() else { return }
-                        if let error = error {
-                            continuation.resume(throwing: error)
-                        } else {
-                            continuation.resume()
-                        }
-                    })
-                case .failed(let error):
-                    connection.cancel()
-                    guard stateTracker.tryResume() else { return }
-                    continuation.resume(throwing: error)
-                default:
-                    break
+                        continuation.resume(throwing: error)
+                    default:
+                        break
+                    }
                 }
+                connection.start(queue: self.queue)
             }
-            connection.start(queue: self.queue)
+        } onCancel: {
+            connection.cancel()
         }
     }
 }

@@ -93,24 +93,20 @@ struct DiagnosticsView: View {
                     }
 
                     HStack(spacing: 16) {
-                        Button(action: scanFaults) {
-                            Text("Scan Faults")
-                                .font(.appButton)
-                                .frame(maxWidth: .infinity)
-                        }
-                        .glassActionButton(prominent: true)
-                        .buttonBorderShape(.roundedRectangle)
-                        .disabled(dtcLoader.isScanning || dtcLoader.isClearing || !isConnected)
+                        Button("Scan Faults", action: scanFaults)
+                            .font(.appButton)
+                            .frame(maxWidth: .infinity)
+                            .glassActionButton(prominent: true)
+                            .buttonBorderShape(.roundedRectangle)
+                            .disabled(dtcLoader.isScanning || dtcLoader.isClearing || !isConnected)
 
                         if !dtcLoader.dtcs.isEmpty {
-                            Button(role: .destructive, action: clearFaults) {
-                                Text(dtcLoader.isClearing ? "Clearing..." : "Clear All")
-                                    .font(.appButton)
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .glassActionButton(prominent: false)
-                            .buttonBorderShape(.roundedRectangle)
-                            .disabled(dtcLoader.isClearing || !isConnected)
+                            Button(dtcLoader.isClearing ? "Clearing..." : "Clear All", role: .destructive, action: clearFaults)
+                                .font(.appButton)
+                                .frame(maxWidth: .infinity)
+                                .glassActionButton(prominent: false)
+                                .buttonBorderShape(.roundedRectangle)
+                                .disabled(dtcLoader.isClearing || !isConnected)
                         }
                     }
                 }
