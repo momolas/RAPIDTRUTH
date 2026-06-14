@@ -60,7 +60,7 @@ final class ECUMapManager {
         errorMessage = nil
         successMessage = nil
         
-        let startTime = Date()
+        let startTime = Date.now
         var accumulatedData = Data()
         
         do {
@@ -113,7 +113,7 @@ final class ECUMapManager {
                 currentBlock = block
                 progress = Double(block) / Double(totalBlocks)
                 
-                let elapsedTime = Date().timeIntervalSince(startTime)
+                let elapsedTime = Date.now.timeIntervalSince(startTime)
                 let totalKB = Double(accumulatedData.count) / 1024.0
                 kbPerSecond = elapsedTime > 0 ? (totalKB / elapsedTime) : 0.0
                 
@@ -167,7 +167,7 @@ final class ECUMapManager {
         errorMessage = nil
         successMessage = nil
         
-        let startTime = Date()
+        let startTime = Date.now
         
         do {
             // Read binary map file
@@ -229,7 +229,7 @@ final class ECUMapManager {
                 currentBlock = blockNumber
                 progress = Double(blockNumber) / Double(totalBlocks)
                 
-                let elapsedTime = Date().timeIntervalSince(startTime)
+                let elapsedTime = Date.now.timeIntervalSince(startTime)
                 let totalKB = Double(sentBytes) / 1024.0
                 kbPerSecond = elapsedTime > 0 ? (totalKB / elapsedTime) : 0.0
                 

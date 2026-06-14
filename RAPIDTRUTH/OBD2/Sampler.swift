@@ -79,13 +79,17 @@ final class Sampler {
             guard let self else { return }
             let intervalNs = UInt64(1_000_000_000.0 / self.sampleRateHz)
             while !Task.isCancelled && !self.stopped {
-                let tickStart = Date()
+                let tickStart = Date.now
                 let row = await self.runOneTick()
                 self.onTick?(row)
-                let elapsed = Date().timeIntervalSince(tickStart)
+                let elapsed = Date.now.timeIntervalSince(tickStart)
                 let remaining = max(0, (Double(intervalNs) / 1_000_000_000.0) - elapsed)
                 if remaining > 0 {
-                    try? await Task.sleep(for: .seconds(remaining))
+                    do {
+                        try await Task.sleep(for: .seconds(remaining))
+                    } catch {
+                        break
+                    }
                 }
             }
         }
@@ -109,9 +113,9 @@ final class Sampler {
             strikes.removeAll()
         }
 
-        let startMs = Int(Date().timeIntervalSince1970 * 1000)
+        let startMs = Int(Date.now.timeIntervalSince1970 * 1000)
         let elapsedMs = startMs - sessionStartMs
-        let timestampISO = Date().formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!))
+        let timestampISO = Date.now.formatted(Date.ISO8601FormatStyle(includingFractionalSeconds: true, timeZone: TimeZone(secondsFromGMT: 0)!))
 
         var values: [String: String] = [:]
         var liveValuesCollected: [LiveValue] = []
