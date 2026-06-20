@@ -304,6 +304,31 @@ final class PandaDriver: VehicleInterface {
         case allOutput = 17
     }
     
+    /// Configures the Panda hardware for active OBD2 communication.
+    /// Routes the CAN transceivers to the OBD2 connector, disables heartbeats, disables power-saving,
+    /// configures the CAN speed to 500kbps, and resets communications.
+    func configureForOBD() async throws {
+        // 1. Disable heartbeat checks (request: 0xf8, value: 0, index: 0)
+        try await transport.sendControlWrite(requestType: 0x40, request: 0xf8, value: 0, index: 0)
+        
+        // 2. Disable power save mode (request: 0xe7, value: 0, index: 0)
+        try await transport.sendControlWrite(requestType: 0x40, request: 0xe7, value: 0, index: 0)
+        
+        // 3. Connect OBD2 CAN lines to CAN transceivers (request: 0xdb, value: 1, index: 0)
+        try await transport.sendControlWrite(requestType: 0x40, request: 0xdb, value: 1, index: 0)
+        
+        // 4. Configure CAN speed for buses 0, 1, and 2
+        for bus in [UInt16(0), UInt16(1), UInt16(2)] {
+            // Disable auto CAN-FD (0xe8)
+            try? await transport.sendControlWrite(requestType: 0x40, request: 0xe8, value: bus, index: 0)
+            // Set CAN speed to 500 kbps (0xde, value * 10 = 5000)
+            try? await transport.sendControlWrite(requestType: 0x40, request: 0xde, value: bus, index: 5000)
+        }
+        
+        // 5. Reset CAN communications (request: 0xc0, value: 0, index: 0)
+        try? await transport.sendControlWrite(requestType: 0x40, request: 0xc0, value: 0, index: 0)
+    }
+    
     func setSafetyModel(_ mode: SafetyMode) async throws {
         // 0x40 is Vendor Request Out, 0xdc (220) is set_safety_model
         try await transport.sendControlWrite(requestType: 0x40, request: 0xdc, value: mode.rawValue, index: 0)
