@@ -16,13 +16,13 @@ struct VehicleRow: View {
                     Text(vehicle.slug + " · " + vehicle.profileId)
                         .font(.monoSmall)
                         .foregroundStyle(.tertiary)
-                    Text("\(vehicle.supportedStandardPIDs.count) std · \(vehicle.supportedProfilePIDs.count) profile PIDs cached")
+                    Text("\(vehicle.supportedStandardPIDs.count) std · \(vehicle.supportedProfilePIDs.count) pids profil en cache")
                         .font(.monoSmall)
                         .foregroundStyle(.tertiary)
                 }
                 Spacer()
                 if settings.activeVehicleSlug == vehicle.slug {
-                    Text("ACTIVE")
+                    Text("ACTIF")
                         .font(.monoSmall)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
@@ -30,7 +30,7 @@ struct VehicleRow: View {
                         .foregroundStyle(.green)
                         .clipShape(.rect(cornerRadius: 4))
                 } else {
-                    Button("Activate") {
+                    Button("Activer") {
                         settings.activeVehicleSlug = vehicle.slug
                     }
                     .glassActionButton(prominent: false)
@@ -38,20 +38,20 @@ struct VehicleRow: View {
                 }
             }
             HStack(alignment: .top, spacing: 8) {
-                Button("Re-probe PIDs", action: onReprobe)
+                Button("Réanalyser PIDs", action: onReprobe)
                     .glassActionButton(prominent: false)
                     .controlSize(.small)
-                Text("Clears the cached supported-PID list. Next session re-runs the discovery + probe from scratch.")
+                Text("Vide la liste des PIDs supportés en cache. La prochaine session relancera la détection à zéro.")
                     .font(.statusText)
                     .foregroundStyle(.tertiary)
             }
             HStack(alignment: .top, spacing: 8) {
                 Button(role: .destructive, action: onRemove) {
-                    Text("Remove")
+                    Text("Supprimer")
                 }
                 .glassActionButton(prominent: false)
                 .controlSize(.small)
-                Text("Deletes this vehicle from the app. Recorded sessions on disk are kept.")
+                Text("Supprime ce véhicule de l'application. Les sessions enregistrées sur disque sont conservées.")
                     .font(.statusText)
                     .foregroundStyle(.tertiary)
             }

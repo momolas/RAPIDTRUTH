@@ -18,7 +18,7 @@ struct VehicleCardView: View {
         } label: {
             HStack(alignment: .center, spacing: 12) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Vehicle")
+                    Text("Véhicule")
                         .font(.monoSmall)
                         .foregroundStyle(.tertiary)
                         .textCase(.uppercase)
@@ -32,17 +32,17 @@ struct VehicleCardView: View {
                             .foregroundStyle(.tertiary)
                             .lineLimit(1)
                     } else if vehicleStore.vehicles.isEmpty {
-                        Text("No vehicle yet")
+                        Text("Aucun véhicule")
                             .font(.valueLabel)
                             .foregroundStyle(.primary)
-                        Text("Tap to add your car")
+                        Text("Touchez pour ajouter votre voiture")
                             .font(.monoSmall)
                             .foregroundStyle(.tertiary)
                     } else {
-                        Text("Pick an active vehicle")
+                        Text("Sélectionnez un véhicule")
                             .font(.valueLabel)
                             .foregroundStyle(.primary)
-                        Text("\(vehicleStore.vehicles.count) saved · tap to choose")
+                        Text("\(vehicleStore.vehicles.count) enregistré(s) · touchez pour choisir")
                             .font(.monoSmall)
                             .foregroundStyle(.tertiary)
                     }

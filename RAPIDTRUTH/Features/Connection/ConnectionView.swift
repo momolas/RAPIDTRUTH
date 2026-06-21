@@ -119,9 +119,9 @@ struct ConnectionView: View {
             await detectVehicle()
         } else {
             if case .error(let message) = pandaTransport.state {
-                statusError = "Connection error: \(message)"
+                statusError = "Erreur de connexion : \(message)"
             } else {
-                statusError = "Connection timeout. Please ensure you are connected to the Panda's Wi-Fi network (SSID: panda-XXXXXX) and cellular data is disabled."
+                statusError = "Délai de connexion dépassé. Assurez-vous d'être connecté au réseau Wi-Fi de la Panda (SSID : panda-XXXXXX) et que les données cellulaires sont désactivées."
             }
             disconnectAdapter()
         }

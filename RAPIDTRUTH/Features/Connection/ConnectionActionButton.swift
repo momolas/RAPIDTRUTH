@@ -9,15 +9,15 @@ struct ConnectionActionButton: View {
 
     var body: some View {
         if isIdleOrError {
-            Button("Connect Panda", action: onConnect)
+            Button("Connecter", action: onConnect)
                 .glassActionButton(prominent: true)
                 .controlSize(.small)
         } else if isConnecting {
-            Button("Cancel", action: onDisconnect)
+            Button("Annuler", action: onDisconnect)
                 .glassActionButton(prominent: false)
                 .controlSize(.small)
         } else {
-            Button("Disconnect", action: onDisconnect)
+            Button("Déconnecter", action: onDisconnect)
                 .glassActionButton(prominent: false)
                 .controlSize(.small)
         }

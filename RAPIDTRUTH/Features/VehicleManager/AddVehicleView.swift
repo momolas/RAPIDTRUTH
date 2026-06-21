@@ -38,7 +38,7 @@ struct AddVehicleView: View {
         @Bindable var settings = settings
         NavigationStack {
             Form {
-                Section("VIN Decoder API") {
+                Section("API de Décodage VIN") {
                     Picker("Service API", selection: $settings.vinDecoderAPI) {
                         Text("ApiPlaque (France)").tag("apiplaque")
                         Text("Auto.dev (Global)").tag("autodev")
@@ -57,13 +57,13 @@ struct AddVehicleView: View {
                     }
                 }
                 
-                Section("Vehicle") {
-                    TextField("Year", value: $year, format: .number.grouping(.never))
+                Section("Véhicule") {
+                    TextField("Année", value: $year, format: .number.grouping(.never))
                         .keyboardType(.numberPad)
-                    TextField("Make (e.g. Toyota)", text: $make)
-                    TextField("Model (e.g. Camry)", text: $model)
-                    TextField("Trim (optional)", text: $trim)
-                    TextField("VIN (optional)", text: $vin)
+                    TextField("Marque (ex: Renault)", text: $make)
+                    TextField("Modèle (ex: Scenic)", text: $model)
+                    TextField("Finition (optionnel)", text: $trim)
+                    TextField("VIN (optionnel)", text: $vin)
                         .autocapitalization(.allCharacters)
                         .autocorrectionDisabled()
                         .onChange(of: vin) { _, newValue in
@@ -73,8 +73,8 @@ struct AddVehicleView: View {
                 if let statusText {
                     Section { Text(statusText).font(.statusText).foregroundStyle(statusColor) }
                 }
-                Section("Profile") {
-                    Picker("Profile", selection: $profileID) {
+                Section("Profil de diagnostic") {
+                    Picker("Profil", selection: $profileID) {
                         ForEach(profileRegistry.profiles) { p in
                             Text(p.displayName).tag(p.profileId)
                         }
@@ -84,14 +84,14 @@ struct AddVehicleView: View {
                     Section { Text(error).foregroundStyle(.red) }
                 }
             }
-            .navigationTitle("Add vehicle")
+            .navigationTitle("Ajouter un véhicule")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button("Annuler") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") { save() }
+                    Button("Enregistrer") { save() }
                 }
             }
             .task {
@@ -108,11 +108,11 @@ struct AddVehicleView: View {
     private var statusText: String? {
         switch status {
         case .idle: return nil
-        case .readingVIN: return "Reading VIN from vehicle…"
-        case .vinReadFailed(let reason): return "Couldn't read VIN automatically: \(reason). Enter manually if you'd like."
-        case .decoding: return "Decoding via \(settings.vinDecoderAPI.uppercased())…"
-        case .decoded: return "Decoded. Edit any field as needed."
-        case .decodeFailed(let msg): return "Decode failed: \(msg). Fill in the fields manually."
+        case .readingVIN: return "Lecture du VIN depuis le véhicule…"
+        case .vinReadFailed(let reason): return "Impossible de lire le VIN automatiquement : \(reason). Entrez-le manuellement si vous le souhaitez."
+        case .decoding: return "Décodage via \(settings.vinDecoderAPI.uppercased())…"
+        case .decoded: return "Décodé. Modifiez les champs si nécessaire."
+        case .decodeFailed(let msg): return "Échec du décodage : \(msg). Remplissez les champs manuellement."
         }
     }
 
@@ -188,11 +188,11 @@ struct AddVehicleView: View {
         let yearInt = year
         let slug = Vehicle.makeSlug(year: yearInt, make: make.isEmpty ? nil : make, model: model.isEmpty ? nil : model)
         guard !slug.isEmpty else {
-            error = "Need at least a year + make or model."
+            error = "Veuillez renseigner au moins l'année et la marque ou le modèle."
             return
         }
         guard let profile = profileRegistry.profile(id: profileID) else {
-            error = "Pick a profile."
+            error = "Veuillez sélectionner un profil."
             return
         }
         let vehicle = Vehicle(

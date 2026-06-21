@@ -34,9 +34,9 @@ struct VehicleManagerSheet: View {
 
                     if vehicleStore.vehicles.isEmpty {
                         ContentUnavailableView(
-                            "No Vehicles",
+                            "Aucun véhicule",
                             systemImage: "car.fill",
-                            description: Text("Tap **Add vehicle** to set one up — VIN auto-read + API decode pre-fill the year, make, and model.")
+                            description: Text("Touchez **Ajouter un véhicule** pour en configurer un — la lecture automatique du VIN et le décodage par l'API prérempliront l'année, la marque et le modèle.")
                         )
                         .padding(.vertical, 16)
                     } else {
@@ -52,11 +52,11 @@ struct VehicleManagerSheet: View {
                 .padding(16)
             }
             .background(Color.appBackground.ignoresSafeArea())
-            .navigationTitle("Vehicles")
+            .navigationTitle("Garage")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
+                    Button("OK") { dismiss() }
                 }
             }
         }
@@ -78,7 +78,7 @@ struct VehicleManagerSheet: View {
                 do {
                     let profile = try ProfileImporter.importProfile(from: url)
                     profileRegistry.reload()
-                    statusMessage = "Imported: \(profile.displayName)"
+                    statusMessage = "Profil importé avec succès : \(profile.displayName)"
                 } catch {
                     statusMessage = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
                 }
@@ -97,9 +97,9 @@ struct VehicleManagerSheet: View {
             if settings.activeVehicleSlug == vehicle.slug {
                 settings.activeVehicleSlug = vehicleStore.vehicles.first?.slug
             }
-            statusMessage = "Removed \(vehicle.displayName) from the app."
+            statusMessage = "Véhicule « \(vehicle.displayName) » supprimé de l'application."
         } catch {
-            statusMessage = "Remove failed: \(error.localizedDescription)"
+            statusMessage = "Échec de la suppression : \(error.localizedDescription)"
         }
     }
 
@@ -110,9 +110,9 @@ struct VehicleManagerSheet: View {
         // the old broadcast-addressed probe and produced false positives.
         do {
             try vehicleStore.clearPIDCaches(slug: vehicle.slug, owner: vehicle.owner)
-            statusMessage = "Cleared PID cache for \(vehicle.displayName). Next logging session will re-discover."
+            statusMessage = "Cache des PIDs vidé pour \(vehicle.displayName). La prochaine session relancera la détection automatique."
         } catch {
-            statusMessage = "Re-probe failed: \(error.localizedDescription)"
+            statusMessage = "Échec du vidage de cache : \(error.localizedDescription)"
         }
     }
 }

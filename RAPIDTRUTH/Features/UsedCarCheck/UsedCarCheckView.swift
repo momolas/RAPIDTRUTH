@@ -214,7 +214,7 @@ struct UsedCarCheckView: View {
             .padding(16)
         }
         .background(Color.appBackground.ignoresSafeArea())
-        .navigationTitle("Used Car Check")
+        .navigationTitle("Contrôle Anti-Fraude")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

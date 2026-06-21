@@ -9,19 +9,19 @@ struct VehicleManagerActionRow: View {
             Button {
                 showAdd = true
             } label: {
-                Label("Add vehicle", systemImage: "plus.circle.fill")
+                Label("Ajouter un véhicule", systemImage: "plus.circle.fill")
                     .frame(maxWidth: .infinity)
             }
             .glassActionButton(prominent: true)
             .controlSize(.large)
 
-            Button("Import Profile", systemImage: "square.and.arrow.down") {
+            Button("Importer un profil", systemImage: "square.and.arrow.down") {
                 showImporter = true
             }
             .glassActionButton(prominent: false)
             .labelStyle(.iconOnly)
             .controlSize(.large)
-            .help("Import a profile JSON")
+            .help("Importer un fichier profil JSON")
         }
     }
 }

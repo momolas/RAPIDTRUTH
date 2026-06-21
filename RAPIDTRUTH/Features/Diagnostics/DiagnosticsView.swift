@@ -82,7 +82,7 @@ struct DiagnosticsView: View {
                                     
                                     Spacer()
                                     
-                                    Text(dtc.state.rawValue.uppercased())
+                                    Text(dtc.state == .active ? "ACTIF" : "MÉMORISÉ")
                                         .font(.caption).bold()
                                         .padding(.horizontal, 8)
                                         .padding(.vertical, 4)
@@ -98,7 +98,7 @@ struct DiagnosticsView: View {
                     }
 
                     HStack(spacing: 16) {
-                        Button("Scan Faults", action: scanFaults)
+                        Button("Scanner les Défauts", action: scanFaults)
                             .font(.appButton)
                             .frame(maxWidth: .infinity)
                             .glassActionButton(prominent: true)
@@ -106,7 +106,7 @@ struct DiagnosticsView: View {
                             .disabled(dtcLoader.isScanning || dtcLoader.isClearing || !isConnected)
 
                         if !dtcLoader.dtcs.isEmpty {
-                            Button(dtcLoader.isClearing ? "Clearing..." : "Clear All", role: .destructive, action: clearFaults)
+                            Button(dtcLoader.isClearing ? "Effacement..." : "Tout Effacer", role: .destructive, action: clearFaults)
                                 .font(.appButton)
                                 .frame(maxWidth: .infinity)
                                 .glassActionButton(prominent: false)

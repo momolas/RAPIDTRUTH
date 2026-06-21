@@ -9,10 +9,10 @@ struct WiFiScannerView: View {
         if panda.discoveredPandas.isEmpty {
             VStack(spacing: 12) {
                 ProgressView()
-                Text("Scanning for Panda Wi-Fi…")
+                Text("Recherche du réseau Wi-Fi Panda…")
                     .font(.bodyText)
                     .foregroundStyle(.secondary)
-                Text("Connect your iPhone to the Panda's Wi-Fi network in Settings.")
+                Text("Connectez votre iPhone au réseau Wi-Fi de la Panda dans les Réglages.")
                     .font(.statusText)
                     .foregroundStyle(.tertiary)
                     .multilineTextAlignment(.center)
@@ -27,7 +27,7 @@ struct WiFiScannerView: View {
                 } label: {
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
-                            Text("Panda Wi-Fi")
+                            Text("Wi-Fi Panda")
                                 .foregroundStyle(.primary)
                             Text(ip)
                                 .font(.monoSmall)
