@@ -1,8 +1,8 @@
 {
-  "profile_id": "scenic2_combo",
+  "profile_id": "renault_scenic2_multi_ecu",
   "profile_version": "1.0.0",
   "display_name": "Scenic II Multi-ECU Profile",
-  "description": "Merged profile containing 2 sources.",
+  "description": "Renault Scenic II Multi-ECU Profile.",
   "ecus": {
     "injection": {
       "request_header": "7E0",

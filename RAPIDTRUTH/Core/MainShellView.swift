@@ -30,7 +30,7 @@ struct MainShellView: View {
            let prof = profileRegistry.profile(id: vehicle.profileId) {
             return prof
         }
-        return profileRegistry.profile(id: "renault_scenic2_m9r722")
+        return profileRegistry.profile(id: "renault_scenic2_multi_ecu")
             ?? profileRegistry.profiles.first
             ?? Profile.fallback
     }

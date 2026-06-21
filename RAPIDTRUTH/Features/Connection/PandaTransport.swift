@@ -19,6 +19,7 @@ final class PandaTransport {
     private let inboundContinuation: AsyncStream<Data>.Continuation
     
     private var connection: NWConnection?
+    private var udpConnection: NWConnection?
     private var scanTask: Task<Void, Never>?
     private let queue = DispatchQueue(label: "obd.panda.queue")
     
@@ -65,10 +66,49 @@ final class PandaTransport {
         let endpoint = NWEndpoint.Host(targetHost)
         let nwPort = NWEndpoint.Port(rawValue: port)!
         
-        // Panda uses TCP on port 1337
-        let parameters = NWParameters.tcp
+        // Disable Nagle's algorithm for low-latency TCP packet transmission
+        let tcpOptions = NWProtocolTCP.Options()
+        tcpOptions.noDelay = true
+        
+        let parameters = NWParameters(tls: nil, tcp: tcpOptions)
+        parameters.prohibitExpensivePaths = false
+        parameters.prohibitConstrainedPaths = false
+        
+        #if !targetEnvironment(simulator)
+        // Force WiFi interface on iOS devices to prevent routing via cellular
+        parameters.requiredInterfaceType = .wifi
+        #endif
+        
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         self.connection = connection
+        
+        // Setup persistent UDP Connection on port 1338 for control messages
+        let udpOptions = NWProtocolUDP.Options()
+        let udpParameters = NWParameters(dtls: nil, udp: udpOptions)
+        udpParameters.prohibitExpensivePaths = false
+        udpParameters.prohibitConstrainedPaths = false
+        
+        #if !targetEnvironment(simulator)
+        udpParameters.requiredInterfaceType = .wifi
+        #endif
+        
+        let udpConnection = NWConnection(host: endpoint, port: NWEndpoint.Port(rawValue: 1338)!, using: udpParameters)
+        self.udpConnection = udpConnection
+        
+        udpConnection.stateUpdateHandler = { [weak self] udpState in
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                switch udpState {
+                case .failed(let error):
+                    NSLog("[PandaTransport] UDP Control Connection failed: \(error.localizedDescription)")
+                    self.udpConnection?.cancel()
+                    self.udpConnection = nil
+                default:
+                    break
+                }
+            }
+        }
+        udpConnection.start(queue: queue)
         
         connection.stateUpdateHandler = { [weak self] nwState in
             Task { @MainActor [weak self] in
@@ -144,6 +184,8 @@ final class PandaTransport {
     func disconnect() {
         connection?.cancel()
         connection = nil
+        udpConnection?.cancel()
+        udpConnection = nil
         state = .idle
     }
     
@@ -197,60 +239,56 @@ final class PandaTransport {
     
     /// Sends a vendor control transfer write request to the Panda via UDP port 1338 (Wi-Fi).
     func sendControlWrite(requestType: UInt16, request: UInt16, value: UInt16, index: UInt16, data: Data = Data()) async throws {
-        let targetHost = discoverPandaIP()
-        let endpoint = NWEndpoint.Host(targetHost)
-        let nwPort = NWEndpoint.Port(rawValue: 1338)!
+        var packet = Data()
+        packet.append(contentsOf: withUnsafeBytes(of: requestType.littleEndian) { Array($0) })
+        packet.append(contentsOf: withUnsafeBytes(of: request.littleEndian) { Array($0) })
+        packet.append(contentsOf: withUnsafeBytes(of: value.littleEndian) { Array($0) })
+        packet.append(contentsOf: withUnsafeBytes(of: index.littleEndian) { Array($0) })
+        packet.append(data)
         
-        let parameters = NWParameters.udp
-        let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
-        
-        return try await withTaskCancellationHandler {
-            try await withCheckedThrowingContinuation { continuation in
-                let stateTracker = ResumedState()
-                connection.stateUpdateHandler = { state in
-                    switch state {
-                    case .ready:
-                        var packet = Data()
-                        packet.append(contentsOf: withUnsafeBytes(of: requestType.littleEndian) { Array($0) })
-                        packet.append(contentsOf: withUnsafeBytes(of: request.littleEndian) { Array($0) })
-                        packet.append(contentsOf: withUnsafeBytes(of: value.littleEndian) { Array($0) })
-                        packet.append(contentsOf: withUnsafeBytes(of: index.littleEndian) { Array($0) })
-                        packet.append(data)
-                        
-                        connection.send(content: packet, completion: .contentProcessed { error in
-                            connection.cancel()
-                            guard stateTracker.tryResume() else { return }
-                            if let error = error {
-                                continuation.resume(throwing: error)
-                            } else {
-                                continuation.resume()
-                            }
-                        })
+        let activeUdpConnection: NWConnection
+        if let existing = self.udpConnection {
+            activeUdpConnection = existing
+        } else {
+            let targetHost = discoverPandaIP()
+            let endpoint = NWEndpoint.Host(targetHost)
+            let nwPort = NWEndpoint.Port(rawValue: 1338)!
+            let udpOptions = NWProtocolUDP.Options()
+            let udpParameters = NWParameters(dtls: nil, udp: udpOptions)
+            udpParameters.prohibitExpensivePaths = false
+            udpParameters.prohibitConstrainedPaths = false
+            #if !targetEnvironment(simulator)
+            udpParameters.requiredInterfaceType = .wifi
+            #endif
+            
+            let connection = NWConnection(host: endpoint, port: nwPort, using: udpParameters)
+            self.udpConnection = connection
+            
+            connection.stateUpdateHandler = { [weak self] udpState in
+                Task { @MainActor [weak self] in
+                    guard let self else { return }
+                    switch udpState {
                     case .failed(let error):
-                        connection.cancel()
-                        guard stateTracker.tryResume() else { return }
-                        continuation.resume(throwing: error)
+                        NSLog("[PandaTransport] UDP Control Connection failed: \(error.localizedDescription)")
+                        self.udpConnection?.cancel()
+                        self.udpConnection = nil
                     default:
                         break
                     }
                 }
-                connection.start(queue: self.queue)
             }
-        } onCancel: {
-            connection.cancel()
+            connection.start(queue: self.queue)
+            activeUdpConnection = connection
         }
-    }
-}
-
-private nonisolated final class ResumedState: @unchecked Sendable {
-    private let lock = NSLock()
-    private var hasResumed = false
-    
-    func tryResume() -> Bool {
-        lock.lock()
-        defer { lock.unlock() }
-        if hasResumed { return false }
-        hasResumed = true
-        return true
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            activeUdpConnection.send(content: packet, completion: .contentProcessed { error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume()
+                }
+            })
+        }
     }
 }
