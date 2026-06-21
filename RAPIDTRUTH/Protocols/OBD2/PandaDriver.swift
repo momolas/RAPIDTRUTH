@@ -329,6 +329,12 @@ final class PandaDriver: VehicleInterface {
         try? await transport.sendControlWrite(requestType: 0x40, request: 0xc0, value: 0, index: 0)
     }
     
+    /// Configures the speed of a specific CAN bus on the Panda hardware.
+    func setCANSpeed(bus: UInt8, kbps: Int) async throws {
+        // request: 0xde, value: bus, index: kbps * 10
+        try await transport.sendControlWrite(requestType: 0x40, request: 0xde, value: UInt16(bus), index: UInt16(kbps * 10))
+    }
+    
     func setSafetyModel(_ mode: SafetyMode) async throws {
         // 0x40 is Vendor Request Out, 0xdc (220) is set_safety_model
         try await transport.sendControlWrite(requestType: 0x40, request: 0xdc, value: mode.rawValue, index: 0)

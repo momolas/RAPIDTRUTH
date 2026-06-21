@@ -11,62 +11,81 @@ enum VINReader {
         // 1. If it's a PandaDriver, perform active CAN bus auto-detection
         if let panda = interface as? PandaDriver {
             var activeBus: UInt8? = nil
+            var activeSpeed: Int? = nil
             
-            // 1a. Try 11-bit standard diagnostic ping on buses 0, 1, 2
-            for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
-                panda.bus = testBus
-                try? await panda.setTarget(txID: "7DF", rxID: "7E8")
-                if let response = try? await panda.sendDiagnosticRequest("0100", timeout: 1.0) {
-                    let normalized = response.uppercased().replacing(" ", with: "")
-                    if normalized.contains("4100") {
-                        activeBus = testBus
-                        NSLog("[VINReader] Detected active 11-bit CAN bus: \(testBus)")
-                        break
-                    }
-                }
-            }
-            
-            // 1b. Try 29-bit standard diagnostic ping on buses 0, 1, 2
-            if activeBus == nil {
+            // Try standard CAN speeds: 500 kbps (modern) and 250 kbps (older Renault Megane II / Scenic II)
+            for testSpeed in [500, 250] {
+                if activeBus != nil { break }
+                
+                // 1a. Try 11-bit standard diagnostic ping on buses 0, 1, 2
                 for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
+                    try? await panda.setCANSpeed(bus: testBus, kbps: testSpeed)
                     panda.bus = testBus
-                    try? await panda.setTarget(txID: "18DB33F1", rxID: "18DAF110")
+                    try? await panda.setTarget(txID: "7DF", rxID: "7E8")
                     if let response = try? await panda.sendDiagnosticRequest("0100", timeout: 1.0) {
                         let normalized = response.uppercased().replacing(" ", with: "")
                         if normalized.contains("4100") {
                             activeBus = testBus
-                            NSLog("[VINReader] Detected active 29-bit CAN bus: \(testBus)")
+                            activeSpeed = testSpeed
+                            NSLog("[VINReader] Detected active 11-bit CAN bus: \(testBus) at \(testSpeed) kbps")
                             break
                         }
                     }
                 }
-            }
-            
-            // 1c. Try Renault-specific physical engine ping on buses 0, 1, 2
-            if activeBus == nil {
-                for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
-                    try Task.checkCancellation()
-                    panda.bus = testBus
-                    try? await panda.setTarget(txID: "7E0", rxID: "7E8")
-                    _ = try? await openDiagnosticSession(interface: panda)
-                    if let response = try? await panda.sendDiagnosticRequest("2181", timeout: 1.0) {
-                        let normalized = response.uppercased().replacing(" ", with: "")
-                        if normalized.contains("6181") {
-                            activeBus = testBus
-                            NSLog("[VINReader] Detected active Renault CAN bus: \(testBus)")
-                            await closeDiagnosticSession(interface: panda)
-                            break
+                
+                // 1b. Try 29-bit standard diagnostic ping on buses 0, 1, 2
+                if activeBus == nil {
+                    for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
+                        try? await panda.setCANSpeed(bus: testBus, kbps: testSpeed)
+                        panda.bus = testBus
+                        try? await panda.setTarget(txID: "18DB33F1", rxID: "18DAF110")
+                        if let response = try? await panda.sendDiagnosticRequest("0100", timeout: 1.0) {
+                            let normalized = response.uppercased().replacing(" ", with: "")
+                            if normalized.contains("4100") {
+                                activeBus = testBus
+                                activeSpeed = testSpeed
+                                NSLog("[VINReader] Detected active 29-bit CAN bus: \(testBus) at \(testSpeed) kbps")
+                                break
+                            }
                         }
                     }
-                    await closeDiagnosticSession(interface: panda)
+                }
+                
+                // 1c. Try Renault-specific physical engine ping on buses 0, 1, 2
+                if activeBus == nil {
+                    for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
+                        try Task.checkCancellation()
+                        try? await panda.setCANSpeed(bus: testBus, kbps: testSpeed)
+                        panda.bus = testBus
+                        try? await panda.setTarget(txID: "7E0", rxID: "7E8")
+                        _ = try? await openDiagnosticSession(interface: panda)
+                        if let response = try? await panda.sendDiagnosticRequest("2181", timeout: 1.0) {
+                            let normalized = response.uppercased().replacing(" ", with: "")
+                            if normalized.contains("6181") {
+                                activeBus = testBus
+                                activeSpeed = testSpeed
+                                NSLog("[VINReader] Detected active Renault CAN bus: \(testBus) at \(testSpeed) kbps")
+                                await closeDiagnosticSession(interface: panda)
+                                break
+                            }
+                        }
+                        await closeDiagnosticSession(interface: panda)
+                    }
                 }
             }
             
-            if let activeBus {
+            if let activeBus, let activeSpeed {
                 panda.bus = activeBus
+                // Set all buses to the detected active speed to ensure uniform speed config
+                for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
+                    try? await panda.setCANSpeed(bus: testBus, kbps: activeSpeed)
+                }
             } else {
-                NSLog("[VINReader] No active CAN bus detected during 0100 probe, defaulting to Bus 0")
+                NSLog("[VINReader] No active CAN bus detected during 0100 probe, defaulting to Bus 0 at 500 kbps")
                 panda.bus = 0
+                for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
+                    try? await panda.setCANSpeed(bus: testBus, kbps: 500)
+                }
             }
         }
         
