@@ -23,7 +23,13 @@ RAPIDTRUTH est une application iOS moderne de diagnostic embarqué, de rétro-in
 - **Balayage PIDs (Master Request)** : Interrogation séquentielle des 64 identifiants LIN pour identifier les esclaves actifs.
 - **Injecteur Master** : Injection de trames personnalisées (Master Header + données) pour tester les calculateurs LIN d'habitacle.
 
-### 5. Audit de Sécurité (Used Car Check)
+### 5. Données Temps Réel (Live Data)
+- **Affichage et Recherche haute performance** : Navigation fluide dans les bases de données volumineuses (ex. : 1912 PIDs pour la Renault Modus) grâce à des listes virtuelles paresseuses (lazy-loaded).
+- **Filtrage avancé** : Tri dynamique des PIDs par nom, identifiant HEX, calculateur cible (ECU) ou catégorie de capteur.
+- **Sélection et Échantillonnage interactif** : Choix unitaire ou par lot (sélection/désélection filtrée) des capteurs à sonder.
+- **Lecteur multi-ECU** : Lancement d'une boucle d'acquisition en temps réel (2 Hz) via le module `Sampler` avec affichage instantané des valeurs décodées et des unités.
+
+### 6. Audit de Sécurité (Used Car Check)
 - Analyse de l'odomètre (kilométrage) stocké sur plusieurs calculateurs indépendants pour détecter d'éventuelles fraudes au compteur.
 - Vérification croisée et extraction des numéros de série (VIN) de l'ensemble du réseau multiplexé.
 
@@ -39,7 +45,7 @@ L'application est entièrement écrite en **Swift 6.2** et **SwiftUI** en suivan
   * Routage forcé sur l'interface Wi-Fi de l'appareil iOS pour éviter que le trafic ne soit redirigé vers l'interface cellulaire (lorsqu'il n'y a pas d'accès Internet sur le point d'accès Panda).
 * **Base de données locale** : Utilisation de **SwiftData** pour la persistance locale des profils et historiques de véhicules.
 * **Profils de diagnostic embarqués (`builtin/`)** :
-  * **Scenic II (`scenic2_obd2.json`)** : Profil multi-calculateurs pour Scenic II / Megane II (Injection, UCH, ABS, TdB, UPC, Airbag, Clim, etc.). Contient les règles d'auto-détection pour Scenic (années 2003-2009).
+  * **Scenic II (`scenic2_obd2.json`)** : Profil complet de 8353 PIDs compilé à partir de la base de données DDT2000 Megane II / Scenic II (S3000, EDC16CP33, EDC16C, UCH, ABS, TdB, DAE, Clim, USM/UPC, FPA, Airbag). Contient les règles d'auto-détection pour Scenic (années 2003-2009).
   * **Modus (`modus_obd2.json`)** : Profil complet de 1912 PIDs compilé à partir de la base DDT2000 Modus (J77) pour le moteur SIM32/S3000, l'UCH, l'ABS, la DAE, le TdB et la climatisation. Contient les règles d'auto-détection pour Modus (années 2004-2012).
   * **Auto-détection (`vehicle_match`)** : Résolution et liaison dynamique du profil adéquat. Le mécanisme interroge le VIN du véhicule, le décode, puis effectue une recherche prioritaire sur la marque (`make`), le modèle (`model`) et la plage d'années de production (`year_min`/`year_max`), avec repli automatique sur le profil standard OBD-II en cas de non-correspondance.
 

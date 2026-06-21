@@ -2,6 +2,7 @@ import SwiftUI
 
 enum DiagnosticDestination: Hashable, Sendable {
     case diagnostics
+    case liveData
     case configuration
     case maintenance
     case fuzzer
@@ -72,6 +73,16 @@ struct MainShellView: View {
                             }
                             .buttonStyle(.plain)
                             
+                            NavigationLink(value: DiagnosticDestination.liveData) {
+                                DiagnosticMenuCard(
+                                    title: "Données Temps Réel",
+                                    subtitle: "Lecture en direct des capteurs et sondes",
+                                    systemImage: "chart.xyaxis.line",
+                                    color: .blue
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            
                             NavigationLink(value: DiagnosticDestination.configuration) {
                                 DiagnosticMenuCard(
                                     title: "Codage & Configuration",
@@ -121,6 +132,8 @@ struct MainShellView: View {
                 switch destination {
                 case .diagnostics:
                     DiagnosticsView(interface: driver, profile: profile)
+                case .liveData:
+                    LiveDataView(interface: driver, profile: profile)
                 case .configuration:
                     ConfigurationView(interface: driver)
                 case .maintenance:
