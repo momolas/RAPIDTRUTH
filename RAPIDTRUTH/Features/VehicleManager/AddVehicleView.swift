@@ -180,7 +180,7 @@ struct AddVehicleView: View {
         if !decoded.make.isEmpty { make = decoded.make }
         if !decoded.model.isEmpty { model = decoded.model }
         if !decoded.trim.isEmpty { trim = decoded.trim }
-        let suggested = profileRegistry.suggestedProfile(make: decoded.make, year: decoded.year)
+        let suggested = profileRegistry.suggestedProfile(make: decoded.make, model: decoded.model, year: decoded.year)
         profileID = suggested.profileId
     }
 

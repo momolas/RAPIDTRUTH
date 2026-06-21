@@ -22,9 +22,27 @@ final class ProfileRegistry {
     }
 
     /// Heuristic: pick the first profile whose `vehicle_match` lists this
-    /// make + (optional) year. Falls back to "generic_obd2".
-    func suggestedProfile(make: String?, year: Int?) -> Profile {
+    /// make + (optional) model + (optional) year. Falls back to "generic_obd2".
+    func suggestedProfile(make: String?, model: String? = nil, year: Int?) -> Profile {
         if let make = make?.lowercased() {
+            // First pass: try to match both make and model if model is provided
+            if let model = model?.lowercased(), !model.isEmpty {
+                for p in profiles {
+                    guard let match = p.vehicleMatch else { continue }
+                    if let pmake = match.make?.lowercased(), pmake == make {
+                        let modelMatches = match.models?.contains { $0.lowercased() == model } ?? false
+                        if modelMatches {
+                            if let year, let lo = match.yearMin, let hi = match.yearMax {
+                                if year >= lo && year <= hi { return p }
+                            } else {
+                                return p
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Second pass: fallback to matching only make (and year)
             for p in profiles {
                 guard let match = p.vehicleMatch else { continue }
                 if let pmake = match.make?.lowercased(), pmake == make {

@@ -3,6 +3,12 @@
   "profile_version": "1.0.0",
   "display_name": "Scenic II Multi-ECU Profile",
   "description": "Renault Scenic II Multi-ECU Profile.",
+  "vehicle_match": {
+    "make": "Renault",
+    "models": ["Scenic"],
+    "year_min": 2003,
+    "year_max": 2009
+  },
   "ecus": {
     "injection": {
       "request_header": "7E0",

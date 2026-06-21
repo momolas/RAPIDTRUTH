@@ -166,7 +166,7 @@ struct ConnectionView: View {
             // Fallback slug if empty
             let finalSlug = slug.isEmpty ? "unknown-vehicle-\(vin.prefix(6).lowercased())" : slug
             
-            let suggestedProfile = profileRegistry.suggestedProfile(make: decoded.make, year: yearInt)
+            let suggestedProfile = profileRegistry.suggestedProfile(make: decoded.make, model: decoded.model, year: yearInt)
             
             let vehicle = Vehicle(
                 slug: finalSlug,
