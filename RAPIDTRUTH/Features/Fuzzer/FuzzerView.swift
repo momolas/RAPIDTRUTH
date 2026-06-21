@@ -3,6 +3,10 @@ import SwiftUI
 
 struct FuzzerView: View {
     let interface: VehicleInterface
+    @Environment(SettingsStore.self) private var settings
+    @Environment(VehicleStore.self) private var vehicleStore
+    @Environment(ProfileRegistry.self) private var profileRegistry
+    
     @State private var fuzzer = OBDFuzzer()
     
     @State private var targetEcu: String = "7E0"
@@ -11,6 +15,9 @@ struct FuzzerView: View {
     @State private var agreedToRisks: Bool = false
     @State private var selectedPreset: ScanPreset = .rapid
     @State private var selectedLidPreset: LidPreset = .all
+    
+    @State private var saveSuccessMessage: String? = nil
+    @State private var saveErrorMessage: String? = nil
     
     // Reverse Engineering state properties
     @State private var selectedTab: Int = 0 // 0: Balayage LIDs (Fuzzer), 1: Corrélation (Reverse Engineering)
@@ -77,6 +84,59 @@ struct FuzzerView: View {
                                 )
                                 
                                 FuzzerResultsSection(fuzzer: fuzzer)
+                                
+                                if !fuzzer.results.isEmpty || !fuzzer.discoveredECUs.isEmpty {
+                                    Divider().background(Color.white.opacity(0.1))
+                                    
+                                    VStack(alignment: .leading, spacing: 12) {
+                                        Text("SAUVEGARDE & PERSISTANCE")
+                                            .font(.cardTitle)
+                                            .foregroundStyle(.secondary)
+                                            .padding(.top, 8)
+                                            
+                                        if let vehicle = activeVehicle, let profile = activeProfile {
+                                            VStack(alignment: .leading, spacing: 8) {
+                                                Text("Véhicule actif : \(vehicle.displayName)")
+                                                    .font(.bodyText)
+                                                    .bold()
+                                                Text("Profil : \(profile.displayName) (v\(profile.profileVersion))")
+                                                    .font(.captionText)
+                                                    .foregroundStyle(.secondary)
+                                                
+                                                HStack(spacing: 12) {
+                                                    Button("Enrichir le profil", systemImage: "plus.square.dashed", action: enrichActiveProfile)
+                                                        .glassActionButton(prominent: true)
+                                                    
+                                                    Button("Exporter JSON", systemImage: "doc.badge.plus", action: exportCANFuzzResults)
+                                                        .glassActionButton(prominent: false)
+                                                }
+                                                .padding(.top, 4)
+                                            }
+                                            .padding(12)
+                                            .background(Color.white.opacity(0.02))
+                                            .clipShape(.rect(cornerRadius: 8))
+                                            .overlay {
+                                                RoundedRectangle(cornerRadius: 8)
+                                                    .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                                            }
+                                        } else {
+                                            VStack(alignment: .leading, spacing: 6) {
+                                                Text("Aucun véhicule sélectionné comme actif")
+                                                    .font(.bodyText)
+                                                    .foregroundStyle(.secondary)
+                                                Text("Veuillez sélectionner un véhicule dans le garage de l'application pour activer l'enrichissement de profil et l'export.")
+                                                    .font(.captionTiny)
+                                                    .foregroundStyle(.tertiary)
+                                            }
+                                            .padding(12)
+                                            .background(Color.white.opacity(0.02))
+                                            .clipShape(.rect(cornerRadius: 8))
+                                        }
+                                        
+                                        saveMessagePanel
+                                    }
+                                    .padding(.vertical, 8)
+                                }
                             } else {
                                 // Section d'analyse de signaux en temps réel
                                 VStack(alignment: .leading, spacing: 12) {
@@ -487,6 +547,51 @@ struct FuzzerView: View {
                                     }
                                 }
                             }
+                            
+                            if !linFuzzer.sniffedPacketList.isEmpty || !linFuzzer.discoveredPIDs.isEmpty {
+                                Divider().background(Color.white.opacity(0.1))
+                                
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text("SAUVEGARDE & PERSISTANCE")
+                                        .font(.cardTitle)
+                                        .foregroundStyle(.secondary)
+                                        .padding(.top, 8)
+                                        
+                                    if let vehicle = activeVehicle {
+                                        VStack(alignment: .leading, spacing: 8) {
+                                            Text("Véhicule actif : \(vehicle.displayName)")
+                                                .font(.bodyText)
+                                                .bold()
+                                            
+                                            Button("Exporter les trames LIN (JSON)", systemImage: "doc.badge.plus", action: exportLINFuzzResults)
+                                                .glassActionButton(prominent: true)
+                                                .padding(.top, 4)
+                                        }
+                                        .padding(12)
+                                        .background(Color.white.opacity(0.02))
+                                        .clipShape(.rect(cornerRadius: 8))
+                                        .overlay {
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                                        }
+                                    } else {
+                                        VStack(alignment: .leading, spacing: 6) {
+                                            Text("Aucun véhicule sélectionné comme actif")
+                                                .font(.bodyText)
+                                                .foregroundStyle(.secondary)
+                                            Text("Veuillez sélectionner un véhicule dans le garage de l'application pour activer l'export des trames LIN.")
+                                                .font(.captionTiny)
+                                                .foregroundStyle(.tertiary)
+                                        }
+                                        .padding(12)
+                                        .background(Color.white.opacity(0.02))
+                                        .clipShape(.rect(cornerRadius: 8))
+                                    }
+                                    
+                                    saveMessagePanel
+                                }
+                                .padding(.vertical, 8)
+                            }
                         }
                     }
                 }
@@ -616,6 +721,37 @@ struct FuzzerView: View {
         return Color.secondary
     }
     
+    @ViewBuilder
+    private var saveMessagePanel: some View {
+        if let msg = saveSuccessMessage {
+            HStack(spacing: 12) {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+                Text(msg)
+                    .font(.captionText)
+                    .foregroundStyle(.green)
+            }
+            .padding(10)
+            .background(Color.green.opacity(0.1))
+            .clipShape(.rect(cornerRadius: 8))
+            .padding(.top, 8)
+        }
+        
+        if let err = saveErrorMessage {
+            HStack(spacing: 12) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundStyle(.red)
+                Text(err)
+                    .font(.captionText)
+                    .foregroundStyle(.red)
+            }
+            .padding(10)
+            .background(Color.red.opacity(0.1))
+            .clipShape(.rect(cornerRadius: 8))
+            .padding(.top, 8)
+        }
+    }
+    
     private func colorForCoefficient(_ coef: Double) -> Color {
         if coef >= 0.75 {
             return Color.green
@@ -625,5 +761,181 @@ struct FuzzerView: View {
             return Color.appAccent
         }
         return Color.secondary
+    }
+    
+    // MARK: - Active Vehicle & Profile Helpers
+
+    private var activeVehicle: Vehicle? {
+        guard let slug = settings.activeVehicleSlug else { return nil }
+        return vehicleStore.vehicles.first { $0.slug == slug }
+    }
+    
+    private var activeProfile: Profile? {
+        guard let vehicle = activeVehicle else { return nil }
+        return profileRegistry.profile(id: vehicle.profileId)
+    }
+
+    // MARK: - Save and Export Actions
+
+    private func enrichActiveProfile() {
+        saveSuccessMessage = nil
+        saveErrorMessage = nil
+        
+        guard let vehicle = activeVehicle, let profile = activeProfile else {
+            saveErrorMessage = "Aucun véhicule ou profil actif sélectionné."
+            return
+        }
+        
+        guard !fuzzer.discoveredECUs.isEmpty || !fuzzer.supportedLIDs.isEmpty else {
+            saveErrorMessage = "Aucun résultat de fuzzing à enregistrer."
+            return
+        }
+        
+        do {
+            let enriched = ProfileEnricher.enrich(
+                profile: profile,
+                discoveredECUs: fuzzer.discoveredECUs,
+                supportedLIDs: fuzzer.supportedLIDs
+            )
+            
+            let tempURL = FileManager.default.temporaryDirectory.appending(path: "\(profile.profileId)_temp.json")
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
+            let data = try encoder.encode(enriched)
+            try data.write(to: tempURL, options: .atomic)
+            
+            _ = try ProfileImporter.importProfile(from: tempURL)
+            try? FileManager.default.removeItem(at: tempURL)
+            
+            profileRegistry.reload()
+            saveSuccessMessage = "Profil « \(profile.displayName) » enrichi avec succès ! Les nouveaux PIDs sont disponibles en Temps Réel."
+        } catch {
+            saveErrorMessage = "Erreur lors de la sauvegarde : \(error.localizedDescription)"
+        }
+    }
+
+    private func exportCANFuzzResults() {
+        saveSuccessMessage = nil
+        saveErrorMessage = nil
+        
+        guard let vehicle = activeVehicle else {
+            saveErrorMessage = "Aucun véhicule actif sélectionné."
+            return
+        }
+        
+        guard !fuzzer.discoveredECUs.isEmpty || !fuzzer.supportedLIDs.isEmpty || !fuzzer.results.isEmpty else {
+            saveErrorMessage = "Aucun résultat de fuzzing CAN à exporter."
+            return
+        }
+        
+        let timestamp = Date.now.formatted(.iso8601)
+            .replacing("-", with: "")
+            .replacing(":", with: "")
+            .replacing("T", with: "_")
+            .replacing("Z", with: "")
+        
+        let filename = "fuzzer_can_results_\(timestamp).json"
+        let relativePath = AppPath.vehicleDir(vehicle.owner, vehicle.slug) + "/\(filename)"
+        
+        struct CANExportData: Codable {
+            let timestamp: String
+            let vehicleSlug: String
+            let vehicleName: String
+            let discoveredECUs: [String]
+            let supportedLIDs: [String: [String]]
+            let results: [FuzzExportResult]
+        }
+        
+        struct FuzzExportResult: Codable {
+            let did: String
+            let response: String
+        }
+        
+        let exportResults = fuzzer.results.map { FuzzExportResult(did: $0.did, response: $0.response) }
+        
+        let exportData = CANExportData(
+            timestamp: Date.now.formatted(.iso8601),
+            vehicleSlug: vehicle.slug,
+            vehicleName: vehicle.displayName,
+            discoveredECUs: fuzzer.discoveredECUs,
+            supportedLIDs: fuzzer.supportedLIDs,
+            results: exportResults
+        )
+        
+        do {
+            try AppStorage.shared.writeJSON(exportData, to: relativePath)
+            saveSuccessMessage = "Résultats CAN exportés avec succès :\n\(filename)"
+        } catch {
+            saveErrorMessage = "Échec de l'export : \(error.localizedDescription)"
+        }
+    }
+
+    private func exportLINFuzzResults() {
+        saveSuccessMessage = nil
+        saveErrorMessage = nil
+        
+        guard let vehicle = activeVehicle else {
+            saveErrorMessage = "Aucun véhicule actif sélectionné."
+            return
+        }
+        
+        guard !linFuzzer.sniffedPacketList.isEmpty || !linFuzzer.discoveredPIDs.isEmpty else {
+            saveErrorMessage = "Aucun résultat de fuzzing/sniffing LIN à exporter."
+            return
+        }
+        
+        let timestamp = Date.now.formatted(.iso8601)
+            .replacing("-", with: "")
+            .replacing(":", with: "")
+            .replacing("T", with: "_")
+            .replacing("Z", with: "")
+            
+        let filename = "fuzzer_lin_results_\(timestamp).json"
+        let relativePath = AppPath.vehicleDir(vehicle.owner, vehicle.slug) + "/\(filename)"
+        
+        struct LINExportPacket: Codable {
+            let rawID: UInt8
+            let pid: UInt8
+            let lastDataHex: String
+            let packetCount: Int
+            let periodMs: Double
+            let isClassicChecksumValid: Bool
+            let isEnhancedChecksumValid: Bool
+        }
+        
+        struct LINExportData: Codable {
+            let timestamp: String
+            let vehicleSlug: String
+            let vehicleName: String
+            let discoveredPIDs: [UInt8]
+            let sniffedPackets: [LINExportPacket]
+        }
+        
+        let exportPackets = linFuzzer.sniffedPacketList.map { packet in
+            LINExportPacket(
+                rawID: packet.rawID,
+                pid: packet.pid,
+                lastDataHex: packet.lastData.map { String(format: "%02X", $0) }.joined(separator: " "),
+                packetCount: packet.packetCount,
+                periodMs: packet.periodMs,
+                isClassicChecksumValid: packet.isClassicChecksumValid,
+                isEnhancedChecksumValid: packet.isEnhancedChecksumValid
+            )
+        }
+        
+        let exportData = LINExportData(
+            timestamp: Date.now.formatted(.iso8601),
+            vehicleSlug: vehicle.slug,
+            vehicleName: vehicle.displayName,
+            discoveredPIDs: linFuzzer.discoveredPIDs,
+            sniffedPackets: exportPackets
+        )
+        
+        do {
+            try AppStorage.shared.writeJSON(exportData, to: relativePath)
+            saveSuccessMessage = "Résultats LIN exportés avec succès :\n\(filename)"
+        } catch {
+            saveErrorMessage = "Échec de l'export : \(error.localizedDescription)"
+        }
     }
 }
