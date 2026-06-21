@@ -16,6 +16,16 @@ struct FuzzerView: View {
     @State private var selectedTab: Int = 0 // 0: Balayage LIDs (Fuzzer), 1: Corrélation (Reverse Engineering)
     @State private var targetLidHex: String = "01"
 
+    // LIN states
+    @State private var fuzzerMode = 0 // 0: CAN / OBD, 1: LIN
+    @State private var linFuzzer = LINFuzzer()
+    @State private var linUartPort: UInt16 = 1
+    @State private var linBaudRate: UInt32 = 19200
+    @State private var useEnhancedChecksum = true
+    @State private var linSubTab = 0 // 0: Sniffer, 1: Balayage, 2: Injecteur
+    @State private var injectRawIdHex = "00"
+    @State private var injectDataHex = "00 00 00 00"
+
     init(interface: VehicleInterface) {
         self.interface = interface
     }
@@ -27,178 +37,453 @@ struct FuzzerView: View {
                     if !agreedToRisks {
                         FuzzerSafetyWarningView(agreedToRisks: $agreedToRisks)
                     } else {
-                        Picker("Mode Fuzzer", selection: $selectedTab) {
-                            Text("Balayage LIDs").tag(0)
-                            Text("Corrélation TR").tag(1)
+                        Picker("Sélection Bus", selection: $fuzzerMode) {
+                            Text("CAN / OBD").tag(0)
+                            Text("LIN Bus").tag(1)
                         }
                         .pickerStyle(.segmented)
-                        .padding(.vertical, 4)
+                        .padding(.bottom, 8)
                         
-                        if selectedTab == 0 {
-                            FuzzerNetworkDiscoverySection(
-                                interface: interface,
-                                fuzzer: fuzzer,
-                                selectedPreset: $selectedPreset,
-                                targetEcu: $targetEcu
-                            )
+                        if fuzzerMode == 0 {
+                            Picker("Mode Fuzzer", selection: $selectedTab) {
+                                Text("Balayage LIDs").tag(0)
+                                Text("Corrélation TR").tag(1)
+                            }
+                            .pickerStyle(.segmented)
+                            .padding(.vertical, 4)
                             
-                            Divider().background(Color.white.opacity(0.1))
-                            
-                            FuzzerConfigSection(
-                                selectedLidPreset: $selectedLidPreset,
-                                targetEcu: $targetEcu,
-                                startLidHex: $startLidHex,
-                                endLidHex: $endLidHex
-                            )
-                            
-                            Divider().background(Color.white.opacity(0.1))
-                            
-                            FuzzerExecutionSection(
-                                fuzzer: fuzzer,
-                                onStartFuzzing: startFuzzing
-                            )
-                            
-                            FuzzerResultsSection(fuzzer: fuzzer)
-                        } else {
-                            // Section d'analyse de signaux en temps réel
-                            VStack(alignment: .leading, spacing: 12) {
-                                Text("Configuration du LID")
-                                    .font(.cardTitle)
-                                    .foregroundStyle(.secondary)
+                            if selectedTab == 0 {
+                                FuzzerNetworkDiscoverySection(
+                                    interface: interface,
+                                    fuzzer: fuzzer,
+                                    selectedPreset: $selectedPreset,
+                                    targetEcu: $targetEcu
+                                )
                                 
-                                HStack {
-                                    Text("ECU Cible (Hex)")
-                                        .font(.bodyText)
+                                Divider().background(Color.white.opacity(0.1))
+                                
+                                FuzzerConfigSection(
+                                    selectedLidPreset: $selectedLidPreset,
+                                    targetEcu: $targetEcu,
+                                    startLidHex: $startLidHex,
+                                    endLidHex: $endLidHex
+                                )
+                                
+                                Divider().background(Color.white.opacity(0.1))
+                                
+                                FuzzerExecutionSection(
+                                    fuzzer: fuzzer,
+                                    onStartFuzzing: startFuzzing
+                                )
+                                
+                                FuzzerResultsSection(fuzzer: fuzzer)
+                            } else {
+                                // Section d'analyse de signaux en temps réel
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text("Configuration du LID")
+                                        .font(.cardTitle)
                                         .foregroundStyle(.secondary)
-                                    Spacer()
-                                    TextField("7E0", text: $targetEcu)
-                                        .textFieldStyle(.roundedBorder)
-                                        .multilineTextAlignment(.trailing)
-                                        .font(.monoSmall)
-                                        .frame(width: 100)
-                                        .foregroundStyle(.white)
+                                    
+                                    HStack {
+                                        Text("ECU Cible (Hex)")
+                                            .font(.bodyText)
+                                            .foregroundStyle(.secondary)
+                                        Spacer()
+                                        TextField("7E0", text: $targetEcu)
+                                            .textFieldStyle(.roundedBorder)
+                                            .multilineTextAlignment(.trailing)
+                                            .font(.monoSmall)
+                                            .frame(width: 100)
+                                            .foregroundStyle(.white)
+                                    }
+                                    HStack {
+                                        Text("LID Cible (Hex)")
+                                            .font(.bodyText)
+                                            .foregroundStyle(.secondary)
+                                        Spacer()
+                                        TextField("01", text: $targetLidHex)
+                                            .textFieldStyle(.roundedBorder)
+                                            .multilineTextAlignment(.trailing)
+                                            .font(.monoSmall)
+                                            .frame(width: 100)
+                                            .foregroundStyle(.white)
+                                    }
                                 }
-                                HStack {
-                                    Text("LID Cible (Hex)")
-                                        .font(.bodyText)
+                                
+                                Divider().background(Color.white.opacity(0.1))
+                                
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text("Analyse de Corrélation")
+                                        .font(.cardTitle)
                                         .foregroundStyle(.secondary)
-                                    Spacer()
-                                    TextField("01", text: $targetLidHex)
-                                        .textFieldStyle(.roundedBorder)
-                                        .multilineTextAlignment(.trailing)
-                                        .font(.monoSmall)
-                                        .frame(width: 100)
-                                        .foregroundStyle(.white)
+                                    
+                                    if fuzzer.isRunning {
+                                        Button(action: stopCorrelation) {
+                                            HStack {
+                                                Spacer()
+                                                ProgressView()
+                                                    .padding(.trailing, 8)
+                                                Text("Arrêter l'Analyse")
+                                                Spacer()
+                                            }
+                                            .font(.appButton)
+                                        }
+                                        .glassActionButton(prominent: true)
+                                        .foregroundStyle(.red)
+                                    } else {
+                                        Button(action: startCorrelation) {
+                                            Text("Démarrer l'Analyse")
+                                                .font(.appButton)
+                                                .frame(maxWidth: .infinity)
+                                        }
+                                        .glassActionButton(prominent: true)
+                                    }
+                                    
+                                    if fuzzer.analyzedFrameCount > 0 {
+                                        HStack {
+                                            Text("Trames analysées")
+                                                .font(.captionText)
+                                            Spacer()
+                                            Text("\(fuzzer.analyzedFrameCount)")
+                                                .font(.valueNumber)
+                                                .foregroundStyle(Color.appAccent)
+                                        }
+                                    }
+                                }
+                                
+                                Divider().background(Color.white.opacity(0.1))
+                                
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text("Rapports de Pearson (Temps Réel)")
+                                        .font(.cardTitle)
+                                        .foregroundStyle(.secondary)
+                                    
+                                    if fuzzer.correlations.isEmpty {
+                                        VStack(alignment: .center, spacing: 8) {
+                                            Image(systemName: "waveform.path.ecg")
+                                                .font(.largeTitle)
+                                                .foregroundStyle(.tertiary)
+                                            Text("En attente d'acquisition...")
+                                                .font(.statusText)
+                                                .foregroundStyle(.secondary)
+                                            Text("Accélérez ou faites varier l'état pour corréler les signaux.")
+                                                .font(.captionTiny)
+                                                .foregroundStyle(.tertiary)
+                                                .multilineTextAlignment(.center)
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                        .padding()
+                                    } else {
+                                        ForEach(fuzzer.correlations) { result in
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                HStack {
+                                                    Text("Tranche \(result.sliceName)")
+                                                        .font(.monoSmall)
+                                                        .bold()
+                                                        .foregroundStyle(.white)
+                                                    Spacer()
+                                                    Text(result.classification)
+                                                        .font(.captionTiny)
+                                                        .bold()
+                                                        .foregroundStyle(colorForClassification(result.classification))
+                                                }
+                                                
+                                                HStack(spacing: 8) {
+                                                    ZStack(alignment: .leading) {
+                                                        RoundedRectangle(cornerRadius: 3)
+                                                            .fill(Color.white.opacity(0.1))
+                                                            .frame(height: 6)
+                                                        
+                                                        RoundedRectangle(cornerRadius: 3)
+                                                            .fill(colorForCoefficient(result.coefficient))
+                                                            .frame(height: 6)
+                                                            .visualEffect { content, geometry in
+                                                                content.scaleEffect(x: CGFloat(abs(result.coefficient)), y: 1.0, anchor: .leading)
+                                                            }
+                                                    }
+                                                    .frame(height: 6)
+                                                    
+                                                    Text("\((result.coefficient * 100).formatted(.number.precision(.fractionLength(1))))%")
+                                                        .font(.valueNumber)
+                                                        .foregroundStyle(.secondary)
+                                                        .frame(width: 55, alignment: .trailing)
+                                                }
+                                            }
+                                            .padding(.vertical, 6)
+                                            .padding(.horizontal, 10)
+                                            .background(Color.white.opacity(0.02))
+                                            .clipShape(.rect(cornerRadius: 8))
+                                            .overlay {
+                                                RoundedRectangle(cornerRadius: 8)
+                                                    .stroke(Color.white.opacity(0.04), lineWidth: 1)
+                                            }
+                                        }
+                                    }
                                 }
                             }
-                            
-                            Divider().background(Color.white.opacity(0.1))
-                            
+                        } else {
+                            // LIN Bus Views
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Analyse de Corrélation")
+                                Text("Configuration LIN")
                                     .font(.cardTitle)
                                     .foregroundStyle(.secondary)
                                 
-                                if fuzzer.isRunning {
-                                    Button(action: stopCorrelation) {
+                                HStack {
+                                    Text("Ligne LIN (Matériel)")
+                                        .font(.bodyText)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                    Picker("Port", selection: $linUartPort) {
+                                        Text("LIN 1 (USART3)").tag(UInt16(1))
+                                        Text("LIN 2 (UART5)").tag(UInt16(2))
+                                    }
+                                    .pickerStyle(.menu)
+                                }
+                                
+                                HStack {
+                                    Text("Vitesse (Baudrate)")
+                                        .font(.bodyText)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                    Picker("Baudrate", selection: $linBaudRate) {
+                                        Text("19200 bps").tag(UInt32(19200))
+                                        Text("10400 bps").tag(UInt32(10400))
+                                        Text("9600 bps").tag(UInt32(9600))
+                                    }
+                                    .pickerStyle(.menu)
+                                }
+                                
+                                HStack {
+                                    Text("Mode Somme de Contrôle")
+                                        .font(.bodyText)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                    Picker("Checksum", selection: $useEnhancedChecksum) {
+                                        Text("Amélioré (LIN 2.0)").tag(true)
+                                        Text("Classique (LIN 1.3)").tag(false)
+                                    }
+                                    .pickerStyle(.menu)
+                                }
+                            }
+                            .padding(.vertical, 8)
+                            
+                            Divider().background(Color.white.opacity(0.1))
+                            
+                            Picker("Mode LIN", selection: $linSubTab) {
+                                Text("Sniffer").tag(0)
+                                Text("Balayage").tag(1)
+                                Text("Injecteur").tag(2)
+                            }
+                            .pickerStyle(.segmented)
+                            .padding(.vertical, 8)
+                            
+                            if linSubTab == 0 {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text("Écoute passive du Bus")
+                                        .font(.cardTitle)
+                                        .foregroundStyle(.secondary)
+                                    
+                                    if linFuzzer.isRunning {
+                                        Button(action: stopLINSniffing) {
+                                            HStack {
+                                                Spacer()
+                                                ProgressView()
+                                                    .padding(.trailing, 8)
+                                                Text("Arrêter le Sniffing")
+                                                Spacer()
+                                            }
+                                            .font(.appButton)
+                                        }
+                                        .glassActionButton(prominent: true)
+                                        .foregroundStyle(.red)
+                                    } else {
+                                        Button(action: startLINSniffing) {
+                                            Text("Démarrer le Sniffing")
+                                                .font(.appButton)
+                                                .frame(maxWidth: .infinity)
+                                        }
+                                        .glassActionButton(prominent: true)
+                                    }
+                                    
+                                    if let error = linFuzzer.actionError {
+                                        Text(error)
+                                            .font(.statusText)
+                                            .foregroundStyle(.red)
+                                    }
+                                    
+                                    if linFuzzer.sniffedPacketList.isEmpty {
+                                        VStack(spacing: 8) {
+                                            Image(systemName: "waveform.path")
+                                                .font(.largeTitle)
+                                                .foregroundStyle(.tertiary)
+                                            Text("Aucune trame capturée")
+                                                .font(.statusText)
+                                                .foregroundStyle(.secondary)
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                        .padding()
+                                    } else {
+                                        ScrollView(.horizontal) {
+                                            VStack(alignment: .leading, spacing: 8) {
+                                                HStack(spacing: 12) {
+                                                    Text("ID").font(.monoSmall).bold().frame(width: 40, alignment: .leading)
+                                                    Text("PID").font(.monoSmall).bold().frame(width: 40, alignment: .leading)
+                                                    Text("Données (Hex)").font(.monoSmall).bold().frame(width: 140, alignment: .leading)
+                                                    Text("Période").font(.monoSmall).bold().frame(width: 60, alignment: .trailing)
+                                                    Text("Trames").font(.monoSmall).bold().frame(width: 50, alignment: .trailing)
+                                                    Text("CS").font(.monoSmall).bold().frame(width: 40, alignment: .center)
+                                                }
+                                                .foregroundStyle(.secondary)
+                                                
+                                                Divider().background(Color.white.opacity(0.1))
+                                                
+                                                ForEach(linFuzzer.sniffedPacketList) { packet in
+                                                    HStack(spacing: 12) {
+                                                        Text(String(format: "0x%02X", packet.rawID))
+                                                            .font(.monoSmall)
+                                                            .frame(width: 40, alignment: .leading)
+                                                            .foregroundStyle(Color.appAccent)
+                                                        
+                                                        Text(String(format: "0x%02X", packet.pid))
+                                                            .font(.monoSmall)
+                                                            .frame(width: 40, alignment: .leading)
+                                                            .foregroundStyle(.secondary)
+                                                        
+                                                        Text(packet.lastData.map { String(format: "%02X", $0) }.joined(separator: " "))
+                                                            .font(.monoSmall)
+                                                            .frame(width: 140, alignment: .leading)
+                                                            .lineLimit(1)
+                                                        
+                                                        Text(packet.periodMs > 0 ? String(format: "%.1f ms", packet.periodMs) : "—")
+                                                            .font(.monoSmall)
+                                                            .frame(width: 60, alignment: .trailing)
+                                                            .foregroundStyle(.secondary)
+                                                        
+                                                        Text("\(packet.packetCount)")
+                                                            .font(.monoSmall)
+                                                            .frame(width: 50, alignment: .trailing)
+                                                        
+                                                        let isValid = useEnhancedChecksum ? packet.isEnhancedChecksumValid : packet.isClassicChecksumValid
+                                                        Image(systemName: isValid ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
+                                                            .foregroundStyle(isValid ? Color.green : Color.orange)
+                                                            .frame(width: 40, alignment: .center)
+                                                    }
+                                                    .padding(.vertical, 4)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if linSubTab == 1 {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text("Balayage d'Identifiants LIN")
+                                        .font(.cardTitle)
+                                        .foregroundStyle(.secondary)
+                                    
+                                    Text("Envoie séquentiellement des en-têtes LIN Master (PIDs 0x00-0x3F) pour provoquer et écouter les réponses des esclaves connectés.")
+                                        .font(.captionText)
+                                        .foregroundStyle(.secondary)
+                                    
+                                    if linFuzzer.isRunning {
+                                        VStack(spacing: 8) {
+                                            Button(action: stopLINFuzzer) {
+                                                HStack {
+                                                    Spacer()
+                                                    ProgressView()
+                                                        .padding(.trailing, 8)
+                                                    Text("Arrêter le Balayage")
+                                                    Spacer()
+                                                }
+                                                .font(.appButton)
+                                            }
+                                            .glassActionButton(prominent: true)
+                                            .foregroundStyle(.red)
+                                            
+                                            ProgressView(value: linFuzzer.currentProgress)
+                                                .tint(Color.appAccent)
+                                        }
+                                    } else {
+                                        Button(action: startLINPIDScan) {
+                                            Text("Démarrer le Balayage")
+                                                .font(.appButton)
+                                                .frame(maxWidth: .infinity)
+                                        }
+                                        .glassActionButton(prominent: true)
+                                    }
+                                    
+                                    if let error = linFuzzer.actionError {
+                                        Text(error)
+                                            .font(.statusText)
+                                            .foregroundStyle(.red)
+                                    }
+                                    
+                                    if !linFuzzer.discoveredPIDs.isEmpty {
+                                        Text("Identifiants actifs détectés (\(linFuzzer.discoveredPIDs.count))")
+                                            .font(.captionText)
+                                            .foregroundStyle(.secondary)
+                                            .padding(.top, 8)
+                                        
+                                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))], spacing: 8) {
+                                            ForEach(linFuzzer.discoveredPIDs, id: \.self) { rawID in
+                                                Text(String(format: "0x%02X", rawID))
+                                                    .font(.monoSmall)
+                                                    .padding(.vertical, 6)
+                                                    .padding(.horizontal, 10)
+                                                    .background(Color.appAccent.opacity(0.1))
+                                                    .clipShape(.rect(cornerRadius: 6))
+                                                    .overlay {
+                                                        RoundedRectangle(cornerRadius: 6)
+                                                            .stroke(Color.appAccent.opacity(0.3), lineWidth: 1)
+                                                    }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text("Injecteur de Trames Master")
+                                        .font(.cardTitle)
+                                        .foregroundStyle(.secondary)
+                                    
+                                    HStack {
+                                        Text("ID brut (Hex, 00-3F)")
+                                            .font(.bodyText)
+                                            .foregroundStyle(.secondary)
+                                        Spacer()
+                                        TextField("00", text: $injectRawIdHex)
+                                            .textFieldStyle(.roundedBorder)
+                                            .multilineTextAlignment(.trailing)
+                                            .font(.monoSmall)
+                                            .frame(width: 80)
+                                            .foregroundStyle(.white)
+                                    }
+                                    
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text("Données (Hex, octets séparés par des espaces)")
+                                            .font(.captionText)
+                                            .foregroundStyle(.secondary)
+                                        TextField("11 22 33 44", text: $injectDataHex)
+                                            .textFieldStyle(.roundedBorder)
+                                            .font(.monoSmall)
+                                            .foregroundStyle(.white)
+                                    }
+                                    
+                                    Button(action: injectLINFrame) {
                                         HStack {
                                             Spacer()
-                                            ProgressView()
-                                                .padding(.trailing, 8)
-                                            Text("Arrêter l'Analyse")
+                                            Image(systemName: "paperplane.fill")
+                                            Text("Injecter la Trame")
                                             Spacer()
                                         }
                                         .font(.appButton)
                                     }
                                     .glassActionButton(prominent: true)
-                                    .foregroundStyle(.red)
-                                } else {
-                                    Button(action: startCorrelation) {
-                                        Text("Démarrer l'Analyse")
-                                            .font(.appButton)
-                                            .frame(maxWidth: .infinity)
-                                    }
-                                    .glassActionButton(prominent: true)
-                                }
-                                
-                                if fuzzer.analyzedFrameCount > 0 {
-                                    HStack {
-                                        Text("Trames analysées")
-                                            .font(.captionText)
-                                        Spacer()
-                                        Text("\(fuzzer.analyzedFrameCount)")
-                                            .font(.valueNumber)
-                                            .foregroundStyle(Color.appAccent)
-                                    }
-                                }
-                            }
-                            
-                            Divider().background(Color.white.opacity(0.1))
-                            
-                            VStack(alignment: .leading, spacing: 12) {
-                                Text("Rapports de Pearson (Temps Réel)")
-                                    .font(.cardTitle)
-                                    .foregroundStyle(.secondary)
-                                
-                                if fuzzer.correlations.isEmpty {
-                                    VStack(alignment: .center, spacing: 8) {
-                                        Image(systemName: "waveform.path.ecg")
-                                            .font(.largeTitle)
-                                            .foregroundStyle(.tertiary)
-                                        Text("En attente d'acquisition...")
+                                    .padding(.top, 8)
+                                    
+                                    if let error = linFuzzer.actionError {
+                                        Text(error)
                                             .font(.statusText)
-                                            .foregroundStyle(.secondary)
-                                        Text("Accélérez ou faites varier l'état pour corréler les signaux.")
-                                            .font(.captionTiny)
-                                            .foregroundStyle(.tertiary)
-                                            .multilineTextAlignment(.center)
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
-                                } else {
-                                    ForEach(fuzzer.correlations) { result in
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            HStack {
-                                                Text("Tranche \(result.sliceName)")
-                                                    .font(.monoSmall)
-                                                    .bold()
-                                                    .foregroundStyle(.white)
-                                                Spacer()
-                                                Text(result.classification)
-                                                    .font(.captionTiny)
-                                                    .bold()
-                                                    .foregroundStyle(colorForClassification(result.classification))
-                                            }
-                                            
-                                            HStack(spacing: 8) {
-                                                ZStack(alignment: .leading) {
-                                                    RoundedRectangle(cornerRadius: 3)
-                                                        .fill(Color.white.opacity(0.1))
-                                                        .frame(height: 6)
-                                                    
-                                                    RoundedRectangle(cornerRadius: 3)
-                                                        .fill(colorForCoefficient(result.coefficient))
-                                                        .frame(height: 6)
-                                                        .visualEffect { content, geometry in
-                                                            content.scaleEffect(x: CGFloat(abs(result.coefficient)), y: 1.0, anchor: .leading)
-                                                        }
-                                                }
-                                                .frame(height: 6)
-                                                
-                                                Text("\((result.coefficient * 100).formatted(.number.precision(.fractionLength(1))))%")
-                                                    .font(.valueNumber)
-                                                    .foregroundStyle(.secondary)
-                                                    .frame(width: 55, alignment: .trailing)
-                                            }
-                                        }
-                                        .padding(.vertical, 6)
-                                        .padding(.horizontal, 10)
-                                        .background(Color.white.opacity(0.02))
-                                        .clipShape(.rect(cornerRadius: 8))
-                                        .overlay {
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .stroke(Color.white.opacity(0.04), lineWidth: 1)
-                                        }
+                                            .foregroundStyle(.red)
                                     }
                                 }
                             }
@@ -210,7 +495,7 @@ struct FuzzerView: View {
             .padding(16)
         }
         .background(Color.appBackground.ignoresSafeArea())
-        .navigationTitle("Fuzzer OBD & Corrélation")
+        .navigationTitle(fuzzerMode == 0 ? "Fuzzer OBD & Corrélation" : "LIN Sniffer & Fuzzer")
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: selectedLidPreset) { oldValue, newValue in
             if newValue != .custom {
@@ -226,6 +511,7 @@ struct FuzzerView: View {
         }
         .onDisappear {
             fuzzer.isRunning = false
+            linFuzzer.stop()
             if let panda = interface as? PandaDriver {
                 Task {
                     try? await panda.setSafetyModel(.allOutput)
@@ -268,6 +554,55 @@ struct FuzzerView: View {
     
     private func stopCorrelation() {
         fuzzer.cancel()
+    }
+    
+    private func startLINSniffing() {
+        guard let panda = interface as? PandaDriver else { return }
+        Task {
+            await linFuzzer.startSniffing(driver: panda, uartPort: linUartPort, baudRate: linBaudRate)
+        }
+    }
+    
+    private func stopLINSniffing() {
+        linFuzzer.stop()
+    }
+    
+    private func startLINPIDScan() {
+        guard let panda = interface as? PandaDriver else { return }
+        Task {
+            await linFuzzer.startPIDScan(driver: panda, uartPort: linUartPort, baudRate: linBaudRate)
+        }
+    }
+    
+    private func stopLINFuzzer() {
+        linFuzzer.stop()
+    }
+    
+    private func injectLINFrame() {
+        guard let panda = interface as? PandaDriver else { return }
+        let cleanId = injectRawIdHex.replacing("0x", with: "").trimmingCharacters(in: .whitespaces)
+        guard let rawID = UInt8(cleanId, radix: 16), rawID <= 0x3F else {
+            linFuzzer.actionError = "ID LIN invalide (doit être entre 00 et 3F)."
+            return
+        }
+        
+        let hexBytes = injectDataHex.components(separatedBy: .whitespaces)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty }
+        var data = Data()
+        for hex in hexBytes {
+            let cleanHex = hex.replacing("0x", with: "")
+            if let byte = UInt8(cleanHex, radix: 16) {
+                data.append(byte)
+            } else {
+                linFuzzer.actionError = "Octet de données hexadécimal invalide : \(hex)"
+                return
+            }
+        }
+        
+        Task {
+            await linFuzzer.injectFrame(driver: panda, uartPort: linUartPort, baudRate: linBaudRate, rawID: rawID, data: data)
+        }
     }
     
     private func colorForClassification(_ classification: String) -> Color {

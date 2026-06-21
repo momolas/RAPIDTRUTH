@@ -291,4 +291,17 @@ final class PandaTransport {
             })
         }
     }
+    
+    /// Sets the baud rate of the specified UART/LIN device (request 0xe1 / 225)
+    func setUARTBaudRate(uart: UInt16, baud: UInt32) async throws {
+        // requestType: 0x40 (Vendor request out), request: 225, value: lower 16-bits of baudrate, index: uart_device
+        try await sendControlWrite(requestType: 0x40, request: 225, value: UInt16(baud & 0xFFFF), index: uart)
+    }
+    
+    /// Sets the parity of the specified UART/LIN device (request 0xe2 / 226)
+    func setUARTParity(uart: UInt16, parity: UInt16) async throws {
+        // parity: 0 = none, 1 = even, 2 = odd
+        try await sendControlWrite(requestType: 0x40, request: 226, value: parity, index: uart)
+    }
 }
+

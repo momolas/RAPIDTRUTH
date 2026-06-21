@@ -1,8 +1,21 @@
 import Foundation
 
+struct LINFrame: Sendable, Identifiable {
+    let id = UUID()
+    let timestamp = Date()
+    let bus: UInt8
+    let address: UInt32 // Protected Identifier (PID)
+    let data: Data
+    
+    var rawID: UInt8 {
+        return UInt8(address & 0x3F)
+    }
+}
+
 @MainActor
 final class PandaDriver: VehicleInterface {
     let transport: PandaTransport
+    var linFrameHandler: (@Sendable (LINFrame) -> Void)?
     var txID: UInt32 = 0x7E0
     var rxID: UInt32 = 0x7E8 // Usually txID + 8, but for Renault it can be different
     var bus: UInt8 = 0
@@ -152,7 +165,10 @@ final class PandaDriver: VehicleInterface {
         // Parse Panda UDP packet which might contain multiple CAN frames
         let frames = unpackPandaCAN(data: data)
         for frame in frames {
-            if frame.address == self.rxID {
+            if frame.bus == 3 || frame.bus == 4 {
+                let linFrame = LINFrame(bus: frame.bus, address: frame.address, data: frame.data)
+                linFrameHandler?(linFrame)
+            } else if frame.address == self.rxID {
                 handleISOTPFrame(frame.data)
             }
         }
@@ -338,6 +354,26 @@ final class PandaDriver: VehicleInterface {
     func setSafetyModel(_ mode: SafetyMode) async throws {
         // 0x40 is Vendor Request Out, 0xdc (220) is set_safety_model
         try await transport.sendControlWrite(requestType: 0x40, request: 0xdc, value: mode.rawValue, index: 0)
+    }
+    
+    /// Configures the LIN/UART port on the Panda hardware.
+    /// uartPort: 1 for LIN1 (USART3), 2 for LIN2 (UART5)
+    /// baud: speed in bps (typically 10400 or 19200)
+    func configureLIN(uartPort: UInt16, baudRate: UInt32) async throws {
+        // 1. Disable heartbeat checks (request: 0xf8, value: 0, index: 0)
+        try await transport.sendControlWrite(requestType: 0x40, request: 0xf8, value: 0, index: 0)
+        
+        // 2. Disable power save mode (request: 0xe7, value: 0, index: 0)
+        try await transport.sendControlWrite(requestType: 0x40, request: 0xe7, value: 0, index: 0)
+        
+        // 3. Set UART baud rate on the specified port
+        try await transport.setUARTBaudRate(uart: uartPort, baud: baudRate)
+    }
+    
+    /// Sends a LIN frame (encapsulated as a CAN frame on Bus 3 or 4)
+    func sendLINFrame(bus: UInt8, address: UInt32, data: Data) async throws {
+        let packed = packPandaCAN(address: address, data: data, bus: bus)
+        try await transport.send(packed)
     }
     
     isolated deinit {
