@@ -179,9 +179,14 @@ final class ConfigurationManager {
         showSuccessMessage = false
         
         do {
-            // Write UCH (txID 745)
+            // 0. Sécurisation : S'assurer que le véhicule est immobile avant toute programmation
+            try await verifyVehicleImmobile(interface: interface)
+            
+            // 1. Écriture UCH (txID 745)
             try await interface.setTarget(txID: "745", rxID: nil)
+            await ensureExtendedSession(interface: interface)
             try Task.checkCancellation()
+            
             let uchPayload1 = autoLockDoors ? "01" : "00"
             let uchPayload2 = autoRearWiper ? "" : "NORW"
             let uchPayload3 = followMeHome ? "FMH" : ""
@@ -192,12 +197,15 @@ final class ConfigurationManager {
             let keylessPayload = keylessGo ? "KEYLESS" : ""
             let selunPayload = selectiveUnlocking ? "SELUN" : ""
             
-            _ = try await interface.sendDiagnosticRequest("2E2100\(uchPayload1)\(uchPayload2)\(uchPayload3)\(uchPayload4)\(uchPayload5)\(tpmsPayload)\(rainPayload)\(keylessPayload)\(selunPayload)", timeout: 4.0)
+            let uchRes = try await interface.sendDiagnosticRequest("2E2100\(uchPayload1)\(uchPayload2)\(uchPayload3)\(uchPayload4)\(uchPayload5)\(tpmsPayload)\(rainPayload)\(keylessPayload)\(selunPayload)", timeout: 4.0)
+            try checkDiagnosticResponse(uchRes, forService: "2E")
             try Task.checkCancellation()
             
-            // Write TdB (txID 743)
+            // 2. Écriture TdB (txID 743)
             try await interface.setTarget(txID: "743", rxID: nil)
+            await ensureExtendedSession(interface: interface)
             try Task.checkCancellation()
+            
             let langPayload = dashboardLanguage == "EN" ? "EN" : "FR"
             let beepPayload = seatbeltWarning ? "BEEP" : "NOBEEP"
             let clkPayload = clockDisplay ? "CLK" : "NOCLK"
@@ -208,62 +216,79 @@ final class ConfigurationManager {
             let voicePayload = voiceSynthesis ? "SYN" : "NOSYN"
             let oilPayload = oilServiceInterval
             
-            _ = try await interface.sendDiagnosticRequest("2E2101\(langPayload)\(beepPayload)\(clkPayload)\(consPayload)\(overspeedPayload)\(fuelPayload)\(gearboxPayload)\(voicePayload)\(oilPayload)", timeout: 4.0)
+            let tdbRes = try await interface.sendDiagnosticRequest("2E2101\(langPayload)\(beepPayload)\(clkPayload)\(consPayload)\(overspeedPayload)\(fuelPayload)\(gearboxPayload)\(voicePayload)\(oilPayload)", timeout: 4.0)
+            try checkDiagnosticResponse(tdbRes, forService: "2E")
             try Task.checkCancellation()
             
-            // Write RadNav (txID 756)
+            // 3. Écriture RadNav (txID 756)
             try await interface.setTarget(txID: "756", rxID: nil)
+            await ensureExtendedSession(interface: interface)
             try Task.checkCancellation()
+            
             let aaPayload = androidAuto ? "AA" : "NOAA"
             let rvcPayload = rearViewCamera ? "RVC" : "NORVC"
-            _ = try await interface.sendDiagnosticRequest("2E2102\(aaPayload)\(rvcPayload)", timeout: 4.0)
+            let radNavRes = try await interface.sendDiagnosticRequest("2E2102\(aaPayload)\(rvcPayload)", timeout: 4.0)
+            try checkDiagnosticResponse(radNavRes, forService: "2E")
             try Task.checkCancellation()
             
-            // Write UPC (txID 7A2)
+            // 4. Écriture UPC (txID 7A2)
             try await interface.setTarget(txID: "7A2", rxID: nil)
+            await ensureExtendedSession(interface: interface)
             try Task.checkCancellation()
+            
             let xenonPayload = xenonHeadlights ? "XENON" : "HALO"
             let drlPayload = drlEnabled ? "DRL" : "NODRL"
             let altPayload = alternatorClass == "150A" ? "ALT150" : "ALT110"
-            _ = try? await interface.sendDiagnosticRequest("2E2103\(xenonPayload)\(drlPayload)\(altPayload)", timeout: 4.0)
+            let upcRes = try await interface.sendDiagnosticRequest("2E2103\(xenonPayload)\(drlPayload)\(altPayload)", timeout: 4.0)
+            try checkDiagnosticResponse(upcRes, forService: "2E")
             try Task.checkCancellation()
             
-            // Write Cornering Lights config (txID 7A2)
+            // 5. Écriture Cornering Lights Mode (txID 7A2)
             let corneringModeHex = String(format: "%02X", corneringLightsMode)
-            _ = try? await interface.sendDiagnosticRequest("2E3092\(corneringModeHex)", timeout: 4.0)
+            let corneringRes = try await interface.sendDiagnosticRequest("2E3092\(corneringModeHex)", timeout: 4.0)
+            try checkDiagnosticResponse(corneringRes, forService: "2E")
             try Task.checkCancellation()
             
+            // 6. Écriture Seuil Vitesse Cornering (txID 7A2)
             let speedHex = String(format: "%02X", corneringSpeedThreshold)
-            _ = try? await interface.sendDiagnosticRequest("2E4604\(speedHex)", timeout: 4.0)
+            let speedRes = try await interface.sendDiagnosticRequest("2E4604\(speedHex)", timeout: 4.0)
+            try checkDiagnosticResponse(speedRes, forService: "2E")
             try Task.checkCancellation()
             
-            // Write FPA (txID 7A0)
+            // 7. Écriture FPA (txID 7A0)
             try await interface.setTarget(txID: "7A0", rxID: nil)
+            await ensureExtendedSession(interface: interface)
             try Task.checkCancellation()
+            
             let fpaPayload = coldClimateMode ? "COLD" : "STD"
-            _ = try? await interface.sendDiagnosticRequest("2E2104\(fpaPayload)", timeout: 4.0)
+            let fpaRes = try await interface.sendDiagnosticRequest("2E2104\(fpaPayload)", timeout: 4.0)
+            try checkDiagnosticResponse(fpaRes, forService: "2E")
             try Task.checkCancellation()
             
-            // Write AAS (txID 7A4)
+            // 8. Écriture AAS (txID 7A4)
             try await interface.setTarget(txID: "7A4", rxID: nil)
+            await ensureExtendedSession(interface: interface)
             try Task.checkCancellation()
             
-            // Write Volume (3BB1xx)
+            // Volume (3BB1xx - Service 3B)
             let volHex = String(format: "%02X", parkAssistVolume)
-            _ = try? await interface.sendDiagnosticRequest("3BB1\(volHex)", timeout: 4.0)
+            let volRes = try await interface.sendDiagnosticRequest("3BB1\(volHex)", timeout: 4.0)
+            try checkDiagnosticResponse(volRes, forService: "3B")
             try Task.checkCancellation()
             
-            // Write Tonalité (3BC1xx)
+            // Tonalité (3BC1xx - Service 3B)
             let toneHex = String(format: "%02X", parkAssistTone)
-            _ = try? await interface.sendDiagnosticRequest("3BC1\(toneHex)", timeout: 4.0)
+            let toneRes = try await interface.sendDiagnosticRequest("3BC1\(toneHex)", timeout: 4.0)
+            try checkDiagnosticResponse(toneRes, forService: "3B")
             try Task.checkCancellation()
             
-            // Write Bouton d'Inhibition (3BE3xx)
+            // Bouton d'Inhibition (3BE3xx - Service 3B)
             let inhibHex = parkAssistInhibitionButton ? "80" : "00"
-            _ = try? await interface.sendDiagnosticRequest("3BE3\(inhibHex)", timeout: 4.0)
+            let inhibRes = try await interface.sendDiagnosticRequest("3BE3\(inhibHex)", timeout: 4.0)
+            try checkDiagnosticResponse(inhibRes, forService: "3B")
             try Task.checkCancellation()
             
-            // Show success for 3 seconds
+            // Affichage du succès
             showSuccessMessage = true
             successTimerTask?.cancel()
             successTimerTask = Task {
@@ -274,9 +299,9 @@ final class ConfigurationManager {
             }
             
         } catch is CancellationError {
-            // Clean exit on cooperative task cancellation
+            // Sortie propre
         } catch {
-            actionError = "Failed to write configuration: \(error.localizedDescription)"
+            actionError = "Erreur d'écriture : \(error.localizedDescription)"
         }
         
         isWriting = false
@@ -291,5 +316,50 @@ final class ConfigurationManager {
         guard remaining.count >= 2 else { return nil }
         let byteString = String(remaining.prefix(2))
         return Int(byteString, radix: 16)
+    }
+
+    private func ensureExtendedSession(interface: VehicleInterface) async {
+        // Tentative d'ouverture de session diagnostic étendue (UDS: 10 03, KWP2000: 10 83)
+        _ = try? await interface.sendDiagnosticRequest("1003", timeout: 1.0)
+        _ = try? await interface.sendDiagnosticRequest("1083", timeout: 1.0)
+    }
+
+    private func checkDiagnosticResponse(_ response: String, forService service: String) throws {
+        let clean = response.replacing(" ", with: "").uppercased()
+        if clean.hasPrefix("7F" + service) {
+            let nrcHex = String(clean.dropFirst(4).prefix(2))
+            let nrcByte = UInt8(nrcHex, radix: 16) ?? 0
+            let nrcDescription = NRC.description(for: nrcByte)
+            throw NSError(
+                domain: "ConfigurationManager",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "Le calculateur a rejeté la requête. Erreur : \(nrcDescription)"]
+            )
+        }
+    }
+
+    private func verifyVehicleImmobile(interface: VehicleInterface) async throws {
+        do {
+            // Lecture de la vitesse standard OBD-II (PID 010D)
+            let speedResp = try await interface.sendDiagnosticRequest("010D", timeout: 1.0)
+            let clean = speedResp.replacing(" ", with: "").uppercased()
+            if clean.hasPrefix("410D"), clean.count >= 6 {
+                if let speedByte = UInt8(clean.dropFirst(4).prefix(2), radix: 16) {
+                    if speedByte > 0 {
+                        throw NSError(
+                            domain: "ConfigurationManager",
+                            code: -2,
+                            userInfo: [NSLocalizedDescriptionKey: "Sécurité : Le véhicule est en mouvement (\(speedByte) km/h). Le codage est bloqué."]
+                        )
+                    }
+                }
+            }
+        } catch let error as NSError where error.domain == "ConfigurationManager" {
+            throw error
+        } catch {
+            // Tolérer l'échec de la requête 010D car l'OBD-II générique n'est pas toujours actif sur tous les calculateurs,
+            // mais journaliser pour le diagnostic.
+            NSLog("[ConfigurationManager] Impossible de valider l'immobilisation via 010D : \(error.localizedDescription)")
+        }
     }
 }

@@ -416,8 +416,8 @@ struct ConfigurationView: View {
         .onDisappear {
             if let panda = interface as? PandaDriver {
                 Task {
-                    try? await panda.setSafetyModel(.allOutput)
-                    NSLog("[ConfigurationView] Kept Panda safety model as ALLOUTPUT")
+                    try? await panda.setSafetyModel(.silent)
+                    NSLog("[ConfigurationView] Switched Panda safety model back to SILENT")
                 }
             }
         }
