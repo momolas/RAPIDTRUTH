@@ -2,6 +2,24 @@ import Foundation
 import Network
 import Observation
 
+// MARK: - Protocol d'Abstraction
+/// Permet l'injection de dépendances pour mocker le dongle dans les tests unitaires
+@MainActor
+protocol PandaTransporting: AnyObject {
+    var state: PandaState { get }
+    var discoveredPandas: [String] { get }
+    var inboundStream: AsyncStream<Data> { get }
+    
+    func scanForPandas()
+    func stopScan()
+    func connect(host: String?, port: UInt16)
+    func disconnect()
+    func send(_ data: Data) async throws
+    func sendControlWrite(requestType: UInt16, request: UInt16, value: UInt16, index: UInt16, data: Data) async throws
+    func setUARTBaudRate(uart: UInt16, baud: UInt32) async throws
+    func setUARTParity(uart: UInt16, parity: UInt16) async throws
+}
+
 enum PandaState: Equatable {
     case idle
     case connecting
@@ -9,9 +27,10 @@ enum PandaState: Equatable {
     case error(String)
 }
 
+// MARK: - Implémentation
 @MainActor
 @Observable
-final class PandaTransport {
+final class PandaTransport: PandaTransporting {
     private(set) var state: PandaState = .idle
     private(set) var discoveredPandas: [String] = []
     
@@ -22,6 +41,11 @@ final class PandaTransport {
     private var udpConnection: NWConnection?
     private var scanTask: Task<Void, Never>?
     private let queue = DispatchQueue(label: "obd.panda.queue")
+    
+    // État pour la reconnexion automatique
+    private var isIntentionalDisconnect = false
+    private var lastTargetHost: String?
+    private var lastTargetPort: UInt16 = 1337
     
     static let shared = PandaTransport()
 
@@ -42,7 +66,6 @@ final class PandaTransport {
     func scanForPandas() {
         scanTask?.cancel()
         discoveredPandas.removeAll()
-        // Wait a small delay to simulate scan
         scanTask = Task {
             try? await Task.sleep(for: .seconds(1))
             guard !Task.isCancelled else { return }
@@ -59,7 +82,11 @@ final class PandaTransport {
     }
 
     func connect(host: String? = nil, port: UInt16 = 1337) {
-        disconnect()
+        isIntentionalDisconnect = false
+        lastTargetHost = host
+        lastTargetPort = port
+        
+        cleanupConnections()
         state = .connecting
         
         let targetHost = host ?? discoverPandaIP()
@@ -80,29 +107,6 @@ final class PandaTransport {
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         self.connection = connection
         
-        let udpOptions = NWProtocolUDP.Options()
-        let udpParameters = NWParameters(dtls: nil, udp: udpOptions)
-        udpParameters.prohibitExpensivePaths = false
-        udpParameters.prohibitConstrainedPaths = false
-        
-        let udpConnection = NWConnection(host: endpoint, port: NWEndpoint.Port(rawValue: 1338)!, using: udpParameters)
-        self.udpConnection = udpConnection
-        
-        udpConnection.stateUpdateHandler = { [weak self] udpState in
-            Task { @MainActor [weak self] in
-                guard let self else { return }
-                switch udpState {
-                case .failed(let error):
-                    NSLog("[PandaTransport] UDP Control Connection failed: \(error.localizedDescription)")
-                    self.udpConnection?.cancel()
-                    self.udpConnection = nil
-                default:
-                    break
-                }
-            }
-        }
-        udpConnection.start(queue: queue)
-        
         var fallbackTriggered = false
         
         connection.stateUpdateHandler = { [weak self] nwState in
@@ -117,12 +121,10 @@ final class PandaTransport {
                         fallbackTriggered = true
                         self.triggerFallback(failedHost: targetHost, port: port)
                     } else {
-                        self.state = .error(error.localizedDescription)
-                        self.disconnect()
+                        self.handleConnectionDrop(error: error.localizedDescription)
                     }
                 case .waiting(let error):
-                    NSLog("[PandaTransport] Connection waiting on \(targetHost): \(error.localizedDescription)")
-                    // Trigger fallback if connection is stuck waiting for 4.5 seconds (allowing ARP/local network authorization)
+                    NSLog("[PandaTransport] Connection waiting: \(error.localizedDescription)")
                     Task {
                         try? await Task.sleep(for: .milliseconds(4500))
                         if self.state == .connecting && !fallbackTriggered && self.connection === connection {
@@ -131,7 +133,9 @@ final class PandaTransport {
                         }
                     }
                 case .cancelled:
-                    if self.state != .idle && !fallbackTriggered { self.state = .idle }
+                    if self.state != .idle && !fallbackTriggered && self.isIntentionalDisconnect { 
+                        self.state = .idle 
+                    }
                 default:
                     break
                 }
@@ -148,107 +152,70 @@ final class PandaTransport {
         let lastDigit = components[3]
         
         let alternativeHost = (lastDigit == "10") ? "\(base).1" : "\(base).10"
-        NSLog("[PandaTransport] Connection to \(failedHost) timed out or failed. Trying alternative IP: \(alternativeHost)")
+        NSLog("[PandaTransport] Fallback IP: \(alternativeHost)")
         
-        self.connection?.cancel()
-        self.connection = nil
-        self.udpConnection?.cancel()
-        self.udpConnection = nil
-        
-        // Attempt connection to the fallback IP without allowing further nested fallbacks
+        cleanupConnections()
         connectToHost(alternativeHost, port: port, allowFallback: false)
     }
     
-    private func discoverPandaIP() -> String {
-        guard let localIP = getWiFiAddress() else {
-            return "192.168.0.10" // Default fallback
-        }
-        
-        let components = localIP.components(separatedBy: ".")
-        guard components.count == 4 else { return "192.168.0.10" }
-        
-        let baseIP = "\(components[0]).\(components[1]).\(components[2])"
-        
-        // If it's a 192.168.43.x network (Android hotspot style), Panda is usually .1
-        if baseIP == "192.168.43" {
-            return "\(baseIP).1"
-        }
-        
-        // By default, white Panda acts as DHCP server and sets itself to .10
-        return "\(baseIP).10"
-    }
-    
-    private func getWiFiAddress() -> String? {
-        var address: String?
-        var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil
-        
-        if getifaddrs(&ifaddr) == 0 {
-            var ptr = ifaddr
-            while ptr != nil {
-                defer { ptr = ptr?.pointee.ifa_next }
-                
-                let interface = ptr?.pointee
-                let addrFamily = interface?.ifa_addr.pointee.sa_family
-                
-                if addrFamily == UInt8(AF_INET) { // IPv4
-                    if let name = String(cString: (interface?.ifa_name)!, encoding: .utf8), name == "en0" { // Wi-Fi
-                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                        getnameinfo(interface?.ifa_addr, socklen_t((interface?.ifa_addr.pointee.sa_len)!),
-                                    &hostname, socklen_t(hostname.count),
-                                    nil, socklen_t(0), NI_NUMERICHOST)
-                        address = String(cString: hostname)
-                    }
-                }
-            }
-            freeifaddrs(ifaddr)
-        }
-        
-        return address
-    }
-    
     func disconnect() {
+        isIntentionalDisconnect = true
+        cleanupConnections()
+        state = .idle
+    }
+    
+    private func cleanupConnections() {
         connection?.cancel()
         connection = nil
         udpConnection?.cancel()
         udpConnection = nil
-        state = .idle
     }
+    
+    // MARK: - Boucle de réception et Auto-Reconnexion
     
     private func startReceiveLoop() {
         guard let connection else { return }
         connection.receive(minimumIncompleteLength: 1, maximumLength: 4096) { [weak self] data, _, isComplete, error in
             Task { @MainActor [weak self] in
                 guard let self else { return }
-                if let error {
-                    if self.state != .idle {
-                        self.state = .error(error.localizedDescription)
-                        self.disconnect()
-                    }
-                    return
-                }
                 
                 if let data, !data.isEmpty {
                     self.inboundContinuation.yield(data)
                 }
                 
-                if isComplete {
-                    if self.state != .idle {
-                        self.state = .error("La connexion a été fermée par le dongle.")
-                        self.disconnect()
-                    }
+                // Logique d'auto-reconnexion au lieu de la déconnexion directe
+                if error != nil || isComplete {
+                    self.handleConnectionDrop(error: error?.localizedDescription ?? "Fermeture distante")
                     return
                 }
                 
                 if self.connection != nil {
-                    self.startReceiveLoop() // Read next chunk
+                    self.startReceiveLoop() // Récursion asynchrone pour lire le prochain chunk
                 }
             }
         }
     }
     
+    private func handleConnectionDrop(error: String) {
+        guard !isIntentionalDisconnect else { return }
+        
+        NSLog("[PandaTransport] Connexion perdue (\(error)). Tentative de reconnexion dans 2s...")
+        self.state = .connecting
+        cleanupConnections()
+        
+        Task {
+            try? await Task.sleep(for: .seconds(2))
+            guard !self.isIntentionalDisconnect else { return }
+            let host = self.lastTargetHost ?? self.discoverPandaIP()
+            self.connectToHost(host, port: self.lastTargetPort, allowFallback: false)
+        }
+    }
+    
+    // MARK: - Envoi de données
+    
     func send(_ data: Data) async throws {
         guard let connection = connection, state == .connected else {
-            throw NSError(domain: "PandaTransport", code: -1, userInfo: [NSLocalizedDescriptionKey: "Not connected to Panda adapter"])
+            throw NSError(domain: "PandaTransport", code: -1, userInfo: [NSLocalizedDescriptionKey: "Non connecté au Panda"])
         }
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -262,7 +229,52 @@ final class PandaTransport {
         }
     }
     
-    /// Sends a vendor control transfer write request to the Panda via UDP port 1338 (Wi-Fi).
+    // MARK: - OPTIMISATION UDP : Attente de l'état .ready
+    
+    /// Fournit une connexion UDP garantie d'être à l'état `.ready`
+    private func getReadyUDPConnection() async throws -> NWConnection {
+        if let existing = self.udpConnection, existing.state == .ready {
+            return existing
+        }
+        
+        let targetHost = discoverPandaIP()
+        let endpoint = NWEndpoint.Host(targetHost)
+        let nwPort = NWEndpoint.Port(rawValue: 1338)!
+        let udpParameters = NWParameters(dtls: nil, udp: NWProtocolUDP.Options())
+        udpParameters.prohibitExpensivePaths = false
+        udpParameters.prohibitConstrainedPaths = false
+        
+        let newConnection = NWConnection(host: endpoint, port: nwPort, using: udpParameters)
+        self.udpConnection = newConnection
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            var hasResumed = false
+            
+            newConnection.stateUpdateHandler = { [weak self] udpState in
+                Task { @MainActor [weak self] in
+                    guard self != nil else { return }
+                    switch udpState {
+                    case .ready:
+                        if !hasResumed {
+                            hasResumed = true
+                            continuation.resume(returning: newConnection)
+                        }
+                    case .failed(let error):
+                        if !hasResumed {
+                            hasResumed = true
+                            continuation.resume(throwing: error)
+                        }
+                        self?.udpConnection?.cancel()
+                        self?.udpConnection = nil
+                    default:
+                        break
+                    }
+                }
+            }
+            newConnection.start(queue: self.queue)
+        }
+    }
+    
     func sendControlWrite(requestType: UInt16, request: UInt16, value: UInt16, index: UInt16, data: Data = Data()) async throws {
         var packet = Data()
         packet.append(contentsOf: withUnsafeBytes(of: requestType.littleEndian) { Array($0) })
@@ -271,40 +283,8 @@ final class PandaTransport {
         packet.append(contentsOf: withUnsafeBytes(of: index.littleEndian) { Array($0) })
         packet.append(data)
         
-        let activeUdpConnection: NWConnection
-        if let existing = self.udpConnection {
-            activeUdpConnection = existing
-        } else {
-            let targetHost = discoverPandaIP()
-            let endpoint = NWEndpoint.Host(targetHost)
-            let nwPort = NWEndpoint.Port(rawValue: 1338)!
-            let udpOptions = NWProtocolUDP.Options()
-            let udpParameters = NWParameters(dtls: nil, udp: udpOptions)
-            udpParameters.prohibitExpensivePaths = false
-            udpParameters.prohibitConstrainedPaths = false
-            #if !targetEnvironment(simulator)
-            udpParameters.requiredInterfaceType = .wifi
-            #endif
-            
-            let connection = NWConnection(host: endpoint, port: nwPort, using: udpParameters)
-            self.udpConnection = connection
-            
-            connection.stateUpdateHandler = { [weak self] udpState in
-                Task { @MainActor [weak self] in
-                    guard let self else { return }
-                    switch udpState {
-                    case .failed(let error):
-                        NSLog("[PandaTransport] UDP Control Connection failed: \(error.localizedDescription)")
-                        self.udpConnection?.cancel()
-                        self.udpConnection = nil
-                    default:
-                        break
-                    }
-                }
-            }
-            connection.start(queue: self.queue)
-            activeUdpConnection = connection
-        }
+        // On attend que la route UDP soit formellement établie avant d'émettre
+        let activeUdpConnection = try await getReadyUDPConnection()
         
         return try await withCheckedThrowingContinuation { continuation in
             activeUdpConnection.send(content: packet, completion: .contentProcessed { error in
@@ -317,16 +297,46 @@ final class PandaTransport {
         }
     }
     
-    /// Sets the baud rate of the specified UART/LIN device (request 0xe1 / 225)
     func setUARTBaudRate(uart: UInt16, baud: UInt32) async throws {
-        // requestType: 0x40 (Vendor request out), request: 225, value: lower 16-bits of baudrate, index: uart_device
         try await sendControlWrite(requestType: 0x40, request: 225, value: UInt16(baud & 0xFFFF), index: uart)
     }
     
-    /// Sets the parity of the specified UART/LIN device (request 0xe2 / 226)
     func setUARTParity(uart: UInt16, parity: UInt16) async throws {
-        // parity: 0 = none, 1 = even, 2 = odd
         try await sendControlWrite(requestType: 0x40, request: 226, value: parity, index: uart)
     }
+    
+    // MARK: - Utilitaires Réseau (Maintenus en C-API pour compatibilité immédiate)
+    
+    private func discoverPandaIP() -> String {
+        guard let localIP = getWiFiAddress() else { return "192.168.0.10" }
+        let components = localIP.components(separatedBy: ".")
+        guard components.count == 4 else { return "192.168.0.10" }
+        let baseIP = "\(components[0]).\(components[1]).\(components[2])"
+        return baseIP == "192.168.43" ? "\(baseIP).1" : "\(baseIP).10"
+    }
+    
+    private func getWiFiAddress() -> String? {
+        var address: String?
+        var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil
+        
+        if getifaddrs(&ifaddr) == 0 {
+            var ptr = ifaddr
+            while ptr != nil {
+                defer { ptr = ptr?.pointee.ifa_next }
+                let interface = ptr?.pointee
+                let addrFamily = interface?.ifa_addr.pointee.sa_family
+                if addrFamily == UInt8(AF_INET) {
+                    if let name = String(cString: (interface?.ifa_name)!, encoding: .utf8), name == "en0" {
+                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                        getnameinfo(interface?.ifa_addr, socklen_t((interface?.ifa_addr.pointee.sa_len)!),
+                                    &hostname, socklen_t(hostname.count),
+                                    nil, socklen_t(0), NI_NUMERICHOST)
+                        address = String(cString: hostname)
+                    }
+                }
+            }
+            freeifaddrs(ifaddr)
+        }
+        return address
+    }
 }
-
