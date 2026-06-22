@@ -400,7 +400,7 @@ final class ConfigurationManager {
         
         // Extraire le seed
         let seedHex = String(cleanSeed.dropFirst(4))
-        if seedHex.replacingOccurrences(of: "0", with: "").isEmpty {
+        if seedHex.replacing("0", with: "").isEmpty {
             // Un seed contenant uniquement des zéros signifie que le calculateur est déjà déverrouillé
             NSLog("[ConfigurationManager] Le calculateur est déjà déverrouillé (Seed à 0).")
             return

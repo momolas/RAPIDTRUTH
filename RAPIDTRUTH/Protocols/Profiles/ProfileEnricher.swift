@@ -8,11 +8,9 @@ struct ProfileEnricher {
     static func estimateResponseHeader(requestHeader: String) -> String {
         let clean = requestHeader.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         guard let val = Int(clean, radix: 16) else { return requestHeader }
-        if val >= 0x7E0 && val <= 0x7E7 {
-            return String(format: "%03X", val + 8)
-        } else {
-            return String(format: "%03X", val + 0x20)
-        }
+        let nextVal = (val >= 0x7E0 && val <= 0x7E7) ? (val + 8) : (val + 0x20)
+        let hex = String(nextVal, radix: 16, uppercase: true)
+        return String(repeating: "0", count: max(0, 3 - hex.count)) + hex
     }
     
     /// Recherche ou génère un nom de clé d'ECU standard pour une adresse de requête donnée.
@@ -104,7 +102,7 @@ struct ProfileEnricher {
         let currentVersion = profile.profileVersion
         var newVersion = currentVersion
         if let doubleVer = Double(currentVersion) {
-            newVersion = String(format: "%.2f", doubleVer + 0.01)
+            newVersion = (doubleVer + 0.01).formatted(.number.precision(.fractionLength(2)))
         } else {
             newVersion = currentVersion + "+fuzzed"
         }

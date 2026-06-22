@@ -552,28 +552,28 @@ final class OBD2Analyzer: Sendable {
 
         // Parse simpliste de formules standardisées
         if formula == "A-40" {
-            return String(format: "%.0f", a - 40.0)
+            return (a - 40.0).formatted(.number.precision(.fractionLength(0)))
         } else if formula == "(A*256+B)/4" || formula == "(A*256+B)*100/255" || formula == "(A*256+B)/100" || formula == "(A*256+B)/10-40" {
             // Formules doubles
             let comb = a * 256.0 + b
             if formula == "(A*256+B)/4" {
-                return String(format: "%.0f", comb / 4.0)
+                return (comb / 4.0).formatted(.number.precision(.fractionLength(0)))
             } else if formula == "(A*256+B)*100/255" {
-                return String(format: "%.1f", comb * 100.0 / 255.0)
+                return (comb * 100.0 / 255.0).formatted(.number.precision(.fractionLength(1)))
             } else if formula == "(A*256+B)/100" {
-                return String(format: "%.2f", comb / 100.0)
+                return (comb / 100.0).formatted(.number.precision(.fractionLength(2)))
             } else if formula == "(A*256+B)/10-40" {
-                return String(format: "%.1f", comb / 10.0 - 40.0)
+                return (comb / 10.0 - 40.0).formatted(.number.precision(.fractionLength(1)))
             }
         } else if formula == "A*100/255" {
-            return String(format: "%.1f", a * 100.0 / 255.0)
+            return (a * 100.0 / 255.0).formatted(.number.precision(.fractionLength(1)))
         } else if formula == "A" {
-            return String(format: "%.0f", a)
+            return a.formatted(.number.precision(.fractionLength(0)))
         } else if formula == "A*256+B" {
-            return String(format: "%.0f", a * 256.0 + b)
+            return (a * 256.0 + b).formatted(.number.precision(.fractionLength(0)))
         } else if formula == "(A*16777216+B*65536+C*256+D)/10" {
             let odometer = (a * 16777216.0 + b * 65536.0 + c * 256.0 + d) / 10.0
-            return String(format: "%.1f", odometer)
+            return odometer.formatted(.number.precision(.fractionLength(1)))
         }
 
         return nil
@@ -594,7 +594,7 @@ final class OBD2Analyzer: Sendable {
         let digit3 = (lowByte >> 4) & 0x0F
         let digit4 = lowByte & 0x0F
         
-        return String(format: "%@%d%X%X%X", type, digit1, digit2, digit3, digit4)
+        return "\(type)\(digit1)\(String(digit2, radix: 16, uppercase: true))\(String(digit3, radix: 16, uppercase: true))\(String(digit4, radix: 16, uppercase: true))"
     }
 
     private static func decodeKwpDtcStatus(_ status: UInt8) -> String {

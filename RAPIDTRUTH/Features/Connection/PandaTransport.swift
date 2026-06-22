@@ -211,25 +211,29 @@ final class PandaTransport: PandaTransporting {
         }
     }
     
-    // MARK: - Envoi de données
-    
     func send(_ data: Data) async throws {
         guard let connection = connection, state == .connected else {
             throw NSError(domain: "PandaTransport", code: -1, userInfo: [NSLocalizedDescriptionKey: "Non connecté au Panda"])
         }
         
-        return try await withCheckedThrowingContinuation { continuation in
-            connection.send(content: data, completion: .contentProcessed { error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else {
-                    continuation.resume()
-                }
-            })
+        try Task.checkCancellation()
+        
+        try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                connection.send(content: data, completion: .contentProcessed { error in
+                    if let error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        continuation.resume()
+                    }
+                })
+            }
+        } onCancel: {
+            connection.cancel()
         }
     }
     
-    // MARK: - OPTIMISATION UDP : Attente de l'état .ready
+    // MARK: - Optimisation UDP : Attente de l'état .ready
     
     /// Fournit une connexion UDP garantie d'être à l'état `.ready`
     private func getReadyUDPConnection() async throws -> NWConnection {

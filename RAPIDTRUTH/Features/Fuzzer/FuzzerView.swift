@@ -399,22 +399,22 @@ struct FuzzerView: View {
                                                 
                                                 ForEach(linFuzzer.sniffedPacketList) { packet in
                                                     HStack(spacing: 12) {
-                                                        Text(String(format: "0x%02X", packet.rawID))
+                                                        Text("0x" + (packet.rawID < 16 ? "0" : "") + String(packet.rawID, radix: 16, uppercase: true))
                                                             .font(.monoSmall)
                                                             .frame(width: 40, alignment: .leading)
                                                             .foregroundStyle(Color.appAccent)
                                                         
-                                                        Text(String(format: "0x%02X", packet.pid))
+                                                        Text("0x" + (packet.pid < 16 ? "0" : "") + String(packet.pid, radix: 16, uppercase: true))
                                                             .font(.monoSmall)
                                                             .frame(width: 40, alignment: .leading)
                                                             .foregroundStyle(.secondary)
                                                         
-                                                        Text(packet.lastData.map { String(format: "%02X", $0) }.joined(separator: " "))
+                                                        Text(packet.lastData.map { ($0 < 16 ? "0" : "") + String($0, radix: 16, uppercase: true) }.joined(separator: " "))
                                                             .font(.monoSmall)
                                                             .frame(width: 140, alignment: .leading)
                                                             .lineLimit(1)
                                                         
-                                                        Text(packet.periodMs > 0 ? String(format: "%.1f ms", packet.periodMs) : "—")
+                                                        Text(packet.periodMs > 0 ? "\(packet.periodMs.formatted(.number.precision(.fractionLength(1)))) ms" : "—")
                                                             .font(.monoSmall)
                                                             .frame(width: 60, alignment: .trailing)
                                                             .foregroundStyle(.secondary)
@@ -485,7 +485,7 @@ struct FuzzerView: View {
                                         
                                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))], spacing: 8) {
                                             ForEach(linFuzzer.discoveredPIDs, id: \.self) { rawID in
-                                                Text(String(format: "0x%02X", rawID))
+                                                Text("0x" + (rawID < 16 ? "0" : "") + String(rawID, radix: 16, uppercase: true))
                                                     .font(.monoSmall)
                                                     .padding(.vertical, 6)
                                                     .padding(.horizontal, 10)
@@ -619,8 +619,8 @@ struct FuzzerView: View {
             linFuzzer.stop()
             if let panda = interface as? PandaDriver {
                 Task {
-                    try? await panda.setSafetyModel(.allOutput)
-                    NSLog("[FuzzerView] Kept Panda safety model as ALLOUTPUT")
+                    try? await panda.setSafetyModel(.silent)
+                    NSLog("[FuzzerView] Switched Panda safety model back to SILENT")
                 }
             }
         }

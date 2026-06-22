@@ -70,7 +70,7 @@ public final class SecurityAccessManager: Sendable {
     
     private static func dataFromHexString(_ hex: String) -> Data {
         var data = Data()
-        let cleanHex = hex.replacingOccurrences(of: " ", with: "")
+        let cleanHex = hex.replacing(" ", with: "")
         var hexStr = cleanHex
         if hexStr.count % 2 != 0 { hexStr = "0" + hexStr }
         var i = hexStr.startIndex
