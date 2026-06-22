@@ -185,6 +185,7 @@ final class ConfigurationManager {
             // 1. Écriture UCH (txID 745)
             try await interface.setTarget(txID: "745", rxID: nil)
             await ensureExtendedSession(interface: interface)
+            try? await unlockSecurityAccess(interface: interface, level: 0x01, algorithm: .comfortModule, mask: "55AA")
             try Task.checkCancellation()
             
             let uchPayload1 = autoLockDoors ? "01" : "00"
@@ -204,6 +205,7 @@ final class ConfigurationManager {
             // 2. Écriture TdB (txID 743)
             try await interface.setTarget(txID: "743", rxID: nil)
             await ensureExtendedSession(interface: interface)
+            try? await unlockSecurityAccess(interface: interface, level: 0x01, algorithm: .renaultStandard, mask: "ABCD")
             try Task.checkCancellation()
             
             let langPayload = dashboardLanguage == "EN" ? "EN" : "FR"
@@ -223,6 +225,7 @@ final class ConfigurationManager {
             // 3. Écriture RadNav (txID 756)
             try await interface.setTarget(txID: "756", rxID: nil)
             await ensureExtendedSession(interface: interface)
+            try? await unlockSecurityAccess(interface: interface, level: 0x01, algorithm: .renaultStandard, mask: "8888")
             try Task.checkCancellation()
             
             let aaPayload = androidAuto ? "AA" : "NOAA"
@@ -234,6 +237,7 @@ final class ConfigurationManager {
             // 4. Écriture UPC (txID 7A2)
             try await interface.setTarget(txID: "7A2", rxID: nil)
             await ensureExtendedSession(interface: interface)
+            try? await unlockSecurityAccess(interface: interface, level: 0x01, algorithm: .renaultStandard, mask: "1234")
             try Task.checkCancellation()
             
             let xenonPayload = xenonHeadlights ? "XENON" : "HALO"
@@ -258,6 +262,7 @@ final class ConfigurationManager {
             // 7. Écriture FPA (txID 7A0)
             try await interface.setTarget(txID: "7A0", rxID: nil)
             await ensureExtendedSession(interface: interface)
+            try? await unlockSecurityAccess(interface: interface, level: 0x01, algorithm: .xorStatique, mask: "FF")
             try Task.checkCancellation()
             
             let fpaPayload = coldClimateMode ? "COLD" : "STD"
@@ -268,6 +273,7 @@ final class ConfigurationManager {
             // 8. Écriture AAS (txID 7A4)
             try await interface.setTarget(txID: "7A4", rxID: nil)
             await ensureExtendedSession(interface: interface)
+            try? await unlockSecurityAccess(interface: interface, level: 0x01, algorithm: .xorStatique, mask: "00")
             try Task.checkCancellation()
             
             // Volume (3BB1xx - Service 3B)
@@ -360,6 +366,61 @@ final class ConfigurationManager {
             // Tolérer l'échec de la requête 010D car l'OBD-II générique n'est pas toujours actif sur tous les calculateurs,
             // mais journaliser pour le diagnostic.
             NSLog("[ConfigurationManager] Impossible de valider l'immobilisation via 010D : \(error.localizedDescription)")
+        }
+    }
+
+    /// Déverrouille l'accès de sécurité d'un calculateur (Service 27) si requis.
+    private func unlockSecurityAccess(interface: VehicleInterface, level: UInt8, algorithm: SecurityAccessManager.Algorithm, mask: String) async throws {
+        let requestSeedCmd = String(format: "27%02X", level)
+        let seedResponse = try await interface.sendDiagnosticRequest(requestSeedCmd, timeout: 2.0)
+        let cleanSeed = seedResponse.replacing(" ", with: "").uppercased()
+        
+        // Si le calculateur répond avec un NRC (ex: Service non supporté ou déjà déverrouillé)
+        if cleanSeed.hasPrefix("7F27") {
+            let nrcByte = UInt8(cleanSeed.dropFirst(4).prefix(2), radix: 16) ?? 0
+            if nrcByte == 0x37 {
+                // Délai requis non expiré, on attend 2 secondes et on retente une fois
+                try await Task.sleep(for: .seconds(2))
+                return try await unlockSecurityAccess(interface: interface, level: level, algorithm: algorithm, mask: mask)
+            }
+            // Si le service n'est pas supporté (0x11 ou 0x12) ou déjà déverrouillé, on ignore l'erreur
+            if nrcByte == 0x11 || nrcByte == 0x12 || nrcByte == 0x7E || nrcByte == 0x24 {
+                NSLog("[ConfigurationManager] SecurityAccess non supporté ou non requis par cet ECU (NRC: 0x%02X). Continuation.", nrcByte)
+                return
+            }
+            throw NSError(
+                domain: "ConfigurationManager",
+                code: -3,
+                userInfo: [NSLocalizedDescriptionKey: "Erreur SecurityAccess (Requête Seed): \(NRC.description(for: nrcByte))"]
+            )
+        }
+        
+        let expectedPrefix = String(format: "67%02X", level)
+        guard cleanSeed.hasPrefix(expectedPrefix) else { return }
+        
+        // Extraire le seed
+        let seedHex = String(cleanSeed.dropFirst(4))
+        if seedHex.replacingOccurrences(of: "0", with: "").isEmpty {
+            // Un seed contenant uniquement des zéros signifie que le calculateur est déjà déverrouillé
+            NSLog("[ConfigurationManager] Le calculateur est déjà déverrouillé (Seed à 0).")
+            return
+        }
+        
+        // Calculer la clé
+        let keyHex = SecurityAccessManager.calculateKey(seedHex: seedHex, algorithm: algorithm, maskHex: mask)
+        
+        // Envoyer la clé
+        let sendKeyCmd = String(format: "27%02X", level + 1) + keyHex
+        let keyResponse = try await interface.sendDiagnosticRequest(sendKeyCmd, timeout: 2.0)
+        let cleanKey = keyResponse.replacing(" ", with: "").uppercased()
+        
+        if cleanKey.hasPrefix("7F27") {
+            let nrcByte = UInt8(cleanKey.dropFirst(4).prefix(2), radix: 16) ?? 0
+            throw NSError(
+                domain: "ConfigurationManager",
+                code: -4,
+                userInfo: [NSLocalizedDescriptionKey: "Clé de sécurité invalide ou refusée par le calculateur : \(NRC.description(for: nrcByte))"]
+            )
         }
     }
 }

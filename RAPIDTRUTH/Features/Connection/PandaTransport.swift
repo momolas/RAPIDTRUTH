@@ -60,13 +60,16 @@ final class PandaTransport {
 
     func connect(host: String? = nil, port: UInt16 = 1337) {
         disconnect()
-        
         state = .connecting
+        
         let targetHost = host ?? discoverPandaIP()
+        connectToHost(targetHost, port: port, allowFallback: host == nil)
+    }
+    
+    private func connectToHost(_ targetHost: String, port: UInt16, allowFallback: Bool) {
         let endpoint = NWEndpoint.Host(targetHost)
         let nwPort = NWEndpoint.Port(rawValue: port)!
         
-        // Disable Nagle's algorithm for low-latency TCP packet transmission
         let tcpOptions = NWProtocolTCP.Options()
         tcpOptions.noDelay = true
         
@@ -75,14 +78,12 @@ final class PandaTransport {
         parameters.prohibitConstrainedPaths = false
         
         #if !targetEnvironment(simulator)
-        // Force WiFi interface on iOS devices to prevent routing via cellular
         parameters.requiredInterfaceType = .wifi
         #endif
         
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         self.connection = connection
         
-        // Setup persistent UDP Connection on port 1338 for control messages
         let udpOptions = NWProtocolUDP.Options()
         let udpParameters = NWParameters(dtls: nil, udp: udpOptions)
         udpParameters.prohibitExpensivePaths = false
@@ -110,6 +111,8 @@ final class PandaTransport {
         }
         udpConnection.start(queue: queue)
         
+        var fallbackTriggered = false
+        
         connection.stateUpdateHandler = { [weak self] nwState in
             Task { @MainActor [weak self] in
                 guard let self else { return }
@@ -118,13 +121,25 @@ final class PandaTransport {
                     self.state = .connected
                     self.startReceiveLoop()
                 case .failed(let error):
-                    self.state = .error(error.localizedDescription)
-                    self.disconnect()
+                    if allowFallback && !fallbackTriggered {
+                        fallbackTriggered = true
+                        self.triggerFallback(failedHost: targetHost, port: port)
+                    } else {
+                        self.state = .error(error.localizedDescription)
+                        self.disconnect()
+                    }
                 case .waiting(let error):
-                    // Log transient waiting, but do not set .error state since this is temporary
-                    NSLog("[PandaTransport] Connection is waiting for path: \(error.localizedDescription)")
+                    NSLog("[PandaTransport] Connection waiting on \(targetHost): \(error.localizedDescription)")
+                    // Triger fallback if connection is stuck waiting for 1.5 seconds (typically no route to host .10)
+                    Task {
+                        try? await Task.sleep(for: .milliseconds(1500))
+                        if self.state == .connecting && !fallbackTriggered && self.connection === connection {
+                            fallbackTriggered = true
+                            self.triggerFallback(failedHost: targetHost, port: port)
+                        }
+                    }
                 case .cancelled:
-                    if self.state != .idle { self.state = .idle }
+                    if self.state != .idle && !fallbackTriggered { self.state = .idle }
                 default:
                     break
                 }
@@ -132,6 +147,24 @@ final class PandaTransport {
         }
         
         connection.start(queue: queue)
+    }
+    
+    private func triggerFallback(failedHost: String, port: UInt16) {
+        let components = failedHost.components(separatedBy: ".")
+        guard components.count == 4 else { return }
+        let base = "\(components[0]).\(components[1]).\(components[2])"
+        let lastDigit = components[3]
+        
+        let alternativeHost = (lastDigit == "10") ? "\(base).1" : "\(base).10"
+        NSLog("[PandaTransport] Connection to \(failedHost) timed out or failed. Trying alternative IP: \(alternativeHost)")
+        
+        self.connection?.cancel()
+        self.connection = nil
+        self.udpConnection?.cancel()
+        self.udpConnection = nil
+        
+        // Attempt connection to the fallback IP without allowing further nested fallbacks
+        connectToHost(alternativeHost, port: port, allowFallback: false)
     }
     
     private func discoverPandaIP() -> String {
