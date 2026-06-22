@@ -77,10 +77,6 @@ final class PandaTransport {
         parameters.prohibitExpensivePaths = false
         parameters.prohibitConstrainedPaths = false
         
-        #if !targetEnvironment(simulator)
-        parameters.requiredInterfaceType = .wifi
-        #endif
-        
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         self.connection = connection
         
@@ -88,10 +84,6 @@ final class PandaTransport {
         let udpParameters = NWParameters(dtls: nil, udp: udpOptions)
         udpParameters.prohibitExpensivePaths = false
         udpParameters.prohibitConstrainedPaths = false
-        
-        #if !targetEnvironment(simulator)
-        udpParameters.requiredInterfaceType = .wifi
-        #endif
         
         let udpConnection = NWConnection(host: endpoint, port: NWEndpoint.Port(rawValue: 1338)!, using: udpParameters)
         self.udpConnection = udpConnection
@@ -130,9 +122,9 @@ final class PandaTransport {
                     }
                 case .waiting(let error):
                     NSLog("[PandaTransport] Connection waiting on \(targetHost): \(error.localizedDescription)")
-                    // Triger fallback if connection is stuck waiting for 1.5 seconds (typically no route to host .10)
+                    // Trigger fallback if connection is stuck waiting for 4.5 seconds (allowing ARP/local network authorization)
                     Task {
-                        try? await Task.sleep(for: .milliseconds(1500))
+                        try? await Task.sleep(for: .milliseconds(4500))
                         if self.state == .connecting && !fallbackTriggered && self.connection === connection {
                             fallbackTriggered = true
                             self.triggerFallback(failedHost: targetHost, port: port)
