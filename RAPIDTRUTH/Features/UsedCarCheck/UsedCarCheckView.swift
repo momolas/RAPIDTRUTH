@@ -1,9 +1,14 @@
 import SwiftUI
+import SwiftData
 
 struct UsedCarCheckView: View {
     let interface: VehicleInterface
     @State private var manager = UsedCarCheckManager()
     @Environment(PandaTransport.self) private var pandaTransport
+    @Environment(VehicleStore.self) private var vehicleStore
+    @Environment(SettingsStore.self) private var settings
+    
+    @State private var auditHistory: [AuditRecord] = []
     
     init(interface: VehicleInterface) {
         self.interface = interface
@@ -12,6 +17,14 @@ struct UsedCarCheckView: View {
     private var isConnected: Bool {
         if case .connected = pandaTransport.state { return true }
         return false
+    }
+    
+    private var activeVehicleSlug: String {
+        settings.activeVehicleSlug ?? "unknown"
+    }
+    
+    private func reloadHistory() {
+        auditHistory = vehicleStore.fetchAuditRecords(for: activeVehicleSlug)
     }
     
     var body: some View {
@@ -39,6 +52,22 @@ struct UsedCarCheckView: View {
                                 try? await panda.setSafetyModel(.allOutput)
                             }
                             await manager.runAntiFraudAudit(interface: interface)
+                            
+                            if let report = manager.report {
+                                let record = AuditRecord(
+                                    vehicleSlug: activeVehicleSlug,
+                                    vinMoteur: report.vinMoteur,
+                                    vinTDB: report.vinTDB,
+                                    vinUCH: report.vinUCH,
+                                    kmTDB: report.kmTDB,
+                                    maxKmHistoriquePanne: report.maxKmHistoriquePanne,
+                                    riskLevel: report.riskLevel.rawValue,
+                                    isVinConsistent: report.isVinConsistent,
+                                    isKmTampered: report.isKmTampered
+                                )
+                                try? vehicleStore.saveAuditRecord(record)
+                                reloadHistory()
+                            }
                         }
                     }) {
                         Label("Lancer l'Audit Anti-Fraude", systemImage: "shield.checkerboard")
@@ -210,11 +239,60 @@ struct UsedCarCheckView: View {
                         .foregroundStyle(.red)
                         .appCard()
                 }
+                
+                // Audit History Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Historique des Audits")
+                        .font(.cardTitle)
+                        .foregroundStyle(.secondary)
+                    
+                    if auditHistory.isEmpty {
+                        Text("Aucun audit enregistré pour ce véhicule.")
+                            .font(.captionText)
+                            .foregroundStyle(.gray)
+                            .padding(.vertical, 8)
+                    } else {
+                        VStack(spacing: 8) {
+                            ForEach(auditHistory) { record in
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(record.timestamp.formatted(date: .abbreviated, time: .shortened))
+                                            .font(.captionText).bold()
+                                            .foregroundStyle(.white)
+                                        
+                                        HStack(spacing: 8) {
+                                            Text("\(record.kmTDB.formatted()) km")
+                                                .font(.captionTiny)
+                                                .bold()
+                                                .foregroundStyle(.white)
+                                            
+                                            Text(record.riskLevel)
+                                                .font(.captionTiny)
+                                                .foregroundStyle(record.isKmTampered ? .red : (record.isVinConsistent ? .green : .orange))
+                                        }
+                                        
+                                        Text("VIN Moteur: \(record.vinMoteur) · TdB: \(record.vinTDB)")
+                                            .font(.monoTiny)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    Spacer()
+                                }
+                                .padding(10)
+                                .background(Color.white.opacity(0.03))
+                                .clipShape(.rect(cornerRadius: 6))
+                            }
+                        }
+                    }
+                }
+                .appCard()
             }
             .padding(16)
         }
         .background(Color.appBackground.ignoresSafeArea())
         .navigationTitle("Contrôle Anti-Fraude")
         .navigationBarTitleDisplayMode(.inline)
+        .task {
+            reloadHistory()
+        }
     }
 }

@@ -1,10 +1,15 @@
 import SwiftUI
+import SwiftData
 
 struct DiagnosticsView: View {
     let interface: VehicleInterface
     let profile: Profile
     @State private var dtcLoader = DTCLoader()
     @Environment(PandaTransport.self) private var pandaTransport
+    @Environment(VehicleStore.self) private var vehicleStore
+    @Environment(SettingsStore.self) private var settings
+    
+    @State private var scanHistory: [DTCScanRecord] = []
     
     init(interface: VehicleInterface, profile: Profile) {
         self.interface = interface
@@ -14,6 +19,14 @@ struct DiagnosticsView: View {
     private var isConnected: Bool {
         if case .connected = pandaTransport.state { return true }
         return false
+    }
+    
+    private var activeVehicleSlug: String {
+        settings.activeVehicleSlug ?? "unknown"
+    }
+    
+    private func reloadHistory() {
+        scanHistory = vehicleStore.fetchDTCScans(for: activeVehicleSlug)
     }
 
     var body: some View {
@@ -116,12 +129,58 @@ struct DiagnosticsView: View {
                     }
                 }
                 .appCard()
+                
+                // Scan History Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Historique des Scans")
+                        .font(.cardTitle)
+                        .foregroundStyle(.secondary)
+                    
+                    if scanHistory.isEmpty {
+                        Text("Aucun scan enregistré pour ce véhicule.")
+                            .font(.captionText)
+                            .foregroundStyle(.gray)
+                            .padding(.vertical, 8)
+                    } else {
+                        VStack(spacing: 8) {
+                            ForEach(scanHistory) { record in
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(record.timestamp.formatted(date: .abbreviated, time: .shortened))
+                                            .font(.captionText).bold()
+                                            .foregroundStyle(.white)
+                                        
+                                        let count = record.codes.count
+                                        Text(count == 0 ? "Aucun défaut" : "\(count) défaut\(count > 1 ? "s" : "") détecté\(count > 1 ? "s" : "")")
+                                            .font(.captionTiny)
+                                            .foregroundStyle(count == 0 ? .green : .red)
+                                        
+                                        if !record.codes.isEmpty {
+                                            Text(record.codes.joined(separator: ", "))
+                                                .font(.monoTiny)
+                                                .foregroundStyle(.secondary)
+                                                .lineLimit(1)
+                                        }
+                                    }
+                                    Spacer()
+                                }
+                                .padding(10)
+                                .background(Color.white.opacity(0.03))
+                                .clipShape(.rect(cornerRadius: 6))
+                            }
+                        }
+                    }
+                }
+                .appCard()
             }
             .padding(16)
         }
         .background(Color.appBackground.ignoresSafeArea())
         .navigationTitle("Diagnostic Réseau (DTC)")
         .navigationBarTitleDisplayMode(.inline)
+        .task {
+            reloadHistory()
+        }
     }
     
     private func scanFaults() {
@@ -130,6 +189,11 @@ struct DiagnosticsView: View {
                 try? await panda.setSafetyModel(.allOutput)
             }
             await dtcLoader.scan(interface: interface, profile: profile)
+            
+            let codes = dtcLoader.dtcs.map { $0.code }
+            let ecus = Array(Set(dtcLoader.dtcs.map { $0.ecu }))
+            try? vehicleStore.saveDTCScan(vehicleSlug: activeVehicleSlug, codes: codes, ecus: ecus)
+            reloadHistory()
         }
     }
     
@@ -139,6 +203,9 @@ struct DiagnosticsView: View {
                 try? await panda.setSafetyModel(.allOutput)
             }
             await dtcLoader.clear(interface: interface, profile: profile)
+            
+            try? vehicleStore.saveDTCScan(vehicleSlug: activeVehicleSlug, codes: [], ecus: [])
+            reloadHistory()
         }
     }
 }

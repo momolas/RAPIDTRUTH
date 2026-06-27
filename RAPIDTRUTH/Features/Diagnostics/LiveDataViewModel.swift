@@ -8,6 +8,7 @@ final class LiveDataViewModel {
     private(set) var liveValues: [String: Sampler.LiveValue] = [:]
     private(set) var disabledPIDs: Set<String> = []
     private(set) var tickCount = 0
+    private(set) var chartHistory: [String: [ChartDataPoint]] = [:]
     
     private var sampler: Sampler?
     private var sessionStartMs: Int = 0
@@ -25,6 +26,7 @@ final class LiveDataViewModel {
         isSampling = true
         liveValues.removeAll()
         disabledPIDs.removeAll()
+        chartHistory.removeAll()
         tickCount = 0
         sessionStartMs = Int(Date.now.timeIntervalSince1970 * 1000)
         
@@ -41,6 +43,15 @@ final class LiveDataViewModel {
             Task { @MainActor in
                 for val in values {
                     self.liveValues[val.pidID] = val
+                    if let doubleVal = val.value {
+                        let point = ChartDataPoint(timestamp: Date(), value: doubleVal)
+                        var points = self.chartHistory[val.pidID] ?? []
+                        points.append(point)
+                        if points.count > 30 {
+                            points.removeFirst()
+                        }
+                        self.chartHistory[val.pidID] = points
+                    }
                 }
             }
         }

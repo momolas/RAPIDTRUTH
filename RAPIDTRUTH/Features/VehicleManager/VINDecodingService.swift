@@ -13,6 +13,8 @@ protocol VINDecodingService: Sendable {
     func decode(vin: String) async throws -> VINDecoderResult
 }
 
+
+
 struct FallbackVINDecoder: VINDecodingService {
     enum DecodeError: LocalizedError {
         case notConfigured
@@ -27,8 +29,25 @@ struct FallbackVINDecoder: VINDecodingService {
     }
 }
 
+struct SimulatedVINDecoder: VINDecodingService {
+    func decode(vin: String) async throws -> VINDecoderResult {
+        return VINDecoderResult(
+            year: 2005,
+            make: "Renault",
+            model: "Scenic",
+            trim: "1.9 dCi",
+            fuelTypePrimary: "Diesel",
+            fuelTypeSecondary: nil
+        )
+    }
+}
+
 @MainActor
 func getActiveDecoderService(settings: SettingsStore) -> VINDecodingService {
+    if PandaTransport.shared.isSimulationMode {
+        return SimulatedVINDecoder()
+    }
+    
     let api = settings.vinDecoderAPI.lowercased()
     if api == "apiplaque" {
         return ApiPlaqueClient(token: settings.apiPlaqueToken)

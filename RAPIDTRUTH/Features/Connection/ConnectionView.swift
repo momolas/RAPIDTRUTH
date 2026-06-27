@@ -36,6 +36,16 @@ struct ConnectionView: View {
                 )
             }
             
+            if isIdleOrError {
+                Divider().background(Color.white.opacity(0.05))
+                Toggle(isOn: Bindable(pandaTransport).isSimulationMode) {
+                    Label("Mode Simulateur OBD/CAN/LIN", systemImage: "cpu")
+                        .font(.captionText)
+                        .foregroundStyle(.secondary)
+                }
+                .disabled(isConnecting)
+            }
+            
             if isConnected {
                 Divider().background(Color.white.opacity(0.05))
                 

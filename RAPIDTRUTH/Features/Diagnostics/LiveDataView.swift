@@ -1,4 +1,5 @@
 import SwiftUI
+import Charts
 
 struct LiveDataView: View {
     let interface: VehicleInterface
@@ -39,11 +40,10 @@ struct LiveDataView: View {
             
             // 3. Search text
             if !searchText.isEmpty {
-                let term = searchText.lowercased()
-                let matchesName = pid.displayName.lowercased().contains(term)
-                let matchesId = pid.id.lowercased().contains(term)
-                let matchesPid = pid.pid.lowercased().contains(term)
-                let matchesEcu = pid.ecu.lowercased().contains(term)
+                let matchesName = pid.displayName.localizedStandardContains(searchText)
+                let matchesId = pid.id.localizedStandardContains(searchText)
+                let matchesPid = pid.pid.localizedStandardContains(searchText)
+                let matchesEcu = pid.ecu.localizedStandardContains(searchText)
                 return matchesName || matchesId || matchesPid || matchesEcu
             }
             
@@ -134,6 +134,10 @@ struct LiveDataView: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 6)
             .background(Color.white.opacity(0.02))
+            
+            if viewModel.isSampling {
+                LiveDataChartView(pids: profile.pids, history: viewModel.chartHistory)
+            }
             
             // Main list of PIDs
             List {
@@ -332,5 +336,89 @@ struct PidRowView: View {
             }
         }
         .padding(.vertical, 4)
+    }
+}
+
+struct LiveDataChartView: View {
+    let pids: [PidDef]
+    let history: [String: [ChartDataPoint]]
+    
+    var body: some View {
+        let activePidsWithHistory = pids.filter { pid in
+            guard let points = history[pid.id], !points.isEmpty else { return false }
+            return true
+        }
+        
+        if activePidsWithHistory.isEmpty {
+            EmptyView()
+        } else {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Graphiques Temps Réel")
+                    .font(.captionText).bold()
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 8)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(activePidsWithHistory) { pid in
+                            let points = history[pid.id] ?? []
+                            VStack(alignment: .leading, spacing: 6) {
+                                HStack {
+                                    Text(pid.displayName)
+                                        .font(.captionText)
+                                        .bold()
+                                        .foregroundStyle(.white)
+                                        .lineLimit(1)
+                                    Spacer()
+                                    if let lastPoint = points.last {
+                                        Text("\(lastPoint.value.formatted(.number.precision(.fractionLength(1)))) \(pid.unit)")
+                                            .font(.monoTiny)
+                                            .foregroundStyle(Color.appAccent)
+                                    }
+                                }
+                                
+                                Chart {
+                                    ForEach(points) { point in
+                                        LineMark(
+                                            x: .value("Temps", point.timestamp),
+                                            y: .value("Valeur", point.value)
+                                        )
+                                        .foregroundStyle(Color.appAccent)
+                                        .interpolationMethod(.monotone)
+                                        
+                                        AreaMark(
+                                            x: .value("Temps", point.timestamp),
+                                            y: .value("Valeur", point.value)
+                                        )
+                                        .foregroundStyle(Color.appAccent.opacity(0.1))
+                                        .interpolationMethod(.monotone)
+                                    }
+                                }
+                                .chartXAxis(.hidden)
+                                .chartYAxis {
+                                    AxisMarks(position: .leading) { value in
+                                        AxisValueLabel()
+                                            .foregroundStyle(.gray)
+                                            .font(.system(size: 8))
+                                    }
+                                }
+                                .frame(width: 140, height: 60)
+                            }
+                            .padding(10)
+                            .background(Color.appCardBackground)
+                            .clipShape(.rect(cornerRadius: 8))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.white.opacity(0.05), lineWidth: 1)
+                            )
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 8)
+                }
+            }
+            .background(Color.appBackground)
+        }
     }
 }

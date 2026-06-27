@@ -17,7 +17,11 @@ final class VehicleStore {
 
     private init() {
         do {
-            let schema = Schema([Vehicle.self])
+            let schema = Schema([
+                Vehicle.self,
+                DTCScanRecord.self,
+                AuditRecord.self
+            ])
             let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
             self.container = try ModelContainer(for: schema, configurations: config)
             self.context = ModelContext(container)
@@ -79,5 +83,32 @@ final class VehicleStore {
         // Also remove the filesystem directory where CSV files are saved
         try? AppStorage.shared.remove(AppPath.vehicleDir(owner, slug))
         reload(owner: owner)
+    }
+    
+    func saveDTCScan(vehicleSlug: String, codes: [String], ecus: [String]) throws {
+        let scan = DTCScanRecord(vehicleSlug: vehicleSlug, codes: codes, ecus: ecus)
+        context.insert(scan)
+        try context.save()
+    }
+    
+    func fetchDTCScans(for vehicleSlug: String) -> [DTCScanRecord] {
+        let descriptor = FetchDescriptor<DTCScanRecord>(
+            predicate: #Predicate<DTCScanRecord> { $0.vehicleSlug == vehicleSlug }
+        )
+        let loaded = (try? context.fetch(descriptor)) ?? []
+        return loaded.sorted(by: { $0.timestamp > $1.timestamp })
+    }
+    
+    func saveAuditRecord(_ record: AuditRecord) throws {
+        context.insert(record)
+        try context.save()
+    }
+    
+    func fetchAuditRecords(for vehicleSlug: String) -> [AuditRecord] {
+        let descriptor = FetchDescriptor<AuditRecord>(
+            predicate: #Predicate<AuditRecord> { $0.vehicleSlug == vehicleSlug }
+        )
+        let loaded = (try? context.fetch(descriptor)) ?? []
+        return loaded.sorted(by: { $0.timestamp > $1.timestamp })
     }
 }

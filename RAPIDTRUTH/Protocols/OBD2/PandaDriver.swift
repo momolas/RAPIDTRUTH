@@ -19,6 +19,7 @@ final class PandaDriver: VehicleInterface {
     var txID: UInt32 = 0x7E0
     var rxID: UInt32 = 0x7E8 // Usually txID + 8, but for Renault it can be different
     var bus: UInt8 = 0
+    private var simulatedLINTask: Task<Void, Never>?
 
     // We keep track of the in-flight continuation for the response
     private var inFlight: CheckedContinuation<String, Error>?
@@ -54,6 +55,8 @@ final class PandaDriver: VehicleInterface {
     }
 
     func detach() {
+        simulatedLINTask?.cancel()
+        simulatedLINTask = nil
         if let inFlight {
             inFlight.resume(throwing: NSError(domain: "PandaDriver", code: -1, userInfo: [NSLocalizedDescriptionKey: "Detached"]))
             self.inFlight = nil
@@ -99,6 +102,11 @@ final class PandaDriver: VehicleInterface {
     }
 
     func sendDiagnosticRequest(_ hexString: String, timeout: TimeInterval) async throws -> String {
+        if transport.isSimulationMode {
+            try? await Task.sleep(for: .milliseconds(30))
+            return try await SimulatorEngine.shared.handleRequest(txID: self.txID, rxID: self.rxID, request: hexString)
+        }
+        
         let previousTask = lastRequestTask
         let newTask = Task {
             if let previousTask {
@@ -360,6 +368,10 @@ final class PandaDriver: VehicleInterface {
     /// uartPort: 1 for LIN1 (USART3), 2 for LIN2 (UART5)
     /// baud: speed in bps (typically 10400 or 19200)
     func configureLIN(uartPort: UInt16, baudRate: UInt32) async throws {
+        if transport.isSimulationMode {
+            startSimulatedLINLoop(uartPort: uartPort)
+            return
+        }
         // 1. Disable heartbeat checks (request: 0xf8, value: 0, index: 0)
         try await transport.sendControlWrite(requestType: 0x40, request: 0xf8, value: 0, index: 0)
         
@@ -368,6 +380,24 @@ final class PandaDriver: VehicleInterface {
         
         // 3. Set UART baud rate on the specified port
         try await transport.setUARTBaudRate(uart: uartPort, baud: baudRate)
+    }
+    
+    private func startSimulatedLINLoop(uartPort: UInt16) {
+        simulatedLINTask?.cancel()
+        simulatedLINTask = Task { [weak self] in
+            let bus: UInt8 = uartPort == 1 ? 3 : 4
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .milliseconds(250))
+                guard let self else { break }
+                let rawID = UInt8.random(in: 10...30)
+                let pid = LINFuzzer.protectedID(from: rawID)
+                let dummyData = Data([UInt8.random(in: 0...255), UInt8.random(in: 0...255)])
+                let checksum = LINFuzzer.calculateChecksum(pid: pid, data: dummyData, enhanced: true)
+                let frameData = dummyData + Data([checksum])
+                let frame = LINFrame(bus: bus, address: UInt32(pid), data: frameData)
+                self.linFrameHandler?(frame)
+            }
+        }
     }
     
     /// Sends a LIN frame (encapsulated as a CAN frame on Bus 3 or 4)

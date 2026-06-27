@@ -33,6 +33,7 @@ enum PandaState: Equatable {
 final class PandaTransport: PandaTransporting {
     private(set) var state: PandaState = .idle
     private(set) var discoveredPandas: [String] = []
+    var isSimulationMode: Bool = false
     
     let inboundStream: AsyncStream<Data>
     private let inboundContinuation: AsyncStream<Data>.Continuation
@@ -88,6 +89,14 @@ final class PandaTransport: PandaTransporting {
         
         cleanupConnections()
         state = .connecting
+        
+        if isSimulationMode {
+            Task {
+                try? await Task.sleep(for: .milliseconds(300))
+                self.state = .connected
+            }
+            return
+        }
         
         let targetHost = host ?? discoverPandaIP()
         connectToHost(targetHost, port: port, allowFallback: host == nil)
@@ -212,6 +221,7 @@ final class PandaTransport: PandaTransporting {
     }
     
     func send(_ data: Data) async throws {
+        if isSimulationMode { return }
         guard let connection = connection, state == .connected else {
             throw NSError(domain: "PandaTransport", code: -1, userInfo: [NSLocalizedDescriptionKey: "Non connecté au Panda"])
         }
@@ -280,6 +290,7 @@ final class PandaTransport: PandaTransporting {
     }
     
     func sendControlWrite(requestType: UInt16, request: UInt16, value: UInt16, index: UInt16, data: Data = Data()) async throws {
+        if isSimulationMode { return }
         var packet = Data()
         packet.append(contentsOf: withUnsafeBytes(of: requestType.littleEndian) { Array($0) })
         packet.append(contentsOf: withUnsafeBytes(of: request.littleEndian) { Array($0) })
