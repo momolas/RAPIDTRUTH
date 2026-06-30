@@ -131,7 +131,7 @@ struct ConnectionView: View {
             if case .error(let message) = pandaTransport.state {
                 statusError = "Erreur de connexion : \(message)"
             } else {
-                statusError = "Délai de connexion dépassé. Assurez-vous d'être connecté au réseau Wi-Fi de la Panda (SSID : panda-XXXXXX ou panda-XXXXXX-BROKEN, mot de passe par défaut : testing123) et que les données cellulaires sont désactivées."
+                statusError = "Délai de connexion dépassé. Assurez-vous d'être connecté au réseau Wi-Fi de la Panda (SSID : COLDFALL, mot de passe par défaut : testing123) et que les données cellulaires sont désactivées."
             }
             disconnectAdapter()
         }
