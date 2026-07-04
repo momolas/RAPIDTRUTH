@@ -20,12 +20,15 @@ final class SimulatorEngine {
             return "54"
         }
         
-        // 3. Routine Control (31) / Write Data (2E)
+        // 3. Routine Control (31) / Write Data (2E) / Actuator Control (30)
         if cleanReq.hasPrefix("31") {
             return "71" // Positive Routine Control response
         }
         if cleanReq.hasPrefix("2E") {
             return "6E" // Positive Write response
+        }
+        if cleanReq.hasPrefix("30") {
+            return "70" // Positive InputOutputControl response
         }
         
         // 4. VIN request: 2181

@@ -7,6 +7,7 @@ final class MaintenanceManager {
     var isExecuting = false
     var errorMessage: String? = nil
     var successMessage: String? = nil
+    var activeActuatorTestName: String? = nil
 
     /// Réinitialisation de l'intervalle de vidange (TdB - 7A1)
     func resetOilService(interface: VehicleInterface) async {
@@ -163,5 +164,95 @@ final class MaintenanceManager {
         }
 
         isExecuting = false
+    }
+
+    /// Allumage automatique des feux : true = Activé (CF064), false = Désactivé
+    func setAutoHeadlightsEnabled(interface: VehicleInterface, enabled: Bool) async {
+        let statusName = enabled ? "Activation allumage auto des feux" : "Désactivation allumage auto des feux"
+        let command = enabled ? "2ECF06401" : "2ECF06400"
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "745", // UCH Header
+            routineCommand: command,
+            name: statusName
+        )
+    }
+
+    /// Essuyage arrière en marche arrière : true = Activé (CF108), false = Désactivé
+    func setReverseWiperEnabled(interface: VehicleInterface, enabled: Bool) async {
+        let statusName = enabled ? "Activation essuyage arrière en marche arrière" : "Désactivation essuyage arrière en marche arrière"
+        let command = enabled ? "2ECF10801" : "2ECF10800"
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "745", // UCH Header
+            routineCommand: command,
+            name: statusName
+        )
+    }
+
+    /// Alerte sonore ceinture : true = Activé (CF030), false = Désactivé
+    func setSeatbeltBuzzerEnabled(interface: VehicleInterface, enabled: Bool) async {
+        let statusName = enabled ? "Activation de l'alerte ceinture" : "Désactivation de l'alerte ceinture"
+        let command = enabled ? "2ECF03001" : "2ECF03000"
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "745", // UCH Header
+            routineCommand: command,
+            name: statusName
+        )
+    }
+
+    /// Sortie du Mode Maintenance Frein de Parking (FPA - 7A0) - Calibrage et resserrage des pistons
+    func exitEPBMaintenanceMode(interface: VehicleInterface) async {
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "7A0", // FPA Header
+            routineCommand: "310105", // Calibrate and tighten
+            name: "Fermeture & Calibrage Frein de Parking"
+        )
+    }
+
+    /// Commande individuelle de purge pour une roue spécifique (ABS - 760)
+    func purgeABSWheel(interface: VehicleInterface, wheelName: String) async {
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "760", // ABS Header
+            routineCommand: "310104", // command for ABS bleeding
+            name: "Purge active : \(wheelName)"
+        )
+    }
+
+    /// Lance un test actif d'actionneur
+    func runActuatorTest(interface: VehicleInterface, ecuHeader: String, command: String, name: String) async {
+        isExecuting = true
+        activeActuatorTestName = name
+        errorMessage = nil
+        successMessage = nil
+
+        do {
+            try await interface.setTarget(txID: ecuHeader, rxID: nil)
+            try Task.checkCancellation()
+
+            _ = try await interface.sendDiagnosticRequest("10C0", timeout: 2.0)
+            try Task.checkCancellation()
+
+            let response = try await interface.sendDiagnosticRequest(command, timeout: 4.0)
+            try Task.checkCancellation()
+
+            _ = try await interface.sendDiagnosticRequest("1081", timeout: 2.0)
+
+            if response.contains("70") || response.contains("71") || response.contains("6E") || response.isEmpty || response.contains("OK") {
+                successMessage = "Test actionneur : \(name) activé avec succès."
+            } else {
+                errorMessage = "Échec du test de l'actionneur : Réponse inattendue (\(response))"
+            }
+        } catch {
+            if !(error is CancellationError) {
+                errorMessage = "Erreur actionneur : \(error.localizedDescription)"
+            }
+        }
+
+        isExecuting = false
+        activeActuatorTestName = nil
     }
 }

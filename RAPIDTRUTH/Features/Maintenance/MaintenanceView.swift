@@ -11,6 +11,16 @@ struct MaintenanceView: View {
     @State private var showingOilAlert = false
     @State private var showingABSAlert = false
     
+    @State private var showingABSWizard = false
+    @State private var showingEPBWizard = false
+    
+    @State private var showingHeadlightsAlert = false
+    @State private var headlightsTargetState = false
+    @State private var showingReverseWiperAlert = false
+    @State private var reverseWiperTargetState = false
+    @State private var showingSeatbeltAlert = false
+    @State private var seatbeltTargetState = false
+    
     @State private var selectedBackupURL: URL? = nil
     @State private var showingFlashConfirmAlert = false
     
@@ -29,6 +39,7 @@ struct MaintenanceView: View {
     @State private var isBrakesExpanded = false
     @State private var isExhaustExpanded = false
     @State private var isCodingExpanded = false
+    @State private var isActuatorsExpanded = false
     @State private var isFlashingExpanded = false
 
     private var isConnected: Bool {
@@ -114,48 +125,32 @@ struct MaintenanceView: View {
                     DisclosureGroup(isExpanded: $isBrakesExpanded) {
                         VStack(alignment: .leading, spacing: 12) {
                             Button(action: {
-                                showingEPBAlert = true
+                                showingEPBWizard = true
                             }) {
                                 HStack {
                                     Image(systemName: "parkingsign.circle.fill")
                                         .foregroundStyle(.red)
-                                    Text("Mode Atelier Frein Parking (FPA)")
+                                    Text("Assistant Remplacement Plaquettes (EPB/FPA)")
                                     Spacer()
                                 }
                                 .font(.appButton)
                             }
                             .disabled(!isConnected || maintenanceManager.isExecuting)
                             .glassActionButton()
-                            .alert("Mode Atelier Frein de Parking", isPresented: $showingEPBAlert) {
-                                Button("Annuler", role: .cancel) { }
-                                Button("Activer", role: .destructive) {
-                                    Task { await maintenanceManager.enterEPBMaintenanceMode(interface: interface) }
-                                }
-                            } message: {
-                                Text("Attention : Cette action relâche les mâchoires du frein de stationnement pour permettre le remplacement des plaquettes. Assurez-vous que le véhicule est sur une surface plane et calé.")
-                            }
 
                             Button(action: {
-                                showingABSAlert = true
+                                showingABSWizard = true
                             }) {
                                 HStack {
                                     Image(systemName: "fluid.brakesignal")
                                         .foregroundStyle(.red)
-                                    Text("Purge Bloc ABS")
+                                    Text("Assistant Purge Bloc ABS")
                                     Spacer()
                                 }
                                 .font(.appButton)
                             }
                             .disabled(!isConnected || maintenanceManager.isExecuting)
                             .glassActionButton()
-                            .alert("Purge du groupe hydraulique ABS", isPresented: $showingABSAlert) {
-                                Button("Annuler", role: .cancel) { }
-                                Button("Démarrer la Purge", role: .destructive) {
-                                    Task { await maintenanceManager.purgeABSGroup(interface: interface) }
-                                }
-                            } message: {
-                                Text("Attention : Cette action va activer les solénoïdes et la pompe du bloc hydraulique ABS pour chasser les bulles d'air. Assurez-vous que les vis de purge sont prêtes et ouvertes, et que le réservoir de liquide de frein est plein.")
-                            }
                         }
                         .padding(.vertical, 8)
                     } label: {
@@ -235,6 +230,114 @@ struct MaintenanceView: View {
                                 }
                             } message: {
                                 Text(ssppTargetState ? "Confirmez-vous l'activation du système de surveillance de pression de pneus ?" : "Confirmez-vous la désactivation ? Tous les voyants de pneu manquant et alertes de crevaison s'éteindront définitivement.")
+                            }
+
+                            Divider().background(Color.white.opacity(0.05))
+
+                            // Feux Automatiques
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("Allumage Automatique des Feux")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                HStack {
+                                    Button("Activer") {
+                                        headlightsTargetState = true
+                                        showingHeadlightsAlert = true
+                                    }
+                                    .font(.captionText)
+                                    .glassActionButton()
+                                    .foregroundStyle(.green)
+                                    .disabled(!isConnected || maintenanceManager.isExecuting)
+                                    
+                                    Button("Désactiver") {
+                                        headlightsTargetState = false
+                                        showingHeadlightsAlert = true
+                                    }
+                                    .font(.captionText)
+                                    .glassActionButton()
+                                    .foregroundStyle(.red)
+                                    .disabled(!isConnected || maintenanceManager.isExecuting)
+                                }
+                            }
+                            .alert("Configuration Feux Automatiques", isPresented: $showingHeadlightsAlert) {
+                                Button("Annuler", role: .cancel) { }
+                                Button("Confirmer", role: .destructive) {
+                                    Task { await maintenanceManager.setAutoHeadlightsEnabled(interface: interface, enabled: headlightsTargetState) }
+                                }
+                            } message: {
+                                Text(headlightsTargetState ? "Confirmez-vous l'activation de l'allumage automatique des feux de croisement ?" : "Confirmez-vous sa désactivation ? Les feux ne s'allumeront plus automatiquement à la tombée de la nuit.")
+                            }
+
+                            Divider().background(Color.white.opacity(0.05))
+
+                            // Essuie-glace Arrière Auto
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("Essuie-glace Arrière en Marche Arrière")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                HStack {
+                                    Button("Activer") {
+                                        reverseWiperTargetState = true
+                                        showingReverseWiperAlert = true
+                                    }
+                                    .font(.captionText)
+                                    .glassActionButton()
+                                    .foregroundStyle(.green)
+                                    .disabled(!isConnected || maintenanceManager.isExecuting)
+                                    
+                                    Button("Désactiver") {
+                                        reverseWiperTargetState = false
+                                        showingReverseWiperAlert = true
+                                    }
+                                    .font(.captionText)
+                                    .glassActionButton()
+                                    .foregroundStyle(.red)
+                                    .disabled(!isConnected || maintenanceManager.isExecuting)
+                                }
+                            }
+                            .alert("Configuration Essuyage Arrière", isPresented: $showingReverseWiperAlert) {
+                                Button("Annuler", role: .cancel) { }
+                                Button("Confirmer", role: .destructive) {
+                                    Task { await maintenanceManager.setReverseWiperEnabled(interface: interface, enabled: reverseWiperTargetState) }
+                                }
+                            } message: {
+                                Text(reverseWiperTargetState ? "Confirmez-vous l'activation du balayage automatique arrière lors de la marche arrière ?" : "Confirmez-vous sa désactivation ?")
+                            }
+
+                            Divider().background(Color.white.opacity(0.05))
+
+                            // Bip Ceinture
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("Alerte Sonore Ceinture Non Bouclée")
+                                    .font(.bodyText)
+                                    .foregroundStyle(.secondary)
+                                HStack {
+                                    Button("Activer") {
+                                        seatbeltTargetState = true
+                                        showingSeatbeltAlert = true
+                                    }
+                                    .font(.captionText)
+                                    .glassActionButton()
+                                    .foregroundStyle(.green)
+                                    .disabled(!isConnected || maintenanceManager.isExecuting)
+                                    
+                                    Button("Désactiver") {
+                                        seatbeltTargetState = false
+                                        showingSeatbeltAlert = true
+                                    }
+                                    .font(.captionText)
+                                    .glassActionButton()
+                                    .foregroundStyle(.red)
+                                    .disabled(!isConnected || maintenanceManager.isExecuting)
+                                }
+                            }
+                            .alert("Configuration Alerte Ceinture", isPresented: $showingSeatbeltAlert) {
+                                Button("Annuler", role: .cancel) { }
+                                Button("Confirmer", role: .destructive) {
+                                    Task { await maintenanceManager.setSeatbeltBuzzerEnabled(interface: interface, enabled: seatbeltTargetState) }
+                                }
+                            } message: {
+                                Text(seatbeltTargetState ? "Confirmez-vous l'activation du bip sonore de ceinture non bouclée ?" : "Confirmez-vous la désactivation ? Le voyant visuel restera actif mais aucun son ne retentira.")
                             }
 
                             Divider().background(Color.white.opacity(0.05))
@@ -339,6 +442,98 @@ struct MaintenanceView: View {
                         .padding(.vertical, 8)
                     } label: {
                         Text("Télécodage & Personnalisation")
+                            .font(.valueLabel)
+                            .foregroundStyle(.white)
+                    }
+
+                    Divider().background(Color.white.opacity(0.1))
+
+                    // 4b. Test des Actionneurs
+                    DisclosureGroup(isExpanded: $isActuatorsExpanded) {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Déclenchement forcé des actionneurs (UDS Service 30)")
+                                .font(.captionText)
+                                .foregroundStyle(.gray)
+                                .padding(.bottom, 4)
+
+                            // GMV
+                            HStack {
+                                Text("Moto-ventilateur (Refroidissement)")
+                                    .font(.bodyText)
+                                Spacer()
+                                Button("Petite V") {
+                                    Task {
+                                        await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "7E0", command: "300102", name: "Moto-ventilateur Petite Vitesse")
+                                    }
+                                }
+                                .font(.captionText)
+                                .glassActionButton()
+                                .disabled(!isConnected || maintenanceManager.isExecuting)
+
+                                Button("Grande V") {
+                                    Task {
+                                        await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "7E0", command: "300101", name: "Moto-ventilateur Grande Vitesse")
+                                    }
+                                }
+                                .font(.captionText)
+                                .glassActionButton()
+                                .disabled(!isConnected || maintenanceManager.isExecuting)
+                            }
+
+                            Divider().background(Color.white.opacity(0.05))
+
+                            // Clim
+                            HStack {
+                                Text("Compresseur Climatisation (AC)")
+                                    .font(.bodyText)
+                                Spacer()
+                                Button("Déclencher") {
+                                    Task {
+                                        await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "7E0", command: "300103", name: "Embrayage Compresseur Clim")
+                                    }
+                                }
+                                .font(.captionText)
+                                .glassActionButton()
+                                .disabled(!isConnected || maintenanceManager.isExecuting)
+                            }
+
+                            Divider().background(Color.white.opacity(0.05))
+
+                            // Avertisseur
+                            HStack {
+                                Text("Avertisseur Sonore (Klaxon)")
+                                    .font(.bodyText)
+                                Spacer()
+                                Button("Déclencher") {
+                                    Task {
+                                        await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "745", command: "300104", name: "Avertisseur Sonore (Klaxon)")
+                                    }
+                                }
+                                .font(.captionText)
+                                .glassActionButton()
+                                .disabled(!isConnected || maintenanceManager.isExecuting)
+                            }
+
+                            Divider().background(Color.white.opacity(0.05))
+
+                            // Essuie-glaces
+                            HStack {
+                                Text("Balayage Essuie-glace")
+                                    .font(.bodyText)
+                                Spacer()
+                                Button("Déclencher") {
+                                    Task {
+                                        await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "745", command: "300105", name: "Balayage Essuie-glace")
+                                    }
+                                }
+                                .font(.captionText)
+                                .glassActionButton()
+                                .disabled(!isConnected || maintenanceManager.isExecuting)
+                            }
+                        }
+                        .padding(.vertical, 8)
+                    } label: {
+                        Text("Test des Actionneurs")
                             .font(.valueLabel)
                             .foregroundStyle(.white)
                     }
@@ -514,6 +709,12 @@ struct MaintenanceView: View {
         .background(Color.appBackground.ignoresSafeArea())
         .navigationTitle("Fonctions de Service")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showingABSWizard) {
+            ABSBleedingAssistantView(interface: interface, manager: maintenanceManager)
+        }
+        .sheet(isPresented: $showingEPBWizard) {
+            EPBAssistantView(interface: interface, manager: maintenanceManager)
+        }
         .task {
             mapManager.refreshBackupList()
             selectedBackupURL = mapManager.backupFiles.first
