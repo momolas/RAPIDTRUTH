@@ -37,7 +37,7 @@ struct EPBAssistantView: View {
         ),
         EPBStep(
             title: "Remplacement des Organes",
-            description: "Les pistons sont maintenant reculés. Vous pouvez en toute sécurité :\n\n1. Déposer les étriers arrière.\n2. Remplacer les plaquettes et/ou les disques de frein.\n3. Repousser manuellement le piston (il doit reculer sans effort mécanique car le moteur est en butée arrière).\n4. Remonter l'étrier avec les nouvelles plaquettes.",
+            description: "Les pistons sont maintenant reculés. Vous pouvez en toute sécurité :\n\n1. Déposer les étriers arrière.\n2. Remplacer les plaquettes et/ou les disques de frein.\n3. Repousser manuellement le piston (il doit reculer sans effort mécanique car le moteur est en butée arrière).\n4. Remonter l'étrier avec les nouvelles plaquettes.\n\n⚠️ IMPORTANT : Ne coupez pas le contact (+APC) et ne débranchez pas l'interface OBD pendant l'intervention physique, afin de conserver la session de diagnostic active pour le calibrage final.",
             actionLabel: "Remplacement effectué, suivant",
             isEPBAction: false,
             actionType: nil
