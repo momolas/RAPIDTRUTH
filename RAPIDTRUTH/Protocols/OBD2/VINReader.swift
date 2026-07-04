@@ -218,18 +218,20 @@ enum VINReader {
 
     /// Parses a Renault physical/UDS diagnostic Mode 21 PID 81 response into a 17-char VIN.
     private static func parseRenaultVINResponse(_ response: String) -> String? {
-        let cleanHex = response
-            .uppercased()
-            .replacing(" ", with: "")
-            .replacing("\n", with: "")
-            .replacing("\r", with: "")
-        guard cleanHex.contains("6181"), cleanHex.count >= 38 else {
+        let lines = response
+            .components(separatedBy: .whitespacesAndNewlines)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty }
+            .map(stripFrameIndex)
+        let concatenated = lines.joined().uppercased()
+        
+        guard concatenated.contains("6181"), concatenated.count >= 38 else {
             return nil
         }
         
-        guard let range = cleanHex.range(of: "6181") else { return nil }
+        guard let range = concatenated.range(of: "6181") else { return nil }
         let start = range.upperBound
-        let dataHex = String(cleanHex[start...].prefix(34))
+        let dataHex = String(concatenated[start...].prefix(34))
         guard dataHex.count == 34 else { return nil }
         
         let ascii = hexToAscii(dataHex)

@@ -19,7 +19,7 @@ enum ProfileProbe {
         for ecuName in grouped.keys.sorted() {
             try Task.checkCancellation()
             if let ecu = profile.ecus[ecuName] {
-                _ = try? await driver.setTarget(txID: ecu.requestHeader, rxID: nil)
+                _ = try? await driver.setTarget(txID: ecu.requestHeader, rxID: ecu.responseHeader)
             }
             for pidDef in grouped[ecuName] ?? [] {
                 try Task.checkCancellation()

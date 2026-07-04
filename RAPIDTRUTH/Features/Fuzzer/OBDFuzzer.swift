@@ -140,13 +140,12 @@ final class OBDFuzzer {
         currentScanTarget = "Corrélation: LID \(lidHex)"
         
         do {
-            try await interface.setTarget(txID: ecu, rxID: nil)
-            
             while isRunning {
                 try Task.checkCancellation()
                 if !isRunning { break }
                 
                 // 1. Query targeted KWP2000 LID (Service 21)
+                try? await interface.setTarget(txID: ecu, rxID: nil)
                 let req = "21" + lidHex
                 guard let resp = try? await interface.sendDiagnosticRequest(req, timeout: 0.5),
                       !resp.isEmpty, !resp.hasPrefix("7F"), !resp.contains("ERROR"), resp != "NO_DATA" else {
@@ -156,6 +155,7 @@ final class OBDFuzzer {
                 
                 // 2. Query standard OBD-II RPM (010C)
                 var rpmVal = 0.0
+                try? await interface.setTarget(txID: "7DF", rxID: "7E8")
                 if let rpmResp = try? await interface.sendDiagnosticRequest("010C", timeout: 0.3),
                    let rpm = decodeRPM(rpmResp) {
                     rpmVal = rpm

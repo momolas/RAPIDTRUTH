@@ -277,20 +277,19 @@ final class Sampler {
             .components(separatedBy: .whitespacesAndNewlines)
             .map { $0.trimmingCharacters(in: .whitespaces).replacing(" ", with: "") }
             .filter { !$0.isEmpty }
-        for line in lines {
-            // Strip a leading "<digit>:" frame-index prefix if present.
-            let cleaned: String
-            if let colonIdx = line.firstIndex(of: ":"),
-               line.distance(from: line.startIndex, to: colonIdx) <= 2,
-               line[..<colonIdx].allSatisfy({ $0.isHexDigit }) {
-                cleaned = String(line[line.index(after: colonIdx)...])
-            } else {
-                cleaned = line
+            .map { line -> String in
+                if let colonIdx = line.firstIndex(of: ":"),
+                   line.distance(from: line.startIndex, to: colonIdx) <= 2,
+                   line[..<colonIdx].allSatisfy({ $0.isHexDigit }) {
+                    return String(line[line.index(after: colonIdx)...])
+                }
+                return line
             }
-            if let prefixRange = cleaned.range(of: prefix) {
-                let after = String(cleaned[prefixRange.upperBound...])
-                return HexParsing.bytes(after)
-            }
+        
+        let concatenated = lines.joined()
+        if let prefixRange = concatenated.range(of: prefix) {
+            let after = String(concatenated[prefixRange.upperBound...])
+            return HexParsing.bytes(after)
         }
         return nil
     }
