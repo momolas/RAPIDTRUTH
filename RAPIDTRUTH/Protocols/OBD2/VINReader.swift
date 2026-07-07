@@ -13,8 +13,8 @@ enum VINReader {
             var activeBus: UInt8? = nil
             var activeSpeed: Int? = nil
             
-            // Try standard CAN speeds: 500 kbps (modern) and 250 kbps (older Renault Megane II / Scenic II)
-            for testSpeed in [500, 250] {
+            // Prioritize 250 kbps (Scenic II / Modus platform) then try 500 kbps (newer Renault/OBD2)
+            for testSpeed in [250, 500] {
                 if activeBus != nil { break }
                 
                 // 1a. Try 11-bit standard diagnostic ping on buses 0, 1, 2
@@ -96,10 +96,10 @@ enum VINReader {
                     try? await panda.setCANSpeed(bus: testBus, kbps: activeSpeed)
                 }
             } else {
-                NSLog("[VINReader] No active CAN bus detected during 0100 probe, defaulting to Bus 0 at 500 kbps")
+                NSLog("[VINReader] No active CAN bus detected during 0100 probe, defaulting to Bus 0 at 250 kbps (Scenic II / Modus default)")
                 panda.bus = 0
                 for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
-                    try? await panda.setCANSpeed(bus: testBus, kbps: 500)
+                    try? await panda.setCANSpeed(bus: testBus, kbps: 250)
                 }
             }
         }

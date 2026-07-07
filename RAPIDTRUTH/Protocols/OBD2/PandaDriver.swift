@@ -345,8 +345,8 @@ final class PandaDriver: VehicleInterface {
         for bus in [UInt16(0), UInt16(1), UInt16(2)] {
             // Disable auto CAN-FD (0xe8)
             try? await transport.sendControlWrite(requestType: 0x40, request: 0xe8, value: bus, index: 0)
-            // Set CAN speed to 500 kbps (0xde, value * 10 = 5000)
-            try? await transport.sendControlWrite(requestType: 0x40, request: 0xde, value: bus, index: 5000)
+            // Set CAN speed to 250 kbps (0xde, value * 10 = 2500) pour Scenic II et Modus
+            try? await transport.sendControlWrite(requestType: 0x40, request: 0xde, value: bus, index: 2500)
         }
         
         // 5. Reset CAN communications (request: 0xc0, value: 0, index: 0)
