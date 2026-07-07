@@ -37,6 +37,12 @@ final class SimulatorEngine {
             return "61815646314247303030303132333435363738"
         }
         
+        // UDS VIN request
+        if cleanReq == "22F190" {
+            // Return 62F190 + VF1BG000012345678 in hex
+            return "62F1905646314247303030303132333435363738"
+        }
+        
         // Standard OBD2 VIN request
         if cleanReq == "0902" {
             // Return 490201 + VF1BG000012345678 in hex
