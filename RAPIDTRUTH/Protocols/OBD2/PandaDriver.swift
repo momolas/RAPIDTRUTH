@@ -188,9 +188,9 @@ final class PandaDriver: VehicleInterface {
         case .completed(let completedData):
             deliver(completedData)
         case .needsFlowControl:
-            // Send Flow Control: 30 00 00 (Clear to send, block size 0, STmin 0)
+            // Send Flow Control: 30 00 00 padded to 8 bytes for older KWP2000 strict ECUs (Scenic II / Modus)
             Task {
-                let fcData = Data([0x30, 0x00, 0x00])
+                let fcData = Data([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
                 let packed = packPandaCAN(address: txID, data: fcData, bus: self.bus)
                 try? await transport.send(packed)
             }
@@ -281,7 +281,10 @@ final class PandaDriver: VehicleInterface {
         if payload.count <= 7 {
             var frame = Data([UInt8(payload.count)])
             frame.append(payload)
-            // pad with 00 to 8 bytes if desired, or let Panda send partial DLC
+            // pad with 00 to 8 bytes (Scenic II / Modus KWP2000 ECUs require strict 8-byte frames)
+            while frame.count < 8 {
+                frame.append(0x00)
+            }
             return [frame]
         }
         
@@ -289,6 +292,7 @@ final class PandaDriver: VehicleInterface {
         // First Frame
         var ff = Data([UInt8(0x10 | ((payload.count >> 8) & 0x0F)), UInt8(payload.count & 0xFF)])
         ff.append(payload.prefix(6))
+        // First frame is already 8 bytes
         frames.append(ff)
         
         // Consecutive Frames
@@ -298,6 +302,10 @@ final class PandaDriver: VehicleInterface {
             let chunk = payload[offset..<min(offset+7, payload.count)]
             var cf = Data([0x20 | (index & 0x0F)])
             cf.append(chunk)
+            // pad with 00 to 8 bytes
+            while cf.count < 8 {
+                cf.append(0x00)
+            }
             frames.append(cf)
             offset += chunk.count
             index += 1
