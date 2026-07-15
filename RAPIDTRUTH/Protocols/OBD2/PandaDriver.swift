@@ -187,7 +187,6 @@ final class PandaDriver: VehicleInterface {
     }
 
     private func consume(_ data: Data) {
-        AppLogger.shared.log("TCP Stream: received \(data.count) bytes", level: .info)
         rxBuffer.append(data)
         
         var offset = 0
@@ -212,8 +211,6 @@ final class PandaDriver: VehicleInterface {
             let address = extended == 1 ? (word_4b >> 3) : (word_4b >> 21)
             
             let frameData = rxBuffer[offset+6..<offset+6+dataLen]
-            
-            AppLogger.shared.log("CAN RX: ID=0x\(String(address, radix: 16).uppercased()) Bus=\(bus) Data=\(frameData.map { String(format: "%02X", $0) }.joined())", level: .info)
             
             if bus == 3 || bus == 4 {
                 let linFrame = LINFrame(bus: bus, address: address, data: frameData)
