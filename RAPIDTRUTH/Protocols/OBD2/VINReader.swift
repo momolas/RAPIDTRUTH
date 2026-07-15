@@ -30,7 +30,7 @@ enum VINReader {
                         if normalized.contains("6181") {
                             activeBus = testBus
                             activeSpeed = testSpeed
-                            NSLog("[VINReader] Detected active Renault Engine CAN bus (KWP2000): \(testBus) at \(testSpeed) kbps")
+                            AppLogger.shared.log("Detected active Renault Engine CAN bus (KWP2000): \(testBus) at \(testSpeed) kbps", level: .info)
                             await closeDiagnosticSession(interface: panda)
                             break
                         }
@@ -52,7 +52,7 @@ enum VINReader {
                             if normalized.contains("6181") {
                                 activeBus = testBus
                                 activeSpeed = testSpeed
-                                NSLog("[VINReader] Detected active Renault UCH CAN bus (KWP2000): \(testBus) at \(testSpeed) kbps")
+                                AppLogger.shared.log("Detected active Renault UCH CAN bus (KWP2000): \(testBus) at \(testSpeed) kbps", level: .info)
                                 await closeDiagnosticSession(interface: panda)
                                 break
                             }
@@ -69,7 +69,7 @@ enum VINReader {
                     try? await panda.setCANSpeed(bus: testBus, kbps: activeSpeed)
                 }
             } else {
-                NSLog("[VINReader] No active CAN bus detected during 0100 probe, defaulting to Bus 0 at 250 kbps (Scenic II / Modus default)")
+                AppLogger.shared.log("No active CAN bus detected during probe, defaulting to Bus 0 at 250 kbps (Scenic II / Modus default)", level: .warning)
                 panda.bus = 0
                 for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
                     try? await panda.setCANSpeed(bus: testBus, kbps: 250)
@@ -86,14 +86,14 @@ enum VINReader {
             _ = try await openDiagnosticSession(interface: interface)
             let response = try await interface.sendDiagnosticRequest("2181", timeout: 3.0)
             if let vin = parseRenaultVINResponse(response) {
-                NSLog("[VINReader] Success reading Renault Engine KWP VIN: \(vin)")
+                AppLogger.shared.log("Success reading Renault Engine KWP VIN: \(vin)", level: .info)
                 await closeDiagnosticSession(interface: interface)
                 return vin
             }
             await closeDiagnosticSession(interface: interface)
         } catch {
             if error is CancellationError { throw error }
-            NSLog("[VINReader] Stage C2 (Renault Engine KWP 2181) failed/timed out: \(error)")
+            AppLogger.shared.log("Stage C2 (Renault Engine KWP 2181) failed/timed out: \(error.localizedDescription)", level: .error)
         }
 
         // Stage D2: Renault physical UCH (744) KWP query (2181)
@@ -103,14 +103,14 @@ enum VINReader {
             _ = try await openDiagnosticSession(interface: interface)
             let response = try await interface.sendDiagnosticRequest("2181", timeout: 3.0)
             if let vin = parseRenaultVINResponse(response) {
-                NSLog("[VINReader] Success reading Renault UCH KWP VIN: \(vin)")
+                AppLogger.shared.log("Success reading Renault UCH KWP VIN: \(vin)", level: .info)
                 await closeDiagnosticSession(interface: interface)
                 return vin
             }
             await closeDiagnosticSession(interface: interface)
         } catch {
             if error is CancellationError { throw error }
-            NSLog("[VINReader] Stage D2 (Renault UCH KWP 2181) failed/timed out: \(error)")
+            AppLogger.shared.log("Stage D2 (Renault UCH KWP 2181) failed/timed out: \(error.localizedDescription)", level: .error)
         }
         
         return nil

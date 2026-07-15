@@ -7,6 +7,7 @@ enum DiagnosticDestination: Hashable, Sendable {
     case maintenance
     case fuzzer
     case usedCarCheck
+    case logs
 }
 
 struct MainShellView: View {
@@ -123,6 +124,21 @@ struct MainShellView: View {
                             }
                             .buttonStyle(.plain)
                         }
+                        
+                        Text("Outils & Debug")
+                            .font(.cardTitle)
+                            .foregroundStyle(.secondary)
+                            .padding(.top, 8)
+                        
+                        NavigationLink(value: DiagnosticDestination.logs) {
+                            DiagnosticMenuCard(
+                                title: "Logs de Communication",
+                                subtitle: "Trames KWP2000 brutes TX/RX en temps réel",
+                                systemImage: "doc.text.magnifyingglass",
+                                color: .gray
+                            )
+                        }
+                        .buttonStyle(.plain)
                     }
                     .padding(16)
                 }
@@ -142,6 +158,8 @@ struct MainShellView: View {
                     FuzzerView(interface: driver)
                 case .usedCarCheck:
                     UsedCarCheckView(interface: driver)
+                case .logs:
+                    LogsView()
                 }
             }
             .navigationTitle("")

@@ -105,9 +105,13 @@ final class PandaDriver: VehicleInterface {
     func sendDiagnosticRequest(_ hexString: String, timeout: TimeInterval) async throws -> String {
         let finalCmd = hexString.replacing(" ", with: "").uppercased()
         
+        AppLogger.shared.log("TX: \(finalCmd) on 0x\(String(txID, radix: 16).uppercased())", level: .command)
+        
         if transport.isSimulationMode {
             try? await Task.sleep(for: .milliseconds(30))
-            return try await SimulatorEngine.shared.handleRequest(txID: self.txID, rxID: self.rxID, request: finalCmd)
+            let simResponse = try await SimulatorEngine.shared.handleRequest(txID: self.txID, rxID: self.rxID, request: finalCmd)
+            AppLogger.shared.log("RX: \(simResponse) on 0x\(String(rxID, radix: 16).uppercased()) [SIM]", level: .command)
+            return simResponse
         }
         
         let previousTask = lastRequestTask
@@ -119,7 +123,14 @@ final class PandaDriver: VehicleInterface {
         }
         lastRequestTask = newTask
         
-        return try await newTask.value
+        do {
+            let rawResponse = try await newTask.value
+            AppLogger.shared.log("RX: \(rawResponse) on 0x\(String(rxID, radix: 16).uppercased())", level: .command)
+            return rawResponse
+        } catch {
+            AppLogger.shared.log("ERR: \(error.localizedDescription) on \(finalCmd)", level: .error)
+            throw error
+        }
     }
 
     private func performDiagnosticRequest(_ hexString: String, timeout: TimeInterval) async throws -> String {
