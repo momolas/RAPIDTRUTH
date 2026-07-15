@@ -13,8 +13,8 @@ enum VINReader {
             var activeBus: UInt8? = nil
             var activeSpeed: Int? = nil
             
-            // KWP2000 on Scenic II / Modus platform operates exclusively at 250 kbps
-            for testSpeed in [250] {
+            // KWP2000 on Scenic II / Modus platform operates at 500 kbps (Engine/ABS) or 250 kbps (Diag/UCH)
+            for testSpeed in [500, 250] {
                 if activeBus != nil { break }
                 
                 // 1a. Try Renault-specific physical Engine ping (7E0) on buses 0, 1, 2 (KWP2000)

@@ -34,6 +34,8 @@ final class PandaDriver: VehicleInterface {
     
     // Task reading from transport
     private var inboundTask: Task<Void, Never>?
+    
+    private var rxBuffer = Data()
 
     init(transport: PandaTransport) {
         self.transport = transport
@@ -185,15 +187,43 @@ final class PandaDriver: VehicleInterface {
     }
 
     private func consume(_ data: Data) {
-        // Parse Panda UDP packet which might contain multiple CAN frames
-        let frames = unpackPandaCAN(data: data)
-        for frame in frames {
-            if frame.bus == 3 || frame.bus == 4 {
-                let linFrame = LINFrame(bus: frame.bus, address: frame.address, data: frame.data)
-                linFrameHandler?(linFrame)
-            } else if frame.address == self.rxID {
-                handleISOTPFrame(frame.data)
+        rxBuffer.append(data)
+        
+        var offset = 0
+        while offset + 6 <= rxBuffer.count {
+            let header = rxBuffer[offset..<offset+6]
+            let dlcIdx = Int(header[header.startIndex] >> 4)
+            let dataLen = dlcIdx < dlcToLen.count ? dlcToLen[dlcIdx] : 0
+            
+            if offset + 6 + dataLen > rxBuffer.count {
+                // Incomplete CAN frame, wait for more data
+                break
             }
+            
+            let bus = (header[header.startIndex] >> 1) & 0x7
+            let word1 = UInt32(header[header.startIndex+1])
+            let word2 = UInt32(header[header.startIndex+2]) << 8
+            let word3 = UInt32(header[header.startIndex+3]) << 16
+            let word4 = UInt32(header[header.startIndex+4]) << 24
+            let word_4b = word1 | word2 | word3 | word4
+            
+            let extended = (word_4b >> 2) & 1
+            let address = extended == 1 ? (word_4b >> 3) : (word_4b >> 21)
+            
+            let frameData = rxBuffer[offset+6..<offset+6+dataLen]
+            
+            if bus == 3 || bus == 4 {
+                let linFrame = LINFrame(bus: bus, address: address, data: frameData)
+                linFrameHandler?(linFrame)
+            } else if address == self.rxID {
+                handleISOTPFrame(frameData)
+            }
+            
+            offset += 6 + dataLen
+        }
+        
+        if offset > 0 {
+            rxBuffer.removeFirst(offset)
         }
     }
 
