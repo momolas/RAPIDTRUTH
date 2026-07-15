@@ -90,8 +90,8 @@ final class UsedCarCheckManager {
             try Task.checkCancellation()
             _ = try await openDiagnosticSession(interface: interface)
             
-            // Re-read DTC Extended Data to extract Mileage freeze frames
-            let rawExtendedData = try await interface.sendDiagnosticRequest("190600000080", timeout: 3.0)
+            // Re-read DTC Extended Data to extract Mileage freeze frames (KWP2000 Service 18)
+            let rawExtendedData = try await interface.sendDiagnosticRequest("180280", timeout: 3.0)
             let maxKmPanne = extractMaxMileageFromExtendedData(rawExtendedData, baseKM: kmTDB)
             await closeDiagnosticSession(interface: interface)
             try await Task.sleep(for: .milliseconds(200))
@@ -119,9 +119,9 @@ final class UsedCarCheckManager {
     
     @discardableResult
     private func openDiagnosticSession(interface: VehicleInterface) async throws -> Bool {
-        // Tente la session Renault 10C0 en premier
+        // Tente la session Renault KWP 1085 en premier
         do {
-            let res = try await interface.sendDiagnosticRequest("10C0", timeout: 1.5)
+            let res = try await interface.sendDiagnosticRequest("1085", timeout: 1.5)
             let normalized = res.uppercased().replacing(" ", with: "")
             if !normalized.starts(with: "7F") && !normalized.isEmpty {
                 return true
@@ -130,9 +130,9 @@ final class UsedCarCheckManager {
             throw CancellationError()
         } catch {}
         
-        // Repli sur la session étendue standard 1003
+        // Repli sur la session 1086
         do {
-            let res = try await interface.sendDiagnosticRequest("1003", timeout: 1.5)
+            let res = try await interface.sendDiagnosticRequest("1086", timeout: 1.5)
             let normalized = res.uppercased().replacing(" ", with: "")
             if !normalized.starts(with: "7F") && !normalized.isEmpty {
                 return true
@@ -145,7 +145,7 @@ final class UsedCarCheckManager {
     }
     
     private func closeDiagnosticSession(interface: VehicleInterface) async {
-        _ = try? await interface.sendDiagnosticRequest("1001", timeout: 1.0)
+        _ = try? await interface.sendDiagnosticRequest("1081", timeout: 1.0)
     }
     
     // MARK: - Décodeurs de payloads physiques
@@ -185,7 +185,7 @@ final class UsedCarCheckManager {
     
     private func extractMaxMileageFromExtendedData(_ hex: String, baseKM: Int) -> Int {
         let cleanHex = hex.replacing(" ", with: "")
-        guard !cleanHex.isEmpty && cleanHex.contains("5906") else {
+        guard !cleanHex.isEmpty && cleanHex.contains("5802") else {
             // Simulator: Generate a test case. 
             // We simulate a 5% risk of discovering an odometer tampering case (e.g. 195,000 km in ECU, while dashboard shows 142,385 km).
             // This is perfect for testing the critical visual indicators.

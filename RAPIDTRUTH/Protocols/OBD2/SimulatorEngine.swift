@@ -95,6 +95,10 @@ final class SimulatorEngine {
             // Simulate odometer tampering: freeze frame shows 195000 km (02F9C0)
             return "59060102F9C0"
         }
+        if cleanReq == "180280" {
+            // Return 5802... indicating maximum km in freeze frames (KWP2000 equivalent)
+            return "58020102F9C0"
+        }
         
         // 8. Live Data sampling requests (Mode 21 or Mode 1)
         if cleanReq.hasPrefix("21") || cleanReq.hasPrefix("01") {
