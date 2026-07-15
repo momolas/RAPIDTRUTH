@@ -248,7 +248,7 @@ final class PandaDriver: VehicleInterface {
         let dlc = lenToDLC(data.count)
         
         var header = Data(count: 6)
-        let word_4b: UInt32 = (address << 3) | (extended << 2)
+        let word_4b: UInt32 = extended == 1 ? ((address << 3) | (extended << 2)) : ((address << 21) | (extended << 2))
         
         header[0] = (dlc << 4) | (bus << 1) // fd = 0
         header[1] = UInt8(word_4b & 0xFF)
@@ -280,7 +280,10 @@ final class PandaDriver: VehicleInterface {
             let word2 = UInt32(header[header.startIndex+2]) << 8
             let word3 = UInt32(header[header.startIndex+3]) << 16
             let word4 = UInt32(header[header.startIndex+4]) << 24
-            let address = (word1 | word2 | word3 | word4) >> 3
+            let word_4b = word1 | word2 | word3 | word4
+            
+            let extended = (word_4b >> 2) & 1
+            let address = extended == 1 ? (word_4b >> 3) : (word_4b >> 21)
             
             let frameData = data[offset+6..<offset+6+dataLen]
             ret.append(CANFrame(address: address, data: frameData, bus: bus))
