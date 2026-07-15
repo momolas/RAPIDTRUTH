@@ -20,15 +20,21 @@ final class SimulatorEngine {
             return "54"
         }
         
-        // 3. Routine Control (31) / Write Data (2E) / Actuator Control (30)
+        // 3. Routine Control (31 / 30 KWP) / Write Data (2E / 3B KWP) / Actuator Control (30 / 2F KWP)
         if cleanReq.hasPrefix("31") {
             return "71" // Positive Routine Control response
+        }
+        if cleanReq.hasPrefix("30") {
+            return "70" // Positive UDS Actuator or KWP Routine response
         }
         if cleanReq.hasPrefix("2E") {
             return "6E" // Positive Write response
         }
-        if cleanReq.hasPrefix("30") {
-            return "70" // Positive InputOutputControl response
+        if cleanReq.hasPrefix("3B") {
+            return "7B" // Positive KWP Write response
+        }
+        if cleanReq.hasPrefix("2F") {
+            return "6F" // Positive KWP IO Control response
         }
         
         // 4. VIN request: 2181

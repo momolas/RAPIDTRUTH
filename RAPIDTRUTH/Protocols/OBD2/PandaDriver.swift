@@ -19,6 +19,7 @@ final class PandaDriver: VehicleInterface {
     var txID: UInt32 = 0x7E0
     var rxID: UInt32 = 0x7E8 // Usually txID + 8, but for Renault it can be different
     var bus: UInt8 = 0
+    var isKWP2000Mode: Bool = true
     private var simulatedLINTask: Task<Void, Never>?
 
     // We keep track of the in-flight continuation for the response
@@ -102,9 +103,32 @@ final class PandaDriver: VehicleInterface {
     }
 
     func sendDiagnosticRequest(_ hexString: String, timeout: TimeInterval) async throws -> String {
+        var finalCmd = hexString.replacing(" ", with: "").uppercased()
+        
+        if isKWP2000Mode {
+            // Translate UDS requests to KWP2000 equivalents
+            if finalCmd.hasPrefix("2E") {
+                // UDS Write Data By Identifier (2E) -> KWP2000 Write Data By Local Identifier (3B)
+                finalCmd = "3B" + finalCmd.dropFirst(2)
+            } else if finalCmd.hasPrefix("31") {
+                // UDS Routine Control (31) -> KWP2000 Start/Stop Routine By Local Identifier (30)
+                finalCmd = "30" + finalCmd.dropFirst(2)
+            } else if finalCmd.hasPrefix("30") {
+                // UDS Input Output Control (30) -> KWP2000 Input Output Control By Local Identifier (2F)
+                finalCmd = "2F" + finalCmd.dropFirst(2)
+            } else if finalCmd == "10C0" {
+                // UDS Diagnostic Session Renault (10C0) -> KWP2000 Diagnostic Session Renault (1085)
+                finalCmd = "1085"
+            } else if finalCmd == "1001" {
+                // UDS Default Session (1001) -> KWP2000 Default Session (1081)
+                finalCmd = "1081"
+            }
+        }
+        
         if transport.isSimulationMode {
             try? await Task.sleep(for: .milliseconds(30))
-            return try await SimulatorEngine.shared.handleRequest(txID: self.txID, rxID: self.rxID, request: hexString)
+            let simResponse = try await SimulatorEngine.shared.handleRequest(txID: self.txID, rxID: self.rxID, request: finalCmd)
+            return translateResponse(simResponse)
         }
         
         let previousTask = lastRequestTask
@@ -112,10 +136,46 @@ final class PandaDriver: VehicleInterface {
             if let previousTask {
                 _ = try? await previousTask.value
             }
-            return try await performDiagnosticRequest(hexString, timeout: timeout)
+            return try await performDiagnosticRequest(finalCmd, timeout: timeout)
         }
         lastRequestTask = newTask
-        return try await newTask.value
+        
+        let rawResponse = try await newTask.value
+        return translateResponse(rawResponse)
+    }
+
+    private func translateResponse(_ response: String) -> String {
+        guard isKWP2000Mode else { return response }
+        let normalized = response.uppercased().replacing(" ", with: "")
+        
+        // Translate positive KWP2000 responses to UDS equivalents
+        if normalized.hasPrefix("7B") {
+            // KWP2000 Write (7B) -> UDS Write (6E)
+            return "6E" + response.dropFirst(2)
+        } else if normalized.hasPrefix("70") {
+            // KWP2000 Routine Response (70) -> UDS Routine Response (71)
+            return "71" + response.dropFirst(2)
+        } else if normalized.hasPrefix("6F") {
+            // KWP2000 IO Response (6F) -> UDS IO Response (70)
+            return "70" + response.dropFirst(2)
+        } else if normalized == "5085" {
+            // KWP2000 Session 85 (5085) -> UDS Session C0 (50C0)
+            return "50C0"
+        } else if normalized == "5081" {
+            // KWP2000 Session 81 (5081) -> UDS Session 01 (5001)
+            return "5001"
+        }
+        
+        // Translate negative KWP2000 responses to UDS equivalents
+        if normalized.hasPrefix("7F3B") {
+            return "7F2E" + response.dropFirst(4)
+        } else if normalized.hasPrefix("7F30") {
+            return "7F31" + response.dropFirst(4)
+        } else if normalized.hasPrefix("7F2F") {
+            return "7F30" + response.dropFirst(4)
+        }
+        
+        return response
     }
 
     private func performDiagnosticRequest(_ hexString: String, timeout: TimeInterval) async throws -> String {
@@ -365,6 +425,7 @@ final class PandaDriver: VehicleInterface {
     func setCANSpeed(bus: UInt8, kbps: Int) async throws {
         // request: 0xde, value: bus, index: kbps * 10
         try await transport.sendControlWrite(requestType: 0x40, request: 0xde, value: UInt16(bus), index: UInt16(kbps * 10))
+        isKWP2000Mode = (kbps == 250)
     }
     
     func setSafetyModel(_ mode: SafetyMode) async throws {

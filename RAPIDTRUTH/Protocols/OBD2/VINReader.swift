@@ -13,112 +13,46 @@ enum VINReader {
             var activeBus: UInt8? = nil
             var activeSpeed: Int? = nil
             
-            // Prioritize 250 kbps (Scenic II / Modus platform) then try 500 kbps (newer Renault/OBD2)
-            for testSpeed in [250, 500] {
+            // KWP2000 on Scenic II / Modus platform operates exclusively at 250 kbps
+            for testSpeed in [250] {
                 if activeBus != nil { break }
                 
-                // 1a. Try 11-bit standard diagnostic ping on buses 0, 1, 2
+                // 1a. Try Renault-specific physical Engine ping (7E0) on buses 0, 1, 2 (KWP2000)
                 for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
+                    try Task.checkCancellation()
                     try? await panda.setCANSpeed(bus: testBus, kbps: testSpeed)
                     panda.bus = testBus
-                    try? await panda.setTarget(txID: "7DF", rxID: "7E8")
-                    if let response = try? await panda.sendDiagnosticRequest("0100", timeout: 1.0) {
+                    try? await panda.setTarget(txID: "7E0", rxID: "7E8")
+                    _ = try? await openDiagnosticSession(interface: panda)
+                    
+                    if let response = try? await panda.sendDiagnosticRequest("2181", timeout: 1.0) {
                         let normalized = response.uppercased().replacing(" ", with: "")
-                        if normalized.contains("4100") {
+                        if normalized.contains("6181") {
                             activeBus = testBus
                             activeSpeed = testSpeed
-                            NSLog("[VINReader] Detected active 11-bit CAN bus: \(testBus) at \(testSpeed) kbps")
+                            NSLog("[VINReader] Detected active Renault Engine CAN bus (KWP2000): \(testBus) at \(testSpeed) kbps")
+                            await closeDiagnosticSession(interface: panda)
                             break
                         }
                     }
+                    await closeDiagnosticSession(interface: panda)
                 }
                 
-                // 1b. Try 29-bit standard diagnostic ping on buses 0, 1, 2
-                if activeBus == nil {
-                    for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
-                        try? await panda.setCANSpeed(bus: testBus, kbps: testSpeed)
-                        panda.bus = testBus
-                        try? await panda.setTarget(txID: "18DB33F1", rxID: "18DAF110")
-                        if let response = try? await panda.sendDiagnosticRequest("0100", timeout: 1.0) {
-                            let normalized = response.uppercased().replacing(" ", with: "")
-                            if normalized.contains("4100") {
-                                activeBus = testBus
-                                activeSpeed = testSpeed
-                                NSLog("[VINReader] Detected active 29-bit CAN bus: \(testBus) at \(testSpeed) kbps")
-                                break
-                            }
-                        }
-                    }
-                }
-                
-                // 1c. Try Renault-specific physical engine ping on buses 0, 1, 2 (KWP and UDS)
+                // 1b. Try Renault-specific physical UCH ping (744) on buses 0, 1, 2 (KWP2000)
                 if activeBus == nil {
                     for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
                         try Task.checkCancellation()
                         try? await panda.setCANSpeed(bus: testBus, kbps: testSpeed)
                         panda.bus = testBus
-                        try? await panda.setTarget(txID: "7E0", rxID: "7E8")
-                        _ = try? await openDiagnosticSession(interface: panda)
-                        
-                        // Try KWP2000
-                        if let response = try? await panda.sendDiagnosticRequest("2181", timeout: 1.0) {
-                            let normalized = response.uppercased().replacing(" ", with: "")
-                            if normalized.contains("6181") {
-                                activeBus = testBus
-                                activeSpeed = testSpeed
-                                NSLog("[VINReader] Detected active Renault CAN bus (KWP2000): \(testBus) at \(testSpeed) kbps")
-                                await closeDiagnosticSession(interface: panda)
-                                break
-                            }
-                        }
-                        
-                        // Try UDS
-                        if let response = try? await panda.sendDiagnosticRequest("22F190", timeout: 1.0) {
-                            let normalized = response.uppercased().replacing(" ", with: "")
-                            if normalized.contains("62F190") {
-                                activeBus = testBus
-                                activeSpeed = testSpeed
-                                NSLog("[VINReader] Detected active Renault CAN bus (UDS): \(testBus) at \(testSpeed) kbps")
-                                await closeDiagnosticSession(interface: panda)
-                                break
-                            }
-                        }
-                        
-                        await closeDiagnosticSession(interface: panda)
-                    }
-                }
-                
-                // 1d. Try Renault-specific physical UCH ping on buses 0, 1, 2 (KWP 744 and UDS 745)
-                if activeBus == nil {
-                    for testBus in [UInt8(0), UInt8(1), UInt8(2)] {
-                        try Task.checkCancellation()
-                        try? await panda.setCANSpeed(bus: testBus, kbps: testSpeed)
-                        panda.bus = testBus
-                        
-                        // Try KWP2000 UCH (744/764)
                         try? await panda.setTarget(txID: "744", rxID: "764")
                         _ = try? await openDiagnosticSession(interface: panda)
+                        
                         if let response = try? await panda.sendDiagnosticRequest("2181", timeout: 1.0) {
                             let normalized = response.uppercased().replacing(" ", with: "")
                             if normalized.contains("6181") {
                                 activeBus = testBus
                                 activeSpeed = testSpeed
                                 NSLog("[VINReader] Detected active Renault UCH CAN bus (KWP2000): \(testBus) at \(testSpeed) kbps")
-                                await closeDiagnosticSession(interface: panda)
-                                break
-                            }
-                        }
-                        await closeDiagnosticSession(interface: panda)
-                        
-                        // Try UDS UCH (745/765)
-                        try? await panda.setTarget(txID: "745", rxID: "765")
-                        _ = try? await openDiagnosticSession(interface: panda)
-                        if let response = try? await panda.sendDiagnosticRequest("22F190", timeout: 1.0) {
-                            let normalized = response.uppercased().replacing(" ", with: "")
-                            if normalized.contains("62F190") {
-                                activeBus = testBus
-                                activeSpeed = testSpeed
-                                NSLog("[VINReader] Detected active Renault UCH CAN bus (UDS): \(testBus) at \(testSpeed) kbps")
                                 await closeDiagnosticSession(interface: panda)
                                 break
                             }
@@ -143,53 +77,8 @@ enum VINReader {
             }
         }
         
-        // 2. Perform Multi-stage VIN discovery fallback
+        // 2. Perform KWP2000 VIN discovery fallback
         
-        // Stage A: Standard 11-bit OBD2 query
-        do {
-            try Task.checkCancellation()
-            try await interface.setTarget(txID: "7DF", rxID: "7E8")
-            let response = try await interface.sendDiagnosticRequest("0902", timeout: 5.0)
-            if let vin = parseVINResponse(response) {
-                NSLog("[VINReader] Success reading standard 11-bit VIN: \(vin)")
-                return vin
-            }
-        } catch {
-            if error is CancellationError { throw error }
-            NSLog("[VINReader] Stage A (11-bit OBD2) failed/timed out: \(error)")
-        }
-        
-        // Stage B: Standard 29-bit OBD2 query
-        do {
-            try Task.checkCancellation()
-            try await interface.setTarget(txID: "18DB33F1", rxID: "18DAF110")
-            let response = try await interface.sendDiagnosticRequest("0902", timeout: 5.0)
-            if let vin = parseVINResponse(response) {
-                NSLog("[VINReader] Success reading standard 29-bit VIN: \(vin)")
-                return vin
-            }
-        } catch {
-            if error is CancellationError { throw error }
-            NSLog("[VINReader] Stage B (29-bit OBD2) failed/timed out: \(error)")
-        }
-        
-        // Stage C1: Renault physical Injection ECU (7E0) UDS query (22F190)
-        do {
-            try Task.checkCancellation()
-            try await interface.setTarget(txID: "7E0", rxID: "7E8")
-            _ = try await openDiagnosticSession(interface: interface)
-            let response = try await interface.sendDiagnosticRequest("22F190", timeout: 3.0)
-            if let vin = parseUDSVINResponse(response) {
-                NSLog("[VINReader] Success reading Renault Engine UDS VIN: \(vin)")
-                await closeDiagnosticSession(interface: interface)
-                return vin
-            }
-            await closeDiagnosticSession(interface: interface)
-        } catch {
-            if error is CancellationError { throw error }
-            NSLog("[VINReader] Stage C1 (Renault Engine UDS 22F190) failed/timed out: \(error)")
-        }
-
         // Stage C2: Renault physical Injection ECU (7E0) KWP query (2181)
         do {
             try Task.checkCancellation()
@@ -205,23 +94,6 @@ enum VINReader {
         } catch {
             if error is CancellationError { throw error }
             NSLog("[VINReader] Stage C2 (Renault Engine KWP 2181) failed/timed out: \(error)")
-        }
-        
-        // Stage D1: Renault physical UCH (745) UDS query (22F190)
-        do {
-            try Task.checkCancellation()
-            try await interface.setTarget(txID: "745", rxID: "765")
-            _ = try await openDiagnosticSession(interface: interface)
-            let response = try await interface.sendDiagnosticRequest("22F190", timeout: 3.0)
-            if let vin = parseUDSVINResponse(response) {
-                NSLog("[VINReader] Success reading Renault UCH UDS VIN: \(vin)")
-                await closeDiagnosticSession(interface: interface)
-                return vin
-            }
-            await closeDiagnosticSession(interface: interface)
-        } catch {
-            if error is CancellationError { throw error }
-            NSLog("[VINReader] Stage D1 (Renault UCH UDS 22F190) failed/timed out: \(error)")
         }
 
         // Stage D2: Renault physical UCH (744) KWP query (2181)
@@ -247,18 +119,7 @@ enum VINReader {
     @discardableResult
     @MainActor
     private static func openDiagnosticSession(interface: VehicleInterface) async throws -> Bool {
-        // 1. Tente la session Renault UDS 10C0 en premier (Clio IV, Megane III...)
-        do {
-            let res = try await interface.sendDiagnosticRequest("10C0", timeout: 1.5)
-            let normalized = res.uppercased().replacing(" ", with: "")
-            if !normalized.starts(with: "7F") && !normalized.isEmpty {
-                return true
-            }
-        } catch is CancellationError {
-            throw CancellationError()
-        } catch {}
-        
-        // 2. Tente la session Renault KWP 1085 en deuxième (Scenic II, Megane II, Clio III...)
+        // 1. Tente la session Renault KWP 1085 en premier (Scenic II, Megane II, Clio III...)
         do {
             let res = try await interface.sendDiagnosticRequest("1085", timeout: 1.5)
             let normalized = res.uppercased().replacing(" ", with: "")
@@ -269,20 +130,9 @@ enum VINReader {
             throw CancellationError()
         } catch {}
         
-        // 3. Tente la session Renault KWP 1086 en troisième
+        // 2. Tente la session Renault KWP 1086 en deuxième
         do {
             let res = try await interface.sendDiagnosticRequest("1086", timeout: 1.5)
-            let normalized = res.uppercased().replacing(" ", with: "")
-            if !normalized.starts(with: "7F") && !normalized.isEmpty {
-                return true
-            }
-        } catch is CancellationError {
-            throw CancellationError()
-        } catch {}
-        
-        // 4. Repli sur la session étendue standard 1003
-        do {
-            let res = try await interface.sendDiagnosticRequest("1003", timeout: 1.5)
             let normalized = res.uppercased().replacing(" ", with: "")
             if !normalized.starts(with: "7F") && !normalized.isEmpty {
                 return true
@@ -296,7 +146,6 @@ enum VINReader {
 
     @MainActor
     private static func closeDiagnosticSession(interface: VehicleInterface) async {
-        _ = try? await interface.sendDiagnosticRequest("1001", timeout: 1.0)
         _ = try? await interface.sendDiagnosticRequest("1081", timeout: 1.0)
     }
 
