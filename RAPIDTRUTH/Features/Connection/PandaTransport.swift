@@ -291,11 +291,17 @@ final class PandaTransport: PandaTransporting {
     
     func sendControlWrite(requestType: UInt16, request: UInt16, value: UInt16, index: UInt16, data: Data = Data()) async throws {
         if isSimulationMode { return }
+        AppLogger.shared.log("USB CTRL: reqType=0x\(String(requestType, radix: 16).uppercased()), req=0x\(String(request, radix: 16).uppercased()), val=\(value), idx=\(index), len=\(data.count)", level: .info)
+        
         var packet = Data()
-        packet.append(contentsOf: withUnsafeBytes(of: requestType.littleEndian) { Array($0) })
-        packet.append(contentsOf: withUnsafeBytes(of: request.littleEndian) { Array($0) })
+        // Standard USB control request header (8 bytes):
+        // bmRequestType (1 byte) + bRequest (1 byte) + wValue (2 bytes) + wIndex (2 bytes) + wLength (2 bytes)
+        packet.append(UInt8(requestType & 0xFF))
+        packet.append(UInt8(request & 0xFF))
         packet.append(contentsOf: withUnsafeBytes(of: value.littleEndian) { Array($0) })
         packet.append(contentsOf: withUnsafeBytes(of: index.littleEndian) { Array($0) })
+        let length = UInt16(data.count)
+        packet.append(contentsOf: withUnsafeBytes(of: length.littleEndian) { Array($0) })
         packet.append(data)
         
         // On attend que la route UDP soit formellement établie avant d'émettre
