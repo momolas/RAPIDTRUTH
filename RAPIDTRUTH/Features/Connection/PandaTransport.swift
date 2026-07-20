@@ -245,48 +245,63 @@ final class PandaTransport: PandaTransporting {
     
     // MARK: - Optimisation UDP : Attente de l'état .ready
     
+    private var inFlightUDPTask: Task<NWConnection, Error>?
+    
     /// Fournit une connexion UDP garantie d'être à l'état `.ready`
     private func getReadyUDPConnection() async throws -> NWConnection {
         if let existing = self.udpConnection, existing.state == .ready {
             return existing
         }
         
-        let targetHost = discoverPandaIP()
-        let endpoint = NWEndpoint.Host(targetHost)
-        let nwPort = NWEndpoint.Port(rawValue: 1338)!
-        let udpParameters = NWParameters(dtls: nil, udp: NWProtocolUDP.Options())
-        udpParameters.prohibitExpensivePaths = false
-        udpParameters.prohibitConstrainedPaths = false
+        if let task = inFlightUDPTask {
+            return try await task.value
+        }
         
-        let newConnection = NWConnection(host: endpoint, port: nwPort, using: udpParameters)
-        self.udpConnection = newConnection
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            var hasResumed = false
+        let task = Task<NWConnection, Error> { @MainActor in
+            defer { self.inFlightUDPTask = nil }
             
-            newConnection.stateUpdateHandler = { [weak self] udpState in
-                Task { @MainActor [weak self] in
-                    guard self != nil else { return }
-                    switch udpState {
-                    case .ready:
-                        if !hasResumed {
-                            hasResumed = true
-                            continuation.resume(returning: newConnection)
+            let targetHost = discoverPandaIP()
+            let endpoint = NWEndpoint.Host(targetHost)
+            guard let nwPort = NWEndpoint.Port(rawValue: 1338) else {
+                throw NSError(domain: "PandaTransport", code: -1, userInfo: [NSLocalizedDescriptionKey: "Port UDP invalide"])
+            }
+            let udpParameters = NWParameters(dtls: nil, udp: NWProtocolUDP.Options())
+            udpParameters.prohibitExpensivePaths = false
+            udpParameters.prohibitConstrainedPaths = false
+            
+            let newConnection = NWConnection(host: endpoint, port: nwPort, using: udpParameters)
+            self.udpConnection = newConnection
+            
+            return try await withCheckedThrowingContinuation { continuation in
+                var hasResumed = false
+                
+                newConnection.stateUpdateHandler = { [weak self] udpState in
+                    Task { @MainActor [weak self] in
+                        guard self != nil else { return }
+                        switch udpState {
+                        case .ready:
+                            if !hasResumed {
+                                hasResumed = true
+                                continuation.resume(returning: newConnection)
+                            }
+                        case .failed(let error):
+                            if !hasResumed {
+                                hasResumed = true
+                                continuation.resume(throwing: error)
+                            }
+                            self?.udpConnection?.cancel()
+                            self?.udpConnection = nil
+                        default:
+                            break
                         }
-                    case .failed(let error):
-                        if !hasResumed {
-                            hasResumed = true
-                            continuation.resume(throwing: error)
-                        }
-                        self?.udpConnection?.cancel()
-                        self?.udpConnection = nil
-                    default:
-                        break
                     }
                 }
+                newConnection.start(queue: self.queue)
             }
-            newConnection.start(queue: self.queue)
         }
+        
+        self.inFlightUDPTask = task
+        return try await task.value
     }
     
     func sendControlWrite(requestType: UInt16, request: UInt16, value: UInt16, index: UInt16, data: Data = Data()) async throws {
@@ -344,16 +359,16 @@ final class PandaTransport: PandaTransporting {
             var ptr = ifaddr
             while ptr != nil {
                 defer { ptr = ptr?.pointee.ifa_next }
-                let interface = ptr?.pointee
-                let addrFamily = interface?.ifa_addr.pointee.sa_family
-                if addrFamily == UInt8(AF_INET) {
-                    if let name = String(cString: (interface?.ifa_name)!, encoding: .utf8), name == "en0" {
-                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                        getnameinfo(interface?.ifa_addr, socklen_t((interface?.ifa_addr.pointee.sa_len)!),
-                                    &hostname, socklen_t(hostname.count),
-                                    nil, socklen_t(0), NI_NUMERICHOST)
-                        address = String(cString: hostname)
-                    }
+                if let interface = ptr?.pointee,
+                   let ifaAddr = interface.ifa_addr,
+                   ifaAddr.pointee.sa_family == UInt8(AF_INET),
+                   let ifaName = interface.ifa_name,
+                   let name = String(cString: ifaName, encoding: .utf8), name == "en0" {
+                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                    getnameinfo(ifaAddr, socklen_t(ifaAddr.pointee.sa_len),
+                                &hostname, socklen_t(hostname.count),
+                                nil, socklen_t(0), NI_NUMERICHOST)
+                    address = String(cString: hostname)
                 }
             }
             freeifaddrs(ifaddr)
