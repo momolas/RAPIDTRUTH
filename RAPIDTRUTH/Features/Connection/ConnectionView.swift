@@ -149,8 +149,7 @@ struct ConnectionView: View {
     private func detectVehicle() async {
         do {
             if let panda = driver as? PandaDriver {
-                try? await panda.configureForOBD()
-                try? await panda.setSafetyModel(.allOutput)
+                try await panda.configureForOBD()
             }
             
             guard let vin = try await VINReader.read(interface: driver) else {
