@@ -275,9 +275,10 @@ final class PandaTransport: PandaTransporting {
             return try await withCheckedThrowingContinuation { continuation in
                 var hasResumed = false
                 
-                newConnection.stateUpdateHandler = { [weak self] udpState in
-                    Task { @MainActor [weak self] in
-                        guard self != nil else { return }
+                let transport = self
+                newConnection.stateUpdateHandler = { [weak transport] udpState in
+                    Task { @MainActor [weak transport] in
+                        guard let transport else { return }
                         switch udpState {
                         case .ready:
                             if !hasResumed {
@@ -289,8 +290,8 @@ final class PandaTransport: PandaTransporting {
                                 hasResumed = true
                                 continuation.resume(throwing: error)
                             }
-                            self?.udpConnection?.cancel()
-                            self?.udpConnection = nil
+                            transport.udpConnection?.cancel()
+                            transport.udpConnection = nil
                         default:
                             break
                         }

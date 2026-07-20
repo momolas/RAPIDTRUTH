@@ -111,7 +111,7 @@ final class PandaDriver: VehicleInterface {
         
         if transport.isSimulationMode {
             try? await Task.sleep(for: .milliseconds(30))
-            let simResponse = try await SimulatorEngine.shared.handleRequest(txID: self.txID, rxID: self.rxID, request: finalCmd)
+            let simResponse = await SimulatorEngine.shared.handleRequest(txID: self.txID, rxID: self.rxID, request: finalCmd)
             AppLogger.shared.log("RX: \(simResponse) on 0x\(String(rxID, radix: 16).uppercased()) [SIM]", level: .command)
             return simResponse
         }

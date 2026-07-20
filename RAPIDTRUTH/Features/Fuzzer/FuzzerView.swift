@@ -781,7 +781,7 @@ struct FuzzerView: View {
         saveSuccessMessage = nil
         saveErrorMessage = nil
         
-        guard let vehicle = activeVehicle, let profile = activeProfile else {
+        guard activeVehicle != nil, let profile = activeProfile else {
             saveErrorMessage = "Aucun véhicule ou profil actif sélectionné."
             return
         }
