@@ -385,7 +385,6 @@ final class PandaDriver: VehicleInterface {
     }
     
     /// Configures the Panda hardware for active OBD2 communication.
-    /// Configures the Panda hardware for active OBD2 communication.
     /// Routes the CAN transceivers to the OBD2 connector, disables heartbeats, disables power-saving,
     /// configures the CAN speed to 250kbps/500kbps, sets safety mode to ALL OUTPUT, and resets communications.
     func configureForOBD() async throws {
