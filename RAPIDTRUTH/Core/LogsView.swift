@@ -51,7 +51,7 @@ struct LogsView: View {
                     .foregroundStyle(.white)
                     .padding(.horizontal, 16)
                 
-                ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.horizontal) {
                     HStack(spacing: 8) {
                         Button(action: { selectedLevel = nil }) {
                             Text("Tous")
@@ -85,6 +85,7 @@ struct LogsView: View {
                     }
                     .padding(.horizontal, 16)
                 }
+                .scrollIndicators(.hidden)
             }
             .padding(.bottom, 12)
             

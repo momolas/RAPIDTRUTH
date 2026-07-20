@@ -90,7 +90,7 @@ struct LiveDataView: View {
                 .clipShape(.rect(cornerRadius: 8))
                 
                 // Horizontal ECU filter scroll view
-                ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.horizontal) {
                     HStack(spacing: 8) {
                         EcuFilterButton(title: "Tous", isSelected: selectedEcu == nil) {
                             selectedEcu = nil
@@ -103,6 +103,7 @@ struct LiveDataView: View {
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
             }
             .padding(.horizontal, 16)
             .padding(.top, 12)
@@ -359,7 +360,7 @@ struct LiveDataChartView: View {
                     .padding(.horizontal, 16)
                     .padding(.top, 8)
                 
-                ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.horizontal) {
                     HStack(spacing: 12) {
                         ForEach(activePidsWithHistory) { pid in
                             let points = history[pid.id] ?? []
