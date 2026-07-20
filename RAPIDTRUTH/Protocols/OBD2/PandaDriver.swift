@@ -397,8 +397,8 @@ final class PandaDriver: VehicleInterface {
         try await transport.sendControlWrite(requestType: 0x40, request: 0xe7, value: 0, index: 0)
         try? await Task.sleep(for: .milliseconds(15))
         
-        // 3. Connect OBD2 CAN lines to CAN transceivers (request: 0xdb, value: 1, index: 0)
-        try await transport.sendControlWrite(requestType: 0x40, request: 0xdb, value: 1, index: 0)
+        // 3. Connect standard OBD2 CAN lines to CAN bus 0 (request: 0xdb, value: 0, index: 0)
+        try await transport.sendControlWrite(requestType: 0x40, request: 0xdb, value: 0, index: 0)
         try? await Task.sleep(for: .milliseconds(15))
         
         // 4. Configure CAN speed for buses 0, 1, and 2
