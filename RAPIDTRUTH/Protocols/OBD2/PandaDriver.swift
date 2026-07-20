@@ -385,40 +385,53 @@ final class PandaDriver: VehicleInterface {
     }
     
     /// Configures the Panda hardware for active OBD2 communication.
+    /// Configures the Panda hardware for active OBD2 communication.
     /// Routes the CAN transceivers to the OBD2 connector, disables heartbeats, disables power-saving,
-    /// configures the CAN speed to 500kbps, and resets communications.
+    /// configures the CAN speed to 250kbps/500kbps, sets safety mode to ALL OUTPUT, and resets communications.
     func configureForOBD() async throws {
         // 1. Disable heartbeat checks (request: 0xf8, value: 0, index: 0)
         try await transport.sendControlWrite(requestType: 0x40, request: 0xf8, value: 0, index: 0)
+        try? await Task.sleep(for: .milliseconds(15))
         
         // 2. Disable power save mode (request: 0xe7, value: 0, index: 0)
         try await transport.sendControlWrite(requestType: 0x40, request: 0xe7, value: 0, index: 0)
+        try? await Task.sleep(for: .milliseconds(15))
         
         // 3. Connect OBD2 CAN lines to CAN transceivers (request: 0xdb, value: 1, index: 0)
         try await transport.sendControlWrite(requestType: 0x40, request: 0xdb, value: 1, index: 0)
+        try? await Task.sleep(for: .milliseconds(15))
         
         // 4. Configure CAN speed for buses 0, 1, and 2
         for bus in [UInt16(0), UInt16(1), UInt16(2)] {
             // Disable auto CAN-FD (0xe8)
             try? await transport.sendControlWrite(requestType: 0x40, request: 0xe8, value: bus, index: 0)
+            try? await Task.sleep(for: .milliseconds(15))
             // Set CAN speed to 250 kbps (0xde, value * 10 = 2500) pour Scenic II et Modus
             try? await transport.sendControlWrite(requestType: 0x40, request: 0xde, value: bus, index: 2500)
+            try? await Task.sleep(for: .milliseconds(15))
         }
         
         // 5. Reset CAN communications (request: 0xc0, value: 0, index: 0)
         try? await transport.sendControlWrite(requestType: 0x40, request: 0xc0, value: 0, index: 0)
+        try? await Task.sleep(for: .milliseconds(15))
+
+        // 6. Set safety mode to ALL OUTPUT to enable active CAN TX on the hardware
+        try await setSafetyModel(.allOutput)
+        try? await Task.sleep(for: .milliseconds(20))
     }
     
     /// Configures the speed of a specific CAN bus on the Panda hardware.
     func setCANSpeed(bus: UInt8, kbps: Int) async throws {
         // request: 0xde, value: bus, index: kbps * 10
         try await transport.sendControlWrite(requestType: 0x40, request: 0xde, value: UInt16(bus), index: UInt16(kbps * 10))
+        try? await Task.sleep(for: .milliseconds(20))
         isKWP2000Mode = (kbps == 250)
     }
     
     func setSafetyModel(_ mode: SafetyMode) async throws {
         // 0x40 is Vendor Request Out, 0xdc (220) is set_safety_model
         try await transport.sendControlWrite(requestType: 0x40, request: 0xdc, value: mode.rawValue, index: 0)
+        try? await Task.sleep(for: .milliseconds(20))
     }
     
     /// Configures the LIN/UART port on the Panda hardware.
