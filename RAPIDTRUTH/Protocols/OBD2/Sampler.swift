@@ -79,6 +79,11 @@ final class Sampler {
             guard let self else { return }
             let intervalNs = UInt64(1_000_000_000.0 / self.sampleRateHz)
             while !Task.isCancelled && !self.stopped {
+                do {
+                    try Task.checkCancellation()
+                } catch {
+                    break
+                }
                 let tickStart = Date.now
                 let row = await self.runOneTick()
                 self.onTick?(row)

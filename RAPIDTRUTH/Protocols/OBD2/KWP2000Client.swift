@@ -293,6 +293,7 @@ final class KWP2000Client {
                 while !Task.isCancelled {
                     try await Task.sleep(for: .seconds(interval))
                     guard let self else { break }
+                    try Task.checkCancellation()
                     let command = suppressResponse ? "3E80" : "3E00"
                     _ = try? await self.interface.sendDiagnosticRequest(command, timeout: 0.5)
                 }

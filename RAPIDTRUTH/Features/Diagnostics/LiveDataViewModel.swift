@@ -41,32 +41,38 @@ final class LiveDataViewModel {
         newSampler.onValues = { [weak self] values in
             guard let self else { return }
             Task { @MainActor in
-                for val in values {
-                    self.liveValues[val.pidID] = val
-                    if let doubleVal = val.value {
-                        let point = ChartDataPoint(timestamp: Date(), value: doubleVal)
-                        var points = self.chartHistory[val.pidID] ?? []
-                        points.append(point)
-                        if points.count > 30 {
-                            points.removeFirst()
-                        }
-                        self.chartHistory[val.pidID] = points
-                    }
-                }
+                self.handleIncomingValues(values)
             }
         }
         
-        newSampler.onTick = { [weak self] tickRow in
+        newSampler.onTick = { [weak self] _ in
             guard let self else { return }
             Task { @MainActor in
                 self.tickCount += 1
-                self.disabledPIDs = newSampler.disabledPIDs
+                if let sampler = self.sampler {
+                    self.disabledPIDs = sampler.disabledPIDs
+                }
             }
         }
         
         self.sampler = newSampler
         newSampler.start()
         NSLog("[LiveData] Started sampling with \(selectedPids.count) PIDs")
+    }
+    
+    private func handleIncomingValues(_ values: [Sampler.LiveValue]) {
+        for val in values {
+            self.liveValues[val.pidID] = val
+            if let doubleVal = val.value {
+                let point = ChartDataPoint(timestamp: Date(), value: doubleVal)
+                var points = self.chartHistory[val.pidID] ?? []
+                points.append(point)
+                if points.count > 30 {
+                    points.removeFirst()
+                }
+                self.chartHistory[val.pidID] = points
+            }
+        }
     }
     
     func stopSampling() {
