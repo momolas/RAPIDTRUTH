@@ -23,6 +23,7 @@ final class ISOTPReassembler {
         var totalLength: Int
         var buffer: Data
         var nextSequence: UInt8
+        var createdAt: ContinuousClock.Instant = .now
     }
 
     private var states: [UInt32: ReassemblyState] = [:]
@@ -36,6 +37,14 @@ final class ISOTPReassembler {
         }
     }
 
+    /// Purge les paquets orphelins expirés (> 1.5s)
+    private func purgeStaleStates() {
+        let now = ContinuousClock.Instant.now
+        states = states.filter { _, state in
+            now.duration(to: state.createdAt) > .seconds(-1.5)
+        }
+    }
+
     /// Analyse une trame CAN entrante et met à jour la machine d'état ISO-TP.
     ///
     /// - Parameters:
@@ -43,6 +52,8 @@ final class ISOTPReassembler {
     ///   - data: Le bloc de données brutes CAN (généralement 8 octets)
     /// - Returns: Un état `ISOTPResult` décrivant l'action requise ou le résultat final.
     func processFrame(address: UInt32, data: Data) -> ISOTPResult {
+        purgeStaleStates()
+        
         guard !data.isEmpty else {
             return .error("Trame vide")
         }

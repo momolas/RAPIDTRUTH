@@ -52,8 +52,8 @@ final class MaintenanceManager {
     /// Télécodage SSPP : true = Activé (CF023 / LC017), false = Désactivé
     func setSSPPEnabled(interface: VehicleInterface, enabled: Bool) async {
         let statusName = enabled ? "Activation de la surveillance SSPP" : "Désactivation de la surveillance SSPP"
-        // KWP2000 Write Data By Local Identifier (3B) on parameter CF023 (01 = Active, 00 = inactive)
-        let command = enabled ? "3BCF02301" : "3BCF02300"
+        // KWP2000 Write Data By Local Identifier (3B) on LID 0x23 (01 = Active, 00 = inactive)
+        let command = enabled ? "3B2301" : "3B2300"
         await executeRoutine(
             interface: interface,
             ecuHeader: "745", // UCH Header
@@ -62,11 +62,11 @@ final class MaintenanceManager {
         )
     }
     
-    /// Ajustement du ralenti moteur dCi : true = Augmenter (+50 RPM / VP011), false = Diminuer (-50 RPM / VP007)
+    /// Ajustement du ralenti moteur dCi : true = Augmenter (+50 RPM), false = Diminuer (-50 RPM)
     func adjustIdleSpeed(interface: VehicleInterface, increase: Bool) async {
         let statusName = increase ? "Augmentation du ralenti dCi (+50 tr/min)" : "Diminution du ralenti dCi (-50 tr/min)"
-        // KWP2000 Start Routine By Local Identifier (30) to start routine VP011 or VP007
-        let command = increase ? "3001VP11" : "3001VP07"
+        // KWP2000 Start Routine By Local Identifier (30) to start routine 0x0B or 0x07
+        let command = increase ? "30010B" : "300107"
         await executeRoutine(
             interface: interface,
             ecuHeader: "7E0", // Injection Header
@@ -90,14 +90,14 @@ final class MaintenanceManager {
             _ = try await openDiagnosticSession(interface: interface)
             try Task.checkCancellation()
             
-            // Write KM Periodicity (VP006 - 2 bytes) using KWP2000 Service 3B
+            // Write KM Periodicity (LID 0x06 - 2 bytes) using KWP2000 Service 3B
             let kmHex = String(format: "%04X", intervalKM)
-            let responseKM = try await interface.sendDiagnosticRequest("3BVP006" + kmHex, timeout: 3.0)
+            let responseKM = try await interface.sendDiagnosticRequest("3B06" + kmHex, timeout: 3.0)
             try Task.checkCancellation()
             
-            // Write Months Periodicity (VP007 - 1 byte) using KWP2000 Service 3B
+            // Write Months Periodicity (LID 0x07 - 1 byte) using KWP2000 Service 3B
             let monthsHex = String(format: "%02X", intervalMonths)
-            let responseMonths = try await interface.sendDiagnosticRequest("3BVP007" + monthsHex, timeout: 3.0)
+            let responseMonths = try await interface.sendDiagnosticRequest("3B07" + monthsHex, timeout: 3.0)
             try Task.checkCancellation()
             
             // Close Session KWP2000 (1081)
@@ -120,8 +120,8 @@ final class MaintenanceManager {
     /// Verrouillage / Déverrouillage de sécurité du calculateur d'Airbag
     func setAirbagLocked(interface: VehicleInterface, locked: Bool) async {
         let statusName = locked ? "Verrouillage sécurisé Airbag (Atelier)" : "Déverrouillage actif Airbag (Route)"
-        // KWP2000 Start Routine By Local Identifier (30) on parameters VP006 (Lock) or VP007 (Unlock)
-        let command = locked ? "3001VP006" : "3001VP007"
+        // KWP2000 Start Routine By Local Identifier (30) on routine 0x06 (Lock) or 0x07 (Unlock)
+        let command = locked ? "300106" : "300107"
         await executeRoutine(
             interface: interface,
             ecuHeader: "752", // Airbag Header
@@ -194,7 +194,7 @@ final class MaintenanceManager {
     /// Allumage automatique des feux : true = Activé (CF064), false = Désactivé
     func setAutoHeadlightsEnabled(interface: VehicleInterface, enabled: Bool) async {
         let statusName = enabled ? "Activation allumage auto des feux" : "Désactivation allumage auto des feux"
-        let command = enabled ? "3BCF06401" : "3BCF06400"
+        let command = enabled ? "3B4001" : "3B4000"
         await executeRoutine(
             interface: interface,
             ecuHeader: "745", // UCH Header
@@ -206,7 +206,7 @@ final class MaintenanceManager {
     /// Essuyage arrière en marche arrière : true = Activé (CF108), false = Désactivé
     func setReverseWiperEnabled(interface: VehicleInterface, enabled: Bool) async {
         let statusName = enabled ? "Activation essuyage arrière en marche arrière" : "Désactivation essuyage arrière en marche arrière"
-        let command = enabled ? "3BCF10801" : "3BCF10800"
+        let command = enabled ? "3B6C01" : "3B6C00"
         await executeRoutine(
             interface: interface,
             ecuHeader: "745", // UCH Header
@@ -218,7 +218,7 @@ final class MaintenanceManager {
     /// Alerte sonore ceinture : true = Activé (CF030), false = Désactivé
     func setSeatbeltBuzzerEnabled(interface: VehicleInterface, enabled: Bool) async {
         let statusName = enabled ? "Activation de l'alerte ceinture" : "Désactivation de l'alerte ceinture"
-        let command = enabled ? "3BCF03001" : "3BCF03000"
+        let command = enabled ? "3B1E01" : "3B1E00"
         await executeRoutine(
             interface: interface,
             ecuHeader: "745", // UCH Header

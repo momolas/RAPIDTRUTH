@@ -93,26 +93,28 @@ final class OBDFuzzer {
                 try await interface.setTarget(txID: ecu, rxID: nil)
                 
                 // 1. Tester Present (KWP2000)
-                let respKwp = try await interface.sendDiagnosticRequest("3E", timeout: 0.2)
-                if !respKwp.isEmpty && !respKwp.contains("ERROR") && respKwp != "NO_DATA" {
+                if let respKwp = try? await interface.sendDiagnosticRequest("3E", timeout: 0.25),
+                   !respKwp.isEmpty && !respKwp.contains("ERROR") && respKwp != "NO_DATA" {
                     discoveredECUs.append(ecu)
+                    try await Task.sleep(for: .milliseconds(15))
                     continue
                 }
                 
                 // 2. Tester Present (UDS) fallback
-                let resp1 = try await interface.sendDiagnosticRequest("3E00", timeout: 0.2)
-                if !resp1.isEmpty && !resp1.contains("ERROR") && resp1 != "NO_DATA" {
+                if let resp1 = try? await interface.sendDiagnosticRequest("3E00", timeout: 0.25),
+                   !resp1.isEmpty && !resp1.contains("ERROR") && resp1 != "NO_DATA" {
                     discoveredECUs.append(ecu)
+                    try await Task.sleep(for: .milliseconds(15))
                     continue
                 }
                 
                 // 3. Read Supported PIDs (OBD-II) fallback
-                let resp2 = try await interface.sendDiagnosticRequest("0100", timeout: 0.2)
-                if !resp2.isEmpty && !resp2.contains("ERROR") && resp2 != "NO_DATA" {
+                if let resp2 = try? await interface.sendDiagnosticRequest("0100", timeout: 0.25),
+                   !resp2.isEmpty && !resp2.contains("ERROR") && resp2 != "NO_DATA" {
                     discoveredECUs.append(ecu)
                 }
                 
-                try await Task.sleep(for: .milliseconds(20))
+                try await Task.sleep(for: .milliseconds(25))
             }
         } catch is CancellationError {
             // Clean exit on cooperative task cancellation

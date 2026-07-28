@@ -49,16 +49,26 @@ final class FormulaEvaluator {
 
     // MARK: - Internals
 
+    private func sanitizeFormula(_ formula: String) -> String {
+        var cleaned = formula
+        cleaned = cleaned.replacing(/\bAND\b/, with: "&")
+        cleaned = cleaned.replacing(/\bOR\b/, with: "|")
+        cleaned = cleaned.replacing(/\bXOR\b/, with: "^")
+        cleaned = cleaned.replacing(/\bNOT\b/, with: "~")
+        return cleaned
+    }
+
     private func compiledFunction(for formula: String) -> JSValue? {
         if let cached = cache[formula] { return cached }
         
+        let cleanedFormula = sanitizeFormula(formula)
         let letters = (0..<26).compactMap { UnicodeScalar(65 + $0) }.map { String($0) }
         let singleVars = letters
         let doubleVars = letters.flatMap { first in letters.map { second in first + second } }
         let allVarsList = Array((singleVars + doubleVars).prefix(100))
         let varsString = allVarsList.joined(separator: ",")
         
-        let source = "(function(\(varsString)){ return (\(formula)); })"
+        let source = "(function(\(varsString)){ return (\(cleanedFormula)); })"
         guard let value = context.evaluateScript(source), value.isObject else {
             return nil
         }
