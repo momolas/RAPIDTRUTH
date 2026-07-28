@@ -2,6 +2,13 @@ import Foundation
 
 enum PidCategory: String, Codable {
     case engine, hybrid, battery, transmission, emissions, diagnostics, other
+    case rpm, speed, temperature
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let rawValue = try container.decode(String.self)
+        self = PidCategory(rawValue: rawValue.lowercased()) ?? .other
+    }
 }
 
 struct PidDef: Codable, Identifiable, Hashable {
