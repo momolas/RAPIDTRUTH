@@ -126,6 +126,9 @@ struct ConnectionView: View {
         }
         
         if isConnected {
+            if let panda = driver as? PandaDriver {
+                panda.attach()
+            }
             await detectVehicle()
         } else {
             if case .error(let message) = pandaTransport.state {

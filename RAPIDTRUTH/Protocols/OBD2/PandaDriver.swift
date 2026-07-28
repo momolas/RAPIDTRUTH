@@ -105,6 +105,7 @@ final class PandaDriver: VehicleInterface {
     }
 
     func sendDiagnosticRequest(_ hexString: String, timeout: TimeInterval) async throws -> String {
+        attach()
         let finalCmd = hexString.replacing(" ", with: "").uppercased()
         
         AppLogger.shared.log("TX: \(finalCmd) on 0x\(String(txID, radix: 16).uppercased())", level: .command)

@@ -18,6 +18,9 @@ protocol PandaTransporting: AnyObject {
     func sendControlWrite(requestType: UInt16, request: UInt16, value: UInt16, index: UInt16, data: Data) async throws
     func setUARTBaudRate(uart: UInt16, baud: UInt32) async throws
     func setUARTParity(uart: UInt16, parity: UInt16) async throws
+    func setCANBaudRate(bus: UInt16, speedKbps: UInt16) async throws
+    func sendHeartbeat(engaged: Bool) async throws
+    func resetCommunications() async throws
 }
 
 enum PandaState: Equatable {
@@ -84,7 +87,8 @@ final class PandaTransport: PandaTransporting {
 
     func connect(host: String? = nil, port: UInt16 = 1337) {
         isIntentionalDisconnect = false
-        lastTargetHost = host
+        let targetHost = host ?? "192.168.0.10"
+        lastTargetHost = targetHost
         lastTargetPort = port
         
         cleanupConnections()
@@ -98,11 +102,10 @@ final class PandaTransport: PandaTransporting {
             return
         }
         
-        let targetHost = host ?? discoverPandaIP()
-        connectToHost(targetHost, port: port, allowFallback: host == nil)
+        connectToHost(targetHost, port: port)
     }
     
-    private func connectToHost(_ targetHost: String, port: UInt16, allowFallback: Bool) {
+    private func connectToHost(_ targetHost: String, port: UInt16) {
         let endpoint = NWEndpoint.Host(targetHost)
         let nwPort = NWEndpoint.Port(rawValue: port)!
         
@@ -116,8 +119,6 @@ final class PandaTransport: PandaTransporting {
         let connection = NWConnection(host: endpoint, port: nwPort, using: parameters)
         self.connection = connection
         
-        var fallbackTriggered = false
-        
         connection.stateUpdateHandler = { [weak self] nwState in
             Task { @MainActor [weak self] in
                 guard let self else { return }
@@ -126,23 +127,17 @@ final class PandaTransport: PandaTransporting {
                     self.state = .connected
                     self.startReceiveLoop()
                 case .failed(let error):
-                    if allowFallback && !fallbackTriggered {
-                        fallbackTriggered = true
-                        self.triggerFallback(failedHost: targetHost, port: port)
-                    } else {
-                        self.handleConnectionDrop(error: error.localizedDescription)
-                    }
+                    self.handleConnectionDrop(error: error.localizedDescription)
                 case .waiting(let error):
                     NSLog("[PandaTransport] Connection waiting: \(error.localizedDescription)")
                     Task {
-                        try? await Task.sleep(for: .milliseconds(4500))
-                        if self.state == .connecting && !fallbackTriggered && self.connection === connection {
-                            fallbackTriggered = true
-                            self.triggerFallback(failedHost: targetHost, port: port)
+                        try? await Task.sleep(for: .milliseconds(1500))
+                        if self.state == .connecting && self.connection === connection {
+                            self.handleConnectionDrop(error: "Délai d'attente réseau dépassé")
                         }
                     }
                 case .cancelled:
-                    if self.state != .idle && !fallbackTriggered && self.isIntentionalDisconnect { 
+                    if self.state != .idle && self.isIntentionalDisconnect { 
                         self.state = .idle 
                     }
                 default:
@@ -152,19 +147,6 @@ final class PandaTransport: PandaTransporting {
         }
         
         connection.start(queue: queue)
-    }
-    
-    private func triggerFallback(failedHost: String, port: UInt16) {
-        let components = failedHost.components(separatedBy: ".")
-        guard components.count == 4 else { return }
-        let base = "\(components[0]).\(components[1]).\(components[2])"
-        let lastDigit = components[3]
-        
-        let alternativeHost = (lastDigit == "10") ? "\(base).1" : "\(base).10"
-        NSLog("[PandaTransport] Fallback IP: \(alternativeHost)")
-        
-        cleanupConnections()
-        connectToHost(alternativeHost, port: port, allowFallback: false)
     }
     
     func disconnect() {
@@ -216,7 +198,7 @@ final class PandaTransport: PandaTransporting {
             try? await Task.sleep(for: .seconds(2))
             guard !self.isIntentionalDisconnect else { return }
             let host = self.lastTargetHost ?? self.discoverPandaIP()
-            self.connectToHost(host, port: self.lastTargetPort, allowFallback: false)
+            self.connectToHost(host, port: self.lastTargetPort)
         }
     }
     
@@ -340,6 +322,18 @@ final class PandaTransport: PandaTransporting {
     
     func setUARTParity(uart: UInt16, parity: UInt16) async throws {
         try await sendControlWrite(requestType: 0x40, request: 226, value: parity, index: uart)
+    }
+    
+    func setCANBaudRate(bus: UInt16, speedKbps: UInt16) async throws {
+        try await sendControlWrite(requestType: 0x40, request: 0xDE, value: bus, index: speedKbps * 10)
+    }
+
+    func sendHeartbeat(engaged: Bool = false) async throws {
+        try await sendControlWrite(requestType: 0x40, request: 0xF3, value: engaged ? 1 : 0, index: 0)
+    }
+
+    func resetCommunications() async throws {
+        try await sendControlWrite(requestType: 0x40, request: 0xC0, value: 0, index: 0)
     }
     
     // MARK: - Utilitaires Réseau (Maintenus en C-API pour compatibilité immédiate)
