@@ -7,11 +7,14 @@ enum DTCState: String, Sendable {
 }
 
 struct DTC: Identifiable, Equatable, Sendable {
-    var id: String { "\(ecu)-\(code)" }
+    var id: String { "\(ecu)-\(rawHex)" }
+    let rawHex: String
     let code: String
+    let dfCode: String?
     let description: String?
     let state: DTCState
     let ecu: String
+    var freezeFrame: [String: String]? = nil
 }
 
 @MainActor
@@ -20,6 +23,7 @@ final class DTCLoader {
     var dtcs: [DTC] = []
     var isScanning = false
     var isClearing = false
+    var isLoadingFreezeFrame = false
     var scanError: String?
     var currentEcuScanning: String?
 
@@ -77,6 +81,37 @@ final class DTCLoader {
         isClearing = false
     }
 
+    /// Extrait la trame gelée (Freeze Frame / Contexte d'apparition) pour un défaut spécifique
+    func fetchFreezeFrame(interface: VehicleInterface, profile: Profile, dtcIndex: Int) async {
+        guard dtcs.indices.contains(dtcIndex) else { return }
+        let dtc = dtcs[dtcIndex]
+        isLoadingFreezeFrame = true
+        
+        do {
+            let ecuDef = profile.ecus[dtc.ecu]
+            let reqHeader = ecuDef?.requestHeader ?? "7E0"
+            try await interface.setTarget(txID: reqHeader, rxID: nil)
+            
+            // KWP2000 Service 18: Report Extended Data by DTC (Freeze Frame)
+            let reqCmd = "18\(dtc.rawHex)00"
+            let response = try await interface.sendDiagnosticRequest(reqCmd, timeout: 3.0)
+            
+            let decodedFrame = parseFreezeFrameResponse(response)
+            if !decodedFrame.isEmpty {
+                dtcs[dtcIndex].freezeFrame = decodedFrame
+            } else {
+                dtcs[dtcIndex].freezeFrame = [
+                    "Statut": "Trame gelée non enregistrée",
+                    "Kilométrage": "N/A"
+                ]
+            }
+        } catch {
+            dtcs[dtcIndex].freezeFrame = ["Erreur": error.localizedDescription]
+        }
+        
+        isLoadingFreezeFrame = false
+    }
+
     private func scanGenericDTCs(interface: VehicleInterface) async -> [DTC] {
         var results: [DTC] = []
         let modes: [(String, DTCState)] = [
@@ -90,9 +125,10 @@ final class DTCLoader {
                 try await interface.setTarget(txID: "7E0", rxID: nil)
                 let response = try await interface.sendDiagnosticRequest(mode, timeout: 3.0)
                 let codes = parseGenericDTCs(from: response)
-                for code in codes {
-                    let desc = DTCDescriptionProvider.shared.description(for: code)
-                    results.append(DTC(code: code, description: desc, state: state, ecu: "engine"))
+                for (hexCode, stdCode) in codes {
+                    let desc = DTCDescriptionProvider.shared.description(for: hexCode)
+                    let dfCode = formatRenaultDFCode(hexCode)
+                    results.append(DTC(rawHex: hexCode, code: stdCode, dfCode: dfCode, description: desc, state: state, ecu: "engine"))
                 }
             } catch {
                 NSLog("[DTCLoader] Generic scan for mode \(mode) failed: \(error)")
@@ -101,8 +137,8 @@ final class DTCLoader {
         return results.sorted(by: { $0.code < $1.code })
     }
 
-    private func parseGenericDTCs(from hex: String) -> [String] {
-        var results: [String] = []
+    private func parseGenericDTCs(from hex: String) -> [(String, String)] {
+        var results: [(String, String)] = []
         let lines = hex.split(whereSeparator: \.isNewline).map { String($0) }
         var joinedPayload = ""
         
@@ -120,7 +156,6 @@ final class DTCLoader {
             joinedPayload += frameData
         }
         
-        // Find positive response markers (43, 47, 4A)
         var payload = joinedPayload
         if let range = payload.range(of: "43") {
             payload = String(payload[range.upperBound...])
@@ -132,7 +167,6 @@ final class DTCLoader {
             return []
         }
         
-        // Skip DTC count byte (2 characters)
         if payload.count >= 2 {
             payload.removeFirst(2)
         }
@@ -142,7 +176,7 @@ final class DTCLoader {
         while i + 3 < chars.count {
             let hexCode = String(chars[i...i+3])
             if hexCode != "0000", let code = decodeSingleDTC(hexCode) {
-                results.append(code)
+                results.append((hexCode, code))
             }
             i += 4
         }
@@ -171,24 +205,21 @@ final class DTCLoader {
         if joinedPayload.hasPrefix("57") {
             joinedPayload.removeFirst(2) // Remove "57"
             
-            // Second byte is NDTC (Number of DTCs)
             if joinedPayload.count >= 2 {
                 joinedPayload.removeFirst(2)
                 
                 let chars = Array(joinedPayload)
                 var i = 0
-                // Each DTC is 3 bytes (6 hex characters): [High] [Low] [Status]
                 while i + 5 < chars.count {
                     let hexCode = String(chars[i...i+3])
                     let hexStatus = String(chars[i+4...i+5])
                     
                     if let code = decodeSingleDTC(hexCode), code != "P0000" {
                         if let statusVal = UInt8(hexStatus, radix: 16) {
-                            // Bit 2 (0x04) = Current Failure / Active
-                            // Bit 1 (0x02) = Historical / Stored
                             let state: DTCState = (statusVal & 0x04) != 0 ? .active : .stored
                             let desc = DTCDescriptionProvider.shared.description(for: hexCode)
-                            results.append(DTC(code: code, description: desc, state: state, ecu: ecuName))
+                            let dfCode = formatRenaultDFCode(hexCode)
+                            results.append(DTC(rawHex: hexCode, code: code, dfCode: dfCode, description: desc, state: state, ecu: ecuName))
                         }
                     }
                     i += 6
@@ -196,6 +227,53 @@ final class DTCLoader {
             }
         }
         return results
+    }
+
+    private func formatRenaultDFCode(_ hexCode: String) -> String {
+        if let val = Int(hexCode, radix: 16) {
+            return String(format: "DF%03d", val % 1000)
+        }
+        return "DF" + hexCode.suffix(3)
+    }
+
+    private func parseFreezeFrameResponse(_ hex: String) -> [String: String] {
+        let clean = hex.replacing(" ", with: "").uppercased()
+        guard clean.contains("58"), clean.count >= 16 else { return [:] }
+        
+        var frameMap: [String: String] = [:]
+        
+        // Extract 3-byte mileage sequence if present
+        let chars = Array(clean)
+        if chars.count >= 20 {
+            let byte1 = UInt32(String(chars[10...11]), radix: 16) ?? 0
+            let byte2 = UInt32(String(chars[12...13]), radix: 16) ?? 0
+            let byte3 = UInt32(String(chars[14...15]), radix: 16) ?? 0
+            let km = (byte1 << 16) | (byte2 << 8) | byte3
+            if km > 0 && km < 1_000_000 {
+                frameMap["Kilométrage apparition"] = "\(km) km"
+            }
+        }
+        
+        if chars.count >= 24 {
+            let rpmByte1 = Double(UInt8(String(chars[16...17]), radix: 16) ?? 0)
+            let rpmByte2 = Double(UInt8(String(chars[18...19]), radix: 16) ?? 0)
+            let rpm = Int((rpmByte1 * 256.0 + rpmByte2) / 4.0)
+            if rpm > 0 && rpm < 8000 {
+                frameMap["Régime Moteur"] = "\(rpm) tr/min"
+            }
+        }
+        
+        if chars.count >= 28 {
+            let tempByte = Int(UInt8(String(chars[20...21]), radix: 16) ?? 0) - 40
+            if tempByte >= -40 && tempByte <= 150 {
+                frameMap["Température Eau"] = "\(tempByte) °C"
+            }
+            
+            let speedByte = Int(UInt8(String(chars[22...23]), radix: 16) ?? 0)
+            frameMap["Vitesse Véhicule"] = "\(speedByte) km/h"
+        }
+        
+        return frameMap
     }
 
     private func decodeSingleDTC(_ hex: String) -> String? {

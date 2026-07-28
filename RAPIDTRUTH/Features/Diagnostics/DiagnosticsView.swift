@@ -72,40 +72,90 @@ struct DiagnosticsView: View {
                         .padding()
                     } else {
                         VStack(spacing: 8) {
-                            ForEach(dtcLoader.dtcs) { dtc in
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        HStack(alignment: .bottom) {
-                                            Text(dtc.code)
-                                                .font(.headline)
-                                                .foregroundStyle(.white)
-                                            Text(dtc.ecu.uppercased())
-                                                .font(.caption)
-                                                .foregroundStyle(.tertiary)
+                            ForEach(Array(dtcLoader.dtcs.enumerated()), id: \.element.id) { index, dtc in
+                                VStack(alignment: .leading, spacing: 8) {
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            HStack(alignment: .center, spacing: 6) {
+                                                if let df = dtc.dfCode {
+                                                    Text(df)
+                                                        .font(.caption).bold()
+                                                        .padding(.horizontal, 6)
+                                                        .padding(.vertical, 2)
+                                                        .background(Color.appAccent.opacity(0.2))
+                                                        .foregroundStyle(Color.appAccent)
+                                                        .clipShape(.rect(cornerRadius: 4))
+                                                }
+                                                
+                                                Text(dtc.code)
+                                                    .font(.headline)
+                                                    .foregroundStyle(.white)
+                                                
+                                                Text("(\(dtc.ecu.uppercased()))")
+                                                    .font(.caption)
+                                                    .foregroundStyle(.tertiary)
+                                            }
+                                            
+                                            if let desc = dtc.description {
+                                                Text(desc)
+                                                    .font(.caption)
+                                                    .foregroundStyle(.secondary)
+                                                    .lineLimit(2)
+                                                    .multilineTextAlignment(.leading)
+                                            }
                                         }
                                         
-                                        if let desc = dtc.description {
-                                            Text(desc)
-                                                .font(.caption)
-                                                .foregroundStyle(.secondary)
-                                                .lineLimit(2)
-                                                .multilineTextAlignment(.leading)
+                                        Spacer()
+                                        
+                                        VStack(alignment: .trailing, spacing: 6) {
+                                            Text(dtc.state == .active ? "ACTIF" : "MÉMORISÉ")
+                                                .font(.caption).bold()
+                                                .padding(.horizontal, 8)
+                                                .padding(.vertical, 4)
+                                                .background(dtc.state == .active ? Color.red.opacity(0.2) : Color.orange.opacity(0.2))
+                                                .foregroundStyle(dtc.state == .active ? .red : .orange)
+                                                .clipShape(.rect(cornerRadius: 5))
+                                            
+                                            Button {
+                                                Task {
+                                                    await dtcLoader.fetchFreezeFrame(interface: interface, profile: profile, dtcIndex: index)
+                                                }
+                                            } label: {
+                                                Label("Trame Gelée", systemImage: "snowflake")
+                                                    .font(.captionTiny)
+                                                    .foregroundStyle(Color.appAccent)
+                                            }
+                                            .buttonStyle(.plain)
                                         }
                                     }
                                     
-                                    Spacer()
-                                    
-                                    Text(dtc.state == .active ? "ACTIF" : "MÉMORISÉ")
-                                        .font(.caption).bold()
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
-                                        .background(dtc.state == .active ? Color.red.opacity(0.2) : Color.orange.opacity(0.2))
-                                        .foregroundStyle(dtc.state == .active ? .red : .orange)
-                                        .clipShape(.rect(cornerRadius: 5))
+                                    // Freeze Frame Details Card
+                                    if let freezeFrame = dtc.freezeFrame {
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text("Contexte d'apparition (Freeze Frame) :")
+                                                .font(.captionTiny).bold()
+                                                .foregroundStyle(Color.appAccent)
+                                            
+                                            ForEach(Array(freezeFrame.keys.sorted()), id: \.self) { key in
+                                                HStack {
+                                                    Text(key)
+                                                        .font(.monoTiny)
+                                                        .foregroundStyle(.secondary)
+                                                    Spacer()
+                                                    Text(freezeFrame[key] ?? "")
+                                                        .font(.monoTiny).bold()
+                                                        .foregroundStyle(.white)
+                                                }
+                                            }
+                                        }
+                                        .padding(8)
+                                        .background(Color.black.opacity(0.25))
+                                        .clipShape(.rect(cornerRadius: 6))
+                                    }
                                 }
                                 .padding()
                                 .background(Color.white.opacity(0.05))
-                                .clipShape(.rect(cornerRadius: 5))
+                                .clipShape(.rect(cornerRadius: 6))
                             }
                         }
                     }
