@@ -8,12 +8,20 @@ enum RegistryBuilder {
     /// Stable category sort order — matches the web app for parity.
     private static let categoryOrder: [PidCategory: Int] = [
         .engine: 0,
-        .hybrid: 1,
-        .battery: 2,
-        .transmission: 3,
-        .emissions: 4,
-        .diagnostics: 5,
-        .other: 6,
+        .rpm: 1,
+        .speed: 2,
+        .temperature: 3,
+        .battery: 4,
+        .hybrid: 5,
+        .transmission: 6,
+        .brakes: 7,
+        .climate: 8,
+        .airbag: 9,
+        .lighting: 10,
+        .body: 11,
+        .emissions: 12,
+        .diagnostics: 13,
+        .other: 14,
     ]
 
     /// Combine standard + profile PIDs into one sampling list.

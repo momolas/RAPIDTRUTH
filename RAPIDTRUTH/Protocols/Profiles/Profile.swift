@@ -3,6 +3,7 @@ import Foundation
 enum PidCategory: String, Codable {
     case engine, hybrid, battery, transmission, emissions, diagnostics, other
     case rpm, speed, temperature
+    case climate, airbag, brakes, lighting, body
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
