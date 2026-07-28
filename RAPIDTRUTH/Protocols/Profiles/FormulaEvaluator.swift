@@ -36,7 +36,7 @@ final class FormulaEvaluator {
         guard let fn = compiledFunction(for: formula) else { return nil }
         
         let undefined = JSValue(undefinedIn: context) ?? JSValue()
-        let args: [Any] = (0..<60).map { i -> Any in
+        let args: [Any] = (0..<100).map { i -> Any in
             bytes.indices.contains(i) ? Int(bytes[i]) : undefined as Any
         }
         guard let result = fn.call(withArguments: args) else { return nil }
@@ -52,9 +52,13 @@ final class FormulaEvaluator {
     private func compiledFunction(for formula: String) -> JSValue? {
         if let cached = cache[formula] { return cached }
         
-        // A to Z, then AA to AH (60 variables total)
-        let vars = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,AE,AF,AG,AH,AI,AJ,AK,AL,AM,AN,AO,AP,AQ,AR,AS,AT,AU,AV,AW,AX,AY,AZ,BA,BB,BC,BD,BE,BF,BG,BH"
-        let source = "(function(\(vars)){ return (\(formula)); })"
+        let letters = (0..<26).compactMap { UnicodeScalar(65 + $0) }.map { String($0) }
+        let singleVars = letters
+        let doubleVars = letters.flatMap { first in letters.map { second in first + second } }
+        let allVarsList = Array((singleVars + doubleVars).prefix(100))
+        let varsString = allVarsList.joined(separator: ",")
+        
+        let source = "(function(\(varsString)){ return (\(formula)); })"
         guard let value = context.evaluateScript(source), value.isObject else {
             return nil
         }
