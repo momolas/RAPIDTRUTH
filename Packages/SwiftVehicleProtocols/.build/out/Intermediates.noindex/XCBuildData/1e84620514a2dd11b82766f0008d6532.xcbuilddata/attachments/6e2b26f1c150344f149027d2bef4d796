@@ -1,4 +1,0 @@
-module SwiftVehicleProtocols {
-header "SwiftVehicleProtocols-Swift.h"
-export *
-}

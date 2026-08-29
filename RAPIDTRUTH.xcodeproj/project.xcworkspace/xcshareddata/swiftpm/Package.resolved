@@ -1,0 +1,15 @@
+{
+  "originHash" : "4805e7e87f694cff42402507f63551018a5097b7420cd95ac8e250da67c6c7bd",
+  "pins" : [
+    {
+      "identity" : "swiftvehicleprotocols",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/momolas/SwiftVehicleProtocols.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "c96518e24025fbe443a8c654b593022732b4b360"
+      }
+    }
+  ],
+  "version" : 3
+}

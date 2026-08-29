@@ -1,4 +1,0 @@
-module VehicleTransport {
-header "VehicleTransport-Swift.h"
-export *
-}

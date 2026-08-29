@@ -1,4 +1,0 @@
-module VehicleAnalytics {
-header "VehicleAnalytics-Swift.h"
-export *
-}
