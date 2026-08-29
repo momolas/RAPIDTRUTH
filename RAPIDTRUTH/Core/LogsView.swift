@@ -23,6 +23,13 @@ struct LogsView: View {
                 
                 Spacer()
                 
+                Button(action: { _ = AppTestSuite.runAllTests() }) {
+                    Label("Auto-Test", systemImage: "checkmark.seal.fill")
+                        .font(.captionText)
+                        .foregroundStyle(Color.appAccent)
+                }
+                .glassActionButton()
+                
                 Button(action: { logger.clear() }) {
                     Label("Effacer", systemImage: "trash")
                         .font(.captionText)
