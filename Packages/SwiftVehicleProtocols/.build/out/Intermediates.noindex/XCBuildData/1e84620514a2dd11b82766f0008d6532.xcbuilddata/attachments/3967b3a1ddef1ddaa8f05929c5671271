@@ -1,0 +1,29 @@
+{
+  "" : {
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/VehicleAnalytics-primary.dia",
+    "emit-module-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/VehicleAnalytics-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/VehicleAnalytics-primary-emit-module.dia",
+    "pch" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/VehicleAnalytics-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/VehicleAnalytics-primary.swiftdeps"
+  },
+  "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/Sources/VehicleAnalytics/MultiRateSampler.swift" : {
+    "const-values" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/MultiRateSampler.swiftconstvalues",
+    "dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/MultiRateSampler.d",
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/MultiRateSampler.dia",
+    "index-unit-output-path" : "/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/MultiRateSampler.o",
+    "llvm-bc" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/MultiRateSampler.bc",
+    "object" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/MultiRateSampler.o",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/MultiRateSampler.swiftdeps",
+    "swiftmodule" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/MultiRateSampler~partial.swiftmodule"
+  },
+  "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/Sources/VehicleAnalytics/SignalCorrelator.swift" : {
+    "const-values" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/SignalCorrelator.swiftconstvalues",
+    "dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/SignalCorrelator.d",
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/SignalCorrelator.dia",
+    "index-unit-output-path" : "/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/SignalCorrelator.o",
+    "llvm-bc" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/SignalCorrelator.bc",
+    "object" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/SignalCorrelator.o",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/SignalCorrelator.swiftdeps",
+    "swiftmodule" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleAnalytics-t.build/Objects-normal/arm64/SignalCorrelator~partial.swiftmodule"
+  }
+}

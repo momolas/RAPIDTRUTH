@@ -1,0 +1,49 @@
+{
+  "" : {
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/VehicleCore-primary.dia",
+    "emit-module-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/VehicleCore-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/VehicleCore-primary-emit-module.dia",
+    "pch" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/VehicleCore-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/VehicleCore-primary.swiftdeps"
+  },
+  "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/Sources/VehicleCore/DiagnosticModels.swift" : {
+    "const-values" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/DiagnosticModels.swiftconstvalues",
+    "dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/DiagnosticModels.d",
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/DiagnosticModels.dia",
+    "index-unit-output-path" : "/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/DiagnosticModels.o",
+    "llvm-bc" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/DiagnosticModels.bc",
+    "object" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/DiagnosticModels.o",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/DiagnosticModels.swiftdeps",
+    "swiftmodule" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/DiagnosticModels~partial.swiftmodule"
+  },
+  "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/Sources/VehicleCore/FormulaEvaluator.swift" : {
+    "const-values" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/FormulaEvaluator.swiftconstvalues",
+    "dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/FormulaEvaluator.d",
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/FormulaEvaluator.dia",
+    "index-unit-output-path" : "/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/FormulaEvaluator.o",
+    "llvm-bc" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/FormulaEvaluator.bc",
+    "object" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/FormulaEvaluator.o",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/FormulaEvaluator.swiftdeps",
+    "swiftmodule" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/FormulaEvaluator~partial.swiftmodule"
+  },
+  "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/Sources/VehicleCore/HexParsing.swift" : {
+    "const-values" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/HexParsing.swiftconstvalues",
+    "dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/HexParsing.d",
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/HexParsing.dia",
+    "index-unit-output-path" : "/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/HexParsing.o",
+    "llvm-bc" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/HexParsing.bc",
+    "object" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/HexParsing.o",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/HexParsing.swiftdeps",
+    "swiftmodule" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/HexParsing~partial.swiftmodule"
+  },
+  "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/Sources/VehicleCore/UDSNRC.swift" : {
+    "const-values" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/UDSNRC.swiftconstvalues",
+    "dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/UDSNRC.d",
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/UDSNRC.dia",
+    "index-unit-output-path" : "/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/UDSNRC.o",
+    "llvm-bc" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/UDSNRC.bc",
+    "object" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/UDSNRC.o",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/UDSNRC.swiftdeps",
+    "swiftmodule" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleCore-t.build/Objects-normal/arm64/UDSNRC~partial.swiftmodule"
+  }
+}

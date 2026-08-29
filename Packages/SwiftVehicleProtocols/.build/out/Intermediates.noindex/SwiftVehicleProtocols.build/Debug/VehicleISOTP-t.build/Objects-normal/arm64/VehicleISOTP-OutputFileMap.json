@@ -1,0 +1,19 @@
+{
+  "" : {
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/VehicleISOTP-primary.dia",
+    "emit-module-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/VehicleISOTP-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/VehicleISOTP-primary-emit-module.dia",
+    "pch" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/VehicleISOTP-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/VehicleISOTP-primary.swiftdeps"
+  },
+  "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/Sources/VehicleISOTP/ISOTPReassembler.swift" : {
+    "const-values" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/ISOTPReassembler.swiftconstvalues",
+    "dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/ISOTPReassembler.d",
+    "diagnostics" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/ISOTPReassembler.dia",
+    "index-unit-output-path" : "/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/ISOTPReassembler.o",
+    "llvm-bc" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/ISOTPReassembler.bc",
+    "object" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/ISOTPReassembler.o",
+    "swift-dependencies" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/ISOTPReassembler.swiftdeps",
+    "swiftmodule" : "/Users/mo/Developer/PROTO/RAPIDTRUTH/Packages/SwiftVehicleProtocols/.build/out/Intermediates.noindex/SwiftVehicleProtocols.build/Debug/VehicleISOTP-t.build/Objects-normal/arm64/ISOTPReassembler~partial.swiftmodule"
+  }
+}

@@ -1,0 +1,4 @@
+module VehicleTransportPanda {
+header "VehicleTransportPanda-Swift.h"
+export *
+}

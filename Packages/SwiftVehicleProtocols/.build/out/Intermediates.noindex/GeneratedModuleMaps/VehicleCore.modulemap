@@ -1,0 +1,4 @@
+module VehicleCore {
+header "VehicleCore-Swift.h"
+export *
+}

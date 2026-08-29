@@ -1,0 +1,4 @@
+module VehicleDiagnostic {
+header "VehicleDiagnostic-Swift.h"
+export *
+}
