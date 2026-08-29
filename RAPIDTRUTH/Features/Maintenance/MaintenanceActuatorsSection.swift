@@ -11,106 +11,41 @@ struct MaintenanceActuatorsSection: View {
     var body: some View {
         DisclosureGroup(isExpanded: $isExpanded) {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Déclenchement forcé des actionneurs (UDS Service 30)")
+                Text("Commande active des actionneurs et tests de combiné (UDS Service 30 / 2F).")
                     .font(.captionText)
-                    .foregroundStyle(.gray)
-                    .padding(.bottom, 4)
+                    .foregroundStyle(.secondary)
+                    .padding(.bottom, 2)
 
-                // Quick Full Dashboard Button
                 Button {
                     showingFullDashboard = true
                 } label: {
                     HStack {
                         Image(systemName: "gauge.with.needle.fill")
+                            .font(.title3)
                             .foregroundStyle(Color.appAccent)
-                        Text("Ouvrir le Tableau de Bord des Actionneurs & Instruments")
-                            .font(.caption).bold()
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Ouvrir le Tableau de Bord des Actionneurs")
+                                .font(.bodyText).bold()
+                                .foregroundStyle(.white)
+                            Text("16 actionneurs : Aiguilles, Voyants, Ventilateurs, Climatisation, Klaxon...")
+                                .font(.captionTiny)
+                                .foregroundStyle(.secondary)
+                        }
                         Spacer()
                         Image(systemName: "chevron.right")
                             .font(.caption2)
                             .foregroundStyle(.secondary)
                     }
-                    .padding(10)
-                    .background(Color.appAccent.opacity(0.15))
-                    .clipShape(.rect(cornerRadius: 8))
+                    .padding(12)
+                    .background(Color.appAccent.opacity(0.12))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.appAccent.opacity(0.4), lineWidth: 1)
+                    )
+                    .clipShape(.rect(cornerRadius: 10))
                 }
                 .buttonStyle(.plain)
-                .padding(.bottom, 4)
-
-                // GMV
-                HStack {
-                    Text("Moto-ventilateur (Refroidissement)")
-                        .font(.bodyText)
-                    Spacer()
-                    Button("Petite V") {
-                        Task {
-                            await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "7E0", command: "300102", name: "Moto-ventilateur Petite Vitesse")
-                        }
-                    }
-                    .font(.captionText)
-                    .glassActionButton()
-                    .disabled(!isConnected || maintenanceManager.isExecuting)
-
-                    Button("Grande V") {
-                        Task {
-                            await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "7E0", command: "300101", name: "Moto-ventilateur Grande Vitesse")
-                        }
-                    }
-                    .font(.captionText)
-                    .glassActionButton()
-                    .disabled(!isConnected || maintenanceManager.isExecuting)
-                }
-
-                Divider().background(Color.white.opacity(0.05))
-
-                // Clim
-                HStack {
-                    Text("Compresseur Climatisation (AC)")
-                        .font(.bodyText)
-                    Spacer()
-                    Button("Déclencher") {
-                        Task {
-                            await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "7E0", command: "300103", name: "Embrayage Compresseur Clim")
-                        }
-                    }
-                    .font(.captionText)
-                    .glassActionButton()
-                    .disabled(!isConnected || maintenanceManager.isExecuting)
-                }
-
-                Divider().background(Color.white.opacity(0.05))
-
-                // Avertisseur
-                HStack {
-                    Text("Avertisseur Sonore (Klaxon)")
-                        .font(.bodyText)
-                    Spacer()
-                    Button("Déclencher") {
-                        Task {
-                            await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "745", command: "300104", name: "Avertisseur Sonore (Klaxon)")
-                        }
-                    }
-                    .font(.captionText)
-                    .glassActionButton()
-                    .disabled(!isConnected || maintenanceManager.isExecuting)
-                }
-
-                Divider().background(Color.white.opacity(0.05))
-
-                // Essuie-glaces
-                HStack {
-                    Text("Balayage Essuie-glace")
-                        .font(.bodyText)
-                    Spacer()
-                    Button("Déclencher") {
-                        Task {
-                            await maintenanceManager.runActuatorTest(interface: interface, ecuHeader: "745", command: "300105", name: "Balayage Essuie-glace")
-                        }
-                    }
-                    .font(.captionText)
-                    .glassActionButton()
-                    .disabled(!isConnected || maintenanceManager.isExecuting)
-                }
+                .disabled(!isConnected)
             }
             .padding(.vertical, 8)
             .sheet(isPresented: $showingFullDashboard) {
@@ -126,7 +61,7 @@ struct MaintenanceActuatorsSection: View {
                 }
             }
         } label: {
-            Text("Test des Actionneurs")
+            Text("Test des Actionneurs & Instruments")
                 .font(.valueLabel)
                 .foregroundStyle(.white)
         }

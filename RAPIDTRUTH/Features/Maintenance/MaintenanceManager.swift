@@ -1,6 +1,22 @@
 import Foundation
 import Observation
 
+enum BatteryTechnology: String, CaseIterable, Identifiable, Sendable {
+    case standardLeadAcid = "Plomb-Acide Standard (SLI)"
+    case efb = "EFB (Enhanced Flooded - Stop & Start)"
+    case agm = "AGM (Absorbent Glass Mat - Haute Puissance)"
+    
+    var id: String { rawValue }
+    
+    var hexCode: UInt8 {
+        switch self {
+        case .standardLeadAcid: return 0x01
+        case .efb: return 0x02
+        case .agm: return 0x03
+        }
+    }
+}
+
 @MainActor
 @Observable
 final class MaintenanceManager {
@@ -9,6 +25,8 @@ final class MaintenanceManager {
     var successMessage: String? = nil
     var activeActuatorTestName: String? = nil
 
+    // MARK: - Outils d'Entretien Courant
+
     /// Réinitialisation de l'intervalle de vidange (TdB - 743)
     func resetOilService(interface: VehicleInterface) async {
         await executeRoutine(
@@ -16,16 +34,6 @@ final class MaintenanceManager {
             ecuHeader: "743", // TdB Header
             routineCommand: "300101", // KWP2000 start routine for oil reset
             name: "Remise à zéro Vidange"
-        )
-    }
-
-    /// Mode Maintenance Frein de Parking (FPA - 755)
-    func enterEPBMaintenanceMode(interface: VehicleInterface) async {
-        await executeRoutine(
-            interface: interface,
-            ecuHeader: "755", // FPA Header
-            routineCommand: "300102", // KWP2000 start routine for EPB maintenance
-            name: "Mode Atelier Frein de Parking"
         )
     }
 
@@ -39,33 +47,114 @@ final class MaintenanceManager {
         )
     }
 
-    /// Purge du groupe hydraulique ABS (ABS - 740)
+    // MARK: - Frein à Main Électrique (EPB / FPA)
+
+    /// Mode Maintenance Frein de Parking (FPA - 755 / 746) - Rétractation des pistons pour changement plaquettes
+    func enterEPBMaintenanceMode(interface: VehicleInterface) async {
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "755", // FPA Header
+            routineCommand: "300102", // KWP2000 start routine for EPB maintenance
+            name: "Rétractation des Étriers (Mode Remplacement Plaquettes)"
+        )
+    }
+
+    /// Sortie du Mode Maintenance Frein de Parking (FPA - 755 / 746) - Calibrage et resserrage des pistons
+    func exitEPBMaintenanceMode(interface: VehicleInterface) async {
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "755", // FPA Header
+            routineCommand: "300105", // Calibrate and tighten
+            name: "Fermeture & Calibration des Étriers Frein de Parking"
+        )
+    }
+
+    // MARK: - Enregistrement Batterie & Gestion d'Énergie (BMS)
+
+    /// Déclaration d'une nouvelle batterie au calculateur d'énergie (BMS / UPC - 745 / 744)
+    func registerNewBattery(interface: VehicleInterface, technology: BatteryTechnology, capacityAh: Int) async {
+        isExecuting = true
+        errorMessage = nil
+        successMessage = nil
+        
+        do {
+            // Target UPC / BCM (745 ou 744)
+            try await interface.setTarget(txID: "745", rxID: nil)
+            try Task.checkCancellation()
+            
+            _ = try await openDiagnosticSession(interface: interface)
+            try Task.checkCancellation()
+            
+            // Format paramètre : Tech (1 octet) + Capacité en Ah (1 octet) -> ex: 03 46 (AGM 70Ah)
+            let batteryHex = String(format: "%02X%02X", technology.hexCode, UInt8(capacityAh))
+            let writeResp = try await interface.sendDiagnosticRequest("3B2E" + batteryHex, timeout: 3.5)
+            
+            // Réinitialisation de l'historique d'état de santé batterie (SoH)
+            _ = try? await interface.sendDiagnosticRequest("30010A", timeout: 2.0)
+            
+            _ = try? await interface.sendDiagnosticRequest("1081", timeout: 2.0)
+            
+            if writeResp.contains("7B") || writeResp.contains("6E") || writeResp.isEmpty || writeResp.contains("OK") {
+                successMessage = "Batterie enregistrée avec succès : \(technology.rawValue) - \(capacityAh) Ah. Courbe de charge alternateur réinitialisée."
+            } else {
+                errorMessage = "Réponse inattendue lors de l'écriture batterie : \(writeResp)"
+            }
+        } catch {
+            if !(error is CancellationError) {
+                errorMessage = "Erreur enregistrement batterie : \(error.localizedDescription)"
+            }
+        }
+        
+        isExecuting = false
+    }
+
+    // MARK: - Freinage & ABS
+
+    /// Purge globale du groupe hydraulique ABS (ABS - 740)
     func purgeABSGroup(interface: VehicleInterface) async {
         await executeRoutine(
             interface: interface,
             ecuHeader: "740", // ABS Header
             routineCommand: "300104", // KWP2000 start routine for ABS bleeding
-            name: "Purge du groupe ABS"
+            name: "Purge active du groupe hydraulique ABS"
         )
     }
-    
-    /// Télécodage SSPP : true = Activé (CF023 / LC017), false = Désactivé
-    func setSSPPEnabled(interface: VehicleInterface, enabled: Bool) async {
-        let statusName = enabled ? "Activation de la surveillance SSPP" : "Désactivation de la surveillance SSPP"
-        // KWP2000 Write Data By Local Identifier (3B) on LID 0x23 (01 = Active, 00 = inactive)
-        let command = enabled ? "3B2301" : "3B2300"
+
+    /// Commande individuelle de purge pour une roue spécifique (ABS - 740)
+    func purgeABSWheel(interface: VehicleInterface, wheelName: String) async {
         await executeRoutine(
             interface: interface,
-            ecuHeader: "745", // UCH Header
-            routineCommand: command,
-            name: statusName
+            ecuHeader: "740", // ABS Header
+            routineCommand: "300104", // command for ABS bleeding
+            name: "Purge active roue : \(wheelName)"
         )
     }
-    
+
+    // MARK: - Moteur & Injection
+
+    /// Réapprentissage et alignement des butées du boîtier papillon motorisé (Injection - 7E0)
+    func adaptThrottleBody(interface: VehicleInterface) async {
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "7E0",
+            routineCommand: "300109",
+            name: "Alignement & Réapprentissage Boîtier Papillon"
+        )
+    }
+
+    /// Réinitialisation des autoadaptatifs moteur (Injection - 7E0)
+    func resetECUAdaptations(interface: VehicleInterface) async {
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "7E0",
+            routineCommand: "300108",
+            name: "Réinitialisation des Autoadaptatifs Moteur (Fuel Trims)"
+        )
+    }
+
     /// Ajustement du ralenti moteur dCi : true = Augmenter (+50 RPM), false = Diminuer (-50 RPM)
     func adjustIdleSpeed(interface: VehicleInterface, increase: Bool) async {
         let statusName = increase ? "Augmentation du ralenti dCi (+50 tr/min)" : "Diminution du ralenti dCi (-50 tr/min)"
-        // KWP2000 Start Routine By Local Identifier (30) to start routine 0x0B or 0x07
         let command = increase ? "30010B" : "300107"
         await executeRoutine(
             interface: interface,
@@ -74,7 +163,21 @@ final class MaintenanceManager {
             name: statusName
         )
     }
-    
+
+    // MARK: - Programmation & Sécurité
+
+    /// Télécodage SSPP : true = Activé (CF023 / LC017), false = Désactivé
+    func setSSPPEnabled(interface: VehicleInterface, enabled: Bool) async {
+        let statusName = enabled ? "Activation de la surveillance SSPP" : "Désactivation de la surveillance SSPP"
+        let command = enabled ? "3B2301" : "3B2300"
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "745", // UCH Header
+            routineCommand: command,
+            name: statusName
+        )
+    }
+
     /// Programmation de la périodicité de vidange personnalisée sur le Tableau de Bord
     func setOilServicePeriodicity(interface: VehicleInterface, intervalKM: Int, intervalMonths: Int) async {
         isExecuting = true
@@ -82,25 +185,20 @@ final class MaintenanceManager {
         successMessage = nil
         
         do {
-            // Target TDB (743 / Response 763)
             try await interface.setTarget(txID: "743", rxID: "763")
             try Task.checkCancellation()
             
-            // Start Extended Session KWP2000 (1085)
             _ = try await openDiagnosticSession(interface: interface)
             try Task.checkCancellation()
             
-            // Write KM Periodicity (LID 0x06 - 2 bytes) using KWP2000 Service 3B
             let kmHex = String(format: "%04X", intervalKM)
             let responseKM = try await interface.sendDiagnosticRequest("3B06" + kmHex, timeout: 3.0)
             try Task.checkCancellation()
             
-            // Write Months Periodicity (LID 0x07 - 1 byte) using KWP2000 Service 3B
             let monthsHex = String(format: "%02X", intervalMonths)
             let responseMonths = try await interface.sendDiagnosticRequest("3B07" + monthsHex, timeout: 3.0)
             try Task.checkCancellation()
             
-            // Close Session KWP2000 (1081)
             _ = try? await interface.sendDiagnosticRequest("1081", timeout: 3.0)
             
             if responseKM.contains("7B") || responseMonths.contains("7B") || responseKM.isEmpty {
@@ -116,11 +214,10 @@ final class MaintenanceManager {
         
         isExecuting = false
     }
-    
+
     /// Verrouillage / Déverrouillage de sécurité du calculateur d'Airbag
     func setAirbagLocked(interface: VehicleInterface, locked: Bool) async {
         let statusName = locked ? "Verrouillage sécurisé Airbag (Atelier)" : "Déverrouillage actif Airbag (Route)"
-        // KWP2000 Start Routine By Local Identifier (30) on routine 0x06 (Lock) or 0x07 (Unlock)
         let command = locked ? "300106" : "300107"
         await executeRoutine(
             interface: interface,
@@ -130,28 +227,61 @@ final class MaintenanceManager {
         )
     }
 
+    /// Allumage automatique des feux : true = Activé (CF064), false = Désactivé
+    func setAutoHeadlightsEnabled(interface: VehicleInterface, enabled: Bool) async {
+        let statusName = enabled ? "Activation allumage auto des feux" : "Désactivation allumage auto des feux"
+        let command = enabled ? "3B4001" : "3B4000"
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "745", // UCH Header
+            routineCommand: command,
+            name: statusName
+        )
+    }
+
+    /// Essuyage arrière en marche arrière : true = Activé (CF108), false = Désactivé
+    func setReverseWiperEnabled(interface: VehicleInterface, enabled: Bool) async {
+        let statusName = enabled ? "Activation essuyage arrière en marche arrière" : "Désactivation essuyage arrière en marche arrière"
+        let command = enabled ? "3B6C01" : "3B6C00"
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "745", // UCH Header
+            routineCommand: command,
+            name: statusName
+        )
+    }
+
+    /// Alerte sonore ceinture : true = Activé (CF030), false = Désactivé
+    func setSeatbeltBuzzerEnabled(interface: VehicleInterface, enabled: Bool) async {
+        let statusName = enabled ? "Activation de l'alerte ceinture" : "Désactivation de l'alerte ceinture"
+        let command = enabled ? "3B1E01" : "3B1E00"
+        await executeRoutine(
+            interface: interface,
+            ecuHeader: "745", // UCH Header
+            routineCommand: command,
+            name: statusName
+        )
+    }
+
+    // MARK: - Exécution de Routines
+
     private func executeRoutine(interface: VehicleInterface, ecuHeader: String, routineCommand: String, name: String) async {
         isExecuting = true
         errorMessage = nil
         successMessage = nil
 
         do {
-            // 1. Setup Header
             try await interface.setTarget(txID: ecuHeader, rxID: nil)
             try Task.checkCancellation()
 
-            // 2. Start Session (Extended Diagnostic KWP2000)
             _ = try await openDiagnosticSession(interface: interface)
             try Task.checkCancellation()
 
-            // 3. Send Routine Command
             let response = try await interface.sendDiagnosticRequest(routineCommand, timeout: 4.0)
             try Task.checkCancellation()
 
-            // 4. Close Session (Return to default KWP2000)
             _ = try await interface.sendDiagnosticRequest("1081", timeout: 4.0)
 
-            // Minimal validation logic (70 is positive response to 30, 7B is for 3B)
             if response.contains("70") || response.contains("7B") || response.isEmpty || response.contains("OK") {
                 successMessage = "\(name) exécutée avec succès."
             } else {
@@ -191,62 +321,6 @@ final class MaintenanceManager {
         return false
     }
 
-    /// Allumage automatique des feux : true = Activé (CF064), false = Désactivé
-    func setAutoHeadlightsEnabled(interface: VehicleInterface, enabled: Bool) async {
-        let statusName = enabled ? "Activation allumage auto des feux" : "Désactivation allumage auto des feux"
-        let command = enabled ? "3B4001" : "3B4000"
-        await executeRoutine(
-            interface: interface,
-            ecuHeader: "745", // UCH Header
-            routineCommand: command,
-            name: statusName
-        )
-    }
-
-    /// Essuyage arrière en marche arrière : true = Activé (CF108), false = Désactivé
-    func setReverseWiperEnabled(interface: VehicleInterface, enabled: Bool) async {
-        let statusName = enabled ? "Activation essuyage arrière en marche arrière" : "Désactivation essuyage arrière en marche arrière"
-        let command = enabled ? "3B6C01" : "3B6C00"
-        await executeRoutine(
-            interface: interface,
-            ecuHeader: "745", // UCH Header
-            routineCommand: command,
-            name: statusName
-        )
-    }
-
-    /// Alerte sonore ceinture : true = Activé (CF030), false = Désactivé
-    func setSeatbeltBuzzerEnabled(interface: VehicleInterface, enabled: Bool) async {
-        let statusName = enabled ? "Activation de l'alerte ceinture" : "Désactivation de l'alerte ceinture"
-        let command = enabled ? "3B1E01" : "3B1E00"
-        await executeRoutine(
-            interface: interface,
-            ecuHeader: "745", // UCH Header
-            routineCommand: command,
-            name: statusName
-        )
-    }
-
-    /// Sortie du Mode Maintenance Frein de Parking (FPA - 755) - Calibrage et resserrage des pistons
-    func exitEPBMaintenanceMode(interface: VehicleInterface) async {
-        await executeRoutine(
-            interface: interface,
-            ecuHeader: "755", // FPA Header
-            routineCommand: "300105", // Calibrate and tighten
-            name: "Fermeture & Calibrage Frein de Parking"
-        )
-    }
-
-    /// Commande individuelle de purge pour une roue spécifique (ABS - 740)
-    func purgeABSWheel(interface: VehicleInterface, wheelName: String) async {
-        await executeRoutine(
-            interface: interface,
-            ecuHeader: "740", // ABS Header
-            routineCommand: "300104", // command for ABS bleeding
-            name: "Purge active : \(wheelName)"
-        )
-    }
-
     /// Lance un test actif d'actionneur (KWP2000 Service 2F - InputOutputControlByLocalIdentifier)
     func runActuatorTest(interface: VehicleInterface, ecuHeader: String, command: String, name: String) async {
         isExecuting = true
@@ -254,7 +328,6 @@ final class MaintenanceManager {
         errorMessage = nil
         successMessage = nil
 
-        // Convert command from UDS 30 to KWP2000 2F if it starts with 30
         var finalCommand = command
         if finalCommand.hasPrefix("30") {
             finalCommand = "2F" + finalCommand.dropFirst(2)

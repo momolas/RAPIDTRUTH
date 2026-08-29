@@ -13,7 +13,6 @@ struct MaintenanceView: View {
     @State private var isOilExpanded = true
     @State private var isBrakesExpanded = false
     @State private var isExhaustExpanded = false
-    @State private var isCodingExpanded = false
     @State private var isActuatorsExpanded = false
     @State private var isFlashingExpanded = false
 
@@ -55,7 +54,7 @@ struct MaintenanceView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 16) {
-                    // 1. Vidange & Entretien
+                    // 1. Vidange, Batterie BMS & Moteur
                     MaintenanceOilSection(
                         interface: interface,
                         isConnected: isConnected,
@@ -87,17 +86,7 @@ struct MaintenanceView: View {
 
                     Divider().background(Color.white.opacity(0.1))
 
-                    // 4. Télécodage & Personnalisation
-                    MaintenanceCodingSection(
-                        interface: interface,
-                        isConnected: isConnected,
-                        maintenanceManager: maintenanceManager,
-                        isExpanded: $isCodingExpanded
-                    )
-
-                    Divider().background(Color.white.opacity(0.1))
-
-                    // 5. Test des Actionneurs
+                    // 4. Test des Actionneurs & Instruments
                     MaintenanceActuatorsSection(
                         interface: interface,
                         isConnected: isConnected,
@@ -107,7 +96,7 @@ struct MaintenanceView: View {
 
                     Divider().background(Color.white.opacity(0.1))
 
-                    // 6. Reprogrammation & Cartographie
+                    // 5. Reprogrammation & Cartographie
                     MaintenanceFlashingSection(
                         interface: interface,
                         isConnected: isConnected,
@@ -135,14 +124,6 @@ struct MaintenanceView: View {
             if let panda = interface as? PandaDriver {
                 try? await panda.setSafetyModel(.allOutput)
                 NSLog("[MaintenanceView] Switched Panda safety model to ALLOUTPUT for service operations")
-            }
-        }
-        .onDisappear {
-            if let panda = interface as? PandaDriver {
-                Task {
-                    try? await panda.setSafetyModel(.allOutput)
-                    NSLog("[MaintenanceView] Kept Panda safety model as ALLOUTPUT")
-                }
             }
         }
     }

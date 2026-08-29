@@ -22,6 +22,8 @@ enum AppTestSuite {
         reports.append(testMultiRateSampler())
         reports.append(testFreezeFrameDecoder())
         reports.append(testActuatorRegistry())
+        reports.append(testBatteryRegistration())
+        reports.append(testThematicCustomizations())
         
         for report in reports {
             let prefix = report.passed ? "✅ [TEST PASSED]" : "❌ [TEST FAILED]"
@@ -106,20 +108,17 @@ enum AppTestSuite {
     // MARK: - SignalCorrelator Tests
     
     private static func testSignalCorrelator() -> TestReport {
-        // Corrélation parfaite positive (r = 1.0)
         let xs = [1.0, 2.0, 3.0, 4.0, 5.0]
         let ys = [2.0, 4.0, 6.0, 8.0, 10.0]
         guard let r1 = SignalCorrelator.pearsonCorrelation(x: xs, y: ys), abs(r1 - 1.0) < 0.001 else {
             return TestReport(testName: "SignalCorrelator", passed: false, message: "Échec corrélation linéaire positive (attendu 1.0)")
         }
         
-        // Corrélation parfaite négative (r = -1.0)
         let ysNeg = [10.0, 8.0, 6.0, 4.0, 2.0]
         guard let r2 = SignalCorrelator.pearsonCorrelation(x: xs, y: ysNeg), abs(r2 - (-1.0)) < 0.001 else {
             return TestReport(testName: "SignalCorrelator", passed: false, message: "Échec corrélation linéaire négative (attendu -1.0)")
         }
         
-        // Échantillons trop courts
         guard SignalCorrelator.pearsonCorrelation(x: [1.0], y: [2.0]) == nil else {
             return TestReport(testName: "SignalCorrelator", passed: false, message: "N < 2 aurait dû renvoyer nil")
         }
@@ -130,7 +129,6 @@ enum AppTestSuite {
     // MARK: - UDS NRC Tests
 
     private static func testUDSNRC() -> TestReport {
-        // Test parsing standard NRC: 7F 10 22 (ConditionsNotCorrect on Session 10)
         let resp1 = UDSNRC.parse(from: "7F1022")
         guard let r1 = resp1, r1.nrc == .conditionsNotCorrect, r1.requestedServiceID == 0x10 else {
             return TestReport(testName: "UDSNRC", passed: false, message: "Échec de parsing NRC 7F1022")
@@ -139,13 +137,11 @@ enum AppTestSuite {
             return TestReport(testName: "UDSNRC", passed: false, message: "Détails NRC incomplets pour 0x22")
         }
 
-        // Test parsing with header: 7E8 03 7F 30 83 (Engine is running on Actuator 30)
         let resp2 = UDSNRC.parse(from: "7E8037F3083")
         guard let r2 = resp2, r2.nrc == .engineIsRunning, r2.requestedServiceID == 0x30 else {
             return TestReport(testName: "UDSNRC", passed: false, message: "Échec de parsing NRC avec header 7E8037F3083")
         }
 
-        // Non-NRC frame should return nil
         guard UDSNRC.parse(from: "5003003201F4") == nil else {
             return TestReport(testName: "UDSNRC", passed: false, message: "Trame positive aurait dû renvoyer nil")
         }
@@ -181,22 +177,20 @@ enum AppTestSuite {
 
     private static func testFreezeFrameDecoder() -> TestReport {
         let dtcLoader = DTCLoader()
-        
-        // Simuler réponse KWP Service 18: 58 [DTC] [KM: 0x0186A0 = 100000km] [RPM: 0x0BB8 = 750 rpm] [TEMP: 0x78 = 80°C] [SPEED: 0x32 = 50 km/h]
         let kwpHex = "58 01 02 01 86 A0 0B B8 78 32"
         let decoded = dtcLoader.parseFreezeFrameResponse(kwpHex, dtcCode: "P0102")
         
         guard decoded.timestampKm == 100000 else {
-            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction kilométrage (attendu 100000 km, reçu \(String(describing: decoded.timestampKm)))")
+            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction kilométrage")
         }
         guard decoded.rpm == 750 else {
-            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction RPM (attendu 750, reçu \(String(describing: decoded.rpm)))")
+            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction RPM")
         }
         guard decoded.coolantTemp == 80 else {
-            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction T° eau (attendu 80°C, reçu \(String(describing: decoded.coolantTemp)))")
+            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction T° eau")
         }
         guard decoded.vehicleSpeed == 50 else {
-            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction Vitesse (attendu 50 km/h, reçu \(String(describing: decoded.vehicleSpeed)))")
+            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction Vitesse")
         }
 
         return TestReport(testName: "FreezeFrameDecoder", passed: true, message: "Décodage trame gelée KWP Service 18 & Mode 02 OK")
@@ -218,11 +212,34 @@ enum AppTestSuite {
             return TestReport(testName: "ActuatorRegistry", passed: false, message: "Manque des catégories dans le catalogue d'actionneurs")
         }
 
-        // Vérifier l'actionneur balayage d'aiguilles
         guard let sweep = actuators.first(where: { $0.id == "cluster_needle_sweep" }), sweep.ecuHeader == "743" else {
             return TestReport(testName: "ActuatorRegistry", passed: false, message: "Actionneur cluster_needle_sweep invalide")
         }
 
         return TestReport(testName: "ActuatorRegistry", passed: true, message: "Catalogue complet de \(actuators.count) actionneurs validé")
+    }
+
+    // MARK: - Battery & Service Tests
+
+    private static func testBatteryRegistration() -> TestReport {
+        let tech = BatteryTechnology.agm
+        guard tech.hexCode == 0x03 else {
+            return TestReport(testName: "BatteryRegistration", passed: false, message: "Code hex AGM attendu 0x03")
+        }
+        let efb = BatteryTechnology.efb
+        guard efb.hexCode == 0x02 else {
+            return TestReport(testName: "BatteryRegistration", passed: false, message: "Code hex EFB attendu 0x02")
+        }
+        return TestReport(testName: "BatteryRegistration", passed: true, message: "Énumération et codage des technologies batterie OK")
+    }
+
+    // MARK: - Customizations Tests
+
+    private static func testThematicCustomizations() -> TestReport {
+        let categories = CustomizationCategory.allCases
+        guard categories.count == 4 else {
+            return TestReport(testName: "ThematicCustomizations", passed: false, message: "4 thèmes de personnalisation attendus")
+        }
+        return TestReport(testName: "ThematicCustomizations", passed: true, message: "Navigation thématique des télécodages OK")
     }
 }

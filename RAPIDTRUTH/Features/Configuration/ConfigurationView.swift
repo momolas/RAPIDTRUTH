@@ -1,16 +1,29 @@
 import SwiftUI
 
+enum CustomizationCategory: String, CaseIterable, Identifiable {
+    case lighting = "Éclairage & Visibilité"
+    case doors = "Portes, Vitres & Sécurité"
+    case cluster = "Combiné & Habitacle"
+    case driverAssistance = "Aides & Multimédia"
+
+    var id: String { rawValue }
+
+    var iconName: String {
+        switch self {
+        case .lighting: return "headlight.high.beam.fill"
+        case .doors: return "lock.fill"
+        case .cluster: return "gauge.with.needle.fill"
+        case .driverAssistance: return "car.rear.and.tire.marks"
+        }
+    }
+}
+
 struct ConfigurationView: View {
     let interface: VehicleInterface
     @State private var configManager = ConfigurationManager()
     @Environment(PandaTransport.self) private var pandaTransport
 
-    @State private var isTdbExpanded = true
-    @State private var isUchExpanded = false
-    @State private var isUpcExpanded = false
-    @State private var isFpaExpanded = false
-    @State private var isAasExpanded = false
-    @State private var isRadNavExpanded = false
+    @State private var selectedTheme: CustomizationCategory = .lighting
 
     init(interface: VehicleInterface) {
         self.interface = interface
@@ -24,6 +37,7 @@ struct ConfigurationView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
+                // Connection Banner if not connected
                 if !isConnected {
                     HStack {
                         Image(systemName: "exclamationmark.triangle.fill")
@@ -35,79 +49,48 @@ struct ConfigurationView: View {
                     .appCard()
                 }
 
+                // Category Switcher Pills
+                ScrollView(.horizontal) {
+                    HStack(spacing: 8) {
+                        ForEach(CustomizationCategory.allCases) { category in
+                            Button {
+                                selectedTheme = category
+                            } label: {
+                                HStack(spacing: 6) {
+                                    Image(systemName: category.iconName)
+                                        .font(.caption)
+                                    Text(category.rawValue)
+                                        .font(.caption).bold()
+                                }
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(selectedTheme == category ? Color.appAccent : Color.white.opacity(0.06))
+                                .foregroundStyle(selectedTheme == category ? .white : .secondary)
+                                .clipShape(.rect(cornerRadius: 10))
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    .padding(.horizontal, 2)
+                }
+                .scrollIndicators(.hidden)
+
+                // Themed Content Card
                 VStack(alignment: .leading, spacing: 16) {
-                    // TdB Group
-                    DisclosureGroup(isExpanded: $isTdbExpanded) {
-                        TdbConfigSectionView(configManager: configManager)
-                            .padding(.vertical, 8)
-                    } label: {
-                        Text("Tableau de Bord (TdB)")
-                            .font(.valueLabel)
-                            .foregroundStyle(.white)
-                    }
-                    
-                    Divider().background(Color.white.opacity(0.1))
-
-                    // UCH Group
-                    DisclosureGroup(isExpanded: $isUchExpanded) {
-                        UchConfigSectionView(configManager: configManager)
-                            .padding(.vertical, 8)
-                    } label: {
-                        Text("Unité Centrale Habitacle (UCH)")
-                            .font(.valueLabel)
-                            .foregroundStyle(.white)
-                    }
-                    
-                    Divider().background(Color.white.opacity(0.1))
-
-                    // UPC Group
-                    DisclosureGroup(isExpanded: $isUpcExpanded) {
-                        UpcConfigSectionView(configManager: configManager)
-                            .padding(.vertical, 8)
-                    } label: {
-                        Text("Unité Commutation Moteur (UPC)")
-                            .font(.valueLabel)
-                            .foregroundStyle(.white)
+                    switch selectedTheme {
+                    case .lighting:
+                        LightingConfigSection(configManager: configManager)
+                    case .doors:
+                        DoorsSecurityConfigSection(configManager: configManager)
+                    case .cluster:
+                        ClusterConfigSection(configManager: configManager)
+                    case .driverAssistance:
+                        DriverAssistanceConfigSection(configManager: configManager)
                     }
 
                     Divider().background(Color.white.opacity(0.1))
 
-                    // FPA Group
-                    DisclosureGroup(isExpanded: $isFpaExpanded) {
-                        FpaConfigSectionView(configManager: configManager)
-                            .padding(.vertical, 8)
-                    } label: {
-                        Text("Frein de Parking Assisté (FPA)")
-                            .font(.valueLabel)
-                            .foregroundStyle(.white)
-                    }
-
-                    Divider().background(Color.white.opacity(0.1))
-
-                    // AAS Group
-                    DisclosureGroup(isExpanded: $isAasExpanded) {
-                        AasConfigSectionView(configManager: configManager)
-                            .padding(.vertical, 8)
-                    } label: {
-                        Text("Aide au Stationnement (AAS)")
-                            .font(.valueLabel)
-                            .foregroundStyle(.white)
-                    }
-
-                    Divider().background(Color.white.opacity(0.1))
-
-                    // RadNav Group
-                    DisclosureGroup(isExpanded: $isRadNavExpanded) {
-                        RadNavConfigSectionView(configManager: configManager)
-                            .padding(.vertical, 8)
-                    } label: {
-                        Text("Radio / Multimédia (RadNav)")
-                            .font(.valueLabel)
-                            .foregroundStyle(.white)
-                    }
-
-                    Divider().background(Color.white.opacity(0.1))
-
+                    // Write / Save Button
                     Button(action: {
                         Task {
                             if let panda = interface as? PandaDriver {
@@ -121,9 +104,12 @@ struct ConfigurationView: View {
                             if configManager.isWriting {
                                 ProgressView()
                                     .padding(.trailing, 8)
-                                Text("Écriture en cours...")
+                                Text("Écriture dans les calculateurs...")
+                                    .bold()
                             } else {
-                                Text("Enregistrer dans l'ECU")
+                                Image(systemName: "square.and.arrow.down.fill")
+                                Text("Enregistrer les Personnalisations")
+                                    .bold()
                             }
                             Spacer()
                         }
@@ -133,21 +119,25 @@ struct ConfigurationView: View {
                     .disabled(configManager.isWriting || configManager.isReading || !isConnected)
                     .glassActionButton(prominent: true)
                     .buttonBorderShape(.roundedRectangle)
-                    
+
                     if configManager.showSuccessMessage {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundStyle(.green)
-                            Text("Codage réussi !")
+                            Text("Télécodage validé par les calculateurs !")
                                 .font(.statusText)
                                 .foregroundStyle(.green)
                         }
                     }
-                    
+
                     if let error = configManager.actionError {
-                        Text(error)
-                            .font(.statusText)
-                            .foregroundStyle(.red)
+                        HStack {
+                            Image(systemName: "exclamationmark.octagon.fill")
+                                .foregroundStyle(.red)
+                            Text(error)
+                                .font(.statusText)
+                                .foregroundStyle(.red)
+                        }
                     }
                 }
                 .appCard()
@@ -155,7 +145,7 @@ struct ConfigurationView: View {
             .padding(16)
         }
         .background(Color.appBackground.ignoresSafeArea())
-        .navigationTitle("Codage & Configuration")
+        .navigationTitle("Télécodage & Options")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -168,7 +158,7 @@ struct ConfigurationView: View {
                     }
                 } label: {
                     Label {
-                        Text(configManager.isReading ? "Lecture..." : "Actualiser")
+                        Text(configManager.isReading ? "Lecture..." : "Lire les calculateurs")
                     } icon: {
                         if configManager.isReading {
                             ProgressView()
@@ -183,34 +173,225 @@ struct ConfigurationView: View {
         .task {
             if let panda = interface as? PandaDriver {
                 try? await panda.setSafetyModel(.allOutput)
-                NSLog("[ConfigurationView] Switched Panda safety model to ALLOUTPUT for coding")
             }
             if isConnected {
                 await configManager.readConfig(interface: interface)
             }
         }
-        .onDisappear {
-            if let panda = interface as? PandaDriver {
-                Task {
-                    try? await panda.setSafetyModel(.silent)
-                    NSLog("[ConfigurationView] Switched Panda safety model back to SILENT")
+    }
+}
+
+// MARK: - 1. Éclairage & Visibilité
+private struct LightingConfigSection: View {
+    @Bindable var configManager: ConfigurationManager
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Éclairage & Visibilité")
+                .font(.headline)
+                .foregroundStyle(.white)
+
+            Toggle(isOn: $configManager.drlEnabled) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Feux de Jour (DRL)")
+                        .font(.bodyText)
+                    Text("Allumage automatique des feux diurnes dès le contact")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Toggle(isOn: $configManager.xenonHeadlights) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Projecteurs Xénon / LED")
+                        .font(.bodyText)
+                    Text("Gestion de l'allumage haute tension et assiette")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Divider().background(Color.white.opacity(0.05))
+
+            Toggle(isOn: $configManager.followMeHome) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Éclairage d'Accompagnement (Follow-me-home)")
+                        .font(.bodyText)
+                    Text("Maintien des phares allumés après verrouillage")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            if configManager.followMeHome {
+                HStack {
+                    Text("Durée d'allumage")
+                        .font(.bodyText).foregroundStyle(.secondary)
+                    Spacer()
+                    Picker("", selection: $configManager.comingHomeDuration) {
+                        Text("30 secondes").tag(30)
+                        Text("60 secondes").tag(60)
+                        Text("120 secondes").tag(120)
+                    }
+                    .pickerStyle(.menu)
+                }
+            }
+
+            Divider().background(Color.white.opacity(0.05))
+
+            Toggle(isOn: $configManager.oneTouchTurnSignal) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Clignotants Impulsionnels")
+                        .font(.bodyText)
+                    Text("Clignotement automatique sur simple impulsion du commodo")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            if configManager.oneTouchTurnSignal {
+                HStack {
+                    Text("Nombre de clignotements")
+                        .font(.bodyText).foregroundStyle(.secondary)
+                    Spacer()
+                    Picker("", selection: $configManager.laneChangeFlashes) {
+                        Text("3 coups").tag(3)
+                        Text("5 coups").tag(5)
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 140)
+                }
+            }
+
+            Divider().background(Color.white.opacity(0.05))
+
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Feux de Virage (Cornering AFS)")
+                        .font(.bodyText)
+                    Text("Allumage des antibrouillards selon le braquage")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+                Spacer()
+                Picker("", selection: $configManager.corneringLightsMode) {
+                    Text("Désactivé").tag(0)
+                    Text("Virage Seul").tag(1)
+                    Text("AFS Seul").tag(2)
+                    Text("Virage + AFS").tag(3)
+                }
+                .pickerStyle(.menu)
+            }
+        }
+    }
+}
+
+// MARK: - 2. Portes, Vitres & Sécurité
+private struct DoorsSecurityConfigSection: View {
+    @Bindable var configManager: ConfigurationManager
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Portes, Vitres & Sécurité")
+                .font(.headline)
+                .foregroundStyle(.white)
+
+            Toggle(isOn: $configManager.autoLockDoors) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Condamnation Automatique en Roulant (Auto-Lock)")
+                        .font(.bodyText)
+                    Text("Verrouillage de tous les ouvrants dès 10 km/h")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Toggle(isOn: $configManager.selectiveUnlocking) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Déverrouillage Sélectif")
+                        .font(.bodyText)
+                    Text("1ère impulsion clé : porte conducteur. 2ème impulsion : tout le véhicule")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Toggle(isOn: $configManager.acousticLockConfirmation) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Bip Sonore de Confirmation au Verrouillage")
+                        .font(.bodyText)
+                    Text("Court coup d'avertisseur sonore ou sirène à la fermeture")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Divider().background(Color.white.opacity(0.05))
+
+            Toggle(isOn: $configManager.rainClosing) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Fermeture Automatique des Vitres en cas de Pluie")
+                        .font(.bodyText)
+                    Text("Remonte les vitres si le capteur détecte de la pluie à l'arrêt")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Toggle(isOn: $configManager.autoRearWiper) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Essuie-Glace Arrière en Marche Arrière")
+                        .font(.bodyText)
+                    Text("Coup de balai automatique si les essuie-glaces AV sont actifs")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Toggle(isOn: $configManager.tpmsEnabled) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Surveillance Pression des Pneus (SSPP / TPMS)")
+                        .font(.bodyText)
+                    Text("Alerte de sous-gonflage sur le tableau de bord")
+                        .font(.captionTiny).foregroundStyle(.secondary)
                 }
             }
         }
     }
 }
 
-// MARK: - Subviews for configuration groups
-
-struct TdbConfigSectionView: View {
+// MARK: - 3. Combiné d'Instruments & Habitacle
+private struct ClusterConfigSection: View {
     @Bindable var configManager: ConfigurationManager
-    
+
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Combiné d'Instruments & Habitacle")
+                .font(.headline)
+                .foregroundStyle(.white)
+
+            Toggle(isOn: $configManager.needleSweep) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Balayage des Aiguilles (Gauge Staging)")
+                        .font(.bodyText)
+                    Text("Les aiguilles de vitesse et RPM vont au max au contact")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Toggle(isOn: $configManager.seatbeltWarning) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Avertisseur Sonore Ceinture (Bip)")
+                        .font(.bodyText)
+                    Text("Signal sonore continu si la ceinture conducteur n'est pas bouclée")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Toggle(isOn: $configManager.startStopMemory) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Mémoire du Système Start & Stop")
+                        .font(.bodyText)
+                    Text("Conserve le dernier état (activé/désactivé) au redémarrage")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Divider().background(Color.white.opacity(0.05))
+
             HStack {
                 Text("Langue de l'Afficheur")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
+                    .font(.bodyText).foregroundStyle(.secondary)
                 Spacer()
                 Picker("", selection: $configManager.dashboardLanguage) {
                     Text("Français").tag("FR")
@@ -218,23 +399,10 @@ struct TdbConfigSectionView: View {
                 }
                 .pickerStyle(.menu)
             }
-            
-            Toggle(isOn: $configManager.seatbeltWarning) {
-                Text("Alerte Ceinture (Bip)")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            
-            Toggle(isOn: $configManager.clockDisplay) {
-                Text("Affichage Horloge / Temp.")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            
+
             HStack {
                 Text("Unité de Consommation")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
+                    .font(.bodyText).foregroundStyle(.secondary)
                 Spacer()
                 Picker("", selection: $configManager.consumptionUnit) {
                     Text("L/100 km").tag("L/100")
@@ -242,237 +410,80 @@ struct TdbConfigSectionView: View {
                 }
                 .pickerStyle(.menu)
             }
-            
+
             Toggle(isOn: $configManager.overspeedWarning) {
-                Text("Alarme Survitesse (120)")
+                Text("Alarme de Survitesse")
                     .font(.bodyText)
-                    .foregroundStyle(.secondary)
             }
-            
-            HStack {
-                Text("Motorisation / Carburant")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Picker("", selection: $configManager.fuelType) {
-                    Text("Diesel").tag("DSL")
-                    Text("Essence").tag("GSL")
+
+            if configManager.overspeedWarning {
+                HStack {
+                    Text("Seuil de déclenchement")
+                        .font(.bodyText).foregroundStyle(.secondary)
+                    Spacer()
+                    Picker("", selection: $configManager.overspeedThreshold) {
+                        Text("90 km/h").tag(90)
+                        Text("110 km/h").tag(110)
+                        Text("120 km/h").tag(120)
+                        Text("130 km/h").tag(130)
+                    }
+                    .pickerStyle(.menu)
                 }
-                .pickerStyle(.menu)
-            }
-            
-            HStack {
-                Text("Type de Boîte")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Picker("", selection: $configManager.gearboxType) {
-                    Text("Manuelle (BVM)").tag("BVM")
-                    Text("Automatique (BVA)").tag("BVA")
-                }
-                .pickerStyle(.menu)
-            }
-            
-            Toggle(isOn: $configManager.voiceSynthesis) {
-                Text("Synthèse Vocale d'Alerte")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            
-            HStack {
-                Text("Intervalle de Maintenance")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Picker("", selection: $configManager.oilServiceInterval) {
-                    Text("15 000 km / 1 an").tag("15K")
-                    Text("20 000 km / 1 an").tag("20K")
-                    Text("30 000 km / 2 ans").tag("30K")
-                }
-                .pickerStyle(.menu)
             }
         }
     }
 }
 
-struct UchConfigSectionView: View {
+// MARK: - 4. Aides à la Conduite & Infodivertissement
+private struct DriverAssistanceConfigSection: View {
     @Bindable var configManager: ConfigurationManager
-    
-    var body: some View {
-        VStack(spacing: 12) {
-            Toggle(isOn: $configManager.autoLockDoors) {
-                Text("Condamnation Auto (CAR)")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            Toggle(isOn: $configManager.autoRearWiper) {
-                Text("Essuie-glace Arrière Auto")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            Toggle(isOn: $configManager.followMeHome) {
-                Text("Éclairage d'Accompagnement")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            Toggle(isOn: $configManager.oneTouchTurnSignal) {
-                Text("Clignotants Impulsionnels")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            Toggle(isOn: $configManager.deadlocking) {
-                Text("Supercondamnation")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            Toggle(isOn: $configManager.tpmsEnabled) {
-                Text("Contrôle de Pression (SSPP)")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            Toggle(isOn: $configManager.autoRainSensor) {
-                Text("Essuyage Auto (Pluie)")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            Toggle(isOn: $configManager.keylessGo) {
-                Text("Accès & Démarrage Main-Libre")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            Toggle(isOn: $configManager.selectiveUnlocking) {
-                Text("Condamnation Porte Sélective")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
-}
 
-struct UpcConfigSectionView: View {
-    @Bindable var configManager: ConfigurationManager
-    
     var body: some View {
-        VStack(spacing: 12) {
-            Toggle(isOn: $configManager.xenonHeadlights) {
-                Text("Projecteurs Xénon")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            Toggle(isOn: $configManager.drlEnabled) {
-                Text("Feux de Jour (DRL)")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-            HStack {
-                Text("Puissance Alternateur")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Picker("", selection: $configManager.alternatorClass) {
-                    Text("Standard (110A)").tag("110A")
-                    Text("Grand Froid (150A)").tag("150A")
-                }
-                .pickerStyle(.menu)
-            }
-            HStack {
-                Text("Feux de Virage (Cornering)")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Picker("", selection: $configManager.corneringLightsMode) {
-                    Text("Désactivé").tag(0)
-                    Text("Cornering Actif").tag(1)
-                    Text("AFS Seuls").tag(2)
-                    Text("Cornering + AFS").tag(3)
-                }
-                .pickerStyle(.menu)
-            }
-            HStack {
-                Text("Seuil Vitesse Cornering")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Picker("", selection: $configManager.corneringSpeedThreshold) {
-                    Text("30 km/h").tag(30)
-                    Text("40 km/h").tag(40)
-                    Text("50 km/h").tag(50)
-                    Text("60 km/h").tag(60)
-                }
-                .pickerStyle(.menu)
-            }
-        }
-    }
-}
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Aides & Multimédia")
+                .font(.headline)
+                .foregroundStyle(.white)
 
-struct FpaConfigSectionView: View {
-    @Bindable var configManager: ConfigurationManager
-    
-    var body: some View {
-        VStack(spacing: 12) {
-            Toggle(isOn: $configManager.coldClimateMode) {
-                Text("Mode Pays Froids (Sans serrage auto)")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
-}
-
-struct AasConfigSectionView: View {
-    @Bindable var configManager: ConfigurationManager
-    
-    var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text("Volume du Bruiteur")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Picker("", selection: $configManager.parkAssistVolume) {
-                    Text("Silencieux").tag(0)
-                    Text("Faible").tag(2)
-                    Text("Moyen").tag(3)
-                    Text("Fort").tag(6)
-                }
-                .pickerStyle(.menu)
-            }
-            HStack {
-                Text("Fréquence du Signal")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Picker("", selection: $configManager.parkAssistTone) {
-                    Text("500 Hz").tag(0)
-                    Text("666 Hz").tag(1)
-                    Text("800 Hz").tag(2)
-                    Text("1000 Hz").tag(3)
-                }
-                .pickerStyle(.menu)
-            }
-            Toggle(isOn: $configManager.parkAssistInhibitionButton) {
-                Text("Bouton d'Inhibition Habitacle")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
-}
-
-struct RadNavConfigSectionView: View {
-    @Bindable var configManager: ConfigurationManager
-    
-    var body: some View {
-        VStack(spacing: 12) {
             Toggle(isOn: $configManager.androidAuto) {
-                Text("Android Auto / CarPlay")
-                    .font(.bodyText)
-                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Android Auto / Apple CarPlay")
+                        .font(.bodyText)
+                    Text("Activation de la réplication smartphone sur l'écran tactile")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
             }
+
             Toggle(isOn: $configManager.rearViewCamera) {
-                Text("Caméra de Recul")
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Caméra de Recul")
+                        .font(.bodyText)
+                    Text("Affichage automatique du flux vidéo au passage de la marche arrière")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
+            }
+
+            Divider().background(Color.white.opacity(0.05))
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Radar de Recul (AAS) - Volume")
                     .font(.bodyText)
-                    .foregroundStyle(.secondary)
+                Picker("", selection: $configManager.parkAssistVolume) {
+                    Text("Désactivé (0)").tag(0)
+                    Text("Faible (2)").tag(2)
+                    Text("Moyen (3)").tag(3)
+                    Text("Fort (5)").tag(5)
+                    Text("Maximum (7)").tag(7)
+                }
+                .pickerStyle(.segmented)
+            }
+
+            Toggle(isOn: $configManager.coldClimateMode) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Mode Climat Froid (Frein de Parking)")
+                        .font(.bodyText)
+                    Text("Évite le serrage automatique par gel intense pour ne pas coller les plaquettes")
+                        .font(.captionTiny).foregroundStyle(.secondary)
+                }
             }
         }
     }
