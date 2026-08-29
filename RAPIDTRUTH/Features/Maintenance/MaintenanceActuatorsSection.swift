@@ -5,6 +5,8 @@ struct MaintenanceActuatorsSection: View {
     let isConnected: Bool
     @Bindable var maintenanceManager: MaintenanceManager
     @Binding var isExpanded: Bool
+    
+    @State private var showingFullDashboard = false
 
     var body: some View {
         DisclosureGroup(isExpanded: $isExpanded) {
@@ -13,6 +15,27 @@ struct MaintenanceActuatorsSection: View {
                     .font(.captionText)
                     .foregroundStyle(.gray)
                     .padding(.bottom, 4)
+
+                // Quick Full Dashboard Button
+                Button {
+                    showingFullDashboard = true
+                } label: {
+                    HStack {
+                        Image(systemName: "gauge.with.needle.fill")
+                            .foregroundStyle(Color.appAccent)
+                        Text("Ouvrir le Tableau de Bord des Actionneurs & Instruments")
+                            .font(.caption).bold()
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(10)
+                    .background(Color.appAccent.opacity(0.15))
+                    .clipShape(.rect(cornerRadius: 8))
+                }
+                .buttonStyle(.plain)
+                .padding(.bottom, 4)
 
                 // GMV
                 HStack {
@@ -90,6 +113,18 @@ struct MaintenanceActuatorsSection: View {
                 }
             }
             .padding(.vertical, 8)
+            .sheet(isPresented: $showingFullDashboard) {
+                NavigationStack {
+                    ActuatorDashboardView(interface: interface)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button("Fermer") {
+                                    showingFullDashboard = false
+                                }
+                            }
+                        }
+                }
+            }
         } label: {
             Text("Test des Actionneurs")
                 .font(.valueLabel)

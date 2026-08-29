@@ -10,6 +10,7 @@ struct DiagnosticsView: View {
     @Environment(SettingsStore.self) private var settings
     
     @State private var scanHistory: [DTCScanRecord] = []
+    @State private var selectedFreezeFrameDTC: DTC? = nil
     
     init(interface: VehicleInterface, profile: Profile) {
         self.interface = interface
@@ -38,6 +39,30 @@ struct DiagnosticsView: View {
                             .font(.cardTitle)
                             .foregroundStyle(.secondary)
                         Spacer()
+                    }
+
+                    // NRC Reject Banner if any
+                    if let nrc = dtcLoader.lastNRCError {
+                        VStack(alignment: .leading, spacing: 6) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "exclamationmark.octagon.fill")
+                                    .foregroundStyle(.orange)
+                                Text("Refus Calculateur : \(nrc.title) (0x\(nrc.rawHexCode))")
+                                    .font(.headline)
+                                    .foregroundStyle(.white)
+                            }
+                            Text(nrc.explanation)
+                                .font(.captionText)
+                                .foregroundStyle(.secondary)
+                            Text("💡 Conseil : \(nrc.actionAdvice)")
+                                .font(.captionText)
+                                .bold()
+                                .foregroundStyle(Color.appAccent)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.orange.opacity(0.15))
+                        .clipShape(.rect(cornerRadius: 8))
                     }
 
                     if dtcLoader.isScanning {
@@ -119,34 +144,46 @@ struct DiagnosticsView: View {
                                             Button {
                                                 Task {
                                                     await dtcLoader.fetchFreezeFrame(interface: interface, profile: profile, dtcIndex: index)
+                                                    if dtcLoader.dtcs.indices.contains(index) {
+                                                        selectedFreezeFrameDTC = dtcLoader.dtcs[index]
+                                                    }
                                                 }
                                             } label: {
-                                                Label("Trame Gelée", systemImage: "snowflake")
-                                                    .font(.captionTiny)
-                                                    .foregroundStyle(Color.appAccent)
+                                                HStack(spacing: 4) {
+                                                    Image(systemName: "snowflake")
+                                                    Text("Freeze Frame")
+                                                }
+                                                .font(.captionTiny)
+                                                .foregroundStyle(Color.appAccent)
                                             }
                                             .buttonStyle(.plain)
                                         }
                                     }
                                     
-                                    // Freeze Frame Details Card
+                                    // Quick summary of Freeze Frame if loaded
                                     if let freezeFrame = dtc.freezeFrame {
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            Text("Contexte d'apparition (Freeze Frame) :")
-                                                .font(.captionTiny).bold()
-                                                .foregroundStyle(Color.appAccent)
-                                            
-                                            ForEach(Array(freezeFrame.keys.sorted()), id: \.self) { key in
-                                                HStack {
-                                                    Text(key)
-                                                        .font(.monoTiny)
-                                                        .foregroundStyle(.secondary)
-                                                    Spacer()
-                                                    Text(freezeFrame[key] ?? "")
-                                                        .font(.monoTiny).bold()
-                                                        .foregroundStyle(.white)
-                                                }
+                                        HStack(spacing: 12) {
+                                            if let rpm = freezeFrame.rpm {
+                                                Text("\(rpm) tr/min")
+                                                    .font(.monoTiny)
+                                                    .foregroundStyle(.secondary)
                                             }
+                                            if let speed = freezeFrame.vehicleSpeed {
+                                                Text("\(speed) km/h")
+                                                    .font(.monoTiny)
+                                                    .foregroundStyle(.secondary)
+                                            }
+                                            if let temp = freezeFrame.coolantTemp {
+                                                Text("\(temp) °C")
+                                                    .font(.monoTiny)
+                                                    .foregroundStyle(.secondary)
+                                            }
+                                            Spacer()
+                                            Button("Voir détails") {
+                                                selectedFreezeFrameDTC = dtc
+                                            }
+                                            .font(.captionTiny)
+                                            .foregroundStyle(Color.appAccent)
                                         }
                                         .padding(8)
                                         .background(Color.black.opacity(0.25))
@@ -228,6 +265,11 @@ struct DiagnosticsView: View {
         .background(Color.appBackground.ignoresSafeArea())
         .navigationTitle("Diagnostic Réseau (DTC)")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(item: $selectedFreezeFrameDTC) { dtc in
+            if let frame = dtc.freezeFrame {
+                DTCFreezeFrameSheet(dtc: dtc, frame: frame)
+            }
+        }
         .task {
             reloadHistory()
         }

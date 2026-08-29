@@ -5,8 +5,11 @@ struct PidRowView: View {
     let isSelected: Bool
     let isSampling: Bool
     let isStriked: Bool
+    let rate: SamplingRate
+    let measuredHz: Double?
     let liveValue: Sampler.LiveValue?
     let onToggle: () -> Void
+    let onRateChange: (SamplingRate) -> Void
     
     var body: some View {
         HStack(spacing: 12) {
@@ -36,12 +39,46 @@ struct PidRowView: View {
                 }
                 
                 HStack(spacing: 8) {
-                    Text("ECU \(pid.ecu) · Mode \(pid.mode) PID \(pid.pid)")
+                    Text("Mode \(pid.mode) PID \(pid.pid)")
                         .font(.monoSmall)
                         .foregroundStyle(.secondary)
                     
+                    // Sélecteur de cadence (Menu)
+                    if !isSampling {
+                        Menu {
+                            ForEach(SamplingRate.allCases) { r in
+                                Button {
+                                    onRateChange(r)
+                                } label: {
+                                    Label(r.rawValue, systemImage: r.iconName)
+                                }
+                            }
+                        } label: {
+                            HStack(spacing: 3) {
+                                Image(systemName: rate.iconName)
+                                    .font(.system(size: 9))
+                                Text(rate.shortName)
+                                    .font(.system(size: 10, weight: .semibold))
+                            }
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(rate == .fast ? Color.orange.opacity(0.2) : (rate == .normal ? Color.blue.opacity(0.2) : Color.green.opacity(0.2)))
+                            .foregroundStyle(rate == .fast ? .orange : (rate == .normal ? .blue : .green))
+                            .clipShape(.rect(cornerRadius: 4))
+                        }
+                    } else if let measuredHz {
+                        HStack(spacing: 3) {
+                            Circle()
+                                .fill(Color.green)
+                                .frame(width: 5, height: 5)
+                            Text("\(measuredHz.formatted(.number.precision(.fractionLength(1)))) Hz")
+                                .font(.monoTiny)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    
                     if isStriked {
-                        Text("Non répondue")
+                        Text("Silencieux")
                             .font(.captionTiny)
                             .foregroundStyle(.orange)
                     }

@@ -128,7 +128,8 @@ final class SignalCorrelator {
     }
 
     /// Calcule le coefficient de corrélation linéaire de Pearson
-    private func pearson(_ xs: [Double], _ ys: [Double]) -> Double? {
+    static func pearsonCorrelation(x xs: [Double], y ys: [Double]) -> Double? {
+        guard xs.count == ys.count, xs.count >= 2 else { return nil }
         let n = Double(xs.count)
         let mx = xs.reduce(0, +) / n
         let my = ys.reduce(0, +) / n
@@ -147,6 +148,10 @@ final class SignalCorrelator {
         
         if dx2 == 0 || dy2 == 0 { return nil }
         return num / sqrt(dx2 * dy2)
+    }
+
+    private func pearson(_ xs: [Double], _ ys: [Double]) -> Double? {
+        Self.pearsonCorrelation(x: xs, y: ys)
     }
 
     /// Classification heuristique basée sur les résultats observés dans le script Python

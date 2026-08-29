@@ -367,79 +367,19 @@ struct KWP2000TimingParameters: Sendable {
     }
 }
 
-// MARK: - Dictionnaire NRC (Negative Response Codes)
+// MARK: - Alias et Erreurs KWP2000
 
-enum NRC: UInt8, Sendable {
-    case generalReject = 0x10
-    case serviceNotSupported = 0x11
-    case subFunctionNotSupported = 0x12
-    case incorrectMessageLengthOrInvalidFormat = 0x13
-    case responseTooLong = 0x14
-    case busyRepeatRequest = 0x21
-    case conditionsNotCorrect = 0x22
-    case requestSequenceError = 0x24
-    case noResponseFromSubnetComponent = 0x25
-    case failurePreventsExecutionOfRequestedAction = 0x26
-    case requestOutOfRange = 0x31
-    case securityAccessDenied = 0x33
-    case invalidKey = 0x35
-    case exceededNumberOfAttempts = 0x36
-    case requiredTimeDelayNotExpired = 0x37
-    case uploadDownloadNotAccepted = 0x70
-    case transferDataSuspended = 0x71
-    case generalProgrammingFailure = 0x72
-    case wrongBlockSequenceCounter = 0x73
-    case requestCorrectlyReceivedResponsePending = 0x78
-    case subFunctionNotSupportedInActiveSession = 0x7E
-    case serviceNotSupportedInActiveSession = 0x7F
-    
-    var description: String {
-        switch self {
-        case .generalReject: return "Reject Général (generalReject)"
-        case .serviceNotSupported: return "Service Non Supporté (serviceNotSupported)"
-        case .subFunctionNotSupported: return "Sous-fonction Non Supportée (subFunctionNotSupported)"
-        case .incorrectMessageLengthOrInvalidFormat: return "Longueur Incorrecte ou Format Invalide (incorrectMessageLengthOrInvalidFormat)"
-        case .responseTooLong: return "Réponse Trop Longue (responseTooLong)"
-        case .busyRepeatRequest: return "Calculateur Occupé - Réessayer (busyRepeatRequest)"
-        case .conditionsNotCorrect: return "Conditions Incorrectes (conditionsNotCorrect)"
-        case .requestSequenceError: return "Erreur de Séquence de Requête (requestSequenceError)"
-        case .noResponseFromSubnetComponent: return "Pas de Réponse du Composant Subnet (noResponseFromSubnetComponent)"
-        case .failurePreventsExecutionOfRequestedAction: return "Échec empêchant l'exécution (failurePreventsExecutionOfRequestedAction)"
-        case .requestOutOfRange: return "Requête Hors Limites (requestOutOfRange)"
-        case .securityAccessDenied: return "Accès Sécurisé Refusé (securityAccessDenied)"
-        case .invalidKey: return "Clé Invalide (invalidKey)"
-        case .exceededNumberOfAttempts: return "Nombre de Tentatives Dépassé (exceededNumberOfAttempts)"
-        case .requiredTimeDelayNotExpired: return "Délai d'Attente Requis Non Expiré (requiredTimeDelayNotExpired)"
-        case .uploadDownloadNotAccepted: return "Upload/Download Refusé (uploadDownloadNotAccepted)"
-        case .transferDataSuspended: return "Transfert de Données Suspendu (transferDataSuspended)"
-        case .generalProgrammingFailure: return "Échec Général de Programmation (generalProgrammingFailure)"
-        case .wrongBlockSequenceCounter: return "Compteur de Séquence de Bloc Incorrect (wrongBlockSequenceCounter)"
-        case .requestCorrectlyReceivedResponsePending: return "Requête Reçue - Réponse En Attente (requestCorrectlyReceivedResponsePending)"
-        case .subFunctionNotSupportedInActiveSession: return "Sous-fonction Non Supportée dans cette Session (subFunctionNotSupportedInActiveSession)"
-        case .serviceNotSupportedInActiveSession: return "Service Non Supporté dans cette Session (serviceNotSupportedInActiveSession)"
-        }
-    }
-    
-    static func description(for nrcCode: UInt8) -> String {
-        if let nrc = NRC(rawValue: nrcCode) {
-            return nrc.description
-        }
-        return String(format: "NRC inconnu (0x%02X)", nrcCode)
-    }
-}
+public typealias NRC = UDSNRC
 
-// MARK: - Erreurs KWP2000
-
-enum KWP2000Error: LocalizedError {
+public enum KWP2000Error: LocalizedError {
     case negativeResponse(service: UInt8, nrc: UInt8)
     case unexpectedResponse(expected: String, received: String)
     
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .negativeResponse(let service, let nrc):
-            let sHex = String(format: "%02X", service)
-            let nrcDesc = NRC.description(for: nrc)
-            return "Réponse négative KWP2000 (Service \(sHex)): \(nrcDesc)"
+            let response = UDSNRCResponse(requestedServiceID: service, rawHexByte: nrc)
+            return "Rejet KWP2000 (Service 0x\(String(format: "%02X", service))): \(response.title) - \(response.actionAdvice)"
         case .unexpectedResponse(let expected, let received):
             return "Réponse KWP2000 inattendue. Attendu: '\(expected)', Reçu: '\(received)'"
         }

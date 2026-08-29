@@ -24,6 +24,30 @@ struct PidDef: Codable, Identifiable, Hashable {
     let min: Double?
     let max: Double?
 
+    init(
+        id: String,
+        displayName: String,
+        ecu: String,
+        mode: String,
+        pid: String,
+        unit: String,
+        formula: String,
+        category: PidCategory,
+        min: Double? = nil,
+        max: Double? = nil
+    ) {
+        self.id = id
+        self.displayName = displayName
+        self.ecu = ecu
+        self.mode = mode
+        self.pid = pid
+        self.unit = unit
+        self.formula = formula
+        self.category = category
+        self.min = min
+        self.max = max
+    }
+
     enum CodingKeys: String, CodingKey {
         case id
         case displayName = "display_name"

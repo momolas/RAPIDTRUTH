@@ -1,23 +1,58 @@
 import Foundation
 import Observation
 
-/// Tick-driven sampler. On each tick, sequentially sends every enabled PID
-/// request, parses bytes from the response, and emits a value via the
-/// `onTick` callback. If a tick takes longer than the configured interval
-/// (likely with > 20 PIDs at 1 Hz), the next tick starts immediately.
+/// Cadence d'échantillonnage par PID pour le Multi-Rate Sampler
+public enum SamplingRate: String, Sendable, CaseIterable, Identifiable, Codable {
+    case fast = "Rapide (10 Hz)"
+    case normal = "Normal (2 Hz)"
+    case slow = "Lent (0.5 Hz)"
+    
+    public var id: String { rawValue }
+    
+    public var shortName: String {
+        switch self {
+        case .fast: return "10 Hz"
+        case .normal: return "2 Hz"
+        case .slow: return "0.5 Hz"
+        }
+    }
+    
+    /// Diviseur de cycle basé sur une boucle de base à 10 Hz
+    public var tickDivider: Int {
+        switch self {
+        case .fast: return 1   // Chaque tick (10 Hz)
+        case .normal: return 5 // Tous les 5 ticks (~2 Hz)
+        case .slow: return 20  // Tous les 20 ticks (~0.5 Hz)
+        }
+    }
+    
+    public var iconName: String {
+        switch self {
+        case .fast: return "bolt.fill"
+        case .normal: return "gauge.with.needle"
+        case .slow: return "leaf.fill"
+        }
+    }
+}
+
+/// Tick-driven multi-rate sampler. Ordonnance les requêtes PID selon leur cadence
+/// (rapide, normal, lent) pour maximiser le débit sans saturer le bus OBD.
 @MainActor
 final class Sampler {
 
-    struct LiveValue {
+    struct LiveValue: Sendable, Identifiable {
+        var id: String { pidID }
         let pidID: String
         let raw: String   // hex string of response bytes (after the response code prefix)
         let value: Double?
         let unit: String
         let displayName: String
         let category: PidCategory
+        let samplingRate: SamplingRate
+        let timestamp: Date
     }
 
-    struct TickRow {
+    struct TickRow: Sendable {
         let timestampISO: String
         let elapsedMs: Int
         /// Formatted strings keyed by `PidDef.id`. Empty/missing PIDs map to nil.
@@ -28,12 +63,13 @@ final class Sampler {
     private let pids: [PidDef]
     private let ecus: [String: EcuDef]
     private let evaluator: FormulaEvaluator
-    private let sampleRateHz: Double
+    private let baseLoopRateHz: Double
     private let sessionStartMs: Int
+    private let customRates: [String: SamplingRate]
 
     private var task: Task<Void, Never>?
     private var stopped = false
-    private var tickCount: Int = 0
+    private(set) var tickCount: Int = 0
 
     /// Per-PID strike counter. After 3 NO_DATA responses, the PID is demoted
     /// (skipped on subsequent ticks) to keep tick rate high.
@@ -42,18 +78,11 @@ final class Sampler {
 
     /// Periodically un-demote silent PIDs so we can re-detect them coming
     /// back online. Critical for hybrids: in EV mode the ICE PIDs go
-    /// silent and would otherwise stay demoted for the whole session,
-    /// missing the 2-3 minutes the engine actually runs.
-    private let rehabEveryNTicks = 30
+    /// silent and would otherwise stay demoted for the whole session.
+    private let rehabEveryNTicks = 60
 
-    /// Inter-query gap. Some ELM327 firmwares (Veepeak's in particular)
-    /// emit `STOPPED` if the next command arrives before the prompt for
-    /// the previous one has fully settled — which on multi-frame Mode 21
-    /// responses takes 5-10 ms past the last `>`. Without this gap, the
-    /// adapter periodically aborts queries mid-flight and per-tick PID
-    /// coverage drops to 50-70%. With it, coverage stabilises at 99%
-    /// (matching the web app's pacing).
-    private let interQueryGapNs: UInt64 = 20_000_000  // 20 ms
+    /// Inter-query gap (20 ms) pour éviter l'overrun sur clones ELM327.
+    private let interQueryGapNs: UInt64 = 20_000_000
 
     var onValues: (([LiveValue]) -> Void)?
     var onTick: ((TickRow) -> Void)?
@@ -62,22 +91,49 @@ final class Sampler {
         driver: VehicleInterface,
         pids: [PidDef],
         ecus: [String: EcuDef],
-        sampleRateHz: Double,
+        baseLoopRateHz: Double = 10.0,
+        customRates: [String: SamplingRate] = [:],
         sessionStartMs: Int,
         evaluator: FormulaEvaluator? = nil
     ) {
         self.driver = driver
         self.pids = pids
         self.ecus = ecus
-        self.sampleRateHz = sampleRateHz
+        self.baseLoopRateHz = baseLoopRateHz
+        self.customRates = customRates
         self.sessionStartMs = sessionStartMs
         self.evaluator = evaluator ?? FormulaEvaluator()
+    }
+
+    /// Détermine la cadence par défaut optimale selon la nature du signal
+    public static func defaultSamplingRate(for pid: PidDef) -> SamplingRate {
+        let idLower = pid.id.lowercased()
+        let nameLower = pid.displayName.lowercased()
+        
+        // PIDs haute dynamique -> Fast (10 Hz)
+        if idLower.contains("rpm") || idLower.contains("regime") ||
+           idLower.contains("speed") || idLower.contains("vitesse") ||
+           idLower.contains("pedal") || idLower.contains("throttle") || idLower.contains("papillon") ||
+           idLower.contains("turbo") || idLower.contains("boost") || idLower.contains("torque") ||
+           idLower.contains("couple") || idLower.contains("pressure_intake") {
+            return .fast
+        }
+        
+        // PIDs thermiques / statiques -> Slow (0.5 Hz)
+        if idLower.contains("temp") || nameLower.contains("température") ||
+           idLower.contains("fuel_level") || idLower.contains("carburant") ||
+           idLower.contains("battery_voltage") || idLower.contains("ambient") ||
+           idLower.contains("oil_level") || idLower.contains("vin") || idLower.contains("distance") {
+            return .slow
+        }
+        
+        return .normal
     }
 
     func start() {
         task = Task { [weak self] in
             guard let self else { return }
-            let intervalNs = UInt64(1_000_000_000.0 / self.sampleRateHz)
+            let intervalNs = UInt64(1_000_000_000.0 / self.baseLoopRateHz)
             while !Task.isCancelled && !self.stopped {
                 do {
                     try Task.checkCancellation()
@@ -108,10 +164,8 @@ final class Sampler {
 
     private func runOneTick() async -> TickRow {
         tickCount += 1
-        // Every N ticks, give demoted PIDs another shot. If they're still
-        // silent they'll re-demote within ~3 ticks; meanwhile we capture
-        // anything that has come back online (ICE waking up in a hybrid,
-        // BMS becoming active under load, etc.).
+        
+        // Réhabilitation périodique des PIDs silencieux
         if tickCount % rehabEveryNTicks == 0, !disabledPIDs.isEmpty {
             NSLog("[Sampler] rehab tick \(tickCount): un-demoting \(disabledPIDs.count) PIDs")
             disabledPIDs.removeAll()
@@ -125,15 +179,20 @@ final class Sampler {
         var values: [String: String] = [:]
         var liveValuesCollected: [LiveValue] = []
         
-        // Group enabled PIDs by ECU, then dedupe identical (mode, pid)
-        // queries within each group. Several PidDefs can share one query
-        // and read different bytes — e.g. battery_temp_1..4 all use
-        // Mode 21 PID 95. Sending the query once and applying all four
-        // formulas to the response is faster *and* avoids tripping
-        // adapter rate limits on rapid-fire identical queries.
-        // Per-group ATSH<request_header> before queries — Mode 21 PIDs
-        // on non-engine ECUs only respond when explicitly addressed.
-        let groups = groupByEcu(pids.filter { !disabledPIDs.contains($0.id) })
+        // Filtrage Multi-Rate : ne retenir que les PIDs arrivés à échéance lors de ce tick
+        let eligiblePids = pids.filter { pid in
+            guard !disabledPIDs.contains(pid.id) else { return false }
+            let rate = customRates[pid.id] ?? Self.defaultSamplingRate(for: pid)
+            return (tickCount % rate.tickDivider) == 0
+        }
+        
+        // Si aucun PID n'est dû à ce tick précis, retourner la ligne vide
+        if eligiblePids.isEmpty {
+            return TickRow(timestampISO: timestampISO, elapsedMs: elapsedMs, values: values)
+        }
+        
+        // Groupement par calculateur pour minimiser les changements de cibles ATSH
+        let groups = groupByEcu(eligiblePids)
         for (ecuName, groupPIDs) in groups {
             if Task.isCancelled || self.stopped { break }
             if let ecu = ecus[ecuName] {
@@ -152,34 +211,25 @@ final class Sampler {
                     try? await Task.sleep(for: .nanoseconds(Int(interQueryGapNs)))
                     continue
                 }
-                // Inter-query settle gap (see `interQueryGapNs` comment).
+                
+                // Inter-query settle gap
                 try? await Task.sleep(for: .nanoseconds(Int(interQueryGapNs)))
                 let normalized = response.uppercased()
                     .replacing(" ", with: "")
                     .replacing("\n", with: "")
                     .replacing("\r", with: "")
                 if normalized.contains("NODATA") {
-                    NSLog("[Sampler] \(request) → NO DATA (defs: \(defs.map { $0.id }))")
                     for def in defs { bumpStrike(def.id) }
                     continue
                 }
-                // ELM emits STOPPED when a previous query was interrupted
-                // by the next command arriving too fast. We've added the
-                // inter-query gap above to prevent this, but log + bump
-                // on the way through so accidental occurrences are visible.
                 if normalized.contains("STOPPED") {
-                    NSLog("[Sampler] \(request) → STOPPED (adapter overrun)")
                     for def in defs { bumpStrike(def.id) }
                     continue
                 }
                 guard let payload = extractPayload(response: response, mode: mode, pid: pid) else {
-                    NSLog("[Sampler] \(request) → no positive prefix in \"\(normalized)\"")
                     for def in defs { bumpStrike(def.id) }
                     continue
                 }
-                // SAE J1979 sentinel: all-0xFF payload means "I support
-                // this PID but have no data right now." Treat as missing
-                // rather than decoding a literal 65535 km / 255.
                 if !payload.isEmpty, payload.allSatisfy({ $0 == 0xFF }) {
                     for def in defs { bumpStrike(def.id) }
                     continue
@@ -195,13 +245,16 @@ final class Sampler {
                         }
                     }()
                     values[def.id] = formatted
+                    let rate = customRates[def.id] ?? Self.defaultSamplingRate(for: def)
                     let live = LiveValue(
                         pidID: def.id,
                         raw: HexParsing.hex(payload),
                         value: evaluated,
                         unit: def.unit,
                         displayName: def.displayName,
-                        category: def.category
+                        category: def.category,
+                        samplingRate: rate,
+                        timestamp: Date.now
                     )
                     liveValuesCollected.append(live)
                 }
@@ -215,8 +268,7 @@ final class Sampler {
         return TickRow(timestampISO: timestampISO, elapsedMs: elapsedMs, values: values)
     }
 
-    /// Group PIDs that share a (mode, pid) query so we issue one request
-    /// per unique query instead of N copies. Preserves first-seen order.
+    /// Group PIDs that share a (mode, pid) query
     private func dedupeByQuery(_ pids: [PidDef]) -> [(mode: String, pid: String, defs: [PidDef])] {
         var keyOrder: [String] = []
         var byKey: [String: (String, String, [PidDef])] = [:]
@@ -233,8 +285,6 @@ final class Sampler {
         return keyOrder.compactMap { byKey[$0] }
     }
 
-    /// Stable iteration order: sort ECU names alphabetically so output is
-    /// deterministic for any given profile.
     private func groupByEcu(_ pids: [PidDef]) -> [(String, [PidDef])] {
         var grouped: [String: [PidDef]] = [:]
         for pid in pids {
@@ -257,24 +307,6 @@ final class Sampler {
         return String(rounded)
     }
 
-    /// Extract the payload bytes (everything after the positive response
-    /// code) from an ELM327 response. Handles both single-frame responses
-    /// like `61617170778000` and multi-frame ISO-TP responses where each
-    /// frame is prefixed with `<digit>:` and a leading length byte appears
-    /// on its own line:
-    ///
-    ///     011
-    ///     0:61951B1A1A1A1A
-    ///     1:1B1A1A1A1A1A1A1B
-    ///     2:1B1B1A1B00
-    ///     0000
-    ///
-    /// The previous implementation `HexParsing.bytes` rejected any string
-    /// containing `:`, so multi-frame responses were silently dropped —
-    /// every Mode 21 PID with a long payload (PID 95 battery temps, PID 98
-    /// HV voltage on Lexus hybrids) ended up at 0% coverage. Splitting on
-    /// newlines and searching each line for the response prefix mirrors
-    /// what the web app's `decodePidResponse` does.
     private func extractPayload(response: String, mode: String, pid: String) -> [UInt8]? {
         guard let modeByte = UInt8(mode, radix: 16) else { return nil }
         let prefix = String(format: "%02X%@", modeByte + 0x40, pid.uppercased())
@@ -299,5 +331,3 @@ final class Sampler {
         return nil
     }
 }
-
-

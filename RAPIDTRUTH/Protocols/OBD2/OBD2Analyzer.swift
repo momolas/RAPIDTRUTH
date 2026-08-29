@@ -303,13 +303,13 @@ final class OBD2Analyzer: Sendable {
         // 1. Détection des trames NRC (Negative Response) : Format "7F [Service] [Code NRC]"
         if respBytes.first == 0x7F {
             guard respBytes.count >= 3 else {
-                return "❌ Erreur de réponse négative incomplète"
+                return "❌ Erreur de réponse négative incomplète (7F)"
             }
             let service = respBytes[1]
             let nrc = respBytes[2]
-            let serviceName = udsKwpModeDescriptions[service] ?? String(format: "%02X", service)
-            let nrcName = nrcDescriptions[nrc] ?? "Code NRC \(String(format: "%02X", nrc))"
-            return "❌ Erreur sur Service \(serviceName) : \(nrcName)"
+            let nrcResp = UDSNRCResponse(requestedServiceID: service, rawHexByte: nrc)
+            let serviceName = udsKwpModeDescriptions[service] ?? "0x\(String(format: "%02X", service))"
+            return "❌ Rejet Service \(serviceName) : \(nrcResp.title) (0x\(nrcResp.rawHexCode)) — \(nrcResp.actionAdvice)"
         }
 
         let isOBD2 = reqMode <= 0x0F

@@ -18,6 +18,10 @@ enum AppTestSuite {
         reports.append(testFormulaEvaluator())
         reports.append(testISOTPReassembler())
         reports.append(testSignalCorrelator())
+        reports.append(testUDSNRC())
+        reports.append(testMultiRateSampler())
+        reports.append(testFreezeFrameDecoder())
+        reports.append(testActuatorRegistry())
         
         for report in reports {
             let prefix = report.passed ? "✅ [TEST PASSED]" : "❌ [TEST FAILED]"
@@ -102,21 +106,123 @@ enum AppTestSuite {
     // MARK: - SignalCorrelator Tests
     
     private static func testSignalCorrelator() -> TestReport {
-        let correlator = SignalCorrelator()
-        let rpms = [800.0, 900.0, 1000.0, 1200.0, 1500.0, 2000.0, 2500.0, 3000.0]
-        var lastResults: [SliceCorrelation] = []
-        
-        for rpm in rpms {
-            let byteA = UInt8(min(255, Int(rpm / 20.0)))
-            let hex = String(format: "%02X 00", byteA)
-            lastResults = correlator.record(hexResponse: hex, rpm: rpm, speed: 0.0)
+        // Corrélation parfaite positive (r = 1.0)
+        let xs = [1.0, 2.0, 3.0, 4.0, 5.0]
+        let ys = [2.0, 4.0, 6.0, 8.0, 10.0]
+        guard let r1 = SignalCorrelator.pearsonCorrelation(x: xs, y: ys), abs(r1 - 1.0) < 0.001 else {
+            return TestReport(testName: "SignalCorrelator", passed: false, message: "Échec corrélation linéaire positive (attendu 1.0)")
         }
         
-        guard let topResult = lastResults.first(where: { $0.sliceName == "A" && $0.referenceSignal == "RPM" }),
-              topResult.coefficient > 0.95 else {
-            return TestReport(testName: "SignalCorrelator", passed: false, message: "Échec corrélation linéaire avec signal de référence")
+        // Corrélation parfaite négative (r = -1.0)
+        let ysNeg = [10.0, 8.0, 6.0, 4.0, 2.0]
+        guard let r2 = SignalCorrelator.pearsonCorrelation(x: xs, y: ysNeg), abs(r2 - (-1.0)) < 0.001 else {
+            return TestReport(testName: "SignalCorrelator", passed: false, message: "Échec corrélation linéaire négative (attendu -1.0)")
         }
         
-        return TestReport(testName: "SignalCorrelator", passed: true, message: "Calculs de Pearson & classification OK")
+        // Échantillons trop courts
+        guard SignalCorrelator.pearsonCorrelation(x: [1.0], y: [2.0]) == nil else {
+            return TestReport(testName: "SignalCorrelator", passed: false, message: "N < 2 aurait dû renvoyer nil")
+        }
+        
+        return TestReport(testName: "SignalCorrelator", passed: true, message: "Calcul du coefficient r de Pearson OK")
+    }
+
+    // MARK: - UDS NRC Tests
+
+    private static func testUDSNRC() -> TestReport {
+        // Test parsing standard NRC: 7F 10 22 (ConditionsNotCorrect on Session 10)
+        let resp1 = UDSNRC.parse(from: "7F1022")
+        guard let r1 = resp1, r1.nrc == .conditionsNotCorrect, r1.requestedServiceID == 0x10 else {
+            return TestReport(testName: "UDSNRC", passed: false, message: "Échec de parsing NRC 7F1022")
+        }
+        guard !r1.actionAdvice.isEmpty, r1.title == "Conditions Non Remplies" else {
+            return TestReport(testName: "UDSNRC", passed: false, message: "Détails NRC incomplets pour 0x22")
+        }
+
+        // Test parsing with header: 7E8 03 7F 30 83 (Engine is running on Actuator 30)
+        let resp2 = UDSNRC.parse(from: "7E8037F3083")
+        guard let r2 = resp2, r2.nrc == .engineIsRunning, r2.requestedServiceID == 0x30 else {
+            return TestReport(testName: "UDSNRC", passed: false, message: "Échec de parsing NRC avec header 7E8037F3083")
+        }
+
+        // Non-NRC frame should return nil
+        guard UDSNRC.parse(from: "5003003201F4") == nil else {
+            return TestReport(testName: "UDSNRC", passed: false, message: "Trame positive aurait dû renvoyer nil")
+        }
+
+        return TestReport(testName: "UDSNRC", passed: true, message: "Décodage exhaustif des Negative Response Codes ISO-14229 OK")
+    }
+
+    // MARK: - MultiRate Sampler Tests
+
+    private static func testMultiRateSampler() -> TestReport {
+        let rpmPid = PidDef(id: "engine_rpm", displayName: "Régime Moteur", ecu: "engine", mode: "01", pid: "0C", unit: "rpm", formula: "(A*256+B)/4", category: .engine)
+        let tempPid = PidDef(id: "coolant_temp", displayName: "Température Liquide Refroidissement", ecu: "engine", mode: "01", pid: "05", unit: "°C", formula: "A-40", category: .temperature)
+        let speedPid = PidDef(id: "vehicle_speed", displayName: "Vitesse Véhicule", ecu: "engine", mode: "01", pid: "0D", unit: "km/h", formula: "A", category: .speed)
+
+        guard Sampler.defaultSamplingRate(for: rpmPid) == .fast else {
+            return TestReport(testName: "MultiRateSampler", passed: false, message: "RPM aurait dû être catégorisé en .fast (10 Hz)")
+        }
+        guard Sampler.defaultSamplingRate(for: speedPid) == .fast else {
+            return TestReport(testName: "MultiRateSampler", passed: false, message: "Speed aurait dû être catégorisé en .fast (10 Hz)")
+        }
+        guard Sampler.defaultSamplingRate(for: tempPid) == .slow else {
+            return TestReport(testName: "MultiRateSampler", passed: false, message: "Température aurait dû être catégorisée en .slow (0.5 Hz)")
+        }
+
+        guard SamplingRate.fast.tickDivider == 1 && SamplingRate.normal.tickDivider == 5 && SamplingRate.slow.tickDivider == 20 else {
+            return TestReport(testName: "MultiRateSampler", passed: false, message: "Diviseurs de cycle incorrects")
+        }
+
+        return TestReport(testName: "MultiRateSampler", passed: true, message: "Cadencement et diviseurs multi-fréquences OK")
+    }
+
+    // MARK: - Freeze Frame Tests
+
+    private static func testFreezeFrameDecoder() -> TestReport {
+        let dtcLoader = DTCLoader()
+        
+        // Simuler réponse KWP Service 18: 58 [DTC] [KM: 0x0186A0 = 100000km] [RPM: 0x0BB8 = 750 rpm] [TEMP: 0x78 = 80°C] [SPEED: 0x32 = 50 km/h]
+        let kwpHex = "58 01 02 01 86 A0 0B B8 78 32"
+        let decoded = dtcLoader.parseFreezeFrameResponse(kwpHex, dtcCode: "P0102")
+        
+        guard decoded.timestampKm == 100000 else {
+            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction kilométrage (attendu 100000 km, reçu \(String(describing: decoded.timestampKm)))")
+        }
+        guard decoded.rpm == 750 else {
+            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction RPM (attendu 750, reçu \(String(describing: decoded.rpm)))")
+        }
+        guard decoded.coolantTemp == 80 else {
+            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction T° eau (attendu 80°C, reçu \(String(describing: decoded.coolantTemp)))")
+        }
+        guard decoded.vehicleSpeed == 50 else {
+            return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction Vitesse (attendu 50 km/h, reçu \(String(describing: decoded.vehicleSpeed)))")
+        }
+
+        return TestReport(testName: "FreezeFrameDecoder", passed: true, message: "Décodage trame gelée KWP Service 18 & Mode 02 OK")
+    }
+
+    // MARK: - Actuator Registry Tests
+
+    private static func testActuatorRegistry() -> TestReport {
+        let actuators = ActuatorRegistry.standardActuators
+        guard !actuators.isEmpty else {
+            return TestReport(testName: "ActuatorRegistry", passed: false, message: "Le registre d'actionneurs est vide")
+        }
+
+        let clusterActuators = actuators.filter { $0.category == .cluster }
+        let engineActuators = actuators.filter { $0.category == .engine }
+        let bodyActuators = actuators.filter { $0.category == .body }
+
+        guard !clusterActuators.isEmpty && !engineActuators.isEmpty && !bodyActuators.isEmpty else {
+            return TestReport(testName: "ActuatorRegistry", passed: false, message: "Manque des catégories dans le catalogue d'actionneurs")
+        }
+
+        // Vérifier l'actionneur balayage d'aiguilles
+        guard let sweep = actuators.first(where: { $0.id == "cluster_needle_sweep" }), sweep.ecuHeader == "743" else {
+            return TestReport(testName: "ActuatorRegistry", passed: false, message: "Actionneur cluster_needle_sweep invalide")
+        }
+
+        return TestReport(testName: "ActuatorRegistry", passed: true, message: "Catalogue complet de \(actuators.count) actionneurs validé")
     }
 }

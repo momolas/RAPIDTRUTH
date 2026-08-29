@@ -110,13 +110,45 @@ struct LiveDataView: View {
             .padding(.bottom, 8)
             .background(Color.appBackground)
             
-            // Selection actions and status counter
+            // Selection actions, Multi-Rate preset and status counter
             HStack {
-                Text("\(selectedPIDs.count) sélectionnés")
-                    .font(.captionText)
-                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(selectedPIDs.count) sélectionnés")
+                        .font(.captionText)
+                        .foregroundStyle(.secondary)
+                    
+                    if viewModel.isSampling {
+                        Text("Tick #\(viewModel.tickCount)")
+                            .font(.monoTiny)
+                            .foregroundStyle(Color.appAccent)
+                    }
+                }
                 
                 Spacer()
+                
+                // Preset multi-rate selector
+                if !viewModel.isSampling {
+                    Menu {
+                        ForEach(SamplingProfilePreset.allCases) { preset in
+                            Button {
+                                viewModel.activePreset = preset
+                            } label: {
+                                Label(preset.rawValue, systemImage: preset.iconName)
+                            }
+                        }
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: viewModel.activePreset.iconName)
+                            Text(viewModel.activePreset.rawValue)
+                                .font(.captionTiny)
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.white.opacity(0.08))
+                        .foregroundStyle(.white)
+                        .clipShape(.rect(cornerRadius: 6))
+                    }
+                }
                 
                 HStack(spacing: 12) {
                     Button("Tout cocher", action: selectAllFiltered)
@@ -146,15 +178,22 @@ struct LiveDataView: View {
                     let isPidSelected = selectedPIDs.contains(pid.id)
                     let liveValue = viewModel.liveValues[pid.id]
                     let isStriked = viewModel.disabledPIDs.contains(pid.id)
+                    let rate = viewModel.rate(for: pid)
+                    let measuredHz = viewModel.measuredFrequencies[pid.id]
                     
                     PidRowView(
                         pid: pid,
                         isSelected: isPidSelected,
                         isSampling: viewModel.isSampling,
                         isStriked: isStriked,
+                        rate: rate,
+                        measuredHz: measuredHz,
                         liveValue: liveValue,
                         onToggle: {
                             toggleSelection(for: pid.id)
+                        },
+                        onRateChange: { newRate in
+                            viewModel.setRate(newRate, for: pid.id)
                         }
                     )
                     .listRowBackground(Color.appCardBackground)
@@ -182,7 +221,7 @@ struct LiveDataView: View {
                     .glassActionButton(prominent: true)
                     .foregroundStyle(.red)
                 } else {
-                    Button("Démarrer l'échantillonnage", systemImage: "play.fill") {
+                    Button("Démarrer le Multi-Rate Sampler", systemImage: "play.fill") {
                         let samplingList = profile.pids.filter { selectedPIDs.contains($0.id) }
                         viewModel.startSampling(interface: interface, profile: profile, selectedPids: samplingList)
                     }
@@ -191,33 +230,32 @@ struct LiveDataView: View {
                     .glassActionButton(prominent: true)
                     .disabled(selectedPIDs.isEmpty || !isConnected)
                 }
-                
-                if viewModel.isSampling {
-                    HStack {
-                        ProgressView()
-                            .padding(.trailing, 4)
-                        Text("Ticks reçus : \(viewModel.tickCount)")
-                            .font(.captionText)
-                            .foregroundStyle(.secondary)
-                    }
-                }
             }
             .padding(16)
             .background(Color.appCardBackground)
         }
-        .background(Color.appBackground.ignoresSafeArea())
-        .navigationTitle("Données Temps Réel")
+        .navigationTitle("Live Data")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            // Auto-select standard engine PIDs initially if empty
+            if selectedPIDs.isEmpty {
+                let defaultSelection = profile.pids.filter { pid in
+                    let id = pid.id.lowercased()
+                    return id.contains("rpm") || id.contains("speed") || id.contains("temp")
+                }.map { $0.id }
+                selectedPIDs = Set(defaultSelection)
+            }
+        }
         .onDisappear {
             viewModel.stopSampling()
         }
     }
     
-    private func toggleSelection(for id: String) {
-        if selectedPIDs.contains(id) {
-            selectedPIDs.remove(id)
+    private func toggleSelection(for pidId: String) {
+        if selectedPIDs.contains(pidId) {
+            selectedPIDs.remove(pidId)
         } else {
-            selectedPIDs.insert(id)
+            selectedPIDs.insert(pidId)
         }
     }
     

@@ -1,20 +1,20 @@
 import Foundation
 import Observation
 
-enum DTCState: String, Sendable {
+public enum DTCState: String, Sendable {
     case active = "Active"
     case stored = "Stored"
 }
 
-struct DTC: Identifiable, Equatable, Sendable {
-    var id: String { "\(ecu)-\(rawHex)" }
-    let rawHex: String
-    let code: String
-    let dfCode: String?
-    let description: String?
-    let state: DTCState
-    let ecu: String
-    var freezeFrame: [String: String]? = nil
+public struct DTC: Identifiable, Equatable, Sendable {
+    public var id: String { "\(ecu)-\(rawHex)" }
+    public let rawHex: String
+    public let code: String
+    public let dfCode: String?
+    public let description: String?
+    public let state: DTCState
+    public let ecu: String
+    public var freezeFrame: FreezeFrameData? = nil
 }
 
 @MainActor
@@ -26,10 +26,12 @@ final class DTCLoader {
     var isLoadingFreezeFrame = false
     var scanError: String?
     var currentEcuScanning: String?
+    var lastNRCError: UDSNRCResponse?
 
     func scan(interface: VehicleInterface, profile: Profile) async {
         isScanning = true
         scanError = nil
+        lastNRCError = nil
         dtcs.removeAll()
 
         do {
@@ -41,8 +43,11 @@ final class DTCLoader {
                     currentEcuScanning = ecuName
                     try await interface.setTarget(txID: ecuDef.requestHeader, rxID: nil)
                     
-                    // Read DTC by Status (KWP2000 Renault specific)
+                    // Read DTC by Status (KWP2000 Renault specific: 17 FF 00)
                     let hexResponse = try await interface.sendDiagnosticRequest("17FF00", timeout: 4.0)
+                    if let nrc = UDSNRC.parse(from: hexResponse) {
+                        NSLog("[DTCLoader] ECU \(ecuName) returned NRC 0x\(nrc.rawHexCode) (\(nrc.title))")
+                    }
                     let ecuDTCs = parseRenaultDTCs(from: hexResponse, ecuName: ecuName)
                     allFound.append(contentsOf: ecuDTCs)
                 }
@@ -59,21 +64,33 @@ final class DTCLoader {
     func clear(interface: VehicleInterface, profile: Profile) async {
         isClearing = true
         scanError = nil
+        lastNRCError = nil
         do {
             if profile.profileId.contains("generic") {
                 try await interface.setTarget(txID: "7E0", rxID: nil)
                 // Mode 04: Clear Diagnostic Trouble Codes
-                _ = try await interface.sendDiagnosticRequest("04", timeout: 4.0)
-                try? await Task.sleep(for: .milliseconds(500))
-                dtcs.removeAll()
-            } else {
-                for (_, ecuDef) in profile.ecus {
-                    try await interface.setTarget(txID: ecuDef.requestHeader, rxID: nil)
-                    // Clear Diagnostic Information
-                    _ = try await interface.sendDiagnosticRequest("14FF00", timeout: 4.0)
+                let resp = try await interface.sendDiagnosticRequest("04", timeout: 4.0)
+                if let nrc = UDSNRC.parse(from: resp) {
+                    lastNRCError = nrc
+                    scanError = "Effacement refusé : \(nrc.title) — \(nrc.actionAdvice)"
+                } else {
                     try? await Task.sleep(for: .milliseconds(500))
+                    dtcs.removeAll()
                 }
-                dtcs.removeAll()
+            } else {
+                for (ecuName, ecuDef) in profile.ecus {
+                    try await interface.setTarget(txID: ecuDef.requestHeader, rxID: nil)
+                    // Clear Diagnostic Information (14 FF 00)
+                    let resp = try await interface.sendDiagnosticRequest("14FF00", timeout: 4.0)
+                    if let nrc = UDSNRC.parse(from: resp) {
+                        lastNRCError = nrc
+                        scanError = "Effacement refusé sur \(ecuName) : \(nrc.title) — \(nrc.actionAdvice)"
+                    }
+                    try? await Task.sleep(for: .milliseconds(300))
+                }
+                if scanError == nil {
+                    dtcs.removeAll()
+                }
             }
         } catch {
             scanError = "Clear failed: \(error.localizedDescription)"
@@ -88,28 +105,136 @@ final class DTCLoader {
         isLoadingFreezeFrame = true
         
         do {
-            let ecuDef = profile.ecus[dtc.ecu]
-            let reqHeader = ecuDef?.requestHeader ?? "7E0"
-            try await interface.setTarget(txID: reqHeader, rxID: nil)
-            
-            // KWP2000 Service 18: Report Extended Data by DTC (Freeze Frame)
-            let reqCmd = "18\(dtc.rawHex)00"
-            let response = try await interface.sendDiagnosticRequest(reqCmd, timeout: 3.0)
-            
-            let decodedFrame = parseFreezeFrameResponse(response)
-            if !decodedFrame.isEmpty {
-                dtcs[dtcIndex].freezeFrame = decodedFrame
+            if profile.profileId.contains("generic") {
+                let frame = await fetchGenericFreezeFrame(interface: interface, targetDTC: dtc.code)
+                dtcs[dtcIndex].freezeFrame = frame
             } else {
-                dtcs[dtcIndex].freezeFrame = [
-                    "Statut": "Trame gelée non enregistrée",
-                    "Kilométrage": "N/A"
-                ]
+                let ecuDef = profile.ecus[dtc.ecu]
+                let reqHeader = ecuDef?.requestHeader ?? "7E0"
+                try await interface.setTarget(txID: reqHeader, rxID: nil)
+                
+                // KWP2000 Service 18: Report Extended Data by DTC (Freeze Frame)
+                let reqCmd = "18\(dtc.rawHex)00"
+                let response = try await interface.sendDiagnosticRequest(reqCmd, timeout: 3.0)
+                
+                if let nrc = UDSNRC.parse(from: response) {
+                    dtcs[dtcIndex].freezeFrame = FreezeFrameData(
+                        triggerDTC: dtc.code,
+                        additionalAttributes: ["Statut": "\(nrc.title) (0x\(nrc.rawHexCode))", "Conseil": nrc.actionAdvice]
+                    )
+                } else {
+                    let decodedFrame = parseFreezeFrameResponse(response, dtcCode: dtc.code)
+                    dtcs[dtcIndex].freezeFrame = decodedFrame
+                }
             }
         } catch {
-            dtcs[dtcIndex].freezeFrame = ["Erreur": error.localizedDescription]
+            dtcs[dtcIndex].freezeFrame = FreezeFrameData(
+                triggerDTC: dtc.code,
+                additionalAttributes: ["Erreur": error.localizedDescription]
+            )
         }
         
         isLoadingFreezeFrame = false
+    }
+
+    private func fetchGenericFreezeFrame(interface: VehicleInterface, targetDTC: String) async -> FreezeFrameData {
+        var rpm: Int? = nil
+        var speed: Int? = nil
+        var coolant: Int? = nil
+        var load: Double? = nil
+        var intakePress: Int? = nil
+        var intakeTemp: Int? = nil
+        var throttle: Double? = nil
+        var voltage: Double? = nil
+        var triggerDtcFound = targetDTC
+        
+        do {
+            try await interface.setTarget(txID: "7E0", rxID: nil)
+            
+            // Mode 02 PID 02: DTC triggering freeze frame
+            if let resp = try? await interface.sendDiagnosticRequest("020200", timeout: 2.0),
+               let bytes = extractMode02Bytes(resp, pid: "02"), bytes.count >= 2 {
+                let hexDTC = String(format: "%02X%02X", bytes[0], bytes[1])
+                if let decoded = decodeSingleDTC(hexDTC) {
+                    triggerDtcFound = decoded
+                }
+            }
+            
+            // Mode 02 PID 0C: Engine RPM
+            if let resp = try? await interface.sendDiagnosticRequest("020C00", timeout: 2.0),
+               let bytes = extractMode02Bytes(resp, pid: "0C"), bytes.count >= 2 {
+                rpm = Int((Double(bytes[0]) * 256.0 + Double(bytes[1])) / 4.0)
+            }
+            
+            // Mode 02 PID 0D: Vehicle Speed
+            if let resp = try? await interface.sendDiagnosticRequest("020D00", timeout: 2.0),
+               let bytes = extractMode02Bytes(resp, pid: "0D"), !bytes.isEmpty {
+                speed = Int(bytes[0])
+            }
+            
+            // Mode 02 PID 05: Coolant Temp
+            if let resp = try? await interface.sendDiagnosticRequest("020500", timeout: 2.0),
+               let bytes = extractMode02Bytes(resp, pid: "05"), !bytes.isEmpty {
+                coolant = Int(bytes[0]) - 40
+            }
+            
+            // Mode 02 PID 04: Calculated Engine Load
+            if let resp = try? await interface.sendDiagnosticRequest("020400", timeout: 2.0),
+               let bytes = extractMode02Bytes(resp, pid: "04"), !bytes.isEmpty {
+                load = (Double(bytes[0]) / 255.0) * 100.0
+            }
+            
+            // Mode 02 PID 0B: Intake Manifold Absolute Pressure
+            if let resp = try? await interface.sendDiagnosticRequest("020B00", timeout: 2.0),
+               let bytes = extractMode02Bytes(resp, pid: "0B"), !bytes.isEmpty {
+                intakePress = Int(bytes[0])
+            }
+            
+            // Mode 02 PID 0F: Intake Air Temp
+            if let resp = try? await interface.sendDiagnosticRequest("020F00", timeout: 2.0),
+               let bytes = extractMode02Bytes(resp, pid: "0F"), !bytes.isEmpty {
+                intakeTemp = Int(bytes[0]) - 40
+            }
+            
+            // Mode 02 PID 11: Throttle Position
+            if let resp = try? await interface.sendDiagnosticRequest("021100", timeout: 2.0),
+               let bytes = extractMode02Bytes(resp, pid: "11"), !bytes.isEmpty {
+                throttle = (Double(bytes[0]) / 255.0) * 100.0
+            }
+            
+            // Mode 02 PID 42: Control Module Voltage
+            if let resp = try? await interface.sendDiagnosticRequest("024200", timeout: 2.0),
+               let bytes = extractMode02Bytes(resp, pid: "42"), bytes.count >= 2 {
+                voltage = (Double(bytes[0]) * 256.0 + Double(bytes[1])) / 1000.0
+            }
+        } catch {
+            NSLog("[DTCLoader] Error fetching generic freeze frame: \(error)")
+        }
+        
+        return FreezeFrameData(
+            triggerDTC: triggerDtcFound,
+            timestampKm: nil,
+            rpm: rpm,
+            vehicleSpeed: speed,
+            coolantTemp: coolant,
+            engineLoad: load,
+            intakePressureKPa: intakePress,
+            intakeAirTemp: intakeTemp,
+            batteryVoltage: voltage,
+            throttlePosition: throttle,
+            rawHex: "MODE02",
+            additionalAttributes: [:]
+        )
+    }
+
+    private func extractMode02Bytes(_ response: String, pid: String) -> [UInt8]? {
+        let clean = response.uppercased().replacing(" ", with: "").replacing("\n", with: "").replacing("\r", with: "")
+        let prefix = "42" + pid.uppercased()
+        guard let range = clean.range(of: prefix) else { return nil }
+        let after = String(clean[range.upperBound...])
+        // Skip frame count (00) if present
+        let payload = after.hasPrefix("00") ? String(after.dropFirst(2)) : after
+        return HexParsing.bytes(payload)
     }
 
     private func scanGenericDTCs(interface: VehicleInterface) async -> [DTC] {
@@ -236,21 +361,26 @@ final class DTCLoader {
         return "DF" + hexCode.suffix(3)
     }
 
-    private func parseFreezeFrameResponse(_ hex: String) -> [String: String] {
+    public func parseFreezeFrameResponse(_ hex: String, dtcCode: String) -> FreezeFrameData {
         let clean = hex.replacing(" ", with: "").uppercased()
-        guard clean.contains("58"), clean.count >= 16 else { return [:] }
+        guard clean.contains("58"), clean.count >= 16 else {
+            return FreezeFrameData(triggerDTC: dtcCode, additionalAttributes: ["Statut": "Trame gelée non enregistrée"])
+        }
         
-        var frameMap: [String: String] = [:]
+        var kmVal: Int? = nil
+        var rpmVal: Int? = nil
+        var tempVal: Int? = nil
+        var speedVal: Int? = nil
+        let extra: [String: String] = [:]
         
-        // Extract 3-byte mileage sequence if present
         let chars = Array(clean)
         if chars.count >= 20 {
             let byte1 = UInt32(String(chars[10...11]), radix: 16) ?? 0
             let byte2 = UInt32(String(chars[12...13]), radix: 16) ?? 0
             let byte3 = UInt32(String(chars[14...15]), radix: 16) ?? 0
-            let km = (byte1 << 16) | (byte2 << 8) | byte3
+            let km = Int((byte1 << 16) | (byte2 << 8) | byte3)
             if km > 0 && km < 1_000_000 {
-                frameMap["Kilométrage apparition"] = "\(km) km"
+                kmVal = km
             }
         }
         
@@ -259,24 +389,32 @@ final class DTCLoader {
             let rpmByte2 = Double(UInt8(String(chars[18...19]), radix: 16) ?? 0)
             let rpm = Int((rpmByte1 * 256.0 + rpmByte2) / 4.0)
             if rpm > 0 && rpm < 8000 {
-                frameMap["Régime Moteur"] = "\(rpm) tr/min"
+                rpmVal = rpm
             }
         }
         
         if chars.count >= 28 {
             let tempByte = Int(UInt8(String(chars[20...21]), radix: 16) ?? 0) - 40
             if tempByte >= -40 && tempByte <= 150 {
-                frameMap["Température Eau"] = "\(tempByte) °C"
+                tempVal = tempByte
             }
             
-            let speedByte = Int(UInt8(String(chars[22...23]), radix: 16) ?? 0)
-            frameMap["Vitesse Véhicule"] = "\(speedByte) km/h"
+            let sByte = Int(UInt8(String(chars[22...23]), radix: 16) ?? 0)
+            speedVal = sByte
         }
         
-        return frameMap
+        return FreezeFrameData(
+            triggerDTC: dtcCode,
+            timestampKm: kmVal,
+            rpm: rpmVal,
+            vehicleSpeed: speedVal,
+            coolantTemp: tempVal,
+            rawHex: clean,
+            additionalAttributes: extra
+        )
     }
 
-    private func decodeSingleDTC(_ hex: String) -> String? {
+    public func decodeSingleDTC(_ hex: String) -> String? {
         guard hex.count == 4, let value = UInt16(hex, radix: 16) else { return nil }
         
         let highByte = UInt8((value >> 8) & 0xFF)
