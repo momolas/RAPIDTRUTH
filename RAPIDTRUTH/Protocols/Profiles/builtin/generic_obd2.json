@@ -1,16 +1,30 @@
 {
-  "profile_id": "generic_obd2",
-  "profile_version": "1.0.0",
-  "display_name": "Generic OBD2",
+  "name": "Generic OBD2",
   "description": "Universal fallback. Auto-discovers and logs whichever standard mode-01 PIDs the vehicle reports as supported. No manufacturer-specific data.",
-  "ecus": {
-    "engine": {
-      "request_header": "7E0",
-      "response_header": "7E8"
+  "connections": [
+    {
+      "bus_type": "CAN",
+      "baudrate": 500000,
+      "tx_id": "0x7E0",
+      "rx_id": "0x7E8",
+      "protocol": "ISO15765-2"
     }
-  },
-  "pids": [],
-  "sources": [
-    "https://en.wikipedia.org/wiki/OBD-II_PIDs"
+  ],
+  "variants": [
+    {
+      "name": "generic_obd2_Variant1",
+      "description": "Universal fallback. Auto-discovers and logs whichever standard mode-01 PIDs the vehicle reports as supported. No manufacturer-specific data.",
+      "patterns": [
+        {
+          "vendor": "Renault",
+          "vendor_id": "1.0.0"
+        }
+      ],
+      "errors": [],
+      "downloads": [],
+      "actuations": [],
+      "adjustments": [],
+      "functions": []
+    }
   ]
 }

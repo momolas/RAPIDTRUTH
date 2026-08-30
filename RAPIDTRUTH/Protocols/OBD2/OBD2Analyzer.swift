@@ -581,37 +581,11 @@ final class OBD2Analyzer: Sendable {
     }
 
     private static func decodeSingleDTC(_ hex: String) -> String? {
-        guard hex.count == 4, let value = UInt16(hex, radix: 16) else { return nil }
-        
-        let highByte = UInt8((value >> 8) & 0xFF)
-        let lowByte = UInt8(value & 0xFF)
-        
-        let typeMap = ["P", "C", "B", "U"]
-        let typeIdx = Int((highByte >> 6) & 0b11)
-        let type = typeMap[typeIdx]
-        
-        let digit1 = (highByte >> 4) & 0b11
-        let digit2 = highByte & 0x0F
-        let digit3 = (lowByte >> 4) & 0x0F
-        let digit4 = lowByte & 0x0F
-        
-        return "\(type)\(digit1)\(String(digit2, radix: 16, uppercase: true))\(String(digit3, radix: 16, uppercase: true))\(String(digit4, radix: 16, uppercase: true))"
+        DTCDecoder.decodeSingleDTC(hex)
     }
 
     private static func decodeKwpDtcStatus(_ status: UInt8) -> String {
-        var activeFlags: [String] = []
-        if (status & 0x80) != 0 {
-            activeFlags.append("Présent")
-        } else {
-            activeFlags.append("Mémorisé")
-        }
-        if (status & 0x40) != 0 {
-            activeFlags.append("MIL demandée")
-        }
-        if (status & 0x20) != 0 {
-            activeFlags.append("Non-confirmé")
-        }
-        return activeFlags.joined(separator: ", ")
+        DTCDecoder.decodeKwpDtcStatus(status)
     }
 
     // MARK: - Classification de Protocole & SAE J1939
