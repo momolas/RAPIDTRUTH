@@ -2,9 +2,8 @@ import Foundation
 import Observation
 import SwiftVehicleProtocols
 
-/// Loads JSON profiles bundled into the app at build time. The profiles ship
-/// from `../src/profiles/builtin/` (see `project.yml`), so they're identical
-/// to the ones the web app uses.
+/// Charge les profils JSON embarqués ou importés par l'utilisateur.
+/// Tous les profils reposent désormais nativement sur le format déclaratif universel (UnifiedECUProfile).
 @MainActor
 @Observable
 final class ProfileRegistry {
@@ -27,11 +26,9 @@ final class ProfileRegistry {
         unifiedProfiles.first { $0.name.localizedCaseInsensitiveContains(name) }
     }
 
-    /// Heuristic: pick the first profile whose `vehicle_match` lists this
-    /// make + (optional) model + (optional) year. Falls back to "generic_obd2".
+    /// Recommandation de profil par correspondance marque / modèle / année.
     func suggestedProfile(make: String?, model: String? = nil, year: Int?) -> Profile {
         if let make = make?.lowercased() {
-            // First pass: try to match both make and model if model is provided
             if let model = model?.lowercased(), !model.isEmpty {
                 for p in profiles {
                     guard let match = p.vehicleMatch else { continue }
@@ -48,7 +45,6 @@ final class ProfileRegistry {
                 }
             }
             
-            // Second pass: fallback to matching only make (and year)
             for p in profiles {
                 guard let match = p.vehicleMatch else { continue }
                 if let pmake = match.make?.lowercased(), pmake == make {
@@ -127,6 +123,8 @@ final class ProfileRegistry {
             return (outProfiles, outUnified)
         }
 
+        let decoder = JSONDecoder()
+
         for url in entries where url.pathExtension.lowercased() == "json" {
             if url.lastPathComponent.hasPrefix("_") || url.lastPathComponent.hasPrefix("dtc_") { continue }
             
@@ -134,30 +132,16 @@ final class ProfileRegistry {
                 let data = try Data(contentsOf: url)
                 let baseId = url.deletingPathExtension().lastPathComponent
 
-                // 1. Essai de décodage comme UnifiedECUProfile (Format Moderne OVD)
-                if let uProfile = try? JSONDecoder().decode(UnifiedECUProfile.self, from: data) {
+                // Décodage direct du Schéma Déclaratif Universel (OVD)
+                if let uProfile = try? decoder.decode(UnifiedECUProfile.self, from: data) {
                     let legacy = UnifiedProfileConverter.toLegacyProfile(unified: uProfile, id: baseId)
                     if override || !seen.contains(legacy.profileId) {
                         outProfiles.append(legacy)
                         outUnified.append(uProfile)
                         seen.insert(legacy.profileId)
                     }
-                    continue
-                }
-
-                // 2. Essai de décodage comme Profile (Format Hérité)
-                if let legacy = try? JSONDecoder().decode(Profile.self, from: data) {
-                    let uProfile = UnifiedProfileConverter.convert(legacyProfile: legacy)
-                    if override || !seen.contains(legacy.profileId) {
-                        outProfiles.append(legacy)
-                        outUnified.append(uProfile)
-                        seen.insert(legacy.profileId)
-                    }
-                    continue
-                }
-
-                // 3. Fallback DDT2000 brut
-                if let parsedDDT = try? DDT2000Parser.parse(fileURL: url) {
+                } else if let parsedDDT = try? DDT2000Parser.parse(fileURL: url) {
+                    // Fallback rétrocompatible pour l'import de fichiers DDT2000 / PyRen
                     let uProfile = UnifiedProfileConverter.convert(legacyProfile: parsedDDT)
                     if override || !seen.contains(parsedDDT.profileId) {
                         outProfiles.append(parsedDDT)

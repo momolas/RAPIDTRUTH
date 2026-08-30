@@ -1,11 +1,7 @@
 import Foundation
 import SwiftVehicleProtocols
 
-/// Validates an incoming profile JSON and saves it to `Documents/profiles/`.
-/// Used by:
-///   - In-app `UIDocumentPicker` (user taps Import profile…)
-///   - `.onOpenURL` handler when the user shares a `.json` to OBD2 Logger
-///     from another app (Files, Mail, Safari, AirDrop, iMessage).
+/// Valide et enregistre un profil au format universel dans `Documents/profiles/`.
 enum ProfileImporter {
     enum ImportError: LocalizedError {
         case unreadable(String)
@@ -15,18 +11,16 @@ enum ProfileImporter {
 
         var errorDescription: String? {
             switch self {
-            case .unreadable(let msg): return "Could not read the file: \(msg)"
-            case .invalidJSON(let msg): return "Not a valid profile JSON: \(msg)"
-            case .missingFields(let msg): return "Profile is missing required fields: \(msg)"
-            case .writeFailed(let msg): return "Could not save the profile: \(msg)"
+            case .unreadable(let msg): return "Impossible de lire le fichier : \(msg)"
+            case .invalidJSON(let msg): return "Format de profil invalide : \(msg)"
+            case .missingFields(let msg): return "Champs obligatoires manquants : \(msg)"
+            case .writeFailed(let msg): return "Échec de l'enregistrement : \(msg)"
             }
         }
     }
 
-    /// Import from a file URL (from the document picker or the open-in handler).
-    /// On success returns the parsed profile.
+    /// Importe depuis une URL de fichier (Document Picker ou partage système).
     static func importProfile(from url: URL) throws -> Profile {
-        // Document picker / Files URLs require security-scoped access.
         let needsScope = url.startAccessingSecurityScopedResource()
         defer {
             if needsScope { url.stopAccessingSecurityScopedResource() }
@@ -39,45 +33,39 @@ enum ProfileImporter {
             throw ImportError.unreadable(error.localizedDescription)
         }
 
-        let profile: Profile
-        do {
-            profile = try JSONDecoder().decode(Profile.self, from: data)
-        } catch let DecodingError.keyNotFound(key, _) {
-            if let ddtProfile = try? DDT2000Parser.parse(fileURL: url) {
-                profile = ddtProfile
-            } else {
-                throw ImportError.missingFields(key.stringValue)
-            }
-        } catch {
-            if let ddtProfile = try? DDT2000Parser.parse(fileURL: url) {
-                profile = ddtProfile
-            } else {
-                throw ImportError.invalidJSON(error.localizedDescription)
-            }
+        let baseId = url.deletingPathExtension().lastPathComponent
+        let uProfile: UnifiedECUProfile
+        let legacyProfile: Profile
+
+        // 1. Décodage du Schéma Déclaratif Universel (OVD)
+        if let directUnified = try? JSONDecoder().decode(UnifiedECUProfile.self, from: data) {
+            uProfile = directUnified
+            legacyProfile = UnifiedProfileConverter.toLegacyProfile(unified: uProfile, id: baseId)
+        } else if let parsedLegacy = try? DDT2000Parser.parse(fileURL: url) {
+            // 2. Fallback pour formats bruts DDT2000 / PyRen
+            legacyProfile = parsedLegacy
+            uProfile = UnifiedProfileConverter.convert(legacyProfile: legacyProfile)
+        } else {
+            throw ImportError.invalidJSON("Le fichier ne correspond ni au format universel OVD ni à une base DDT2000 valide.")
         }
 
-        if profile.profileId.isEmpty {
-            throw ImportError.missingFields("profile_id")
-        }
-        if profile.pids.isEmpty {
-            throw ImportError.missingFields("pids (must have at least one)")
+        guard !legacyProfile.pids.isEmpty else {
+            throw ImportError.missingFields("Aucun PID / service trouvé dans le profil.")
         }
 
-        // Save to Documents/profiles/<profile_id>.json (overwrites if exists).
-        let target = "profiles/\(profile.profileId).json"
+        // Sauvegarde canonique au format universel dans Documents/profiles/<profile_id>.json
+        let target = "profiles/\(legacyProfile.profileId).json"
         do {
             try AppStorage.shared.ensureDir("profiles")
-            // Re-encode rather than copying raw bytes so the on-disk version
-            // is canonical (consistent formatting, key ordering).
             let encoder = JSONEncoder()
             encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
-            let canonical = try encoder.encode(profile)
+            let canonical = try encoder.encode(uProfile)
             let dest = AppStorage.shared.url(for: target)
             try canonical.write(to: dest, options: .atomic)
         } catch {
             throw ImportError.writeFailed(error.localizedDescription)
         }
 
-        return profile
+        return legacyProfile
     }
 }
