@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct DTCFreezeFrameSheet: View {
     let dtc: DTC
@@ -45,6 +46,28 @@ struct DTCFreezeFrameSheet: View {
                     .padding()
                     .background(Color.appCardBackground)
                     .clipShape(.rect(cornerRadius: 12))
+
+                    if let mask = dtc.statusMask {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Label("Masque de Statut ISO 14229", systemImage: "flag.badge.ellipsis")
+                                    .font(.caption).bold()
+                                    .foregroundStyle(Color.appAccent)
+                                Spacer()
+                                if let hex = dtc.statusByte {
+                                    Text(String(format: "0x%02X", hex))
+                                        .font(.monoTiny)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                            Text(mask.summary)
+                                .font(.subheadline)
+                                .foregroundStyle(.white)
+                        }
+                        .padding()
+                        .background(Color.appCardBackground)
+                        .clipShape(.rect(cornerRadius: 12))
+                    }
 
                     // Primary Context Grid
                     Text("Conditions d'apparition enregistrées")

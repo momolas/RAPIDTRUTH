@@ -134,13 +134,56 @@ struct DiagnosticsView: View {
                                         Spacer()
                                         
                                         VStack(alignment: .trailing, spacing: 6) {
-                                            Text(dtc.state == .active ? "ACTIF" : "MÉMORISÉ")
-                                                .font(.caption).bold()
-                                                .padding(.horizontal, 8)
-                                                .padding(.vertical, 4)
-                                                .background(dtc.state == .active ? Color.red.opacity(0.2) : Color.orange.opacity(0.2))
-                                                .foregroundStyle(dtc.state == .active ? .red : .orange)
-                                                .clipShape(.rect(cornerRadius: 5))
+                                            if let mask = dtc.statusMask {
+                                                HStack(spacing: 4) {
+                                                    if mask.contains(.warningIndicatorRequested) {
+                                                        Image(systemName: "engine.combustion.fill")
+                                                            .font(.caption2)
+                                                            .foregroundStyle(.yellow)
+                                                    }
+                                                    if mask.contains(.testFailed) {
+                                                        Text("ACTIF")
+                                                            .font(.caption).bold()
+                                                            .padding(.horizontal, 6)
+                                                            .padding(.vertical, 2)
+                                                            .background(Color.red.opacity(0.2))
+                                                            .foregroundStyle(.red)
+                                                            .clipShape(.rect(cornerRadius: 4))
+                                                    } else if mask.contains(.pendingDTC) {
+                                                        Text("EN ATTENTE")
+                                                            .font(.caption).bold()
+                                                            .padding(.horizontal, 6)
+                                                            .padding(.vertical, 2)
+                                                            .background(Color.orange.opacity(0.2))
+                                                            .foregroundStyle(.orange)
+                                                            .clipShape(.rect(cornerRadius: 4))
+                                                    } else if mask.contains(.confirmedDTC) {
+                                                        Text("CONFIRMÉ")
+                                                            .font(.caption).bold()
+                                                            .padding(.horizontal, 6)
+                                                            .padding(.vertical, 2)
+                                                            .background(Color.blue.opacity(0.2))
+                                                            .foregroundStyle(.blue)
+                                                            .clipShape(.rect(cornerRadius: 4))
+                                                    } else {
+                                                        Text("MÉMORISÉ")
+                                                            .font(.caption).bold()
+                                                            .padding(.horizontal, 6)
+                                                            .padding(.vertical, 2)
+                                                            .background(Color.secondary.opacity(0.2))
+                                                            .foregroundStyle(.secondary)
+                                                            .clipShape(.rect(cornerRadius: 4))
+                                                    }
+                                                }
+                                            } else {
+                                                Text(dtc.state == .active ? "ACTIF" : "MÉMORISÉ")
+                                                    .font(.caption).bold()
+                                                    .padding(.horizontal, 8)
+                                                    .padding(.vertical, 4)
+                                                    .background(dtc.state == .active ? Color.red.opacity(0.2) : Color.orange.opacity(0.2))
+                                                    .foregroundStyle(dtc.state == .active ? .red : .orange)
+                                                    .clipShape(.rect(cornerRadius: 5))
+                                            }
                                             
                                             Button {
                                                 Task {
