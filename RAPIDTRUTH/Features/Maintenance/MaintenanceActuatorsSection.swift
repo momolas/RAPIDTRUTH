@@ -39,10 +39,10 @@ struct MaintenanceActuatorsSection: View {
                     }
                     .padding(12)
                     .background(Color.appAccent.opacity(0.12))
-                    .overlay(
+                    .overlay {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.appAccent.opacity(0.4), lineWidth: 1)
-                    )
+                    }
                     .clipShape(.rect(cornerRadius: 10))
                 }
                 .buttonStyle(.plain)

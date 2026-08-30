@@ -87,10 +87,10 @@ struct BatteryRegistrationSheet: View {
                                 }
                                 .padding()
                                 .background(selectedTech == tech ? Color.appAccent.opacity(0.15) : Color.white.opacity(0.04))
-                                .overlay(
+                                .overlay {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(selectedTech == tech ? Color.appAccent : Color.clear, lineWidth: 1)
-                                )
+                                }
                                 .clipShape(.rect(cornerRadius: 10))
                             }
                             .buttonStyle(.plain)

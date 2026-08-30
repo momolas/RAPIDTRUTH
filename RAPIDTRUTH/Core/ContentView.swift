@@ -10,7 +10,6 @@ struct ContentView: View {
                 // The streams are idle until a transport connection starts.
                 pandaDriver.attach()
             }
-            .environment(PandaTransport.shared)
     }
 }
 

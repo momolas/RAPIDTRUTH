@@ -90,10 +90,10 @@ struct ActuatorDashboardView: View {
                     }
                     .padding()
                     .background(Color.appCardBackground)
-                    .overlay(
+                    .overlay {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(Color.appAccent, lineWidth: 1.5)
-                    )
+                    }
                     .clipShape(.rect(cornerRadius: 12))
                 } else if let nrc = manager.lastNRCError {
                     // NRC Error Banner
