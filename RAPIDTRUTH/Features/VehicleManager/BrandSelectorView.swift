@@ -157,7 +157,7 @@ struct BrandSelectorView: View {
             .disabled(isDetecting)
 
             // Grille de sélection manuelle rapide par constructeur
-            ScrollView(.horizontal, showsIndicators: false) {
+            ScrollView(.horizontal) {
                 HStack(spacing: 10) {
                     ForEach(BrandItem.allBrands) { brand in
                         let isSelected = activeProfile.profileId.contains(brand.id) || (settings.selectedProfileId == brand.defaultProfileId)
@@ -192,6 +192,7 @@ struct BrandSelectorView: View {
                     }
                 }
             }
+            .scrollIndicators(.hidden)
 
             // Bandeau résumant les capteurs actifs
             HStack(spacing: 12) {
