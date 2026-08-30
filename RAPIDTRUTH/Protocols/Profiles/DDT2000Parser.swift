@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 struct DDT2000Database: Decodable {
     let ecuname: String?

@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 /// OBD2Analyzer fournit des fonctions utilitaires pour décoder, annoter et traduire
 /// les trames de diagnostic automobile OBD-II, UDS (ISO 14229) et KWP2000 (ISO 14230).

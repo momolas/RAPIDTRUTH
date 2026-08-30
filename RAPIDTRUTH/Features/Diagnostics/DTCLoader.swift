@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import SwiftVehicleProtocols
 
 public enum DTCState: String, Sendable {
     case active = "Active"

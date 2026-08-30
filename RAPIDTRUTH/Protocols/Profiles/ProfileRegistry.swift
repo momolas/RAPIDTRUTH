@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import SwiftVehicleProtocols
 
 /// Loads JSON profiles bundled into the app at build time. The profiles ship
 /// from `../src/profiles/builtin/` (see `project.yml`), so they're identical

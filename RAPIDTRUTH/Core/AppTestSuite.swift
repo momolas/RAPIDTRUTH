@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 /// Suite de tests d'auto-validation du moteur applicatif et des protocoles bas-niveau.
 @MainActor
@@ -11,12 +12,12 @@ enum AppTestSuite {
     }
     
     /// Exécute l'ensemble des tests de validation et retourne les rapports détaillés.
-    static func runAllTests() -> [TestReport] {
+    static func runAllTests() async -> [TestReport] {
         var reports: [TestReport] = []
         
         reports.append(testHexParsing())
         reports.append(testFormulaEvaluator())
-        reports.append(testISOTPReassembler())
+        reports.append(await testISOTPReassembler())
         reports.append(testSignalCorrelator())
         reports.append(testUDSNRC())
         reports.append(testMultiRateSampler())
@@ -79,25 +80,25 @@ enum AppTestSuite {
     
     // MARK: - ISOTPReassembler Tests
     
-    private static func testISOTPReassembler() -> TestReport {
+    private static func testISOTPReassembler() async -> TestReport {
         let reassembler = ISOTPReassembler()
         
         // 1. Single Frame test
         let sfData = Data([0x03, 0x22, 0x01, 0x02, 0xAA, 0xAA, 0xAA, 0xAA])
-        let sfResult = reassembler.processFrame(address: 0x7E8, data: sfData)
+        let sfResult = await reassembler.processFrame(address: 0x7E8, data: sfData)
         guard case .completed(let sfPayload) = sfResult, sfPayload == Data([0x22, 0x01, 0x02]) else {
             return TestReport(testName: "ISOTPReassembler", passed: false, message: "Échec Single Frame")
         }
         
         // 2. Multi-frame test
         let ffData = Data([0x10, 0x0C, 0x62, 0x01, 0x02, 0x03, 0x04, 0x05])
-        let ffResult = reassembler.processFrame(address: 0x7E8, data: ffData)
+        let ffResult = await reassembler.processFrame(address: 0x7E8, data: ffData)
         guard case .needsFlowControl = ffResult else {
             return TestReport(testName: "ISOTPReassembler", passed: false, message: "First Frame aurait dû renvoyer needsFlowControl")
         }
         
         let cfData = Data([0x21, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x00])
-        let cfResult = reassembler.processFrame(address: 0x7E8, data: cfData)
+        let cfResult = await reassembler.processFrame(address: 0x7E8, data: cfData)
         guard case .completed(let cfPayload) = cfResult, cfPayload.count == 12 else {
             return TestReport(testName: "ISOTPReassembler", passed: false, message: "Échec réassemblage Consecutive Frame")
         }
@@ -176,9 +177,8 @@ enum AppTestSuite {
     // MARK: - Freeze Frame Tests
 
     private static func testFreezeFrameDecoder() -> TestReport {
-        let dtcLoader = DTCLoader()
         let kwpHex = "58 01 02 01 86 A0 0B B8 78 32"
-        let decoded = dtcLoader.parseFreezeFrameResponse(kwpHex, dtcCode: "P0102")
+        let decoded = FreezeFrameDecoder.parseKWP(responseHex: kwpHex, dtcCode: "P0102")
         
         guard decoded.timestampKm == 100000 else {
             return TestReport(testName: "FreezeFrameDecoder", passed: false, message: "Échec extraction kilométrage")

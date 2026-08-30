@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 import Observation
 
 /// Cadence d'échantillonnage par PID pour le Multi-Rate Sampler

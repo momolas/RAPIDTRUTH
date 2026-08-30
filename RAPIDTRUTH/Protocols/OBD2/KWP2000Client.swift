@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 /// Gère les opérations de diagnostic avancées via le protocole KWP2000 (ISO 14230).
 /// Utilisé principalement pour interroger les calculateurs des véhicules de génération K-Line/CAN anciens (ex: Scénic II).

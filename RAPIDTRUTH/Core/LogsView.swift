@@ -23,7 +23,7 @@ struct LogsView: View {
                 
                 Spacer()
                 
-                Button(action: { _ = AppTestSuite.runAllTests() }) {
+                Button(action: { Task { _ = await AppTestSuite.runAllTests() } }) {
                     Label("Auto-Test", systemImage: "checkmark.seal.fill")
                         .font(.captionText)
                         .foregroundStyle(Color.appAccent)

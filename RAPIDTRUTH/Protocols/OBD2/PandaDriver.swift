@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 struct LINFrame: Sendable, Identifiable {
     let id = UUID()
@@ -146,7 +147,7 @@ final class PandaDriver: VehicleInterface {
         let payload = dataFromHexString(hexString)
         let frames = fragmentISOTP(payload: payload)
 
-        isotpReassembler.reset(address: self.rxID)
+        await isotpReassembler.reset(address: self.rxID)
         
         return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in
@@ -228,21 +229,21 @@ final class PandaDriver: VehicleInterface {
     }
 
     private func handleISOTPFrame(_ data: Data) {
-        let result = isotpReassembler.processFrame(address: self.rxID, data: data)
-        switch result {
-        case .completed(let completedData):
-            deliver(completedData)
-        case .needsFlowControl:
-            // Send Flow Control: 30 00 00 padded to 8 bytes for older KWP2000 strict ECUs (Scenic II / Modus)
-            Task {
+        Task {
+            let result = await isotpReassembler.processFrame(address: self.rxID, data: data)
+            switch result {
+            case .completed(let completedData):
+                deliver(completedData)
+            case .needsFlowControl:
+                // Send Flow Control: 30 00 00 padded to 8 bytes for older KWP2000 strict ECUs (Scenic II / Modus)
                 let fcData = Data([0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
                 let packed = packPandaCAN(address: txID, data: fcData, bus: self.bus)
                 try? await transport.send(packed)
+            case .error(let errMsg):
+                NSLog("[PandaDriver] ISO-TP Error: \(errMsg)")
+            case .pending:
+                break
             }
-        case .error(let errMsg):
-            NSLog("[PandaDriver] ISO-TP Error: \(errMsg)")
-        case .pending:
-            break
         }
     }
 

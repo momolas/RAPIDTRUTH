@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct ActuatorDashboardView: View {
     let interface: VehicleInterface

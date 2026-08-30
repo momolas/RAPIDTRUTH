@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 enum StandardPIDDiscovery {
     /// Send `0100` / `0120` / `0140` / `0160` / `0180` / `01A0` / `01C0`

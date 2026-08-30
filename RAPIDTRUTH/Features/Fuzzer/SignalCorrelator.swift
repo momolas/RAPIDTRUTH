@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import SwiftVehicleProtocols
 
 /// Représente le résultat d'une corrélation sur une tranche de données hexadécimales.
 struct SliceCorrelation: Identifiable, Equatable {

@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 enum VINReader {
     /// Send Mode 09 PID 02 (Vehicle ID) and parse the 17-byte VIN out of the
