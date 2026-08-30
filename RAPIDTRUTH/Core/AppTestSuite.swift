@@ -26,6 +26,7 @@ enum AppTestSuite {
         reports.append(testBatteryRegistration())
         reports.append(testThematicCustomizations())
         reports.append(await testKWP2000Protocol())
+        reports.append(testJ1939AndProtocolClassification())
         
         for report in reports {
             let prefix = report.passed ? "✅ [TEST PASSED]" : "❌ [TEST FAILED]"
@@ -303,5 +304,34 @@ enum AppTestSuite {
         } catch {
             return TestReport(testName: "KWP2000Protocol", passed: false, message: "Exception levée lors de l'exécution KWP2000: \(error.localizedDescription)")
         }
+    }
+
+    // MARK: - SAE J1939 & CAN Protocol Detection Tests
+
+    private static func testJ1939AndProtocolClassification() -> TestReport {
+        // 1. Test Détection de Protocole
+        let j1939 = OBD2Analyzer.classifyCANFrame(canID: 0x18FEEE00)
+        guard j1939.protocolType == .j1939 && j1939.is29BitExtended else {
+            return TestReport(testName: "J1939AndProtocolClassification", passed: false, message: "Échec classification J1939 29-bit")
+        }
+
+        let obd = OBD2Analyzer.classifyCANFrame(canID: 0x7DF)
+        guard obd.protocolType == .obd2 && !obd.is29BitExtended else {
+            return TestReport(testName: "J1939AndProtocolClassification", passed: false, message: "Échec classification OBD-II Broadcast")
+        }
+
+        let kwp = OBD2Analyzer.classifyCANFrame(canID: 0x640)
+        guard kwp.protocolType == .kwp2000 else {
+            return TestReport(testName: "J1939AndProtocolClassification", passed: false, message: "Échec classification KWP2000 Legacy")
+        }
+
+        // 2. Test Décodage Signaux J1939 (EEC1 PGN 61444)
+        let rawPayload = Data([0xFF, 0x00, 0x7D, 0x00, 0x20, 0xFF, 0xFF, 0xFF]) // RPM: 8192*0.125 = 1024 rpm
+        let signals = OBD2Analyzer.decodeJ1939Signals(canID: 0x0CF00400, data: rawPayload)
+        guard let rpm = signals.first(where: { $0.spn == 190 }), rpm.value == 1024.0 else {
+            return TestReport(testName: "J1939AndProtocolClassification", passed: false, message: "Échec extraction SPN 190 (RPM J1939)")
+        }
+
+        return TestReport(testName: "J1939AndProtocolClassification", passed: true, message: "Détection heuristique de protocoles et décodage SAE J1939 (PGN/SPN) OK")
     }
 }

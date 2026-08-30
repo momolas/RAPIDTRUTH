@@ -613,4 +613,17 @@ final class OBD2Analyzer: Sendable {
         }
         return activeFlags.joined(separator: ", ")
     }
+
+    // MARK: - Classification de Protocole & SAE J1939
+
+    /// Détecte et classifie automatiquement le protocole d'une trame CAN (OBD-II, J1939, KWP2000, UDS, Générique)
+    public static func classifyCANFrame(canID: UInt32, data: Data? = nil) -> CANProtocolClassification {
+        return CANProtocolDetector.detect(canID: canID, payload: data)
+    }
+
+    /// Décode les signaux physiques d'une trame SAE J1939 (29 bits) à partir de son PGN
+    public static func decodeJ1939Signals(canID: UInt32, data: Data) -> [J1939Signal] {
+        let header = J1939Header(canID: canID)
+        return J1939Decoder.decode(pgn: header.pgn, data: data)
+    }
 }
