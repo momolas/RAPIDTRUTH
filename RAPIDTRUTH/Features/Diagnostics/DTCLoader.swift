@@ -416,20 +416,6 @@ final class DTCLoader {
     }
 
     public func decodeSingleDTC(_ hex: String) -> String? {
-        guard hex.count == 4, let value = UInt16(hex, radix: 16) else { return nil }
-        
-        let highByte = UInt8((value >> 8) & 0xFF)
-        let lowByte = UInt8(value & 0xFF)
-        
-        let typeMap = ["P", "C", "B", "U"]
-        let typeIdx = Int((highByte >> 6) & 0b11)
-        let type = typeMap[typeIdx]
-        
-        let digit1 = (highByte >> 4) & 0b11
-        let digit2 = highByte & 0x0F
-        let digit3 = (lowByte >> 4) & 0x0F
-        let digit4 = lowByte & 0x0F
-        
-        return String(format: "%@%d%X%X%X", type, digit1, digit2, digit3, digit4)
+        DTCDecoder.decodeSingleDTC(hex)
     }
 }
