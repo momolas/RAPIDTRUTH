@@ -140,6 +140,14 @@ final class ProfileRegistry {
                         outUnified.append(uProfile)
                         seen.insert(legacy.profileId)
                     }
+                } else if let obdbProfile = try? OBDbImporter.convert(jsonData: data, vehicleName: baseId.replacingOccurrences(of: "_", with: " ").capitalized, profileId: baseId) {
+                    // Importation transparente de profils OBDb multi-marques
+                    let legacy = UnifiedProfileConverter.toLegacyProfile(unified: obdbProfile, id: baseId)
+                    if override || !seen.contains(legacy.profileId) {
+                        outProfiles.append(legacy)
+                        outUnified.append(obdbProfile)
+                        seen.insert(legacy.profileId)
+                    }
                 } else if let parsedDDT = try? DDT2000Parser.parse(fileURL: url) {
                     // Fallback rétrocompatible pour l'import de fichiers DDT2000 / PyRen
                     let uProfile = UnifiedProfileConverter.convert(legacyProfile: parsedDDT)

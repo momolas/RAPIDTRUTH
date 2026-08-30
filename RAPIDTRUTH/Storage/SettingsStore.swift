@@ -31,6 +31,9 @@ final class SettingsStore {
     var autoDevToken: String {
         didSet { UserDefaults.standard.set(autoDevToken, forKey: Keys.autoDevToken) }
     }
+    var selectedProfileId: String? {
+        didSet { UserDefaults.standard.set(selectedProfileId, forKey: Keys.selectedProfileId) }
+    }
 
     static let shared = SettingsStore()
 
@@ -43,12 +46,14 @@ final class SettingsStore {
         static let vinDecoderAPI = "vin_decoder_api"
         static let apiPlaqueToken = "api_plaque_token"
         static let autoDevToken = "auto_dev_token"
+        static let selectedProfileId = "selected_profile_id"
     }
 
     init() {
         let defaults = UserDefaults.standard
         self.owner = defaults.string(forKey: Keys.owner) ?? ""
         self.activeVehicleSlug = defaults.string(forKey: Keys.activeVehicleSlug)
+        self.selectedProfileId = defaults.string(forKey: Keys.selectedProfileId)
         let storedRate = defaults.double(forKey: Keys.sampleRateHz)
         self.sampleRateHz = storedRate == 0 ? 1.0 : storedRate
         self.rawCapture = defaults.bool(forKey: Keys.rawCapture)

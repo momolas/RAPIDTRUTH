@@ -1,0 +1,63 @@
+{
+  "diagnosticLevel": "extended",
+  "commands": [
+    {
+      "hdr": "7E2",
+      "cmd": "2101",
+      "freq": 0.5,
+      "signals": [
+        {
+          "id": "toyota_hv_soc",
+          "name": "Niveau de Charge Batterie HV (SOC)",
+          "path": "Hybride/Batterie",
+          "fmt": {
+            "bytes": 1,
+            "scale": 0.5,
+            "offset": 0.0,
+            "unit": "%"
+          }
+        },
+        {
+          "id": "toyota_hv_temp",
+          "name": "Température Batterie Hybride",
+          "path": "Hybride/Thermique",
+          "fmt": {
+            "bytes": 1,
+            "scale": 1.0,
+            "offset": -40.0,
+            "unit": "°C"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E2",
+      "cmd": "2102",
+      "freq": 0.1,
+      "signals": [
+        {
+          "id": "toyota_mg1_rpm",
+          "name": "Vitesse Moteur Électrique MG1",
+          "path": "Hybride/Moteur-MG1",
+          "fmt": {
+            "bytes": 2,
+            "scale": 1.0,
+            "offset": -10000.0,
+            "unit": "tr/min"
+          }
+        },
+        {
+          "id": "toyota_mg2_rpm",
+          "name": "Vitesse Moteur Traction MG2",
+          "path": "Hybride/Moteur-MG2",
+          "fmt": {
+            "bytes": 2,
+            "scale": 1.0,
+            "offset": -10000.0,
+            "unit": "tr/min"
+          }
+        }
+      ]
+    }
+  ]
+}

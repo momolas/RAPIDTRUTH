@@ -1,0 +1,77 @@
+{
+  "diagnosticLevel": "extended",
+  "commands": [
+    {
+      "hdr": "7E0",
+      "cmd": "2211A4",
+      "freq": 0.1,
+      "signals": [
+        {
+          "id": "bmw_boost_pressure",
+          "name": "Pression de Suralimentation Turbo",
+          "path": "Moteur/Suralimentation",
+          "fmt": {
+            "bytes": 2,
+            "scale": 0.01,
+            "offset": 0.0,
+            "unit": "bar"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": "2211A5",
+      "freq": 0.2,
+      "signals": [
+        {
+          "id": "bmw_rail_pressure",
+          "name": "Pression de Rampe Common Rail",
+          "path": "Moteur/Injection",
+          "fmt": {
+            "bytes": 2,
+            "scale": 10.0,
+            "offset": 0.0,
+            "unit": "bar"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": "222A04",
+      "freq": 0.5,
+      "signals": [
+        {
+          "id": "bmw_oil_temp",
+          "name": "Température Huile Moteur",
+          "path": "Moteur/Thermique",
+          "fmt": {
+            "bytes": 1,
+            "scale": 1.0,
+            "offset": -40.0,
+            "unit": "°C"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E2",
+      "cmd": "223B01",
+      "freq": 1.0,
+      "signals": [
+        {
+          "id": "bmw_trans_oil_temp",
+          "name": "Température Huile Boîte ZF8",
+          "path": "Transmission/Boîte",
+          "fmt": {
+            "bytes": 1,
+            "scale": 1.0,
+            "offset": -40.0,
+            "unit": "°C"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/momolas/SwiftVehicleProtocols.git",
       "state" : {
-        "revision" : "f79e97f17a7cc213a1424a1034e34cbcca60b9ab",
-        "version" : "1.8.0"
+        "revision" : "d5303c05d3f323fb5a93b476f2396fca0121adc4",
+        "version" : "1.9.0"
       }
     }
   ],

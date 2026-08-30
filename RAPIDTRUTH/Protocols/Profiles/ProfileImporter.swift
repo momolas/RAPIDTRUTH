@@ -41,12 +41,16 @@ enum ProfileImporter {
         if let directUnified = try? JSONDecoder().decode(UnifiedECUProfile.self, from: data) {
             uProfile = directUnified
             legacyProfile = UnifiedProfileConverter.toLegacyProfile(unified: uProfile, id: baseId)
+        } else if let obdbProfile = try? OBDbImporter.convert(jsonData: data, vehicleName: baseId.replacingOccurrences(of: "_", with: " ").capitalized, profileId: baseId) {
+            // 2. Importation directe d'un signalset OBDb multi-marques
+            uProfile = obdbProfile
+            legacyProfile = UnifiedProfileConverter.toLegacyProfile(unified: uProfile, id: baseId)
         } else if let parsedLegacy = try? DDT2000Parser.parse(fileURL: url) {
-            // 2. Fallback pour formats bruts DDT2000 / PyRen
+            // 3. Fallback pour formats bruts DDT2000 / PyRen
             legacyProfile = parsedLegacy
             uProfile = UnifiedProfileConverter.convert(legacyProfile: legacyProfile)
         } else {
-            throw ImportError.invalidJSON("Le fichier ne correspond ni au format universel OVD ni à une base DDT2000 valide.")
+            throw ImportError.invalidJSON("Le fichier ne correspond ni au format universel OVD, ni à un signalset OBDb, ni à une base DDT2000 valide.")
         }
 
         guard !legacyProfile.pids.isEmpty else {

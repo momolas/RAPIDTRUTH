@@ -1,0 +1,77 @@
+{
+  "diagnosticLevel": "extended",
+  "commands": [
+    {
+      "hdr": "7E4",
+      "cmd": "22F401",
+      "freq": 1.0,
+      "signals": [
+        {
+          "id": "tesla_battery_soh",
+          "name": "State of Health Batterie (SoH)",
+          "path": "Batterie/Santé",
+          "fmt": {
+            "bytes": 1,
+            "scale": 0.5,
+            "offset": 0.0,
+            "unit": "%"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E4",
+      "cmd": "22F402",
+      "freq": 0.2,
+      "signals": [
+        {
+          "id": "tesla_pack_voltage",
+          "name": "Tension Pack Haute Tension",
+          "path": "Batterie/Tension",
+          "fmt": {
+            "bytes": 2,
+            "scale": 0.1,
+            "offset": 0.0,
+            "unit": "V"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E4",
+      "cmd": "22F403",
+      "freq": 0.2,
+      "signals": [
+        {
+          "id": "tesla_pack_current",
+          "name": "Courant Instantané Pack",
+          "path": "Batterie/Courant",
+          "fmt": {
+            "bytes": 2,
+            "scale": 0.1,
+            "offset": -500.0,
+            "unit": "A"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E4",
+      "cmd": "22F408",
+      "freq": 1.0,
+      "signals": [
+        {
+          "id": "tesla_battery_temp_avg",
+          "name": "Température Moyenne Cellules",
+          "path": "Batterie/Thermique",
+          "fmt": {
+            "bytes": 1,
+            "scale": 1.0,
+            "offset": -40.0,
+            "unit": "°C"
+          }
+        }
+      ]
+    }
+  ]
+}

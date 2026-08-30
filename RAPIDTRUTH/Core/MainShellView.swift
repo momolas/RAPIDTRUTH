@@ -28,6 +28,10 @@ struct MainShellView: View {
     /// Dynamically resolves the active profile from the selected active vehicle,
     /// falling back to the Scenic 2 profile if none is active or found.
     private var profile: Profile {
+        if let manualId = settings.selectedProfileId,
+           let prof = profileRegistry.profile(id: manualId) {
+            return prof
+        }
         if let slug = settings.activeVehicleSlug,
            let vehicle = vehicleStore.vehicles.first(where: { $0.slug == slug }),
            let prof = profileRegistry.profile(id: vehicle.profileId) {
@@ -54,6 +58,9 @@ struct MainShellView: View {
 
                         // Vehicle Profile & Discovery Card
                         VehicleCardView(driver: driver)
+
+                        // Sélecteur de Marque & Profils OBDb / Multi-Marques
+                        BrandSelectorView(driver: driver)
 
                         // 1 — Connexion
                         ConnectionView(driver: driver)

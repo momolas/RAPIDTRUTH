@@ -1,0 +1,77 @@
+{
+  "diagnosticLevel": "extended",
+  "commands": [
+    {
+      "hdr": "7E0",
+      "cmd": "221155",
+      "freq": 0.1,
+      "signals": [
+        {
+          "id": "vag_boost_actual",
+          "name": "Pression Turbo Réelle",
+          "path": "Moteur/Suralimentation",
+          "fmt": {
+            "bytes": 2,
+            "scale": 1.0,
+            "offset": 0.0,
+            "unit": "hPa"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": "221156",
+      "freq": 0.1,
+      "signals": [
+        {
+          "id": "vag_boost_specified",
+          "name": "Consigne Pression Turbo",
+          "path": "Moteur/Suralimentation",
+          "fmt": {
+            "bytes": 2,
+            "scale": 1.0,
+            "offset": 0.0,
+            "unit": "hPa"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": "222040",
+      "freq": 1.0,
+      "signals": [
+        {
+          "id": "vag_dpf_soot_mass",
+          "name": "Masse de Suie FAP Calculée",
+          "path": "Échappement/FAP",
+          "fmt": {
+            "bytes": 2,
+            "scale": 0.01,
+            "offset": 0.0,
+            "unit": "g"
+          }
+        }
+      ]
+    },
+    {
+      "hdr": "7E0",
+      "cmd": "222041",
+      "freq": 1.0,
+      "signals": [
+        {
+          "id": "vag_dpf_diff_pressure",
+          "name": "Pression Différentielle FAP",
+          "path": "Échappement/FAP",
+          "fmt": {
+            "bytes": 2,
+            "scale": 1.0,
+            "offset": 0.0,
+            "unit": "hPa"
+          }
+        }
+      ]
+    }
+  ]
+}
