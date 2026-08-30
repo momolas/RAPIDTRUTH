@@ -8,7 +8,7 @@ struct LogsView: View {
     var filteredEntries: [LogEntry] {
         logger.entries.filter { entry in
             let matchesLevel = selectedLevel == nil || entry.level == selectedLevel
-            let matchesSearch = searchText.isEmpty || entry.message.localizedCaseInsensitiveContains(searchText)
+            let matchesSearch = searchText.isEmpty || entry.message.localizedStandardContains(searchText)
             return matchesLevel && matchesSearch
         }
     }
@@ -176,9 +176,7 @@ struct LogsView: View {
     }
     
     private func formatTime(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss.SSS"
-        return formatter.string(from: date)
+        date.formatted(date: .omitted, time: .standard)
     }
     
     private func copyToClipboard() {

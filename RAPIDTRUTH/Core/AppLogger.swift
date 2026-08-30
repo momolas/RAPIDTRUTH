@@ -31,9 +31,7 @@ public final class AppLogger {
         }
         entries.append(entry)
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss.SSS"
-        let timeStr = formatter.string(from: entry.timestamp)
+        let timeStr = entry.timestamp.formatted(date: .omitted, time: .standard)
         NSLog("[\(timeStr)] [\(level.rawValue)] \(message)")
     }
     

@@ -89,7 +89,7 @@ final class OBDFuzzer {
                 try Task.checkCancellation()
                 if !isRunning { break }
                 
-                currentProgress = Float(index) / Float(total)
+                currentProgress = Float(index) / Float(total > 0 ? total : 1)
                 
                 try await interface.setTarget(txID: ecu, rxID: nil)
                 
