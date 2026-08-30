@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 /// Validates an incoming profile JSON and saves it to `Documents/profiles/`.
 /// Used by:

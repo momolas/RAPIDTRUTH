@@ -1,5 +1,6 @@
 import SwiftUI
 import Charts
+import SwiftVehicleProtocols
 
 struct LiveDataChartView: View {
     let pids: [PidDef]

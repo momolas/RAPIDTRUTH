@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftVehicleProtocols
 
 @main
 struct RAPIDTRUTHApp: App {

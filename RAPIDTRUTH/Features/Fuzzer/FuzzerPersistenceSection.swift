@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct FuzzerPersistenceSection: View {
     let vehicle: Vehicle?

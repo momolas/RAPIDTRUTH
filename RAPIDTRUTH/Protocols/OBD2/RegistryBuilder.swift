@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 /// Builds a combined PID registry from standard Mode-01 PIDs (discovered via
 /// the supported-PIDs bitmap sweep) and profile-specific PIDs (probed against
