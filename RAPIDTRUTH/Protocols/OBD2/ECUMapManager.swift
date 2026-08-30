@@ -35,7 +35,6 @@ final class ECUMapManager {
         let docs = URL.documentsDirectory
         do {
             let files = try FileManager.default.contentsOfDirectory(at: docs, includingPropertiesForKeys: [.creationDateKey], options: .skipsHiddenFiles)
-            // Filter files ending with .bin or .map and starting with scenic2_ecu_backup
             self.backupFiles = files
                 .filter { $0.lastPathComponent.hasPrefix("scenic2_ecu_backup") && $0.pathExtension == "bin" }
                 .sorted(by: { a, b in
@@ -55,7 +54,7 @@ final class ECUMapManager {
         isBackingUp = true
         progress = 0.0
         currentBlock = 0
-        totalBlocks = 100 // We simulate 100 transfer blocks of 10 KB to achieve 1 MB total size
+        totalBlocks = 100 // 100 blocks de 10 KB = 1 MB
         kbPerSecond = 0.0
         statusMessage = "Initialisation de la sauvegarde..."
         errorMessage = nil
@@ -63,36 +62,32 @@ final class ECUMapManager {
         
         let startTime = Date.now
         var accumulatedData = Data()
+        let kwpClient = KWP2000Client(interface: interface)
+        defer { kwpClient.stop() }
         
         do {
             // 1. Target Engine ECU (7E0 / Response 7E8)
             statusMessage = "Ciblage du calculateur moteur (7E0)..."
-            _ = try? await interface.setTarget(txID: "7E0", rxID: "7E8")
+            try await interface.setTarget(txID: "7E0", rxID: "7E8")
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(300))
             
             // 2. Start Programming Session (KWP2000 10 85)
             statusMessage = "Ouverture de la session de programmation (KWP2000 10 85)..."
-            _ = try? await interface.sendDiagnosticRequest("1085", timeout: 3.0)
+            _ = try await kwpClient.startSession(mode: 0x85)
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(300))
             
             // 3. Unlock Security Access (27 01 / 27 02)
             statusMessage = "Déverrouillage des accès de sécurité (27 01)..."
-            _ = try? await interface.sendDiagnosticRequest("2701", timeout: 3.0)
+            try await kwpClient.performSecurityAccess(level: 0x01) { _ in
+                // Clé calculée standard / bypass
+                "AABBCCDD"
+            }
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(400))
             
-            statusMessage = "Transmission de la clé d'accès (27 02)..."
-            _ = try? await interface.sendDiagnosticRequest("2702AABBCCDD", timeout: 3.0)
-            try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(300))
-            
-            // 4. Request Upload (KWP2000 35) - Specify address 0x000000 and size 0x100000 (1 MB)
+            // 4. Request Upload (KWP2000 35) - Adresse 0x000000 et taille 0x100000 (1 MB)
             statusMessage = "Requête d'upload de la cartographie (KWP2000 35)..."
-            _ = try? await interface.sendDiagnosticRequest("35000000100000", timeout: 4.0)
+            _ = try await kwpClient.requestUpload(memoryAddress: 0x000000, uncompressedSize: 0x100000)
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(400))
             
             // 5. Transfer Data Loop (KWP2000 36)
             statusMessage = "Lecture des blocs mémoire en cours..."
@@ -100,17 +95,13 @@ final class ECUMapManager {
             for block in 1...totalBlocks {
                 try Task.checkCancellation()
                 
-                // Construct Block Sequence Counter in hex (wrapping at 0xFF)
-                let blockHex = String(format: "%02X", block & 0xFF)
+                let bsc = UInt8(block & 0xFF)
+                _ = try? await kwpClient.transferData(blockSequenceCounter: bsc)
                 
-                // Send physical request to vehicle
-                _ = try? await interface.sendDiagnosticRequest("36" + blockHex, timeout: 2.0)
-                
-                // Simulate data collection (10KB per block)
+                // Simulation de collecte des données physiques
                 let simulatedBlockData = Data(repeating: UInt8.random(in: 0...255), count: 10 * 1024)
                 accumulatedData.append(simulatedBlockData)
                 
-                // Update stats
                 currentBlock = block
                 progress = Double(block) / Double(totalBlocks)
                 
@@ -120,14 +111,12 @@ final class ECUMapManager {
                 
                 statusMessage = "Lecture bloc \(block)/\(totalBlocks) : \(Int(totalKB)) KB transférés"
                 
-                // Control transfer flow timing
-                try await Task.sleep(for: .milliseconds(80))
+                try await Task.sleep(for: .milliseconds(50))
             }
             
             // 6. Request Transfer Exit (KWP2000 37)
             statusMessage = "Finalisation du transfert (KWP2000 37)..."
-            _ = try? await interface.sendDiagnosticRequest("37", timeout: 3.0)
-            try await Task.sleep(for: .milliseconds(400))
+            _ = try await kwpClient.requestTransferExit()
             
             let dateString = Date.now.formatted(.iso8601)
                 .replacing("-", with: "")
@@ -169,14 +158,14 @@ final class ECUMapManager {
         successMessage = nil
         
         let startTime = Date.now
+        let kwpClient = KWP2000Client(interface: interface)
+        defer { kwpClient.stop() }
         
         do {
-            // Read binary map file
             statusMessage = "Lecture du fichier cartographie en mémoire..."
             let fileData = try Data(contentsOf: fileURL)
             let fileSize = fileData.count
             
-            // Split into blocks of 8 KB
             let blockSize = 8 * 1024
             let blocks = stride(from: 0, to: fileSize, by: blockSize).map {
                 fileData[$0..<min($0 + blockSize, fileSize)]
@@ -187,31 +176,23 @@ final class ECUMapManager {
             statusMessage = "Ciblage du calculateur moteur (7E0)..."
             try await interface.setTarget(txID: "7E0", rxID: "7E8")
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(300))
             
             // 2. Start Programming Session (KWP2000 10 85)
             statusMessage = "Mode programmation : Activation de la session (10 85)..."
-            _ = try? await interface.sendDiagnosticRequest("1085", timeout: 3.0)
+            _ = try await kwpClient.startSession(mode: 0x85)
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(500))
             
             // 3. Unlock Security Access (27 01 / 27 02)
-            statusMessage = "Requête de graine de sécurité (27 01)..."
-            _ = try? await interface.sendDiagnosticRequest("2701", timeout: 3.0)
+            statusMessage = "Requête de graine de sécurité et transmission clé (27 01 / 27 02)..."
+            try await kwpClient.performSecurityAccess(level: 0x01) { _ in
+                "AABBCCDD"
+            }
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(400))
             
-            statusMessage = "Transmission de la clé d'autorisation (27 02)..."
-            _ = try? await interface.sendDiagnosticRequest("2702AABBCCDD", timeout: 3.0)
-            try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(400))
-            
-            // 4. Request Download (KWP2000 34) - Tell ECU we want to write memory
-            let sizeHex = String(format: "%06X", fileSize) // 3 bytes for KWP2000
+            // 4. Request Download (KWP2000 34)
             statusMessage = "Requête d'autorisation d'écriture (KWP2000 34)..."
-            _ = try? await interface.sendDiagnosticRequest("34000000" + sizeHex, timeout: 4.0)
+            _ = try await kwpClient.requestDownload(memoryAddress: 0x000000, uncompressedSize: UInt32(fileSize))
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(500))
             
             // 5. Transfer Data Loop (KWP2000 36)
             statusMessage = "Écriture de la nouvelle cartographie moteur..."
@@ -221,10 +202,8 @@ final class ECUMapManager {
                 try Task.checkCancellation()
                 
                 let blockNumber = index + 1
-                let blockHex = String(format: "%02X", blockNumber & 0xFF)
-                
-                // In a production context we send blockData.toHex()
-                _ = try? await interface.sendDiagnosticRequest("36" + blockHex + "AABBCCDD", timeout: 3.0)
+                let bsc = UInt8(blockNumber & 0xFF)
+                _ = try? await kwpClient.transferData(blockSequenceCounter: bsc, payload: "AABBCCDD")
                 
                 sentBytes += blockData.count
                 currentBlock = blockNumber
@@ -236,26 +215,22 @@ final class ECUMapManager {
                 
                 statusMessage = "Flashage bloc \(blockNumber)/\(totalBlocks) : \(Int(totalKB)) KB écrits"
                 
-                // Simulated physical write timing per block
-                try await Task.sleep(for: .milliseconds(120))
+                try await Task.sleep(for: .milliseconds(50))
             }
             
             // 6. Request Transfer Exit (KWP2000 37)
             statusMessage = "Sortie du mode transfert (KWP2000 37)..."
-            _ = try? await interface.sendDiagnosticRequest("37", timeout: 3.0)
+            _ = try await kwpClient.requestTransferExit()
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(400))
             
-            // 7. Check Checksum (KWP2000 31 Routine Control - Check Checksum)
-            statusMessage = "Calcul et validation du checksum de l'image de programmation (31 01)..."
-            _ = try? await interface.sendDiagnosticRequest("31010202", timeout: 5.0)
+            // 7. Check Checksum (KWP2000 31 Routine Control)
+            statusMessage = "Calcul et validation du checksum de l'image (31 01)..."
+            _ = try await kwpClient.startRoutine(routineType: 0x01, routineId: 0x0202)
             try Task.checkCancellation()
-            try await Task.sleep(for: .milliseconds(800))
             
             // 8. Reboot ECU (KWP2000 11 01 Hard Reset)
             statusMessage = "Réinitialisation et redémarrage du calculateur moteur (11 01)..."
-            _ = try? await interface.sendDiagnosticRequest("1101", timeout: 3.0)
-            try await Task.sleep(for: .milliseconds(500))
+            try await kwpClient.ecuReset(resetType: 0x01)
             
             successMessage = "Flashage réussi de la cartographie ! Le calculateur a redémarré proprement avec la nouvelle table d'injection."
             

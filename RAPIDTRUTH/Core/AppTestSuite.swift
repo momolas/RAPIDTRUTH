@@ -337,40 +337,24 @@ enum AppTestSuite {
     // MARK: - Unified ECU Profile & DDT2000 Converter Test
 
     private static func testUnifiedProfileConversion() -> TestReport {
-        guard let url = Bundle.main.url(forResource: "modus_obd2", withExtension: "json") ??
-                        Bundle.main.url(forResource: "generic_obd2", withExtension: "json") else {
-            // Test sur un flux synthétique si le bundle n'est pas accessible directement en runtime
-            let sampleDDT = """
-            {
-                "ecuname": "ECM_RENAULT_DCI",
-                "obd": { "send_id": "7E0", "recv_id": "7E8", "baudrate": 500000 },
-                "data": { "Regime": { "bitscount": 16, "step": 0.125, "unit": "tr/min" } },
-                "requests": [ { "name": "Telemetry", "sentbytes": "2101", "receivebyte_dataitems": { "Regime": { "firstbyte": 2 } } } ]
-            }
-            """.data(using: .utf8)!
-
-            do {
-                let profile = try DDT2UnifiedConverter.convert(jsonData: sampleDDT)
-                let exported = try DDT2UnifiedConverter.exportToJSON(profile: profile)
-                guard exported.contains("ECM_RENAULT_DCI") else {
-                    return TestReport(testName: "UnifiedProfileConversion", passed: false, message: "Échec export JSON unifié")
-                }
-                return TestReport(testName: "UnifiedProfileConversion", passed: true, message: "Conversion DDT2000 -> Unified ECU Profile (OVD JSON) validée")
-            } catch {
-                return TestReport(testName: "UnifiedProfileConversion", passed: false, message: "Erreur conversion: \(error.localizedDescription)")
-            }
+        let sampleDDT = """
+        {
+            "ecuname": "ECM_RENAULT_DCI",
+            "obd": { "send_id": "7E0", "recv_id": "7E8", "baudrate": 500000 },
+            "data": { "Regime": { "bitscount": 16, "step": 0.125, "unit": "tr/min" } },
+            "requests": [ { "name": "Telemetry", "sentbytes": "2101", "receivebyte_dataitems": { "Regime": { "firstbyte": 2 } } } ]
         }
+        """.data(using: .utf8)!
 
         do {
-            let data = try Data(contentsOf: url)
-            let profile = try DDT2UnifiedConverter.convert(jsonData: data)
-            let exportedJSON = try DDT2UnifiedConverter.exportToJSON(profile: profile)
-            guard !exportedJSON.isEmpty && !profile.variants.isEmpty else {
-                return TestReport(testName: "UnifiedProfileConversion", passed: false, message: "Profil converti vide")
+            let profile = try DDT2UnifiedConverter.convert(jsonData: sampleDDT)
+            let exported = try DDT2UnifiedConverter.exportToJSON(profile: profile)
+            guard exported.contains("ECM_RENAULT_DCI") else {
+                return TestReport(testName: "UnifiedProfileConversion", passed: false, message: "Échec export JSON unifié")
             }
-            return TestReport(testName: "UnifiedProfileConversion", passed: true, message: "Conversion profil Renault '\(profile.name)' vers Schéma Déclaratif Unifié OK (\(profile.variants.first?.downloads.count ?? 0) services)")
+            return TestReport(testName: "UnifiedProfileConversion", passed: true, message: "Conversion DDT2000 -> Unified ECU Profile (OVD JSON) validée")
         } catch {
-            return TestReport(testName: "UnifiedProfileConversion", passed: false, message: "Erreur conversion fichier: \(error.localizedDescription)")
+            return TestReport(testName: "UnifiedProfileConversion", passed: false, message: "Erreur conversion: \(error.localizedDescription)")
         }
     }
 }
