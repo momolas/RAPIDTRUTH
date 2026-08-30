@@ -325,22 +325,7 @@ struct KWP2000TimingParameters: Sendable {
     
     /// Décode les paramètres temporels à partir de la réponse brute KWP2000 (5 octets)
     static func decode(from hex: String) -> KWP2000TimingParameters? {
-        let clean = hex.replacing(" ", with: "")
-        guard clean.count >= 10 else { return nil }
-
-        var bytes = [UInt8]()
-
-        for i in stride(from: 0, to: 10, by: 2) {
-            let start = clean.index(clean.startIndex, offsetBy: i)
-            let end = clean.index(start, offsetBy: 2)
-            if let byte = UInt8(clean[start..<end], radix: 16) {
-                bytes.append(byte)
-            } else {
-                return nil
-            }
-        }
-        
-        guard bytes.count == 5 else { return nil }
+        guard let bytes = HexParsing.bytes(hex), bytes.count == 5 else { return nil }
         
         // Résolutions normalisées ISO 14230-3 :
         // P2min : 0.5 ms/unité
@@ -364,7 +349,7 @@ struct KWP2000TimingParameters: Sendable {
         let b3 = UInt8(clamping: Int((p3min / 0.5).rounded()))
         let b4 = UInt8(clamping: Int((p3max / 250.0).rounded()))
         let b5 = UInt8(clamping: Int((p4min / 0.5).rounded()))
-        return String(format: "%02X%02X%02X%02X%02X", b1, b2, b3, b4, b5)
+        return HexParsing.hex([b1, b2, b3, b4, b5])
     }
 }
 

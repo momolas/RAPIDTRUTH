@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct BatteryRegistrationSheet: View {
     let interface: VehicleInterface

@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 import SwiftData
 
 struct UsedCarCheckView: View {

@@ -32,6 +32,7 @@ final class PandaDriver: VehicleInterface {
 
     // Multi-stream ISO-TP reassembler
     private let isotpReassembler = ISOTPReassembler()
+    private let simEngine = SimulatorEngine()
     
     // Task reading from transport
     private var inboundTask: Task<Void, Never>?
@@ -113,7 +114,7 @@ final class PandaDriver: VehicleInterface {
         
         if transport.isSimulationMode {
             try? await Task.sleep(for: .milliseconds(30))
-            let simResponse = await SimulatorEngine.shared.handleRequest(txID: self.txID, rxID: self.rxID, request: finalCmd)
+            let simResponse = (try? await simEngine.sendDiagnosticRequest(finalCmd)) ?? "5003"
             AppLogger.shared.log("RX: \(simResponse) on 0x\(String(rxID, radix: 16).uppercased()) [SIM]", level: .command)
             return simResponse
         }

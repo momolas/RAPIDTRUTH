@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 enum ProfileProbe {
     /// Test each profile-defined PID against the live connection. A PID is

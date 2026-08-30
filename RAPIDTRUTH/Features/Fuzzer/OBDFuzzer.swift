@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 import Observation
 
 struct FuzzResult: Identifiable {

@@ -25,6 +25,7 @@ enum AppTestSuite {
         reports.append(testActuatorRegistry())
         reports.append(testBatteryRegistration())
         reports.append(testThematicCustomizations())
+        reports.append(await testKWP2000Protocol())
         
         for report in reports {
             let prefix = report.passed ? "✅ [TEST PASSED]" : "❌ [TEST FAILED]"
@@ -241,5 +242,66 @@ enum AppTestSuite {
             return TestReport(testName: "ThematicCustomizations", passed: false, message: "4 thèmes de personnalisation attendus")
         }
         return TestReport(testName: "ThematicCustomizations", passed: true, message: "Navigation thématique des télécodages OK")
+    }
+
+    // MARK: - KWP2000 Protocol Tests
+
+    private static func testKWP2000Protocol() async -> TestReport {
+        // 1. Test des Paramètres Temporels (ISO 14230-3 Service 83)
+        let hexTiming = "05020A0402"
+        guard let timing = KWP2000TimingParameters.decode(from: hexTiming) else {
+            return TestReport(testName: "KWP2000Protocol", passed: false, message: "Échec décodage paramètres temporels KWP2000")
+        }
+        guard timing.p2min == 2.5 && timing.p2max == 50.0 && timing.p3min == 5.0 && timing.p3max == 1000.0 && timing.p4min == 1.0 else {
+            return TestReport(testName: "KWP2000Protocol", passed: false, message: "Valeurs physiques de timing incorrectes")
+        }
+        guard timing.encode() == hexTiming else {
+            return TestReport(testName: "KWP2000Protocol", passed: false, message: "Échec ré-encodage hexadécimal du timing")
+        }
+
+        // 2. Test des Services KWP2000 via SimulatorEngine
+        let simulator = SimulatorEngine()
+        let kwpClient = KWP2000Client(interface: simulator)
+
+        do {
+            // Service 10: Démarrage session KWP2000 (Mode 0x81 / Standard)
+            let sessionResp = try await kwpClient.startSession(mode: 0x81)
+            guard sessionResp.hasPrefix("5081") else {
+                return TestReport(testName: "KWP2000Protocol", passed: false, message: "Échec réponse positive Service 10 81")
+            }
+
+            // Service 21: Lecture d'un Local Identifier (LID)
+            let lidData = try await kwpClient.readLocalIdentifier(lid: 0x01)
+            guard !lidData.isEmpty else {
+                return TestReport(testName: "KWP2000Protocol", passed: false, message: "Échec lecture LID Service 21")
+            }
+
+            // Service 1A: Lecture Identification ECU
+            let ecuId = try await kwpClient.readEcuIdentification(option: 0x80)
+            guard !ecuId.isEmpty else {
+                return TestReport(testName: "KWP2000Protocol", passed: false, message: "Échec lecture identification ECU Service 1A")
+            }
+
+            // Service 18: Lecture DTCs
+            let dtcResp = try await kwpClient.readDiagnosticTroubleCodesByStatus(statusMask: 0xFF)
+            guard dtcResp.hasPrefix("58") else {
+                return TestReport(testName: "KWP2000Protocol", passed: false, message: "Échec lecture DTCs Service 18")
+            }
+
+            // Service 14: Effacement DTCs
+            try await kwpClient.clearDiagnosticInformation(group: 0xFFFFFF)
+
+            // Service 27: SecurityAccess (Simulation Seed & Key)
+            try await kwpClient.performSecurityAccess(level: 0x01) { seed in
+                return SecurityAccessManager.calculateKey(seedHex: seed, algorithm: .xorStatique, maskHex: "55")
+            }
+
+            // Arrêt du client
+            kwpClient.stop()
+
+            return TestReport(testName: "KWP2000Protocol", passed: true, message: "Services ISO 14230 (10, 14, 18, 1A, 21, 27, 83) validés à 100%")
+        } catch {
+            return TestReport(testName: "KWP2000Protocol", passed: false, message: "Exception levée lors de l'exécution KWP2000: \(error.localizedDescription)")
+        }
     }
 }

@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct FuzzerSignalCorrelationSection: View {
     let interface: VehicleInterface

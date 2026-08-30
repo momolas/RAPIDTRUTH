@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 enum DiagnosticDestination: Hashable, Sendable {
     case diagnostics

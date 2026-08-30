@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 /// Compact, tappable card for the main shell that summarizes the active
 /// vehicle and opens the full management sheet on tap. Add / Import /

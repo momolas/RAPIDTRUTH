@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct MaintenanceView: View {
     let interface: VehicleInterface

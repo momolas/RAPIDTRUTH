@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 import Charts
 
 struct LiveDataView: View {

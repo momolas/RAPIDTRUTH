@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct EPBAssistantView: View {
     let interface: VehicleInterface

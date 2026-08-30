@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 import UniformTypeIdentifiers
 
 /// Sheet body for the vehicle-management flow. Presented from

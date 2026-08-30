@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct MaintenanceFlashingSection: View {
     let interface: VehicleInterface

@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct AddVehicleView: View {
     let driver: VehicleInterface

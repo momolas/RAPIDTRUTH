@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 enum CustomizationCategory: String, CaseIterable, Identifiable {
     case lighting = "Éclairage & Visibilité"

@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import SwiftVehicleProtocols
 
 /// Profil global de cadencement d'échantillonnage
 public enum SamplingProfilePreset: String, Sendable, CaseIterable, Identifiable {

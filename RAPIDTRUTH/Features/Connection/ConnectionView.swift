@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct ConnectionView: View {
     @Environment(PandaTransport.self) private var pandaTransport

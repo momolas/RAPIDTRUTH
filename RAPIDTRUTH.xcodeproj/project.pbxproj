@@ -352,8 +352,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/momolas/SwiftVehicleProtocols.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

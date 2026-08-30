@@ -1,4 +1,5 @@
 import Foundation
+import SwiftVehicleProtocols
 
 /// Quick "is the ECU answering?" probe. Send one cheap, universally-supported
 /// Mode-01 query (`0100` — "which PIDs do you support") and look for a

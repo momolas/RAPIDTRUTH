@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import SwiftVehicleProtocols
 
 enum BatteryTechnology: String, CaseIterable, Identifiable, Sendable {
     case standardLeadAcid = "Plomb-Acide Standard (SLI)"

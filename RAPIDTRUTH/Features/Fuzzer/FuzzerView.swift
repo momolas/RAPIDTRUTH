@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct FuzzerView: View {
     let interface: VehicleInterface
