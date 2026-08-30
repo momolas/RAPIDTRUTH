@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftVehicleProtocols
 
 struct FuzzerResultsSection: View {
     let fuzzer: OBDFuzzer
